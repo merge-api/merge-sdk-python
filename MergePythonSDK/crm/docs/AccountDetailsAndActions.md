@@ -1,0 +1,22 @@
+# AccountDetailsAndActions
+
+# The LinkedAccount Object ### Description The `LinkedAccount` object is used to represent an end user's link with a specific integration.  ### Usage Example View a list of your organization's `LinkedAccount` objects.
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**id** | **str** |  | 
+**status** | **bool, date, datetime, dict, float, int, list, str, none_type** |  | 
+**end_user_organization_name** | **str** |  | 
+**end_user_email_address** | **str** |  | 
+**webhook_listener_url** | **str** |  | 
+**category** | **bool, date, datetime, dict, float, int, list, str, none_type** |  | [optional] 
+**status_detail** | **str** |  | [optional] 
+**end_user_origin_id** | **str** |  | [optional] 
+**is_duplicate** | **bool, none_type** | Whether a Production Linked Account&#39;s credentials match another existing Production Linked Account. This field is &#x60;null&#x60; for Test Linked Accounts, incomplete Production Linked Accounts, and ignored duplicate Production Linked Account sets. | [optional] 
+**integration** | [**AccountDetailsAndActionsIntegration**](AccountDetailsAndActionsIntegration.md) |  | [optional] 
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+
