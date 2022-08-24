@@ -1,5 +1,3 @@
-.gitlab-ci.yml
-.travis.yml
 MergePythonSDK/__init__.py
 MergePythonSDK/hris/__init__.py
 MergePythonSDK/hris/api/__init__.py

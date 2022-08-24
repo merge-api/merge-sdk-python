@@ -1,5 +1,3 @@
-.gitlab-ci.yml
-.travis.yml
 MergePythonSDK/__init__.py
 MergePythonSDK/accounting/__init__.py
 MergePythonSDK/accounting/api/__init__.py
