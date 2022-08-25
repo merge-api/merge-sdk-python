@@ -45,7 +45,8 @@ class TicketsApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(User),),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/ticketing/v1/tickets/{id}/collaborators',
                 'operation_id': 'tickets_collaborators_list',
@@ -54,7 +55,6 @@ class TicketsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'id',
                     'cursor',
                     'expand',
@@ -62,7 +62,6 @@ class TicketsApi(object):
                     'page_size',
                 ],
                 'required': [
-                    'x_account_token',
                     'id',
                 ],
                 'nullable': [
@@ -83,8 +82,6 @@ class TicketsApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'id':
                         (str,),
                     'cursor':
@@ -97,7 +94,6 @@ class TicketsApi(object):
                         (int,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                     'cursor': 'cursor',
                     'expand': 'expand',
@@ -105,7 +101,6 @@ class TicketsApi(object):
                     'page_size': 'page_size',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'id': 'path',
                     'cursor': 'query',
                     'expand': 'query',
@@ -127,7 +122,8 @@ class TicketsApi(object):
             settings={
                 'response_type': (TicketResponse,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/ticketing/v1/tickets',
                 'operation_id': 'tickets_create',
@@ -136,13 +132,11 @@ class TicketsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'ticket_endpoint_request',
                     'is_debug_mode',
                     'run_async',
                 ],
                 'required': [
-                    'x_account_token',
                     'ticket_endpoint_request',
                 ],
                 'nullable': [
@@ -158,8 +152,6 @@ class TicketsApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'ticket_endpoint_request':
                         (TicketEndpointRequest,),
                     'is_debug_mode':
@@ -168,12 +160,10 @@ class TicketsApi(object):
                         (bool,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'is_debug_mode': 'is_debug_mode',
                     'run_async': 'run_async',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'ticket_endpoint_request': 'body',
                     'is_debug_mode': 'query',
                     'run_async': 'query',
@@ -197,7 +187,8 @@ class TicketsApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(Ticket),),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/ticketing/v1/tickets',
                 'operation_id': 'tickets_list',
@@ -206,7 +197,6 @@ class TicketsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'account_id',
                     'created_after',
                     'created_before',
@@ -221,9 +211,7 @@ class TicketsApi(object):
                     'remote_fields',
                     'remote_id',
                 ],
-                'required': [
-                    'x_account_token',
-                ],
+                'required': [],
                 'nullable': [
                     'remote_id',
                 ],
@@ -310,8 +298,6 @@ class TicketsApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'account_id':
                         (str,),
                     'created_after':
@@ -340,7 +326,6 @@ class TicketsApi(object):
                         (str, none_type,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'account_id': 'account_id',
                     'created_after': 'created_after',
                     'created_before': 'created_before',
@@ -356,7 +341,6 @@ class TicketsApi(object):
                     'remote_id': 'remote_id',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'account_id': 'query',
                     'created_after': 'query',
                     'created_before': 'query',
@@ -386,7 +370,8 @@ class TicketsApi(object):
             settings={
                 'response_type': (MetaResponse,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/ticketing/v1/tickets/meta/post',
                 'operation_id': 'tickets_meta_post_retrieve',
@@ -395,11 +380,8 @@ class TicketsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                 ],
-                'required': [
-                    'x_account_token',
-                ],
+                'required': [],
                 'nullable': [
                 ],
                 'enum': [
@@ -413,14 +395,10 @@ class TicketsApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -437,7 +415,8 @@ class TicketsApi(object):
             settings={
                 'response_type': (Ticket,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/ticketing/v1/tickets/{id}',
                 'operation_id': 'tickets_retrieve',
@@ -446,14 +425,12 @@ class TicketsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'id',
                     'expand',
                     'include_remote_data',
                     'remote_fields',
                 ],
                 'required': [
-                    'x_account_token',
                     'id',
                 ],
                 'nullable': [
@@ -541,8 +518,6 @@ class TicketsApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'id':
                         (str,),
                     'expand':
@@ -553,14 +528,12 @@ class TicketsApi(object):
                         (str,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                     'expand': 'expand',
                     'include_remote_data': 'include_remote_data',
                     'remote_fields': 'remote_fields',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'id': 'path',
                     'expand': 'query',
                     'include_remote_data': 'query',
@@ -580,7 +553,6 @@ class TicketsApi(object):
 
     def tickets_collaborators_list(
         self,
-        x_account_token,
         id,
         **kwargs
     ):
@@ -590,11 +562,10 @@ class TicketsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.tickets_collaborators_list(x_account_token, id, async_req=True)
+        >>> thread = api.tickets_collaborators_list(id, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             id (str):
 
         Keyword Args:
@@ -663,15 +634,12 @@ class TicketsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['id'] = \
             id
         return self.tickets_collaborators_list_endpoint.call_with_http_info(**kwargs)
 
     def tickets_create(
         self,
-        x_account_token,
         ticket_endpoint_request,
         **kwargs
     ):
@@ -681,11 +649,10 @@ class TicketsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.tickets_create(x_account_token, ticket_endpoint_request, async_req=True)
+        >>> thread = api.tickets_create(ticket_endpoint_request, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             ticket_endpoint_request (TicketEndpointRequest):
 
         Keyword Args:
@@ -752,15 +719,12 @@ class TicketsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['ticket_endpoint_request'] = \
             ticket_endpoint_request
         return self.tickets_create_endpoint.call_with_http_info(**kwargs)
 
     def tickets_list(
         self,
-        x_account_token,
         **kwargs
     ):
         """tickets_list  # noqa: E501
@@ -769,11 +733,9 @@ class TicketsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.tickets_list(x_account_token, async_req=True)
+        >>> thread = api.tickets_list(async_req=True)
         >>> result = thread.get()
 
-        Args:
-            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             account_id (str): If provided, will only return tickets for this account.. [optional]
@@ -850,13 +812,10 @@ class TicketsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         return self.tickets_list_endpoint.call_with_http_info(**kwargs)
 
     def tickets_meta_post_retrieve(
         self,
-        x_account_token,
         **kwargs
     ):
         """tickets_meta_post_retrieve  # noqa: E501
@@ -865,11 +824,9 @@ class TicketsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.tickets_meta_post_retrieve(x_account_token, async_req=True)
+        >>> thread = api.tickets_meta_post_retrieve(async_req=True)
         >>> result = thread.get()
 
-        Args:
-            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -933,13 +890,10 @@ class TicketsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         return self.tickets_meta_post_retrieve_endpoint.call_with_http_info(**kwargs)
 
     def tickets_retrieve(
         self,
-        x_account_token,
         id,
         **kwargs
     ):
@@ -949,11 +903,10 @@ class TicketsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.tickets_retrieve(x_account_token, id, async_req=True)
+        >>> thread = api.tickets_retrieve(id, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             id (str):
 
         Keyword Args:
@@ -1021,8 +974,6 @@ class TicketsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['id'] = \
             id
         return self.tickets_retrieve_endpoint.call_with_http_info(**kwargs)

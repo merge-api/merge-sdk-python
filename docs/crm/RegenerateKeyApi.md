@@ -16,7 +16,7 @@ Exchange remote keys.
 
 ### Example
 
-* Api Key Authentication (tokenAuth):
+* Bearer Authentication (bearerAuth):
 
 ```python
 import time
@@ -36,11 +36,10 @@ configuration = MergePythonSDK.crm.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: tokenAuth
-configuration.api_key['tokenAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['tokenAuth'] = 'Bearer'
+# Configure Bearer authorization: bearerAuth
+configuration = MergePythonSDK.crm.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 
 # Enter a context with an instance of the API client
 with MergePythonSDK.crm.ApiClient(configuration) as api_client:
@@ -71,7 +70,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 

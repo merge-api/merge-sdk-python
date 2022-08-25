@@ -41,7 +41,7 @@ class IssuesApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(Issue),),
                 'auth': [
-                    'tokenAuth'
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/crm/v1/issues',
                 'operation_id': 'issues_list',
@@ -160,7 +160,7 @@ class IssuesApi(object):
             settings={
                 'response_type': (Issue,),
                 'auth': [
-                    'tokenAuth'
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/crm/v1/issues/{id}',
                 'operation_id': 'issues_retrieve',

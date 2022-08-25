@@ -46,7 +46,8 @@ class CandidatesApi(object):
             settings={
                 'response_type': (CandidateResponse,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/ats/v1/candidates',
                 'operation_id': 'candidates_create',
@@ -55,13 +56,11 @@ class CandidatesApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'candidate_endpoint_request',
                     'is_debug_mode',
                     'run_async',
                 ],
                 'required': [
-                    'x_account_token',
                     'candidate_endpoint_request',
                 ],
                 'nullable': [
@@ -77,8 +76,6 @@ class CandidatesApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'candidate_endpoint_request':
                         (CandidateEndpointRequest,),
                     'is_debug_mode':
@@ -87,12 +84,10 @@ class CandidatesApi(object):
                         (bool,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'is_debug_mode': 'is_debug_mode',
                     'run_async': 'run_async',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'candidate_endpoint_request': 'body',
                     'is_debug_mode': 'query',
                     'run_async': 'query',
@@ -116,7 +111,8 @@ class CandidatesApi(object):
             settings={
                 'response_type': (IgnoreCommonModel,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/ats/v1/candidates/ignore/{model_id}',
                 'operation_id': 'candidates_ignore_create',
@@ -125,12 +121,10 @@ class CandidatesApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'model_id',
                     'ignore_common_model_request',
                 ],
                 'required': [
-                    'x_account_token',
                     'model_id',
                     'ignore_common_model_request',
                 ],
@@ -147,19 +141,15 @@ class CandidatesApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'model_id':
                         (str,),
                     'ignore_common_model_request':
                         (IgnoreCommonModelRequest,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'model_id': 'model_id',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'model_id': 'path',
                     'ignore_common_model_request': 'body',
                 },
@@ -182,7 +172,8 @@ class CandidatesApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(Candidate),),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/ats/v1/candidates',
                 'operation_id': 'candidates_list',
@@ -191,7 +182,6 @@ class CandidatesApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'created_after',
                     'created_before',
                     'cursor',
@@ -205,9 +195,7 @@ class CandidatesApi(object):
                     'page_size',
                     'remote_id',
                 ],
-                'required': [
-                    'x_account_token',
-                ],
+                'required': [],
                 'nullable': [
                     'first_name',
                     'last_name',
@@ -231,8 +219,6 @@ class CandidatesApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'created_after':
                         (datetime,),
                     'created_before':
@@ -259,7 +245,6 @@ class CandidatesApi(object):
                         (str, none_type,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'created_after': 'created_after',
                     'created_before': 'created_before',
                     'cursor': 'cursor',
@@ -274,7 +259,6 @@ class CandidatesApi(object):
                     'remote_id': 'remote_id',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'created_after': 'query',
                     'created_before': 'query',
                     'cursor': 'query',
@@ -303,7 +287,8 @@ class CandidatesApi(object):
             settings={
                 'response_type': (MetaResponse,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/ats/v1/candidates/meta/post',
                 'operation_id': 'candidates_meta_post_retrieve',
@@ -312,11 +297,8 @@ class CandidatesApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                 ],
-                'required': [
-                    'x_account_token',
-                ],
+                'required': [],
                 'nullable': [
                 ],
                 'enum': [
@@ -330,14 +312,10 @@ class CandidatesApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -354,7 +332,8 @@ class CandidatesApi(object):
             settings={
                 'response_type': (Candidate,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/ats/v1/candidates/{id}',
                 'operation_id': 'candidates_retrieve',
@@ -363,13 +342,11 @@ class CandidatesApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'id',
                     'expand',
                     'include_remote_data',
                 ],
                 'required': [
-                    'x_account_token',
                     'id',
                 ],
                 'nullable': [
@@ -392,8 +369,6 @@ class CandidatesApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'id':
                         (str,),
                     'expand':
@@ -402,13 +377,11 @@ class CandidatesApi(object):
                         (bool,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                     'expand': 'expand',
                     'include_remote_data': 'include_remote_data',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'id': 'path',
                     'expand': 'query',
                     'include_remote_data': 'query',
@@ -427,7 +400,6 @@ class CandidatesApi(object):
 
     def candidates_create(
         self,
-        x_account_token,
         candidate_endpoint_request,
         **kwargs
     ):
@@ -437,11 +409,10 @@ class CandidatesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.candidates_create(x_account_token, candidate_endpoint_request, async_req=True)
+        >>> thread = api.candidates_create(candidate_endpoint_request, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             candidate_endpoint_request (CandidateEndpointRequest):
 
         Keyword Args:
@@ -508,15 +479,12 @@ class CandidatesApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['candidate_endpoint_request'] = \
             candidate_endpoint_request
         return self.candidates_create_endpoint.call_with_http_info(**kwargs)
 
     def candidates_ignore_create(
         self,
-        x_account_token,
         model_id,
         ignore_common_model_request,
         **kwargs
@@ -527,11 +495,10 @@ class CandidatesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.candidates_ignore_create(x_account_token, model_id, ignore_common_model_request, async_req=True)
+        >>> thread = api.candidates_ignore_create(model_id, ignore_common_model_request, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             model_id (str):
             ignore_common_model_request (IgnoreCommonModelRequest):
 
@@ -597,8 +564,6 @@ class CandidatesApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['model_id'] = \
             model_id
         kwargs['ignore_common_model_request'] = \
@@ -607,7 +572,6 @@ class CandidatesApi(object):
 
     def candidates_list(
         self,
-        x_account_token,
         **kwargs
     ):
         """candidates_list  # noqa: E501
@@ -616,11 +580,9 @@ class CandidatesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.candidates_list(x_account_token, async_req=True)
+        >>> thread = api.candidates_list(async_req=True)
         >>> result = thread.get()
 
-        Args:
-            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             created_after (datetime): If provided, will only return objects created after this datetime.. [optional]
@@ -696,13 +658,10 @@ class CandidatesApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         return self.candidates_list_endpoint.call_with_http_info(**kwargs)
 
     def candidates_meta_post_retrieve(
         self,
-        x_account_token,
         **kwargs
     ):
         """candidates_meta_post_retrieve  # noqa: E501
@@ -711,11 +670,9 @@ class CandidatesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.candidates_meta_post_retrieve(x_account_token, async_req=True)
+        >>> thread = api.candidates_meta_post_retrieve(async_req=True)
         >>> result = thread.get()
 
-        Args:
-            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -779,13 +736,10 @@ class CandidatesApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         return self.candidates_meta_post_retrieve_endpoint.call_with_http_info(**kwargs)
 
     def candidates_retrieve(
         self,
-        x_account_token,
         id,
         **kwargs
     ):
@@ -795,11 +749,10 @@ class CandidatesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.candidates_retrieve(x_account_token, id, async_req=True)
+        >>> thread = api.candidates_retrieve(id, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             id (str):
 
         Keyword Args:
@@ -866,8 +819,6 @@ class CandidatesApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['id'] = \
             id
         return self.candidates_retrieve_endpoint.call_with_http_info(**kwargs)

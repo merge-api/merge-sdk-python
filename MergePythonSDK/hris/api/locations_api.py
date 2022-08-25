@@ -41,7 +41,8 @@ class LocationsApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(Location),),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/hris/v1/locations',
                 'operation_id': 'locations_list',
@@ -50,7 +51,6 @@ class LocationsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'created_after',
                     'created_before',
                     'cursor',
@@ -62,9 +62,7 @@ class LocationsApi(object):
                     'remote_fields',
                     'remote_id',
                 ],
-                'required': [
-                    'x_account_token',
-                ],
+                'required': [],
                 'nullable': [
                     'remote_id',
                 ],
@@ -84,8 +82,6 @@ class LocationsApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'created_after':
                         (datetime,),
                     'created_before':
@@ -108,7 +104,6 @@ class LocationsApi(object):
                         (str, none_type,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'created_after': 'created_after',
                     'created_before': 'created_before',
                     'cursor': 'cursor',
@@ -121,7 +116,6 @@ class LocationsApi(object):
                     'remote_id': 'remote_id',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'created_after': 'query',
                     'created_before': 'query',
                     'cursor': 'query',
@@ -148,7 +142,8 @@ class LocationsApi(object):
             settings={
                 'response_type': (Location,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/hris/v1/locations/{id}',
                 'operation_id': 'locations_retrieve',
@@ -157,13 +152,11 @@ class LocationsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'id',
                     'include_remote_data',
                     'remote_fields',
                 ],
                 'required': [
-                    'x_account_token',
                     'id',
                 ],
                 'nullable': [
@@ -184,8 +177,6 @@ class LocationsApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'id':
                         (str,),
                     'include_remote_data':
@@ -194,13 +185,11 @@ class LocationsApi(object):
                         (str,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                     'include_remote_data': 'include_remote_data',
                     'remote_fields': 'remote_fields',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'id': 'path',
                     'include_remote_data': 'query',
                     'remote_fields': 'query',
@@ -219,7 +208,6 @@ class LocationsApi(object):
 
     def locations_list(
         self,
-        x_account_token,
         **kwargs
     ):
         """locations_list  # noqa: E501
@@ -228,11 +216,9 @@ class LocationsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.locations_list(x_account_token, async_req=True)
+        >>> thread = api.locations_list(async_req=True)
         >>> result = thread.get()
 
-        Args:
-            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             created_after (datetime): If provided, will only return objects created after this datetime.. [optional]
@@ -306,13 +292,10 @@ class LocationsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         return self.locations_list_endpoint.call_with_http_info(**kwargs)
 
     def locations_retrieve(
         self,
-        x_account_token,
         id,
         **kwargs
     ):
@@ -322,11 +305,10 @@ class LocationsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.locations_retrieve(x_account_token, id, async_req=True)
+        >>> thread = api.locations_retrieve(id, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             id (str):
 
         Keyword Args:
@@ -393,8 +375,6 @@ class LocationsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['id'] = \
             id
         return self.locations_retrieve_endpoint.call_with_http_info(**kwargs)

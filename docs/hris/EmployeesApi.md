@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 
 # **employees_create**
-> EmployeeResponse employees_create(x_account_token, employee_endpoint_request)
+> EmployeeResponse employees_create(employee_endpoint_request)
 
 
 
@@ -20,7 +20,8 @@ Creates an `Employee` object with the given values.
 
 ### Example
 
-* Api Key Authentication (tokenAuth):
+* Api Key Authentication (accountTokenAuth):
+* Bearer Authentication (bearerAuth):
 
 ```python
 import time
@@ -40,17 +41,21 @@ configuration = MergePythonSDK.hris.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: tokenAuth
-configuration.api_key['tokenAuth'] = 'YOUR_API_KEY'
+# Configure API key authorization: accountTokenAuth
+configuration.api_key['accountTokenAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['tokenAuth'] = 'Bearer'
+# configuration.api_key_prefix['accountTokenAuth'] = 'Bearer'
+
+# Configure Bearer authorization: bearerAuth
+configuration = MergePythonSDK.hris.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 
 # Enter a context with an instance of the API client
 with MergePythonSDK.hris.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = employees_api.EmployeesApi(api_client)
-    x_account_token = "X-Account-Token_example" # str | Token identifying the end user.
     employee_endpoint_request = EmployeeEndpointRequest(
         model=EmployeeRequest(
             remote_id="19202938",
@@ -91,7 +96,7 @@ with MergePythonSDK.hris.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        api_response = api_instance.employees_create(x_account_token, employee_endpoint_request)
+        api_response = api_instance.employees_create(employee_endpoint_request)
         pprint(api_response)
     except MergePythonSDK.hris.ApiException as e:
         print("Exception when calling EmployeesApi->employees_create: %s\n" % e)
@@ -99,7 +104,7 @@ with MergePythonSDK.hris.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        api_response = api_instance.employees_create(x_account_token, employee_endpoint_request, is_debug_mode=is_debug_mode, run_async=run_async)
+        api_response = api_instance.employees_create(employee_endpoint_request, is_debug_mode=is_debug_mode, run_async=run_async)
         pprint(api_response)
     except MergePythonSDK.hris.ApiException as e:
         print("Exception when calling EmployeesApi->employees_create: %s\n" % e)
@@ -110,7 +115,6 @@ with MergePythonSDK.hris.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **x_account_token** | **str**| Token identifying the end user. |
  **employee_endpoint_request** | [**EmployeeEndpointRequest**](EmployeeEndpointRequest.md)|  |
  **is_debug_mode** | **bool**| Whether to include debug fields (such as log file links) in the response. | [optional]
  **run_async** | **bool**| Whether or not third-party updates should be run asynchronously. | [optional]
@@ -121,7 +125,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -138,7 +142,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **employees_ignore_create**
-> IgnoreCommonModel employees_ignore_create(x_account_token, model_id, ignore_common_model_request)
+> IgnoreCommonModel employees_ignore_create(model_id, ignore_common_model_request)
 
 
 
@@ -146,7 +150,8 @@ Ignores a specific row based on the `model_id` in the url. These records will ha
 
 ### Example
 
-* Api Key Authentication (tokenAuth):
+* Api Key Authentication (accountTokenAuth):
+* Bearer Authentication (bearerAuth):
 
 ```python
 import time
@@ -166,17 +171,21 @@ configuration = MergePythonSDK.hris.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: tokenAuth
-configuration.api_key['tokenAuth'] = 'YOUR_API_KEY'
+# Configure API key authorization: accountTokenAuth
+configuration.api_key['accountTokenAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['tokenAuth'] = 'Bearer'
+# configuration.api_key_prefix['accountTokenAuth'] = 'Bearer'
+
+# Configure Bearer authorization: bearerAuth
+configuration = MergePythonSDK.hris.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 
 # Enter a context with an instance of the API client
 with MergePythonSDK.hris.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = employees_api.EmployeesApi(api_client)
-    x_account_token = "X-Account-Token_example" # str | Token identifying the end user.
     model_id = "model_id_example" # str | 
     ignore_common_model_request = IgnoreCommonModelRequest(
         reason=None,
@@ -185,7 +194,7 @@ with MergePythonSDK.hris.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        api_response = api_instance.employees_ignore_create(x_account_token, model_id, ignore_common_model_request)
+        api_response = api_instance.employees_ignore_create(model_id, ignore_common_model_request)
         pprint(api_response)
     except MergePythonSDK.hris.ApiException as e:
         print("Exception when calling EmployeesApi->employees_ignore_create: %s\n" % e)
@@ -196,7 +205,6 @@ with MergePythonSDK.hris.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **x_account_token** | **str**| Token identifying the end user. |
  **model_id** | **str**|  |
  **ignore_common_model_request** | [**IgnoreCommonModelRequest**](IgnoreCommonModelRequest.md)|  |
 
@@ -206,7 +214,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -223,7 +231,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **employees_list**
-> PaginatedEmployeeList employees_list(x_account_token)
+> PaginatedEmployeeList employees_list()
 
 
 
@@ -231,7 +239,8 @@ Returns a list of `Employee` objects.
 
 ### Example
 
-* Api Key Authentication (tokenAuth):
+* Api Key Authentication (accountTokenAuth):
+* Bearer Authentication (bearerAuth):
 
 ```python
 import time
@@ -250,17 +259,21 @@ configuration = MergePythonSDK.hris.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: tokenAuth
-configuration.api_key['tokenAuth'] = 'YOUR_API_KEY'
+# Configure API key authorization: accountTokenAuth
+configuration.api_key['accountTokenAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['tokenAuth'] = 'Bearer'
+# configuration.api_key_prefix['accountTokenAuth'] = 'Bearer'
+
+# Configure Bearer authorization: bearerAuth
+configuration = MergePythonSDK.hris.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 
 # Enter a context with an instance of the API client
 with MergePythonSDK.hris.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = employees_api.EmployeesApi(api_client)
-    x_account_token = "X-Account-Token_example" # str | Token identifying the end user.
     company_id = "company_id_example" # str | If provided, will only return employees for this company. (optional)
     created_after = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, will only return objects created after this datetime. (optional)
     created_before = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, will only return objects created before this datetime. (optional)
@@ -286,16 +299,9 @@ with MergePythonSDK.hris.ApiClient(configuration) as api_client:
     work_location_id = "work_location_id_example" # str | If provided, will only return employees for this location. (optional)
 
     # example passing only required values which don't have defaults set
-    try:
-        api_response = api_instance.employees_list(x_account_token)
-        pprint(api_response)
-    except MergePythonSDK.hris.ApiException as e:
-        print("Exception when calling EmployeesApi->employees_list: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
     # and optional values
     try:
-        api_response = api_instance.employees_list(x_account_token, company_id=company_id, created_after=created_after, created_before=created_before, cursor=cursor, display_full_name=display_full_name, employment_status=employment_status, expand=expand, first_name=first_name, include_deleted_data=include_deleted_data, include_remote_data=include_remote_data, include_sensitive_fields=include_sensitive_fields, last_name=last_name, manager_id=manager_id, modified_after=modified_after, modified_before=modified_before, page_size=page_size, pay_group_id=pay_group_id, personal_email=personal_email, remote_fields=remote_fields, remote_id=remote_id, team_id=team_id, work_email=work_email, work_location_id=work_location_id)
+        api_response = api_instance.employees_list(company_id=company_id, created_after=created_after, created_before=created_before, cursor=cursor, display_full_name=display_full_name, employment_status=employment_status, expand=expand, first_name=first_name, include_deleted_data=include_deleted_data, include_remote_data=include_remote_data, include_sensitive_fields=include_sensitive_fields, last_name=last_name, manager_id=manager_id, modified_after=modified_after, modified_before=modified_before, page_size=page_size, pay_group_id=pay_group_id, personal_email=personal_email, remote_fields=remote_fields, remote_id=remote_id, team_id=team_id, work_email=work_email, work_location_id=work_location_id)
         pprint(api_response)
     except MergePythonSDK.hris.ApiException as e:
         print("Exception when calling EmployeesApi->employees_list: %s\n" % e)
@@ -306,7 +312,6 @@ with MergePythonSDK.hris.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **x_account_token** | **str**| Token identifying the end user. |
  **company_id** | **str**| If provided, will only return employees for this company. | [optional]
  **created_after** | **datetime**| If provided, will only return objects created after this datetime. | [optional]
  **created_before** | **datetime**| If provided, will only return objects created before this datetime. | [optional]
@@ -337,7 +342,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -354,7 +359,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **employees_meta_post_retrieve**
-> MetaResponse employees_meta_post_retrieve(x_account_token)
+> MetaResponse employees_meta_post_retrieve()
 
 
 
@@ -362,7 +367,8 @@ Returns metadata for `Employee` POSTs.
 
 ### Example
 
-* Api Key Authentication (tokenAuth):
+* Api Key Authentication (accountTokenAuth):
+* Bearer Authentication (bearerAuth):
 
 ```python
 import time
@@ -381,21 +387,25 @@ configuration = MergePythonSDK.hris.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: tokenAuth
-configuration.api_key['tokenAuth'] = 'YOUR_API_KEY'
+# Configure API key authorization: accountTokenAuth
+configuration.api_key['accountTokenAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['tokenAuth'] = 'Bearer'
+# configuration.api_key_prefix['accountTokenAuth'] = 'Bearer'
+
+# Configure Bearer authorization: bearerAuth
+configuration = MergePythonSDK.hris.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 
 # Enter a context with an instance of the API client
 with MergePythonSDK.hris.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = employees_api.EmployeesApi(api_client)
-    x_account_token = "X-Account-Token_example" # str | Token identifying the end user.
 
-    # example passing only required values which don't have defaults set
+    # example, this endpoint has no required or optional parameters
     try:
-        api_response = api_instance.employees_meta_post_retrieve(x_account_token)
+        api_response = api_instance.employees_meta_post_retrieve()
         pprint(api_response)
     except MergePythonSDK.hris.ApiException as e:
         print("Exception when calling EmployeesApi->employees_meta_post_retrieve: %s\n" % e)
@@ -403,10 +413,7 @@ with MergePythonSDK.hris.ApiClient(configuration) as api_client:
 
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **x_account_token** | **str**| Token identifying the end user. |
+This endpoint does not need any parameter.
 
 ### Return type
 
@@ -414,7 +421,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -431,7 +438,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **employees_retrieve**
-> Employee employees_retrieve(x_account_token, id)
+> Employee employees_retrieve(id)
 
 
 
@@ -439,7 +446,8 @@ Returns an `Employee` object with the given `id`.
 
 ### Example
 
-* Api Key Authentication (tokenAuth):
+* Api Key Authentication (accountTokenAuth):
+* Bearer Authentication (bearerAuth):
 
 ```python
 import time
@@ -458,17 +466,21 @@ configuration = MergePythonSDK.hris.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: tokenAuth
-configuration.api_key['tokenAuth'] = 'YOUR_API_KEY'
+# Configure API key authorization: accountTokenAuth
+configuration.api_key['accountTokenAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['tokenAuth'] = 'Bearer'
+# configuration.api_key_prefix['accountTokenAuth'] = 'Bearer'
+
+# Configure Bearer authorization: bearerAuth
+configuration = MergePythonSDK.hris.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 
 # Enter a context with an instance of the API client
 with MergePythonSDK.hris.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = employees_api.EmployeesApi(api_client)
-    x_account_token = "X-Account-Token_example" # str | Token identifying the end user.
     id = "id_example" # str | 
     expand = "employments,groups,home_location,work_location,manager,team,company,pay_group" # str | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. (optional)
     include_remote_data = True # bool | Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
@@ -477,7 +489,7 @@ with MergePythonSDK.hris.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        api_response = api_instance.employees_retrieve(x_account_token, id)
+        api_response = api_instance.employees_retrieve(id)
         pprint(api_response)
     except MergePythonSDK.hris.ApiException as e:
         print("Exception when calling EmployeesApi->employees_retrieve: %s\n" % e)
@@ -485,7 +497,7 @@ with MergePythonSDK.hris.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        api_response = api_instance.employees_retrieve(x_account_token, id, expand=expand, include_remote_data=include_remote_data, include_sensitive_fields=include_sensitive_fields, remote_fields=remote_fields)
+        api_response = api_instance.employees_retrieve(id, expand=expand, include_remote_data=include_remote_data, include_sensitive_fields=include_sensitive_fields, remote_fields=remote_fields)
         pprint(api_response)
     except MergePythonSDK.hris.ApiException as e:
         print("Exception when calling EmployeesApi->employees_retrieve: %s\n" % e)
@@ -496,7 +508,6 @@ with MergePythonSDK.hris.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **x_account_token** | **str**| Token identifying the end user. |
  **id** | **str**|  |
  **expand** | **str**| Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. | [optional]
  **include_remote_data** | **bool**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional]
@@ -509,7 +520,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 

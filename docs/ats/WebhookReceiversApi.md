@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **webhook_receivers_create**
-> WebhookReceiver webhook_receivers_create(x_account_token, webhook_receiver_request)
+> WebhookReceiver webhook_receivers_create(webhook_receiver_request)
 
 
 
@@ -17,7 +17,8 @@ Creates a `WebhookReceiver` object with the given values.
 
 ### Example
 
-* Api Key Authentication (tokenAuth):
+* Api Key Authentication (accountTokenAuth):
+* Bearer Authentication (bearerAuth):
 
 ```python
 import time
@@ -37,17 +38,21 @@ configuration = MergePythonSDK.ats.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: tokenAuth
-configuration.api_key['tokenAuth'] = 'YOUR_API_KEY'
+# Configure API key authorization: accountTokenAuth
+configuration.api_key['accountTokenAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['tokenAuth'] = 'Bearer'
+# configuration.api_key_prefix['accountTokenAuth'] = 'Bearer'
+
+# Configure Bearer authorization: bearerAuth
+configuration = MergePythonSDK.ats.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 
 # Enter a context with an instance of the API client
 with MergePythonSDK.ats.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = webhook_receivers_api.WebhookReceiversApi(api_client)
-    x_account_token = "X-Account-Token_example" # str | Token identifying the end user.
     webhook_receiver_request = WebhookReceiverRequest(
         event="event_example",
         is_active=True,
@@ -56,7 +61,7 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        api_response = api_instance.webhook_receivers_create(x_account_token, webhook_receiver_request)
+        api_response = api_instance.webhook_receivers_create(webhook_receiver_request)
         pprint(api_response)
     except MergePythonSDK.ats.ApiException as e:
         print("Exception when calling WebhookReceiversApi->webhook_receivers_create: %s\n" % e)
@@ -67,7 +72,6 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **x_account_token** | **str**| Token identifying the end user. |
  **webhook_receiver_request** | [**WebhookReceiverRequest**](WebhookReceiverRequest.md)|  |
 
 ### Return type
@@ -76,7 +80,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -93,7 +97,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **webhook_receivers_list**
-> [WebhookReceiver] webhook_receivers_list(x_account_token)
+> [WebhookReceiver] webhook_receivers_list()
 
 
 
@@ -101,7 +105,8 @@ Returns a list of `WebhookReceiver` objects.
 
 ### Example
 
-* Api Key Authentication (tokenAuth):
+* Api Key Authentication (accountTokenAuth):
+* Bearer Authentication (bearerAuth):
 
 ```python
 import time
@@ -120,21 +125,25 @@ configuration = MergePythonSDK.ats.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: tokenAuth
-configuration.api_key['tokenAuth'] = 'YOUR_API_KEY'
+# Configure API key authorization: accountTokenAuth
+configuration.api_key['accountTokenAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['tokenAuth'] = 'Bearer'
+# configuration.api_key_prefix['accountTokenAuth'] = 'Bearer'
+
+# Configure Bearer authorization: bearerAuth
+configuration = MergePythonSDK.ats.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 
 # Enter a context with an instance of the API client
 with MergePythonSDK.ats.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = webhook_receivers_api.WebhookReceiversApi(api_client)
-    x_account_token = "X-Account-Token_example" # str | Token identifying the end user.
 
-    # example passing only required values which don't have defaults set
+    # example, this endpoint has no required or optional parameters
     try:
-        api_response = api_instance.webhook_receivers_list(x_account_token)
+        api_response = api_instance.webhook_receivers_list()
         pprint(api_response)
     except MergePythonSDK.ats.ApiException as e:
         print("Exception when calling WebhookReceiversApi->webhook_receivers_list: %s\n" % e)
@@ -142,10 +151,7 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
 
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **x_account_token** | **str**| Token identifying the end user. |
+This endpoint does not need any parameter.
 
 ### Return type
 
@@ -153,7 +159,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 

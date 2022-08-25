@@ -44,7 +44,8 @@ class TimeOffApi(object):
             settings={
                 'response_type': (TimeOffResponse,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/hris/v1/time-off',
                 'operation_id': 'time_off_create',
@@ -53,13 +54,11 @@ class TimeOffApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'time_off_endpoint_request',
                     'is_debug_mode',
                     'run_async',
                 ],
                 'required': [
-                    'x_account_token',
                     'time_off_endpoint_request',
                 ],
                 'nullable': [
@@ -75,8 +74,6 @@ class TimeOffApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'time_off_endpoint_request':
                         (TimeOffEndpointRequest,),
                     'is_debug_mode':
@@ -85,12 +82,10 @@ class TimeOffApi(object):
                         (bool,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'is_debug_mode': 'is_debug_mode',
                     'run_async': 'run_async',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'time_off_endpoint_request': 'body',
                     'is_debug_mode': 'query',
                     'run_async': 'query',
@@ -114,7 +109,8 @@ class TimeOffApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(TimeOff),),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/hris/v1/time-off',
                 'operation_id': 'time_off_list',
@@ -123,7 +119,6 @@ class TimeOffApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'approver_id',
                     'created_after',
                     'created_before',
@@ -140,9 +135,7 @@ class TimeOffApi(object):
                     'request_type',
                     'status',
                 ],
-                'required': [
-                    'x_account_token',
-                ],
+                'required': [],
                 'nullable': [
                     'remote_id',
                     'request_type',
@@ -196,8 +189,6 @@ class TimeOffApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'approver_id':
                         (str,),
                     'created_after':
@@ -230,7 +221,6 @@ class TimeOffApi(object):
                         (str, none_type,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'approver_id': 'approver_id',
                     'created_after': 'created_after',
                     'created_before': 'created_before',
@@ -248,7 +238,6 @@ class TimeOffApi(object):
                     'status': 'status',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'approver_id': 'query',
                     'created_after': 'query',
                     'created_before': 'query',
@@ -280,7 +269,8 @@ class TimeOffApi(object):
             settings={
                 'response_type': (MetaResponse,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/hris/v1/time-off/meta/post',
                 'operation_id': 'time_off_meta_post_retrieve',
@@ -289,11 +279,8 @@ class TimeOffApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                 ],
-                'required': [
-                    'x_account_token',
-                ],
+                'required': [],
                 'nullable': [
                 ],
                 'enum': [
@@ -307,14 +294,10 @@ class TimeOffApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -331,7 +314,8 @@ class TimeOffApi(object):
             settings={
                 'response_type': (TimeOff,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/hris/v1/time-off/{id}',
                 'operation_id': 'time_off_retrieve',
@@ -340,14 +324,12 @@ class TimeOffApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'id',
                     'expand',
                     'include_remote_data',
                     'remote_fields',
                 ],
                 'required': [
-                    'x_account_token',
                     'id',
                 ],
                 'nullable': [
@@ -381,8 +363,6 @@ class TimeOffApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'id':
                         (str,),
                     'expand':
@@ -393,14 +373,12 @@ class TimeOffApi(object):
                         (str,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                     'expand': 'expand',
                     'include_remote_data': 'include_remote_data',
                     'remote_fields': 'remote_fields',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'id': 'path',
                     'expand': 'query',
                     'include_remote_data': 'query',
@@ -420,7 +398,6 @@ class TimeOffApi(object):
 
     def time_off_create(
         self,
-        x_account_token,
         time_off_endpoint_request,
         **kwargs
     ):
@@ -430,11 +407,10 @@ class TimeOffApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.time_off_create(x_account_token, time_off_endpoint_request, async_req=True)
+        >>> thread = api.time_off_create(time_off_endpoint_request, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             time_off_endpoint_request (TimeOffEndpointRequest):
 
         Keyword Args:
@@ -501,15 +477,12 @@ class TimeOffApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['time_off_endpoint_request'] = \
             time_off_endpoint_request
         return self.time_off_create_endpoint.call_with_http_info(**kwargs)
 
     def time_off_list(
         self,
-        x_account_token,
         **kwargs
     ):
         """time_off_list  # noqa: E501
@@ -518,11 +491,9 @@ class TimeOffApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.time_off_list(x_account_token, async_req=True)
+        >>> thread = api.time_off_list(async_req=True)
         >>> result = thread.get()
 
-        Args:
-            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             approver_id (str): If provided, will only return time off for this approver.. [optional]
@@ -601,13 +572,10 @@ class TimeOffApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         return self.time_off_list_endpoint.call_with_http_info(**kwargs)
 
     def time_off_meta_post_retrieve(
         self,
-        x_account_token,
         **kwargs
     ):
         """time_off_meta_post_retrieve  # noqa: E501
@@ -616,11 +584,9 @@ class TimeOffApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.time_off_meta_post_retrieve(x_account_token, async_req=True)
+        >>> thread = api.time_off_meta_post_retrieve(async_req=True)
         >>> result = thread.get()
 
-        Args:
-            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -684,13 +650,10 @@ class TimeOffApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         return self.time_off_meta_post_retrieve_endpoint.call_with_http_info(**kwargs)
 
     def time_off_retrieve(
         self,
-        x_account_token,
         id,
         **kwargs
     ):
@@ -700,11 +663,10 @@ class TimeOffApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.time_off_retrieve(x_account_token, id, async_req=True)
+        >>> thread = api.time_off_retrieve(id, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             id (str):
 
         Keyword Args:
@@ -772,8 +734,6 @@ class TimeOffApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['id'] = \
             id
         return self.time_off_retrieve_endpoint.call_with_http_info(**kwargs)

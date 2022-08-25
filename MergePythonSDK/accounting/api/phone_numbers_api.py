@@ -40,7 +40,8 @@ class PhoneNumbersApi(object):
             settings={
                 'response_type': (AccountingPhoneNumber,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/accounting/v1/phone-numbers/{id}',
                 'operation_id': 'phone_numbers_retrieve',
@@ -49,12 +50,10 @@ class PhoneNumbersApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'id',
                     'include_remote_data',
                 ],
                 'required': [
-                    'x_account_token',
                     'id',
                 ],
                 'nullable': [
@@ -70,20 +69,16 @@ class PhoneNumbersApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'id':
                         (str,),
                     'include_remote_data':
                         (bool,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                     'include_remote_data': 'include_remote_data',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'id': 'path',
                     'include_remote_data': 'query',
                 },
@@ -101,7 +96,6 @@ class PhoneNumbersApi(object):
 
     def phone_numbers_retrieve(
         self,
-        x_account_token,
         id,
         **kwargs
     ):
@@ -111,11 +105,10 @@ class PhoneNumbersApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.phone_numbers_retrieve(x_account_token, id, async_req=True)
+        >>> thread = api.phone_numbers_retrieve(id, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             id (str):
 
         Keyword Args:
@@ -181,8 +174,6 @@ class PhoneNumbersApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['id'] = \
             id
         return self.phone_numbers_retrieve_endpoint.call_with_http_info(**kwargs)

@@ -41,7 +41,8 @@ class VendorCreditsApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(VendorCredit),),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/accounting/v1/vendor-credits',
                 'operation_id': 'vendor_credits_list',
@@ -50,7 +51,6 @@ class VendorCreditsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'created_after',
                     'created_before',
                     'cursor',
@@ -62,9 +62,7 @@ class VendorCreditsApi(object):
                     'page_size',
                     'remote_id',
                 ],
-                'required': [
-                    'x_account_token',
-                ],
+                'required': [],
                 'nullable': [
                     'remote_id',
                 ],
@@ -86,8 +84,6 @@ class VendorCreditsApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'created_after':
                         (datetime,),
                     'created_before':
@@ -110,7 +106,6 @@ class VendorCreditsApi(object):
                         (str, none_type,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'created_after': 'created_after',
                     'created_before': 'created_before',
                     'cursor': 'cursor',
@@ -123,7 +118,6 @@ class VendorCreditsApi(object):
                     'remote_id': 'remote_id',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'created_after': 'query',
                     'created_before': 'query',
                     'cursor': 'query',
@@ -150,7 +144,8 @@ class VendorCreditsApi(object):
             settings={
                 'response_type': (VendorCredit,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/accounting/v1/vendor-credits/{id}',
                 'operation_id': 'vendor_credits_retrieve',
@@ -159,13 +154,11 @@ class VendorCreditsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'id',
                     'expand',
                     'include_remote_data',
                 ],
                 'required': [
-                    'x_account_token',
                     'id',
                 ],
                 'nullable': [
@@ -188,8 +181,6 @@ class VendorCreditsApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'id':
                         (str,),
                     'expand':
@@ -198,13 +189,11 @@ class VendorCreditsApi(object):
                         (bool,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                     'expand': 'expand',
                     'include_remote_data': 'include_remote_data',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'id': 'path',
                     'expand': 'query',
                     'include_remote_data': 'query',
@@ -223,7 +212,6 @@ class VendorCreditsApi(object):
 
     def vendor_credits_list(
         self,
-        x_account_token,
         **kwargs
     ):
         """vendor_credits_list  # noqa: E501
@@ -232,11 +220,9 @@ class VendorCreditsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.vendor_credits_list(x_account_token, async_req=True)
+        >>> thread = api.vendor_credits_list(async_req=True)
         >>> result = thread.get()
 
-        Args:
-            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             created_after (datetime): If provided, will only return objects created after this datetime.. [optional]
@@ -310,13 +296,10 @@ class VendorCreditsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         return self.vendor_credits_list_endpoint.call_with_http_info(**kwargs)
 
     def vendor_credits_retrieve(
         self,
-        x_account_token,
         id,
         **kwargs
     ):
@@ -326,11 +309,10 @@ class VendorCreditsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.vendor_credits_retrieve(x_account_token, id, async_req=True)
+        >>> thread = api.vendor_credits_retrieve(id, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             id (str):
 
         Keyword Args:
@@ -397,8 +379,6 @@ class VendorCreditsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['id'] = \
             id
         return self.vendor_credits_retrieve_endpoint.call_with_http_info(**kwargs)

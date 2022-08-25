@@ -41,7 +41,8 @@ class EeocsApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(EEOC),),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/ats/v1/eeocs',
                 'operation_id': 'eeocs_list',
@@ -50,7 +51,6 @@ class EeocsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'candidate_id',
                     'created_after',
                     'created_before',
@@ -64,9 +64,7 @@ class EeocsApi(object):
                     'remote_fields',
                     'remote_id',
                 ],
-                'required': [
-                    'x_account_token',
-                ],
+                'required': [],
                 'nullable': [
                     'remote_id',
                 ],
@@ -105,8 +103,6 @@ class EeocsApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'candidate_id':
                         (str,),
                     'created_after':
@@ -133,7 +129,6 @@ class EeocsApi(object):
                         (str, none_type,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'candidate_id': 'candidate_id',
                     'created_after': 'created_after',
                     'created_before': 'created_before',
@@ -148,7 +143,6 @@ class EeocsApi(object):
                     'remote_id': 'remote_id',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'candidate_id': 'query',
                     'created_after': 'query',
                     'created_before': 'query',
@@ -177,7 +171,8 @@ class EeocsApi(object):
             settings={
                 'response_type': (EEOC,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/ats/v1/eeocs/{id}',
                 'operation_id': 'eeocs_retrieve',
@@ -186,14 +181,12 @@ class EeocsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'id',
                     'expand',
                     'include_remote_data',
                     'remote_fields',
                 ],
                 'required': [
-                    'x_account_token',
                     'id',
                 ],
                 'nullable': [
@@ -233,8 +226,6 @@ class EeocsApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'id':
                         (str,),
                     'expand':
@@ -245,14 +236,12 @@ class EeocsApi(object):
                         (str,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                     'expand': 'expand',
                     'include_remote_data': 'include_remote_data',
                     'remote_fields': 'remote_fields',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'id': 'path',
                     'expand': 'query',
                     'include_remote_data': 'query',
@@ -272,7 +261,6 @@ class EeocsApi(object):
 
     def eeocs_list(
         self,
-        x_account_token,
         **kwargs
     ):
         """eeocs_list  # noqa: E501
@@ -281,11 +269,9 @@ class EeocsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.eeocs_list(x_account_token, async_req=True)
+        >>> thread = api.eeocs_list(async_req=True)
         >>> result = thread.get()
 
-        Args:
-            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             candidate_id (str): If provided, will only return EEOC info for this candidate.. [optional]
@@ -361,13 +347,10 @@ class EeocsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         return self.eeocs_list_endpoint.call_with_http_info(**kwargs)
 
     def eeocs_retrieve(
         self,
-        x_account_token,
         id,
         **kwargs
     ):
@@ -377,11 +360,10 @@ class EeocsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.eeocs_retrieve(x_account_token, id, async_req=True)
+        >>> thread = api.eeocs_retrieve(id, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             id (str):
 
         Keyword Args:
@@ -449,8 +431,6 @@ class EeocsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['id'] = \
             id
         return self.eeocs_retrieve_endpoint.call_with_http_info(**kwargs)

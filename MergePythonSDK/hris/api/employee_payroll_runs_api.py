@@ -41,7 +41,8 @@ class EmployeePayrollRunsApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(EmployeePayrollRun),),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/hris/v1/employee-payroll-runs',
                 'operation_id': 'employee_payroll_runs_list',
@@ -50,7 +51,6 @@ class EmployeePayrollRunsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'created_after',
                     'created_before',
                     'cursor',
@@ -68,9 +68,7 @@ class EmployeePayrollRunsApi(object):
                     'started_after',
                     'started_before',
                 ],
-                'required': [
-                    'x_account_token',
-                ],
+                'required': [],
                 'nullable': [
                     'ended_after',
                     'ended_before',
@@ -96,8 +94,6 @@ class EmployeePayrollRunsApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'created_after':
                         (datetime,),
                     'created_before':
@@ -132,7 +128,6 @@ class EmployeePayrollRunsApi(object):
                         (datetime, none_type,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'created_after': 'created_after',
                     'created_before': 'created_before',
                     'cursor': 'cursor',
@@ -151,7 +146,6 @@ class EmployeePayrollRunsApi(object):
                     'started_before': 'started_before',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'created_after': 'query',
                     'created_before': 'query',
                     'cursor': 'query',
@@ -184,7 +178,8 @@ class EmployeePayrollRunsApi(object):
             settings={
                 'response_type': (EmployeePayrollRun,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/hris/v1/employee-payroll-runs/{id}',
                 'operation_id': 'employee_payroll_runs_retrieve',
@@ -193,13 +188,11 @@ class EmployeePayrollRunsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'id',
                     'expand',
                     'include_remote_data',
                 ],
                 'required': [
-                    'x_account_token',
                     'id',
                 ],
                 'nullable': [
@@ -222,8 +215,6 @@ class EmployeePayrollRunsApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'id':
                         (str,),
                     'expand':
@@ -232,13 +223,11 @@ class EmployeePayrollRunsApi(object):
                         (bool,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                     'expand': 'expand',
                     'include_remote_data': 'include_remote_data',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'id': 'path',
                     'expand': 'query',
                     'include_remote_data': 'query',
@@ -257,7 +246,6 @@ class EmployeePayrollRunsApi(object):
 
     def employee_payroll_runs_list(
         self,
-        x_account_token,
         **kwargs
     ):
         """employee_payroll_runs_list  # noqa: E501
@@ -266,11 +254,9 @@ class EmployeePayrollRunsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.employee_payroll_runs_list(x_account_token, async_req=True)
+        >>> thread = api.employee_payroll_runs_list(async_req=True)
         >>> result = thread.get()
 
-        Args:
-            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             created_after (datetime): If provided, will only return objects created after this datetime.. [optional]
@@ -350,13 +336,10 @@ class EmployeePayrollRunsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         return self.employee_payroll_runs_list_endpoint.call_with_http_info(**kwargs)
 
     def employee_payroll_runs_retrieve(
         self,
-        x_account_token,
         id,
         **kwargs
     ):
@@ -366,11 +349,10 @@ class EmployeePayrollRunsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.employee_payroll_runs_retrieve(x_account_token, id, async_req=True)
+        >>> thread = api.employee_payroll_runs_retrieve(id, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             id (str):
 
         Keyword Args:
@@ -437,8 +419,6 @@ class EmployeePayrollRunsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['id'] = \
             id
         return self.employee_payroll_runs_retrieve_endpoint.call_with_http_info(**kwargs)

@@ -44,7 +44,8 @@ class JournalEntriesApi(object):
             settings={
                 'response_type': (JournalEntryResponse,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/accounting/v1/journal-entries',
                 'operation_id': 'journal_entries_create',
@@ -53,13 +54,11 @@ class JournalEntriesApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'journal_entry_endpoint_request',
                     'is_debug_mode',
                     'run_async',
                 ],
                 'required': [
-                    'x_account_token',
                     'journal_entry_endpoint_request',
                 ],
                 'nullable': [
@@ -75,8 +74,6 @@ class JournalEntriesApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'journal_entry_endpoint_request':
                         (JournalEntryEndpointRequest,),
                     'is_debug_mode':
@@ -85,12 +82,10 @@ class JournalEntriesApi(object):
                         (bool,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'is_debug_mode': 'is_debug_mode',
                     'run_async': 'run_async',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'journal_entry_endpoint_request': 'body',
                     'is_debug_mode': 'query',
                     'run_async': 'query',
@@ -114,7 +109,8 @@ class JournalEntriesApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(JournalEntry),),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/accounting/v1/journal-entries',
                 'operation_id': 'journal_entries_list',
@@ -123,7 +119,6 @@ class JournalEntriesApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'created_after',
                     'created_before',
                     'cursor',
@@ -135,9 +130,7 @@ class JournalEntriesApi(object):
                     'page_size',
                     'remote_id',
                 ],
-                'required': [
-                    'x_account_token',
-                ],
+                'required': [],
                 'nullable': [
                     'remote_id',
                 ],
@@ -159,8 +152,6 @@ class JournalEntriesApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'created_after':
                         (datetime,),
                     'created_before':
@@ -183,7 +174,6 @@ class JournalEntriesApi(object):
                         (str, none_type,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'created_after': 'created_after',
                     'created_before': 'created_before',
                     'cursor': 'cursor',
@@ -196,7 +186,6 @@ class JournalEntriesApi(object):
                     'remote_id': 'remote_id',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'created_after': 'query',
                     'created_before': 'query',
                     'cursor': 'query',
@@ -223,7 +212,8 @@ class JournalEntriesApi(object):
             settings={
                 'response_type': (MetaResponse,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/accounting/v1/journal-entries/meta/post',
                 'operation_id': 'journal_entries_meta_post_retrieve',
@@ -232,11 +222,8 @@ class JournalEntriesApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                 ],
-                'required': [
-                    'x_account_token',
-                ],
+                'required': [],
                 'nullable': [
                 ],
                 'enum': [
@@ -250,14 +237,10 @@ class JournalEntriesApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -274,7 +257,8 @@ class JournalEntriesApi(object):
             settings={
                 'response_type': (JournalEntry,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/accounting/v1/journal-entries/{id}',
                 'operation_id': 'journal_entries_retrieve',
@@ -283,13 +267,11 @@ class JournalEntriesApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'id',
                     'expand',
                     'include_remote_data',
                 ],
                 'required': [
-                    'x_account_token',
                     'id',
                 ],
                 'nullable': [
@@ -312,8 +294,6 @@ class JournalEntriesApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'id':
                         (str,),
                     'expand':
@@ -322,13 +302,11 @@ class JournalEntriesApi(object):
                         (bool,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                     'expand': 'expand',
                     'include_remote_data': 'include_remote_data',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'id': 'path',
                     'expand': 'query',
                     'include_remote_data': 'query',
@@ -347,7 +325,6 @@ class JournalEntriesApi(object):
 
     def journal_entries_create(
         self,
-        x_account_token,
         journal_entry_endpoint_request,
         **kwargs
     ):
@@ -357,11 +334,10 @@ class JournalEntriesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.journal_entries_create(x_account_token, journal_entry_endpoint_request, async_req=True)
+        >>> thread = api.journal_entries_create(journal_entry_endpoint_request, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             journal_entry_endpoint_request (JournalEntryEndpointRequest):
 
         Keyword Args:
@@ -428,15 +404,12 @@ class JournalEntriesApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['journal_entry_endpoint_request'] = \
             journal_entry_endpoint_request
         return self.journal_entries_create_endpoint.call_with_http_info(**kwargs)
 
     def journal_entries_list(
         self,
-        x_account_token,
         **kwargs
     ):
         """journal_entries_list  # noqa: E501
@@ -445,11 +418,9 @@ class JournalEntriesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.journal_entries_list(x_account_token, async_req=True)
+        >>> thread = api.journal_entries_list(async_req=True)
         >>> result = thread.get()
 
-        Args:
-            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             created_after (datetime): If provided, will only return objects created after this datetime.. [optional]
@@ -523,13 +494,10 @@ class JournalEntriesApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         return self.journal_entries_list_endpoint.call_with_http_info(**kwargs)
 
     def journal_entries_meta_post_retrieve(
         self,
-        x_account_token,
         **kwargs
     ):
         """journal_entries_meta_post_retrieve  # noqa: E501
@@ -538,11 +506,9 @@ class JournalEntriesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.journal_entries_meta_post_retrieve(x_account_token, async_req=True)
+        >>> thread = api.journal_entries_meta_post_retrieve(async_req=True)
         >>> result = thread.get()
 
-        Args:
-            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -606,13 +572,10 @@ class JournalEntriesApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         return self.journal_entries_meta_post_retrieve_endpoint.call_with_http_info(**kwargs)
 
     def journal_entries_retrieve(
         self,
-        x_account_token,
         id,
         **kwargs
     ):
@@ -622,11 +585,10 @@ class JournalEntriesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.journal_entries_retrieve(x_account_token, id, async_req=True)
+        >>> thread = api.journal_entries_retrieve(id, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             id (str):
 
         Keyword Args:
@@ -693,8 +655,6 @@ class JournalEntriesApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['id'] = \
             id
         return self.journal_entries_retrieve_endpoint.call_with_http_info(**kwargs)

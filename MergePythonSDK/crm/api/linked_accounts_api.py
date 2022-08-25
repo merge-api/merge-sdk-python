@@ -41,7 +41,7 @@ class LinkedAccountsApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(AccountDetailsAndActions),),
                 'auth': [
-                    'tokenAuth'
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/crm/v1/linked-accounts',
                 'operation_id': 'linked_accounts_list',

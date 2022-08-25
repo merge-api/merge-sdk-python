@@ -41,7 +41,8 @@ class RejectReasonsApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(RejectReason),),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/ats/v1/reject-reasons',
                 'operation_id': 'reject_reasons_list',
@@ -50,7 +51,6 @@ class RejectReasonsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'created_after',
                     'created_before',
                     'cursor',
@@ -61,9 +61,7 @@ class RejectReasonsApi(object):
                     'page_size',
                     'remote_id',
                 ],
-                'required': [
-                    'x_account_token',
-                ],
+                'required': [],
                 'nullable': [
                     'remote_id',
                 ],
@@ -78,8 +76,6 @@ class RejectReasonsApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'created_after':
                         (datetime,),
                     'created_before':
@@ -100,7 +96,6 @@ class RejectReasonsApi(object):
                         (str, none_type,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'created_after': 'created_after',
                     'created_before': 'created_before',
                     'cursor': 'cursor',
@@ -112,7 +107,6 @@ class RejectReasonsApi(object):
                     'remote_id': 'remote_id',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'created_after': 'query',
                     'created_before': 'query',
                     'cursor': 'query',
@@ -138,7 +132,8 @@ class RejectReasonsApi(object):
             settings={
                 'response_type': (RejectReason,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/ats/v1/reject-reasons/{id}',
                 'operation_id': 'reject_reasons_retrieve',
@@ -147,12 +142,10 @@ class RejectReasonsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'id',
                     'include_remote_data',
                 ],
                 'required': [
-                    'x_account_token',
                     'id',
                 ],
                 'nullable': [
@@ -168,20 +161,16 @@ class RejectReasonsApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'id':
                         (str,),
                     'include_remote_data':
                         (bool,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                     'include_remote_data': 'include_remote_data',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'id': 'path',
                     'include_remote_data': 'query',
                 },
@@ -199,7 +188,6 @@ class RejectReasonsApi(object):
 
     def reject_reasons_list(
         self,
-        x_account_token,
         **kwargs
     ):
         """reject_reasons_list  # noqa: E501
@@ -208,11 +196,9 @@ class RejectReasonsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.reject_reasons_list(x_account_token, async_req=True)
+        >>> thread = api.reject_reasons_list(async_req=True)
         >>> result = thread.get()
 
-        Args:
-            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             created_after (datetime): If provided, will only return objects created after this datetime.. [optional]
@@ -285,13 +271,10 @@ class RejectReasonsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         return self.reject_reasons_list_endpoint.call_with_http_info(**kwargs)
 
     def reject_reasons_retrieve(
         self,
-        x_account_token,
         id,
         **kwargs
     ):
@@ -301,11 +284,10 @@ class RejectReasonsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.reject_reasons_retrieve(x_account_token, id, async_req=True)
+        >>> thread = api.reject_reasons_retrieve(id, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             id (str):
 
         Keyword Args:
@@ -371,8 +353,6 @@ class RejectReasonsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['id'] = \
             id
         return self.reject_reasons_retrieve_endpoint.call_with_http_info(**kwargs)

@@ -41,7 +41,8 @@ class PassthroughApi(object):
             settings={
                 'response_type': (RemoteResponse,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/hris/v1/passthrough',
                 'operation_id': 'passthrough_create',
@@ -50,11 +51,9 @@ class PassthroughApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'data_passthrough_request',
                 ],
                 'required': [
-                    'x_account_token',
                     'data_passthrough_request',
                 ],
                 'nullable': [
@@ -70,16 +69,12 @@ class PassthroughApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'data_passthrough_request':
                         (DataPassthroughRequest,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'data_passthrough_request': 'body',
                 },
                 'collection_format_map': {
@@ -100,7 +95,6 @@ class PassthroughApi(object):
 
     def passthrough_create(
         self,
-        x_account_token,
         data_passthrough_request,
         **kwargs
     ):
@@ -110,11 +104,10 @@ class PassthroughApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.passthrough_create(x_account_token, data_passthrough_request, async_req=True)
+        >>> thread = api.passthrough_create(data_passthrough_request, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             data_passthrough_request (DataPassthroughRequest):
 
         Keyword Args:
@@ -179,8 +172,6 @@ class PassthroughApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['data_passthrough_request'] = \
             data_passthrough_request
         return self.passthrough_create_endpoint.call_with_http_info(**kwargs)

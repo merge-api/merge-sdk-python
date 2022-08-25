@@ -44,7 +44,8 @@ class EngagementsApi(object):
             settings={
                 'response_type': (EngagementResponse,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/crm/v1/engagements',
                 'operation_id': 'engagements_create',
@@ -53,13 +54,11 @@ class EngagementsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'engagement_endpoint_request',
                     'is_debug_mode',
                     'run_async',
                 ],
                 'required': [
-                    'x_account_token',
                     'engagement_endpoint_request',
                 ],
                 'nullable': [
@@ -75,8 +74,6 @@ class EngagementsApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'engagement_endpoint_request':
                         (EngagementEndpointRequest,),
                     'is_debug_mode':
@@ -85,12 +82,10 @@ class EngagementsApi(object):
                         (bool,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'is_debug_mode': 'is_debug_mode',
                     'run_async': 'run_async',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'engagement_endpoint_request': 'body',
                     'is_debug_mode': 'query',
                     'run_async': 'query',
@@ -114,7 +109,8 @@ class EngagementsApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(Engagement),),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/crm/v1/engagements',
                 'operation_id': 'engagements_list',
@@ -123,7 +119,6 @@ class EngagementsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'created_after',
                     'created_before',
                     'cursor',
@@ -135,9 +130,7 @@ class EngagementsApi(object):
                     'page_size',
                     'remote_id',
                 ],
-                'required': [
-                    'x_account_token',
-                ],
+                'required': [],
                 'nullable': [
                     'remote_id',
                 ],
@@ -163,8 +156,6 @@ class EngagementsApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'created_after':
                         (datetime,),
                     'created_before':
@@ -187,7 +178,6 @@ class EngagementsApi(object):
                         (str, none_type,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'created_after': 'created_after',
                     'created_before': 'created_before',
                     'cursor': 'cursor',
@@ -200,7 +190,6 @@ class EngagementsApi(object):
                     'remote_id': 'remote_id',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'created_after': 'query',
                     'created_before': 'query',
                     'cursor': 'query',
@@ -227,7 +216,8 @@ class EngagementsApi(object):
             settings={
                 'response_type': (MetaResponse,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/crm/v1/engagements/meta/post',
                 'operation_id': 'engagements_meta_post_retrieve',
@@ -236,11 +226,8 @@ class EngagementsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                 ],
-                'required': [
-                    'x_account_token',
-                ],
+                'required': [],
                 'nullable': [
                 ],
                 'enum': [
@@ -254,14 +241,10 @@ class EngagementsApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -278,7 +261,8 @@ class EngagementsApi(object):
             settings={
                 'response_type': (Engagement,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/crm/v1/engagements/{id}',
                 'operation_id': 'engagements_retrieve',
@@ -287,13 +271,11 @@ class EngagementsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'id',
                     'expand',
                     'include_remote_data',
                 ],
                 'required': [
-                    'x_account_token',
                     'id',
                 ],
                 'nullable': [
@@ -320,8 +302,6 @@ class EngagementsApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'id':
                         (str,),
                     'expand':
@@ -330,13 +310,11 @@ class EngagementsApi(object):
                         (bool,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                     'expand': 'expand',
                     'include_remote_data': 'include_remote_data',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'id': 'path',
                     'expand': 'query',
                     'include_remote_data': 'query',
@@ -355,7 +333,6 @@ class EngagementsApi(object):
 
     def engagements_create(
         self,
-        x_account_token,
         engagement_endpoint_request,
         **kwargs
     ):
@@ -365,11 +342,10 @@ class EngagementsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.engagements_create(x_account_token, engagement_endpoint_request, async_req=True)
+        >>> thread = api.engagements_create(engagement_endpoint_request, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             engagement_endpoint_request (EngagementEndpointRequest):
 
         Keyword Args:
@@ -436,15 +412,12 @@ class EngagementsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['engagement_endpoint_request'] = \
             engagement_endpoint_request
         return self.engagements_create_endpoint.call_with_http_info(**kwargs)
 
     def engagements_list(
         self,
-        x_account_token,
         **kwargs
     ):
         """engagements_list  # noqa: E501
@@ -453,11 +426,9 @@ class EngagementsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.engagements_list(x_account_token, async_req=True)
+        >>> thread = api.engagements_list(async_req=True)
         >>> result = thread.get()
 
-        Args:
-            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             created_after (datetime): If provided, will only return objects created after this datetime.. [optional]
@@ -531,13 +502,10 @@ class EngagementsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         return self.engagements_list_endpoint.call_with_http_info(**kwargs)
 
     def engagements_meta_post_retrieve(
         self,
-        x_account_token,
         **kwargs
     ):
         """engagements_meta_post_retrieve  # noqa: E501
@@ -546,11 +514,9 @@ class EngagementsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.engagements_meta_post_retrieve(x_account_token, async_req=True)
+        >>> thread = api.engagements_meta_post_retrieve(async_req=True)
         >>> result = thread.get()
 
-        Args:
-            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -614,13 +580,10 @@ class EngagementsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         return self.engagements_meta_post_retrieve_endpoint.call_with_http_info(**kwargs)
 
     def engagements_retrieve(
         self,
-        x_account_token,
         id,
         **kwargs
     ):
@@ -630,11 +593,10 @@ class EngagementsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.engagements_retrieve(x_account_token, id, async_req=True)
+        >>> thread = api.engagements_retrieve(id, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             id (str):
 
         Keyword Args:
@@ -701,8 +663,6 @@ class EngagementsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['id'] = \
             id
         return self.engagements_retrieve_endpoint.call_with_http_info(**kwargs)

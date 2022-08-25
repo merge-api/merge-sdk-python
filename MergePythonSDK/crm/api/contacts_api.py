@@ -44,7 +44,8 @@ class ContactsApi(object):
             settings={
                 'response_type': (CRMContactResponse,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/crm/v1/contacts',
                 'operation_id': 'contacts_create',
@@ -53,13 +54,11 @@ class ContactsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'crm_contact_endpoint_request',
                     'is_debug_mode',
                     'run_async',
                 ],
                 'required': [
-                    'x_account_token',
                     'crm_contact_endpoint_request',
                 ],
                 'nullable': [
@@ -75,8 +74,6 @@ class ContactsApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'crm_contact_endpoint_request':
                         (CRMContactEndpointRequest,),
                     'is_debug_mode':
@@ -85,12 +82,10 @@ class ContactsApi(object):
                         (bool,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'is_debug_mode': 'is_debug_mode',
                     'run_async': 'run_async',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'crm_contact_endpoint_request': 'body',
                     'is_debug_mode': 'query',
                     'run_async': 'query',
@@ -114,7 +109,8 @@ class ContactsApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(Contact),),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/crm/v1/contacts',
                 'operation_id': 'contacts_list',
@@ -123,7 +119,6 @@ class ContactsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'account_id',
                     'created_after',
                     'created_before',
@@ -136,9 +131,7 @@ class ContactsApi(object):
                     'page_size',
                     'remote_id',
                 ],
-                'required': [
-                    'x_account_token',
-                ],
+                'required': [],
                 'nullable': [
                     'remote_id',
                 ],
@@ -158,8 +151,6 @@ class ContactsApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'account_id':
                         (str,),
                     'created_after':
@@ -184,7 +175,6 @@ class ContactsApi(object):
                         (str, none_type,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'account_id': 'account_id',
                     'created_after': 'created_after',
                     'created_before': 'created_before',
@@ -198,7 +188,6 @@ class ContactsApi(object):
                     'remote_id': 'remote_id',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'account_id': 'query',
                     'created_after': 'query',
                     'created_before': 'query',
@@ -226,7 +215,8 @@ class ContactsApi(object):
             settings={
                 'response_type': (MetaResponse,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/crm/v1/contacts/meta/post',
                 'operation_id': 'contacts_meta_post_retrieve',
@@ -235,11 +225,8 @@ class ContactsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                 ],
-                'required': [
-                    'x_account_token',
-                ],
+                'required': [],
                 'nullable': [
                 ],
                 'enum': [
@@ -253,14 +240,10 @@ class ContactsApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -277,7 +260,8 @@ class ContactsApi(object):
             settings={
                 'response_type': (Contact,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/crm/v1/contacts/{id}',
                 'operation_id': 'contacts_retrieve',
@@ -286,13 +270,11 @@ class ContactsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'id',
                     'expand',
                     'include_remote_data',
                 ],
                 'required': [
-                    'x_account_token',
                     'id',
                 ],
                 'nullable': [
@@ -313,8 +295,6 @@ class ContactsApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'id':
                         (str,),
                     'expand':
@@ -323,13 +303,11 @@ class ContactsApi(object):
                         (bool,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                     'expand': 'expand',
                     'include_remote_data': 'include_remote_data',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'id': 'path',
                     'expand': 'query',
                     'include_remote_data': 'query',
@@ -348,7 +326,6 @@ class ContactsApi(object):
 
     def contacts_create(
         self,
-        x_account_token,
         crm_contact_endpoint_request,
         **kwargs
     ):
@@ -358,11 +335,10 @@ class ContactsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.contacts_create(x_account_token, crm_contact_endpoint_request, async_req=True)
+        >>> thread = api.contacts_create(crm_contact_endpoint_request, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             crm_contact_endpoint_request (CRMContactEndpointRequest):
 
         Keyword Args:
@@ -429,15 +405,12 @@ class ContactsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['crm_contact_endpoint_request'] = \
             crm_contact_endpoint_request
         return self.contacts_create_endpoint.call_with_http_info(**kwargs)
 
     def contacts_list(
         self,
-        x_account_token,
         **kwargs
     ):
         """contacts_list  # noqa: E501
@@ -446,11 +419,9 @@ class ContactsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.contacts_list(x_account_token, async_req=True)
+        >>> thread = api.contacts_list(async_req=True)
         >>> result = thread.get()
 
-        Args:
-            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             account_id (str): If provided, will only return contacts with this account.. [optional]
@@ -525,13 +496,10 @@ class ContactsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         return self.contacts_list_endpoint.call_with_http_info(**kwargs)
 
     def contacts_meta_post_retrieve(
         self,
-        x_account_token,
         **kwargs
     ):
         """contacts_meta_post_retrieve  # noqa: E501
@@ -540,11 +508,9 @@ class ContactsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.contacts_meta_post_retrieve(x_account_token, async_req=True)
+        >>> thread = api.contacts_meta_post_retrieve(async_req=True)
         >>> result = thread.get()
 
-        Args:
-            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -608,13 +574,10 @@ class ContactsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         return self.contacts_meta_post_retrieve_endpoint.call_with_http_info(**kwargs)
 
     def contacts_retrieve(
         self,
-        x_account_token,
         id,
         **kwargs
     ):
@@ -624,11 +587,10 @@ class ContactsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.contacts_retrieve(x_account_token, id, async_req=True)
+        >>> thread = api.contacts_retrieve(id, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             id (str):
 
         Keyword Args:
@@ -695,8 +657,6 @@ class ContactsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['id'] = \
             id
         return self.contacts_retrieve_endpoint.call_with_http_info(**kwargs)

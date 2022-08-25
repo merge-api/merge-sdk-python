@@ -41,7 +41,8 @@ class PaymentsApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(Payment),),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/accounting/v1/payments',
                 'operation_id': 'payments_list',
@@ -50,7 +51,6 @@ class PaymentsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'account_id',
                     'contact_id',
                     'created_after',
@@ -64,9 +64,7 @@ class PaymentsApi(object):
                     'page_size',
                     'remote_id',
                 ],
-                'required': [
-                    'x_account_token',
-                ],
+                'required': [],
                 'nullable': [
                     'remote_id',
                 ],
@@ -88,8 +86,6 @@ class PaymentsApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'account_id':
                         (str,),
                     'contact_id':
@@ -116,7 +112,6 @@ class PaymentsApi(object):
                         (str, none_type,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'account_id': 'account_id',
                     'contact_id': 'contact_id',
                     'created_after': 'created_after',
@@ -131,7 +126,6 @@ class PaymentsApi(object):
                     'remote_id': 'remote_id',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'account_id': 'query',
                     'contact_id': 'query',
                     'created_after': 'query',
@@ -160,7 +154,8 @@ class PaymentsApi(object):
             settings={
                 'response_type': (Payment,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/accounting/v1/payments/{id}',
                 'operation_id': 'payments_retrieve',
@@ -169,13 +164,11 @@ class PaymentsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'id',
                     'expand',
                     'include_remote_data',
                 ],
                 'required': [
-                    'x_account_token',
                     'id',
                 ],
                 'nullable': [
@@ -198,8 +191,6 @@ class PaymentsApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'id':
                         (str,),
                     'expand':
@@ -208,13 +199,11 @@ class PaymentsApi(object):
                         (bool,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                     'expand': 'expand',
                     'include_remote_data': 'include_remote_data',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'id': 'path',
                     'expand': 'query',
                     'include_remote_data': 'query',
@@ -233,7 +222,6 @@ class PaymentsApi(object):
 
     def payments_list(
         self,
-        x_account_token,
         **kwargs
     ):
         """payments_list  # noqa: E501
@@ -242,11 +230,9 @@ class PaymentsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.payments_list(x_account_token, async_req=True)
+        >>> thread = api.payments_list(async_req=True)
         >>> result = thread.get()
 
-        Args:
-            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             account_id (str): If provided, will only return payments for this account.. [optional]
@@ -322,13 +308,10 @@ class PaymentsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         return self.payments_list_endpoint.call_with_http_info(**kwargs)
 
     def payments_retrieve(
         self,
-        x_account_token,
         id,
         **kwargs
     ):
@@ -338,11 +321,10 @@ class PaymentsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.payments_retrieve(x_account_token, id, async_req=True)
+        >>> thread = api.payments_retrieve(id, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             id (str):
 
         Keyword Args:
@@ -409,8 +391,6 @@ class PaymentsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['id'] = \
             id
         return self.payments_retrieve_endpoint.call_with_http_info(**kwargs)

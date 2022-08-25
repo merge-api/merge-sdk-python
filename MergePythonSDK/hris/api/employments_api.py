@@ -41,7 +41,8 @@ class EmploymentsApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(Employment),),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/hris/v1/employments',
                 'operation_id': 'employments_list',
@@ -50,7 +51,6 @@ class EmploymentsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'created_after',
                     'created_before',
                     'cursor',
@@ -65,9 +65,7 @@ class EmploymentsApi(object):
                     'remote_fields',
                     'remote_id',
                 ],
-                'required': [
-                    'x_account_token',
-                ],
+                'required': [],
                 'nullable': [
                     'remote_id',
                 ],
@@ -114,8 +112,6 @@ class EmploymentsApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'created_after':
                         (datetime,),
                     'created_before':
@@ -144,7 +140,6 @@ class EmploymentsApi(object):
                         (str, none_type,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'created_after': 'created_after',
                     'created_before': 'created_before',
                     'cursor': 'cursor',
@@ -160,7 +155,6 @@ class EmploymentsApi(object):
                     'remote_id': 'remote_id',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'created_after': 'query',
                     'created_before': 'query',
                     'cursor': 'query',
@@ -190,7 +184,8 @@ class EmploymentsApi(object):
             settings={
                 'response_type': (Employment,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/hris/v1/employments/{id}',
                 'operation_id': 'employments_retrieve',
@@ -199,14 +194,12 @@ class EmploymentsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'id',
                     'expand',
                     'include_remote_data',
                     'remote_fields',
                 ],
                 'required': [
-                    'x_account_token',
                     'id',
                 ],
                 'nullable': [
@@ -248,8 +241,6 @@ class EmploymentsApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'id':
                         (str,),
                     'expand':
@@ -260,14 +251,12 @@ class EmploymentsApi(object):
                         (str,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                     'expand': 'expand',
                     'include_remote_data': 'include_remote_data',
                     'remote_fields': 'remote_fields',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'id': 'path',
                     'expand': 'query',
                     'include_remote_data': 'query',
@@ -287,7 +276,6 @@ class EmploymentsApi(object):
 
     def employments_list(
         self,
-        x_account_token,
         **kwargs
     ):
         """employments_list  # noqa: E501
@@ -296,11 +284,9 @@ class EmploymentsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.employments_list(x_account_token, async_req=True)
+        >>> thread = api.employments_list(async_req=True)
         >>> result = thread.get()
 
-        Args:
-            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             created_after (datetime): If provided, will only return objects created after this datetime.. [optional]
@@ -377,13 +363,10 @@ class EmploymentsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         return self.employments_list_endpoint.call_with_http_info(**kwargs)
 
     def employments_retrieve(
         self,
-        x_account_token,
         id,
         **kwargs
     ):
@@ -393,11 +376,10 @@ class EmploymentsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.employments_retrieve(x_account_token, id, async_req=True)
+        >>> thread = api.employments_retrieve(id, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             id (str):
 
         Keyword Args:
@@ -465,8 +447,6 @@ class EmploymentsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['id'] = \
             id
         return self.employments_retrieve_endpoint.call_with_http_info(**kwargs)

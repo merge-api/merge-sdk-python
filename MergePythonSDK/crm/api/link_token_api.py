@@ -41,7 +41,7 @@ class LinkTokenApi(object):
             settings={
                 'response_type': (LinkToken,),
                 'auth': [
-                    'tokenAuth'
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/crm/v1/link-token',
                 'operation_id': 'link_token_create',

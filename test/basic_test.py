@@ -20,62 +20,60 @@ from MergePythonSDK.ticketing.api.tickets_api import TicketsApi
 
 class BasicClientTest(unittest.TestCase):
     def setUp(self):
-        self.configuration = Configuration()
-        # Swap YOUR_API_KEY below with your production key from:
+        # Swap YOUR_ACCESS_KEY below with your production key from:
         # https://app.merge.dev/configuration/keys
-        self.configuration.api_key['tokenAuth'] = 'REDACTED'
-        self.configuration.api_key_prefix['tokenAuth'] = 'Bearer'
+        self.bearer_token = "YOUR_ACCESS_KEY"
 
     def tearDown(self):
         pass
 
     def test_api_clients(self):
-        with ApiClient(self.configuration) as api_client:
-            # Accounting
+
+        # Accounting
+        accounting_configuration = Configuration()
+        accounting_configuration.access_token = self.bearer_token
+        accounting_configuration.api_key_prefix['tokenAuth'] = 'Bearer'
+        # Swap YOUR-X-ACCOUNT-TOKEN below with your production key from:
+        # https://app.merge.dev/linked-accounts/account/{ACCOUNT_ID}/overview
+        accounting_configuration.api_key['accountTokenAuth'] = 'YOUR-X-ACCOUNT-TOKEN'
+        with ApiClient(accounting_configuration) as api_client:
             accounting_invoices_api_instance = InvoicesApi(api_client)
-            accounting_x_account_token = 'REDACTED'
-
-            # ATS
-            ats_candidates_api_instance = CandidatesApi(api_client)
-            ats_x_account_token = 'REDACTED'
-
-            # CRM
-            crm_contacts_api_instance = ContactsApi(api_client)
-            crm_x_account_token = 'REDACTED'
-
-            # HRIS
-            hris_employees_api_instance = EmployeesApi(api_client)
-            hris_x_account_token = 'REDACTED'
-
-            # Ticketing
-            ticketing_tickets_api_instance = TicketsApi(api_client)
-            ticketing_x_account_token = 'REDACTED'
-
-            # Accounting
             try:
-                api_response = accounting_invoices_api_instance.invoices_list(accounting_x_account_token)
+                api_response = accounting_invoices_api_instance.invoices_list()
                 assert api_response.get("results") is not None
             except ApiException as e:
                 print('Exception when calling Accounting API: %s' % e)
                 raise e
 
-            # ATS
+        # ATS
+        ats_configuration = Configuration()
+        ats_configuration.access_token = self.bearer_token
+        ats_configuration.api_key_prefix['tokenAuth'] = 'Bearer'
+        ats_configuration.api_key['accountTokenAuth'] = 'YOUR-X-ACCOUNT-TOKEN'
+        with ApiClient(ats_configuration) as api_client:
+            ats_candidates_api_instance = CandidatesApi(api_client)
             try:
-                api_response = ats_candidates_api_instance.candidates_list(ats_x_account_token)
+                api_response = ats_candidates_api_instance.candidates_list()
                 assert api_response.get("results") is not None
             except ApiException as e:
                 print('Exception when calling ATS API: %s' % e)
                 raise e
 
-            # CRM
+        # CRM
+        crm_configuration = Configuration()
+        crm_configuration.access_token = self.bearer_token
+        crm_configuration.api_key_prefix['tokenAuth'] = 'Bearer'
+        crm_configuration.api_key['accountTokenAuth'] = 'YOUR-X-ACCOUNT-TOKEN'
+        with ApiClient(crm_configuration) as api_client:
+            crm_contacts_api_instance = ContactsApi(api_client)
             try:
-                api_response = crm_contacts_api_instance.contacts_list(crm_x_account_token)
+                api_response = crm_contacts_api_instance.contacts_list()
                 assert api_response.get("results") is not None
 
                 # Test retrieve request
                 first_contact = api_response.get("results")[0]
                 contact_id = first_contact.id
-                retrieve_first_contact = crm_contacts_api_instance.contacts_retrieve(crm_x_account_token, contact_id)
+                retrieve_first_contact = crm_contacts_api_instance.contacts_retrieve(contact_id)
                 assert retrieve_first_contact.id == first_contact.id
                 assert retrieve_first_contact.first_name == first_contact.first_name
                 assert retrieve_first_contact.last_name == first_contact.last_name
@@ -83,31 +81,42 @@ class BasicClientTest(unittest.TestCase):
                 print('Exception when calling CRM API: %s' % e)
                 raise e
 
-            # HRIS
+        # HRIS
+        hris_configuration = Configuration()
+        hris_configuration.access_token = self.bearer_token
+        hris_configuration.api_key_prefix['tokenAuth'] = 'Bearer'
+        hris_configuration.api_key['accountTokenAuth'] = 'YOUR-X-ACCOUNT-TOKEN'
+        with ApiClient(hris_configuration) as api_client:
+            hris_employees_api_instance = EmployeesApi(api_client)
             try:
-                api_response = hris_employees_api_instance.employees_list(hris_x_account_token)
+                api_response = hris_employees_api_instance.employees_list()
                 assert api_response.get("results") is not None
 
                 # Test pagination for requests and responses
                 next_page = api_response.get("next")
-                next_response = hris_employees_api_instance.employees_list(hris_x_account_token, cursor=next_page)
+                next_response = hris_employees_api_instance.employees_list(cursor=next_page)
                 assert next_response.get("results") is not None
 
                 # Test remote fields
-                _id = "PUT YOUR UUID HERE"
-                employee_remote_field = hris_employees_api_instance.employees_retrieve(hris_x_account_token, _id,
-                                                                                       remote_fields="gender")
-                employee = hris_employees_api_instance.employees_retrieve(hris_x_account_token, _id)
+                _id = "YOUR EMPLOYEE MODEL ID HERE"
+                employee_remote_field = hris_employees_api_instance.employees_retrieve(_id, remote_fields="gender")
+                employee = hris_employees_api_instance.employees_retrieve(_id)
                 assert employee_remote_field.gender != employee.gender
                 assert employee_remote_field.gender.lower() == employee.gender.lower()
             except ApiException as e:
                 print('Exception when calling HRIS API: %s' % e)
                 raise e
 
-            # Ticketing
+        # Ticketing
+        ticketing_configuration = Configuration()
+        ticketing_configuration.access_token = self.bearer_token
+        ticketing_configuration.api_key_prefix['tokenAuth'] = 'Bearer'
+        ticketing_configuration.api_key['accountTokenAuth'] = 'YOUR-X-ACCOUNT-TOKEN'
+        with ApiClient(ticketing_configuration) as api_client:
+            ticketing_tickets_api_instance = TicketsApi(api_client)
             try:
                 # Test meta endpoint
-                api_response = ticketing_tickets_api_instance.tickets_meta_post_retrieve(ticketing_x_account_token)
+                api_response = ticketing_tickets_api_instance.tickets_meta_post_retrieve()
                 assert api_response
                 assert api_response.status.linked_account_status == "COMPLETE"
             except ApiException as e:

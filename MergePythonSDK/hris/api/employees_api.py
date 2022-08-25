@@ -46,7 +46,8 @@ class EmployeesApi(object):
             settings={
                 'response_type': (EmployeeResponse,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/hris/v1/employees',
                 'operation_id': 'employees_create',
@@ -55,13 +56,11 @@ class EmployeesApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'employee_endpoint_request',
                     'is_debug_mode',
                     'run_async',
                 ],
                 'required': [
-                    'x_account_token',
                     'employee_endpoint_request',
                 ],
                 'nullable': [
@@ -77,8 +76,6 @@ class EmployeesApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'employee_endpoint_request':
                         (EmployeeEndpointRequest,),
                     'is_debug_mode':
@@ -87,12 +84,10 @@ class EmployeesApi(object):
                         (bool,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'is_debug_mode': 'is_debug_mode',
                     'run_async': 'run_async',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'employee_endpoint_request': 'body',
                     'is_debug_mode': 'query',
                     'run_async': 'query',
@@ -116,7 +111,8 @@ class EmployeesApi(object):
             settings={
                 'response_type': (IgnoreCommonModel,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/hris/v1/employees/ignore/{model_id}',
                 'operation_id': 'employees_ignore_create',
@@ -125,12 +121,10 @@ class EmployeesApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'model_id',
                     'ignore_common_model_request',
                 ],
                 'required': [
-                    'x_account_token',
                     'model_id',
                     'ignore_common_model_request',
                 ],
@@ -147,19 +141,15 @@ class EmployeesApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'model_id':
                         (str,),
                     'ignore_common_model_request':
                         (IgnoreCommonModelRequest,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'model_id': 'model_id',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'model_id': 'path',
                     'ignore_common_model_request': 'body',
                 },
@@ -182,7 +172,8 @@ class EmployeesApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(Employee),),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/hris/v1/employees',
                 'operation_id': 'employees_list',
@@ -191,7 +182,6 @@ class EmployeesApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'company_id',
                     'created_after',
                     'created_before',
@@ -216,9 +206,7 @@ class EmployeesApi(object):
                     'work_email',
                     'work_location_id',
                 ],
-                'required': [
-                    'x_account_token',
-                ],
+                'required': [],
                 'nullable': [
                     'display_full_name',
                     'employment_status',
@@ -524,8 +512,6 @@ class EmployeesApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'company_id':
                         (str,),
                     'created_after':
@@ -574,7 +560,6 @@ class EmployeesApi(object):
                         (str,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'company_id': 'company_id',
                     'created_after': 'created_after',
                     'created_before': 'created_before',
@@ -600,7 +585,6 @@ class EmployeesApi(object):
                     'work_location_id': 'work_location_id',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'company_id': 'query',
                     'created_after': 'query',
                     'created_before': 'query',
@@ -640,7 +624,8 @@ class EmployeesApi(object):
             settings={
                 'response_type': (MetaResponse,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/hris/v1/employees/meta/post',
                 'operation_id': 'employees_meta_post_retrieve',
@@ -649,11 +634,8 @@ class EmployeesApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                 ],
-                'required': [
-                    'x_account_token',
-                ],
+                'required': [],
                 'nullable': [
                 ],
                 'enum': [
@@ -667,14 +649,10 @@ class EmployeesApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -691,7 +669,8 @@ class EmployeesApi(object):
             settings={
                 'response_type': (Employee,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/hris/v1/employees/{id}',
                 'operation_id': 'employees_retrieve',
@@ -700,7 +679,6 @@ class EmployeesApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'id',
                     'expand',
                     'include_remote_data',
@@ -708,7 +686,6 @@ class EmployeesApi(object):
                     'remote_fields',
                 ],
                 'required': [
-                    'x_account_token',
                     'id',
                 ],
                 'nullable': [
@@ -1002,8 +979,6 @@ class EmployeesApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'id':
                         (str,),
                     'expand':
@@ -1016,7 +991,6 @@ class EmployeesApi(object):
                         (str,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                     'expand': 'expand',
                     'include_remote_data': 'include_remote_data',
@@ -1024,7 +998,6 @@ class EmployeesApi(object):
                     'remote_fields': 'remote_fields',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'id': 'path',
                     'expand': 'query',
                     'include_remote_data': 'query',
@@ -1045,7 +1018,6 @@ class EmployeesApi(object):
 
     def employees_create(
         self,
-        x_account_token,
         employee_endpoint_request,
         **kwargs
     ):
@@ -1055,11 +1027,10 @@ class EmployeesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.employees_create(x_account_token, employee_endpoint_request, async_req=True)
+        >>> thread = api.employees_create(employee_endpoint_request, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             employee_endpoint_request (EmployeeEndpointRequest):
 
         Keyword Args:
@@ -1126,15 +1097,12 @@ class EmployeesApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['employee_endpoint_request'] = \
             employee_endpoint_request
         return self.employees_create_endpoint.call_with_http_info(**kwargs)
 
     def employees_ignore_create(
         self,
-        x_account_token,
         model_id,
         ignore_common_model_request,
         **kwargs
@@ -1145,11 +1113,10 @@ class EmployeesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.employees_ignore_create(x_account_token, model_id, ignore_common_model_request, async_req=True)
+        >>> thread = api.employees_ignore_create(model_id, ignore_common_model_request, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             model_id (str):
             ignore_common_model_request (IgnoreCommonModelRequest):
 
@@ -1215,8 +1182,6 @@ class EmployeesApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['model_id'] = \
             model_id
         kwargs['ignore_common_model_request'] = \
@@ -1225,7 +1190,6 @@ class EmployeesApi(object):
 
     def employees_list(
         self,
-        x_account_token,
         **kwargs
     ):
         """employees_list  # noqa: E501
@@ -1234,11 +1198,9 @@ class EmployeesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.employees_list(x_account_token, async_req=True)
+        >>> thread = api.employees_list(async_req=True)
         >>> result = thread.get()
 
-        Args:
-            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             company_id (str): If provided, will only return employees for this company.. [optional]
@@ -1325,13 +1287,10 @@ class EmployeesApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         return self.employees_list_endpoint.call_with_http_info(**kwargs)
 
     def employees_meta_post_retrieve(
         self,
-        x_account_token,
         **kwargs
     ):
         """employees_meta_post_retrieve  # noqa: E501
@@ -1340,11 +1299,9 @@ class EmployeesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.employees_meta_post_retrieve(x_account_token, async_req=True)
+        >>> thread = api.employees_meta_post_retrieve(async_req=True)
         >>> result = thread.get()
 
-        Args:
-            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -1408,13 +1365,10 @@ class EmployeesApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         return self.employees_meta_post_retrieve_endpoint.call_with_http_info(**kwargs)
 
     def employees_retrieve(
         self,
-        x_account_token,
         id,
         **kwargs
     ):
@@ -1424,11 +1378,10 @@ class EmployeesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.employees_retrieve(x_account_token, id, async_req=True)
+        >>> thread = api.employees_retrieve(id, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             id (str):
 
         Keyword Args:
@@ -1497,8 +1450,6 @@ class EmployeesApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['id'] = \
             id
         return self.employees_retrieve_endpoint.call_with_http_info(**kwargs)

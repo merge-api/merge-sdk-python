@@ -41,7 +41,8 @@ class TimeOffBalancesApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(TimeOffBalance),),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/hris/v1/time-off-balances',
                 'operation_id': 'time_off_balances_list',
@@ -50,7 +51,6 @@ class TimeOffBalancesApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'created_after',
                     'created_before',
                     'cursor',
@@ -65,9 +65,7 @@ class TimeOffBalancesApi(object):
                     'remote_fields',
                     'remote_id',
                 ],
-                'required': [
-                    'x_account_token',
-                ],
+                'required': [],
                 'nullable': [
                     'policy_type',
                     'remote_id',
@@ -103,8 +101,6 @@ class TimeOffBalancesApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'created_after':
                         (datetime,),
                     'created_before':
@@ -133,7 +129,6 @@ class TimeOffBalancesApi(object):
                         (str, none_type,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'created_after': 'created_after',
                     'created_before': 'created_before',
                     'cursor': 'cursor',
@@ -149,7 +144,6 @@ class TimeOffBalancesApi(object):
                     'remote_id': 'remote_id',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'created_after': 'query',
                     'created_before': 'query',
                     'cursor': 'query',
@@ -179,7 +173,8 @@ class TimeOffBalancesApi(object):
             settings={
                 'response_type': (TimeOffBalance,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/hris/v1/time-off-balances/{id}',
                 'operation_id': 'time_off_balances_retrieve',
@@ -188,14 +183,12 @@ class TimeOffBalancesApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'id',
                     'expand',
                     'include_remote_data',
                     'remote_fields',
                 ],
                 'required': [
-                    'x_account_token',
                     'id',
                 ],
                 'nullable': [
@@ -221,8 +214,6 @@ class TimeOffBalancesApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'id':
                         (str,),
                     'expand':
@@ -233,14 +224,12 @@ class TimeOffBalancesApi(object):
                         (str,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                     'expand': 'expand',
                     'include_remote_data': 'include_remote_data',
                     'remote_fields': 'remote_fields',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'id': 'path',
                     'expand': 'query',
                     'include_remote_data': 'query',
@@ -260,7 +249,6 @@ class TimeOffBalancesApi(object):
 
     def time_off_balances_list(
         self,
-        x_account_token,
         **kwargs
     ):
         """time_off_balances_list  # noqa: E501
@@ -269,11 +257,9 @@ class TimeOffBalancesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.time_off_balances_list(x_account_token, async_req=True)
+        >>> thread = api.time_off_balances_list(async_req=True)
         >>> result = thread.get()
 
-        Args:
-            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             created_after (datetime): If provided, will only return objects created after this datetime.. [optional]
@@ -350,13 +336,10 @@ class TimeOffBalancesApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         return self.time_off_balances_list_endpoint.call_with_http_info(**kwargs)
 
     def time_off_balances_retrieve(
         self,
-        x_account_token,
         id,
         **kwargs
     ):
@@ -366,11 +349,10 @@ class TimeOffBalancesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.time_off_balances_retrieve(x_account_token, id, async_req=True)
+        >>> thread = api.time_off_balances_retrieve(id, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             id (str):
 
         Keyword Args:
@@ -438,8 +420,6 @@ class TimeOffBalancesApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['id'] = \
             id
         return self.time_off_balances_retrieve_endpoint.call_with_http_info(**kwargs)

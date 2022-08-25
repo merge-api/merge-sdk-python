@@ -390,14 +390,21 @@ conf = MergePythonSDK.ticketing.Configuration(
         :return: The Auth Settings information dict.
         """
         auth = {}
-        if 'tokenAuth' in self.api_key:
-            auth['tokenAuth'] = {
+        if 'accountTokenAuth' in self.api_key:
+            auth['accountTokenAuth'] = {
                 'type': 'api_key',
                 'in': 'header',
-                'key': 'Authorization',
+                'key': 'X-Account-Token',
                 'value': self.get_api_key_with_prefix(
-                    'tokenAuth',
+                    'accountTokenAuth',
                 ),
+            }
+        if self.access_token is not None:
+            auth['bearerAuth'] = {
+                'type': 'bearer',
+                'in': 'header',
+                'key': 'Authorization',
+                'value': 'Bearer ' + self.access_token
             }
         return auth
 

@@ -20,18 +20,19 @@ repository.
 ```python
 from MergePythonSDK.accounting.api.invoices_api import InvoicesApi
 from MergePythonSDK.shared import Configuration, ApiClient
+
 # Swap YOUR_API_KEY below with your production key from:
 # https://app.merge.dev/configuration/keys
 configuration = Configuration()
-
-configuration.api_key['tokenAuth'] = 'REDACTED'
+configuration.access_token = "YOUR_API_KEY"
 configuration.api_key_prefix['tokenAuth'] = 'Bearer'
+# Swap YOUR-X-ACCOUNT-TOKEN below with your production key from:
+# https://app.merge.dev/linked-accounts/account/{ACCOUNT_ID}/overview
+configuration.api_key['accountTokenAuth'] = 'YOUR-X-ACCOUNT-TOKEN'
 
 with ApiClient(configuration) as api_client:
     accounting_invoices_api_instance = InvoicesApi(api_client)
-    accounting_x_account_token = 'REDACTED'
-    api_response = accounting_invoices_api_instance.invoices_list(
-        accounting_x_account_token)
+    api_response = accounting_invoices_api_instance.invoices_list()
 ```
 
 ### Remote Fields
@@ -47,13 +48,15 @@ from MergePythonSDK.shared import Configuration, ApiClient
 # Swap YOUR_API_KEY below with your production key from:
 # https://app.merge.dev/configuration/keys
 configuration = Configuration()
-
-configuration.api_key['tokenAuth'] = 'REDACTED'
+configuration.access_token = "YOUR_API_KEY"
 configuration.api_key_prefix['tokenAuth'] = 'Bearer'
+# Swap YOUR-X-ACCOUNT-TOKEN below with your production key from:
+# https://app.merge.dev/linked-accounts/account/{ACCOUNT_ID}/overview
+configuration.api_key['accountTokenAuth'] = 'YOUR-X-ACCOUNT-TOKEN'
+
 with ApiClient(configuration) as api_client:
     hris_employees_api_instance = EmployeesApi(api_client)
-    hris_x_account_token = 'REDACTED'
     _id = "EMPLOYEE ID HERE"
     employee_remote_field = hris_employees_api_instance.employees_retrieve(
-        hris_x_account_token, _id, remote_fields="gender")
+        _id, remote_fields="gender")
 ```
