@@ -1,7 +1,7 @@
 """
-    Merge Ticketing API
+    Merge Unified API
 
-    The unified API for building rich integrations with multiple Ticketing platforms.  # noqa: E501
+    The unified API for building rich integrations with multiple integration platforms.  # noqa: E501
 
     The version of the OpenAPI document: 1.0
     Contact: hello@merge.dev
@@ -90,7 +90,7 @@ class Configuration(object):
 
     You can programmatically set the cookie:
 
-conf = MergePythonSDK.ticketing.Configuration(
+conf = MergePythonSDK.Configuration(
     api_key={'cookieAuth': 'abc123'}
     api_key_prefix={'cookieAuth': 'JSESSIONID'}
 )
@@ -153,7 +153,7 @@ conf = MergePythonSDK.ticketing.Configuration(
         self.logger = {}
         """Logging Settings
         """
-        self.logger["package_logger"] = logging.getLogger("MergePythonSDK.ticketing")
+        self.logger["package_logger"] = logging.getLogger("MergePythonSDK")
         self.logger["urllib3_logger"] = logging.getLogger("urllib3")
         self.logger_format = '%(asctime)s %(levelname)s %(message)s'
         """Log format
