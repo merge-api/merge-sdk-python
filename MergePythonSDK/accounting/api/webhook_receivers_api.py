@@ -67,7 +67,7 @@ class WebhookReceiversApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                },
+                        },
                 'openapi_types': {
                     'webhook_receiver_request':
                         (WebhookReceiverRequest,),
@@ -119,7 +119,7 @@ class WebhookReceiversApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                },
+                        },
                 'openapi_types': {
                 },
                 'attribute_map': {
@@ -142,7 +142,7 @@ class WebhookReceiversApi(object):
         self,
         webhook_receiver_request,
         **kwargs
-    ):
+    ) -> "WebhookReceiver":
         """webhook_receivers_create  # noqa: E501
 
         Creates a `WebhookReceiver` object with the given values.  # noqa: E501
@@ -224,7 +224,7 @@ class WebhookReceiversApi(object):
     def webhook_receivers_list(
         self,
         **kwargs
-    ):
+    ) -> "[WebhookReceiver]":
         """webhook_receivers_list  # noqa: E501
 
         Returns a list of `WebhookReceiver` objects.  # noqa: E501

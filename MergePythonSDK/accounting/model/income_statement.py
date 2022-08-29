@@ -12,6 +12,13 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
+from typing import (
+    Optional,
+    Union,
+    List,
+    Dict,
+)
+
 from MergePythonSDK.shared.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
@@ -28,6 +35,7 @@ from MergePythonSDK.shared.model_utils import (  # noqa: F401
     validate_get_composed_info,
 )
 from MergePythonSDK.shared.exceptions import ApiAttributeError
+from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 def lazy_import():
@@ -72,7 +80,6 @@ class IncomeStatement(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        lazy_import()
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
@@ -88,7 +95,8 @@ class IncomeStatement(ModelNormal):
                 and the value is attribute type.
         """
         lazy_import()
-        return {
+
+        defined_types = {
             'id': (str,),  # noqa: E501
             'remote_id': (str, none_type,),  # noqa: E501
             'remote_data': ([RemoteData], none_type,),  # noqa: E501
@@ -104,10 +112,22 @@ class IncomeStatement(ModelNormal):
             'net_income': (float, none_type,),  # noqa: E501
             'remote_was_deleted': (bool,),  # noqa: E501
         }
+        expands_types = {}
+
+        # update types with expands
+        for key, val in expands_types.items():
+            expands_model = import_model_by_name(val, "accounting")
+            if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
+                defined_types[key][0].insert(0, expands_model)
+            defined_types[key] = (*defined_types[key], expands_model)
+        return defined_types
+
+        return defined_types
 
     @cached_property
     def discriminator():
         return None
+
 
     attribute_map = {
         'id': 'id',  # noqa: E501
@@ -324,22 +344,22 @@ class IncomeStatement(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id = kwargs.get("remote_id", None)
-        self.name = kwargs.get("name", None)
-        self.start_period = kwargs.get("start_period", None)
-        self.end_period = kwargs.get("end_period", None)
-        self.gross_profit = kwargs.get("gross_profit", None)
-        self.net_operating_income = kwargs.get("net_operating_income", None)
-        self.net_income = kwargs.get("net_income", None)
+        self.remote_id: Optional[str, none_type] = kwargs.get("remote_id", None)
+        self.name: Optional[str, none_type] = kwargs.get("name", None)
+        self.start_period: Optional[datetime, none_type] = kwargs.get("start_period", None)
+        self.end_period: Optional[datetime, none_type] = kwargs.get("end_period", None)
+        self.gross_profit: Optional[float, none_type] = kwargs.get("gross_profit", None)
+        self.net_operating_income: Optional[float, none_type] = kwargs.get("net_operating_income", None)
+        self.net_income: Optional[float, none_type] = kwargs.get("net_income", None)
 
         # Read only properties
-        self._id = kwargs.get("id", str())
-        self._remote_data = kwargs.get("remote_data", None)
-        self._income = kwargs.get("income", None)
-        self._cost_of_sales = kwargs.get("cost_of_sales", None)
-        self._operating_expenses = kwargs.get("operating_expenses", None)
-        self._non_operating_expenses = kwargs.get("non_operating_expenses", None)
-        self._remote_was_deleted = kwargs.get("remote_was_deleted", bool())
+        self._id: Optional[str] = kwargs.get("id", str())
+        self._remote_data: Optional[List["RemoteData"]] = kwargs.get("remote_data", None)
+        self._income: Optional[List["ReportItem"]] = kwargs.get("income", None)
+        self._cost_of_sales: Optional[List["ReportItem"]] = kwargs.get("cost_of_sales", None)
+        self._operating_expenses: Optional[List["ReportItem"]] = kwargs.get("operating_expenses", None)
+        self._non_operating_expenses: Optional[List["ReportItem"]] = kwargs.get("non_operating_expenses", None)
+        self._remote_was_deleted: Optional[bool] = kwargs.get("remote_was_deleted", bool())
 
     # Read only property getters
     @property

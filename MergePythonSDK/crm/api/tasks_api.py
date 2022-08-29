@@ -82,7 +82,7 @@ class TasksApi(object):
                         "OWNER": "owner",
                         "OWNER,ACCOUNT": "owner,account"
                     },
-                },
+                        },
                 'openapi_types': {
                     'created_after':
                         (datetime,),
@@ -179,7 +179,7 @@ class TasksApi(object):
                         "OWNER": "owner",
                         "OWNER,ACCOUNT": "owner,account"
                     },
-                },
+                        },
                 'openapi_types': {
                     'id':
                         (str,),
@@ -213,7 +213,7 @@ class TasksApi(object):
     def tasks_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(Task)":
         """tasks_list  # noqa: E501
 
         Returns a list of `Task` objects.  # noqa: E501
@@ -302,7 +302,7 @@ class TasksApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "Task":
         """tasks_retrieve  # noqa: E501
 
         Returns a `Task` object with the given `id`.  # noqa: E501

@@ -66,7 +66,7 @@ class LinkTokenApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                },
+                        },
                 'openapi_types': {
                     'end_user_details_request':
                         (EndUserDetailsRequest,),
@@ -96,7 +96,7 @@ class LinkTokenApi(object):
         self,
         end_user_details_request,
         **kwargs
-    ):
+    ) -> "LinkToken":
         """link_token_create  # noqa: E501
 
         Creates a link token to be used when linking a new end user.  # noqa: E501

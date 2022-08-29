@@ -101,7 +101,7 @@ class PayrollRunsApi(object):
                         "SIGN_ON_BONUS": "SIGN_ON_BONUS",
                         "TERMINATION": "TERMINATION"
                     },
-                },
+                        },
                 'openapi_types': {
                     'created_after':
                         (datetime,),
@@ -218,7 +218,7 @@ class PayrollRunsApi(object):
                         "STATE,RUN_TYPE": "run_state,run_type",
                         "TYPE": "run_type"
                     },
-                },
+                        },
                 'openapi_types': {
                     'id':
                         (str,),
@@ -252,7 +252,7 @@ class PayrollRunsApi(object):
     def payroll_runs_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(PayrollRun)":
         """payroll_runs_list  # noqa: E501
 
         Returns a list of `PayrollRun` objects.  # noqa: E501
@@ -346,7 +346,7 @@ class PayrollRunsApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "PayrollRun":
         """payroll_runs_retrieve  # noqa: E501
 
         Returns a `PayrollRun` object with the given `id`.  # noqa: E501

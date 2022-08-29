@@ -63,7 +63,7 @@ class AccountDetailsApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                },
+                        },
                 'openapi_types': {
                 },
                 'attribute_map': {
@@ -85,7 +85,7 @@ class AccountDetailsApi(object):
     def account_details_retrieve(
         self,
         **kwargs
-    ):
+    ) -> "AccountDetails":
         """account_details_retrieve  # noqa: E501
 
         Get details for a linked account.  # noqa: E501

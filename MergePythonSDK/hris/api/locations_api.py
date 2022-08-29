@@ -80,7 +80,7 @@ class LocationsApi(object):
 
                         "LOCATION_TYPE": "location_type"
                     },
-                },
+                        },
                 'openapi_types': {
                     'created_after':
                         (datetime,),
@@ -175,7 +175,7 @@ class LocationsApi(object):
 
                         "LOCATION_TYPE": "location_type"
                     },
-                },
+                        },
                 'openapi_types': {
                     'id':
                         (str,),
@@ -209,7 +209,7 @@ class LocationsApi(object):
     def locations_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(Location)":
         """locations_list  # noqa: E501
 
         Returns a list of `Location` objects.  # noqa: E501
@@ -298,7 +298,7 @@ class LocationsApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "Location":
         """locations_retrieve  # noqa: E501
 
         Returns a `Location` object with the given `id`.  # noqa: E501

@@ -72,7 +72,7 @@ class AttachmentsApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                },
+                        },
                 'openapi_types': {
                     'attachment_endpoint_request':
                         (AttachmentEndpointRequest,),
@@ -155,7 +155,7 @@ class AttachmentsApi(object):
 
                         "ATTACHMENT_TYPE": "attachment_type"
                     },
-                },
+                        },
                 'openapi_types': {
                     'candidate_id':
                         (str,),
@@ -248,7 +248,7 @@ class AttachmentsApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                },
+                        },
                 'openapi_types': {
                 },
                 'attribute_map': {
@@ -309,7 +309,7 @@ class AttachmentsApi(object):
 
                         "ATTACHMENT_TYPE": "attachment_type"
                     },
-                },
+                        },
                 'openapi_types': {
                     'id':
                         (str,),
@@ -348,7 +348,7 @@ class AttachmentsApi(object):
         self,
         attachment_endpoint_request,
         **kwargs
-    ):
+    ) -> "AttachmentResponse":
         """attachments_create  # noqa: E501
 
         Creates an `Attachment` object with the given values.  # noqa: E501
@@ -432,7 +432,7 @@ class AttachmentsApi(object):
     def attachments_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(Attachment)":
         """attachments_list  # noqa: E501
 
         Returns a list of `Attachment` objects.  # noqa: E501
@@ -522,7 +522,7 @@ class AttachmentsApi(object):
     def attachments_meta_post_retrieve(
         self,
         **kwargs
-    ):
+    ) -> "MetaResponse":
         """attachments_meta_post_retrieve  # noqa: E501
 
         Returns metadata for `Attachment` POSTs.  # noqa: E501
@@ -601,7 +601,7 @@ class AttachmentsApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "Attachment":
         """attachments_retrieve  # noqa: E501
 
         Returns an `Attachment` object with the given `id`.  # noqa: E501

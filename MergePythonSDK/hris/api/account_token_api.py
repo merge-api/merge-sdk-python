@@ -65,7 +65,7 @@ class AccountTokenApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                },
+                        },
                 'openapi_types': {
                     'public_token':
                         (str,),
@@ -92,7 +92,7 @@ class AccountTokenApi(object):
         self,
         public_token,
         **kwargs
-    ):
+    ) -> "AccountToken":
         """account_token_retrieve  # noqa: E501
 
         Returns the account token for the end user with the provided public token.  # noqa: E501

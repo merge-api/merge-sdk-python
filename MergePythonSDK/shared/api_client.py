@@ -77,7 +77,7 @@ class ApiClient(object):
             self.default_headers[header_name] = header_value
         self.cookie = cookie
         # Set default User-Agent.
-        self.user_agent = 'OpenAPI-Generator/2.0.0/python'
+        self.user_agent = 'OpenAPI-Generator/2.1.0/python'
 
     def __enter__(self):
         return self
@@ -224,7 +224,11 @@ class ApiClient(object):
                         encoding = match.group(1)
                 response_data.data = response_data.data.decode(encoding)
 
-            return_data = self.deserialize(response_data, (*response_type, dict), _check_type)
+            return_data = self.deserialize(
+                response_data,
+                response_type,
+                _check_type
+            )
         else:
             return_data = None
 

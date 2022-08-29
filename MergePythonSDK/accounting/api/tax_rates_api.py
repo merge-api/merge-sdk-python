@@ -74,7 +74,7 @@ class TaxRatesApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                },
+                        },
                 'openapi_types': {
                     'created_after':
                         (datetime,),
@@ -159,7 +159,7 @@ class TaxRatesApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                },
+                        },
                 'openapi_types': {
                     'id':
                         (str,),
@@ -189,7 +189,7 @@ class TaxRatesApi(object):
     def tax_rates_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(TaxRate)":
         """tax_rates_list  # noqa: E501
 
         Returns a list of `TaxRate` objects.  # noqa: E501
@@ -277,7 +277,7 @@ class TaxRatesApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "TaxRate":
         """tax_rates_retrieve  # noqa: E501
 
         Returns a `TaxRate` object with the given `id`.  # noqa: E501

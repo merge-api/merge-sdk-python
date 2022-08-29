@@ -12,6 +12,13 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
+from typing import (
+    Optional,
+    Union,
+    List,
+    Dict,
+)
+
 from MergePythonSDK.shared.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
@@ -28,6 +35,7 @@ from MergePythonSDK.shared.model_utils import (  # noqa: F401
     validate_get_composed_info,
 )
 from MergePythonSDK.shared.exceptions import ApiAttributeError
+from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 def lazy_import():
@@ -83,7 +91,6 @@ class DataPassthroughRequest(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        lazy_import()
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
@@ -99,7 +106,8 @@ class DataPassthroughRequest(ModelNormal):
                 and the value is attribute type.
         """
         lazy_import()
-        return {
+
+        defined_types = {
             'method': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
             'path': (str,),  # noqa: E501
             'base_url_override': (str, none_type,),  # noqa: E501
@@ -110,9 +118,12 @@ class DataPassthroughRequest(ModelNormal):
             'normalize_response': (bool,),  # noqa: E501
         }
 
+        return defined_types
+
     @cached_property
     def discriminator():
         return None
+
 
     attribute_map = {
         'method': 'method',  # noqa: E501
@@ -300,13 +311,13 @@ class DataPassthroughRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.method = method
-        self.path = path
-        self.base_url_override = kwargs.get("base_url_override", None)
-        self.data = kwargs.get("data", None)
-        self.multipart_form_data = kwargs.get("multipart_form_data", None)
-        self.headers = kwargs.get("headers", None)
-        self.request_format = kwargs.get("request_format", None)
-        self.normalize_response = kwargs.get("normalize_response", bool())
+        self.method: Union[bool, date, datetime, dict, float, int, list, str, none_type] = method
+        self.path: Union[str] = path
+        self.base_url_override: Optional[str, none_type] = kwargs.get("base_url_override", None)
+        self.data: Optional[str, none_type] = kwargs.get("data", None)
+        self.multipart_form_data: Optional[List["MultipartFormFieldRequest"]] = kwargs.get("multipart_form_data", None)
+        self.headers: Optional[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("headers", None)
+        self.request_format: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("request_format", None)
+        self.normalize_response: Optional[bool] = kwargs.get("normalize_response", bool())
 
 

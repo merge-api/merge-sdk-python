@@ -12,6 +12,13 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
+from typing import (
+    Optional,
+    Union,
+    List,
+    Dict,
+)
+
 from MergePythonSDK.shared.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
@@ -28,6 +35,7 @@ from MergePythonSDK.shared.model_utils import (  # noqa: F401
     validate_get_composed_info,
 )
 from MergePythonSDK.shared.exceptions import ApiAttributeError
+from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 class PhoneNumber(ModelNormal):
@@ -80,14 +88,27 @@ class PhoneNumber(ModelNormal):
             openapi_types (dict): The key is attribute name
                 and the value is attribute type.
         """
-        return {
+
+        defined_types = {
             'phone_number': (str, none_type,),  # noqa: E501
             'phone_number_type': (str, none_type,),  # noqa: E501
         }
+        expands_types = {"owner": "User"}
+
+        # update types with expands
+        for key, val in expands_types.items():
+            expands_model = import_model_by_name(val, "crm")
+            if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
+                defined_types[key][0].insert(0, expands_model)
+            defined_types[key] = (*defined_types[key], expands_model)
+        return defined_types
+
+        return defined_types
 
     @cached_property
     def discriminator():
         return None
+
 
     attribute_map = {
         'phone_number': 'phone_number',  # noqa: E501
@@ -247,7 +268,7 @@ class PhoneNumber(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.phone_number = kwargs.get("phone_number", None)
-        self.phone_number_type = kwargs.get("phone_number_type", None)
+        self.phone_number: Optional[str, none_type] = kwargs.get("phone_number", None)
+        self.phone_number_type: Optional[str, none_type] = kwargs.get("phone_number_type", None)
 
 

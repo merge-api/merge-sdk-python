@@ -12,6 +12,13 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
+from typing import (
+    Optional,
+    Union,
+    List,
+    Dict,
+)
+
 from MergePythonSDK.shared.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
@@ -28,6 +35,7 @@ from MergePythonSDK.shared.model_utils import (  # noqa: F401
     validate_get_composed_info,
 )
 from MergePythonSDK.shared.exceptions import ApiAttributeError
+from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 def lazy_import():
@@ -70,7 +78,6 @@ class ApplicationEndpointRequest(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        lazy_import()
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
@@ -86,14 +93,18 @@ class ApplicationEndpointRequest(ModelNormal):
                 and the value is attribute type.
         """
         lazy_import()
-        return {
+
+        defined_types = {
             'model': (ApplicationRequest,),  # noqa: E501
             'remote_user_id': (str,),  # noqa: E501
         }
 
+        return defined_types
+
     @cached_property
     def discriminator():
         return None
+
 
     attribute_map = {
         'model': 'model',  # noqa: E501
@@ -257,7 +268,7 @@ class ApplicationEndpointRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.model = model
-        self.remote_user_id = remote_user_id
+        self.model: Union["ApplicationRequest", {"candidate": "Candidate", "job": "Job", "credited_to": "RemoteUser", "current_stage": "JobInterviewStage", "reject_reason": "RejectReason"}] = model
+        self.remote_user_id: Union[str] = remote_user_id
 
 

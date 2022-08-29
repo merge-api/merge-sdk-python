@@ -66,7 +66,7 @@ class GenerateKeyApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                },
+                        },
                 'openapi_types': {
                     'generate_remote_key_request':
                         (GenerateRemoteKeyRequest,),
@@ -96,7 +96,7 @@ class GenerateKeyApi(object):
         self,
         generate_remote_key_request,
         **kwargs
-    ):
+    ) -> "RemoteKey":
         """generate_key_create  # noqa: E501
 
         Create a remote key.  # noqa: E501

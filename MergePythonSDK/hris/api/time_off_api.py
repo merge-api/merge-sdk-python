@@ -72,7 +72,7 @@ class TimeOffApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                },
+                        },
                 'openapi_types': {
                     'time_off_endpoint_request':
                         (TimeOffEndpointRequest,),
@@ -187,7 +187,7 @@ class TimeOffApi(object):
                         "DELETED": "DELETED",
                         "REQUESTED": "REQUESTED"
                     },
-                },
+                        },
                 'openapi_types': {
                     'approver_id':
                         (str,),
@@ -292,7 +292,7 @@ class TimeOffApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                },
+                        },
                 'openapi_types': {
                 },
                 'attribute_map': {
@@ -361,7 +361,7 @@ class TimeOffApi(object):
                         "STATUS,UNITS": "status,units",
                         "UNITS": "units"
                     },
-                },
+                        },
                 'openapi_types': {
                     'id':
                         (str,),
@@ -400,7 +400,7 @@ class TimeOffApi(object):
         self,
         time_off_endpoint_request,
         **kwargs
-    ):
+    ) -> "TimeOffResponse":
         """time_off_create  # noqa: E501
 
         Creates a `TimeOff` object with the given values.  # noqa: E501
@@ -484,7 +484,7 @@ class TimeOffApi(object):
     def time_off_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(TimeOff)":
         """time_off_list  # noqa: E501
 
         Returns a list of `TimeOff` objects.  # noqa: E501
@@ -577,7 +577,7 @@ class TimeOffApi(object):
     def time_off_meta_post_retrieve(
         self,
         **kwargs
-    ):
+    ) -> "MetaResponse":
         """time_off_meta_post_retrieve  # noqa: E501
 
         Returns metadata for `TimeOff` POSTs.  # noqa: E501
@@ -656,7 +656,7 @@ class TimeOffApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "TimeOff":
         """time_off_retrieve  # noqa: E501
 
         Returns a `TimeOff` object with the given `id`.  # noqa: E501

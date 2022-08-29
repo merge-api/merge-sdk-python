@@ -82,7 +82,7 @@ class CompanyInfoApi(object):
                         "ADDRESSES,PHONE_NUMBERS": "addresses,phone_numbers",
                         "PHONE_NUMBERS": "phone_numbers"
                     },
-                },
+                        },
                 'openapi_types': {
                     'created_after':
                         (datetime,),
@@ -179,7 +179,7 @@ class CompanyInfoApi(object):
                         "ADDRESSES,PHONE_NUMBERS": "addresses,phone_numbers",
                         "PHONE_NUMBERS": "phone_numbers"
                     },
-                },
+                        },
                 'openapi_types': {
                     'id':
                         (str,),
@@ -213,7 +213,7 @@ class CompanyInfoApi(object):
     def company_info_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(CompanyInfo)":
         """company_info_list  # noqa: E501
 
         Returns a list of `CompanyInfo` objects.  # noqa: E501
@@ -302,7 +302,7 @@ class CompanyInfoApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "CompanyInfo":
         """company_info_retrieve  # noqa: E501
 
         Returns a `CompanyInfo` object with the given `id`.  # noqa: E501

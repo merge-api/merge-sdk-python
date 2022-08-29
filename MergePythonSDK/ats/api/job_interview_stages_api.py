@@ -81,7 +81,7 @@ class JobInterviewStagesApi(object):
 
                         "JOB": "job"
                     },
-                },
+                        },
                 'openapi_types': {
                     'created_after':
                         (datetime,),
@@ -180,7 +180,7 @@ class JobInterviewStagesApi(object):
 
                         "JOB": "job"
                     },
-                },
+                        },
                 'openapi_types': {
                     'id':
                         (str,),
@@ -214,7 +214,7 @@ class JobInterviewStagesApi(object):
     def job_interview_stages_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(JobInterviewStage)":
         """job_interview_stages_list  # noqa: E501
 
         Returns a list of `JobInterviewStage` objects.  # noqa: E501
@@ -304,7 +304,7 @@ class JobInterviewStagesApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "JobInterviewStage":
         """job_interview_stages_retrieve  # noqa: E501
 
         Returns a `JobInterviewStage` object with the given `id`.  # noqa: E501

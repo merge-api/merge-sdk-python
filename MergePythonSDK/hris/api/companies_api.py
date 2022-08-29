@@ -74,7 +74,7 @@ class CompaniesApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                },
+                        },
                 'openapi_types': {
                     'created_after':
                         (datetime,),
@@ -159,7 +159,7 @@ class CompaniesApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                },
+                        },
                 'openapi_types': {
                     'id':
                         (str,),
@@ -189,7 +189,7 @@ class CompaniesApi(object):
     def companies_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(Company)":
         """companies_list  # noqa: E501
 
         Returns a list of `Company` objects.  # noqa: E501
@@ -277,7 +277,7 @@ class CompaniesApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "Company":
         """companies_retrieve  # noqa: E501
 
         Returns a `Company` object with the given `id`.  # noqa: E501

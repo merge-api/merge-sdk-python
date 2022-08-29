@@ -12,7 +12,7 @@
 from setuptools import setup, find_packages  # noqa: H301
 
 NAME = "MergePythonSDK"
-VERSION = "2.0.0"
+VERSION = "2.1.0"
 # To install the library, run the following
 #
 # python setup.py install
@@ -32,7 +32,7 @@ setup(
     author="Merge Team",
     author_email="hello@merge.dev",
     url="",
-    keywords=["OpenAPI", "OpenAPI-Generator", "Merge Ticketing API"],
+    keywords=["OpenAPI", "OpenAPI-Generator", "Merge Unified API"],
     python_requires=">=3.6",
     install_requires=REQUIRES,
     packages=find_packages(exclude=["test", "tests"]),

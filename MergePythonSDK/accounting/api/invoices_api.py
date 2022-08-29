@@ -72,7 +72,7 @@ class InvoicesApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                },
+                        },
                 'openapi_types': {
                     'invoice_endpoint_request':
                         (InvoiceEndpointRequest,),
@@ -169,7 +169,7 @@ class InvoicesApi(object):
                         "PAYABLE": "ACCOUNTS_PAYABLE",
                         "RECEIVABLE": "ACCOUNTS_RECEIVABLE"
                     },
-                },
+                        },
                 'openapi_types': {
                     'contact_id':
                         (str,),
@@ -266,7 +266,7 @@ class InvoicesApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                },
+                        },
                 'openapi_types': {
                 },
                 'attribute_map': {
@@ -333,7 +333,7 @@ class InvoicesApi(object):
 
                         "TYPE": "type"
                     },
-                },
+                        },
                 'openapi_types': {
                     'id':
                         (str,),
@@ -372,7 +372,7 @@ class InvoicesApi(object):
         self,
         invoice_endpoint_request,
         **kwargs
-    ):
+    ) -> "InvoiceResponse":
         """invoices_create  # noqa: E501
 
         Creates an `Invoice` object with the given values.  # noqa: E501
@@ -456,7 +456,7 @@ class InvoicesApi(object):
     def invoices_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(Invoice)":
         """invoices_list  # noqa: E501
 
         Returns a list of `Invoice` objects.  # noqa: E501
@@ -547,7 +547,7 @@ class InvoicesApi(object):
     def invoices_meta_post_retrieve(
         self,
         **kwargs
-    ):
+    ) -> "MetaResponse":
         """invoices_meta_post_retrieve  # noqa: E501
 
         Returns metadata for `Invoice` POSTs.  # noqa: E501
@@ -626,7 +626,7 @@ class InvoicesApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "Invoice":
         """invoices_retrieve  # noqa: E501
 
         Returns an `Invoice` object with the given `id`.  # noqa: E501

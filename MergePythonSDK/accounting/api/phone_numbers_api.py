@@ -67,7 +67,7 @@ class PhoneNumbersApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                },
+                        },
                 'openapi_types': {
                     'id':
                         (str,),
@@ -98,7 +98,7 @@ class PhoneNumbersApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "AccountingPhoneNumber":
         """phone_numbers_retrieve  # noqa: E501
 
         Returns an `AccountingPhoneNumber` object with the given `id`.  # noqa: E501

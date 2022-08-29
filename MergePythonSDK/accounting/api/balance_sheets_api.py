@@ -74,7 +74,7 @@ class BalanceSheetsApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                },
+                        },
                 'openapi_types': {
                     'created_after':
                         (datetime,),
@@ -159,7 +159,7 @@ class BalanceSheetsApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                },
+                        },
                 'openapi_types': {
                     'id':
                         (str,),
@@ -189,7 +189,7 @@ class BalanceSheetsApi(object):
     def balance_sheets_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(BalanceSheet)":
         """balance_sheets_list  # noqa: E501
 
         Returns a list of `BalanceSheet` objects.  # noqa: E501
@@ -277,7 +277,7 @@ class BalanceSheetsApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "BalanceSheet":
         """balance_sheets_retrieve  # noqa: E501
 
         Returns a `BalanceSheet` object with the given `id`.  # noqa: E501

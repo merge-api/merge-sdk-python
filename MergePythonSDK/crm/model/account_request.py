@@ -12,6 +12,13 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
+from typing import (
+    Optional,
+    Union,
+    List,
+    Dict,
+)
+
 from MergePythonSDK.shared.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
@@ -28,6 +35,7 @@ from MergePythonSDK.shared.model_utils import (  # noqa: F401
     validate_get_composed_info,
 )
 from MergePythonSDK.shared.exceptions import ApiAttributeError
+from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 class AccountRequest(ModelNormal):
@@ -87,7 +95,8 @@ class AccountRequest(ModelNormal):
             openapi_types (dict): The key is attribute name
                 and the value is attribute type.
         """
-        return {
+
+        defined_types = {
             'remote_id': (str, none_type,),  # noqa: E501
             'owner': (str, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
@@ -101,10 +110,22 @@ class AccountRequest(ModelNormal):
             'integration_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'linked_account_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
+        expands_types = {"owner": "User"}
+
+        # update types with expands
+        for key, val in expands_types.items():
+            expands_model = import_model_by_name(val, "crm")
+            if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
+                defined_types[key][0].insert(0, expands_model)
+            defined_types[key] = (*defined_types[key], expands_model)
+        return defined_types
+
+        return defined_types
 
     @cached_property
     def discriminator():
         return None
+
 
     attribute_map = {
         'remote_id': 'remote_id',  # noqa: E501
@@ -304,17 +325,17 @@ class AccountRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id = kwargs.get("remote_id", None)
-        self.owner = kwargs.get("owner", None)
-        self.name = kwargs.get("name", None)
-        self.description = kwargs.get("description", None)
-        self.industry = kwargs.get("industry", None)
-        self.website = kwargs.get("website", None)
-        self.number_of_employees = kwargs.get("number_of_employees", None)
-        self.last_activity_at = kwargs.get("last_activity_at", None)
-        self.remote_updated_at = kwargs.get("remote_updated_at", None)
-        self.remote_created_at = kwargs.get("remote_created_at", None)
-        self.integration_params = kwargs.get("integration_params", None)
-        self.linked_account_params = kwargs.get("linked_account_params", None)
+        self.remote_id: Optional[str, none_type] = kwargs.get("remote_id", None)
+        self.owner: Optional[str, none_type] = kwargs.get("owner", None)
+        self.name: Optional[str, none_type] = kwargs.get("name", None)
+        self.description: Optional[str, none_type] = kwargs.get("description", None)
+        self.industry: Optional[str, none_type] = kwargs.get("industry", None)
+        self.website: Optional[str, none_type] = kwargs.get("website", None)
+        self.number_of_employees: Optional[int, none_type] = kwargs.get("number_of_employees", None)
+        self.last_activity_at: Optional[datetime, none_type] = kwargs.get("last_activity_at", None)
+        self.remote_updated_at: Optional[datetime, none_type] = kwargs.get("remote_updated_at", None)
+        self.remote_created_at: Optional[datetime, none_type] = kwargs.get("remote_created_at", None)
+        self.integration_params: Optional[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
+        self.linked_account_params: Optional[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
 
 

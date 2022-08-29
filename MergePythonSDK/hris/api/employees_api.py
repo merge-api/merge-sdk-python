@@ -74,7 +74,7 @@ class EmployeesApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                },
+                        },
                 'openapi_types': {
                     'employee_endpoint_request':
                         (EmployeeEndpointRequest,),
@@ -139,7 +139,7 @@ class EmployeesApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                },
+                        },
                 'openapi_types': {
                     'model_id':
                         (str,),
@@ -510,7 +510,7 @@ class EmployeesApi(object):
                         "GENDER,MARITAL_STATUS": "gender,marital_status",
                         "MARITAL_STATUS": "marital_status"
                     },
-                },
+                        },
                 'openapi_types': {
                     'company_id':
                         (str,),
@@ -647,7 +647,7 @@ class EmployeesApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                },
+                        },
                 'openapi_types': {
                 },
                 'attribute_map': {
@@ -977,7 +977,7 @@ class EmployeesApi(object):
                         "GENDER,MARITAL_STATUS": "gender,marital_status",
                         "MARITAL_STATUS": "marital_status"
                     },
-                },
+                        },
                 'openapi_types': {
                     'id':
                         (str,),
@@ -1020,7 +1020,7 @@ class EmployeesApi(object):
         self,
         employee_endpoint_request,
         **kwargs
-    ):
+    ) -> "EmployeeResponse":
         """employees_create  # noqa: E501
 
         Creates an `Employee` object with the given values.  # noqa: E501
@@ -1106,7 +1106,7 @@ class EmployeesApi(object):
         model_id,
         ignore_common_model_request,
         **kwargs
-    ):
+    ) -> "IgnoreCommonModel":
         """employees_ignore_create  # noqa: E501
 
         Ignores a specific row based on the `model_id` in the url. These records will have their properties set to null, and will not be updated in future syncs. The \"reason\" and \"message\" fields in the request body will be stored for audit purposes.  # noqa: E501
@@ -1191,7 +1191,7 @@ class EmployeesApi(object):
     def employees_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(Employee)":
         """employees_list  # noqa: E501
 
         Returns a list of `Employee` objects.  # noqa: E501
@@ -1292,7 +1292,7 @@ class EmployeesApi(object):
     def employees_meta_post_retrieve(
         self,
         **kwargs
-    ):
+    ) -> "MetaResponse":
         """employees_meta_post_retrieve  # noqa: E501
 
         Returns metadata for `Employee` POSTs.  # noqa: E501
@@ -1371,7 +1371,7 @@ class EmployeesApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "Employee":
         """employees_retrieve  # noqa: E501
 
         Returns an `Employee` object with the given `id`.  # noqa: E501

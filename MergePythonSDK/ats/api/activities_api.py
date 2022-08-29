@@ -89,7 +89,7 @@ class ActivitiesApi(object):
                         "ACTIVITY_TYPE,VISIBILITY": "activity_type,visibility",
                         "VISIBILITY": "visibility"
                     },
-                },
+                        },
                 'openapi_types': {
                     'created_after':
                         (datetime,),
@@ -200,7 +200,7 @@ class ActivitiesApi(object):
                         "ACTIVITY_TYPE,VISIBILITY": "activity_type,visibility",
                         "VISIBILITY": "visibility"
                     },
-                },
+                        },
                 'openapi_types': {
                     'id':
                         (str,),
@@ -238,7 +238,7 @@ class ActivitiesApi(object):
     def activities_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(Activity)":
         """activities_list  # noqa: E501
 
         Returns a list of `Activity` objects.  # noqa: E501
@@ -329,7 +329,7 @@ class ActivitiesApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "Activity":
         """activities_retrieve  # noqa: E501
 
         Returns an `Activity` object with the given `id`.  # noqa: E501

@@ -12,6 +12,13 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
+from typing import (
+    Optional,
+    Union,
+    List,
+    Dict,
+)
+
 from MergePythonSDK.shared.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
@@ -28,6 +35,7 @@ from MergePythonSDK.shared.model_utils import (  # noqa: F401
     validate_get_composed_info,
 )
 from MergePythonSDK.shared.exceptions import ApiAttributeError
+from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 class Tax(ModelNormal):
@@ -80,7 +88,8 @@ class Tax(ModelNormal):
             openapi_types (dict): The key is attribute name
                 and the value is attribute type.
         """
-        return {
+
+        defined_types = {
             'id': (str,),  # noqa: E501
             'employee_payroll_run': (str, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
@@ -88,10 +97,22 @@ class Tax(ModelNormal):
             'employer_tax': (bool, none_type,),  # noqa: E501
             'remote_was_deleted': (bool,),  # noqa: E501
         }
+        expands_types = {"employee": "Employee", "payroll_run": "PayrollRun"}
+
+        # update types with expands
+        for key, val in expands_types.items():
+            expands_model = import_model_by_name(val, "hris")
+            if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
+                defined_types[key][0].insert(0, expands_model)
+            defined_types[key] = (*defined_types[key], expands_model)
+        return defined_types
+
+        return defined_types
 
     @cached_property
     def discriminator():
         return None
+
 
     attribute_map = {
         'id': 'id',  # noqa: E501
@@ -270,14 +291,14 @@ class Tax(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.employee_payroll_run = kwargs.get("employee_payroll_run", None)
-        self.name = kwargs.get("name", None)
-        self.amount = kwargs.get("amount", None)
-        self.employer_tax = kwargs.get("employer_tax", None)
-        self.remote_was_deleted = kwargs.get("remote_was_deleted", bool())
+        self.employee_payroll_run: Optional[str, none_type] = kwargs.get("employee_payroll_run", None)
+        self.name: Optional[str, none_type] = kwargs.get("name", None)
+        self.amount: Optional[float, none_type] = kwargs.get("amount", None)
+        self.employer_tax: Optional[bool, none_type] = kwargs.get("employer_tax", None)
+        self.remote_was_deleted: Optional[bool] = kwargs.get("remote_was_deleted", bool())
 
         # Read only properties
-        self._id = kwargs.get("id", str())
+        self._id: Optional[str] = kwargs.get("id", str())
 
     # Read only property getters
     @property

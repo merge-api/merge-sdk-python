@@ -72,7 +72,7 @@ class OpportunitiesApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                },
+                        },
                 'openapi_types': {
                     'opportunity_endpoint_request':
                         (OpportunityEndpointRequest,),
@@ -172,7 +172,7 @@ class OpportunitiesApi(object):
                         "OPEN": "OPEN",
                         "WON": "WON"
                     },
-                },
+                        },
                 'openapi_types': {
                     'account_id':
                         (str,),
@@ -277,7 +277,7 @@ class OpportunitiesApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                },
+                        },
                 'openapi_types': {
                 },
                 'attribute_map': {
@@ -344,7 +344,7 @@ class OpportunitiesApi(object):
 
                         "STATUS": "status"
                     },
-                },
+                        },
                 'openapi_types': {
                     'id':
                         (str,),
@@ -383,7 +383,7 @@ class OpportunitiesApi(object):
         self,
         opportunity_endpoint_request,
         **kwargs
-    ):
+    ) -> "OpportunityResponse":
         """opportunities_create  # noqa: E501
 
         Creates an `Opportunity` object with the given values.  # noqa: E501
@@ -467,7 +467,7 @@ class OpportunitiesApi(object):
     def opportunities_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(Opportunity)":
         """opportunities_list  # noqa: E501
 
         Returns a list of `Opportunity` objects.  # noqa: E501
@@ -560,7 +560,7 @@ class OpportunitiesApi(object):
     def opportunities_meta_post_retrieve(
         self,
         **kwargs
-    ):
+    ) -> "MetaResponse":
         """opportunities_meta_post_retrieve  # noqa: E501
 
         Returns metadata for `Opportunity` POSTs.  # noqa: E501
@@ -639,7 +639,7 @@ class OpportunitiesApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "Opportunity":
         """opportunities_retrieve  # noqa: E501
 
         Returns an `Opportunity` object with the given `id`.  # noqa: E501

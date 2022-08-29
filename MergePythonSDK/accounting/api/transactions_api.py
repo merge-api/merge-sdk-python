@@ -80,7 +80,7 @@ class TransactionsApi(object):
 
                         "LINE_ITEMS": "line_items"
                     },
-                },
+                        },
                 'openapi_types': {
                     'created_after':
                         (datetime,),
@@ -175,7 +175,7 @@ class TransactionsApi(object):
 
                         "LINE_ITEMS": "line_items"
                     },
-                },
+                        },
                 'openapi_types': {
                     'id':
                         (str,),
@@ -209,7 +209,7 @@ class TransactionsApi(object):
     def transactions_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(Transaction)":
         """transactions_list  # noqa: E501
 
         Returns a list of `Transaction` objects.  # noqa: E501
@@ -298,7 +298,7 @@ class TransactionsApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "Transaction":
         """transactions_retrieve  # noqa: E501
 
         Returns a `Transaction` object with the given `id`.  # noqa: E501

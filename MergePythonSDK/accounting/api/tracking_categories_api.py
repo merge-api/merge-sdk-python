@@ -80,7 +80,7 @@ class TrackingCategoriesApi(object):
 
                         "STATUS": "status"
                     },
-                },
+                        },
                 'openapi_types': {
                     'created_after':
                         (datetime,),
@@ -175,7 +175,7 @@ class TrackingCategoriesApi(object):
 
                         "STATUS": "status"
                     },
-                },
+                        },
                 'openapi_types': {
                     'id':
                         (str,),
@@ -209,7 +209,7 @@ class TrackingCategoriesApi(object):
     def tracking_categories_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(TrackingCategory)":
         """tracking_categories_list  # noqa: E501
 
         Returns a list of `TrackingCategory` objects.  # noqa: E501
@@ -298,7 +298,7 @@ class TrackingCategoriesApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "TrackingCategory":
         """tracking_categories_retrieve  # noqa: E501
 
         Returns a `TrackingCategory` object with the given `id`.  # noqa: E501

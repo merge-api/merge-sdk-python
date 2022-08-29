@@ -75,7 +75,7 @@ class ProjectsApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                },
+                        },
                 'openapi_types': {
                     'created_after':
                         (datetime,),
@@ -160,7 +160,7 @@ class ProjectsApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                },
+                        },
                 'openapi_types': {
                     'id':
                         (str,),
@@ -225,7 +225,7 @@ class ProjectsApi(object):
 
                         "TEAMS": "teams"
                     },
-                },
+                        },
                 'openapi_types': {
                     'id':
                         (str,),
@@ -267,7 +267,7 @@ class ProjectsApi(object):
     def projects_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(Project)":
         """projects_list  # noqa: E501
 
         Returns a list of `Project` objects.  # noqa: E501
@@ -355,7 +355,7 @@ class ProjectsApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "Project":
         """projects_retrieve  # noqa: E501
 
         Returns a `Project` object with the given `id`.  # noqa: E501
@@ -439,7 +439,7 @@ class ProjectsApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(User)":
         """projects_users_list  # noqa: E501
 
         Returns a `User` object with the given `id`.  # noqa: E501

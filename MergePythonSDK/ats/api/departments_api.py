@@ -74,7 +74,7 @@ class DepartmentsApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                },
+                        },
                 'openapi_types': {
                     'created_after':
                         (datetime,),
@@ -159,7 +159,7 @@ class DepartmentsApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                },
+                        },
                 'openapi_types': {
                     'id':
                         (str,),
@@ -189,7 +189,7 @@ class DepartmentsApi(object):
     def departments_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(Department)":
         """departments_list  # noqa: E501
 
         Returns a list of `Department` objects.  # noqa: E501
@@ -277,7 +277,7 @@ class DepartmentsApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "Department":
         """departments_retrieve  # noqa: E501
 
         Returns a `Department` object with the given `id`.  # noqa: E501

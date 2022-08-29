@@ -110,7 +110,7 @@ class EmploymentsApi(object):
                         "PAY_FREQUENCY,PAY_PERIOD": "pay_frequency,pay_period",
                         "PAY_PERIOD": "pay_period"
                     },
-                },
+                        },
                 'openapi_types': {
                     'created_after':
                         (datetime,),
@@ -239,7 +239,7 @@ class EmploymentsApi(object):
                         "PAY_FREQUENCY,PAY_PERIOD": "pay_frequency,pay_period",
                         "PAY_PERIOD": "pay_period"
                     },
-                },
+                        },
                 'openapi_types': {
                     'id':
                         (str,),
@@ -277,7 +277,7 @@ class EmploymentsApi(object):
     def employments_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(Employment)":
         """employments_list  # noqa: E501
 
         Returns a list of `Employment` objects.  # noqa: E501
@@ -369,7 +369,7 @@ class EmploymentsApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "Employment":
         """employments_retrieve  # noqa: E501
 
         Returns an `Employment` object with the given `id`.  # noqa: E501

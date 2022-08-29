@@ -86,7 +86,7 @@ class LinkedAccountsApi(object):
                         "HRIS": "hris",
                         "TICKETING": "ticketing"
                     },
-                },
+                        },
                 'openapi_types': {
                     'category':
                         (str, none_type,),
@@ -160,7 +160,7 @@ class LinkedAccountsApi(object):
     def linked_accounts_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(AccountDetailsAndActions)":
         """linked_accounts_list  # noqa: E501
 
         List linked accounts for your organization.  # noqa: E501

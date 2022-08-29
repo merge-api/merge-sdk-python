@@ -12,6 +12,13 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
+from typing import (
+    Optional,
+    Union,
+    List,
+    Dict,
+)
+
 from MergePythonSDK.shared.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
@@ -28,6 +35,7 @@ from MergePythonSDK.shared.model_utils import (  # noqa: F401
     validate_get_composed_info,
 )
 from MergePythonSDK.shared.exceptions import ApiAttributeError
+from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 def lazy_import():
@@ -88,7 +96,6 @@ class EmployeeRequest(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        lazy_import()
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
@@ -104,7 +111,8 @@ class EmployeeRequest(ModelNormal):
                 and the value is attribute type.
         """
         lazy_import()
-        return {
+
+        defined_types = {
             'remote_id': (str, none_type,),  # noqa: E501
             'employee_number': (str, none_type,),  # noqa: E501
             'company': (str, none_type,),  # noqa: E501
@@ -135,10 +143,22 @@ class EmployeeRequest(ModelNormal):
             'avatar': (str, none_type,),  # noqa: E501
             'custom_fields': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
+        expands_types = {"employments": "Employment", "groups": "Group", "home_location": "Location", "work_location": "Location", "manager": "Employee", "team": "Team", "company": "Company", "pay_group": "PayGroup"}
+
+        # update types with expands
+        for key, val in expands_types.items():
+            expands_model = import_model_by_name(val, "hris")
+            if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
+                defined_types[key][0].insert(0, expands_model)
+            defined_types[key] = (*defined_types[key], expands_model)
+        return defined_types
+
+        return defined_types
 
     @cached_property
     def discriminator():
         return None
+
 
     attribute_map = {
         'remote_id': 'remote_id',  # noqa: E501
@@ -406,34 +426,34 @@ class EmployeeRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id = kwargs.get("remote_id", None)
-        self.employee_number = kwargs.get("employee_number", None)
-        self.company = kwargs.get("company", None)
-        self.first_name = kwargs.get("first_name", None)
-        self.last_name = kwargs.get("last_name", None)
-        self.display_full_name = kwargs.get("display_full_name", None)
-        self.username = kwargs.get("username", None)
-        self.groups = kwargs.get("groups", list())
-        self.work_email = kwargs.get("work_email", None)
-        self.personal_email = kwargs.get("personal_email", None)
-        self.mobile_phone_number = kwargs.get("mobile_phone_number", None)
-        self.employments = kwargs.get("employments", list())
-        self.home_location = kwargs.get("home_location", None)
-        self.work_location = kwargs.get("work_location", None)
-        self.manager = kwargs.get("manager", None)
-        self.team = kwargs.get("team", None)
-        self.pay_group = kwargs.get("pay_group", None)
-        self.ssn = kwargs.get("ssn", None)
-        self.gender = kwargs.get("gender", None)
-        self.ethnicity = kwargs.get("ethnicity", None)
-        self.marital_status = kwargs.get("marital_status", None)
-        self.date_of_birth = kwargs.get("date_of_birth", None)
-        self.hire_date = kwargs.get("hire_date", None)
-        self.start_date = kwargs.get("start_date", None)
-        self.remote_created_at = kwargs.get("remote_created_at", None)
-        self.employment_status = kwargs.get("employment_status", None)
-        self.termination_date = kwargs.get("termination_date", None)
-        self.avatar = kwargs.get("avatar", None)
-        self.custom_fields = kwargs.get("custom_fields", None)
+        self.remote_id: Optional[str, none_type] = kwargs.get("remote_id", None)
+        self.employee_number: Optional[str, none_type] = kwargs.get("employee_number", None)
+        self.company: Optional[str, none_type] = kwargs.get("company", None)
+        self.first_name: Optional[str, none_type] = kwargs.get("first_name", None)
+        self.last_name: Optional[str, none_type] = kwargs.get("last_name", None)
+        self.display_full_name: Optional[str, none_type] = kwargs.get("display_full_name", None)
+        self.username: Optional[str, none_type] = kwargs.get("username", None)
+        self.groups: Optional[List[str, none_type]] = kwargs.get("groups", list())
+        self.work_email: Optional[str, none_type] = kwargs.get("work_email", None)
+        self.personal_email: Optional[str, none_type] = kwargs.get("personal_email", None)
+        self.mobile_phone_number: Optional[str, none_type] = kwargs.get("mobile_phone_number", None)
+        self.employments: Optional[List[str, none_type]] = kwargs.get("employments", list())
+        self.home_location: Optional[str, none_type] = kwargs.get("home_location", None)
+        self.work_location: Optional[str, none_type] = kwargs.get("work_location", None)
+        self.manager: Optional[str, none_type] = kwargs.get("manager", None)
+        self.team: Optional[str, none_type] = kwargs.get("team", None)
+        self.pay_group: Optional[str, none_type] = kwargs.get("pay_group", None)
+        self.ssn: Optional[str, none_type] = kwargs.get("ssn", None)
+        self.gender: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("gender", None)
+        self.ethnicity: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("ethnicity", None)
+        self.marital_status: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("marital_status", None)
+        self.date_of_birth: Optional[datetime, none_type] = kwargs.get("date_of_birth", None)
+        self.hire_date: Optional[datetime, none_type] = kwargs.get("hire_date", None)
+        self.start_date: Optional[datetime, none_type] = kwargs.get("start_date", None)
+        self.remote_created_at: Optional[datetime, none_type] = kwargs.get("remote_created_at", None)
+        self.employment_status: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("employment_status", None)
+        self.termination_date: Optional[datetime, none_type] = kwargs.get("termination_date", None)
+        self.avatar: Optional[str, none_type] = kwargs.get("avatar", None)
+        self.custom_fields: Optional[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("custom_fields", None)
 
 

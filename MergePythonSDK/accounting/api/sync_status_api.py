@@ -66,7 +66,7 @@ class SyncStatusApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                },
+                        },
                 'openapi_types': {
                     'cursor':
                         (str,),
@@ -96,7 +96,7 @@ class SyncStatusApi(object):
     def sync_status_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(SyncStatus)":
         """sync_status_list  # noqa: E501
 
         Get syncing status. Possible values: `DISABLED`, `DONE`, `FAILED`, `PAUSED`, `SYNCING`  # noqa: E501

@@ -12,6 +12,13 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
+from typing import (
+    Optional,
+    Union,
+    List,
+    Dict,
+)
+
 from MergePythonSDK.shared.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
@@ -28,6 +35,7 @@ from MergePythonSDK.shared.model_utils import (  # noqa: F401
     validate_get_composed_info,
 )
 from MergePythonSDK.shared.exceptions import ApiAttributeError
+from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 class ModelOperation(ModelNormal):
@@ -80,16 +88,20 @@ class ModelOperation(ModelNormal):
             openapi_types (dict): The key is attribute name
                 and the value is attribute type.
         """
-        return {
+
+        defined_types = {
             'model_name': (str,),  # noqa: E501
             'available_operations': ([str],),  # noqa: E501
             'required_post_parameters': ([str],),  # noqa: E501
             'supported_fields': ([str],),  # noqa: E501
         }
 
+        return defined_types
+
     @cached_property
     def discriminator():
         return None
+
 
     attribute_map = {
         'model_name': 'model_name',  # noqa: E501
@@ -261,9 +273,9 @@ class ModelOperation(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.model_name = model_name
-        self.available_operations = available_operations
-        self.required_post_parameters = required_post_parameters
-        self.supported_fields = supported_fields
+        self.model_name: Union[str] = model_name
+        self.available_operations: Union[List[str]] = available_operations
+        self.required_post_parameters: Union[List[str]] = required_post_parameters
+        self.supported_fields: Union[List[str]] = supported_fields
 
 

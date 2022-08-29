@@ -12,6 +12,13 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
+from typing import (
+    Optional,
+    Union,
+    List,
+    Dict,
+)
+
 from MergePythonSDK.shared.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
@@ -28,6 +35,7 @@ from MergePythonSDK.shared.model_utils import (  # noqa: F401
     validate_get_composed_info,
 )
 from MergePythonSDK.shared.exceptions import ApiAttributeError
+from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 class LinkedAccountStatus(ModelNormal):
@@ -80,14 +88,18 @@ class LinkedAccountStatus(ModelNormal):
             openapi_types (dict): The key is attribute name
                 and the value is attribute type.
         """
-        return {
+
+        defined_types = {
             'linked_account_status': (str,),  # noqa: E501
             'can_make_request': (bool,),  # noqa: E501
         }
 
+        return defined_types
+
     @cached_property
     def discriminator():
         return None
+
 
     attribute_map = {
         'linked_account_status': 'linked_account_status',  # noqa: E501
@@ -251,7 +263,7 @@ class LinkedAccountStatus(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.linked_account_status = linked_account_status
-        self.can_make_request = can_make_request
+        self.linked_account_status: Union[str] = linked_account_status
+        self.can_make_request: Union[bool] = can_make_request
 
 

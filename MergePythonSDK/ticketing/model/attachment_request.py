@@ -12,6 +12,13 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
+from typing import (
+    Optional,
+    Union,
+    List,
+    Dict,
+)
+
 from MergePythonSDK.shared.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
@@ -28,6 +35,7 @@ from MergePythonSDK.shared.model_utils import (  # noqa: F401
     validate_get_composed_info,
 )
 from MergePythonSDK.shared.exceptions import ApiAttributeError
+from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 class AttachmentRequest(ModelNormal):
@@ -80,7 +88,8 @@ class AttachmentRequest(ModelNormal):
             openapi_types (dict): The key is attribute name
                 and the value is attribute type.
         """
-        return {
+
+        defined_types = {
             'remote_id': (str, none_type,),  # noqa: E501
             'file_name': (str, none_type,),  # noqa: E501
             'ticket': (str, none_type,),  # noqa: E501
@@ -89,10 +98,22 @@ class AttachmentRequest(ModelNormal):
             'uploaded_by': (str, none_type,),  # noqa: E501
             'remote_created_at': (datetime, none_type,),  # noqa: E501
         }
+        expands_types = {"ticket": "Ticket"}
+
+        # update types with expands
+        for key, val in expands_types.items():
+            expands_model = import_model_by_name(val, "ticketing")
+            if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
+                defined_types[key][0].insert(0, expands_model)
+            defined_types[key] = (*defined_types[key], expands_model)
+        return defined_types
+
+        return defined_types
 
     @cached_property
     def discriminator():
         return None
+
 
     attribute_map = {
         'remote_id': 'remote_id',  # noqa: E501
@@ -272,12 +293,12 @@ class AttachmentRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id = kwargs.get("remote_id", None)
-        self.file_name = kwargs.get("file_name", None)
-        self.ticket = kwargs.get("ticket", None)
-        self.file_url = kwargs.get("file_url", None)
-        self.content_type = kwargs.get("content_type", None)
-        self.uploaded_by = kwargs.get("uploaded_by", None)
-        self.remote_created_at = kwargs.get("remote_created_at", None)
+        self.remote_id: Optional[str, none_type] = kwargs.get("remote_id", None)
+        self.file_name: Optional[str, none_type] = kwargs.get("file_name", None)
+        self.ticket: Optional[str, none_type] = kwargs.get("ticket", None)
+        self.file_url: Optional[str, none_type] = kwargs.get("file_url", None)
+        self.content_type: Optional[str, none_type] = kwargs.get("content_type", None)
+        self.uploaded_by: Optional[str, none_type] = kwargs.get("uploaded_by", None)
+        self.remote_created_at: Optional[datetime, none_type] = kwargs.get("remote_created_at", None)
 
 

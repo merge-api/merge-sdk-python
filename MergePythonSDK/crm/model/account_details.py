@@ -12,6 +12,13 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
+from typing import (
+    Optional,
+    Union,
+    List,
+    Dict,
+)
+
 from MergePythonSDK.shared.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
@@ -28,6 +35,7 @@ from MergePythonSDK.shared.model_utils import (  # noqa: F401
     validate_get_composed_info,
 )
 from MergePythonSDK.shared.exceptions import ApiAttributeError
+from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 def lazy_import():
@@ -70,7 +78,6 @@ class AccountDetails(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        lazy_import()
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
@@ -86,7 +93,8 @@ class AccountDetails(ModelNormal):
                 and the value is attribute type.
         """
         lazy_import()
-        return {
+
+        defined_types = {
             'id': (str,),  # noqa: E501
             'integration': (str,),  # noqa: E501
             'integration_slug': (str,),  # noqa: E501
@@ -99,9 +107,12 @@ class AccountDetails(ModelNormal):
             'is_duplicate': (bool, none_type,),  # noqa: E501
         }
 
+        return defined_types
+
     @cached_property
     def discriminator():
         return None
+
 
     attribute_map = {
         'id': 'id',  # noqa: E501
@@ -304,18 +315,18 @@ class AccountDetails(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.category = kwargs.get("category", None)
+        self.category: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("category", None)
 
         # Read only properties
-        self._id = kwargs.get("id", str())
-        self._integration = kwargs.get("integration", str())
-        self._integration_slug = kwargs.get("integration_slug", str())
-        self._end_user_origin_id = kwargs.get("end_user_origin_id", str())
-        self._end_user_organization_name = kwargs.get("end_user_organization_name", str())
-        self._end_user_email_address = kwargs.get("end_user_email_address", str())
-        self._status = kwargs.get("status", str())
-        self._webhook_listener_url = kwargs.get("webhook_listener_url", str())
-        self._is_duplicate = kwargs.get("is_duplicate", None)
+        self._id: Optional[str] = kwargs.get("id", str())
+        self._integration: Optional[str] = kwargs.get("integration", str())
+        self._integration_slug: Optional[str] = kwargs.get("integration_slug", str())
+        self._end_user_origin_id: Optional[str] = kwargs.get("end_user_origin_id", str())
+        self._end_user_organization_name: Optional[str] = kwargs.get("end_user_organization_name", str())
+        self._end_user_email_address: Optional[str] = kwargs.get("end_user_email_address", str())
+        self._status: Optional[str] = kwargs.get("status", str())
+        self._webhook_listener_url: Optional[str] = kwargs.get("webhook_listener_url", str())
+        self._is_duplicate: Optional[bool, none_type] = kwargs.get("is_duplicate", None)
 
     # Read only property getters
     @property

@@ -12,6 +12,13 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
+from typing import (
+    Optional,
+    Union,
+    List,
+    Dict,
+)
+
 from MergePythonSDK.shared.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
@@ -28,6 +35,7 @@ from MergePythonSDK.shared.model_utils import (  # noqa: F401
     validate_get_composed_info,
 )
 from MergePythonSDK.shared.exceptions import ApiAttributeError
+from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 def lazy_import():
@@ -70,7 +78,6 @@ class TicketRequest(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        lazy_import()
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
@@ -86,7 +93,8 @@ class TicketRequest(ModelNormal):
                 and the value is attribute type.
         """
         lazy_import()
-        return {
+
+        defined_types = {
             'remote_id': (str, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
             'assignees': ([str, none_type],),  # noqa: E501
@@ -103,10 +111,22 @@ class TicketRequest(ModelNormal):
             'remote_created_at': (datetime, none_type,),  # noqa: E501
             'remote_updated_at': (datetime, none_type,),  # noqa: E501
         }
+        expands_types = {"attachments": "Attachment", "assignees": "User", "project": "Project", "account": "Account", "contact": "Contact", "parent_ticket": "Ticket"}
+
+        # update types with expands
+        for key, val in expands_types.items():
+            expands_model = import_model_by_name(val, "ticketing")
+            if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
+                defined_types[key][0].insert(0, expands_model)
+            defined_types[key] = (*defined_types[key], expands_model)
+        return defined_types
+
+        return defined_types
 
     @cached_property
     def discriminator():
         return None
+
 
     attribute_map = {
         'remote_id': 'remote_id',  # noqa: E501
@@ -318,20 +338,20 @@ class TicketRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id = kwargs.get("remote_id", None)
-        self.name = kwargs.get("name", None)
-        self.assignees = kwargs.get("assignees", list())
-        self.due_date = kwargs.get("due_date", None)
-        self.status = kwargs.get("status", None)
-        self.description = kwargs.get("description", None)
-        self.project = kwargs.get("project", None)
-        self.ticket_type = kwargs.get("ticket_type", None)
-        self.account = kwargs.get("account", None)
-        self.contact = kwargs.get("contact", None)
-        self.parent_ticket = kwargs.get("parent_ticket", None)
-        self.attachments = kwargs.get("attachments", list())
-        self.tags = kwargs.get("tags", list())
-        self.remote_created_at = kwargs.get("remote_created_at", None)
-        self.remote_updated_at = kwargs.get("remote_updated_at", None)
+        self.remote_id: Optional[str, none_type] = kwargs.get("remote_id", None)
+        self.name: Optional[str, none_type] = kwargs.get("name", None)
+        self.assignees: Optional[List[str, none_type]] = kwargs.get("assignees", list())
+        self.due_date: Optional[datetime, none_type] = kwargs.get("due_date", None)
+        self.status: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
+        self.description: Optional[str, none_type] = kwargs.get("description", None)
+        self.project: Optional[str, none_type] = kwargs.get("project", None)
+        self.ticket_type: Optional[str, none_type] = kwargs.get("ticket_type", None)
+        self.account: Optional[str, none_type] = kwargs.get("account", None)
+        self.contact: Optional[str, none_type] = kwargs.get("contact", None)
+        self.parent_ticket: Optional[str, none_type] = kwargs.get("parent_ticket", None)
+        self.attachments: Optional[List[str, none_type]] = kwargs.get("attachments", list())
+        self.tags: Optional[List[str]] = kwargs.get("tags", list())
+        self.remote_created_at: Optional[datetime, none_type] = kwargs.get("remote_created_at", None)
+        self.remote_updated_at: Optional[datetime, none_type] = kwargs.get("remote_updated_at", None)
 
 

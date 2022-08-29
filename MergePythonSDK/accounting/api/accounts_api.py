@@ -82,7 +82,7 @@ class AccountsApi(object):
                         "CLASSIFICATION,STATUS": "classification,status",
                         "STATUS": "status"
                     },
-                },
+                        },
                 'openapi_types': {
                     'created_after':
                         (datetime,),
@@ -179,7 +179,7 @@ class AccountsApi(object):
                         "CLASSIFICATION,STATUS": "classification,status",
                         "STATUS": "status"
                     },
-                },
+                        },
                 'openapi_types': {
                     'id':
                         (str,),
@@ -213,7 +213,7 @@ class AccountsApi(object):
     def accounts_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(Account)":
         """accounts_list  # noqa: E501
 
         Returns a list of `Account` objects.  # noqa: E501
@@ -302,7 +302,7 @@ class AccountsApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "Account":
         """accounts_retrieve  # noqa: E501
 
         Returns an `Account` object with the given `id`.  # noqa: E501

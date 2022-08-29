@@ -99,7 +99,7 @@ class TimeOffBalancesApi(object):
 
                         "POLICY_TYPE": "policy_type"
                     },
-                },
+                        },
                 'openapi_types': {
                     'created_after':
                         (datetime,),
@@ -212,7 +212,7 @@ class TimeOffBalancesApi(object):
 
                         "POLICY_TYPE": "policy_type"
                     },
-                },
+                        },
                 'openapi_types': {
                     'id':
                         (str,),
@@ -250,7 +250,7 @@ class TimeOffBalancesApi(object):
     def time_off_balances_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(TimeOffBalance)":
         """time_off_balances_list  # noqa: E501
 
         Returns a list of `TimeOffBalance` objects.  # noqa: E501
@@ -342,7 +342,7 @@ class TimeOffBalancesApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "TimeOffBalance":
         """time_off_balances_retrieve  # noqa: E501
 
         Returns a `TimeOffBalance` object with the given `id`.  # noqa: E501

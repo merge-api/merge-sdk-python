@@ -12,6 +12,13 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
+from typing import (
+    Optional,
+    Union,
+    List,
+    Dict,
+)
+
 from MergePythonSDK.shared.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
@@ -28,6 +35,7 @@ from MergePythonSDK.shared.model_utils import (  # noqa: F401
     validate_get_composed_info,
 )
 from MergePythonSDK.shared.exceptions import ApiAttributeError
+from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 def lazy_import():
@@ -76,7 +84,6 @@ class CreditNote(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        lazy_import()
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
@@ -92,7 +99,8 @@ class CreditNote(ModelNormal):
                 and the value is attribute type.
         """
         lazy_import()
-        return {
+
+        defined_types = {
             'id': (str,),  # noqa: E501
             'remote_id': (str, none_type,),  # noqa: E501
             'remote_data': ([RemoteData], none_type,),  # noqa: E501
@@ -109,10 +117,22 @@ class CreditNote(ModelNormal):
             'payments': ([str, none_type],),  # noqa: E501
             'remote_was_deleted': (bool,),  # noqa: E501
         }
+        expands_types = {"payments": "Payment"}
+
+        # update types with expands
+        for key, val in expands_types.items():
+            expands_model = import_model_by_name(val, "accounting")
+            if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
+                defined_types[key][0].insert(0, expands_model)
+            defined_types[key] = (*defined_types[key], expands_model)
+        return defined_types
+
+        return defined_types
 
     @cached_property
     def discriminator():
         return None
+
 
     attribute_map = {
         'id': 'id',  # noqa: E501
@@ -330,23 +350,23 @@ class CreditNote(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id = kwargs.get("remote_id", None)
-        self.transaction_date = kwargs.get("transaction_date", None)
-        self.status = kwargs.get("status", None)
-        self.number = kwargs.get("number", None)
-        self.contact = kwargs.get("contact", None)
-        self.total_amount = kwargs.get("total_amount", None)
-        self.remaining_credit = kwargs.get("remaining_credit", None)
-        self.currency = kwargs.get("currency", None)
-        self.remote_created_at = kwargs.get("remote_created_at", None)
-        self.remote_updated_at = kwargs.get("remote_updated_at", None)
-        self.payments = kwargs.get("payments", list())
+        self.remote_id: Optional[str, none_type] = kwargs.get("remote_id", None)
+        self.transaction_date: Optional[datetime, none_type] = kwargs.get("transaction_date", None)
+        self.status: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
+        self.number: Optional[str, none_type] = kwargs.get("number", None)
+        self.contact: Optional[str, none_type] = kwargs.get("contact", None)
+        self.total_amount: Optional[float, none_type] = kwargs.get("total_amount", None)
+        self.remaining_credit: Optional[float, none_type] = kwargs.get("remaining_credit", None)
+        self.currency: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("currency", None)
+        self.remote_created_at: Optional[datetime, none_type] = kwargs.get("remote_created_at", None)
+        self.remote_updated_at: Optional[datetime, none_type] = kwargs.get("remote_updated_at", None)
+        self.payments: Optional[List[str, none_type]] = kwargs.get("payments", list())
 
         # Read only properties
-        self._id = kwargs.get("id", str())
-        self._remote_data = kwargs.get("remote_data", None)
-        self._line_items = kwargs.get("line_items", None)
-        self._remote_was_deleted = kwargs.get("remote_was_deleted", bool())
+        self._id: Optional[str] = kwargs.get("id", str())
+        self._remote_data: Optional[List["RemoteData"]] = kwargs.get("remote_data", None)
+        self._line_items: Optional[List["CreditNoteLineItem"]] = kwargs.get("line_items", None)
+        self._remote_was_deleted: Optional[bool] = kwargs.get("remote_was_deleted", bool())
 
     # Read only property getters
     @property

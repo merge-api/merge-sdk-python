@@ -88,7 +88,7 @@ class ItemsApi(object):
 
                         "STATUS": "status"
                     },
-                },
+                        },
                 'openapi_types': {
                     'created_after':
                         (datetime,),
@@ -195,7 +195,7 @@ class ItemsApi(object):
 
                         "STATUS": "status"
                     },
-                },
+                        },
                 'openapi_types': {
                     'id':
                         (str,),
@@ -233,7 +233,7 @@ class ItemsApi(object):
     def items_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(Item)":
         """items_list  # noqa: E501
 
         Returns a list of `Item` objects.  # noqa: E501
@@ -323,7 +323,7 @@ class ItemsApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "Item":
         """items_retrieve  # noqa: E501
 
         Returns an `Item` object with the given `id`.  # noqa: E501

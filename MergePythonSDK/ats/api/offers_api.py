@@ -90,7 +90,7 @@ class OffersApi(object):
 
                         "STATUS": "status"
                     },
-                },
+                        },
                 'openapi_types': {
                     'application_id':
                         (str,),
@@ -205,7 +205,7 @@ class OffersApi(object):
 
                         "STATUS": "status"
                     },
-                },
+                        },
                 'openapi_types': {
                     'id':
                         (str,),
@@ -243,7 +243,7 @@ class OffersApi(object):
     def offers_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(Offer)":
         """offers_list  # noqa: E501
 
         Returns a list of `Offer` objects.  # noqa: E501
@@ -335,7 +335,7 @@ class OffersApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "Offer":
         """offers_retrieve  # noqa: E501
 
         Returns an `Offer` object with the given `id`.  # noqa: E501

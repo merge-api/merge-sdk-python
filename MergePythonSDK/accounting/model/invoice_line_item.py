@@ -12,6 +12,13 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
+from typing import (
+    Optional,
+    Union,
+    List,
+    Dict,
+)
+
 from MergePythonSDK.shared.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
@@ -28,6 +35,7 @@ from MergePythonSDK.shared.model_utils import (  # noqa: F401
     validate_get_composed_info,
 )
 from MergePythonSDK.shared.exceptions import ApiAttributeError
+from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 class InvoiceLineItem(ModelNormal):
@@ -80,7 +88,8 @@ class InvoiceLineItem(ModelNormal):
             openapi_types (dict): The key is attribute name
                 and the value is attribute type.
         """
-        return {
+
+        defined_types = {
             'id': (str,),  # noqa: E501
             'remote_id': (str, none_type,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
@@ -91,10 +100,22 @@ class InvoiceLineItem(ModelNormal):
             'account': (str, none_type,),  # noqa: E501
             'tracking_category': (str, none_type,),  # noqa: E501
         }
+        expands_types = {"payments": "Payment", "line_items": "InvoiceLineItem", "contact": "Contact"}
+
+        # update types with expands
+        for key, val in expands_types.items():
+            expands_model = import_model_by_name(val, "accounting")
+            if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
+                defined_types[key][0].insert(0, expands_model)
+            defined_types[key] = (*defined_types[key], expands_model)
+        return defined_types
+
+        return defined_types
 
     @cached_property
     def discriminator():
         return None
+
 
     attribute_map = {
         'id': 'id',  # noqa: E501
@@ -285,17 +306,17 @@ class InvoiceLineItem(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id = kwargs.get("remote_id", None)
-        self.description = kwargs.get("description", None)
-        self.unit_price = kwargs.get("unit_price", None)
-        self.quantity = kwargs.get("quantity", None)
-        self.total_amount = kwargs.get("total_amount", None)
-        self.item = kwargs.get("item", None)
-        self.account = kwargs.get("account", None)
-        self.tracking_category = kwargs.get("tracking_category", None)
+        self.remote_id: Optional[str, none_type] = kwargs.get("remote_id", None)
+        self.description: Optional[str, none_type] = kwargs.get("description", None)
+        self.unit_price: Optional[float, none_type] = kwargs.get("unit_price", None)
+        self.quantity: Optional[float, none_type] = kwargs.get("quantity", None)
+        self.total_amount: Optional[float, none_type] = kwargs.get("total_amount", None)
+        self.item: Optional[str, none_type] = kwargs.get("item", None)
+        self.account: Optional[str, none_type] = kwargs.get("account", None)
+        self.tracking_category: Optional[str, none_type] = kwargs.get("tracking_category", None)
 
         # Read only properties
-        self._id = kwargs.get("id", str())
+        self._id: Optional[str] = kwargs.get("id", str())
 
     # Read only property getters
     @property

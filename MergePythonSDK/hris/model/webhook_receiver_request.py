@@ -12,6 +12,13 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
+from typing import (
+    Optional,
+    Union,
+    List,
+    Dict,
+)
+
 from MergePythonSDK.shared.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
@@ -28,6 +35,7 @@ from MergePythonSDK.shared.model_utils import (  # noqa: F401
     validate_get_composed_info,
 )
 from MergePythonSDK.shared.exceptions import ApiAttributeError
+from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 class WebhookReceiverRequest(ModelNormal):
@@ -86,15 +94,19 @@ class WebhookReceiverRequest(ModelNormal):
             openapi_types (dict): The key is attribute name
                 and the value is attribute type.
         """
-        return {
+
+        defined_types = {
             'event': (str,),  # noqa: E501
             'is_active': (bool,),  # noqa: E501
             'key': (str,),  # noqa: E501
         }
 
+        return defined_types
+
     @cached_property
     def discriminator():
         return None
+
 
     attribute_map = {
         'event': 'event',  # noqa: E501
@@ -262,8 +274,8 @@ class WebhookReceiverRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.event = event
-        self.is_active = is_active
-        self.key = kwargs.get("key", str())
+        self.event: Union[str] = event
+        self.is_active: Union[bool] = is_active
+        self.key: Optional[str] = kwargs.get("key", str())
 
 

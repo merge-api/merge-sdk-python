@@ -74,7 +74,7 @@ class OfficesApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                },
+                        },
                 'openapi_types': {
                     'created_after':
                         (datetime,),
@@ -159,7 +159,7 @@ class OfficesApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                },
+                        },
                 'openapi_types': {
                     'id':
                         (str,),
@@ -189,7 +189,7 @@ class OfficesApi(object):
     def offices_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(Office)":
         """offices_list  # noqa: E501
 
         Returns a list of `Office` objects.  # noqa: E501
@@ -277,7 +277,7 @@ class OfficesApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "Office":
         """offices_retrieve  # noqa: E501
 
         Returns an `Office` object with the given `id`.  # noqa: E501

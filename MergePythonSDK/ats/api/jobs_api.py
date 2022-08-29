@@ -113,7 +113,7 @@ class JobsApi(object):
                         "OPEN": "OPEN",
                         "PENDING": "PENDING"
                     },
-                },
+                        },
                 'openapi_types': {
                     'code':
                         (str, none_type,),
@@ -240,7 +240,7 @@ class JobsApi(object):
 
                         "STATUS": "status"
                     },
-                },
+                        },
                 'openapi_types': {
                     'id':
                         (str,),
@@ -278,7 +278,7 @@ class JobsApi(object):
     def jobs_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(Job)":
         """jobs_list  # noqa: E501
 
         Returns a list of `Job` objects.  # noqa: E501
@@ -370,7 +370,7 @@ class JobsApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "Job":
         """jobs_retrieve  # noqa: E501
 
         Returns a `Job` object with the given `id`.  # noqa: E501

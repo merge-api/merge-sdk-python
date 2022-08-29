@@ -74,7 +74,7 @@ class CandidatesApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                },
+                        },
                 'openapi_types': {
                     'candidate_endpoint_request':
                         (CandidateEndpointRequest,),
@@ -139,7 +139,7 @@ class CandidatesApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                },
+                        },
                 'openapi_types': {
                     'model_id':
                         (str,),
@@ -217,7 +217,7 @@ class CandidatesApi(object):
                         "APPLICATIONS,ATTACHMENTS": "applications,attachments",
                         "ATTACHMENTS": "attachments"
                     },
-                },
+                        },
                 'openapi_types': {
                     'created_after':
                         (datetime,),
@@ -310,7 +310,7 @@ class CandidatesApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                },
+                        },
                 'openapi_types': {
                 },
                 'attribute_map': {
@@ -367,7 +367,7 @@ class CandidatesApi(object):
                         "APPLICATIONS,ATTACHMENTS": "applications,attachments",
                         "ATTACHMENTS": "attachments"
                     },
-                },
+                        },
                 'openapi_types': {
                     'id':
                         (str,),
@@ -402,7 +402,7 @@ class CandidatesApi(object):
         self,
         candidate_endpoint_request,
         **kwargs
-    ):
+    ) -> "CandidateResponse":
         """candidates_create  # noqa: E501
 
         Creates a `Candidate` object with the given values.  # noqa: E501
@@ -488,7 +488,7 @@ class CandidatesApi(object):
         model_id,
         ignore_common_model_request,
         **kwargs
-    ):
+    ) -> "IgnoreCommonModel":
         """candidates_ignore_create  # noqa: E501
 
         Ignores a specific row based on the `model_id` in the url. These records will have their properties set to null, and will not be updated in future syncs. The \"reason\" and \"message\" fields in the request body will be stored for audit purposes.  # noqa: E501
@@ -573,7 +573,7 @@ class CandidatesApi(object):
     def candidates_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(Candidate)":
         """candidates_list  # noqa: E501
 
         Returns a list of `Candidate` objects.  # noqa: E501
@@ -663,7 +663,7 @@ class CandidatesApi(object):
     def candidates_meta_post_retrieve(
         self,
         **kwargs
-    ):
+    ) -> "MetaResponse":
         """candidates_meta_post_retrieve  # noqa: E501
 
         Returns metadata for `Candidate` POSTs.  # noqa: E501
@@ -742,7 +742,7 @@ class CandidatesApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "Candidate":
         """candidates_retrieve  # noqa: E501
 
         Returns a `Candidate` object with the given `id`.  # noqa: E501

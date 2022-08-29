@@ -74,7 +74,7 @@ class AttachmentsApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                },
+                        },
                 'openapi_types': {
                     'created_after':
                         (datetime,),
@@ -159,7 +159,7 @@ class AttachmentsApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                },
+                        },
                 'openapi_types': {
                     'id':
                         (str,),
@@ -189,7 +189,7 @@ class AttachmentsApi(object):
     def attachments_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(AccountingAttachment)":
         """attachments_list  # noqa: E501
 
         Returns a list of `AccountingAttachment` objects.  # noqa: E501
@@ -277,7 +277,7 @@ class AttachmentsApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "AccountingAttachment":
         """attachments_retrieve  # noqa: E501
 
         Returns an `AccountingAttachment` object with the given `id`.  # noqa: E501

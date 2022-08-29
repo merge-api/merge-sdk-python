@@ -72,7 +72,7 @@ class ContactsApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                },
+                        },
                 'openapi_types': {
                     'crm_contact_endpoint_request':
                         (CRMContactEndpointRequest,),
@@ -149,7 +149,7 @@ class ContactsApi(object):
 
                         "ACCOUNT": "account"
                     },
-                },
+                        },
                 'openapi_types': {
                     'account_id':
                         (str,),
@@ -238,7 +238,7 @@ class ContactsApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                },
+                        },
                 'openapi_types': {
                 },
                 'attribute_map': {
@@ -293,7 +293,7 @@ class ContactsApi(object):
 
                         "ACCOUNT": "account"
                     },
-                },
+                        },
                 'openapi_types': {
                     'id':
                         (str,),
@@ -328,7 +328,7 @@ class ContactsApi(object):
         self,
         crm_contact_endpoint_request,
         **kwargs
-    ):
+    ) -> "CRMContactResponse":
         """contacts_create  # noqa: E501
 
         Creates a `Contact` object with the given values.  # noqa: E501
@@ -412,7 +412,7 @@ class ContactsApi(object):
     def contacts_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(Contact)":
         """contacts_list  # noqa: E501
 
         Returns a list of `Contact` objects.  # noqa: E501
@@ -501,7 +501,7 @@ class ContactsApi(object):
     def contacts_meta_post_retrieve(
         self,
         **kwargs
-    ):
+    ) -> "MetaResponse":
         """contacts_meta_post_retrieve  # noqa: E501
 
         Returns metadata for `CRMContact` POSTs.  # noqa: E501
@@ -580,7 +580,7 @@ class ContactsApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "Contact":
         """contacts_retrieve  # noqa: E501
 
         Returns a `Contact` object with the given `id`.  # noqa: E501

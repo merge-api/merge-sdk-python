@@ -103,7 +103,7 @@ class InterviewsApi(object):
 
                         "STATUS": "status"
                     },
-                },
+                        },
                 'openapi_types': {
                     'application_id':
                         (str,),
@@ -234,7 +234,7 @@ class InterviewsApi(object):
 
                         "STATUS": "status"
                     },
-                },
+                        },
                 'openapi_types': {
                     'id':
                         (str,),
@@ -272,7 +272,7 @@ class InterviewsApi(object):
     def interviews_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(ScheduledInterview)":
         """interviews_list  # noqa: E501
 
         Returns a list of `ScheduledInterview` objects.  # noqa: E501
@@ -365,7 +365,7 @@ class InterviewsApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "ScheduledInterview":
         """interviews_retrieve  # noqa: E501
 
         Returns a `ScheduledInterview` object with the given `id`.  # noqa: E501

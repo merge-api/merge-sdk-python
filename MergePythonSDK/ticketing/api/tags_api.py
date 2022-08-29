@@ -74,7 +74,7 @@ class TagsApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                },
+                        },
                 'openapi_types': {
                     'created_after':
                         (datetime,),
@@ -159,7 +159,7 @@ class TagsApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                },
+                        },
                 'openapi_types': {
                     'id':
                         (str,),
@@ -189,7 +189,7 @@ class TagsApi(object):
     def tags_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(Tag)":
         """tags_list  # noqa: E501
 
         Returns a list of `Tag` objects.  # noqa: E501
@@ -277,7 +277,7 @@ class TagsApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "Tag":
         """tags_retrieve  # noqa: E501
 
         Returns a `Tag` object with the given `id`.  # noqa: E501

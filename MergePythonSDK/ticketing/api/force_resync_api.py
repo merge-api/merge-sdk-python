@@ -63,7 +63,7 @@ class ForceResyncApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                },
+                        },
                 'openapi_types': {
                 },
                 'attribute_map': {
@@ -85,7 +85,7 @@ class ForceResyncApi(object):
     def sync_status_resync_create(
         self,
         **kwargs
-    ):
+    ) -> "[SyncStatus]":
         """sync_status_resync_create  # noqa: E501
 
         Force re-sync of all models. This is only available for organizations on Merge's Grow and Expand plans.  # noqa: E501
