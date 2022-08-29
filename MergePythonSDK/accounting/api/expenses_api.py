@@ -82,7 +82,7 @@ class ExpensesApi(object):
                         "ACCOUNT,CONTACT": "account,contact",
                         "CONTACT": "contact"
                     },
-                        },
+                },
                 'openapi_types': {
                     'created_after':
                         (datetime,),
@@ -179,7 +179,7 @@ class ExpensesApi(object):
                         "ACCOUNT,CONTACT": "account,contact",
                         "CONTACT": "contact"
                     },
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),

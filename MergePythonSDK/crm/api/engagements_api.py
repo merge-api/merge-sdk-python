@@ -72,7 +72,7 @@ class EngagementsApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                        },
+                },
                 'openapi_types': {
                     'engagement_endpoint_request':
                         (EngagementEndpointRequest,),
@@ -154,7 +154,7 @@ class EngagementsApi(object):
                         "OWNER,ACCOUNT,ENGAGEMENT_TYPE": "owner,account,engagement_type",
                         "OWNER,ENGAGEMENT_TYPE": "owner,engagement_type"
                     },
-                        },
+                },
                 'openapi_types': {
                     'created_after':
                         (datetime,),
@@ -239,7 +239,7 @@ class EngagementsApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                        },
+                },
                 'openapi_types': {
                 },
                 'attribute_map': {
@@ -300,7 +300,7 @@ class EngagementsApi(object):
                         "OWNER,ACCOUNT,ENGAGEMENT_TYPE": "owner,account,engagement_type",
                         "OWNER,ENGAGEMENT_TYPE": "owner,engagement_type"
                     },
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),

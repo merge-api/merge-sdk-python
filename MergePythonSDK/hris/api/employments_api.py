@@ -110,7 +110,7 @@ class EmploymentsApi(object):
                         "PAY_FREQUENCY,PAY_PERIOD": "pay_frequency,pay_period",
                         "PAY_PERIOD": "pay_period"
                     },
-                        },
+                },
                 'openapi_types': {
                     'created_after':
                         (datetime,),
@@ -239,7 +239,7 @@ class EmploymentsApi(object):
                         "PAY_FREQUENCY,PAY_PERIOD": "pay_frequency,pay_period",
                         "PAY_PERIOD": "pay_period"
                     },
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),

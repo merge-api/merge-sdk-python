@@ -97,7 +97,6 @@ class TimeOffEndpointRequest(ModelNormal):
         defined_types = {
             'model': (TimeOffRequest,),  # noqa: E501
         }
-
         return defined_types
 
     @cached_property

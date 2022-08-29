@@ -98,7 +98,7 @@ class Earning(ModelNormal):
             'id': (str,),  # noqa: E501
             'employee_payroll_run': (str, none_type,),  # noqa: E501
             'amount': (float, none_type,),  # noqa: E501
-            'type': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'type': (EarningTypeEnum, str, none_type,),
             'remote_was_deleted': (bool,),  # noqa: E501
         }
         expands_types = {"employee": "Employee", "payroll_run": "PayrollRun"}
@@ -109,8 +109,6 @@ class Earning(ModelNormal):
             if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
                 defined_types[key][0].insert(0, expands_model)
             defined_types[key] = (*defined_types[key], expands_model)
-        return defined_types
-
         return defined_types
 
     @cached_property
@@ -291,13 +289,13 @@ class Earning(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.employee_payroll_run: Optional[str, none_type] = kwargs.get("employee_payroll_run", None)
-        self.amount: Optional[float, none_type] = kwargs.get("amount", None)
-        self.type: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("type", None)
-        self.remote_was_deleted: Optional[bool] = kwargs.get("remote_was_deleted", bool())
+        self.employee_payroll_run: Union[str, none_type] = kwargs.get("employee_payroll_run", None)
+        self.amount: Union[float, none_type] = kwargs.get("amount", None)
+        self.type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("type", None)
+        self.remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
 
         # Read only properties
-        self._id: Optional[str] = kwargs.get("id", str())
+        self._id: Union[str] = kwargs.get("id", str())
 
     # Read only property getters
     @property

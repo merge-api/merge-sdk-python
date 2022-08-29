@@ -106,7 +106,7 @@ class OpportunityRequest(ModelNormal):
             'owner': (str, none_type,),  # noqa: E501
             'account': (str, none_type,),  # noqa: E501
             'stage': (str, none_type,),  # noqa: E501
-            'status': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'status': (OpportunityStatusEnum, str, none_type,),
             'last_activity_at': (datetime, none_type,),  # noqa: E501
             'close_date': (datetime, none_type,),  # noqa: E501
             'remote_created_at': (datetime, none_type,),  # noqa: E501
@@ -121,8 +121,6 @@ class OpportunityRequest(ModelNormal):
             if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
                 defined_types[key][0].insert(0, expands_model)
             defined_types[key] = (*defined_types[key], expands_model)
-        return defined_types
-
         return defined_types
 
     @cached_property
@@ -332,18 +330,18 @@ class OpportunityRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id: Optional[str, none_type] = kwargs.get("remote_id", None)
-        self.name: Optional[str, none_type] = kwargs.get("name", None)
-        self.description: Optional[str, none_type] = kwargs.get("description", None)
-        self.amount: Optional[int, none_type] = kwargs.get("amount", None)
-        self.owner: Optional[str, none_type] = kwargs.get("owner", None)
-        self.account: Optional[str, none_type] = kwargs.get("account", None)
-        self.stage: Optional[str, none_type] = kwargs.get("stage", None)
-        self.status: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
-        self.last_activity_at: Optional[datetime, none_type] = kwargs.get("last_activity_at", None)
-        self.close_date: Optional[datetime, none_type] = kwargs.get("close_date", None)
-        self.remote_created_at: Optional[datetime, none_type] = kwargs.get("remote_created_at", None)
-        self.integration_params: Optional[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
-        self.linked_account_params: Optional[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self.name: Union[str, none_type] = kwargs.get("name", None)
+        self.description: Union[str, none_type] = kwargs.get("description", None)
+        self.amount: Union[int, none_type] = kwargs.get("amount", None)
+        self.owner: Union[str, none_type] = kwargs.get("owner", None)
+        self.account: Union[str, none_type] = kwargs.get("account", None)
+        self.stage: Union[str, none_type] = kwargs.get("stage", None)
+        self.status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
+        self.last_activity_at: Union[datetime, none_type] = kwargs.get("last_activity_at", None)
+        self.close_date: Union[datetime, none_type] = kwargs.get("close_date", None)
+        self.remote_created_at: Union[datetime, none_type] = kwargs.get("remote_created_at", None)
+        self.integration_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
+        self.linked_account_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
 
 

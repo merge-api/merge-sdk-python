@@ -102,7 +102,7 @@ class Engagement(ModelNormal):
             'owner': (str, none_type,),  # noqa: E501
             'content': (str, none_type,),  # noqa: E501
             'subject': (str, none_type,),  # noqa: E501
-            'direction': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'direction': (DirectionEnum, str, none_type,),
             'engagement_type': (str, none_type,),  # noqa: E501
             'start_time': (datetime, none_type,),  # noqa: E501
             'end_time': (datetime, none_type,),  # noqa: E501
@@ -118,8 +118,6 @@ class Engagement(ModelNormal):
             if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
                 defined_types[key][0].insert(0, expands_model)
             defined_types[key] = (*defined_types[key], expands_model)
-        return defined_types
-
         return defined_types
 
     @cached_property
@@ -330,20 +328,20 @@ class Engagement(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id: Optional[str, none_type] = kwargs.get("remote_id", None)
-        self.owner: Optional[str, none_type] = kwargs.get("owner", None)
-        self.content: Optional[str, none_type] = kwargs.get("content", None)
-        self.subject: Optional[str, none_type] = kwargs.get("subject", None)
-        self.direction: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("direction", None)
-        self.engagement_type: Optional[str, none_type] = kwargs.get("engagement_type", None)
-        self.start_time: Optional[datetime, none_type] = kwargs.get("start_time", None)
-        self.end_time: Optional[datetime, none_type] = kwargs.get("end_time", None)
-        self.account: Optional[str, none_type] = kwargs.get("account", None)
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self.owner: Union[str, none_type] = kwargs.get("owner", None)
+        self.content: Union[str, none_type] = kwargs.get("content", None)
+        self.subject: Union[str, none_type] = kwargs.get("subject", None)
+        self.direction: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("direction", None)
+        self.engagement_type: Union[str, none_type] = kwargs.get("engagement_type", None)
+        self.start_time: Union[datetime, none_type] = kwargs.get("start_time", None)
+        self.end_time: Union[datetime, none_type] = kwargs.get("end_time", None)
+        self.account: Union[str, none_type] = kwargs.get("account", None)
 
         # Read only properties
-        self._id: Optional[str] = kwargs.get("id", str())
-        self._remote_data: Optional[List["RemoteData"]] = kwargs.get("remote_data", None)
-        self._remote_was_deleted: Optional[bool] = kwargs.get("remote_was_deleted", bool())
+        self._id: Union[str] = kwargs.get("id", str())
+        self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
+        self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
 
     # Read only property getters
     @property

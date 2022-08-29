@@ -97,7 +97,6 @@ class OpportunityEndpointRequest(ModelNormal):
         defined_types = {
             'model': (OpportunityRequest,),  # noqa: E501
         }
-
         return defined_types
 
     @cached_property

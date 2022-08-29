@@ -74,7 +74,7 @@ class EmployeesApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                        },
+                },
                 'openapi_types': {
                     'employee_endpoint_request':
                         (EmployeeEndpointRequest,),
@@ -139,7 +139,7 @@ class EmployeesApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                        },
+                },
                 'openapi_types': {
                     'model_id':
                         (str,),
@@ -510,7 +510,7 @@ class EmployeesApi(object):
                         "GENDER,MARITAL_STATUS": "gender,marital_status",
                         "MARITAL_STATUS": "marital_status"
                     },
-                        },
+                },
                 'openapi_types': {
                     'company_id':
                         (str,),
@@ -647,7 +647,7 @@ class EmployeesApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                        },
+                },
                 'openapi_types': {
                 },
                 'attribute_map': {
@@ -977,7 +977,7 @@ class EmployeesApi(object):
                         "GENDER,MARITAL_STATUS": "gender,marital_status",
                         "MARITAL_STATUS": "marital_status"
                     },
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),

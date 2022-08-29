@@ -119,8 +119,6 @@ class Application(ModelNormal):
             defined_types[key] = (*defined_types[key], expands_model)
         return defined_types
 
-        return defined_types
-
     @cached_property
     def discriminator():
         return None
@@ -333,21 +331,21 @@ class Application(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id: Optional[str, none_type] = kwargs.get("remote_id", None)
-        self.candidate: Optional[str, none_type] = kwargs.get("candidate", None)
-        self.job: Optional[str, none_type] = kwargs.get("job", None)
-        self.applied_at: Optional[datetime, none_type] = kwargs.get("applied_at", None)
-        self.rejected_at: Optional[datetime, none_type] = kwargs.get("rejected_at", None)
-        self.source: Optional[str, none_type] = kwargs.get("source", None)
-        self.credited_to: Optional[str, none_type] = kwargs.get("credited_to", None)
-        self.current_stage: Optional[str, none_type] = kwargs.get("current_stage", None)
-        self.reject_reason: Optional[str, none_type] = kwargs.get("reject_reason", None)
-        self.custom_fields: Optional[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("custom_fields", None)
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self.candidate: Union[str, none_type] = kwargs.get("candidate", None)
+        self.job: Union[str, none_type] = kwargs.get("job", None)
+        self.applied_at: Union[datetime, none_type] = kwargs.get("applied_at", None)
+        self.rejected_at: Union[datetime, none_type] = kwargs.get("rejected_at", None)
+        self.source: Union[str, none_type] = kwargs.get("source", None)
+        self.credited_to: Union[str, none_type] = kwargs.get("credited_to", None)
+        self.current_stage: Union[str, none_type] = kwargs.get("current_stage", None)
+        self.reject_reason: Union[str, none_type] = kwargs.get("reject_reason", None)
+        self.custom_fields: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("custom_fields", None)
 
         # Read only properties
-        self._id: Optional[str] = kwargs.get("id", str())
-        self._remote_data: Optional[List["RemoteData"]] = kwargs.get("remote_data", None)
-        self._remote_was_deleted: Optional[bool] = kwargs.get("remote_was_deleted", bool())
+        self._id: Union[str] = kwargs.get("id", str())
+        self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
+        self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
 
     # Read only property getters
     @property

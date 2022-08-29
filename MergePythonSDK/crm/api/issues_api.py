@@ -86,7 +86,7 @@ class IssuesApi(object):
                         "ONGOING": "ONGOING",
                         "RESOLVED": "RESOLVED"
                     },
-                        },
+                },
                 'openapi_types': {
                     'account_token':
                         (str,),
@@ -185,7 +185,7 @@ class IssuesApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),

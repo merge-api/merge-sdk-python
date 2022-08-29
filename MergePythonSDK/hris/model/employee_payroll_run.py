@@ -126,8 +126,6 @@ class EmployeePayrollRun(ModelNormal):
             defined_types[key] = (*defined_types[key], expands_model)
         return defined_types
 
-        return defined_types
-
     @cached_property
     def discriminator():
         return None
@@ -347,22 +345,22 @@ class EmployeePayrollRun(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id: Optional[str, none_type] = kwargs.get("remote_id", None)
-        self.employee: Optional[str, none_type] = kwargs.get("employee", None)
-        self.payroll_run: Optional[str, none_type] = kwargs.get("payroll_run", None)
-        self.gross_pay: Optional[float, none_type] = kwargs.get("gross_pay", None)
-        self.net_pay: Optional[float, none_type] = kwargs.get("net_pay", None)
-        self.start_date: Optional[datetime, none_type] = kwargs.get("start_date", None)
-        self.end_date: Optional[datetime, none_type] = kwargs.get("end_date", None)
-        self.check_date: Optional[datetime, none_type] = kwargs.get("check_date", None)
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self.employee: Union[str, none_type] = kwargs.get("employee", None)
+        self.payroll_run: Union[str, none_type] = kwargs.get("payroll_run", None)
+        self.gross_pay: Union[float, none_type] = kwargs.get("gross_pay", None)
+        self.net_pay: Union[float, none_type] = kwargs.get("net_pay", None)
+        self.start_date: Union[datetime, none_type] = kwargs.get("start_date", None)
+        self.end_date: Union[datetime, none_type] = kwargs.get("end_date", None)
+        self.check_date: Union[datetime, none_type] = kwargs.get("check_date", None)
 
         # Read only properties
-        self._id: Optional[str] = kwargs.get("id", str())
-        self._earnings: Optional[List["Earning"]] = kwargs.get("earnings", None)
-        self._deductions: Optional[List["Deduction"]] = kwargs.get("deductions", None)
-        self._taxes: Optional[List["Tax"]] = kwargs.get("taxes", None)
-        self._remote_data: Optional[List["RemoteData"]] = kwargs.get("remote_data", None)
-        self._remote_was_deleted: Optional[bool] = kwargs.get("remote_was_deleted", bool())
+        self._id: Union[str] = kwargs.get("id", str())
+        self._earnings: Union[List["Earning"]] = kwargs.get("earnings", None)
+        self._deductions: Union[List["Deduction"]] = kwargs.get("deductions", None)
+        self._taxes: Union[List["Tax"]] = kwargs.get("taxes", None)
+        self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
+        self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
 
     # Read only property getters
     @property

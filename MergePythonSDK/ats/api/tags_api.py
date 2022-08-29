@@ -74,7 +74,7 @@ class TagsApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                        },
+                },
                 'openapi_types': {
                     'created_after':
                         (datetime,),

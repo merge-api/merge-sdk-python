@@ -104,7 +104,7 @@ class BankInfoApi(object):
 
                         "ACCOUNT_TYPE": "account_type"
                     },
-                        },
+                },
                 'openapi_types': {
                     'account_type':
                         (str, none_type,),
@@ -225,7 +225,7 @@ class BankInfoApi(object):
 
                         "ACCOUNT_TYPE": "account_type"
                     },
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),

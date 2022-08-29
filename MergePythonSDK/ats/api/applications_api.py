@@ -74,7 +74,7 @@ class ApplicationsApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),
@@ -143,7 +143,7 @@ class ApplicationsApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                        },
+                },
                 'openapi_types': {
                     'application_endpoint_request':
                         (ApplicationEndpointRequest,),
@@ -256,7 +256,7 @@ class ApplicationsApi(object):
                         "JOB,REJECT_REASON": "job,reject_reason",
                         "REJECT_REASON": "reject_reason"
                     },
-                        },
+                },
                 'openapi_types': {
                     'candidate_id':
                         (str,),
@@ -366,7 +366,7 @@ class ApplicationsApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                        },
+                },
                 'openapi_types': {
                     'application_remote_template_id':
                         (str,),
@@ -455,7 +455,7 @@ class ApplicationsApi(object):
                         "JOB,REJECT_REASON": "job,reject_reason",
                         "REJECT_REASON": "reject_reason"
                     },
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),

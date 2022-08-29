@@ -104,13 +104,12 @@ class AccountDetailsAndActions(ModelNormal):
             'end_user_organization_name': (str,),  # noqa: E501
             'end_user_email_address': (str,),  # noqa: E501
             'webhook_listener_url': (str,),  # noqa: E501
-            'category': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'category': (CategoryEnum, str, none_type,),
             'status_detail': (str,),  # noqa: E501
             'end_user_origin_id': (str,),  # noqa: E501
             'is_duplicate': (bool, none_type,),  # noqa: E501
             'integration': (AccountDetailsAndActionsIntegration,),  # noqa: E501
         }
-
         return defined_types
 
     @cached_property
@@ -317,10 +316,10 @@ class AccountDetailsAndActions(ModelNormal):
         self.end_user_organization_name: Union[str] = end_user_organization_name
         self.end_user_email_address: Union[str] = end_user_email_address
         self.webhook_listener_url: Union[str] = webhook_listener_url
-        self.category: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("category", None)
-        self.status_detail: Optional[str] = kwargs.get("status_detail", str())
-        self.end_user_origin_id: Optional[str] = kwargs.get("end_user_origin_id", str())
-        self.is_duplicate: Optional[bool, none_type] = kwargs.get("is_duplicate", None)
-        self.integration: Optional["AccountDetailsAndActionsIntegration"] = kwargs.get("integration", None)
+        self.category: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("category", None)
+        self.status_detail: Union[str] = kwargs.get("status_detail", str())
+        self.end_user_origin_id: Union[str] = kwargs.get("end_user_origin_id", str())
+        self.is_duplicate: Union[bool, none_type] = kwargs.get("is_duplicate", None)
+        self.integration: Union["AccountDetailsAndActionsIntegration"] = kwargs.get("integration", None)
 
 

@@ -105,8 +105,6 @@ class ReportItem(ModelNormal):
             defined_types[key] = (*defined_types[key], expands_model)
         return defined_types
 
-        return defined_types
-
     @cached_property
     def discriminator():
         return None
@@ -279,10 +277,10 @@ class ReportItem(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id: Optional[str, none_type] = kwargs.get("remote_id", None)
-        self.name: Optional[str, none_type] = kwargs.get("name", None)
-        self.value: Optional[float, none_type] = kwargs.get("value", None)
-        self._sub_items: Optional[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type]] = kwargs.get("sub_items", dict())
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self.name: Union[str, none_type] = kwargs.get("name", None)
+        self.value: Union[float, none_type] = kwargs.get("value", None)
+        self._sub_items: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type]] = kwargs.get("sub_items", dict())
     @property
     def sub_items(self):
         return self._sub_items

@@ -117,8 +117,6 @@ class ApplicationRequest(ModelNormal):
             defined_types[key] = (*defined_types[key], expands_model)
         return defined_types
 
-        return defined_types
-
     @cached_property
     def discriminator():
         return None
@@ -326,18 +324,18 @@ class ApplicationRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id: Optional[str, none_type] = kwargs.get("remote_id", None)
-        self.candidate: Optional[str, none_type] = kwargs.get("candidate", None)
-        self.job: Optional[str, none_type] = kwargs.get("job", None)
-        self.applied_at: Optional[datetime, none_type] = kwargs.get("applied_at", None)
-        self.rejected_at: Optional[datetime, none_type] = kwargs.get("rejected_at", None)
-        self.source: Optional[str, none_type] = kwargs.get("source", None)
-        self.credited_to: Optional[str, none_type] = kwargs.get("credited_to", None)
-        self.current_stage: Optional[str, none_type] = kwargs.get("current_stage", None)
-        self.reject_reason: Optional[str, none_type] = kwargs.get("reject_reason", None)
-        self.custom_fields: Optional[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("custom_fields", None)
-        self.remote_template_id: Optional[str, none_type] = kwargs.get("remote_template_id", None)
-        self.integration_params: Optional[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
-        self.linked_account_params: Optional[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self.candidate: Union[str, none_type] = kwargs.get("candidate", None)
+        self.job: Union[str, none_type] = kwargs.get("job", None)
+        self.applied_at: Union[datetime, none_type] = kwargs.get("applied_at", None)
+        self.rejected_at: Union[datetime, none_type] = kwargs.get("rejected_at", None)
+        self.source: Union[str, none_type] = kwargs.get("source", None)
+        self.credited_to: Union[str, none_type] = kwargs.get("credited_to", None)
+        self.current_stage: Union[str, none_type] = kwargs.get("current_stage", None)
+        self.reject_reason: Union[str, none_type] = kwargs.get("reject_reason", None)
+        self.custom_fields: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("custom_fields", None)
+        self.remote_template_id: Union[str, none_type] = kwargs.get("remote_template_id", None)
+        self.integration_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
+        self.linked_account_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
 
 

@@ -99,7 +99,7 @@ class TicketRequest(ModelNormal):
             'name': (str, none_type,),  # noqa: E501
             'assignees': ([str, none_type],),  # noqa: E501
             'due_date': (datetime, none_type,),  # noqa: E501
-            'status': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'status': (TicketStatusEnum, str, none_type,),
             'description': (str, none_type,),  # noqa: E501
             'project': (str, none_type,),  # noqa: E501
             'ticket_type': (str, none_type,),  # noqa: E501
@@ -119,8 +119,6 @@ class TicketRequest(ModelNormal):
             if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
                 defined_types[key][0].insert(0, expands_model)
             defined_types[key] = (*defined_types[key], expands_model)
-        return defined_types
-
         return defined_types
 
     @cached_property
@@ -338,20 +336,20 @@ class TicketRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id: Optional[str, none_type] = kwargs.get("remote_id", None)
-        self.name: Optional[str, none_type] = kwargs.get("name", None)
-        self.assignees: Optional[List[str, none_type]] = kwargs.get("assignees", list())
-        self.due_date: Optional[datetime, none_type] = kwargs.get("due_date", None)
-        self.status: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
-        self.description: Optional[str, none_type] = kwargs.get("description", None)
-        self.project: Optional[str, none_type] = kwargs.get("project", None)
-        self.ticket_type: Optional[str, none_type] = kwargs.get("ticket_type", None)
-        self.account: Optional[str, none_type] = kwargs.get("account", None)
-        self.contact: Optional[str, none_type] = kwargs.get("contact", None)
-        self.parent_ticket: Optional[str, none_type] = kwargs.get("parent_ticket", None)
-        self.attachments: Optional[List[str, none_type]] = kwargs.get("attachments", list())
-        self.tags: Optional[List[str]] = kwargs.get("tags", list())
-        self.remote_created_at: Optional[datetime, none_type] = kwargs.get("remote_created_at", None)
-        self.remote_updated_at: Optional[datetime, none_type] = kwargs.get("remote_updated_at", None)
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self.name: Union[str, none_type] = kwargs.get("name", None)
+        self.assignees: Union[List[str, none_type]] = kwargs.get("assignees", list())
+        self.due_date: Union[datetime, none_type] = kwargs.get("due_date", None)
+        self.status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
+        self.description: Union[str, none_type] = kwargs.get("description", None)
+        self.project: Union[str, none_type] = kwargs.get("project", None)
+        self.ticket_type: Union[str, none_type] = kwargs.get("ticket_type", None)
+        self.account: Union[str, none_type] = kwargs.get("account", None)
+        self.contact: Union[str, none_type] = kwargs.get("contact", None)
+        self.parent_ticket: Union[str, none_type] = kwargs.get("parent_ticket", None)
+        self.attachments: Union[List[str, none_type]] = kwargs.get("attachments", list())
+        self.tags: Union[List[str]] = kwargs.get("tags", list())
+        self.remote_created_at: Union[datetime, none_type] = kwargs.get("remote_created_at", None)
+        self.remote_updated_at: Union[datetime, none_type] = kwargs.get("remote_updated_at", None)
 
 

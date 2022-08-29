@@ -130,8 +130,6 @@ class Lead(ModelNormal):
             defined_types[key] = (*defined_types[key], expands_model)
         return defined_types
 
-        return defined_types
-
     @cached_property
     def discriminator():
         return None
@@ -367,26 +365,26 @@ class Lead(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id: Optional[str, none_type] = kwargs.get("remote_id", None)
-        self.owner: Optional[str, none_type] = kwargs.get("owner", None)
-        self.lead_source: Optional[str, none_type] = kwargs.get("lead_source", None)
-        self.title: Optional[str, none_type] = kwargs.get("title", None)
-        self.company: Optional[str, none_type] = kwargs.get("company", None)
-        self.first_name: Optional[str, none_type] = kwargs.get("first_name", None)
-        self.last_name: Optional[str, none_type] = kwargs.get("last_name", None)
-        self.remote_updated_at: Optional[datetime, none_type] = kwargs.get("remote_updated_at", None)
-        self.remote_created_at: Optional[datetime, none_type] = kwargs.get("remote_created_at", None)
-        self.converted_date: Optional[datetime, none_type] = kwargs.get("converted_date", None)
-        self.converted_contact: Optional[str, none_type] = kwargs.get("converted_contact", None)
-        self.converted_account: Optional[str, none_type] = kwargs.get("converted_account", None)
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self.owner: Union[str, none_type] = kwargs.get("owner", None)
+        self.lead_source: Union[str, none_type] = kwargs.get("lead_source", None)
+        self.title: Union[str, none_type] = kwargs.get("title", None)
+        self.company: Union[str, none_type] = kwargs.get("company", None)
+        self.first_name: Union[str, none_type] = kwargs.get("first_name", None)
+        self.last_name: Union[str, none_type] = kwargs.get("last_name", None)
+        self.remote_updated_at: Union[datetime, none_type] = kwargs.get("remote_updated_at", None)
+        self.remote_created_at: Union[datetime, none_type] = kwargs.get("remote_created_at", None)
+        self.converted_date: Union[datetime, none_type] = kwargs.get("converted_date", None)
+        self.converted_contact: Union[str, none_type] = kwargs.get("converted_contact", None)
+        self.converted_account: Union[str, none_type] = kwargs.get("converted_account", None)
 
         # Read only properties
-        self._id: Optional[str] = kwargs.get("id", str())
-        self._addresses: Optional[List["Address"]] = kwargs.get("addresses", None)
-        self._email_addresses: Optional[List["EmailAddress"]] = kwargs.get("email_addresses", None)
-        self._phone_numbers: Optional[List["PhoneNumber"]] = kwargs.get("phone_numbers", None)
-        self._remote_data: Optional[List["RemoteData"]] = kwargs.get("remote_data", None)
-        self._remote_was_deleted: Optional[bool] = kwargs.get("remote_was_deleted", bool())
+        self._id: Union[str] = kwargs.get("id", str())
+        self._addresses: Union[List["Address"]] = kwargs.get("addresses", None)
+        self._email_addresses: Union[List["EmailAddress"]] = kwargs.get("email_addresses", None)
+        self._phone_numbers: Union[List["PhoneNumber"]] = kwargs.get("phone_numbers", None)
+        self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
+        self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
 
     # Read only property getters
     @property

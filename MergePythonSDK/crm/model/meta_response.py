@@ -100,7 +100,6 @@ class MetaResponse(ModelNormal):
             'has_required_linked_account_params': (bool,),  # noqa: E501
             'status': (LinkedAccountStatus,),  # noqa: E501
         }
-
         return defined_types
 
     @cached_property
@@ -281,6 +280,6 @@ class MetaResponse(ModelNormal):
         self.request_schema: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type]] = request_schema
         self.has_conditional_params: Union[bool] = has_conditional_params
         self.has_required_linked_account_params: Union[bool] = has_required_linked_account_params
-        self.status: Optional["LinkedAccountStatus"] = kwargs.get("status", None)
+        self.status: Union["LinkedAccountStatus"] = kwargs.get("status", None)
 
 

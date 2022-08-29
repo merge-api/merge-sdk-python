@@ -97,7 +97,6 @@ class TicketingAttachmentEndpointRequest(ModelNormal):
         defined_types = {
             'model': (AttachmentRequest,),  # noqa: E501
         }
-
         return defined_types
 
     @cached_property

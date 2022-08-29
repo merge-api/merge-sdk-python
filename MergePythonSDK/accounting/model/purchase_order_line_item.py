@@ -119,8 +119,6 @@ class PurchaseOrderLineItem(ModelNormal):
             defined_types[key] = (*defined_types[key], expands_model)
         return defined_types
 
-        return defined_types
-
     @cached_property
     def discriminator():
         return None
@@ -308,13 +306,13 @@ class PurchaseOrderLineItem(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.description: Optional[str, none_type] = kwargs.get("description", None)
-        self.unit_price: Optional[float, none_type] = kwargs.get("unit_price", None)
-        self.quantity: Optional[float, none_type] = kwargs.get("quantity", None)
-        self.item: Optional[str, none_type] = kwargs.get("item", None)
-        self.account: Optional[str, none_type] = kwargs.get("account", None)
-        self.tracking_category: Optional[str, none_type] = kwargs.get("tracking_category", None)
-        self.tax_amount: Optional[str, none_type] = kwargs.get("tax_amount", None)
-        self.total_line_amount: Optional[str, none_type] = kwargs.get("total_line_amount", None)
+        self.description: Union[str, none_type] = kwargs.get("description", None)
+        self.unit_price: Union[float, none_type] = kwargs.get("unit_price", None)
+        self.quantity: Union[float, none_type] = kwargs.get("quantity", None)
+        self.item: Union[str, none_type] = kwargs.get("item", None)
+        self.account: Union[str, none_type] = kwargs.get("account", None)
+        self.tracking_category: Union[str, none_type] = kwargs.get("tracking_category", None)
+        self.tax_amount: Union[str, none_type] = kwargs.get("tax_amount", None)
+        self.total_line_amount: Union[str, none_type] = kwargs.get("total_line_amount", None)
 
 

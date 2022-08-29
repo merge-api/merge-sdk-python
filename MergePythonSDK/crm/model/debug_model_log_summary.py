@@ -94,7 +94,6 @@ class DebugModelLogSummary(ModelNormal):
             'method': (str,),  # noqa: E501
             'status_code': (int,),  # noqa: E501
         }
-
         return defined_types
 
     @cached_property

@@ -98,7 +98,6 @@ class CandidateEndpointRequest(ModelNormal):
             'model': (CandidateRequest,),  # noqa: E501
             'remote_user_id': (str,),  # noqa: E501
         }
-
         return defined_types
 
     @cached_property

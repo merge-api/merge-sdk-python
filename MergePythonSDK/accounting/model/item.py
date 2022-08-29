@@ -101,7 +101,7 @@ class Item(ModelNormal):
             'remote_id': (str, none_type,),  # noqa: E501
             'remote_data': ([RemoteData], none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
-            'status': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'status': (Status7d1Enum, str, none_type,),
             'unit_price': (float, none_type,),  # noqa: E501
             'purchase_price': (float, none_type,),  # noqa: E501
             'purchase_account': (str, none_type,),  # noqa: E501
@@ -117,8 +117,6 @@ class Item(ModelNormal):
             if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
                 defined_types[key][0].insert(0, expands_model)
             defined_types[key] = (*defined_types[key], expands_model)
-        return defined_types
-
         return defined_types
 
     @cached_property
@@ -325,19 +323,19 @@ class Item(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id: Optional[str, none_type] = kwargs.get("remote_id", None)
-        self.name: Optional[str, none_type] = kwargs.get("name", None)
-        self.status: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
-        self.unit_price: Optional[float, none_type] = kwargs.get("unit_price", None)
-        self.purchase_price: Optional[float, none_type] = kwargs.get("purchase_price", None)
-        self.purchase_account: Optional[str, none_type] = kwargs.get("purchase_account", None)
-        self.sales_account: Optional[str, none_type] = kwargs.get("sales_account", None)
-        self.remote_updated_at: Optional[datetime, none_type] = kwargs.get("remote_updated_at", None)
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self.name: Union[str, none_type] = kwargs.get("name", None)
+        self.status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
+        self.unit_price: Union[float, none_type] = kwargs.get("unit_price", None)
+        self.purchase_price: Union[float, none_type] = kwargs.get("purchase_price", None)
+        self.purchase_account: Union[str, none_type] = kwargs.get("purchase_account", None)
+        self.sales_account: Union[str, none_type] = kwargs.get("sales_account", None)
+        self.remote_updated_at: Union[datetime, none_type] = kwargs.get("remote_updated_at", None)
 
         # Read only properties
-        self._id: Optional[str] = kwargs.get("id", str())
-        self._remote_data: Optional[List["RemoteData"]] = kwargs.get("remote_data", None)
-        self._remote_was_deleted: Optional[bool] = kwargs.get("remote_was_deleted", bool())
+        self._id: Union[str] = kwargs.get("id", str())
+        self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
+        self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
 
     # Read only property getters
     @property

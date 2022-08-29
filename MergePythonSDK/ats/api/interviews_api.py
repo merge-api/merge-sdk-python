@@ -103,7 +103,7 @@ class InterviewsApi(object):
 
                         "STATUS": "status"
                     },
-                        },
+                },
                 'openapi_types': {
                     'application_id':
                         (str,),
@@ -234,7 +234,7 @@ class InterviewsApi(object):
 
                         "STATUS": "status"
                     },
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),

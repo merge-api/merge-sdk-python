@@ -67,7 +67,7 @@ class PhoneNumbersApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),

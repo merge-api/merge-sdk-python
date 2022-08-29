@@ -107,10 +107,10 @@ class EEOC(ModelNormal):
             'remote_id': (str, none_type,),  # noqa: E501
             'candidate': (str, none_type,),  # noqa: E501
             'submitted_at': (datetime, none_type,),  # noqa: E501
-            'race': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
-            'gender': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
-            'veteran_status': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
-            'disability_status': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'race': (RaceEnum, str, none_type,),
+            'gender': (GenderEnum, str, none_type,),
+            'veteran_status': (VeteranStatusEnum, str, none_type,),
+            'disability_status': (DisabilityStatusEnum, str, none_type,),
             'remote_data': ([RemoteData], none_type,),  # noqa: E501
             'remote_was_deleted': (bool,),  # noqa: E501
         }
@@ -122,8 +122,6 @@ class EEOC(ModelNormal):
             if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
                 defined_types[key][0].insert(0, expands_model)
             defined_types[key] = (*defined_types[key], expands_model)
-        return defined_types
-
         return defined_types
 
     @cached_property
@@ -326,18 +324,18 @@ class EEOC(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id: Optional[str, none_type] = kwargs.get("remote_id", None)
-        self.candidate: Optional[str, none_type] = kwargs.get("candidate", None)
-        self.submitted_at: Optional[datetime, none_type] = kwargs.get("submitted_at", None)
-        self.race: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("race", None)
-        self.gender: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("gender", None)
-        self.veteran_status: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("veteran_status", None)
-        self.disability_status: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("disability_status", None)
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self.candidate: Union[str, none_type] = kwargs.get("candidate", None)
+        self.submitted_at: Union[datetime, none_type] = kwargs.get("submitted_at", None)
+        self.race: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("race", None)
+        self.gender: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("gender", None)
+        self.veteran_status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("veteran_status", None)
+        self.disability_status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("disability_status", None)
 
         # Read only properties
-        self._id: Optional[str] = kwargs.get("id", str())
-        self._remote_data: Optional[List["RemoteData"]] = kwargs.get("remote_data", None)
-        self._remote_was_deleted: Optional[bool] = kwargs.get("remote_was_deleted", bool())
+        self._id: Union[str] = kwargs.get("id", str())
+        self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
+        self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
 
     # Read only property getters
     @property

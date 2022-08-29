@@ -112,8 +112,6 @@ class Team(ModelNormal):
             defined_types[key] = (*defined_types[key], expands_model)
         return defined_types
 
-        return defined_types
-
     @cached_property
     def discriminator():
         return None
@@ -297,14 +295,14 @@ class Team(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id: Optional[str, none_type] = kwargs.get("remote_id", None)
-        self.name: Optional[str, none_type] = kwargs.get("name", None)
-        self.description: Optional[str, none_type] = kwargs.get("description", None)
-        self.remote_was_deleted: Optional[bool] = kwargs.get("remote_was_deleted", bool())
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self.name: Union[str, none_type] = kwargs.get("name", None)
+        self.description: Union[str, none_type] = kwargs.get("description", None)
+        self.remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
 
         # Read only properties
-        self._id: Optional[str] = kwargs.get("id", str())
-        self._remote_data: Optional[List["RemoteData"]] = kwargs.get("remote_data", None)
+        self._id: Union[str] = kwargs.get("id", str())
+        self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
 
     # Read only property getters
     @property

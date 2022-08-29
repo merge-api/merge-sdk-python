@@ -106,7 +106,6 @@ class ApplicationResponse(ModelNormal):
             'errors': ([ErrorValidationProblem],),  # noqa: E501
             'logs': ([DebugModeLog],),  # noqa: E501
         }
-
         return defined_types
 
     @cached_property
@@ -287,6 +286,6 @@ class ApplicationResponse(ModelNormal):
         self.model: Union["Application", {"candidate": "Candidate", "job": "Job", "credited_to": "RemoteUser", "current_stage": "JobInterviewStage", "reject_reason": "RejectReason"}] = model
         self.warnings: Union[List["WarningValidationProblem"]] = warnings
         self.errors: Union[List["ErrorValidationProblem"]] = errors
-        self.logs: Optional[List["DebugModeLog"]] = kwargs.get("logs", None)
+        self.logs: Union[List["DebugModeLog"]] = kwargs.get("logs", None)
 
 

@@ -97,7 +97,7 @@ class EngagementType(ModelNormal):
         defined_types = {
             'id': (str,),  # noqa: E501
             'remote_id': (str, none_type,),  # noqa: E501
-            'activity_type': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'activity_type': (ActivityTypeEnum, str, none_type,),
             'name': (str, none_type,),  # noqa: E501
         }
         expands_types = {}
@@ -108,8 +108,6 @@ class EngagementType(ModelNormal):
             if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
                 defined_types[key][0].insert(0, expands_model)
             defined_types[key] = (*defined_types[key], expands_model)
-        return defined_types
-
         return defined_types
 
     @cached_property
@@ -286,12 +284,12 @@ class EngagementType(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id: Optional[str, none_type] = kwargs.get("remote_id", None)
-        self.activity_type: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("activity_type", None)
-        self.name: Optional[str, none_type] = kwargs.get("name", None)
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self.activity_type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("activity_type", None)
+        self.name: Union[str, none_type] = kwargs.get("name", None)
 
         # Read only properties
-        self._id: Optional[str] = kwargs.get("id", str())
+        self._id: Union[str] = kwargs.get("id", str())
 
     # Read only property getters
     @property

@@ -81,7 +81,7 @@ class TeamsApi(object):
 
                         "PARENT_TEAM": "parent_team"
                     },
-                        },
+                },
                 'openapi_types': {
                     'created_after':
                         (datetime,),
@@ -180,7 +180,7 @@ class TeamsApi(object):
 
                         "PARENT_TEAM": "parent_team"
                     },
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),

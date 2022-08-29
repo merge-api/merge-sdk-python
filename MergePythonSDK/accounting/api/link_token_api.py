@@ -66,7 +66,7 @@ class LinkTokenApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                        },
+                },
                 'openapi_types': {
                     'end_user_details_request':
                         (EndUserDetailsRequest,),

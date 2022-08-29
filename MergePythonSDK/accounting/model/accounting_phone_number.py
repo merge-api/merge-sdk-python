@@ -103,8 +103,6 @@ class AccountingPhoneNumber(ModelNormal):
             defined_types[key] = (*defined_types[key], expands_model)
         return defined_types
 
-        return defined_types
-
     @cached_property
     def discriminator():
         return None
@@ -268,7 +266,7 @@ class AccountingPhoneNumber(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.number: Optional[str, none_type] = kwargs.get("number", None)
-        self.type: Optional[str, none_type] = kwargs.get("type", None)
+        self.number: Union[str, none_type] = kwargs.get("number", None)
+        self.type: Union[str, none_type] = kwargs.get("type", None)
 
 

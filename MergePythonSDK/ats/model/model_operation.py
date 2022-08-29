@@ -95,7 +95,6 @@ class ModelOperation(ModelNormal):
             'required_post_parameters': ([str],),  # noqa: E501
             'supported_fields': ([str],),  # noqa: E501
         }
-
         return defined_types
 
     @cached_property

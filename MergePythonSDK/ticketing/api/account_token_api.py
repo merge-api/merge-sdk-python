@@ -65,7 +65,7 @@ class AccountTokenApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                        },
+                },
                 'openapi_types': {
                     'public_token':
                         (str,),

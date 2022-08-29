@@ -75,7 +75,7 @@ class ProjectsApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                        },
+                },
                 'openapi_types': {
                     'created_after':
                         (datetime,),
@@ -160,7 +160,7 @@ class ProjectsApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),
@@ -225,7 +225,7 @@ class ProjectsApi(object):
 
                         "TEAMS": "teams"
                     },
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),

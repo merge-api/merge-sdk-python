@@ -66,7 +66,7 @@ class RegenerateKeyApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                        },
+                },
                 'openapi_types': {
                     'remote_key_for_regeneration_request':
                         (RemoteKeyForRegenerationRequest,),

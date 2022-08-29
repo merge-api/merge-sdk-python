@@ -115,8 +115,6 @@ class Contact(ModelNormal):
             defined_types[key] = (*defined_types[key], expands_model)
         return defined_types
 
-        return defined_types
-
     @cached_property
     def discriminator():
         return None
@@ -313,17 +311,17 @@ class Contact(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id: Optional[str, none_type] = kwargs.get("remote_id", None)
-        self.name: Optional[str, none_type] = kwargs.get("name", None)
-        self.email_address: Optional[str, none_type] = kwargs.get("email_address", None)
-        self.phone_number: Optional[str, none_type] = kwargs.get("phone_number", None)
-        self.details: Optional[str, none_type] = kwargs.get("details", None)
-        self.account: Optional[str, none_type] = kwargs.get("account", None)
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self.name: Union[str, none_type] = kwargs.get("name", None)
+        self.email_address: Union[str, none_type] = kwargs.get("email_address", None)
+        self.phone_number: Union[str, none_type] = kwargs.get("phone_number", None)
+        self.details: Union[str, none_type] = kwargs.get("details", None)
+        self.account: Union[str, none_type] = kwargs.get("account", None)
 
         # Read only properties
-        self._id: Optional[str] = kwargs.get("id", str())
-        self._remote_data: Optional[List["RemoteData"]] = kwargs.get("remote_data", None)
-        self._remote_was_deleted: Optional[bool] = kwargs.get("remote_was_deleted", bool())
+        self._id: Union[str] = kwargs.get("id", str())
+        self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
+        self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
 
     # Read only property getters
     @property

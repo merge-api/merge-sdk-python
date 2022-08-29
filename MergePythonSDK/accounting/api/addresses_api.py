@@ -73,7 +73,7 @@ class AddressesApi(object):
 
                         "TYPE": "type"
                     },
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),

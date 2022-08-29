@@ -97,7 +97,6 @@ class NoteEndpointRequest(ModelNormal):
         defined_types = {
             'model': (NoteRequest,),  # noqa: E501
         }
-
         return defined_types
 
     @cached_property

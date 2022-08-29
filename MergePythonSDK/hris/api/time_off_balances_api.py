@@ -99,7 +99,7 @@ class TimeOffBalancesApi(object):
 
                         "POLICY_TYPE": "policy_type"
                     },
-                        },
+                },
                 'openapi_types': {
                     'created_after':
                         (datetime,),
@@ -212,7 +212,7 @@ class TimeOffBalancesApi(object):
 
                         "POLICY_TYPE": "policy_type"
                     },
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),

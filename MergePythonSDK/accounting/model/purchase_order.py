@@ -104,7 +104,7 @@ class PurchaseOrder(ModelNormal):
             'id': (str,),  # noqa: E501
             'remote_id': (str, none_type,),  # noqa: E501
             'remote_data': ([RemoteData], none_type,),  # noqa: E501
-            'status': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'status': (PurchaseOrderStatusEnum, str, none_type,),
             'issue_date': (datetime, none_type,),  # noqa: E501
             'delivery_date': (datetime, none_type,),  # noqa: E501
             'delivery_address': (str, none_type,),  # noqa: E501
@@ -112,7 +112,7 @@ class PurchaseOrder(ModelNormal):
             'vendor': (str, none_type,),  # noqa: E501
             'memo': (str, none_type,),  # noqa: E501
             'total_amount': (float, none_type,),  # noqa: E501
-            'currency': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'currency': (CurrencyEnum, str, none_type,),
             'line_items': ([PurchaseOrderLineItem],),  # noqa: E501
             'remote_created_at': (datetime, none_type,),  # noqa: E501
             'remote_updated_at': (datetime, none_type,),  # noqa: E501
@@ -126,8 +126,6 @@ class PurchaseOrder(ModelNormal):
             if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
                 defined_types[key][0].insert(0, expands_model)
             defined_types[key] = (*defined_types[key], expands_model)
-        return defined_types
-
         return defined_types
 
     @cached_property
@@ -355,24 +353,24 @@ class PurchaseOrder(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id: Optional[str, none_type] = kwargs.get("remote_id", None)
-        self.status: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
-        self.issue_date: Optional[datetime, none_type] = kwargs.get("issue_date", None)
-        self.delivery_date: Optional[datetime, none_type] = kwargs.get("delivery_date", None)
-        self.delivery_address: Optional[str, none_type] = kwargs.get("delivery_address", None)
-        self.customer: Optional[str, none_type] = kwargs.get("customer", None)
-        self.vendor: Optional[str, none_type] = kwargs.get("vendor", None)
-        self.memo: Optional[str, none_type] = kwargs.get("memo", None)
-        self.total_amount: Optional[float, none_type] = kwargs.get("total_amount", None)
-        self.currency: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("currency", None)
-        self.remote_created_at: Optional[datetime, none_type] = kwargs.get("remote_created_at", None)
-        self.remote_updated_at: Optional[datetime, none_type] = kwargs.get("remote_updated_at", None)
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self.status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
+        self.issue_date: Union[datetime, none_type] = kwargs.get("issue_date", None)
+        self.delivery_date: Union[datetime, none_type] = kwargs.get("delivery_date", None)
+        self.delivery_address: Union[str, none_type] = kwargs.get("delivery_address", None)
+        self.customer: Union[str, none_type] = kwargs.get("customer", None)
+        self.vendor: Union[str, none_type] = kwargs.get("vendor", None)
+        self.memo: Union[str, none_type] = kwargs.get("memo", None)
+        self.total_amount: Union[float, none_type] = kwargs.get("total_amount", None)
+        self.currency: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("currency", None)
+        self.remote_created_at: Union[datetime, none_type] = kwargs.get("remote_created_at", None)
+        self.remote_updated_at: Union[datetime, none_type] = kwargs.get("remote_updated_at", None)
 
         # Read only properties
-        self._id: Optional[str] = kwargs.get("id", str())
-        self._remote_data: Optional[List["RemoteData"]] = kwargs.get("remote_data", None)
-        self._line_items: Optional[List["PurchaseOrderLineItem"]] = kwargs.get("line_items", None)
-        self._remote_was_deleted: Optional[bool] = kwargs.get("remote_was_deleted", bool())
+        self._id: Union[str] = kwargs.get("id", str())
+        self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
+        self._line_items: Union[List["PurchaseOrderLineItem"]] = kwargs.get("line_items", None)
+        self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
 
     # Read only property getters
     @property

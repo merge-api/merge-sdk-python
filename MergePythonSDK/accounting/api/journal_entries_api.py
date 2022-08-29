@@ -72,7 +72,7 @@ class JournalEntriesApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                        },
+                },
                 'openapi_types': {
                     'journal_entry_endpoint_request':
                         (JournalEntryEndpointRequest,),
@@ -150,7 +150,7 @@ class JournalEntriesApi(object):
                         "LINES,PAYMENTS": "lines,payments",
                         "PAYMENTS": "payments"
                     },
-                        },
+                },
                 'openapi_types': {
                     'created_after':
                         (datetime,),
@@ -235,7 +235,7 @@ class JournalEntriesApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                        },
+                },
                 'openapi_types': {
                 },
                 'attribute_map': {
@@ -292,7 +292,7 @@ class JournalEntriesApi(object):
                         "LINES,PAYMENTS": "lines,payments",
                         "PAYMENTS": "payments"
                     },
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),

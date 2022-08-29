@@ -101,7 +101,7 @@ class PayrollRunsApi(object):
                         "SIGN_ON_BONUS": "SIGN_ON_BONUS",
                         "TERMINATION": "TERMINATION"
                     },
-                        },
+                },
                 'openapi_types': {
                     'created_after':
                         (datetime,),
@@ -218,7 +218,7 @@ class PayrollRunsApi(object):
                         "STATE,RUN_TYPE": "run_state,run_type",
                         "TYPE": "run_type"
                     },
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),

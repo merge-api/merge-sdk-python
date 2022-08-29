@@ -122,8 +122,6 @@ class IncomeStatement(ModelNormal):
             defined_types[key] = (*defined_types[key], expands_model)
         return defined_types
 
-        return defined_types
-
     @cached_property
     def discriminator():
         return None
@@ -344,22 +342,22 @@ class IncomeStatement(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id: Optional[str, none_type] = kwargs.get("remote_id", None)
-        self.name: Optional[str, none_type] = kwargs.get("name", None)
-        self.start_period: Optional[datetime, none_type] = kwargs.get("start_period", None)
-        self.end_period: Optional[datetime, none_type] = kwargs.get("end_period", None)
-        self.gross_profit: Optional[float, none_type] = kwargs.get("gross_profit", None)
-        self.net_operating_income: Optional[float, none_type] = kwargs.get("net_operating_income", None)
-        self.net_income: Optional[float, none_type] = kwargs.get("net_income", None)
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self.name: Union[str, none_type] = kwargs.get("name", None)
+        self.start_period: Union[datetime, none_type] = kwargs.get("start_period", None)
+        self.end_period: Union[datetime, none_type] = kwargs.get("end_period", None)
+        self.gross_profit: Union[float, none_type] = kwargs.get("gross_profit", None)
+        self.net_operating_income: Union[float, none_type] = kwargs.get("net_operating_income", None)
+        self.net_income: Union[float, none_type] = kwargs.get("net_income", None)
 
         # Read only properties
-        self._id: Optional[str] = kwargs.get("id", str())
-        self._remote_data: Optional[List["RemoteData"]] = kwargs.get("remote_data", None)
-        self._income: Optional[List["ReportItem"]] = kwargs.get("income", None)
-        self._cost_of_sales: Optional[List["ReportItem"]] = kwargs.get("cost_of_sales", None)
-        self._operating_expenses: Optional[List["ReportItem"]] = kwargs.get("operating_expenses", None)
-        self._non_operating_expenses: Optional[List["ReportItem"]] = kwargs.get("non_operating_expenses", None)
-        self._remote_was_deleted: Optional[bool] = kwargs.get("remote_was_deleted", bool())
+        self._id: Union[str] = kwargs.get("id", str())
+        self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
+        self._income: Union[List["ReportItem"]] = kwargs.get("income", None)
+        self._cost_of_sales: Union[List["ReportItem"]] = kwargs.get("cost_of_sales", None)
+        self._operating_expenses: Union[List["ReportItem"]] = kwargs.get("operating_expenses", None)
+        self._non_operating_expenses: Union[List["ReportItem"]] = kwargs.get("non_operating_expenses", None)
+        self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
 
     # Read only property getters
     @property

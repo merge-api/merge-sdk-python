@@ -98,7 +98,6 @@ class ApplicationEndpointRequest(ModelNormal):
             'model': (ApplicationRequest,),  # noqa: E501
             'remote_user_id': (str,),  # noqa: E501
         }
-
         return defined_types
 
     @cached_property

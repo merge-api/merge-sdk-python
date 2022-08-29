@@ -81,7 +81,7 @@ class JobInterviewStagesApi(object):
 
                         "JOB": "job"
                     },
-                        },
+                },
                 'openapi_types': {
                     'created_after':
                         (datetime,),
@@ -180,7 +180,7 @@ class JobInterviewStagesApi(object):
 
                         "JOB": "job"
                     },
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),

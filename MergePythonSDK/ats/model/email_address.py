@@ -99,9 +99,8 @@ class EmailAddress(ModelNormal):
 
         defined_types = {
             'value': (str, none_type,),  # noqa: E501
-            'email_address_type': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'email_address_type': (EmailAddressTypeEnum, str, none_type,),
         }
-
         return defined_types
 
     @cached_property
@@ -267,7 +266,7 @@ class EmailAddress(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.value: Optional[str, none_type] = kwargs.get("value", None)
-        self.email_address_type: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("email_address_type", None)
+        self.value: Union[str, none_type] = kwargs.get("value", None)
+        self.email_address_type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("email_address_type", None)
 
 

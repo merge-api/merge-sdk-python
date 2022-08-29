@@ -101,7 +101,6 @@ class AvailableActions(ModelNormal):
             'passthrough_available': (bool,),  # noqa: E501
             'available_model_operations': ([ModelOperation],),  # noqa: E501
         }
-
         return defined_types
 
     @cached_property
@@ -277,6 +276,6 @@ class AvailableActions(ModelNormal):
 
         self.integration: Union["AccountIntegration"] = integration
         self.passthrough_available: Union[bool] = passthrough_available
-        self.available_model_operations: Optional[List["ModelOperation"]] = kwargs.get("available_model_operations", None)
+        self.available_model_operations: Union[List["ModelOperation"]] = kwargs.get("available_model_operations", None)
 
 

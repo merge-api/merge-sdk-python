@@ -105,11 +105,11 @@ class TimeOff(ModelNormal):
             'remote_id': (str, none_type,),  # noqa: E501
             'employee': (str, none_type,),  # noqa: E501
             'approver': (str, none_type,),  # noqa: E501
-            'status': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'status': (TimeOffStatusEnum, str, none_type,),
             'employee_note': (str, none_type,),  # noqa: E501
-            'units': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'units': (UnitsEnum, str, none_type,),
             'amount': (float, none_type,),  # noqa: E501
-            'request_type': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'request_type': (RequestTypeEnum, str, none_type,),
             'start_time': (datetime, none_type,),  # noqa: E501
             'end_time': (datetime, none_type,),  # noqa: E501
             'remote_data': ([RemoteData], none_type,),  # noqa: E501
@@ -123,8 +123,6 @@ class TimeOff(ModelNormal):
             if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
                 defined_types[key][0].insert(0, expands_model)
             defined_types[key] = (*defined_types[key], expands_model)
-        return defined_types
-
         return defined_types
 
     @cached_property
@@ -339,21 +337,21 @@ class TimeOff(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id: Optional[str, none_type] = kwargs.get("remote_id", None)
-        self.employee: Optional[str, none_type] = kwargs.get("employee", None)
-        self.approver: Optional[str, none_type] = kwargs.get("approver", None)
-        self.status: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
-        self.employee_note: Optional[str, none_type] = kwargs.get("employee_note", None)
-        self.units: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("units", None)
-        self.amount: Optional[float, none_type] = kwargs.get("amount", None)
-        self.request_type: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("request_type", None)
-        self.start_time: Optional[datetime, none_type] = kwargs.get("start_time", None)
-        self.end_time: Optional[datetime, none_type] = kwargs.get("end_time", None)
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self.employee: Union[str, none_type] = kwargs.get("employee", None)
+        self.approver: Union[str, none_type] = kwargs.get("approver", None)
+        self.status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
+        self.employee_note: Union[str, none_type] = kwargs.get("employee_note", None)
+        self.units: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("units", None)
+        self.amount: Union[float, none_type] = kwargs.get("amount", None)
+        self.request_type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("request_type", None)
+        self.start_time: Union[datetime, none_type] = kwargs.get("start_time", None)
+        self.end_time: Union[datetime, none_type] = kwargs.get("end_time", None)
 
         # Read only properties
-        self._id: Optional[str] = kwargs.get("id", str())
-        self._remote_data: Optional[List["RemoteData"]] = kwargs.get("remote_data", None)
-        self._remote_was_deleted: Optional[bool] = kwargs.get("remote_was_deleted", bool())
+        self._id: Union[str] = kwargs.get("id", str())
+        self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
+        self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
 
     # Read only property getters
     @property

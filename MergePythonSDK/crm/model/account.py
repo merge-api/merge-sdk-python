@@ -132,8 +132,6 @@ class Account(ModelNormal):
             defined_types[key] = (*defined_types[key], expands_model)
         return defined_types
 
-        return defined_types
-
     @cached_property
     def discriminator():
         return None
@@ -356,23 +354,23 @@ class Account(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id: Optional[str, none_type] = kwargs.get("remote_id", None)
-        self.owner: Optional[str, none_type] = kwargs.get("owner", None)
-        self.name: Optional[str, none_type] = kwargs.get("name", None)
-        self.description: Optional[str, none_type] = kwargs.get("description", None)
-        self.industry: Optional[str, none_type] = kwargs.get("industry", None)
-        self.website: Optional[str, none_type] = kwargs.get("website", None)
-        self.number_of_employees: Optional[int, none_type] = kwargs.get("number_of_employees", None)
-        self.last_activity_at: Optional[datetime, none_type] = kwargs.get("last_activity_at", None)
-        self.remote_updated_at: Optional[datetime, none_type] = kwargs.get("remote_updated_at", None)
-        self.remote_created_at: Optional[datetime, none_type] = kwargs.get("remote_created_at", None)
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self.owner: Union[str, none_type] = kwargs.get("owner", None)
+        self.name: Union[str, none_type] = kwargs.get("name", None)
+        self.description: Union[str, none_type] = kwargs.get("description", None)
+        self.industry: Union[str, none_type] = kwargs.get("industry", None)
+        self.website: Union[str, none_type] = kwargs.get("website", None)
+        self.number_of_employees: Union[int, none_type] = kwargs.get("number_of_employees", None)
+        self.last_activity_at: Union[datetime, none_type] = kwargs.get("last_activity_at", None)
+        self.remote_updated_at: Union[datetime, none_type] = kwargs.get("remote_updated_at", None)
+        self.remote_created_at: Union[datetime, none_type] = kwargs.get("remote_created_at", None)
 
         # Read only properties
-        self._id: Optional[str] = kwargs.get("id", str())
-        self._addresses: Optional[List["Address"]] = kwargs.get("addresses", None)
-        self._phone_numbers: Optional[List["PhoneNumber"]] = kwargs.get("phone_numbers", None)
-        self._remote_data: Optional[List["RemoteData"]] = kwargs.get("remote_data", None)
-        self._remote_was_deleted: Optional[bool] = kwargs.get("remote_was_deleted", bool())
+        self._id: Union[str] = kwargs.get("id", str())
+        self._addresses: Union[List["Address"]] = kwargs.get("addresses", None)
+        self._phone_numbers: Union[List["PhoneNumber"]] = kwargs.get("phone_numbers", None)
+        self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
+        self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
 
     # Read only property getters
     @property

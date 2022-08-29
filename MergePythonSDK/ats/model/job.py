@@ -104,7 +104,7 @@ class Job(ModelNormal):
             'name': (str, none_type,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
             'code': (str, none_type,),  # noqa: E501
-            'status': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'status': (JobStatusEnum, str, none_type,),
             'job_posting_urls': ([Url],),  # noqa: E501
             'remote_created_at': (datetime, none_type,),  # noqa: E501
             'remote_updated_at': (datetime, none_type,),  # noqa: E501
@@ -124,8 +124,6 @@ class Job(ModelNormal):
             if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
                 defined_types[key][0].insert(0, expands_model)
             defined_types[key] = (*defined_types[key], expands_model)
-        return defined_types
-
         return defined_types
 
     @cached_property
@@ -352,24 +350,24 @@ class Job(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id: Optional[str, none_type] = kwargs.get("remote_id", None)
-        self.name: Optional[str, none_type] = kwargs.get("name", None)
-        self.description: Optional[str, none_type] = kwargs.get("description", None)
-        self.code: Optional[str, none_type] = kwargs.get("code", None)
-        self.status: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
-        self.job_posting_urls: Optional[List["Url"]] = kwargs.get("job_posting_urls", None)
-        self.remote_created_at: Optional[datetime, none_type] = kwargs.get("remote_created_at", None)
-        self.remote_updated_at: Optional[datetime, none_type] = kwargs.get("remote_updated_at", None)
-        self.confidential: Optional[bool, none_type] = kwargs.get("confidential", None)
-        self.departments: Optional[List[str, none_type]] = kwargs.get("departments", list())
-        self.offices: Optional[List[str, none_type]] = kwargs.get("offices", list())
-        self.hiring_managers: Optional[List[str, none_type]] = kwargs.get("hiring_managers", list())
-        self.recruiters: Optional[List[str, none_type]] = kwargs.get("recruiters", list())
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self.name: Union[str, none_type] = kwargs.get("name", None)
+        self.description: Union[str, none_type] = kwargs.get("description", None)
+        self.code: Union[str, none_type] = kwargs.get("code", None)
+        self.status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
+        self.job_posting_urls: Union[List["Url"]] = kwargs.get("job_posting_urls", None)
+        self.remote_created_at: Union[datetime, none_type] = kwargs.get("remote_created_at", None)
+        self.remote_updated_at: Union[datetime, none_type] = kwargs.get("remote_updated_at", None)
+        self.confidential: Union[bool, none_type] = kwargs.get("confidential", None)
+        self.departments: Union[List[str, none_type]] = kwargs.get("departments", list())
+        self.offices: Union[List[str, none_type]] = kwargs.get("offices", list())
+        self.hiring_managers: Union[List[str, none_type]] = kwargs.get("hiring_managers", list())
+        self.recruiters: Union[List[str, none_type]] = kwargs.get("recruiters", list())
 
         # Read only properties
-        self._id: Optional[str] = kwargs.get("id", str())
-        self._remote_data: Optional[List["RemoteData"]] = kwargs.get("remote_data", None)
-        self._remote_was_deleted: Optional[bool] = kwargs.get("remote_was_deleted", bool())
+        self._id: Union[str] = kwargs.get("id", str())
+        self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
+        self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
 
     # Read only property getters
     @property

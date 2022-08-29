@@ -89,7 +89,7 @@ class ActivitiesApi(object):
                         "ACTIVITY_TYPE,VISIBILITY": "activity_type,visibility",
                         "VISIBILITY": "visibility"
                     },
-                        },
+                },
                 'openapi_types': {
                     'created_after':
                         (datetime,),
@@ -200,7 +200,7 @@ class ActivitiesApi(object):
                         "ACTIVITY_TYPE,VISIBILITY": "activity_type,visibility",
                         "VISIBILITY": "visibility"
                     },
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),

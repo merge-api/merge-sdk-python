@@ -107,8 +107,6 @@ class ExpenseLine(ModelNormal):
             defined_types[key] = (*defined_types[key], expands_model)
         return defined_types
 
-        return defined_types
-
     @cached_property
     def discriminator():
         return None
@@ -288,11 +286,11 @@ class ExpenseLine(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id: Optional[str, none_type] = kwargs.get("remote_id", None)
-        self.item: Optional[str, none_type] = kwargs.get("item", None)
-        self.net_amount: Optional[float, none_type] = kwargs.get("net_amount", None)
-        self.tracking_category: Optional[str, none_type] = kwargs.get("tracking_category", None)
-        self.account: Optional[str, none_type] = kwargs.get("account", None)
-        self.description: Optional[str, none_type] = kwargs.get("description", None)
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self.item: Union[str, none_type] = kwargs.get("item", None)
+        self.net_amount: Union[float, none_type] = kwargs.get("net_amount", None)
+        self.tracking_category: Union[str, none_type] = kwargs.get("tracking_category", None)
+        self.account: Union[str, none_type] = kwargs.get("account", None)
+        self.description: Union[str, none_type] = kwargs.get("description", None)
 
 

@@ -104,14 +104,14 @@ class Invoice(ModelNormal):
             'id': (str,),  # noqa: E501
             'remote_id': (str, none_type,),  # noqa: E501
             'remote_data': ([RemoteData], none_type,),  # noqa: E501
-            'type': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'type': (InvoiceTypeEnum, str, none_type,),
             'contact': (str, none_type,),  # noqa: E501
             'number': (str, none_type,),  # noqa: E501
             'issue_date': (datetime, none_type,),  # noqa: E501
             'due_date': (datetime, none_type,),  # noqa: E501
             'paid_on_date': (datetime, none_type,),  # noqa: E501
             'memo': (str, none_type,),  # noqa: E501
-            'currency': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'currency': (CurrencyEnum, str, none_type,),
             'total_discount': (float, none_type,),  # noqa: E501
             'sub_total': (float, none_type,),  # noqa: E501
             'total_tax_amount': (float, none_type,),  # noqa: E501
@@ -130,8 +130,6 @@ class Invoice(ModelNormal):
             if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
                 defined_types[key][0].insert(0, expands_model)
             defined_types[key] = (*defined_types[key], expands_model)
-        return defined_types
-
         return defined_types
 
     @cached_property
@@ -375,28 +373,28 @@ class Invoice(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id: Optional[str, none_type] = kwargs.get("remote_id", None)
-        self.type: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("type", None)
-        self.contact: Optional[str, none_type] = kwargs.get("contact", None)
-        self.number: Optional[str, none_type] = kwargs.get("number", None)
-        self.issue_date: Optional[datetime, none_type] = kwargs.get("issue_date", None)
-        self.due_date: Optional[datetime, none_type] = kwargs.get("due_date", None)
-        self.paid_on_date: Optional[datetime, none_type] = kwargs.get("paid_on_date", None)
-        self.memo: Optional[str, none_type] = kwargs.get("memo", None)
-        self.currency: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("currency", None)
-        self.total_discount: Optional[float, none_type] = kwargs.get("total_discount", None)
-        self.sub_total: Optional[float, none_type] = kwargs.get("sub_total", None)
-        self.total_tax_amount: Optional[float, none_type] = kwargs.get("total_tax_amount", None)
-        self.total_amount: Optional[float, none_type] = kwargs.get("total_amount", None)
-        self.balance: Optional[float, none_type] = kwargs.get("balance", None)
-        self.remote_updated_at: Optional[datetime, none_type] = kwargs.get("remote_updated_at", None)
-        self.payments: Optional[List[str, none_type]] = kwargs.get("payments", list())
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self.type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("type", None)
+        self.contact: Union[str, none_type] = kwargs.get("contact", None)
+        self.number: Union[str, none_type] = kwargs.get("number", None)
+        self.issue_date: Union[datetime, none_type] = kwargs.get("issue_date", None)
+        self.due_date: Union[datetime, none_type] = kwargs.get("due_date", None)
+        self.paid_on_date: Union[datetime, none_type] = kwargs.get("paid_on_date", None)
+        self.memo: Union[str, none_type] = kwargs.get("memo", None)
+        self.currency: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("currency", None)
+        self.total_discount: Union[float, none_type] = kwargs.get("total_discount", None)
+        self.sub_total: Union[float, none_type] = kwargs.get("sub_total", None)
+        self.total_tax_amount: Union[float, none_type] = kwargs.get("total_tax_amount", None)
+        self.total_amount: Union[float, none_type] = kwargs.get("total_amount", None)
+        self.balance: Union[float, none_type] = kwargs.get("balance", None)
+        self.remote_updated_at: Union[datetime, none_type] = kwargs.get("remote_updated_at", None)
+        self.payments: Union[List[str, none_type]] = kwargs.get("payments", list())
 
         # Read only properties
-        self._id: Optional[str] = kwargs.get("id", str())
-        self._remote_data: Optional[List["RemoteData"]] = kwargs.get("remote_data", None)
-        self._line_items: Optional[List["InvoiceLineItem"]] = kwargs.get("line_items", None)
-        self._remote_was_deleted: Optional[bool] = kwargs.get("remote_was_deleted", bool())
+        self._id: Union[str] = kwargs.get("id", str())
+        self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
+        self._line_items: Union[List["InvoiceLineItem"]] = kwargs.get("line_items", None)
+        self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
 
     # Read only property getters
     @property

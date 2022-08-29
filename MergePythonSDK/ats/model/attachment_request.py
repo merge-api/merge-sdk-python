@@ -102,7 +102,7 @@ class AttachmentRequest(ModelNormal):
             'file_name': (str, none_type,),  # noqa: E501
             'file_url': (str, none_type,),  # noqa: E501
             'candidate': (str, none_type,),  # noqa: E501
-            'attachment_type': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'attachment_type': (AttachmentTypeEnum, str, none_type,),
             'integration_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'linked_account_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
@@ -114,8 +114,6 @@ class AttachmentRequest(ModelNormal):
             if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
                 defined_types[key][0].insert(0, expands_model)
             defined_types[key] = (*defined_types[key], expands_model)
-        return defined_types
-
         return defined_types
 
     @cached_property
@@ -301,12 +299,12 @@ class AttachmentRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id: Optional[str, none_type] = kwargs.get("remote_id", None)
-        self.file_name: Optional[str, none_type] = kwargs.get("file_name", None)
-        self.file_url: Optional[str, none_type] = kwargs.get("file_url", None)
-        self.candidate: Optional[str, none_type] = kwargs.get("candidate", None)
-        self.attachment_type: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("attachment_type", None)
-        self.integration_params: Optional[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
-        self.linked_account_params: Optional[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self.file_name: Union[str, none_type] = kwargs.get("file_name", None)
+        self.file_url: Union[str, none_type] = kwargs.get("file_url", None)
+        self.candidate: Union[str, none_type] = kwargs.get("candidate", None)
+        self.attachment_type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("attachment_type", None)
+        self.integration_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
+        self.linked_account_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
 
 

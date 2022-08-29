@@ -72,7 +72,7 @@ class AttachmentsApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                        },
+                },
                 'openapi_types': {
                     'attachment_endpoint_request':
                         (AttachmentEndpointRequest,),
@@ -155,7 +155,7 @@ class AttachmentsApi(object):
 
                         "ATTACHMENT_TYPE": "attachment_type"
                     },
-                        },
+                },
                 'openapi_types': {
                     'candidate_id':
                         (str,),
@@ -248,7 +248,7 @@ class AttachmentsApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                        },
+                },
                 'openapi_types': {
                 },
                 'attribute_map': {
@@ -309,7 +309,7 @@ class AttachmentsApi(object):
 
                         "ATTACHMENT_TYPE": "attachment_type"
                     },
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),

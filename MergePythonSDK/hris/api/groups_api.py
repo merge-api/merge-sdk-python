@@ -80,7 +80,7 @@ class GroupsApi(object):
 
                         "TYPE": "type"
                     },
-                        },
+                },
                 'openapi_types': {
                     'created_after':
                         (datetime,),
@@ -175,7 +175,7 @@ class GroupsApi(object):
 
                         "TYPE": "type"
                     },
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),

@@ -103,7 +103,6 @@ class Issue(ModelNormal):
             'last_incident_time': (datetime, none_type,),  # noqa: E501
             'is_muted': (bool,),  # noqa: E501
         }
-
         return defined_types
 
     @cached_property
@@ -299,14 +298,14 @@ class Issue(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.error_description: Union[str] = error_description
-        self.status: Optional["IssueStatusEnum"] = kwargs.get("status", None)
-        self.first_incident_time: Optional[datetime, none_type] = kwargs.get("first_incident_time", None)
-        self.last_incident_time: Optional[datetime, none_type] = kwargs.get("last_incident_time", None)
+        self.status: Union["IssueStatusEnum"] = kwargs.get("status", None)
+        self.first_incident_time: Union[datetime, none_type] = kwargs.get("first_incident_time", None)
+        self.last_incident_time: Union[datetime, none_type] = kwargs.get("last_incident_time", None)
 
         # Read only properties
-        self._id: Optional[str] = kwargs.get("id", str())
-        self._end_user: Optional[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type]] = kwargs.get("end_user", dict())
-        self._is_muted: Optional[bool] = kwargs.get("is_muted", bool())
+        self._id: Union[str] = kwargs.get("id", str())
+        self._end_user: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type]] = kwargs.get("end_user", dict())
+        self._is_muted: Union[bool] = kwargs.get("is_muted", bool())
 
     # Read only property getters
     @property

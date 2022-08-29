@@ -98,7 +98,7 @@ class AccountDetails(ModelNormal):
             'id': (str,),  # noqa: E501
             'integration': (str,),  # noqa: E501
             'integration_slug': (str,),  # noqa: E501
-            'category': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'category': (CategoryEnum, str, none_type,),
             'end_user_origin_id': (str,),  # noqa: E501
             'end_user_organization_name': (str,),  # noqa: E501
             'end_user_email_address': (str,),  # noqa: E501
@@ -106,7 +106,6 @@ class AccountDetails(ModelNormal):
             'webhook_listener_url': (str,),  # noqa: E501
             'is_duplicate': (bool, none_type,),  # noqa: E501
         }
-
         return defined_types
 
     @cached_property
@@ -315,18 +314,18 @@ class AccountDetails(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.category: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("category", None)
+        self.category: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("category", None)
 
         # Read only properties
-        self._id: Optional[str] = kwargs.get("id", str())
-        self._integration: Optional[str] = kwargs.get("integration", str())
-        self._integration_slug: Optional[str] = kwargs.get("integration_slug", str())
-        self._end_user_origin_id: Optional[str] = kwargs.get("end_user_origin_id", str())
-        self._end_user_organization_name: Optional[str] = kwargs.get("end_user_organization_name", str())
-        self._end_user_email_address: Optional[str] = kwargs.get("end_user_email_address", str())
-        self._status: Optional[str] = kwargs.get("status", str())
-        self._webhook_listener_url: Optional[str] = kwargs.get("webhook_listener_url", str())
-        self._is_duplicate: Optional[bool, none_type] = kwargs.get("is_duplicate", None)
+        self._id: Union[str] = kwargs.get("id", str())
+        self._integration: Union[str] = kwargs.get("integration", str())
+        self._integration_slug: Union[str] = kwargs.get("integration_slug", str())
+        self._end_user_origin_id: Union[str] = kwargs.get("end_user_origin_id", str())
+        self._end_user_organization_name: Union[str] = kwargs.get("end_user_organization_name", str())
+        self._end_user_email_address: Union[str] = kwargs.get("end_user_email_address", str())
+        self._status: Union[str] = kwargs.get("status", str())
+        self._webhook_listener_url: Union[str] = kwargs.get("webhook_listener_url", str())
+        self._is_duplicate: Union[bool, none_type] = kwargs.get("is_duplicate", None)
 
     # Read only property getters
     @property

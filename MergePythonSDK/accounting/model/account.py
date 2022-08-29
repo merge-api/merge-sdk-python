@@ -106,11 +106,11 @@ class Account(ModelNormal):
             'remote_data': ([RemoteData], none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
-            'classification': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'classification': (ClassificationEnum, str, none_type,),
             'type': (str, none_type,),  # noqa: E501
-            'status': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'status': (AccountStatusEnum, str, none_type,),
             'current_balance': (float, none_type,),  # noqa: E501
-            'currency': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'currency': (CurrencyEnum, str, none_type,),
             'account_number': (str, none_type,),  # noqa: E501
             'remote_was_deleted': (bool,),  # noqa: E501
         }
@@ -122,8 +122,6 @@ class Account(ModelNormal):
             if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
                 defined_types[key][0].insert(0, expands_model)
             defined_types[key] = (*defined_types[key], expands_model)
-        return defined_types
-
         return defined_types
 
     @cached_property
@@ -334,20 +332,20 @@ class Account(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id: Optional[str, none_type] = kwargs.get("remote_id", None)
-        self.name: Optional[str, none_type] = kwargs.get("name", None)
-        self.description: Optional[str, none_type] = kwargs.get("description", None)
-        self.classification: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("classification", None)
-        self.type: Optional[str, none_type] = kwargs.get("type", None)
-        self.status: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
-        self.current_balance: Optional[float, none_type] = kwargs.get("current_balance", None)
-        self.currency: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("currency", None)
-        self.account_number: Optional[str, none_type] = kwargs.get("account_number", None)
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self.name: Union[str, none_type] = kwargs.get("name", None)
+        self.description: Union[str, none_type] = kwargs.get("description", None)
+        self.classification: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("classification", None)
+        self.type: Union[str, none_type] = kwargs.get("type", None)
+        self.status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
+        self.current_balance: Union[float, none_type] = kwargs.get("current_balance", None)
+        self.currency: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("currency", None)
+        self.account_number: Union[str, none_type] = kwargs.get("account_number", None)
 
         # Read only properties
-        self._id: Optional[str] = kwargs.get("id", str())
-        self._remote_data: Optional[List["RemoteData"]] = kwargs.get("remote_data", None)
-        self._remote_was_deleted: Optional[bool] = kwargs.get("remote_was_deleted", bool())
+        self._id: Union[str] = kwargs.get("id", str())
+        self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
+        self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
 
     # Read only property getters
     @property

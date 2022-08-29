@@ -82,7 +82,7 @@ class TasksApi(object):
                         "OWNER": "owner",
                         "OWNER,ACCOUNT": "owner,account"
                     },
-                        },
+                },
                 'openapi_types': {
                     'created_after':
                         (datetime,),
@@ -179,7 +179,7 @@ class TasksApi(object):
                         "OWNER": "owner",
                         "OWNER,ACCOUNT": "owner,account"
                     },
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),

@@ -95,7 +95,6 @@ class GenerateRemoteKeyRequest(ModelNormal):
         defined_types = {
             'name': (str,),  # noqa: E501
         }
-
         return defined_types
 
     @cached_property

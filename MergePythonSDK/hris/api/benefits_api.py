@@ -81,7 +81,7 @@ class BenefitsApi(object):
 
                         "EMPLOYEE": "employee"
                     },
-                        },
+                },
                 'openapi_types': {
                     'created_after':
                         (datetime,),
@@ -180,7 +180,7 @@ class BenefitsApi(object):
 
                         "EMPLOYEE": "employee"
                     },
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),

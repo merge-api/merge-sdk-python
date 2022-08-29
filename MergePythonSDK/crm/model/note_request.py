@@ -111,8 +111,6 @@ class NoteRequest(ModelNormal):
             defined_types[key] = (*defined_types[key], expands_model)
         return defined_types
 
-        return defined_types
-
     @cached_property
     def discriminator():
         return None
@@ -308,15 +306,15 @@ class NoteRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id: Optional[str, none_type] = kwargs.get("remote_id", None)
-        self.owner: Optional[str, none_type] = kwargs.get("owner", None)
-        self.content: Optional[str, none_type] = kwargs.get("content", None)
-        self.contact: Optional[str, none_type] = kwargs.get("contact", None)
-        self.account: Optional[str, none_type] = kwargs.get("account", None)
-        self.opportunity: Optional[str, none_type] = kwargs.get("opportunity", None)
-        self.remote_updated_at: Optional[datetime, none_type] = kwargs.get("remote_updated_at", None)
-        self.remote_created_at: Optional[datetime, none_type] = kwargs.get("remote_created_at", None)
-        self.integration_params: Optional[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
-        self.linked_account_params: Optional[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self.owner: Union[str, none_type] = kwargs.get("owner", None)
+        self.content: Union[str, none_type] = kwargs.get("content", None)
+        self.contact: Union[str, none_type] = kwargs.get("contact", None)
+        self.account: Union[str, none_type] = kwargs.get("account", None)
+        self.opportunity: Union[str, none_type] = kwargs.get("opportunity", None)
+        self.remote_updated_at: Union[datetime, none_type] = kwargs.get("remote_updated_at", None)
+        self.remote_created_at: Union[datetime, none_type] = kwargs.get("remote_created_at", None)
+        self.integration_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
+        self.linked_account_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
 
 

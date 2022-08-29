@@ -99,7 +99,6 @@ class DebugModeLog(ModelNormal):
             'dashboard_view': (str,),  # noqa: E501
             'log_summary': (DebugModelLogSummary,),  # noqa: E501
         }
-
         return defined_types
 
     @cached_property

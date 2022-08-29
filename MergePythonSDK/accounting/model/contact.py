@@ -107,7 +107,7 @@ class Contact(ModelNormal):
             'is_customer': (bool, none_type,),  # noqa: E501
             'email_address': (str, none_type,),  # noqa: E501
             'tax_number': (str, none_type,),  # noqa: E501
-            'status': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'status': (Status7d1Enum, str, none_type,),
             'currency': (str, none_type,),  # noqa: E501
             'remote_updated_at': (datetime, none_type,),  # noqa: E501
             'addresses': ([str, none_type],),  # noqa: E501
@@ -122,8 +122,6 @@ class Contact(ModelNormal):
             if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
                 defined_types[key][0].insert(0, expands_model)
             defined_types[key] = (*defined_types[key], expands_model)
-        return defined_types
-
         return defined_types
 
     @cached_property
@@ -342,22 +340,22 @@ class Contact(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id: Optional[str, none_type] = kwargs.get("remote_id", None)
-        self.name: Optional[str, none_type] = kwargs.get("name", None)
-        self.is_supplier: Optional[bool, none_type] = kwargs.get("is_supplier", None)
-        self.is_customer: Optional[bool, none_type] = kwargs.get("is_customer", None)
-        self.email_address: Optional[str, none_type] = kwargs.get("email_address", None)
-        self.tax_number: Optional[str, none_type] = kwargs.get("tax_number", None)
-        self.status: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
-        self.currency: Optional[str, none_type] = kwargs.get("currency", None)
-        self.remote_updated_at: Optional[datetime, none_type] = kwargs.get("remote_updated_at", None)
-        self.addresses: Optional[List[str, none_type]] = kwargs.get("addresses", list())
-        self.phone_numbers: Optional[List["AccountingPhoneNumber"]] = kwargs.get("phone_numbers", None)
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self.name: Union[str, none_type] = kwargs.get("name", None)
+        self.is_supplier: Union[bool, none_type] = kwargs.get("is_supplier", None)
+        self.is_customer: Union[bool, none_type] = kwargs.get("is_customer", None)
+        self.email_address: Union[str, none_type] = kwargs.get("email_address", None)
+        self.tax_number: Union[str, none_type] = kwargs.get("tax_number", None)
+        self.status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
+        self.currency: Union[str, none_type] = kwargs.get("currency", None)
+        self.remote_updated_at: Union[datetime, none_type] = kwargs.get("remote_updated_at", None)
+        self.addresses: Union[List[str, none_type]] = kwargs.get("addresses", list())
+        self.phone_numbers: Union[List["AccountingPhoneNumber"]] = kwargs.get("phone_numbers", None)
 
         # Read only properties
-        self._id: Optional[str] = kwargs.get("id", str())
-        self._remote_data: Optional[List["RemoteData"]] = kwargs.get("remote_data", None)
-        self._remote_was_deleted: Optional[bool] = kwargs.get("remote_was_deleted", bool())
+        self._id: Union[str] = kwargs.get("id", str())
+        self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
+        self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
 
     # Read only property getters
     @property

@@ -67,7 +67,7 @@ class WebhookReceiversApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                        },
+                },
                 'openapi_types': {
                     'webhook_receiver_request':
                         (WebhookReceiverRequest,),
@@ -119,7 +119,7 @@ class WebhookReceiversApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                        },
+                },
                 'openapi_types': {
                 },
                 'attribute_map': {

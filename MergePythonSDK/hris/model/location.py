@@ -108,8 +108,8 @@ class Location(ModelNormal):
             'city': (str, none_type,),  # noqa: E501
             'state': (str, none_type,),  # noqa: E501
             'zip_code': (str, none_type,),  # noqa: E501
-            'country': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
-            'location_type': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'country': (CountryEnum, str, none_type,),
+            'location_type': (LocationTypeEnum, str, none_type,),
             'remote_data': ([RemoteData], none_type,),  # noqa: E501
             'remote_was_deleted': (bool,),  # noqa: E501
         }
@@ -121,8 +121,6 @@ class Location(ModelNormal):
             if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
                 defined_types[key][0].insert(0, expands_model)
             defined_types[key] = (*defined_types[key], expands_model)
-        return defined_types
-
         return defined_types
 
     @cached_property
@@ -337,21 +335,21 @@ class Location(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id: Optional[str, none_type] = kwargs.get("remote_id", None)
-        self.name: Optional[str, none_type] = kwargs.get("name", None)
-        self.phone_number: Optional[str, none_type] = kwargs.get("phone_number", None)
-        self.street_1: Optional[str, none_type] = kwargs.get("street_1", None)
-        self.street_2: Optional[str, none_type] = kwargs.get("street_2", None)
-        self.city: Optional[str, none_type] = kwargs.get("city", None)
-        self.state: Optional[str, none_type] = kwargs.get("state", None)
-        self.zip_code: Optional[str, none_type] = kwargs.get("zip_code", None)
-        self.country: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("country", None)
-        self.location_type: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("location_type", None)
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self.name: Union[str, none_type] = kwargs.get("name", None)
+        self.phone_number: Union[str, none_type] = kwargs.get("phone_number", None)
+        self.street_1: Union[str, none_type] = kwargs.get("street_1", None)
+        self.street_2: Union[str, none_type] = kwargs.get("street_2", None)
+        self.city: Union[str, none_type] = kwargs.get("city", None)
+        self.state: Union[str, none_type] = kwargs.get("state", None)
+        self.zip_code: Union[str, none_type] = kwargs.get("zip_code", None)
+        self.country: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("country", None)
+        self.location_type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("location_type", None)
 
         # Read only properties
-        self._id: Optional[str] = kwargs.get("id", str())
-        self._remote_data: Optional[List["RemoteData"]] = kwargs.get("remote_data", None)
-        self._remote_was_deleted: Optional[bool] = kwargs.get("remote_was_deleted", bool())
+        self._id: Union[str] = kwargs.get("id", str())
+        self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
+        self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
 
     # Read only property getters
     @property

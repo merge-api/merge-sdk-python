@@ -97,7 +97,6 @@ class TicketEndpointRequest(ModelNormal):
         defined_types = {
             'model': (TicketRequest,),  # noqa: E501
         }
-
         return defined_types
 
     @cached_property

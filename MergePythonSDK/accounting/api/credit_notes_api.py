@@ -88,7 +88,7 @@ class CreditNotesApi(object):
                         "STATUS,TYPE": "status,type",
                         "TYPE": "type"
                     },
-                        },
+                },
                 'openapi_types': {
                     'created_after':
                         (datetime,),
@@ -195,7 +195,7 @@ class CreditNotesApi(object):
                         "STATUS,TYPE": "status,type",
                         "TYPE": "type"
                     },
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),

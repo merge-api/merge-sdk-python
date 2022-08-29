@@ -109,11 +109,10 @@ class MultipartFormFieldRequest(ModelNormal):
         defined_types = {
             'name': (str,),  # noqa: E501
             'data': (str,),  # noqa: E501
-            'encoding': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'encoding': (EncodingEnum, str, none_type,),
             'file_name': (str, none_type,),  # noqa: E501
             'content_type': (str, none_type,),  # noqa: E501
         }
-
         return defined_types
 
     @cached_property
@@ -297,8 +296,8 @@ class MultipartFormFieldRequest(ModelNormal):
 
         self.name: Union[str] = name
         self.data: Union[str] = data
-        self.encoding: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("encoding", None)
-        self.file_name: Optional[str, none_type] = kwargs.get("file_name", None)
-        self.content_type: Optional[str, none_type] = kwargs.get("content_type", None)
+        self.encoding: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("encoding", None)
+        self.file_name: Union[str, none_type] = kwargs.get("file_name", None)
+        self.content_type: Union[str, none_type] = kwargs.get("content_type", None)
 
 

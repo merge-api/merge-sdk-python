@@ -93,7 +93,6 @@ class MaritalStatusEnum(ModelNormal):
         defined_types = {
             'value': (str,),
         }
-
         return defined_types
 
     @cached_property

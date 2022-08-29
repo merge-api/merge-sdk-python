@@ -101,8 +101,8 @@ class PayrollRun(ModelNormal):
         defined_types = {
             'id': (str,),  # noqa: E501
             'remote_id': (str, none_type,),  # noqa: E501
-            'run_state': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
-            'run_type': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'run_state': (RunStateEnum, str, none_type,),
+            'run_type': (RunTypeEnum, str, none_type,),
             'start_date': (datetime, none_type,),  # noqa: E501
             'end_date': (datetime, none_type,),  # noqa: E501
             'check_date': (datetime, none_type,),  # noqa: E501
@@ -117,8 +117,6 @@ class PayrollRun(ModelNormal):
             if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
                 defined_types[key][0].insert(0, expands_model)
             defined_types[key] = (*defined_types[key], expands_model)
-        return defined_types
-
         return defined_types
 
     @cached_property
@@ -317,17 +315,17 @@ class PayrollRun(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id: Optional[str, none_type] = kwargs.get("remote_id", None)
-        self.run_state: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("run_state", None)
-        self.run_type: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("run_type", None)
-        self.start_date: Optional[datetime, none_type] = kwargs.get("start_date", None)
-        self.end_date: Optional[datetime, none_type] = kwargs.get("end_date", None)
-        self.check_date: Optional[datetime, none_type] = kwargs.get("check_date", None)
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self.run_state: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("run_state", None)
+        self.run_type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("run_type", None)
+        self.start_date: Union[datetime, none_type] = kwargs.get("start_date", None)
+        self.end_date: Union[datetime, none_type] = kwargs.get("end_date", None)
+        self.check_date: Union[datetime, none_type] = kwargs.get("check_date", None)
 
         # Read only properties
-        self._id: Optional[str] = kwargs.get("id", str())
-        self._remote_data: Optional[List["RemoteData"]] = kwargs.get("remote_data", None)
-        self._remote_was_deleted: Optional[bool] = kwargs.get("remote_was_deleted", bool())
+        self._id: Union[str] = kwargs.get("id", str())
+        self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
+        self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
 
     # Read only property getters
     @property

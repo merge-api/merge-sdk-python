@@ -119,8 +119,6 @@ class BalanceSheet(ModelNormal):
             defined_types[key] = (*defined_types[key], expands_model)
         return defined_types
 
-        return defined_types
-
     @cached_property
     def discriminator():
         return None
@@ -328,19 +326,19 @@ class BalanceSheet(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id: Optional[str, none_type] = kwargs.get("remote_id", None)
-        self.name: Optional[str, none_type] = kwargs.get("name", None)
-        self.date: Optional[datetime, none_type] = kwargs.get("date", None)
-        self.net_assets: Optional[float, none_type] = kwargs.get("net_assets", None)
-        self.remote_generated_at: Optional[datetime, none_type] = kwargs.get("remote_generated_at", None)
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self.name: Union[str, none_type] = kwargs.get("name", None)
+        self.date: Union[datetime, none_type] = kwargs.get("date", None)
+        self.net_assets: Union[float, none_type] = kwargs.get("net_assets", None)
+        self.remote_generated_at: Union[datetime, none_type] = kwargs.get("remote_generated_at", None)
 
         # Read only properties
-        self._id: Optional[str] = kwargs.get("id", str())
-        self._remote_data: Optional[List["RemoteData"]] = kwargs.get("remote_data", None)
-        self._assets: Optional[List["ReportItem"]] = kwargs.get("assets", None)
-        self._liabilities: Optional[List["ReportItem"]] = kwargs.get("liabilities", None)
-        self._equity: Optional[List["ReportItem"]] = kwargs.get("equity", None)
-        self._remote_was_deleted: Optional[bool] = kwargs.get("remote_was_deleted", bool())
+        self._id: Union[str] = kwargs.get("id", str())
+        self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
+        self._assets: Union[List["ReportItem"]] = kwargs.get("assets", None)
+        self._liabilities: Union[List["ReportItem"]] = kwargs.get("liabilities", None)
+        self._equity: Union[List["ReportItem"]] = kwargs.get("equity", None)
+        self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
 
     # Read only property getters
     @property

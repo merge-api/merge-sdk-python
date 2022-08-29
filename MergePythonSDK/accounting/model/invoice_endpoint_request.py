@@ -97,7 +97,6 @@ class InvoiceEndpointRequest(ModelNormal):
         defined_types = {
             'model': (InvoiceRequest,),  # noqa: E501
         }
-
         return defined_types
 
     @cached_property

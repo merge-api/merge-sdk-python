@@ -72,7 +72,7 @@ class AccountsApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                        },
+                },
                 'openapi_types': {
                     'crm_account_endpoint_request':
                         (CRMAccountEndpointRequest,),
@@ -149,7 +149,7 @@ class AccountsApi(object):
 
                         "OWNER": "owner"
                     },
-                        },
+                },
                 'openapi_types': {
                     'created_after':
                         (datetime,),
@@ -238,7 +238,7 @@ class AccountsApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                        },
+                },
                 'openapi_types': {
                 },
                 'attribute_map': {
@@ -293,7 +293,7 @@ class AccountsApi(object):
 
                         "OWNER": "owner"
                     },
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),

@@ -110,13 +110,13 @@ class Employment(ModelNormal):
             'employee': (str, none_type,),  # noqa: E501
             'job_title': (str, none_type,),  # noqa: E501
             'pay_rate': (float, none_type,),  # noqa: E501
-            'pay_period': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
-            'pay_frequency': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
-            'pay_currency': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'pay_period': (PayPeriodEnum, str, none_type,),
+            'pay_frequency': (PayFrequencyEnum, str, none_type,),
+            'pay_currency': (PayCurrencyEnum, str, none_type,),
             'pay_group': (str, none_type,),  # noqa: E501
-            'flsa_status': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'flsa_status': (FlsaStatusEnum, str, none_type,),
             'effective_date': (datetime, none_type,),  # noqa: E501
-            'employment_type': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'employment_type': (EmploymentTypeEnum, str, none_type,),
             'remote_data': ([RemoteData], none_type,),  # noqa: E501
             'remote_was_deleted': (bool,),  # noqa: E501
         }
@@ -128,8 +128,6 @@ class Employment(ModelNormal):
             if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
                 defined_types[key][0].insert(0, expands_model)
             defined_types[key] = (*defined_types[key], expands_model)
-        return defined_types
-
         return defined_types
 
     @cached_property
@@ -348,22 +346,22 @@ class Employment(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id: Optional[str, none_type] = kwargs.get("remote_id", None)
-        self.employee: Optional[str, none_type] = kwargs.get("employee", None)
-        self.job_title: Optional[str, none_type] = kwargs.get("job_title", None)
-        self.pay_rate: Optional[float, none_type] = kwargs.get("pay_rate", None)
-        self.pay_period: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("pay_period", None)
-        self.pay_frequency: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("pay_frequency", None)
-        self.pay_currency: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("pay_currency", None)
-        self.pay_group: Optional[str, none_type] = kwargs.get("pay_group", None)
-        self.flsa_status: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("flsa_status", None)
-        self.effective_date: Optional[datetime, none_type] = kwargs.get("effective_date", None)
-        self.employment_type: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("employment_type", None)
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self.employee: Union[str, none_type] = kwargs.get("employee", None)
+        self.job_title: Union[str, none_type] = kwargs.get("job_title", None)
+        self.pay_rate: Union[float, none_type] = kwargs.get("pay_rate", None)
+        self.pay_period: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("pay_period", None)
+        self.pay_frequency: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("pay_frequency", None)
+        self.pay_currency: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("pay_currency", None)
+        self.pay_group: Union[str, none_type] = kwargs.get("pay_group", None)
+        self.flsa_status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("flsa_status", None)
+        self.effective_date: Union[datetime, none_type] = kwargs.get("effective_date", None)
+        self.employment_type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("employment_type", None)
 
         # Read only properties
-        self._id: Optional[str] = kwargs.get("id", str())
-        self._remote_data: Optional[List["RemoteData"]] = kwargs.get("remote_data", None)
-        self._remote_was_deleted: Optional[bool] = kwargs.get("remote_was_deleted", bool())
+        self._id: Union[str] = kwargs.get("id", str())
+        self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
+        self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
 
     # Read only property getters
     @property

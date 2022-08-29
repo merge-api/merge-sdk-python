@@ -84,7 +84,7 @@ class PaymentsApi(object):
                         "CONTACT": "contact",
                         "CONTACT,ACCOUNT": "contact,account"
                     },
-                        },
+                },
                 'openapi_types': {
                     'account_id':
                         (str,),
@@ -189,7 +189,7 @@ class PaymentsApi(object):
                         "CONTACT": "contact",
                         "CONTACT,ACCOUNT": "contact,account"
                     },
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),

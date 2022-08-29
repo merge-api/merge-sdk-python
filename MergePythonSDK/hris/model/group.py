@@ -101,7 +101,7 @@ class Group(ModelNormal):
             'remote_id': (str, none_type,),  # noqa: E501
             'parent_group': (str, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
-            'type': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'type': (GroupTypeEnum, str, none_type,),
             'remote_data': ([RemoteData], none_type,),  # noqa: E501
             'remote_was_deleted': (bool,),  # noqa: E501
         }
@@ -113,8 +113,6 @@ class Group(ModelNormal):
             if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
                 defined_types[key][0].insert(0, expands_model)
             defined_types[key] = (*defined_types[key], expands_model)
-        return defined_types
-
         return defined_types
 
     @cached_property
@@ -305,15 +303,15 @@ class Group(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id: Optional[str, none_type] = kwargs.get("remote_id", None)
-        self.parent_group: Optional[str, none_type] = kwargs.get("parent_group", None)
-        self.name: Optional[str, none_type] = kwargs.get("name", None)
-        self.type: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("type", None)
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self.parent_group: Union[str, none_type] = kwargs.get("parent_group", None)
+        self.name: Union[str, none_type] = kwargs.get("name", None)
+        self.type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("type", None)
 
         # Read only properties
-        self._id: Optional[str] = kwargs.get("id", str())
-        self._remote_data: Optional[List["RemoteData"]] = kwargs.get("remote_data", None)
-        self._remote_was_deleted: Optional[bool] = kwargs.get("remote_was_deleted", bool())
+        self._id: Union[str] = kwargs.get("id", str())
+        self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
+        self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
 
     # Read only property getters
     @property

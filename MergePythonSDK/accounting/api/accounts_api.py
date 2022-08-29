@@ -82,7 +82,7 @@ class AccountsApi(object):
                         "CLASSIFICATION,STATUS": "classification,status",
                         "STATUS": "status"
                     },
-                        },
+                },
                 'openapi_types': {
                     'created_after':
                         (datetime,),
@@ -179,7 +179,7 @@ class AccountsApi(object):
                         "CLASSIFICATION,STATUS": "classification,status",
                         "STATUS": "status"
                     },
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),

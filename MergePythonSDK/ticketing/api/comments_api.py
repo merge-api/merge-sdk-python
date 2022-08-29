@@ -72,7 +72,7 @@ class CommentsApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                        },
+                },
                 'openapi_types': {
                     'comment_endpoint_request':
                         (CommentEndpointRequest,),
@@ -155,7 +155,7 @@ class CommentsApi(object):
                         "USER,CONTACT,TICKET": "user,contact,ticket",
                         "USER,TICKET": "user,ticket"
                     },
-                        },
+                },
                 'openapi_types': {
                     'created_after':
                         (datetime,),
@@ -244,7 +244,7 @@ class CommentsApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                        },
+                },
                 'openapi_types': {
                 },
                 'attribute_map': {
@@ -305,7 +305,7 @@ class CommentsApi(object):
                         "USER,CONTACT,TICKET": "user,contact,ticket",
                         "USER,TICKET": "user,ticket"
                     },
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),

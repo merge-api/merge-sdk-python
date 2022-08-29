@@ -86,7 +86,7 @@ class LinkedAccountsApi(object):
                         "HRIS": "hris",
                         "TICKETING": "ticketing"
                     },
-                        },
+                },
                 'openapi_types': {
                     'category':
                         (str, none_type,),

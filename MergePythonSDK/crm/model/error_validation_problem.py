@@ -100,7 +100,6 @@ class ErrorValidationProblem(ModelNormal):
             'problem_type': (str,),  # noqa: E501
             'source': (ValidationProblemSource,),  # noqa: E501
         }
-
         return defined_types
 
     @cached_property
@@ -281,6 +280,6 @@ class ErrorValidationProblem(ModelNormal):
         self.title: Union[str] = title
         self.detail: Union[str] = detail
         self.problem_type: Union[str] = problem_type
-        self.source: Optional["ValidationProblemSource"] = kwargs.get("source", None)
+        self.source: Union["ValidationProblemSource"] = kwargs.get("source", None)
 
 

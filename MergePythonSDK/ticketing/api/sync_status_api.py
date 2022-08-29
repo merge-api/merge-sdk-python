@@ -66,7 +66,7 @@ class SyncStatusApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                        },
+                },
                 'openapi_types': {
                     'cursor':
                         (str,),

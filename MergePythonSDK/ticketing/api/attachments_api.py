@@ -72,7 +72,7 @@ class AttachmentsApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                        },
+                },
                 'openapi_types': {
                     'ticketing_attachment_endpoint_request':
                         (TicketingAttachmentEndpointRequest,),
@@ -149,7 +149,7 @@ class AttachmentsApi(object):
 
                         "TICKET": "ticket"
                     },
-                        },
+                },
                 'openapi_types': {
                     'created_after':
                         (datetime,),
@@ -238,7 +238,7 @@ class AttachmentsApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                        },
+                },
                 'openapi_types': {
                 },
                 'attribute_map': {
@@ -293,7 +293,7 @@ class AttachmentsApi(object):
 
                         "TICKET": "ticket"
                     },
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),

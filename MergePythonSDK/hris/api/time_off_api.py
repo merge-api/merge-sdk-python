@@ -72,7 +72,7 @@ class TimeOffApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                        },
+                },
                 'openapi_types': {
                     'time_off_endpoint_request':
                         (TimeOffEndpointRequest,),
@@ -187,7 +187,7 @@ class TimeOffApi(object):
                         "DELETED": "DELETED",
                         "REQUESTED": "REQUESTED"
                     },
-                        },
+                },
                 'openapi_types': {
                     'approver_id':
                         (str,),
@@ -292,7 +292,7 @@ class TimeOffApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                        },
+                },
                 'openapi_types': {
                 },
                 'attribute_map': {
@@ -361,7 +361,7 @@ class TimeOffApi(object):
                         "STATUS,UNITS": "status,units",
                         "UNITS": "units"
                     },
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),

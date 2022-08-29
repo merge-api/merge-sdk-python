@@ -67,7 +67,7 @@ class PassthroughApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                        },
+                },
                 'openapi_types': {
                     'data_passthrough_request':
                         (DataPassthroughRequest,),

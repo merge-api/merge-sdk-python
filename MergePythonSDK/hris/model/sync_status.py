@@ -97,12 +97,11 @@ class SyncStatus(ModelNormal):
         defined_types = {
             'model_name': (str,),  # noqa: E501
             'model_id': (str,),  # noqa: E501
-            'last_sync_start': (datetime,),  # noqa: E501
-            'next_sync_start': (datetime,),  # noqa: E501
             'status': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
             'is_initial_sync': (bool,),  # noqa: E501
+            'last_sync_start': (datetime,),  # noqa: E501
+            'next_sync_start': (datetime,),  # noqa: E501
         }
-
         return defined_types
 
     @cached_property
@@ -113,10 +112,10 @@ class SyncStatus(ModelNormal):
     attribute_map = {
         'model_name': 'model_name',  # noqa: E501
         'model_id': 'model_id',  # noqa: E501
-        'last_sync_start': 'last_sync_start',  # noqa: E501
-        'next_sync_start': 'next_sync_start',  # noqa: E501
         'status': 'status',  # noqa: E501
         'is_initial_sync': 'is_initial_sync',  # noqa: E501
+        'last_sync_start': 'last_sync_start',  # noqa: E501
+        'next_sync_start': 'next_sync_start',  # noqa: E501
     }
 
     read_only_vars = {
@@ -126,14 +125,12 @@ class SyncStatus(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, model_name, model_id, last_sync_start, next_sync_start, status, is_initial_sync, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, model_name, model_id, status, is_initial_sync, *args, **kwargs):  # noqa: E501
         """SyncStatus - a model defined in OpenAPI
 
         Args:
             model_name (str):
             model_id (str):
-            last_sync_start (datetime):
-            next_sync_start (datetime):
             status (bool, date, datetime, dict, float, int, list, str, none_type):
             is_initial_sync (bool):
 
@@ -168,6 +165,8 @@ class SyncStatus(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            last_sync_start (datetime): [optional]  # noqa: E501
+            next_sync_start (datetime): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -201,10 +200,10 @@ class SyncStatus(ModelNormal):
 
         self.model_name = model_name
         self.model_id = model_id
-        self.last_sync_start = last_sync_start
-        self.next_sync_start = next_sync_start
         self.status = status
         self.is_initial_sync = is_initial_sync
+        self.last_sync_start = kwargs.get("last_sync_start", None)
+        self.next_sync_start = kwargs.get("next_sync_start", None)
         return self
 
     required_properties = set([
@@ -217,14 +216,12 @@ class SyncStatus(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, model_name, model_id, last_sync_start, next_sync_start, status, is_initial_sync, *args, **kwargs):  # noqa: E501
+    def __init__(self, model_name, model_id, status, is_initial_sync, *args, **kwargs):  # noqa: E501
         """SyncStatus - a model defined in OpenAPI
 
         Args:
             model_name (str):
             model_id (str):
-            last_sync_start (datetime):
-            next_sync_start (datetime):
             status (bool, date, datetime, dict, float, int, list, str, none_type):
             is_initial_sync (bool):
 
@@ -259,6 +256,8 @@ class SyncStatus(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            last_sync_start (datetime): [optional]  # noqa: E501
+            next_sync_start (datetime): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -290,9 +289,9 @@ class SyncStatus(ModelNormal):
 
         self.model_name: Union[str] = model_name
         self.model_id: Union[str] = model_id
-        self.last_sync_start: Union[datetime] = last_sync_start
-        self.next_sync_start: Union[datetime] = next_sync_start
         self.status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = status
         self.is_initial_sync: Union[bool] = is_initial_sync
+        self.last_sync_start: Union[datetime] = kwargs.get("last_sync_start", datetime())
+        self.next_sync_start: Union[datetime] = kwargs.get("next_sync_start", datetime())
 
 

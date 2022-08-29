@@ -74,7 +74,7 @@ class CandidatesApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                        },
+                },
                 'openapi_types': {
                     'candidate_endpoint_request':
                         (CandidateEndpointRequest,),
@@ -139,7 +139,7 @@ class CandidatesApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                        },
+                },
                 'openapi_types': {
                     'model_id':
                         (str,),
@@ -217,7 +217,7 @@ class CandidatesApi(object):
                         "APPLICATIONS,ATTACHMENTS": "applications,attachments",
                         "ATTACHMENTS": "attachments"
                     },
-                        },
+                },
                 'openapi_types': {
                     'created_after':
                         (datetime,),
@@ -310,7 +310,7 @@ class CandidatesApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                        },
+                },
                 'openapi_types': {
                 },
                 'attribute_map': {
@@ -367,7 +367,7 @@ class CandidatesApi(object):
                         "APPLICATIONS,ATTACHMENTS": "applications,attachments",
                         "ATTACHMENTS": "attachments"
                     },
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),

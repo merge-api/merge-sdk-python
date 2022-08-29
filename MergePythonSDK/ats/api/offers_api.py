@@ -90,7 +90,7 @@ class OffersApi(object):
 
                         "STATUS": "status"
                     },
-                        },
+                },
                 'openapi_types': {
                     'application_id':
                         (str,),
@@ -205,7 +205,7 @@ class OffersApi(object):
 
                         "STATUS": "status"
                     },
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),

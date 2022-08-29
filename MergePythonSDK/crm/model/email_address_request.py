@@ -103,8 +103,6 @@ class EmailAddressRequest(ModelNormal):
             defined_types[key] = (*defined_types[key], expands_model)
         return defined_types
 
-        return defined_types
-
     @cached_property
     def discriminator():
         return None
@@ -268,7 +266,7 @@ class EmailAddressRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.email_address: Optional[str, none_type] = kwargs.get("email_address", None)
-        self.email_address_type: Optional[str, none_type] = kwargs.get("email_address_type", None)
+        self.email_address: Union[str, none_type] = kwargs.get("email_address", None)
+        self.email_address_type: Union[str, none_type] = kwargs.get("email_address_type", None)
 
 

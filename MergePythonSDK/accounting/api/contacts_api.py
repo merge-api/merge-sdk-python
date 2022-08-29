@@ -88,7 +88,7 @@ class ContactsApi(object):
 
                         "STATUS": "status"
                     },
-                        },
+                },
                 'openapi_types': {
                     'created_after':
                         (datetime,),
@@ -195,7 +195,7 @@ class ContactsApi(object):
 
                         "STATUS": "status"
                     },
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),

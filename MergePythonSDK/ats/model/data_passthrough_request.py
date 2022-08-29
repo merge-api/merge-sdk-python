@@ -114,10 +114,9 @@ class DataPassthroughRequest(ModelNormal):
             'data': (str, none_type,),  # noqa: E501
             'multipart_form_data': ([MultipartFormFieldRequest], none_type,),  # noqa: E501
             'headers': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'request_format': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'request_format': (RequestFormatEnum, str, none_type,),
             'normalize_response': (bool,),  # noqa: E501
         }
-
         return defined_types
 
     @cached_property
@@ -313,11 +312,11 @@ class DataPassthroughRequest(ModelNormal):
 
         self.method: Union[bool, date, datetime, dict, float, int, list, str, none_type] = method
         self.path: Union[str] = path
-        self.base_url_override: Optional[str, none_type] = kwargs.get("base_url_override", None)
-        self.data: Optional[str, none_type] = kwargs.get("data", None)
-        self.multipart_form_data: Optional[List["MultipartFormFieldRequest"]] = kwargs.get("multipart_form_data", None)
-        self.headers: Optional[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("headers", None)
-        self.request_format: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("request_format", None)
-        self.normalize_response: Optional[bool] = kwargs.get("normalize_response", bool())
+        self.base_url_override: Union[str, none_type] = kwargs.get("base_url_override", None)
+        self.data: Union[str, none_type] = kwargs.get("data", None)
+        self.multipart_form_data: Union[List["MultipartFormFieldRequest"]] = kwargs.get("multipart_form_data", None)
+        self.headers: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("headers", None)
+        self.request_format: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("request_format", None)
+        self.normalize_response: Union[bool] = kwargs.get("normalize_response", bool())
 
 

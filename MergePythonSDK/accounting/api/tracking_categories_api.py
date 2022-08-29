@@ -80,7 +80,7 @@ class TrackingCategoriesApi(object):
 
                         "STATUS": "status"
                     },
-                        },
+                },
                 'openapi_types': {
                     'created_after':
                         (datetime,),
@@ -175,7 +175,7 @@ class TrackingCategoriesApi(object):
 
                         "STATUS": "status"
                     },
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),

@@ -92,7 +92,6 @@ class ValidationProblemSource(ModelNormal):
         defined_types = {
             'pointer': (str,),  # noqa: E501
         }
-
         return defined_types
 
     @cached_property

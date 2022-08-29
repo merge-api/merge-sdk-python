@@ -106,7 +106,6 @@ class AccountDetailsAndActionsIntegration(ModelNormal):
             'square_image': (str,),  # noqa: E501
             'available_model_operations': ([ModelOperation],),  # noqa: E501
         }
-
         return defined_types
 
     @cached_property
@@ -305,8 +304,8 @@ class AccountDetailsAndActionsIntegration(ModelNormal):
         self.color: Union[str] = color
         self.slug: Union[str] = slug
         self.passthrough_available: Union[bool] = passthrough_available
-        self.image: Optional[str] = kwargs.get("image", str())
-        self.square_image: Optional[str] = kwargs.get("square_image", str())
-        self.available_model_operations: Optional[List["ModelOperation"]] = kwargs.get("available_model_operations", None)
+        self.image: Union[str] = kwargs.get("image", str())
+        self.square_image: Union[str] = kwargs.get("square_image", str())
+        self.available_model_operations: Union[List["ModelOperation"]] = kwargs.get("available_model_operations", None)
 
 

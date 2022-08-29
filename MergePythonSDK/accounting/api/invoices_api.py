@@ -72,7 +72,7 @@ class InvoicesApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                        },
+                },
                 'openapi_types': {
                     'invoice_endpoint_request':
                         (InvoiceEndpointRequest,),
@@ -169,7 +169,7 @@ class InvoicesApi(object):
                         "PAYABLE": "ACCOUNTS_PAYABLE",
                         "RECEIVABLE": "ACCOUNTS_RECEIVABLE"
                     },
-                        },
+                },
                 'openapi_types': {
                     'contact_id':
                         (str,),
@@ -266,7 +266,7 @@ class InvoicesApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                        },
+                },
                 'openapi_types': {
                 },
                 'attribute_map': {
@@ -333,7 +333,7 @@ class InvoicesApi(object):
 
                         "TYPE": "type"
                     },
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),

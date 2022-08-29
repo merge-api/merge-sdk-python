@@ -96,7 +96,7 @@ class PhoneNumberRequest(ModelNormal):
 
         defined_types = {
             'value': (str, none_type,),  # noqa: E501
-            'phone_number_type': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'phone_number_type': (PhoneNumberTypeEnum, str, none_type,),
         }
         expands_types = {"applications": "Application", "attachments": "Attachment"}
 
@@ -106,8 +106,6 @@ class PhoneNumberRequest(ModelNormal):
             if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
                 defined_types[key][0].insert(0, expands_model)
             defined_types[key] = (*defined_types[key], expands_model)
-        return defined_types
-
         return defined_types
 
     @cached_property
@@ -273,7 +271,7 @@ class PhoneNumberRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.value: Optional[str, none_type] = kwargs.get("value", None)
-        self.phone_number_type: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("phone_number_type", None)
+        self.value: Union[str, none_type] = kwargs.get("value", None)
+        self.phone_number_type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("phone_number_type", None)
 
 

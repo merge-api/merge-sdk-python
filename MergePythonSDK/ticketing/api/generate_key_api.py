@@ -66,7 +66,7 @@ class GenerateKeyApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                        },
+                },
                 'openapi_types': {
                     'generate_remote_key_request':
                         (GenerateRemoteKeyRequest,),

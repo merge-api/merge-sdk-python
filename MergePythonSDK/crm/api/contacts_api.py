@@ -72,7 +72,7 @@ class ContactsApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                        },
+                },
                 'openapi_types': {
                     'crm_contact_endpoint_request':
                         (CRMContactEndpointRequest,),
@@ -149,7 +149,7 @@ class ContactsApi(object):
 
                         "ACCOUNT": "account"
                     },
-                        },
+                },
                 'openapi_types': {
                     'account_id':
                         (str,),
@@ -238,7 +238,7 @@ class ContactsApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                        },
+                },
                 'openapi_types': {
                 },
                 'attribute_map': {
@@ -293,7 +293,7 @@ class ContactsApi(object):
 
                         "ACCOUNT": "account"
                     },
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),

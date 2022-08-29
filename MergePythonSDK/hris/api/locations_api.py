@@ -80,7 +80,7 @@ class LocationsApi(object):
 
                         "LOCATION_TYPE": "location_type"
                     },
-                        },
+                },
                 'openapi_types': {
                     'created_after':
                         (datetime,),
@@ -175,7 +175,7 @@ class LocationsApi(object):
 
                         "LOCATION_TYPE": "location_type"
                     },
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),

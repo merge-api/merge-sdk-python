@@ -90,7 +90,6 @@ class Status7d1Enum(ModelNormal):
         defined_types = {
             'value': (str,),
         }
-
         return defined_types
 
     @cached_property

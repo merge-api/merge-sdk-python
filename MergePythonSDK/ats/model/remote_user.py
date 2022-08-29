@@ -107,7 +107,7 @@ class RemoteUser(ModelNormal):
             'email': (str, none_type,),  # noqa: E501
             'disabled': (bool, none_type,),  # noqa: E501
             'remote_created_at': (datetime, none_type,),  # noqa: E501
-            'access_role': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'access_role': (AccessRoleEnum, str, none_type,),
             'remote_data': ([RemoteData], none_type,),  # noqa: E501
             'remote_was_deleted': (bool,),  # noqa: E501
         }
@@ -119,8 +119,6 @@ class RemoteUser(ModelNormal):
             if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
                 defined_types[key][0].insert(0, expands_model)
             defined_types[key] = (*defined_types[key], expands_model)
-        return defined_types
-
         return defined_types
 
     @cached_property
@@ -323,18 +321,18 @@ class RemoteUser(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id: Optional[str, none_type] = kwargs.get("remote_id", None)
-        self.first_name: Optional[str, none_type] = kwargs.get("first_name", None)
-        self.last_name: Optional[str, none_type] = kwargs.get("last_name", None)
-        self.email: Optional[str, none_type] = kwargs.get("email", None)
-        self.disabled: Optional[bool, none_type] = kwargs.get("disabled", None)
-        self.remote_created_at: Optional[datetime, none_type] = kwargs.get("remote_created_at", None)
-        self.access_role: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("access_role", None)
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self.first_name: Union[str, none_type] = kwargs.get("first_name", None)
+        self.last_name: Union[str, none_type] = kwargs.get("last_name", None)
+        self.email: Union[str, none_type] = kwargs.get("email", None)
+        self.disabled: Union[bool, none_type] = kwargs.get("disabled", None)
+        self.remote_created_at: Union[datetime, none_type] = kwargs.get("remote_created_at", None)
+        self.access_role: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("access_role", None)
 
         # Read only properties
-        self._id: Optional[str] = kwargs.get("id", str())
-        self._remote_data: Optional[List["RemoteData"]] = kwargs.get("remote_data", None)
-        self._remote_was_deleted: Optional[bool] = kwargs.get("remote_was_deleted", bool())
+        self._id: Union[str] = kwargs.get("id", str())
+        self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
+        self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
 
     # Read only property getters
     @property

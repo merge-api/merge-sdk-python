@@ -122,7 +122,6 @@ class EndUserDetailsRequest(ModelNormal):
             'link_expiry_mins': (int,),  # noqa: E501
             'should_create_magic_link_url': (bool, none_type,),  # noqa: E501
         }
-
         return defined_types
 
     @cached_property
@@ -316,8 +315,8 @@ class EndUserDetailsRequest(ModelNormal):
         self.end_user_organization_name: Union[str] = end_user_organization_name
         self.end_user_origin_id: Union[str] = end_user_origin_id
         self.categories: Union[List["CategoriesEnum"]] = categories
-        self.integration: Optional[str, none_type] = kwargs.get("integration", None)
-        self.link_expiry_mins: Optional[int] = kwargs.get("link_expiry_mins", 30)
-        self.should_create_magic_link_url: Optional[bool, none_type] = kwargs.get("should_create_magic_link_url", False)
+        self.integration: Union[str, none_type] = kwargs.get("integration", None)
+        self.link_expiry_mins: Union[int] = kwargs.get("link_expiry_mins", 30)
+        self.should_create_magic_link_url: Union[bool, none_type] = kwargs.get("should_create_magic_link_url", False)
 
 

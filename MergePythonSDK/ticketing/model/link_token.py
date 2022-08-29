@@ -94,7 +94,6 @@ class LinkToken(ModelNormal):
             'integration_name': (str,),  # noqa: E501
             'magic_link_url': (str,),  # noqa: E501
         }
-
         return defined_types
 
     @cached_property
@@ -270,6 +269,6 @@ class LinkToken(ModelNormal):
 
         self.link_token: Union[str] = link_token
         self.integration_name: Union[str] = integration_name
-        self.magic_link_url: Optional[str] = kwargs.get("magic_link_url", str())
+        self.magic_link_url: Union[str] = kwargs.get("magic_link_url", str())
 
 

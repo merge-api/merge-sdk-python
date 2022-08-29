@@ -106,7 +106,6 @@ class InvoiceResponse(ModelNormal):
             'errors': ([ErrorValidationProblem],),  # noqa: E501
             'logs': ([DebugModeLog],),  # noqa: E501
         }
-
         return defined_types
 
     @cached_property
@@ -287,6 +286,6 @@ class InvoiceResponse(ModelNormal):
         self.model: Union["Invoice", {"payments": "Payment", "line_items": "InvoiceLineItem", "contact": "Contact"}] = model
         self.warnings: Union[List["WarningValidationProblem"]] = warnings
         self.errors: Union[List["ErrorValidationProblem"]] = errors
-        self.logs: Optional[List["DebugModeLog"]] = kwargs.get("logs", None)
+        self.logs: Union[List["DebugModeLog"]] = kwargs.get("logs", None)
 
 

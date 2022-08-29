@@ -113,7 +113,7 @@ class JobsApi(object):
                         "OPEN": "OPEN",
                         "PENDING": "PENDING"
                     },
-                        },
+                },
                 'openapi_types': {
                     'code':
                         (str, none_type,),
@@ -240,7 +240,7 @@ class JobsApi(object):
 
                         "STATUS": "status"
                     },
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),

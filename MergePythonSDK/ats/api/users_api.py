@@ -82,7 +82,7 @@ class UsersApi(object):
 
                         "ACCESS_ROLE": "access_role"
                     },
-                        },
+                },
                 'openapi_types': {
                     'created_after':
                         (datetime,),
@@ -181,7 +181,7 @@ class UsersApi(object):
 
                         "ACCESS_ROLE": "access_role"
                     },
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),

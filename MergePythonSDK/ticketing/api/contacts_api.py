@@ -80,7 +80,7 @@ class ContactsApi(object):
 
                         "ACCOUNT": "account"
                     },
-                        },
+                },
                 'openapi_types': {
                     'created_after':
                         (datetime,),
@@ -175,7 +175,7 @@ class ContactsApi(object):
 
                         "ACCOUNT": "account"
                     },
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),

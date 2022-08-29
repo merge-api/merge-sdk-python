@@ -92,7 +92,7 @@ class EmployeePayrollRunsApi(object):
                         "EMPLOYEE,PAYROLL_RUN": "employee,payroll_run",
                         "PAYROLL_RUN": "payroll_run"
                     },
-                        },
+                },
                 'openapi_types': {
                     'created_after':
                         (datetime,),
@@ -213,7 +213,7 @@ class EmployeePayrollRunsApi(object):
                         "EMPLOYEE,PAYROLL_RUN": "employee,payroll_run",
                         "PAYROLL_RUN": "payroll_run"
                     },
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),

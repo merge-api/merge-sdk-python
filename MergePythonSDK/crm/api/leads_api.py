@@ -72,7 +72,7 @@ class LeadsApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                        },
+                },
                 'openapi_types': {
                     'lead_endpoint_request':
                         (LeadEndpointRequest,),
@@ -157,7 +157,7 @@ class LeadsApi(object):
                         "OWNER,CONVERTED_CONTACT": "owner,converted_contact",
                         "OWNER,CONVERTED_CONTACT,CONVERTED_ACCOUNT": "owner,converted_contact,converted_account"
                     },
-                        },
+                },
                 'openapi_types': {
                     'converted_account_id':
                         (str,),
@@ -254,7 +254,7 @@ class LeadsApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                        },
+                },
                 'openapi_types': {
                 },
                 'attribute_map': {
@@ -315,7 +315,7 @@ class LeadsApi(object):
                         "OWNER,CONVERTED_CONTACT": "owner,converted_contact",
                         "OWNER,CONVERTED_CONTACT,CONVERTED_ACCOUNT": "owner,converted_contact,converted_account"
                     },
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),

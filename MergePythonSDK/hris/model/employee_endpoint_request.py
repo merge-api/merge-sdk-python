@@ -97,7 +97,6 @@ class EmployeeEndpointRequest(ModelNormal):
         defined_types = {
             'model': (EmployeeRequest,),  # noqa: E501
         }
-
         return defined_types
 
     @cached_property

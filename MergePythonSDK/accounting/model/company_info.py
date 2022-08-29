@@ -117,7 +117,7 @@ class CompanyInfo(ModelNormal):
             'tax_number': (str, none_type,),  # noqa: E501
             'fiscal_year_end_month': (int, none_type,),  # noqa: E501
             'fiscal_year_end_day': (int, none_type,),  # noqa: E501
-            'currency': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'currency': (CurrencyEnum, str, none_type,),
             'remote_created_at': (datetime, none_type,),  # noqa: E501
             'urls': ([str, none_type], none_type,),  # noqa: E501
             'addresses': ([Address],),  # noqa: E501
@@ -132,8 +132,6 @@ class CompanyInfo(ModelNormal):
             if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
                 defined_types[key][0].insert(0, expands_model)
             defined_types[key] = (*defined_types[key], expands_model)
-        return defined_types
-
         return defined_types
 
     @cached_property
@@ -352,22 +350,22 @@ class CompanyInfo(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id: Optional[str, none_type] = kwargs.get("remote_id", None)
-        self.name: Optional[str, none_type] = kwargs.get("name", None)
-        self.legal_name: Optional[str, none_type] = kwargs.get("legal_name", None)
-        self.tax_number: Optional[str, none_type] = kwargs.get("tax_number", None)
-        self.fiscal_year_end_month: Optional[int, none_type] = kwargs.get("fiscal_year_end_month", None)
-        self.fiscal_year_end_day: Optional[int, none_type] = kwargs.get("fiscal_year_end_day", None)
-        self.currency: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("currency", None)
-        self.remote_created_at: Optional[datetime, none_type] = kwargs.get("remote_created_at", None)
-        self.urls: Optional[List[str, none_type], none_type] = kwargs.get("urls", None)
-        self.addresses: Optional[List["Address"]] = kwargs.get("addresses", None)
-        self.phone_numbers: Optional[List["AccountingPhoneNumber"]] = kwargs.get("phone_numbers", None)
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self.name: Union[str, none_type] = kwargs.get("name", None)
+        self.legal_name: Union[str, none_type] = kwargs.get("legal_name", None)
+        self.tax_number: Union[str, none_type] = kwargs.get("tax_number", None)
+        self.fiscal_year_end_month: Union[int, none_type] = kwargs.get("fiscal_year_end_month", None)
+        self.fiscal_year_end_day: Union[int, none_type] = kwargs.get("fiscal_year_end_day", None)
+        self.currency: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("currency", None)
+        self.remote_created_at: Union[datetime, none_type] = kwargs.get("remote_created_at", None)
+        self.urls: Union[List[str, none_type], none_type] = kwargs.get("urls", None)
+        self.addresses: Union[List["Address"]] = kwargs.get("addresses", None)
+        self.phone_numbers: Union[List["AccountingPhoneNumber"]] = kwargs.get("phone_numbers", None)
 
         # Read only properties
-        self._id: Optional[str] = kwargs.get("id", str())
-        self._remote_data: Optional[List["RemoteData"]] = kwargs.get("remote_data", None)
-        self._remote_was_deleted: Optional[bool] = kwargs.get("remote_was_deleted", bool())
+        self._id: Union[str] = kwargs.get("id", str())
+        self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
+        self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
 
     # Read only property getters
     @property

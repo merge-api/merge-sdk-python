@@ -95,7 +95,7 @@ class ScorecardsApi(object):
 
                         "OVERALL_RECOMMENDATION": "overall_recommendation"
                     },
-                        },
+                },
                 'openapi_types': {
                     'application_id':
                         (str,),
@@ -218,7 +218,7 @@ class ScorecardsApi(object):
 
                         "OVERALL_RECOMMENDATION": "overall_recommendation"
                     },
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),

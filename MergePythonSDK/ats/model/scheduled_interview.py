@@ -108,7 +108,7 @@ class ScheduledInterview(ModelNormal):
             'end_at': (datetime, none_type,),  # noqa: E501
             'remote_created_at': (datetime, none_type,),  # noqa: E501
             'remote_updated_at': (datetime, none_type,),  # noqa: E501
-            'status': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'status': (ScheduledInterviewStatusEnum, str, none_type,),
             'remote_data': ([RemoteData], none_type,),  # noqa: E501
             'remote_was_deleted': (bool,),  # noqa: E501
         }
@@ -120,8 +120,6 @@ class ScheduledInterview(ModelNormal):
             if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
                 defined_types[key][0].insert(0, expands_model)
             defined_types[key] = (*defined_types[key], expands_model)
-        return defined_types
-
         return defined_types
 
     @cached_property
@@ -340,22 +338,22 @@ class ScheduledInterview(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id: Optional[str, none_type] = kwargs.get("remote_id", None)
-        self.application: Optional[str, none_type] = kwargs.get("application", None)
-        self.job_interview_stage: Optional[str, none_type] = kwargs.get("job_interview_stage", None)
-        self.organizer: Optional[str, none_type] = kwargs.get("organizer", None)
-        self.interviewers: Optional[List[str, none_type]] = kwargs.get("interviewers", list())
-        self.location: Optional[str, none_type] = kwargs.get("location", None)
-        self.start_at: Optional[datetime, none_type] = kwargs.get("start_at", None)
-        self.end_at: Optional[datetime, none_type] = kwargs.get("end_at", None)
-        self.remote_created_at: Optional[datetime, none_type] = kwargs.get("remote_created_at", None)
-        self.remote_updated_at: Optional[datetime, none_type] = kwargs.get("remote_updated_at", None)
-        self.status: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self.application: Union[str, none_type] = kwargs.get("application", None)
+        self.job_interview_stage: Union[str, none_type] = kwargs.get("job_interview_stage", None)
+        self.organizer: Union[str, none_type] = kwargs.get("organizer", None)
+        self.interviewers: Union[List[str, none_type]] = kwargs.get("interviewers", list())
+        self.location: Union[str, none_type] = kwargs.get("location", None)
+        self.start_at: Union[datetime, none_type] = kwargs.get("start_at", None)
+        self.end_at: Union[datetime, none_type] = kwargs.get("end_at", None)
+        self.remote_created_at: Union[datetime, none_type] = kwargs.get("remote_created_at", None)
+        self.remote_updated_at: Union[datetime, none_type] = kwargs.get("remote_updated_at", None)
+        self.status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
 
         # Read only properties
-        self._id: Optional[str] = kwargs.get("id", str())
-        self._remote_data: Optional[List["RemoteData"]] = kwargs.get("remote_data", None)
-        self._remote_was_deleted: Optional[bool] = kwargs.get("remote_was_deleted", bool())
+        self._id: Union[str] = kwargs.get("id", str())
+        self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
+        self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
 
     # Read only property getters
     @property

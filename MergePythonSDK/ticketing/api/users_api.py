@@ -80,7 +80,7 @@ class UsersApi(object):
 
                         "TEAMS": "teams"
                     },
-                        },
+                },
                 'openapi_types': {
                     'created_after':
                         (datetime,),
@@ -175,7 +175,7 @@ class UsersApi(object):
 
                         "TEAMS": "teams"
                     },
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),

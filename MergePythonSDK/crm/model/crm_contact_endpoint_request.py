@@ -97,7 +97,6 @@ class CRMContactEndpointRequest(ModelNormal):
         defined_types = {
             'model': (ContactRequest,),  # noqa: E501
         }
-
         return defined_types
 
     @cached_property

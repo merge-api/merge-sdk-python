@@ -107,8 +107,6 @@ class Tax(ModelNormal):
             defined_types[key] = (*defined_types[key], expands_model)
         return defined_types
 
-        return defined_types
-
     @cached_property
     def discriminator():
         return None
@@ -291,14 +289,14 @@ class Tax(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.employee_payroll_run: Optional[str, none_type] = kwargs.get("employee_payroll_run", None)
-        self.name: Optional[str, none_type] = kwargs.get("name", None)
-        self.amount: Optional[float, none_type] = kwargs.get("amount", None)
-        self.employer_tax: Optional[bool, none_type] = kwargs.get("employer_tax", None)
-        self.remote_was_deleted: Optional[bool] = kwargs.get("remote_was_deleted", bool())
+        self.employee_payroll_run: Union[str, none_type] = kwargs.get("employee_payroll_run", None)
+        self.name: Union[str, none_type] = kwargs.get("name", None)
+        self.amount: Union[float, none_type] = kwargs.get("amount", None)
+        self.employer_tax: Union[bool, none_type] = kwargs.get("employer_tax", None)
+        self.remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
 
         # Read only properties
-        self._id: Optional[str] = kwargs.get("id", str())
+        self._id: Union[str] = kwargs.get("id", str())
 
     # Read only property getters
     @property

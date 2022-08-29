@@ -102,8 +102,8 @@ class AddressRequest(ModelNormal):
             'city': (str, none_type,),  # noqa: E501
             'state': (str, none_type,),  # noqa: E501
             'postal_code': (str, none_type,),  # noqa: E501
-            'country': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
-            'address_type': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'country': (CountryEnum, str, none_type,),
+            'address_type': (AddressTypeEnum, str, none_type,),
         }
         expands_types = {"owner": "User"}
 
@@ -113,8 +113,6 @@ class AddressRequest(ModelNormal):
             if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
                 defined_types[key][0].insert(0, expands_model)
             defined_types[key] = (*defined_types[key], expands_model)
-        return defined_types
-
         return defined_types
 
     @cached_property
@@ -300,12 +298,12 @@ class AddressRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.street_1: Optional[str, none_type] = kwargs.get("street_1", None)
-        self.street_2: Optional[str, none_type] = kwargs.get("street_2", None)
-        self.city: Optional[str, none_type] = kwargs.get("city", None)
-        self.state: Optional[str, none_type] = kwargs.get("state", None)
-        self.postal_code: Optional[str, none_type] = kwargs.get("postal_code", None)
-        self.country: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("country", None)
-        self.address_type: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("address_type", None)
+        self.street_1: Union[str, none_type] = kwargs.get("street_1", None)
+        self.street_2: Union[str, none_type] = kwargs.get("street_2", None)
+        self.city: Union[str, none_type] = kwargs.get("city", None)
+        self.state: Union[str, none_type] = kwargs.get("state", None)
+        self.postal_code: Union[str, none_type] = kwargs.get("postal_code", None)
+        self.country: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("country", None)
+        self.address_type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("address_type", None)
 
 

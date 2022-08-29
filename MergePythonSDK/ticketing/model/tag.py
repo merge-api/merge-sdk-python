@@ -110,8 +110,6 @@ class Tag(ModelNormal):
             defined_types[key] = (*defined_types[key], expands_model)
         return defined_types
 
-        return defined_types
-
     @cached_property
     def discriminator():
         return None
@@ -284,10 +282,10 @@ class Tag(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id: Optional[str, none_type] = kwargs.get("remote_id", None)
-        self.name: Optional[str, none_type] = kwargs.get("name", None)
-        self.remote_was_deleted: Optional[bool] = kwargs.get("remote_was_deleted", bool())
-        self._remote_data: Optional[List["RemoteData"]] = kwargs.get("remote_data", None)
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self.name: Union[str, none_type] = kwargs.get("name", None)
+        self.remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
+        self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
     @property
     def remote_data(self):
         return self._remote_data

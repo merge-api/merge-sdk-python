@@ -93,7 +93,6 @@ class LinkedAccountStatus(ModelNormal):
             'linked_account_status': (str,),  # noqa: E501
             'can_make_request': (bool,),  # noqa: E501
         }
-
         return defined_types
 
     @cached_property

@@ -72,7 +72,7 @@ class OpportunitiesApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                        },
+                },
                 'openapi_types': {
                     'opportunity_endpoint_request':
                         (OpportunityEndpointRequest,),
@@ -172,7 +172,7 @@ class OpportunitiesApi(object):
                         "OPEN": "OPEN",
                         "WON": "WON"
                     },
-                        },
+                },
                 'openapi_types': {
                     'account_id':
                         (str,),
@@ -277,7 +277,7 @@ class OpportunitiesApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                        },
+                },
                 'openapi_types': {
                 },
                 'attribute_map': {
@@ -344,7 +344,7 @@ class OpportunitiesApi(object):
 
                         "STATUS": "status"
                     },
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),

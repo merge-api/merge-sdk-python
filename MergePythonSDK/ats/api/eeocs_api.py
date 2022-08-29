@@ -101,7 +101,7 @@ class EeocsApi(object):
                         "RACE,VETERAN_STATUS": "race,veteran_status",
                         "VETERAN_STATUS": "veteran_status"
                     },
-                        },
+                },
                 'openapi_types': {
                     'candidate_id':
                         (str,),
@@ -224,7 +224,7 @@ class EeocsApi(object):
                         "RACE,VETERAN_STATUS": "race,veteran_status",
                         "VETERAN_STATUS": "veteran_status"
                     },
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),

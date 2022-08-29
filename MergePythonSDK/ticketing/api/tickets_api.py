@@ -80,7 +80,7 @@ class TicketsApi(object):
 
                         "TEAMS": "teams"
                     },
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),
@@ -150,7 +150,7 @@ class TicketsApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                        },
+                },
                 'openapi_types': {
                     'ticket_endpoint_request':
                         (TicketEndpointRequest,),
@@ -296,7 +296,7 @@ class TicketsApi(object):
 
                         "STATUS": "status"
                     },
-                        },
+                },
                 'openapi_types': {
                     'account_id':
                         (str,),
@@ -393,7 +393,7 @@ class TicketsApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                        },
+                },
                 'openapi_types': {
                 },
                 'attribute_map': {
@@ -516,7 +516,7 @@ class TicketsApi(object):
 
                         "STATUS": "status"
                     },
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),

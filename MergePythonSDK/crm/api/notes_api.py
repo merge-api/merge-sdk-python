@@ -72,7 +72,7 @@ class NotesApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                        },
+                },
                 'openapi_types': {
                     'note_endpoint_request':
                         (NoteEndpointRequest,),
@@ -166,7 +166,7 @@ class NotesApi(object):
                         "OWNER,CONTACT,OPPORTUNITY": "owner,contact,opportunity",
                         "OWNER,OPPORTUNITY": "owner,opportunity"
                     },
-                        },
+                },
                 'openapi_types': {
                     'account_id':
                         (str,),
@@ -267,7 +267,7 @@ class NotesApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                        },
+                },
                 'openapi_types': {
                 },
                 'attribute_map': {
@@ -336,7 +336,7 @@ class NotesApi(object):
                         "OWNER,CONTACT,OPPORTUNITY": "owner,contact,opportunity",
                         "OWNER,OPPORTUNITY": "owner,opportunity"
                     },
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),

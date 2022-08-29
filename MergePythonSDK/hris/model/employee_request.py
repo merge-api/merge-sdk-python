@@ -131,14 +131,14 @@ class EmployeeRequest(ModelNormal):
             'team': (str, none_type,),  # noqa: E501
             'pay_group': (str, none_type,),  # noqa: E501
             'ssn': (str, none_type,),  # noqa: E501
-            'gender': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
-            'ethnicity': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
-            'marital_status': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'gender': (GenderEnum, str, none_type,),
+            'ethnicity': (EthnicityEnum, str, none_type,),
+            'marital_status': (MaritalStatusEnum, str, none_type,),
             'date_of_birth': (datetime, none_type,),  # noqa: E501
             'hire_date': (datetime, none_type,),  # noqa: E501
             'start_date': (datetime, none_type,),  # noqa: E501
             'remote_created_at': (datetime, none_type,),  # noqa: E501
-            'employment_status': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'employment_status': (EmploymentStatusEnum, str, none_type,),
             'termination_date': (datetime, none_type,),  # noqa: E501
             'avatar': (str, none_type,),  # noqa: E501
             'custom_fields': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
@@ -151,8 +151,6 @@ class EmployeeRequest(ModelNormal):
             if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
                 defined_types[key][0].insert(0, expands_model)
             defined_types[key] = (*defined_types[key], expands_model)
-        return defined_types
-
         return defined_types
 
     @cached_property
@@ -426,34 +424,34 @@ class EmployeeRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id: Optional[str, none_type] = kwargs.get("remote_id", None)
-        self.employee_number: Optional[str, none_type] = kwargs.get("employee_number", None)
-        self.company: Optional[str, none_type] = kwargs.get("company", None)
-        self.first_name: Optional[str, none_type] = kwargs.get("first_name", None)
-        self.last_name: Optional[str, none_type] = kwargs.get("last_name", None)
-        self.display_full_name: Optional[str, none_type] = kwargs.get("display_full_name", None)
-        self.username: Optional[str, none_type] = kwargs.get("username", None)
-        self.groups: Optional[List[str, none_type]] = kwargs.get("groups", list())
-        self.work_email: Optional[str, none_type] = kwargs.get("work_email", None)
-        self.personal_email: Optional[str, none_type] = kwargs.get("personal_email", None)
-        self.mobile_phone_number: Optional[str, none_type] = kwargs.get("mobile_phone_number", None)
-        self.employments: Optional[List[str, none_type]] = kwargs.get("employments", list())
-        self.home_location: Optional[str, none_type] = kwargs.get("home_location", None)
-        self.work_location: Optional[str, none_type] = kwargs.get("work_location", None)
-        self.manager: Optional[str, none_type] = kwargs.get("manager", None)
-        self.team: Optional[str, none_type] = kwargs.get("team", None)
-        self.pay_group: Optional[str, none_type] = kwargs.get("pay_group", None)
-        self.ssn: Optional[str, none_type] = kwargs.get("ssn", None)
-        self.gender: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("gender", None)
-        self.ethnicity: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("ethnicity", None)
-        self.marital_status: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("marital_status", None)
-        self.date_of_birth: Optional[datetime, none_type] = kwargs.get("date_of_birth", None)
-        self.hire_date: Optional[datetime, none_type] = kwargs.get("hire_date", None)
-        self.start_date: Optional[datetime, none_type] = kwargs.get("start_date", None)
-        self.remote_created_at: Optional[datetime, none_type] = kwargs.get("remote_created_at", None)
-        self.employment_status: Optional[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("employment_status", None)
-        self.termination_date: Optional[datetime, none_type] = kwargs.get("termination_date", None)
-        self.avatar: Optional[str, none_type] = kwargs.get("avatar", None)
-        self.custom_fields: Optional[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("custom_fields", None)
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self.employee_number: Union[str, none_type] = kwargs.get("employee_number", None)
+        self.company: Union[str, none_type] = kwargs.get("company", None)
+        self.first_name: Union[str, none_type] = kwargs.get("first_name", None)
+        self.last_name: Union[str, none_type] = kwargs.get("last_name", None)
+        self.display_full_name: Union[str, none_type] = kwargs.get("display_full_name", None)
+        self.username: Union[str, none_type] = kwargs.get("username", None)
+        self.groups: Union[List[str, none_type]] = kwargs.get("groups", list())
+        self.work_email: Union[str, none_type] = kwargs.get("work_email", None)
+        self.personal_email: Union[str, none_type] = kwargs.get("personal_email", None)
+        self.mobile_phone_number: Union[str, none_type] = kwargs.get("mobile_phone_number", None)
+        self.employments: Union[List[str, none_type]] = kwargs.get("employments", list())
+        self.home_location: Union[str, none_type] = kwargs.get("home_location", None)
+        self.work_location: Union[str, none_type] = kwargs.get("work_location", None)
+        self.manager: Union[str, none_type] = kwargs.get("manager", None)
+        self.team: Union[str, none_type] = kwargs.get("team", None)
+        self.pay_group: Union[str, none_type] = kwargs.get("pay_group", None)
+        self.ssn: Union[str, none_type] = kwargs.get("ssn", None)
+        self.gender: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("gender", None)
+        self.ethnicity: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("ethnicity", None)
+        self.marital_status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("marital_status", None)
+        self.date_of_birth: Union[datetime, none_type] = kwargs.get("date_of_birth", None)
+        self.hire_date: Union[datetime, none_type] = kwargs.get("hire_date", None)
+        self.start_date: Union[datetime, none_type] = kwargs.get("start_date", None)
+        self.remote_created_at: Union[datetime, none_type] = kwargs.get("remote_created_at", None)
+        self.employment_status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("employment_status", None)
+        self.termination_date: Union[datetime, none_type] = kwargs.get("termination_date", None)
+        self.avatar: Union[str, none_type] = kwargs.get("avatar", None)
+        self.custom_fields: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("custom_fields", None)
 
 

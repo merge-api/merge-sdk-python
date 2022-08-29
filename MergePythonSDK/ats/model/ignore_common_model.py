@@ -101,7 +101,6 @@ class IgnoreCommonModel(ModelNormal):
             'reason': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
             'message': (str,),  # noqa: E501
         }
-
         return defined_types
 
     @cached_property
@@ -272,6 +271,6 @@ class IgnoreCommonModel(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.reason: Union[bool, date, datetime, dict, float, int, list, str, none_type] = reason
-        self.message: Optional[str] = kwargs.get("message", str())
+        self.message: Union[str] = kwargs.get("message", str())
 
 

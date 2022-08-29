@@ -96,7 +96,6 @@ class UpdateApplicationStageRequest(ModelNormal):
             'job_interview_stage': (str, none_type,),  # noqa: E501
             'remote_user_id': (str,),  # noqa: E501
         }
-
         return defined_types
 
     @cached_property
@@ -262,7 +261,7 @@ class UpdateApplicationStageRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.job_interview_stage: Optional[str, none_type] = kwargs.get("job_interview_stage", None)
-        self.remote_user_id: Optional[str] = kwargs.get("remote_user_id", str())
+        self.job_interview_stage: Union[str, none_type] = kwargs.get("job_interview_stage", None)
+        self.remote_user_id: Union[str] = kwargs.get("remote_user_id", str())
 
 

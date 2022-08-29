@@ -97,7 +97,6 @@ class EngagementEndpointRequest(ModelNormal):
         defined_types = {
             'model': (EngagementRequest,),  # noqa: E501
         }
-
         return defined_types
 
     @cached_property

@@ -82,7 +82,7 @@ class CompanyInfoApi(object):
                         "ADDRESSES,PHONE_NUMBERS": "addresses,phone_numbers",
                         "PHONE_NUMBERS": "phone_numbers"
                     },
-                        },
+                },
                 'openapi_types': {
                     'created_after':
                         (datetime,),
@@ -179,7 +179,7 @@ class CompanyInfoApi(object):
                         "ADDRESSES,PHONE_NUMBERS": "addresses,phone_numbers",
                         "PHONE_NUMBERS": "phone_numbers"
                     },
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),

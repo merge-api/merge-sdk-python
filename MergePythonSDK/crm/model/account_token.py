@@ -98,7 +98,6 @@ class AccountToken(ModelNormal):
             'account_token': (str,),  # noqa: E501
             'integration': (AccountIntegration,),  # noqa: E501
         }
-
         return defined_types
 
     @cached_property

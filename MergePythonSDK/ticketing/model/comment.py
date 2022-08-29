@@ -117,8 +117,6 @@ class Comment(ModelNormal):
             defined_types[key] = (*defined_types[key], expands_model)
         return defined_types
 
-        return defined_types
-
     @cached_property
     def discriminator():
         return None
@@ -323,19 +321,19 @@ class Comment(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id: Optional[str, none_type] = kwargs.get("remote_id", None)
-        self.user: Optional[str, none_type] = kwargs.get("user", None)
-        self.contact: Optional[str, none_type] = kwargs.get("contact", None)
-        self.body: Optional[str, none_type] = kwargs.get("body", None)
-        self.html_body: Optional[str, none_type] = kwargs.get("html_body", None)
-        self.ticket: Optional[str, none_type] = kwargs.get("ticket", None)
-        self.is_private: Optional[bool, none_type] = kwargs.get("is_private", None)
-        self.remote_created_at: Optional[datetime, none_type] = kwargs.get("remote_created_at", None)
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self.user: Union[str, none_type] = kwargs.get("user", None)
+        self.contact: Union[str, none_type] = kwargs.get("contact", None)
+        self.body: Union[str, none_type] = kwargs.get("body", None)
+        self.html_body: Union[str, none_type] = kwargs.get("html_body", None)
+        self.ticket: Union[str, none_type] = kwargs.get("ticket", None)
+        self.is_private: Union[bool, none_type] = kwargs.get("is_private", None)
+        self.remote_created_at: Union[datetime, none_type] = kwargs.get("remote_created_at", None)
 
         # Read only properties
-        self._id: Optional[str] = kwargs.get("id", str())
-        self._remote_data: Optional[List["RemoteData"]] = kwargs.get("remote_data", None)
-        self._remote_was_deleted: Optional[bool] = kwargs.get("remote_was_deleted", bool())
+        self._id: Union[str] = kwargs.get("id", str())
+        self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
+        self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
 
     # Read only property getters
     @property

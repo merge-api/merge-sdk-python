@@ -108,7 +108,6 @@ class AccountIntegration(ModelNormal):
             'color': (str,),  # noqa: E501
             'slug': (str,),  # noqa: E501
         }
-
         return defined_types
 
     @cached_property
@@ -296,11 +295,11 @@ class AccountIntegration(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.name: Union[str] = name
-        self.categories: Optional[List["CategoriesEnum"]] = kwargs.get("categories", None)
-        self.image: Optional[str, none_type] = kwargs.get("image", None)
-        self.square_image: Optional[str, none_type] = kwargs.get("square_image", None)
-        self.color: Optional[str] = kwargs.get("color", str())
-        self._slug: Optional[str] = kwargs.get("slug", str())
+        self.categories: Union[List["CategoriesEnum"]] = kwargs.get("categories", None)
+        self.image: Union[str, none_type] = kwargs.get("image", None)
+        self.square_image: Union[str, none_type] = kwargs.get("square_image", None)
+        self.color: Union[str] = kwargs.get("color", str())
+        self._slug: Union[str] = kwargs.get("slug", str())
     @property
     def slug(self):
         return self._slug

@@ -82,7 +82,7 @@ class VendorCreditsApi(object):
                         "LINES,VENDOR": "lines,vendor",
                         "VENDOR": "vendor"
                     },
-                        },
+                },
                 'openapi_types': {
                     'created_after':
                         (datetime,),
@@ -179,7 +179,7 @@ class VendorCreditsApi(object):
                         "LINES,VENDOR": "lines,vendor",
                         "VENDOR": "vendor"
                     },
-                        },
+                },
                 'openapi_types': {
                     'id':
                         (str,),

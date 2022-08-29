@@ -94,7 +94,6 @@ class WebhookReceiver(ModelNormal):
             'is_active': (bool,),  # noqa: E501
             'key': (str,),  # noqa: E501
         }
-
         return defined_types
 
     @cached_property
@@ -270,6 +269,6 @@ class WebhookReceiver(ModelNormal):
 
         self.event: Union[str] = event
         self.is_active: Union[bool] = is_active
-        self.key: Optional[str] = kwargs.get("key", str())
+        self.key: Union[str] = kwargs.get("key", str())
 
 

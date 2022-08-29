@@ -108,8 +108,6 @@ class AttachmentRequest(ModelNormal):
             defined_types[key] = (*defined_types[key], expands_model)
         return defined_types
 
-        return defined_types
-
     @cached_property
     def discriminator():
         return None
@@ -293,12 +291,12 @@ class AttachmentRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id: Optional[str, none_type] = kwargs.get("remote_id", None)
-        self.file_name: Optional[str, none_type] = kwargs.get("file_name", None)
-        self.ticket: Optional[str, none_type] = kwargs.get("ticket", None)
-        self.file_url: Optional[str, none_type] = kwargs.get("file_url", None)
-        self.content_type: Optional[str, none_type] = kwargs.get("content_type", None)
-        self.uploaded_by: Optional[str, none_type] = kwargs.get("uploaded_by", None)
-        self.remote_created_at: Optional[datetime, none_type] = kwargs.get("remote_created_at", None)
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self.file_name: Union[str, none_type] = kwargs.get("file_name", None)
+        self.ticket: Union[str, none_type] = kwargs.get("ticket", None)
+        self.file_url: Union[str, none_type] = kwargs.get("file_url", None)
+        self.content_type: Union[str, none_type] = kwargs.get("content_type", None)
+        self.uploaded_by: Union[str, none_type] = kwargs.get("uploaded_by", None)
+        self.remote_created_at: Union[datetime, none_type] = kwargs.get("remote_created_at", None)
 
 

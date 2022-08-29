@@ -1,5 +1,6 @@
 # TransactionLineItem
 
+# The TransactionLineItem Object ### Description The `TransactionLineItem` object is used to represent a transaction's line items.  ### Usage Example Fetch from the `GET TransactionLineItem` endpoint and view the transaction's line items.
 
 ## Properties
 Name | Type | Description | Notes
