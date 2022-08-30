@@ -12,6 +12,13 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
+from typing import (
+    Optional,
+    Union,
+    List,
+    Dict,
+)
+
 from MergePythonSDK.shared.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
@@ -28,6 +35,7 @@ from MergePythonSDK.shared.model_utils import (  # noqa: F401
     validate_get_composed_info,
 )
 from MergePythonSDK.shared.exceptions import ApiAttributeError
+from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 def lazy_import():
@@ -74,7 +82,6 @@ class Location(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        lazy_import()
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
@@ -90,7 +97,8 @@ class Location(ModelNormal):
                 and the value is attribute type.
         """
         lazy_import()
-        return {
+
+        defined_types = {
             'id': (str,),  # noqa: E501
             'remote_id': (str, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
@@ -100,15 +108,25 @@ class Location(ModelNormal):
             'city': (str, none_type,),  # noqa: E501
             'state': (str, none_type,),  # noqa: E501
             'zip_code': (str, none_type,),  # noqa: E501
-            'country': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
-            'location_type': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'country': (CountryEnum, str, none_type,),
+            'location_type': (LocationTypeEnum, str, none_type,),
             'remote_data': ([RemoteData], none_type,),  # noqa: E501
             'remote_was_deleted': (bool,),  # noqa: E501
         }
+        expands_types = {}
+
+        # update types with expands
+        for key, val in expands_types.items():
+            expands_model = import_model_by_name(val, "hris")
+            if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
+                defined_types[key][0].insert(0, expands_model)
+            defined_types[key] = (*defined_types[key], expands_model)
+        return defined_types
 
     @cached_property
     def discriminator():
         return None
+
 
     attribute_map = {
         'id': 'id',  # noqa: E501
@@ -317,21 +335,21 @@ class Location(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id = kwargs.get("remote_id", None)
-        self.name = kwargs.get("name", None)
-        self.phone_number = kwargs.get("phone_number", None)
-        self.street_1 = kwargs.get("street_1", None)
-        self.street_2 = kwargs.get("street_2", None)
-        self.city = kwargs.get("city", None)
-        self.state = kwargs.get("state", None)
-        self.zip_code = kwargs.get("zip_code", None)
-        self.country = kwargs.get("country", None)
-        self.location_type = kwargs.get("location_type", None)
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self.name: Union[str, none_type] = kwargs.get("name", None)
+        self.phone_number: Union[str, none_type] = kwargs.get("phone_number", None)
+        self.street_1: Union[str, none_type] = kwargs.get("street_1", None)
+        self.street_2: Union[str, none_type] = kwargs.get("street_2", None)
+        self.city: Union[str, none_type] = kwargs.get("city", None)
+        self.state: Union[str, none_type] = kwargs.get("state", None)
+        self.zip_code: Union[str, none_type] = kwargs.get("zip_code", None)
+        self.country: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("country", None)
+        self.location_type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("location_type", None)
 
         # Read only properties
-        self._id = kwargs.get("id", str())
-        self._remote_data = kwargs.get("remote_data", None)
-        self._remote_was_deleted = kwargs.get("remote_was_deleted", bool())
+        self._id: Union[str] = kwargs.get("id", str())
+        self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
+        self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
 
     # Read only property getters
     @property

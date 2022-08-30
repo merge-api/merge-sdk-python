@@ -12,6 +12,13 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
+from typing import (
+    Optional,
+    Union,
+    List,
+    Dict,
+)
+
 from MergePythonSDK.shared.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
@@ -28,6 +35,7 @@ from MergePythonSDK.shared.model_utils import (  # noqa: F401
     validate_get_composed_info,
 )
 from MergePythonSDK.shared.exceptions import ApiAttributeError
+from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 def lazy_import():
@@ -82,7 +90,6 @@ class MultipartFormFieldRequest(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        lazy_import()
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
@@ -98,17 +105,20 @@ class MultipartFormFieldRequest(ModelNormal):
                 and the value is attribute type.
         """
         lazy_import()
-        return {
+
+        defined_types = {
             'name': (str,),  # noqa: E501
             'data': (str,),  # noqa: E501
-            'encoding': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'encoding': (EncodingEnum, str, none_type,),
             'file_name': (str, none_type,),  # noqa: E501
             'content_type': (str, none_type,),  # noqa: E501
         }
+        return defined_types
 
     @cached_property
     def discriminator():
         return None
+
 
     attribute_map = {
         'name': 'name',  # noqa: E501
@@ -284,10 +294,10 @@ class MultipartFormFieldRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.name = name
-        self.data = data
-        self.encoding = kwargs.get("encoding", None)
-        self.file_name = kwargs.get("file_name", None)
-        self.content_type = kwargs.get("content_type", None)
+        self.name: Union[str] = name
+        self.data: Union[str] = data
+        self.encoding: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("encoding", None)
+        self.file_name: Union[str, none_type] = kwargs.get("file_name", None)
+        self.content_type: Union[str, none_type] = kwargs.get("content_type", None)
 
 

@@ -33,9 +33,9 @@ class BasicClientTest(unittest.TestCase):
         accounting_configuration = Configuration()
         accounting_configuration.access_token = self.bearer_token
         accounting_configuration.api_key_prefix['tokenAuth'] = 'Bearer'
-        # Swap YOUR-X-ACCOUNT-TOKEN below with your production key from:
+        # Swap YOUR_X_ACCOUNT_TOKEN below with your production key from:
         # https://app.merge.dev/linked-accounts/account/{ACCOUNT_ID}/overview
-        accounting_configuration.api_key['accountTokenAuth'] = 'YOUR-X-ACCOUNT-TOKEN'
+        accounting_configuration.api_key['accountTokenAuth'] = 'YOUR_X_ACCOUNT_TOKEN'
         with ApiClient(accounting_configuration) as api_client:
             accounting_invoices_api_instance = InvoicesApi(api_client)
             try:
@@ -49,7 +49,7 @@ class BasicClientTest(unittest.TestCase):
         ats_configuration = Configuration()
         ats_configuration.access_token = self.bearer_token
         ats_configuration.api_key_prefix['tokenAuth'] = 'Bearer'
-        ats_configuration.api_key['accountTokenAuth'] = 'YOUR-X-ACCOUNT-TOKEN'
+        ats_configuration.api_key['accountTokenAuth'] = 'YOUR_X_ACCOUNT_TOKEN'
         with ApiClient(ats_configuration) as api_client:
             ats_candidates_api_instance = CandidatesApi(api_client)
             try:
@@ -63,7 +63,7 @@ class BasicClientTest(unittest.TestCase):
         crm_configuration = Configuration()
         crm_configuration.access_token = self.bearer_token
         crm_configuration.api_key_prefix['tokenAuth'] = 'Bearer'
-        crm_configuration.api_key['accountTokenAuth'] = 'YOUR-X-ACCOUNT-TOKEN'
+        crm_configuration.api_key['accountTokenAuth'] = 'YOUR_X_ACCOUNT_TOKEN'
         with ApiClient(crm_configuration) as api_client:
             crm_contacts_api_instance = ContactsApi(api_client)
             try:
@@ -85,7 +85,7 @@ class BasicClientTest(unittest.TestCase):
         hris_configuration = Configuration()
         hris_configuration.access_token = self.bearer_token
         hris_configuration.api_key_prefix['tokenAuth'] = 'Bearer'
-        hris_configuration.api_key['accountTokenAuth'] = 'YOUR-X-ACCOUNT-TOKEN'
+        hris_configuration.api_key['accountTokenAuth'] = 'YOUR_X_ACCOUNT_TOKEN'
         with ApiClient(hris_configuration) as api_client:
             hris_employees_api_instance = EmployeesApi(api_client)
             try:
@@ -98,20 +98,24 @@ class BasicClientTest(unittest.TestCase):
                 assert next_response.get("results") is not None
 
                 # Test remote fields
-                _id = "YOUR EMPLOYEE MODEL ID HERE"
+                _id = "YOUR_EMPLOYEE_ID_HERE"
                 employee_remote_field = hris_employees_api_instance.employees_retrieve(_id, remote_fields="gender")
                 employee = hris_employees_api_instance.employees_retrieve(_id)
                 assert employee_remote_field.gender != employee.gender
                 assert employee_remote_field.gender.lower() == employee.gender.lower()
+
+                # Test expands
+                employee_expands = hris_employees_api_instance.employees_retrieve(_id, expand="employments")
+                assert employee_expands.employments.employee == employee_expands.id
             except ApiException as e:
                 print('Exception when calling HRIS API: %s' % e)
                 raise e
 
-        # Ticketing
+        # # Ticketing
         ticketing_configuration = Configuration()
         ticketing_configuration.access_token = self.bearer_token
         ticketing_configuration.api_key_prefix['tokenAuth'] = 'Bearer'
-        ticketing_configuration.api_key['accountTokenAuth'] = 'YOUR-X-ACCOUNT-TOKEN'
+        ticketing_configuration.api_key['accountTokenAuth'] = 'YOUR_X_ACCOUNT_TOKEN'
         with ApiClient(ticketing_configuration) as api_client:
             ticketing_tickets_api_instance = TicketsApi(api_client)
             try:

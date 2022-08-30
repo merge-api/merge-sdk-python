@@ -209,7 +209,7 @@ class UsersApi(object):
     def users_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(User)":
         """users_list  # noqa: E501
 
         Returns a list of `User` objects.  # noqa: E501
@@ -298,7 +298,7 @@ class UsersApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "User":
         """users_retrieve  # noqa: E501
 
         Returns a `User` object with the given `id`.  # noqa: E501

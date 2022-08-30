@@ -12,6 +12,13 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
+from typing import (
+    Optional,
+    Union,
+    List,
+    Dict,
+)
+
 from MergePythonSDK.shared.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
@@ -28,6 +35,7 @@ from MergePythonSDK.shared.model_utils import (  # noqa: F401
     validate_get_composed_info,
 )
 from MergePythonSDK.shared.exceptions import ApiAttributeError
+from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 def lazy_import():
@@ -76,7 +84,6 @@ class AccountIntegration(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        lazy_import()
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
@@ -92,7 +99,8 @@ class AccountIntegration(ModelNormal):
                 and the value is attribute type.
         """
         lazy_import()
-        return {
+
+        defined_types = {
             'name': (str,),  # noqa: E501
             'categories': ([CategoriesEnum],),  # noqa: E501
             'image': (str, none_type,),  # noqa: E501
@@ -100,10 +108,12 @@ class AccountIntegration(ModelNormal):
             'color': (str,),  # noqa: E501
             'slug': (str,),  # noqa: E501
         }
+        return defined_types
 
     @cached_property
     def discriminator():
         return None
+
 
     attribute_map = {
         'name': 'name',  # noqa: E501
@@ -284,12 +294,12 @@ class AccountIntegration(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.name = name
-        self.categories = kwargs.get("categories", None)
-        self.image = kwargs.get("image", None)
-        self.square_image = kwargs.get("square_image", None)
-        self.color = kwargs.get("color", str())
-        self._slug = kwargs.get("slug", str())
+        self.name: Union[str] = name
+        self.categories: Union[List["CategoriesEnum"]] = kwargs.get("categories", None)
+        self.image: Union[str, none_type] = kwargs.get("image", None)
+        self.square_image: Union[str, none_type] = kwargs.get("square_image", None)
+        self.color: Union[str] = kwargs.get("color", str())
+        self._slug: Union[str] = kwargs.get("slug", str())
     @property
     def slug(self):
         return self._slug

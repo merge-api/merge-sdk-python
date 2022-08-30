@@ -328,7 +328,7 @@ class AccountsApi(object):
         self,
         crm_account_endpoint_request,
         **kwargs
-    ):
+    ) -> "CRMAccountResponse":
         """accounts_create  # noqa: E501
 
         Creates an `Account` object with the given values.  # noqa: E501
@@ -412,7 +412,7 @@ class AccountsApi(object):
     def accounts_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(Account)":
         """accounts_list  # noqa: E501
 
         Returns a list of `Account` objects.  # noqa: E501
@@ -501,7 +501,7 @@ class AccountsApi(object):
     def accounts_meta_post_retrieve(
         self,
         **kwargs
-    ):
+    ) -> "MetaResponse":
         """accounts_meta_post_retrieve  # noqa: E501
 
         Returns metadata for `CRMAccount` POSTs.  # noqa: E501
@@ -580,7 +580,7 @@ class AccountsApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "Account":
         """accounts_retrieve  # noqa: E501
 
         Returns an `Account` object with the given `id`.  # noqa: E501

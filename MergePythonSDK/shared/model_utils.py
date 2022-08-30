@@ -16,6 +16,7 @@ import os
 import pprint
 import re
 import tempfile
+import importlib
 
 from dateutil.parser import parse
 
@@ -1842,7 +1843,7 @@ def get_var_name_to_model_instances(self, composed_instances):
 
 def get_unused_args(self, composed_instances, model_args):
     unused_args = dict(model_args)
-    # arguments apssed to self were already converted to python names
+    # arguments passed to self were already converted to python names
     # before __init__ was called
     for var_name_py in self.attribute_map:
         if var_name_py in unused_args:
@@ -1933,3 +1934,16 @@ def validate_get_composed_info(constant_args, model_args, self):
       additional_properties_model_instances,
       unused_args
     ]
+
+def import_model_by_name(model_name, category):
+    model_name_snake_case = re.sub("(?!^)([A-Z]+)", r"_\1", model_name).lower()
+    module = importlib.import_module(f"MergePythonSDK.{category}.model.{model_name_snake_case}")
+    for name in dir(module):
+        obj = getattr(module, model_name)
+        try:
+            if issubclass(obj, ModelNormal):
+                return obj
+        except TypeError:
+            # Skip if not the model attribute
+            pass
+    return none_type

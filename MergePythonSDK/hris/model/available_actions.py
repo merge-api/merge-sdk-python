@@ -12,6 +12,13 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
+from typing import (
+    Optional,
+    Union,
+    List,
+    Dict,
+)
+
 from MergePythonSDK.shared.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
@@ -28,6 +35,7 @@ from MergePythonSDK.shared.model_utils import (  # noqa: F401
     validate_get_composed_info,
 )
 from MergePythonSDK.shared.exceptions import ApiAttributeError
+from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 def lazy_import():
@@ -72,7 +80,6 @@ class AvailableActions(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        lazy_import()
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
@@ -88,15 +95,18 @@ class AvailableActions(ModelNormal):
                 and the value is attribute type.
         """
         lazy_import()
-        return {
+
+        defined_types = {
             'integration': (AccountIntegration,),  # noqa: E501
             'passthrough_available': (bool,),  # noqa: E501
             'available_model_operations': ([ModelOperation],),  # noqa: E501
         }
+        return defined_types
 
     @cached_property
     def discriminator():
         return None
+
 
     attribute_map = {
         'integration': 'integration',  # noqa: E501
@@ -264,8 +274,8 @@ class AvailableActions(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.integration = integration
-        self.passthrough_available = passthrough_available
-        self.available_model_operations = kwargs.get("available_model_operations", None)
+        self.integration: Union["AccountIntegration"] = integration
+        self.passthrough_available: Union[bool] = passthrough_available
+        self.available_model_operations: Union[List["ModelOperation"]] = kwargs.get("available_model_operations", None)
 
 

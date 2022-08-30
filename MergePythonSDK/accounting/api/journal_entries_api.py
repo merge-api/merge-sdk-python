@@ -327,7 +327,7 @@ class JournalEntriesApi(object):
         self,
         journal_entry_endpoint_request,
         **kwargs
-    ):
+    ) -> "JournalEntryResponse":
         """journal_entries_create  # noqa: E501
 
         Creates a `JournalEntry` object with the given values.  # noqa: E501
@@ -411,7 +411,7 @@ class JournalEntriesApi(object):
     def journal_entries_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(JournalEntry)":
         """journal_entries_list  # noqa: E501
 
         Returns a list of `JournalEntry` objects.  # noqa: E501
@@ -499,7 +499,7 @@ class JournalEntriesApi(object):
     def journal_entries_meta_post_retrieve(
         self,
         **kwargs
-    ):
+    ) -> "MetaResponse":
         """journal_entries_meta_post_retrieve  # noqa: E501
 
         Returns metadata for `JournalEntry` POSTs.  # noqa: E501
@@ -578,7 +578,7 @@ class JournalEntriesApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "JournalEntry":
         """journal_entries_retrieve  # noqa: E501
 
         Returns a `JournalEntry` object with the given `id`.  # noqa: E501

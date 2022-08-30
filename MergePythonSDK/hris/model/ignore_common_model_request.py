@@ -12,6 +12,13 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
+from typing import (
+    Optional,
+    Union,
+    List,
+    Dict,
+)
+
 from MergePythonSDK.shared.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
@@ -28,6 +35,7 @@ from MergePythonSDK.shared.model_utils import (  # noqa: F401
     validate_get_composed_info,
 )
 from MergePythonSDK.shared.exceptions import ApiAttributeError
+from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 def lazy_import():
@@ -74,7 +82,6 @@ class IgnoreCommonModelRequest(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        lazy_import()
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
@@ -90,14 +97,17 @@ class IgnoreCommonModelRequest(ModelNormal):
                 and the value is attribute type.
         """
         lazy_import()
-        return {
+
+        defined_types = {
             'reason': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
             'message': (str,),  # noqa: E501
         }
+        return defined_types
 
     @cached_property
     def discriminator():
         return None
+
 
     attribute_map = {
         'reason': 'reason',  # noqa: E501
@@ -261,7 +271,7 @@ class IgnoreCommonModelRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.reason = reason
-        self.message = kwargs.get("message", str())
+        self.reason: Union[bool, date, datetime, dict, float, int, list, str, none_type] = reason
+        self.message: Union[str] = kwargs.get("message", str())
 
 

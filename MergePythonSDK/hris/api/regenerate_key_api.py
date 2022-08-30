@@ -96,7 +96,7 @@ class RegenerateKeyApi(object):
         self,
         remote_key_for_regeneration_request,
         **kwargs
-    ):
+    ) -> "RemoteKey":
         """regenerate_key_create  # noqa: E501
 
         Exchange remote keys.  # noqa: E501

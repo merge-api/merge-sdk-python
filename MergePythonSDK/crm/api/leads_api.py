@@ -350,7 +350,7 @@ class LeadsApi(object):
         self,
         lead_endpoint_request,
         **kwargs
-    ):
+    ) -> "LeadResponse":
         """leads_create  # noqa: E501
 
         Creates a `Lead` object with the given values.  # noqa: E501
@@ -434,7 +434,7 @@ class LeadsApi(object):
     def leads_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(Lead)":
         """leads_list  # noqa: E501
 
         Returns a list of `Lead` objects.  # noqa: E501
@@ -525,7 +525,7 @@ class LeadsApi(object):
     def leads_meta_post_retrieve(
         self,
         **kwargs
-    ):
+    ) -> "MetaResponse":
         """leads_meta_post_retrieve  # noqa: E501
 
         Returns metadata for `Lead` POSTs.  # noqa: E501
@@ -604,7 +604,7 @@ class LeadsApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "Lead":
         """leads_retrieve  # noqa: E501
 
         Returns a `Lead` object with the given `id`.  # noqa: E501

@@ -209,7 +209,7 @@ class GroupsApi(object):
     def groups_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(Group)":
         """groups_list  # noqa: E501
 
         Returns a list of `Group` objects.  # noqa: E501
@@ -298,7 +298,7 @@ class GroupsApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "Group":
         """groups_retrieve  # noqa: E501
 
         Returns a `Group` object with the given `id`.  # noqa: E501

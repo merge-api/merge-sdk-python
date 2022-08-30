@@ -85,7 +85,7 @@ class AvailableActionsApi(object):
     def available_actions_retrieve(
         self,
         **kwargs
-    ):
+    ) -> "AvailableActions":
         """available_actions_retrieve  # noqa: E501
 
         Returns a list of models and actions available for an account.  # noqa: E501

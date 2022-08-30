@@ -160,7 +160,7 @@ class LinkedAccountsApi(object):
     def linked_accounts_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(AccountDetailsAndActions)":
         """linked_accounts_list  # noqa: E501
 
         List linked accounts for your organization.  # noqa: E501

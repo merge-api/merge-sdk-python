@@ -12,6 +12,13 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
+from typing import (
+    Optional,
+    Union,
+    List,
+    Dict,
+)
+
 from MergePythonSDK.shared.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
@@ -28,6 +35,7 @@ from MergePythonSDK.shared.model_utils import (  # noqa: F401
     validate_get_composed_info,
 )
 from MergePythonSDK.shared.exceptions import ApiAttributeError
+from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 class CommentRequest(ModelNormal):
@@ -80,7 +88,8 @@ class CommentRequest(ModelNormal):
             openapi_types (dict): The key is attribute name
                 and the value is attribute type.
         """
-        return {
+
+        defined_types = {
             'remote_id': (str, none_type,),  # noqa: E501
             'user': (str, none_type,),  # noqa: E501
             'contact': (str, none_type,),  # noqa: E501
@@ -90,10 +99,20 @@ class CommentRequest(ModelNormal):
             'is_private': (bool, none_type,),  # noqa: E501
             'remote_created_at': (datetime, none_type,),  # noqa: E501
         }
+        expands_types = {"user": "User", "contact": "Contact", "ticket": "Ticket"}
+
+        # update types with expands
+        for key, val in expands_types.items():
+            expands_model = import_model_by_name(val, "ticketing")
+            if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
+                defined_types[key][0].insert(0, expands_model)
+            defined_types[key] = (*defined_types[key], expands_model)
+        return defined_types
 
     @cached_property
     def discriminator():
         return None
+
 
     attribute_map = {
         'remote_id': 'remote_id',  # noqa: E501
@@ -277,13 +296,13 @@ class CommentRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id = kwargs.get("remote_id", None)
-        self.user = kwargs.get("user", None)
-        self.contact = kwargs.get("contact", None)
-        self.body = kwargs.get("body", None)
-        self.html_body = kwargs.get("html_body", None)
-        self.ticket = kwargs.get("ticket", None)
-        self.is_private = kwargs.get("is_private", None)
-        self.remote_created_at = kwargs.get("remote_created_at", None)
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self.user: Union[str, none_type] = kwargs.get("user", None)
+        self.contact: Union[str, none_type] = kwargs.get("contact", None)
+        self.body: Union[str, none_type] = kwargs.get("body", None)
+        self.html_body: Union[str, none_type] = kwargs.get("html_body", None)
+        self.ticket: Union[str, none_type] = kwargs.get("ticket", None)
+        self.is_private: Union[bool, none_type] = kwargs.get("is_private", None)
+        self.remote_created_at: Union[datetime, none_type] = kwargs.get("remote_created_at", None)
 
 

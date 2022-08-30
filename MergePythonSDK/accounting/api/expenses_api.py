@@ -213,7 +213,7 @@ class ExpensesApi(object):
     def expenses_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(Expense)":
         """expenses_list  # noqa: E501
 
         Returns a list of `Expense` objects.  # noqa: E501
@@ -302,7 +302,7 @@ class ExpensesApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "Expense":
         """expenses_retrieve  # noqa: E501
 
         Returns an `Expense` object with the given `id`.  # noqa: E501

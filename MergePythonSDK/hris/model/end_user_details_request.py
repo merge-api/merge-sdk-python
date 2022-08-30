@@ -12,6 +12,13 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
+from typing import (
+    Optional,
+    Union,
+    List,
+    Dict,
+)
+
 from MergePythonSDK.shared.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
@@ -28,6 +35,7 @@ from MergePythonSDK.shared.model_utils import (  # noqa: F401
     validate_get_composed_info,
 )
 from MergePythonSDK.shared.exceptions import ApiAttributeError
+from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 def lazy_import():
@@ -89,7 +97,6 @@ class EndUserDetailsRequest(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        lazy_import()
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
@@ -105,7 +112,8 @@ class EndUserDetailsRequest(ModelNormal):
                 and the value is attribute type.
         """
         lazy_import()
-        return {
+
+        defined_types = {
             'end_user_email_address': (str,),  # noqa: E501
             'end_user_organization_name': (str,),  # noqa: E501
             'end_user_origin_id': (str,),  # noqa: E501
@@ -114,10 +122,12 @@ class EndUserDetailsRequest(ModelNormal):
             'link_expiry_mins': (int,),  # noqa: E501
             'should_create_magic_link_url': (bool, none_type,),  # noqa: E501
         }
+        return defined_types
 
     @cached_property
     def discriminator():
         return None
+
 
     attribute_map = {
         'end_user_email_address': 'end_user_email_address',  # noqa: E501
@@ -301,12 +311,12 @@ class EndUserDetailsRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.end_user_email_address = end_user_email_address
-        self.end_user_organization_name = end_user_organization_name
-        self.end_user_origin_id = end_user_origin_id
-        self.categories = categories
-        self.integration = kwargs.get("integration", None)
-        self.link_expiry_mins = kwargs.get("link_expiry_mins", 30)
-        self.should_create_magic_link_url = kwargs.get("should_create_magic_link_url", False)
+        self.end_user_email_address: Union[str] = end_user_email_address
+        self.end_user_organization_name: Union[str] = end_user_organization_name
+        self.end_user_origin_id: Union[str] = end_user_origin_id
+        self.categories: Union[List["CategoriesEnum"]] = categories
+        self.integration: Union[str, none_type] = kwargs.get("integration", None)
+        self.link_expiry_mins: Union[int] = kwargs.get("link_expiry_mins", 30)
+        self.should_create_magic_link_url: Union[bool, none_type] = kwargs.get("should_create_magic_link_url", False)
 
 

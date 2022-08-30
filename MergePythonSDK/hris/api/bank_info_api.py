@@ -263,7 +263,7 @@ class BankInfoApi(object):
     def bank_info_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(BankInfo)":
         """bank_info_list  # noqa: E501
 
         Returns a list of `BankInfo` objects.  # noqa: E501
@@ -357,7 +357,7 @@ class BankInfoApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "BankInfo":
         """bank_info_retrieve  # noqa: E501
 
         Returns a `BankInfo` object with the given `id`.  # noqa: E501

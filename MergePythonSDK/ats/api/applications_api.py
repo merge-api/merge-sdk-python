@@ -490,7 +490,7 @@ class ApplicationsApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "ApplicationResponse":
         """applications_change_stage_create  # noqa: E501
 
         Updates the `current_stage` field of an `Application` object  # noqa: E501
@@ -576,7 +576,7 @@ class ApplicationsApi(object):
         self,
         application_endpoint_request,
         **kwargs
-    ):
+    ) -> "ApplicationResponse":
         """applications_create  # noqa: E501
 
         Creates an `Application` object with the given values.  # noqa: E501
@@ -660,7 +660,7 @@ class ApplicationsApi(object):
     def applications_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(Application)":
         """applications_list  # noqa: E501
 
         Returns a list of `Application` objects.  # noqa: E501
@@ -754,7 +754,7 @@ class ApplicationsApi(object):
     def applications_meta_post_retrieve(
         self,
         **kwargs
-    ):
+    ) -> "MetaResponse":
         """applications_meta_post_retrieve  # noqa: E501
 
         Returns metadata for `Application` POSTs.  # noqa: E501
@@ -834,7 +834,7 @@ class ApplicationsApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "Application":
         """applications_retrieve  # noqa: E501
 
         Returns an `Application` object with the given `id`.  # noqa: E501

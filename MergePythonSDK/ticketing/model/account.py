@@ -12,6 +12,13 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
+from typing import (
+    Optional,
+    Union,
+    List,
+    Dict,
+)
+
 from MergePythonSDK.shared.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
@@ -28,6 +35,7 @@ from MergePythonSDK.shared.model_utils import (  # noqa: F401
     validate_get_composed_info,
 )
 from MergePythonSDK.shared.exceptions import ApiAttributeError
+from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 def lazy_import():
@@ -70,7 +78,6 @@ class Account(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        lazy_import()
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
@@ -86,7 +93,8 @@ class Account(ModelNormal):
                 and the value is attribute type.
         """
         lazy_import()
-        return {
+
+        defined_types = {
             'id': (str,),  # noqa: E501
             'remote_id': (str, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
@@ -94,10 +102,20 @@ class Account(ModelNormal):
             'remote_data': ([RemoteData], none_type,),  # noqa: E501
             'remote_was_deleted': (bool,),  # noqa: E501
         }
+        expands_types = {}
+
+        # update types with expands
+        for key, val in expands_types.items():
+            expands_model = import_model_by_name(val, "ticketing")
+            if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
+                defined_types[key][0].insert(0, expands_model)
+            defined_types[key] = (*defined_types[key], expands_model)
+        return defined_types
 
     @cached_property
     def discriminator():
         return None
+
 
     attribute_map = {
         'id': 'id',  # noqa: E501
@@ -277,14 +295,14 @@ class Account(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id = kwargs.get("remote_id", None)
-        self.name = kwargs.get("name", None)
-        self.domains = kwargs.get("domains", None)
-        self.remote_was_deleted = kwargs.get("remote_was_deleted", bool())
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self.name: Union[str, none_type] = kwargs.get("name", None)
+        self.domains: Union[List[str, none_type], none_type] = kwargs.get("domains", None)
+        self.remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
 
         # Read only properties
-        self._id = kwargs.get("id", str())
-        self._remote_data = kwargs.get("remote_data", None)
+        self._id: Union[str] = kwargs.get("id", str())
+        self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
 
     # Read only property getters
     @property

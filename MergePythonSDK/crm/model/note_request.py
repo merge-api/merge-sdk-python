@@ -12,6 +12,13 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
+from typing import (
+    Optional,
+    Union,
+    List,
+    Dict,
+)
+
 from MergePythonSDK.shared.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
@@ -28,6 +35,7 @@ from MergePythonSDK.shared.model_utils import (  # noqa: F401
     validate_get_composed_info,
 )
 from MergePythonSDK.shared.exceptions import ApiAttributeError
+from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 class NoteRequest(ModelNormal):
@@ -80,7 +88,8 @@ class NoteRequest(ModelNormal):
             openapi_types (dict): The key is attribute name
                 and the value is attribute type.
         """
-        return {
+
+        defined_types = {
             'remote_id': (str, none_type,),  # noqa: E501
             'owner': (str, none_type,),  # noqa: E501
             'content': (str, none_type,),  # noqa: E501
@@ -92,10 +101,20 @@ class NoteRequest(ModelNormal):
             'integration_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'linked_account_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
+        expands_types = {"owner": "User", "contact": "Contact", "account": "Account", "opportunity": "Opportunity"}
+
+        # update types with expands
+        for key, val in expands_types.items():
+            expands_model = import_model_by_name(val, "crm")
+            if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
+                defined_types[key][0].insert(0, expands_model)
+            defined_types[key] = (*defined_types[key], expands_model)
+        return defined_types
 
     @cached_property
     def discriminator():
         return None
+
 
     attribute_map = {
         'remote_id': 'remote_id',  # noqa: E501
@@ -287,15 +306,15 @@ class NoteRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id = kwargs.get("remote_id", None)
-        self.owner = kwargs.get("owner", None)
-        self.content = kwargs.get("content", None)
-        self.contact = kwargs.get("contact", None)
-        self.account = kwargs.get("account", None)
-        self.opportunity = kwargs.get("opportunity", None)
-        self.remote_updated_at = kwargs.get("remote_updated_at", None)
-        self.remote_created_at = kwargs.get("remote_created_at", None)
-        self.integration_params = kwargs.get("integration_params", None)
-        self.linked_account_params = kwargs.get("linked_account_params", None)
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self.owner: Union[str, none_type] = kwargs.get("owner", None)
+        self.content: Union[str, none_type] = kwargs.get("content", None)
+        self.contact: Union[str, none_type] = kwargs.get("contact", None)
+        self.account: Union[str, none_type] = kwargs.get("account", None)
+        self.opportunity: Union[str, none_type] = kwargs.get("opportunity", None)
+        self.remote_updated_at: Union[datetime, none_type] = kwargs.get("remote_updated_at", None)
+        self.remote_created_at: Union[datetime, none_type] = kwargs.get("remote_created_at", None)
+        self.integration_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
+        self.linked_account_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
 
 

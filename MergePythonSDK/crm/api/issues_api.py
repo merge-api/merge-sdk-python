@@ -211,7 +211,7 @@ class IssuesApi(object):
     def issues_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(Issue)":
         """issues_list  # noqa: E501
 
         Gets issues.  # noqa: E501
@@ -303,7 +303,7 @@ class IssuesApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "Issue":
         """issues_retrieve  # noqa: E501
 
         Get a specific issue.  # noqa: E501

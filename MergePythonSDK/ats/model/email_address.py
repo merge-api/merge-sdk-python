@@ -12,6 +12,13 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
+from typing import (
+    Optional,
+    Union,
+    List,
+    Dict,
+)
+
 from MergePythonSDK.shared.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
@@ -28,6 +35,7 @@ from MergePythonSDK.shared.model_utils import (  # noqa: F401
     validate_get_composed_info,
 )
 from MergePythonSDK.shared.exceptions import ApiAttributeError
+from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 def lazy_import():
@@ -73,7 +81,6 @@ class EmailAddress(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        lazy_import()
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
@@ -89,14 +96,17 @@ class EmailAddress(ModelNormal):
                 and the value is attribute type.
         """
         lazy_import()
-        return {
+
+        defined_types = {
             'value': (str, none_type,),  # noqa: E501
-            'email_address_type': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'email_address_type': (EmailAddressTypeEnum, str, none_type,),
         }
+        return defined_types
 
     @cached_property
     def discriminator():
         return None
+
 
     attribute_map = {
         'value': 'value',  # noqa: E501
@@ -256,7 +266,7 @@ class EmailAddress(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.value = kwargs.get("value", None)
-        self.email_address_type = kwargs.get("email_address_type", None)
+        self.value: Union[str, none_type] = kwargs.get("value", None)
+        self.email_address_type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("email_address_type", None)
 
 

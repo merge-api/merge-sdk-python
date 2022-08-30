@@ -247,7 +247,7 @@ class EmployeePayrollRunsApi(object):
     def employee_payroll_runs_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(EmployeePayrollRun)":
         """employee_payroll_runs_list  # noqa: E501
 
         Returns a list of `EmployeePayrollRun` objects.  # noqa: E501
@@ -342,7 +342,7 @@ class EmployeePayrollRunsApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "EmployeePayrollRun":
         """employee_payroll_runs_retrieve  # noqa: E501
 
         Returns an `EmployeePayrollRun` object with the given `id`.  # noqa: E501

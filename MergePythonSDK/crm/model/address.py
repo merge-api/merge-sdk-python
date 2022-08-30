@@ -12,6 +12,13 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
+from typing import (
+    Optional,
+    Union,
+    List,
+    Dict,
+)
+
 from MergePythonSDK.shared.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
@@ -28,6 +35,7 @@ from MergePythonSDK.shared.model_utils import (  # noqa: F401
     validate_get_composed_info,
 )
 from MergePythonSDK.shared.exceptions import ApiAttributeError
+from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 def lazy_import():
@@ -72,7 +80,6 @@ class Address(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        lazy_import()
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
@@ -88,19 +95,30 @@ class Address(ModelNormal):
                 and the value is attribute type.
         """
         lazy_import()
-        return {
+
+        defined_types = {
             'street_1': (str, none_type,),  # noqa: E501
             'street_2': (str, none_type,),  # noqa: E501
             'city': (str, none_type,),  # noqa: E501
             'state': (str, none_type,),  # noqa: E501
             'postal_code': (str, none_type,),  # noqa: E501
-            'country': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
-            'address_type': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'country': (CountryEnum, str, none_type,),
+            'address_type': (AddressTypeEnum, str, none_type,),
         }
+        expands_types = {"owner": "User"}
+
+        # update types with expands
+        for key, val in expands_types.items():
+            expands_model = import_model_by_name(val, "crm")
+            if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
+                defined_types[key][0].insert(0, expands_model)
+            defined_types[key] = (*defined_types[key], expands_model)
+        return defined_types
 
     @cached_property
     def discriminator():
         return None
+
 
     attribute_map = {
         'street_1': 'street_1',  # noqa: E501
@@ -280,12 +298,12 @@ class Address(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.street_1 = kwargs.get("street_1", None)
-        self.street_2 = kwargs.get("street_2", None)
-        self.city = kwargs.get("city", None)
-        self.state = kwargs.get("state", None)
-        self.postal_code = kwargs.get("postal_code", None)
-        self.country = kwargs.get("country", None)
-        self.address_type = kwargs.get("address_type", None)
+        self.street_1: Union[str, none_type] = kwargs.get("street_1", None)
+        self.street_2: Union[str, none_type] = kwargs.get("street_2", None)
+        self.city: Union[str, none_type] = kwargs.get("city", None)
+        self.state: Union[str, none_type] = kwargs.get("state", None)
+        self.postal_code: Union[str, none_type] = kwargs.get("postal_code", None)
+        self.country: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("country", None)
+        self.address_type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("address_type", None)
 
 

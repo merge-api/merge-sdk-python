@@ -12,6 +12,13 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
+from typing import (
+    Optional,
+    Union,
+    List,
+    Dict,
+)
+
 from MergePythonSDK.shared.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
@@ -28,6 +35,7 @@ from MergePythonSDK.shared.model_utils import (  # noqa: F401
     validate_get_composed_info,
 )
 from MergePythonSDK.shared.exceptions import ApiAttributeError
+from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 class ReportItem(ModelNormal):
@@ -80,16 +88,27 @@ class ReportItem(ModelNormal):
             openapi_types (dict): The key is attribute name
                 and the value is attribute type.
         """
-        return {
+
+        defined_types = {
             'remote_id': (str, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
             'value': (float, none_type,),  # noqa: E501
             'sub_items': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
         }
+        expands_types = {}
+
+        # update types with expands
+        for key, val in expands_types.items():
+            expands_model = import_model_by_name(val, "accounting")
+            if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
+                defined_types[key][0].insert(0, expands_model)
+            defined_types[key] = (*defined_types[key], expands_model)
+        return defined_types
 
     @cached_property
     def discriminator():
         return None
+
 
     attribute_map = {
         'remote_id': 'remote_id',  # noqa: E501
@@ -258,10 +277,10 @@ class ReportItem(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id = kwargs.get("remote_id", None)
-        self.name = kwargs.get("name", None)
-        self.value = kwargs.get("value", None)
-        self._sub_items = kwargs.get("sub_items", dict())
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self.name: Union[str, none_type] = kwargs.get("name", None)
+        self.value: Union[float, none_type] = kwargs.get("value", None)
+        self._sub_items: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type]] = kwargs.get("sub_items", dict())
     @property
     def sub_items(self):
         return self._sub_items

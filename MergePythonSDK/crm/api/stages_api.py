@@ -189,7 +189,7 @@ class StagesApi(object):
     def stages_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(Stage)":
         """stages_list  # noqa: E501
 
         Returns a list of `Stage` objects.  # noqa: E501
@@ -277,7 +277,7 @@ class StagesApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "Stage":
         """stages_retrieve  # noqa: E501
 
         Returns a `Stage` object with the given `id`.  # noqa: E501

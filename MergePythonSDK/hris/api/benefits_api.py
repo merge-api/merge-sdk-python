@@ -214,7 +214,7 @@ class BenefitsApi(object):
     def benefits_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(Benefit)":
         """benefits_list  # noqa: E501
 
         Returns a list of `Benefit` objects.  # noqa: E501
@@ -304,7 +304,7 @@ class BenefitsApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "Benefit":
         """benefits_retrieve  # noqa: E501
 
         Returns a `Benefit` object with the given `id`.  # noqa: E501

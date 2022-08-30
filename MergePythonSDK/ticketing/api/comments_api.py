@@ -340,7 +340,7 @@ class CommentsApi(object):
         self,
         comment_endpoint_request,
         **kwargs
-    ):
+    ) -> "CommentResponse":
         """comments_create  # noqa: E501
 
         Creates a `Comment` object with the given values.  # noqa: E501
@@ -424,7 +424,7 @@ class CommentsApi(object):
     def comments_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(Comment)":
         """comments_list  # noqa: E501
 
         Returns a list of `Comment` objects.  # noqa: E501
@@ -513,7 +513,7 @@ class CommentsApi(object):
     def comments_meta_post_retrieve(
         self,
         **kwargs
-    ):
+    ) -> "MetaResponse":
         """comments_meta_post_retrieve  # noqa: E501
 
         Returns metadata for `Comment` POSTs.  # noqa: E501
@@ -592,7 +592,7 @@ class CommentsApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "Comment":
         """comments_retrieve  # noqa: E501
 
         Returns a `Comment` object with the given `id`.  # noqa: E501

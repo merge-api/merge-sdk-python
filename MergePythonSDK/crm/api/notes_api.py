@@ -371,7 +371,7 @@ class NotesApi(object):
         self,
         note_endpoint_request,
         **kwargs
-    ):
+    ) -> "NoteResponse":
         """notes_create  # noqa: E501
 
         Creates a `Note` object with the given values.  # noqa: E501
@@ -455,7 +455,7 @@ class NotesApi(object):
     def notes_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(Note)":
         """notes_list  # noqa: E501
 
         Returns a list of `Note` objects.  # noqa: E501
@@ -547,7 +547,7 @@ class NotesApi(object):
     def notes_meta_post_retrieve(
         self,
         **kwargs
-    ):
+    ) -> "MetaResponse":
         """notes_meta_post_retrieve  # noqa: E501
 
         Returns metadata for `Note` POSTs.  # noqa: E501
@@ -626,7 +626,7 @@ class NotesApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "Note":
         """notes_retrieve  # noqa: E501
 
         Returns a `Note` object with the given `id`.  # noqa: E501

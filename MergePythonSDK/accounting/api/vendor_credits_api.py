@@ -213,7 +213,7 @@ class VendorCreditsApi(object):
     def vendor_credits_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(VendorCredit)":
         """vendor_credits_list  # noqa: E501
 
         Returns a list of `VendorCredit` objects.  # noqa: E501
@@ -302,7 +302,7 @@ class VendorCreditsApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "VendorCredit":
         """vendor_credits_retrieve  # noqa: E501
 
         Returns a `VendorCredit` object with the given `id`.  # noqa: E501

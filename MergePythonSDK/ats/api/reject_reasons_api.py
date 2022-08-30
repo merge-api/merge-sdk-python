@@ -189,7 +189,7 @@ class RejectReasonsApi(object):
     def reject_reasons_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(RejectReason)":
         """reject_reasons_list  # noqa: E501
 
         Returns a list of `RejectReason` objects.  # noqa: E501
@@ -277,7 +277,7 @@ class RejectReasonsApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "RejectReason":
         """reject_reasons_retrieve  # noqa: E501
 
         Returns a `RejectReason` object with the given `id`.  # noqa: E501

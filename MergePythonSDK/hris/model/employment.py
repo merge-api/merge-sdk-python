@@ -12,6 +12,13 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
+from typing import (
+    Optional,
+    Union,
+    List,
+    Dict,
+)
+
 from MergePythonSDK.shared.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
@@ -28,6 +35,7 @@ from MergePythonSDK.shared.model_utils import (  # noqa: F401
     validate_get_composed_info,
 )
 from MergePythonSDK.shared.exceptions import ApiAttributeError
+from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 def lazy_import():
@@ -80,7 +88,6 @@ class Employment(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        lazy_import()
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
@@ -96,26 +103,37 @@ class Employment(ModelNormal):
                 and the value is attribute type.
         """
         lazy_import()
-        return {
+
+        defined_types = {
             'id': (str,),  # noqa: E501
             'remote_id': (str, none_type,),  # noqa: E501
             'employee': (str, none_type,),  # noqa: E501
             'job_title': (str, none_type,),  # noqa: E501
             'pay_rate': (float, none_type,),  # noqa: E501
-            'pay_period': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
-            'pay_frequency': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
-            'pay_currency': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'pay_period': (PayPeriodEnum, str, none_type,),
+            'pay_frequency': (PayFrequencyEnum, str, none_type,),
+            'pay_currency': (PayCurrencyEnum, str, none_type,),
             'pay_group': (str, none_type,),  # noqa: E501
-            'flsa_status': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'flsa_status': (FlsaStatusEnum, str, none_type,),
             'effective_date': (datetime, none_type,),  # noqa: E501
-            'employment_type': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'employment_type': (EmploymentTypeEnum, str, none_type,),
             'remote_data': ([RemoteData], none_type,),  # noqa: E501
             'remote_was_deleted': (bool,),  # noqa: E501
         }
+        expands_types = {"employee": "Employee", "pay_group": "PayGroup"}
+
+        # update types with expands
+        for key, val in expands_types.items():
+            expands_model = import_model_by_name(val, "hris")
+            if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
+                defined_types[key][0].insert(0, expands_model)
+            defined_types[key] = (*defined_types[key], expands_model)
+        return defined_types
 
     @cached_property
     def discriminator():
         return None
+
 
     attribute_map = {
         'id': 'id',  # noqa: E501
@@ -328,22 +346,22 @@ class Employment(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id = kwargs.get("remote_id", None)
-        self.employee = kwargs.get("employee", None)
-        self.job_title = kwargs.get("job_title", None)
-        self.pay_rate = kwargs.get("pay_rate", None)
-        self.pay_period = kwargs.get("pay_period", None)
-        self.pay_frequency = kwargs.get("pay_frequency", None)
-        self.pay_currency = kwargs.get("pay_currency", None)
-        self.pay_group = kwargs.get("pay_group", None)
-        self.flsa_status = kwargs.get("flsa_status", None)
-        self.effective_date = kwargs.get("effective_date", None)
-        self.employment_type = kwargs.get("employment_type", None)
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self.employee: Union[str, none_type] = kwargs.get("employee", None)
+        self.job_title: Union[str, none_type] = kwargs.get("job_title", None)
+        self.pay_rate: Union[float, none_type] = kwargs.get("pay_rate", None)
+        self.pay_period: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("pay_period", None)
+        self.pay_frequency: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("pay_frequency", None)
+        self.pay_currency: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("pay_currency", None)
+        self.pay_group: Union[str, none_type] = kwargs.get("pay_group", None)
+        self.flsa_status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("flsa_status", None)
+        self.effective_date: Union[datetime, none_type] = kwargs.get("effective_date", None)
+        self.employment_type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("employment_type", None)
 
         # Read only properties
-        self._id = kwargs.get("id", str())
-        self._remote_data = kwargs.get("remote_data", None)
-        self._remote_was_deleted = kwargs.get("remote_was_deleted", bool())
+        self._id: Union[str] = kwargs.get("id", str())
+        self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
+        self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
 
     # Read only property getters
     @property

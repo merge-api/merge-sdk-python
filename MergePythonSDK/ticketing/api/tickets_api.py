@@ -555,7 +555,7 @@ class TicketsApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(User)":
         """tickets_collaborators_list  # noqa: E501
 
         Returns a `User` object with the given `id`.  # noqa: E501
@@ -642,7 +642,7 @@ class TicketsApi(object):
         self,
         ticket_endpoint_request,
         **kwargs
-    ):
+    ) -> "TicketResponse":
         """tickets_create  # noqa: E501
 
         Creates a `Ticket` object with the given values.  # noqa: E501
@@ -726,7 +726,7 @@ class TicketsApi(object):
     def tickets_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(Ticket)":
         """tickets_list  # noqa: E501
 
         Returns a list of `Ticket` objects.  # noqa: E501
@@ -817,7 +817,7 @@ class TicketsApi(object):
     def tickets_meta_post_retrieve(
         self,
         **kwargs
-    ):
+    ) -> "MetaResponse":
         """tickets_meta_post_retrieve  # noqa: E501
 
         Returns metadata for `Ticket` POSTs.  # noqa: E501
@@ -896,7 +896,7 @@ class TicketsApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "Ticket":
         """tickets_retrieve  # noqa: E501
 
         Returns a `Ticket` object with the given `id`.  # noqa: E501

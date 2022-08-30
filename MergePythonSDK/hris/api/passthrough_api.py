@@ -97,7 +97,7 @@ class PassthroughApi(object):
         self,
         data_passthrough_request,
         **kwargs
-    ):
+    ) -> "RemoteResponse":
         """passthrough_create  # noqa: E501
 
         Pull data from an endpoint not currently supported by Merge.  # noqa: E501

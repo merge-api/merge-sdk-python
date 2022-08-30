@@ -189,7 +189,7 @@ class CashFlowStatementsApi(object):
     def cash_flow_statements_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(CashFlowStatement)":
         """cash_flow_statements_list  # noqa: E501
 
         Returns a list of `CashFlowStatement` objects.  # noqa: E501
@@ -277,7 +277,7 @@ class CashFlowStatementsApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "CashFlowStatement":
         """cash_flow_statements_retrieve  # noqa: E501
 
         Returns a `CashFlowStatement` object with the given `id`.  # noqa: E501

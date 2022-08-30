@@ -262,7 +262,7 @@ class EeocsApi(object):
     def eeocs_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(EEOC)":
         """eeocs_list  # noqa: E501
 
         Returns a list of `EEOC` objects.  # noqa: E501
@@ -353,7 +353,7 @@ class EeocsApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "EEOC":
         """eeocs_retrieve  # noqa: E501
 
         Returns an `EEOC` object with the given `id`.  # noqa: E501

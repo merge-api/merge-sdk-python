@@ -12,6 +12,13 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
+from typing import (
+    Optional,
+    Union,
+    List,
+    Dict,
+)
+
 from MergePythonSDK.shared.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
@@ -28,6 +35,7 @@ from MergePythonSDK.shared.model_utils import (  # noqa: F401
     validate_get_composed_info,
 )
 from MergePythonSDK.shared.exceptions import ApiAttributeError
+from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 class JournalLine(ModelNormal):
@@ -80,7 +88,8 @@ class JournalLine(ModelNormal):
             openapi_types (dict): The key is attribute name
                 and the value is attribute type.
         """
-        return {
+
+        defined_types = {
             'remote_id': (str, none_type,),  # noqa: E501
             'account': (str, none_type,),  # noqa: E501
             'net_amount': (float, none_type,),  # noqa: E501
@@ -88,10 +97,20 @@ class JournalLine(ModelNormal):
             'contact': (str, none_type,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
         }
+        expands_types = {"lines": "JournalLine", "payments": "Payment"}
+
+        # update types with expands
+        for key, val in expands_types.items():
+            expands_model = import_model_by_name(val, "accounting")
+            if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
+                defined_types[key][0].insert(0, expands_model)
+            defined_types[key] = (*defined_types[key], expands_model)
+        return defined_types
 
     @cached_property
     def discriminator():
         return None
+
 
     attribute_map = {
         'remote_id': 'remote_id',  # noqa: E501
@@ -267,11 +286,11 @@ class JournalLine(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id = kwargs.get("remote_id", None)
-        self.account = kwargs.get("account", None)
-        self.net_amount = kwargs.get("net_amount", None)
-        self.tracking_category = kwargs.get("tracking_category", None)
-        self.contact = kwargs.get("contact", None)
-        self.description = kwargs.get("description", None)
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self.account: Union[str, none_type] = kwargs.get("account", None)
+        self.net_amount: Union[float, none_type] = kwargs.get("net_amount", None)
+        self.tracking_category: Union[str, none_type] = kwargs.get("tracking_category", None)
+        self.contact: Union[str, none_type] = kwargs.get("contact", None)
+        self.description: Union[str, none_type] = kwargs.get("description", None)
 
 

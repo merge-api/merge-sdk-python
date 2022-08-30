@@ -12,6 +12,13 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
+from typing import (
+    Optional,
+    Union,
+    List,
+    Dict,
+)
+
 from MergePythonSDK.shared.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
@@ -28,6 +35,7 @@ from MergePythonSDK.shared.model_utils import (  # noqa: F401
     validate_get_composed_info,
 )
 from MergePythonSDK.shared.exceptions import ApiAttributeError
+from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 def lazy_import():
@@ -76,7 +84,6 @@ class Lead(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        lazy_import()
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
@@ -92,7 +99,8 @@ class Lead(ModelNormal):
                 and the value is attribute type.
         """
         lazy_import()
-        return {
+
+        defined_types = {
             'id': (str,),  # noqa: E501
             'remote_id': (str, none_type,),  # noqa: E501
             'owner': (str, none_type,),  # noqa: E501
@@ -112,10 +120,20 @@ class Lead(ModelNormal):
             'remote_data': ([RemoteData], none_type,),  # noqa: E501
             'remote_was_deleted': (bool,),  # noqa: E501
         }
+        expands_types = {"owner": "User", "converted_contact": "Contact", "converted_account": "Account"}
+
+        # update types with expands
+        for key, val in expands_types.items():
+            expands_model = import_model_by_name(val, "crm")
+            if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
+                defined_types[key][0].insert(0, expands_model)
+            defined_types[key] = (*defined_types[key], expands_model)
+        return defined_types
 
     @cached_property
     def discriminator():
         return None
+
 
     attribute_map = {
         'id': 'id',  # noqa: E501
@@ -347,26 +365,26 @@ class Lead(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id = kwargs.get("remote_id", None)
-        self.owner = kwargs.get("owner", None)
-        self.lead_source = kwargs.get("lead_source", None)
-        self.title = kwargs.get("title", None)
-        self.company = kwargs.get("company", None)
-        self.first_name = kwargs.get("first_name", None)
-        self.last_name = kwargs.get("last_name", None)
-        self.remote_updated_at = kwargs.get("remote_updated_at", None)
-        self.remote_created_at = kwargs.get("remote_created_at", None)
-        self.converted_date = kwargs.get("converted_date", None)
-        self.converted_contact = kwargs.get("converted_contact", None)
-        self.converted_account = kwargs.get("converted_account", None)
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self.owner: Union[str, none_type] = kwargs.get("owner", None)
+        self.lead_source: Union[str, none_type] = kwargs.get("lead_source", None)
+        self.title: Union[str, none_type] = kwargs.get("title", None)
+        self.company: Union[str, none_type] = kwargs.get("company", None)
+        self.first_name: Union[str, none_type] = kwargs.get("first_name", None)
+        self.last_name: Union[str, none_type] = kwargs.get("last_name", None)
+        self.remote_updated_at: Union[datetime, none_type] = kwargs.get("remote_updated_at", None)
+        self.remote_created_at: Union[datetime, none_type] = kwargs.get("remote_created_at", None)
+        self.converted_date: Union[datetime, none_type] = kwargs.get("converted_date", None)
+        self.converted_contact: Union[str, none_type] = kwargs.get("converted_contact", None)
+        self.converted_account: Union[str, none_type] = kwargs.get("converted_account", None)
 
         # Read only properties
-        self._id = kwargs.get("id", str())
-        self._addresses = kwargs.get("addresses", None)
-        self._email_addresses = kwargs.get("email_addresses", None)
-        self._phone_numbers = kwargs.get("phone_numbers", None)
-        self._remote_data = kwargs.get("remote_data", None)
-        self._remote_was_deleted = kwargs.get("remote_was_deleted", bool())
+        self._id: Union[str] = kwargs.get("id", str())
+        self._addresses: Union[List["Address"]] = kwargs.get("addresses", None)
+        self._email_addresses: Union[List["EmailAddress"]] = kwargs.get("email_addresses", None)
+        self._phone_numbers: Union[List["PhoneNumber"]] = kwargs.get("phone_numbers", None)
+        self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
+        self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
 
     # Read only property getters
     @property

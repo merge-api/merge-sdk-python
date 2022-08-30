@@ -189,7 +189,7 @@ class IncomeStatementsApi(object):
     def income_statements_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(IncomeStatement)":
         """income_statements_list  # noqa: E501
 
         Returns a list of `IncomeStatement` objects.  # noqa: E501
@@ -277,7 +277,7 @@ class IncomeStatementsApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "IncomeStatement":
         """income_statements_retrieve  # noqa: E501
 
         Returns an `IncomeStatement` object with the given `id`.  # noqa: E501

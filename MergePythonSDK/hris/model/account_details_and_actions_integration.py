@@ -12,6 +12,13 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
+from typing import (
+    Optional,
+    Union,
+    List,
+    Dict,
+)
+
 from MergePythonSDK.shared.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
@@ -28,6 +35,7 @@ from MergePythonSDK.shared.model_utils import (  # noqa: F401
     validate_get_composed_info,
 )
 from MergePythonSDK.shared.exceptions import ApiAttributeError
+from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 def lazy_import():
@@ -72,7 +80,6 @@ class AccountDetailsAndActionsIntegration(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        lazy_import()
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
@@ -88,7 +95,8 @@ class AccountDetailsAndActionsIntegration(ModelNormal):
                 and the value is attribute type.
         """
         lazy_import()
-        return {
+
+        defined_types = {
             'name': (str,),  # noqa: E501
             'categories': ([CategoriesEnum],),  # noqa: E501
             'color': (str,),  # noqa: E501
@@ -98,10 +106,12 @@ class AccountDetailsAndActionsIntegration(ModelNormal):
             'square_image': (str,),  # noqa: E501
             'available_model_operations': ([ModelOperation],),  # noqa: E501
         }
+        return defined_types
 
     @cached_property
     def discriminator():
         return None
+
 
     attribute_map = {
         'name': 'name',  # noqa: E501
@@ -289,13 +299,13 @@ class AccountDetailsAndActionsIntegration(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.name = name
-        self.categories = categories
-        self.color = color
-        self.slug = slug
-        self.passthrough_available = passthrough_available
-        self.image = kwargs.get("image", str())
-        self.square_image = kwargs.get("square_image", str())
-        self.available_model_operations = kwargs.get("available_model_operations", None)
+        self.name: Union[str] = name
+        self.categories: Union[List["CategoriesEnum"]] = categories
+        self.color: Union[str] = color
+        self.slug: Union[str] = slug
+        self.passthrough_available: Union[bool] = passthrough_available
+        self.image: Union[str] = kwargs.get("image", str())
+        self.square_image: Union[str] = kwargs.get("square_image", str())
+        self.available_model_operations: Union[List["ModelOperation"]] = kwargs.get("available_model_operations", None)
 
 

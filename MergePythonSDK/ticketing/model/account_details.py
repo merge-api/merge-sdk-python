@@ -12,6 +12,13 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
+from typing import (
+    Optional,
+    Union,
+    List,
+    Dict,
+)
+
 from MergePythonSDK.shared.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
@@ -28,6 +35,7 @@ from MergePythonSDK.shared.model_utils import (  # noqa: F401
     validate_get_composed_info,
 )
 from MergePythonSDK.shared.exceptions import ApiAttributeError
+from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 def lazy_import():
@@ -70,7 +78,6 @@ class AccountDetails(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        lazy_import()
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
@@ -86,11 +93,12 @@ class AccountDetails(ModelNormal):
                 and the value is attribute type.
         """
         lazy_import()
-        return {
+
+        defined_types = {
             'id': (str,),  # noqa: E501
             'integration': (str,),  # noqa: E501
             'integration_slug': (str,),  # noqa: E501
-            'category': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'category': (CategoryEnum, str, none_type,),
             'end_user_origin_id': (str,),  # noqa: E501
             'end_user_organization_name': (str,),  # noqa: E501
             'end_user_email_address': (str,),  # noqa: E501
@@ -98,10 +106,12 @@ class AccountDetails(ModelNormal):
             'webhook_listener_url': (str,),  # noqa: E501
             'is_duplicate': (bool, none_type,),  # noqa: E501
         }
+        return defined_types
 
     @cached_property
     def discriminator():
         return None
+
 
     attribute_map = {
         'id': 'id',  # noqa: E501
@@ -304,18 +314,18 @@ class AccountDetails(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.category = kwargs.get("category", None)
+        self.category: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("category", None)
 
         # Read only properties
-        self._id = kwargs.get("id", str())
-        self._integration = kwargs.get("integration", str())
-        self._integration_slug = kwargs.get("integration_slug", str())
-        self._end_user_origin_id = kwargs.get("end_user_origin_id", str())
-        self._end_user_organization_name = kwargs.get("end_user_organization_name", str())
-        self._end_user_email_address = kwargs.get("end_user_email_address", str())
-        self._status = kwargs.get("status", str())
-        self._webhook_listener_url = kwargs.get("webhook_listener_url", str())
-        self._is_duplicate = kwargs.get("is_duplicate", None)
+        self._id: Union[str] = kwargs.get("id", str())
+        self._integration: Union[str] = kwargs.get("integration", str())
+        self._integration_slug: Union[str] = kwargs.get("integration_slug", str())
+        self._end_user_origin_id: Union[str] = kwargs.get("end_user_origin_id", str())
+        self._end_user_organization_name: Union[str] = kwargs.get("end_user_organization_name", str())
+        self._end_user_email_address: Union[str] = kwargs.get("end_user_email_address", str())
+        self._status: Union[str] = kwargs.get("status", str())
+        self._webhook_listener_url: Union[str] = kwargs.get("webhook_listener_url", str())
+        self._is_duplicate: Union[bool, none_type] = kwargs.get("is_duplicate", None)
 
     # Read only property getters
     @property

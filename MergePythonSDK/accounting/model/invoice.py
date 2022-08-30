@@ -12,6 +12,13 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
+from typing import (
+    Optional,
+    Union,
+    List,
+    Dict,
+)
+
 from MergePythonSDK.shared.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
@@ -28,6 +35,7 @@ from MergePythonSDK.shared.model_utils import (  # noqa: F401
     validate_get_composed_info,
 )
 from MergePythonSDK.shared.exceptions import ApiAttributeError
+from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 def lazy_import():
@@ -76,7 +84,6 @@ class Invoice(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        lazy_import()
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
@@ -92,18 +99,19 @@ class Invoice(ModelNormal):
                 and the value is attribute type.
         """
         lazy_import()
-        return {
+
+        defined_types = {
             'id': (str,),  # noqa: E501
             'remote_id': (str, none_type,),  # noqa: E501
             'remote_data': ([RemoteData], none_type,),  # noqa: E501
-            'type': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'type': (InvoiceTypeEnum, str, none_type,),
             'contact': (str, none_type,),  # noqa: E501
             'number': (str, none_type,),  # noqa: E501
             'issue_date': (datetime, none_type,),  # noqa: E501
             'due_date': (datetime, none_type,),  # noqa: E501
             'paid_on_date': (datetime, none_type,),  # noqa: E501
             'memo': (str, none_type,),  # noqa: E501
-            'currency': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'currency': (CurrencyEnum, str, none_type,),
             'total_discount': (float, none_type,),  # noqa: E501
             'sub_total': (float, none_type,),  # noqa: E501
             'total_tax_amount': (float, none_type,),  # noqa: E501
@@ -114,10 +122,20 @@ class Invoice(ModelNormal):
             'line_items': ([InvoiceLineItem],),  # noqa: E501
             'remote_was_deleted': (bool,),  # noqa: E501
         }
+        expands_types = {"payments": "Payment", "line_items": "InvoiceLineItem", "contact": "Contact"}
+
+        # update types with expands
+        for key, val in expands_types.items():
+            expands_model = import_model_by_name(val, "accounting")
+            if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
+                defined_types[key][0].insert(0, expands_model)
+            defined_types[key] = (*defined_types[key], expands_model)
+        return defined_types
 
     @cached_property
     def discriminator():
         return None
+
 
     attribute_map = {
         'id': 'id',  # noqa: E501
@@ -355,28 +373,28 @@ class Invoice(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id = kwargs.get("remote_id", None)
-        self.type = kwargs.get("type", None)
-        self.contact = kwargs.get("contact", None)
-        self.number = kwargs.get("number", None)
-        self.issue_date = kwargs.get("issue_date", None)
-        self.due_date = kwargs.get("due_date", None)
-        self.paid_on_date = kwargs.get("paid_on_date", None)
-        self.memo = kwargs.get("memo", None)
-        self.currency = kwargs.get("currency", None)
-        self.total_discount = kwargs.get("total_discount", None)
-        self.sub_total = kwargs.get("sub_total", None)
-        self.total_tax_amount = kwargs.get("total_tax_amount", None)
-        self.total_amount = kwargs.get("total_amount", None)
-        self.balance = kwargs.get("balance", None)
-        self.remote_updated_at = kwargs.get("remote_updated_at", None)
-        self.payments = kwargs.get("payments", list())
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self.type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("type", None)
+        self.contact: Union[str, none_type] = kwargs.get("contact", None)
+        self.number: Union[str, none_type] = kwargs.get("number", None)
+        self.issue_date: Union[datetime, none_type] = kwargs.get("issue_date", None)
+        self.due_date: Union[datetime, none_type] = kwargs.get("due_date", None)
+        self.paid_on_date: Union[datetime, none_type] = kwargs.get("paid_on_date", None)
+        self.memo: Union[str, none_type] = kwargs.get("memo", None)
+        self.currency: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("currency", None)
+        self.total_discount: Union[float, none_type] = kwargs.get("total_discount", None)
+        self.sub_total: Union[float, none_type] = kwargs.get("sub_total", None)
+        self.total_tax_amount: Union[float, none_type] = kwargs.get("total_tax_amount", None)
+        self.total_amount: Union[float, none_type] = kwargs.get("total_amount", None)
+        self.balance: Union[float, none_type] = kwargs.get("balance", None)
+        self.remote_updated_at: Union[datetime, none_type] = kwargs.get("remote_updated_at", None)
+        self.payments: Union[List[str, none_type]] = kwargs.get("payments", list())
 
         # Read only properties
-        self._id = kwargs.get("id", str())
-        self._remote_data = kwargs.get("remote_data", None)
-        self._line_items = kwargs.get("line_items", None)
-        self._remote_was_deleted = kwargs.get("remote_was_deleted", bool())
+        self._id: Union[str] = kwargs.get("id", str())
+        self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
+        self._line_items: Union[List["InvoiceLineItem"]] = kwargs.get("line_items", None)
+        self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
 
     # Read only property getters
     @property

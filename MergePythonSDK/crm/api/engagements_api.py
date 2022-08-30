@@ -335,7 +335,7 @@ class EngagementsApi(object):
         self,
         engagement_endpoint_request,
         **kwargs
-    ):
+    ) -> "EngagementResponse":
         """engagements_create  # noqa: E501
 
         Creates an `Engagement` object with the given values.  # noqa: E501
@@ -419,7 +419,7 @@ class EngagementsApi(object):
     def engagements_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(Engagement)":
         """engagements_list  # noqa: E501
 
         Returns a list of `Engagement` objects.  # noqa: E501
@@ -507,7 +507,7 @@ class EngagementsApi(object):
     def engagements_meta_post_retrieve(
         self,
         **kwargs
-    ):
+    ) -> "MetaResponse":
         """engagements_meta_post_retrieve  # noqa: E501
 
         Returns metadata for `Engagement` POSTs.  # noqa: E501
@@ -586,7 +586,7 @@ class EngagementsApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "Engagement":
         """engagements_retrieve  # noqa: E501
 
         Returns an `Engagement` object with the given `id`.  # noqa: E501

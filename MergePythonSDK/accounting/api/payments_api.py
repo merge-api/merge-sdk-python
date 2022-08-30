@@ -223,7 +223,7 @@ class PaymentsApi(object):
     def payments_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(Payment)":
         """payments_list  # noqa: E501
 
         Returns a list of `Payment` objects.  # noqa: E501
@@ -314,7 +314,7 @@ class PaymentsApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "Payment":
         """payments_retrieve  # noqa: E501
 
         Returns a `Payment` object with the given `id`.  # noqa: E501

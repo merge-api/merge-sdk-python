@@ -12,6 +12,13 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
+from typing import (
+    Optional,
+    Union,
+    List,
+    Dict,
+)
+
 from MergePythonSDK.shared.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
@@ -28,6 +35,7 @@ from MergePythonSDK.shared.model_utils import (  # noqa: F401
     validate_get_composed_info,
 )
 from MergePythonSDK.shared.exceptions import ApiAttributeError
+from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 def lazy_import():
@@ -74,7 +82,6 @@ class Activity(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        lazy_import()
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
@@ -90,22 +97,33 @@ class Activity(ModelNormal):
                 and the value is attribute type.
         """
         lazy_import()
-        return {
+
+        defined_types = {
             'id': (str,),  # noqa: E501
             'remote_id': (str, none_type,),  # noqa: E501
             'user': (str, none_type,),  # noqa: E501
             'remote_created_at': (datetime, none_type,),  # noqa: E501
-            'activity_type': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'activity_type': (ActivityTypeEnum, str, none_type,),
             'subject': (str, none_type,),  # noqa: E501
             'body': (str, none_type,),  # noqa: E501
-            'visibility': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'visibility': (VisibilityEnum, str, none_type,),
             'remote_data': ([RemoteData], none_type,),  # noqa: E501
             'remote_was_deleted': (bool,),  # noqa: E501
         }
+        expands_types = {"user": "RemoteUser"}
+
+        # update types with expands
+        for key, val in expands_types.items():
+            expands_model = import_model_by_name(val, "ats")
+            if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
+                defined_types[key][0].insert(0, expands_model)
+            defined_types[key] = (*defined_types[key], expands_model)
+        return defined_types
 
     @cached_property
     def discriminator():
         return None
+
 
     attribute_map = {
         'id': 'id',  # noqa: E501
@@ -302,18 +320,18 @@ class Activity(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id = kwargs.get("remote_id", None)
-        self.user = kwargs.get("user", None)
-        self.remote_created_at = kwargs.get("remote_created_at", None)
-        self.activity_type = kwargs.get("activity_type", None)
-        self.subject = kwargs.get("subject", None)
-        self.body = kwargs.get("body", None)
-        self.visibility = kwargs.get("visibility", None)
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self.user: Union[str, none_type] = kwargs.get("user", None)
+        self.remote_created_at: Union[datetime, none_type] = kwargs.get("remote_created_at", None)
+        self.activity_type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("activity_type", None)
+        self.subject: Union[str, none_type] = kwargs.get("subject", None)
+        self.body: Union[str, none_type] = kwargs.get("body", None)
+        self.visibility: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("visibility", None)
 
         # Read only properties
-        self._id = kwargs.get("id", str())
-        self._remote_data = kwargs.get("remote_data", None)
-        self._remote_was_deleted = kwargs.get("remote_was_deleted", bool())
+        self._id: Union[str] = kwargs.get("id", str())
+        self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
+        self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
 
     # Read only property getters
     @property

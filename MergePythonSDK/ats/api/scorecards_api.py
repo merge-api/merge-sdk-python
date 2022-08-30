@@ -256,7 +256,7 @@ class ScorecardsApi(object):
     def scorecards_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(Scorecard)":
         """scorecards_list  # noqa: E501
 
         Returns a list of `Scorecard` objects.  # noqa: E501
@@ -349,7 +349,7 @@ class ScorecardsApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "Scorecard":
         """scorecards_retrieve  # noqa: E501
 
         Returns a `Scorecard` object with the given `id`.  # noqa: E501

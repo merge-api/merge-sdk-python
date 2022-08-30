@@ -12,6 +12,13 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
+from typing import (
+    Optional,
+    Union,
+    List,
+    Dict,
+)
+
 from MergePythonSDK.shared.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
@@ -28,6 +35,7 @@ from MergePythonSDK.shared.model_utils import (  # noqa: F401
     validate_get_composed_info,
 )
 from MergePythonSDK.shared.exceptions import ApiAttributeError
+from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 def lazy_import():
@@ -74,7 +82,6 @@ class OpportunityRequest(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        lazy_import()
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
@@ -90,7 +97,8 @@ class OpportunityRequest(ModelNormal):
                 and the value is attribute type.
         """
         lazy_import()
-        return {
+
+        defined_types = {
             'remote_id': (str, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
@@ -98,17 +106,27 @@ class OpportunityRequest(ModelNormal):
             'owner': (str, none_type,),  # noqa: E501
             'account': (str, none_type,),  # noqa: E501
             'stage': (str, none_type,),  # noqa: E501
-            'status': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'status': (OpportunityStatusEnum, str, none_type,),
             'last_activity_at': (datetime, none_type,),  # noqa: E501
             'close_date': (datetime, none_type,),  # noqa: E501
             'remote_created_at': (datetime, none_type,),  # noqa: E501
             'integration_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'linked_account_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
+        expands_types = {"owner": "User", "stage": "Stage", "account": "Account"}
+
+        # update types with expands
+        for key, val in expands_types.items():
+            expands_model = import_model_by_name(val, "crm")
+            if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
+                defined_types[key][0].insert(0, expands_model)
+            defined_types[key] = (*defined_types[key], expands_model)
+        return defined_types
 
     @cached_property
     def discriminator():
         return None
+
 
     attribute_map = {
         'remote_id': 'remote_id',  # noqa: E501
@@ -312,18 +330,18 @@ class OpportunityRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id = kwargs.get("remote_id", None)
-        self.name = kwargs.get("name", None)
-        self.description = kwargs.get("description", None)
-        self.amount = kwargs.get("amount", None)
-        self.owner = kwargs.get("owner", None)
-        self.account = kwargs.get("account", None)
-        self.stage = kwargs.get("stage", None)
-        self.status = kwargs.get("status", None)
-        self.last_activity_at = kwargs.get("last_activity_at", None)
-        self.close_date = kwargs.get("close_date", None)
-        self.remote_created_at = kwargs.get("remote_created_at", None)
-        self.integration_params = kwargs.get("integration_params", None)
-        self.linked_account_params = kwargs.get("linked_account_params", None)
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self.name: Union[str, none_type] = kwargs.get("name", None)
+        self.description: Union[str, none_type] = kwargs.get("description", None)
+        self.amount: Union[int, none_type] = kwargs.get("amount", None)
+        self.owner: Union[str, none_type] = kwargs.get("owner", None)
+        self.account: Union[str, none_type] = kwargs.get("account", None)
+        self.stage: Union[str, none_type] = kwargs.get("stage", None)
+        self.status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
+        self.last_activity_at: Union[datetime, none_type] = kwargs.get("last_activity_at", None)
+        self.close_date: Union[datetime, none_type] = kwargs.get("close_date", None)
+        self.remote_created_at: Union[datetime, none_type] = kwargs.get("remote_created_at", None)
+        self.integration_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
+        self.linked_account_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
 
 

@@ -12,6 +12,13 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
+from typing import (
+    Optional,
+    Union,
+    List,
+    Dict,
+)
+
 from MergePythonSDK.shared.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
@@ -28,6 +35,7 @@ from MergePythonSDK.shared.model_utils import (  # noqa: F401
     validate_get_composed_info,
 )
 from MergePythonSDK.shared.exceptions import ApiAttributeError
+from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 def lazy_import():
@@ -77,7 +85,6 @@ class CandidateRequest(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        lazy_import()
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
@@ -93,7 +100,8 @@ class CandidateRequest(ModelNormal):
                 and the value is attribute type.
         """
         lazy_import()
-        return {
+
+        defined_types = {
             'remote_id': (str, none_type,),  # noqa: E501
             'first_name': (str, none_type,),  # noqa: E501
             'last_name': (str, none_type,),  # noqa: E501
@@ -116,10 +124,20 @@ class CandidateRequest(ModelNormal):
             'integration_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'linked_account_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
+        expands_types = {"applications": "Application", "attachments": "Attachment"}
+
+        # update types with expands
+        for key, val in expands_types.items():
+            expands_model = import_model_by_name(val, "ats")
+            if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
+                defined_types[key][0].insert(0, expands_model)
+            defined_types[key] = (*defined_types[key], expands_model)
+        return defined_types
 
     @cached_property
     def discriminator():
         return None
+
 
     attribute_map = {
         'remote_id': 'remote_id',  # noqa: E501
@@ -355,26 +373,26 @@ class CandidateRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id = kwargs.get("remote_id", None)
-        self.first_name = kwargs.get("first_name", None)
-        self.last_name = kwargs.get("last_name", None)
-        self.company = kwargs.get("company", None)
-        self.title = kwargs.get("title", None)
-        self.remote_created_at = kwargs.get("remote_created_at", None)
-        self.remote_updated_at = kwargs.get("remote_updated_at", None)
-        self.last_interaction_at = kwargs.get("last_interaction_at", None)
-        self.is_private = kwargs.get("is_private", None)
-        self.can_email = kwargs.get("can_email", None)
-        self.locations = kwargs.get("locations", None)
-        self.phone_numbers = kwargs.get("phone_numbers", None)
-        self.email_addresses = kwargs.get("email_addresses", None)
-        self.urls = kwargs.get("urls", None)
-        self.tags = kwargs.get("tags", list())
-        self.applications = kwargs.get("applications", list())
-        self.attachments = kwargs.get("attachments", list())
-        self.custom_fields = kwargs.get("custom_fields", None)
-        self.remote_template_id = kwargs.get("remote_template_id", None)
-        self.integration_params = kwargs.get("integration_params", None)
-        self.linked_account_params = kwargs.get("linked_account_params", None)
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self.first_name: Union[str, none_type] = kwargs.get("first_name", None)
+        self.last_name: Union[str, none_type] = kwargs.get("last_name", None)
+        self.company: Union[str, none_type] = kwargs.get("company", None)
+        self.title: Union[str, none_type] = kwargs.get("title", None)
+        self.remote_created_at: Union[datetime, none_type] = kwargs.get("remote_created_at", None)
+        self.remote_updated_at: Union[datetime, none_type] = kwargs.get("remote_updated_at", None)
+        self.last_interaction_at: Union[datetime, none_type] = kwargs.get("last_interaction_at", None)
+        self.is_private: Union[bool, none_type] = kwargs.get("is_private", None)
+        self.can_email: Union[bool, none_type] = kwargs.get("can_email", None)
+        self.locations: Union[List[str, none_type], none_type] = kwargs.get("locations", None)
+        self.phone_numbers: Union[List["PhoneNumberRequest"]] = kwargs.get("phone_numbers", None)
+        self.email_addresses: Union[List["EmailAddressRequest"]] = kwargs.get("email_addresses", None)
+        self.urls: Union[List["UrlRequest"]] = kwargs.get("urls", None)
+        self.tags: Union[List[str]] = kwargs.get("tags", list())
+        self.applications: Union[List[str, none_type]] = kwargs.get("applications", list())
+        self.attachments: Union[List[str, none_type]] = kwargs.get("attachments", list())
+        self.custom_fields: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("custom_fields", None)
+        self.remote_template_id: Union[str, none_type] = kwargs.get("remote_template_id", None)
+        self.integration_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
+        self.linked_account_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
 
 

@@ -233,7 +233,7 @@ class PurchaseOrdersApi(object):
     def purchase_orders_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(PurchaseOrder)":
         """purchase_orders_list  # noqa: E501
 
         Returns a list of `PurchaseOrder` objects.  # noqa: E501
@@ -323,7 +323,7 @@ class PurchaseOrdersApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "PurchaseOrder":
         """purchase_orders_retrieve  # noqa: E501
 
         Returns a `PurchaseOrder` object with the given `id`.  # noqa: E501

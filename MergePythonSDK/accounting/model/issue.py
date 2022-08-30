@@ -12,6 +12,13 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
+from typing import (
+    Optional,
+    Union,
+    List,
+    Dict,
+)
+
 from MergePythonSDK.shared.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
@@ -28,6 +35,7 @@ from MergePythonSDK.shared.model_utils import (  # noqa: F401
     validate_get_composed_info,
 )
 from MergePythonSDK.shared.exceptions import ApiAttributeError
+from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 def lazy_import():
@@ -70,7 +78,6 @@ class Issue(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        lazy_import()
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
@@ -86,7 +93,8 @@ class Issue(ModelNormal):
                 and the value is attribute type.
         """
         lazy_import()
-        return {
+
+        defined_types = {
             'error_description': (str,),  # noqa: E501
             'id': (str,),  # noqa: E501
             'status': (IssueStatusEnum,),  # noqa: E501
@@ -95,10 +103,12 @@ class Issue(ModelNormal):
             'last_incident_time': (datetime, none_type,),  # noqa: E501
             'is_muted': (bool,),  # noqa: E501
         }
+        return defined_types
 
     @cached_property
     def discriminator():
         return None
+
 
     attribute_map = {
         'error_description': 'error_description',  # noqa: E501
@@ -287,15 +297,15 @@ class Issue(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.error_description = error_description
-        self.status = kwargs.get("status", None)
-        self.first_incident_time = kwargs.get("first_incident_time", None)
-        self.last_incident_time = kwargs.get("last_incident_time", None)
+        self.error_description: Union[str] = error_description
+        self.status: Union["IssueStatusEnum"] = kwargs.get("status", None)
+        self.first_incident_time: Union[datetime, none_type] = kwargs.get("first_incident_time", None)
+        self.last_incident_time: Union[datetime, none_type] = kwargs.get("last_incident_time", None)
 
         # Read only properties
-        self._id = kwargs.get("id", str())
-        self._end_user = kwargs.get("end_user", dict())
-        self._is_muted = kwargs.get("is_muted", bool())
+        self._id: Union[str] = kwargs.get("id", str())
+        self._end_user: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type]] = kwargs.get("end_user", dict())
+        self._is_muted: Union[bool] = kwargs.get("is_muted", bool())
 
     # Read only property getters
     @property

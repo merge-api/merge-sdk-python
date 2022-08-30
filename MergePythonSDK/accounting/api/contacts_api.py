@@ -233,7 +233,7 @@ class ContactsApi(object):
     def contacts_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(Contact)":
         """contacts_list  # noqa: E501
 
         Returns a list of `Contact` objects.  # noqa: E501
@@ -323,7 +323,7 @@ class ContactsApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "Contact":
         """contacts_retrieve  # noqa: E501
 
         Returns a `Contact` object with the given `id`.  # noqa: E501

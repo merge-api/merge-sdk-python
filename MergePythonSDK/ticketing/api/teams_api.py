@@ -189,7 +189,7 @@ class TeamsApi(object):
     def teams_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(Team)":
         """teams_list  # noqa: E501
 
         Returns a list of `Team` objects.  # noqa: E501
@@ -277,7 +277,7 @@ class TeamsApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "Team":
         """teams_retrieve  # noqa: E501
 
         Returns a `Team` object with the given `id`.  # noqa: E501

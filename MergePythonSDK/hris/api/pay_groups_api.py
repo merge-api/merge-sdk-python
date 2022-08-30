@@ -189,7 +189,7 @@ class PayGroupsApi(object):
     def pay_groups_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(PayGroup)":
         """pay_groups_list  # noqa: E501
 
         Returns a list of `PayGroup` objects.  # noqa: E501
@@ -277,7 +277,7 @@ class PayGroupsApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "PayGroup":
         """pay_groups_retrieve  # noqa: E501
 
         Returns a `PayGroup` object with the given `id`.  # noqa: E501

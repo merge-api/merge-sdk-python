@@ -12,6 +12,13 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
+from typing import (
+    Optional,
+    Union,
+    List,
+    Dict,
+)
+
 from MergePythonSDK.shared.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
@@ -28,6 +35,7 @@ from MergePythonSDK.shared.model_utils import (  # noqa: F401
     validate_get_composed_info,
 )
 from MergePythonSDK.shared.exceptions import ApiAttributeError
+from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 class LinkToken(ModelNormal):
@@ -80,15 +88,18 @@ class LinkToken(ModelNormal):
             openapi_types (dict): The key is attribute name
                 and the value is attribute type.
         """
-        return {
+
+        defined_types = {
             'link_token': (str,),  # noqa: E501
             'integration_name': (str,),  # noqa: E501
             'magic_link_url': (str,),  # noqa: E501
         }
+        return defined_types
 
     @cached_property
     def discriminator():
         return None
+
 
     attribute_map = {
         'link_token': 'link_token',  # noqa: E501
@@ -256,8 +267,8 @@ class LinkToken(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.link_token = link_token
-        self.integration_name = integration_name
-        self.magic_link_url = kwargs.get("magic_link_url", str())
+        self.link_token: Union[str] = link_token
+        self.integration_name: Union[str] = integration_name
+        self.magic_link_url: Union[str] = kwargs.get("magic_link_url", str())
 
 

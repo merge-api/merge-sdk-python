@@ -82,7 +82,7 @@ class DeleteAccountApi(object):
     def delete_account_create(
         self,
         **kwargs
-    ):
+    ) -> None:
         """delete_account_create  # noqa: E501
 
         Delete a linked account.  # noqa: E501

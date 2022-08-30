@@ -194,7 +194,7 @@ class DeductionsApi(object):
     def deductions_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(Deduction)":
         """deductions_list  # noqa: E501
 
         Returns a list of `Deduction` objects.  # noqa: E501
@@ -283,7 +283,7 @@ class DeductionsApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "Deduction":
         """deductions_retrieve  # noqa: E501
 
         Returns a `Deduction` object with the given `id`.  # noqa: E501

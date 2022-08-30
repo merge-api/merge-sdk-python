@@ -277,7 +277,7 @@ class EmploymentsApi(object):
     def employments_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(Employment)":
         """employments_list  # noqa: E501
 
         Returns a list of `Employment` objects.  # noqa: E501
@@ -369,7 +369,7 @@ class EmploymentsApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "Employment":
         """employments_retrieve  # noqa: E501
 
         Returns an `Employment` object with the given `id`.  # noqa: E501

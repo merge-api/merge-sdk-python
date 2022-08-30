@@ -108,7 +108,7 @@ class AddressesApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "Address":
         """addresses_retrieve  # noqa: E501
 
         Returns an `Address` object with the given `id`.  # noqa: E501

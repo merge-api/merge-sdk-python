@@ -233,7 +233,7 @@ class CreditNotesApi(object):
     def credit_notes_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(CreditNote)":
         """credit_notes_list  # noqa: E501
 
         Returns a list of `CreditNote` objects.  # noqa: E501
@@ -323,7 +323,7 @@ class CreditNotesApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "CreditNote":
         """credit_notes_retrieve  # noqa: E501
 
         Returns a `CreditNote` object with the given `id`.  # noqa: E501

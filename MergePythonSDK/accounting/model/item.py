@@ -12,6 +12,13 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
+from typing import (
+    Optional,
+    Union,
+    List,
+    Dict,
+)
+
 from MergePythonSDK.shared.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
@@ -28,6 +35,7 @@ from MergePythonSDK.shared.model_utils import (  # noqa: F401
     validate_get_composed_info,
 )
 from MergePythonSDK.shared.exceptions import ApiAttributeError
+from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 def lazy_import():
@@ -72,7 +80,6 @@ class Item(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        lazy_import()
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
@@ -88,12 +95,13 @@ class Item(ModelNormal):
                 and the value is attribute type.
         """
         lazy_import()
-        return {
+
+        defined_types = {
             'id': (str,),  # noqa: E501
             'remote_id': (str, none_type,),  # noqa: E501
             'remote_data': ([RemoteData], none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
-            'status': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'status': (Status7d1Enum, str, none_type,),
             'unit_price': (float, none_type,),  # noqa: E501
             'purchase_price': (float, none_type,),  # noqa: E501
             'purchase_account': (str, none_type,),  # noqa: E501
@@ -101,10 +109,20 @@ class Item(ModelNormal):
             'remote_updated_at': (datetime, none_type,),  # noqa: E501
             'remote_was_deleted': (bool,),  # noqa: E501
         }
+        expands_types = {"purchase_account": "Account", "sales_account": "Account"}
+
+        # update types with expands
+        for key, val in expands_types.items():
+            expands_model = import_model_by_name(val, "accounting")
+            if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
+                defined_types[key][0].insert(0, expands_model)
+            defined_types[key] = (*defined_types[key], expands_model)
+        return defined_types
 
     @cached_property
     def discriminator():
         return None
+
 
     attribute_map = {
         'id': 'id',  # noqa: E501
@@ -305,19 +323,19 @@ class Item(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id = kwargs.get("remote_id", None)
-        self.name = kwargs.get("name", None)
-        self.status = kwargs.get("status", None)
-        self.unit_price = kwargs.get("unit_price", None)
-        self.purchase_price = kwargs.get("purchase_price", None)
-        self.purchase_account = kwargs.get("purchase_account", None)
-        self.sales_account = kwargs.get("sales_account", None)
-        self.remote_updated_at = kwargs.get("remote_updated_at", None)
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self.name: Union[str, none_type] = kwargs.get("name", None)
+        self.status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
+        self.unit_price: Union[float, none_type] = kwargs.get("unit_price", None)
+        self.purchase_price: Union[float, none_type] = kwargs.get("purchase_price", None)
+        self.purchase_account: Union[str, none_type] = kwargs.get("purchase_account", None)
+        self.sales_account: Union[str, none_type] = kwargs.get("sales_account", None)
+        self.remote_updated_at: Union[datetime, none_type] = kwargs.get("remote_updated_at", None)
 
         # Read only properties
-        self._id = kwargs.get("id", str())
-        self._remote_data = kwargs.get("remote_data", None)
-        self._remote_was_deleted = kwargs.get("remote_was_deleted", bool())
+        self._id: Union[str] = kwargs.get("id", str())
+        self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
+        self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
 
     # Read only property getters
     @property

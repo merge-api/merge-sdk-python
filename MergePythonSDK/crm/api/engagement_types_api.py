@@ -189,7 +189,7 @@ class EngagementTypesApi(object):
     def engagement_types_list(
         self,
         **kwargs
-    ):
+    ) -> "MergePaginatedResponse(EngagementType)":
         """engagement_types_list  # noqa: E501
 
         Returns a list of `EngagementType` objects.  # noqa: E501
@@ -277,7 +277,7 @@ class EngagementTypesApi(object):
         self,
         id,
         **kwargs
-    ):
+    ) -> "EngagementType":
         """engagement_types_retrieve  # noqa: E501
 
         Returns an `EngagementType` object with the given `id`.  # noqa: E501

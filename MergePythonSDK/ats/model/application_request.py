@@ -12,6 +12,13 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
+from typing import (
+    Optional,
+    Union,
+    List,
+    Dict,
+)
+
 from MergePythonSDK.shared.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
@@ -28,6 +35,7 @@ from MergePythonSDK.shared.model_utils import (  # noqa: F401
     validate_get_composed_info,
 )
 from MergePythonSDK.shared.exceptions import ApiAttributeError
+from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 class ApplicationRequest(ModelNormal):
@@ -83,7 +91,8 @@ class ApplicationRequest(ModelNormal):
             openapi_types (dict): The key is attribute name
                 and the value is attribute type.
         """
-        return {
+
+        defined_types = {
             'remote_id': (str, none_type,),  # noqa: E501
             'candidate': (str, none_type,),  # noqa: E501
             'job': (str, none_type,),  # noqa: E501
@@ -98,10 +107,20 @@ class ApplicationRequest(ModelNormal):
             'integration_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'linked_account_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
+        expands_types = {"candidate": "Candidate", "job": "Job", "credited_to": "RemoteUser", "current_stage": "JobInterviewStage", "reject_reason": "RejectReason"}
+
+        # update types with expands
+        for key, val in expands_types.items():
+            expands_model = import_model_by_name(val, "ats")
+            if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
+                defined_types[key][0].insert(0, expands_model)
+            defined_types[key] = (*defined_types[key], expands_model)
+        return defined_types
 
     @cached_property
     def discriminator():
         return None
+
 
     attribute_map = {
         'remote_id': 'remote_id',  # noqa: E501
@@ -305,18 +324,18 @@ class ApplicationRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id = kwargs.get("remote_id", None)
-        self.candidate = kwargs.get("candidate", None)
-        self.job = kwargs.get("job", None)
-        self.applied_at = kwargs.get("applied_at", None)
-        self.rejected_at = kwargs.get("rejected_at", None)
-        self.source = kwargs.get("source", None)
-        self.credited_to = kwargs.get("credited_to", None)
-        self.current_stage = kwargs.get("current_stage", None)
-        self.reject_reason = kwargs.get("reject_reason", None)
-        self.custom_fields = kwargs.get("custom_fields", None)
-        self.remote_template_id = kwargs.get("remote_template_id", None)
-        self.integration_params = kwargs.get("integration_params", None)
-        self.linked_account_params = kwargs.get("linked_account_params", None)
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self.candidate: Union[str, none_type] = kwargs.get("candidate", None)
+        self.job: Union[str, none_type] = kwargs.get("job", None)
+        self.applied_at: Union[datetime, none_type] = kwargs.get("applied_at", None)
+        self.rejected_at: Union[datetime, none_type] = kwargs.get("rejected_at", None)
+        self.source: Union[str, none_type] = kwargs.get("source", None)
+        self.credited_to: Union[str, none_type] = kwargs.get("credited_to", None)
+        self.current_stage: Union[str, none_type] = kwargs.get("current_stage", None)
+        self.reject_reason: Union[str, none_type] = kwargs.get("reject_reason", None)
+        self.custom_fields: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("custom_fields", None)
+        self.remote_template_id: Union[str, none_type] = kwargs.get("remote_template_id", None)
+        self.integration_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
+        self.linked_account_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
 
 
