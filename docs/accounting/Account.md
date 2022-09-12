@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **current_balance** | **float, none_type** | The account&#39;s current balance. | [optional] 
 **currency** | **bool, date, datetime, dict, float, int, list, str, none_type** | The account&#39;s currency. | [optional] 
 **account_number** | **str, none_type** | The account&#39;s number. | [optional] 
+**parent_account** | **str, none_type** |  | [optional] 
 **remote_was_deleted** | **bool** | Indicates whether or not this object has been deleted by third party webhooks. | [optional] [readonly] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 

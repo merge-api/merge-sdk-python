@@ -110,8 +110,8 @@ class MultipartFormFieldRequest(ModelNormal):
             'name': (str,),  # noqa: E501
             'data': (str,),  # noqa: E501
             'encoding': (EncodingEnum, str, none_type,),
-            'file_name': (str, none_type,),  # noqa: E501
-            'content_type': (str, none_type,),  # noqa: E501
+            'file_name': (str, none_type, none_type,),  # noqa: E501
+            'content_type': (str, none_type, none_type,),  # noqa: E501
         }
         return defined_types
 
@@ -206,6 +206,7 @@ class MultipartFormFieldRequest(ModelNormal):
         self._path_to_item = _path_to_item
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
+
 
         self.name = name
         self.data = data

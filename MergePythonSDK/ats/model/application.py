@@ -95,19 +95,19 @@ class Application(ModelNormal):
         lazy_import()
 
         defined_types = {
-            'id': (str,),  # noqa: E501
-            'remote_id': (str, none_type,),  # noqa: E501
-            'candidate': (str, none_type,),  # noqa: E501
-            'job': (str, none_type,),  # noqa: E501
-            'applied_at': (datetime, none_type,),  # noqa: E501
-            'rejected_at': (datetime, none_type,),  # noqa: E501
-            'source': (str, none_type,),  # noqa: E501
-            'credited_to': (str, none_type,),  # noqa: E501
-            'current_stage': (str, none_type,),  # noqa: E501
-            'reject_reason': (str, none_type,),  # noqa: E501
-            'remote_data': ([RemoteData], none_type,),  # noqa: E501
-            'custom_fields': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'remote_was_deleted': (bool,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
+            'remote_id': (str, none_type, none_type,),  # noqa: E501
+            'candidate': (str, none_type, none_type,),  # noqa: E501
+            'job': (str, none_type, none_type,),  # noqa: E501
+            'applied_at': (datetime, none_type, none_type,),  # noqa: E501
+            'rejected_at': (datetime, none_type, none_type,),  # noqa: E501
+            'source': (str, none_type, none_type,),  # noqa: E501
+            'credited_to': (str, none_type, none_type,),  # noqa: E501
+            'current_stage': (str, none_type, none_type,),  # noqa: E501
+            'reject_reason': (str, none_type, none_type,),  # noqa: E501
+            'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
+            'custom_fields': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'remote_was_deleted': (bool, none_type,),  # noqa: E501
         }
         expands_types = {"candidate": "Candidate", "job": "Job", "credited_to": "RemoteUser", "current_stage": "JobInterviewStage", "reject_reason": "RejectReason"}
 
@@ -227,6 +227,7 @@ class Application(ModelNormal):
         self._path_to_item = _path_to_item
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
+
 
         self.remote_id = kwargs.get("remote_id", None)
         self.candidate = kwargs.get("candidate", None)

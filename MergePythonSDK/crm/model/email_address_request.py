@@ -90,8 +90,8 @@ class EmailAddressRequest(ModelNormal):
         """
 
         defined_types = {
-            'email_address': (str, none_type,),  # noqa: E501
-            'email_address_type': (str, none_type,),  # noqa: E501
+            'email_address': (str, none_type, none_type,),  # noqa: E501
+            'email_address_type': (str, none_type, none_type,),  # noqa: E501
         }
         expands_types = {"account": "Account"}
 
@@ -186,6 +186,7 @@ class EmailAddressRequest(ModelNormal):
         self._path_to_item = _path_to_item
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
+
 
         self.email_address = kwargs.get("email_address", None)
         self.email_address_type = kwargs.get("email_address_type", None)

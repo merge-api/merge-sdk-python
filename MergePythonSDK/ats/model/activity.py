@@ -99,16 +99,16 @@ class Activity(ModelNormal):
         lazy_import()
 
         defined_types = {
-            'id': (str,),  # noqa: E501
-            'remote_id': (str, none_type,),  # noqa: E501
-            'user': (str, none_type,),  # noqa: E501
-            'remote_created_at': (datetime, none_type,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
+            'remote_id': (str, none_type, none_type,),  # noqa: E501
+            'user': (str, none_type, none_type,),  # noqa: E501
+            'remote_created_at': (datetime, none_type, none_type,),  # noqa: E501
             'activity_type': (ActivityTypeEnum, str, none_type,),
-            'subject': (str, none_type,),  # noqa: E501
-            'body': (str, none_type,),  # noqa: E501
+            'subject': (str, none_type, none_type,),  # noqa: E501
+            'body': (str, none_type, none_type,),  # noqa: E501
             'visibility': (VisibilityEnum, str, none_type,),
-            'remote_data': ([RemoteData], none_type,),  # noqa: E501
-            'remote_was_deleted': (bool,),  # noqa: E501
+            'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
+            'remote_was_deleted': (bool, none_type,),  # noqa: E501
         }
         expands_types = {"user": "RemoteUser"}
 
@@ -222,6 +222,7 @@ class Activity(ModelNormal):
         self._path_to_item = _path_to_item
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
+
 
         self.remote_id = kwargs.get("remote_id", None)
         self.user = kwargs.get("user", None)

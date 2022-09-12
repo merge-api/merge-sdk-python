@@ -6,7 +6,9 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**opportunities_create**](OpportunitiesApi.md#opportunities_create) | **POST** /opportunities | 
 [**opportunities_list**](OpportunitiesApi.md#opportunities_list) | **GET** /opportunities | 
+[**opportunities_meta_patch_retrieve**](OpportunitiesApi.md#opportunities_meta_patch_retrieve) | **GET** /opportunities/meta/patch/{id} | 
 [**opportunities_meta_post_retrieve**](OpportunitiesApi.md#opportunities_meta_post_retrieve) | **GET** /opportunities/meta/post | 
+[**opportunities_partial_update**](OpportunitiesApi.md#opportunities_partial_update) | **PATCH** /opportunities/{id} | 
 [**opportunities_retrieve**](OpportunitiesApi.md#opportunities_retrieve) | **GET** /opportunities/{id} | 
 
 
@@ -238,6 +240,89 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **opportunities_meta_patch_retrieve**
+> MetaResponse opportunities_meta_patch_retrieve(id)
+
+
+
+Returns metadata for `Opportunity` PATCHs.
+
+### Example
+
+* Api Key Authentication (accountTokenAuth):
+* Bearer Authentication (bearerAuth):
+
+```python
+import time
+import MergePythonSDK.crm
+from MergePythonSDK.crm.api import opportunities_api
+from MergePythonSDK.crm.model.meta_response import MetaResponse
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.merge.dev/api/crm/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = MergePythonSDK.crm.Configuration(
+    host = "https://api.merge.dev/api/crm/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: accountTokenAuth
+configuration.api_key['accountTokenAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['accountTokenAuth'] = 'Bearer'
+
+# Configure Bearer authorization: bearerAuth
+configuration = MergePythonSDK.crm.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with MergePythonSDK.crm.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = opportunities_api.OpportunitiesApi(api_client)
+    id = "id_example" # str | 
+
+    # example passing only required values which don't have defaults set
+    try:
+        api_response = api_instance.opportunities_meta_patch_retrieve(id)
+        pprint(api_response)
+    except MergePythonSDK.crm.ApiException as e:
+        print("Exception when calling OpportunitiesApi->opportunities_meta_patch_retrieve: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**|  |
+
+### Return type
+
+[**MetaResponse**](MetaResponse.md)
+
+### Authorization
+
+[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **opportunities_meta_post_retrieve**
 > MetaResponse opportunities_meta_post_retrieve()
 
@@ -306,6 +391,121 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **opportunities_partial_update**
+> OpportunityResponse opportunities_partial_update(id, patched_opportunity_endpoint_request)
+
+
+
+### Example
+
+* Api Key Authentication (accountTokenAuth):
+* Bearer Authentication (bearerAuth):
+
+```python
+import time
+import MergePythonSDK.crm
+from MergePythonSDK.crm.api import opportunities_api
+from MergePythonSDK.crm.model.patched_opportunity_endpoint_request import PatchedOpportunityEndpointRequest
+from MergePythonSDK.crm.model.opportunity_response import OpportunityResponse
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.merge.dev/api/crm/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = MergePythonSDK.crm.Configuration(
+    host = "https://api.merge.dev/api/crm/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: accountTokenAuth
+configuration.api_key['accountTokenAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['accountTokenAuth'] = 'Bearer'
+
+# Configure Bearer authorization: bearerAuth
+configuration = MergePythonSDK.crm.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with MergePythonSDK.crm.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = opportunities_api.OpportunitiesApi(api_client)
+    id = "id_example" # str | 
+    patched_opportunity_endpoint_request = PatchedOpportunityEndpointRequest(
+        model=PatchedOpportunityRequest(
+            name="Needs Integrations",
+            description="Needs a Unified API for Integrations!",
+            amount=100000,
+            owner="0358cbc6-2040-430a-848e-aafacbadf3aa",
+            account="0958cbc6-6040-430a-848e-aafacbadf4ae",
+            stage="1968cbc6-6040-430a-848e-aafacbadf4ad",
+            status=None,
+            last_activity_at=dateutil_parser('2022-02-10T00:00:00Z'),
+            close_date=dateutil_parser('2022-02-10T00:00:00Z'),
+            remote_created_at=dateutil_parser('2021-11-10T00:00:00Z'),
+            integration_params={
+                "key": None,
+            },
+            linked_account_params={
+                "key": None,
+            },
+        ),
+    ) # PatchedOpportunityEndpointRequest | 
+    is_debug_mode = True # bool | Whether to include debug fields (such as log file links) in the response. (optional)
+    run_async = True # bool | Whether or not third-party updates should be run asynchronously. (optional)
+
+    # example passing only required values which don't have defaults set
+    try:
+        api_response = api_instance.opportunities_partial_update(id, patched_opportunity_endpoint_request)
+        pprint(api_response)
+    except MergePythonSDK.crm.ApiException as e:
+        print("Exception when calling OpportunitiesApi->opportunities_partial_update: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        api_response = api_instance.opportunities_partial_update(id, patched_opportunity_endpoint_request, is_debug_mode=is_debug_mode, run_async=run_async)
+        pprint(api_response)
+    except MergePythonSDK.crm.ApiException as e:
+        print("Exception when calling OpportunitiesApi->opportunities_partial_update: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**|  |
+ **patched_opportunity_endpoint_request** | [**PatchedOpportunityEndpointRequest**](PatchedOpportunityEndpointRequest.md)|  |
+ **is_debug_mode** | **bool**| Whether to include debug fields (such as log file links) in the response. | [optional]
+ **run_async** | **bool**| Whether or not third-party updates should be run asynchronously. | [optional]
+
+### Return type
+
+[**OpportunityResponse**](OpportunityResponse.md)
+
+### Authorization
+
+[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 

@@ -187,6 +187,7 @@ class ModelOperation(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+
         self.model_name = model_name
         self.available_operations = available_operations
         self.required_post_parameters = required_post_parameters

@@ -95,12 +95,12 @@ class Team(ModelNormal):
         lazy_import()
 
         defined_types = {
-            'id': (str,),  # noqa: E501
-            'remote_id': (str, none_type,),  # noqa: E501
-            'name': (str, none_type,),  # noqa: E501
-            'description': (str, none_type,),  # noqa: E501
-            'remote_data': ([RemoteData], none_type,),  # noqa: E501
-            'remote_was_deleted': (bool,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
+            'remote_id': (str, none_type, none_type,),  # noqa: E501
+            'name': (str, none_type, none_type,),  # noqa: E501
+            'description': (str, none_type, none_type,),  # noqa: E501
+            'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
+            'remote_was_deleted': (bool, none_type,),  # noqa: E501
         }
         expands_types = {}
 
@@ -205,6 +205,7 @@ class Team(ModelNormal):
         self._path_to_item = _path_to_item
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
+
 
         self.remote_id = kwargs.get("remote_id", None)
         self.name = kwargs.get("name", None)

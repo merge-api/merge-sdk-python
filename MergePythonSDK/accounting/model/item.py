@@ -97,17 +97,17 @@ class Item(ModelNormal):
         lazy_import()
 
         defined_types = {
-            'id': (str,),  # noqa: E501
-            'remote_id': (str, none_type,),  # noqa: E501
-            'remote_data': ([RemoteData], none_type,),  # noqa: E501
-            'name': (str, none_type,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
+            'remote_id': (str, none_type, none_type,),  # noqa: E501
+            'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
+            'name': (str, none_type, none_type,),  # noqa: E501
             'status': (Status7d1Enum, str, none_type,),
-            'unit_price': (float, none_type,),  # noqa: E501
-            'purchase_price': (float, none_type,),  # noqa: E501
-            'purchase_account': (str, none_type,),  # noqa: E501
-            'sales_account': (str, none_type,),  # noqa: E501
-            'remote_updated_at': (datetime, none_type,),  # noqa: E501
-            'remote_was_deleted': (bool,),  # noqa: E501
+            'unit_price': (float, none_type, none_type,),  # noqa: E501
+            'purchase_price': (float, none_type, none_type,),  # noqa: E501
+            'purchase_account': (str, none_type, none_type,),  # noqa: E501
+            'sales_account': (str, none_type, none_type,),  # noqa: E501
+            'remote_updated_at': (datetime, none_type, none_type,),  # noqa: E501
+            'remote_was_deleted': (bool, none_type,),  # noqa: E501
         }
         expands_types = {"purchase_account": "Account", "sales_account": "Account"}
 
@@ -223,6 +223,7 @@ class Item(ModelNormal):
         self._path_to_item = _path_to_item
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
+
 
         self.remote_id = kwargs.get("remote_id", None)
         self.name = kwargs.get("name", None)

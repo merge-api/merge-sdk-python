@@ -90,15 +90,15 @@ class InvoiceLineItem(ModelNormal):
         """
 
         defined_types = {
-            'id': (str,),  # noqa: E501
-            'remote_id': (str, none_type,),  # noqa: E501
-            'description': (str, none_type,),  # noqa: E501
-            'unit_price': (float, none_type,),  # noqa: E501
-            'quantity': (float, none_type,),  # noqa: E501
-            'total_amount': (float, none_type,),  # noqa: E501
-            'item': (str, none_type,),  # noqa: E501
-            'account': (str, none_type,),  # noqa: E501
-            'tracking_category': (str, none_type,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
+            'remote_id': (str, none_type, none_type,),  # noqa: E501
+            'description': (str, none_type, none_type,),  # noqa: E501
+            'unit_price': (float, none_type, none_type,),  # noqa: E501
+            'quantity': (float, none_type, none_type,),  # noqa: E501
+            'total_amount': (float, none_type, none_type,),  # noqa: E501
+            'item': (str, none_type, none_type,),  # noqa: E501
+            'account': (str, none_type, none_type,),  # noqa: E501
+            'tracking_category': (str, none_type, none_type,),  # noqa: E501
         }
         expands_types = {"payments": "Payment", "line_items": "InvoiceLineItem", "contact": "Contact"}
 
@@ -208,6 +208,7 @@ class InvoiceLineItem(ModelNormal):
         self._path_to_item = _path_to_item
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
+
 
         self.remote_id = kwargs.get("remote_id", None)
         self.description = kwargs.get("description", None)

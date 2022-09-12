@@ -96,12 +96,12 @@ class Issue(ModelNormal):
 
         defined_types = {
             'error_description': (str,),  # noqa: E501
-            'id': (str,),  # noqa: E501
-            'status': (IssueStatusEnum,),  # noqa: E501
-            'end_user': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'first_incident_time': (datetime, none_type,),  # noqa: E501
-            'last_incident_time': (datetime, none_type,),  # noqa: E501
-            'is_muted': (bool,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
+            'status': (IssueStatusEnum, none_type,),  # noqa: E501
+            'end_user': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'first_incident_time': (datetime, none_type, none_type,),  # noqa: E501
+            'last_incident_time': (datetime, none_type, none_type,),  # noqa: E501
+            'is_muted': (bool, none_type,),  # noqa: E501
         }
         return defined_types
 
@@ -203,6 +203,7 @@ class Issue(ModelNormal):
         self._path_to_item = _path_to_item
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
+
 
         self.error_description = error_description
         self.status = kwargs.get("status", None)

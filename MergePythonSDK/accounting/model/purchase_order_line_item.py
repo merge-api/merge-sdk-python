@@ -100,14 +100,14 @@ class PurchaseOrderLineItem(ModelNormal):
         """
 
         defined_types = {
-            'description': (str, none_type,),  # noqa: E501
-            'unit_price': (float, none_type,),  # noqa: E501
-            'quantity': (float, none_type,),  # noqa: E501
-            'item': (str, none_type,),  # noqa: E501
-            'account': (str, none_type,),  # noqa: E501
-            'tracking_category': (str, none_type,),  # noqa: E501
-            'tax_amount': (str, none_type,),  # noqa: E501
-            'total_line_amount': (str, none_type,),  # noqa: E501
+            'description': (str, none_type, none_type,),  # noqa: E501
+            'unit_price': (float, none_type, none_type,),  # noqa: E501
+            'quantity': (float, none_type, none_type,),  # noqa: E501
+            'item': (str, none_type, none_type,),  # noqa: E501
+            'account': (str, none_type, none_type,),  # noqa: E501
+            'tracking_category': (str, none_type, none_type,),  # noqa: E501
+            'tax_amount': (str, none_type, none_type,),  # noqa: E501
+            'total_line_amount': (str, none_type, none_type,),  # noqa: E501
         }
         expands_types = {"line_items": "PurchaseOrderLineItem", "delivery_address": "Address"}
 
@@ -214,6 +214,7 @@ class PurchaseOrderLineItem(ModelNormal):
         self._path_to_item = _path_to_item
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
+
 
         self.description = kwargs.get("description", None)
         self.unit_price = kwargs.get("unit_price", None)

@@ -98,7 +98,7 @@ class WarningValidationProblem(ModelNormal):
             'title': (str,),  # noqa: E501
             'detail': (str,),  # noqa: E501
             'problem_type': (str,),  # noqa: E501
-            'source': (ValidationProblemSource,),  # noqa: E501
+            'source': (ValidationProblemSource, none_type,),  # noqa: E501
         }
         return defined_types
 
@@ -191,6 +191,7 @@ class WarningValidationProblem(ModelNormal):
         self._path_to_item = _path_to_item
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
+
 
         self.title = title
         self.detail = detail

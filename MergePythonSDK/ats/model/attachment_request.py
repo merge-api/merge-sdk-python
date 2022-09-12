@@ -98,13 +98,13 @@ class AttachmentRequest(ModelNormal):
         lazy_import()
 
         defined_types = {
-            'remote_id': (str, none_type,),  # noqa: E501
-            'file_name': (str, none_type,),  # noqa: E501
-            'file_url': (str, none_type,),  # noqa: E501
-            'candidate': (str, none_type,),  # noqa: E501
+            'remote_id': (str, none_type, none_type,),  # noqa: E501
+            'file_name': (str, none_type, none_type,),  # noqa: E501
+            'file_url': (str, none_type, none_type,),  # noqa: E501
+            'candidate': (str, none_type, none_type,),  # noqa: E501
             'attachment_type': (AttachmentTypeEnum, str, none_type,),
-            'integration_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'linked_account_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'integration_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'linked_account_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
         }
         expands_types = {"candidate": "Candidate"}
 
@@ -209,6 +209,7 @@ class AttachmentRequest(ModelNormal):
         self._path_to_item = _path_to_item
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
+
 
         self.remote_id = kwargs.get("remote_id", None)
         self.file_name = kwargs.get("file_name", None)

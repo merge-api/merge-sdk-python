@@ -115,38 +115,38 @@ class Employee(ModelNormal):
         lazy_import()
 
         defined_types = {
-            'id': (str,),  # noqa: E501
-            'remote_id': (str, none_type,),  # noqa: E501
-            'employee_number': (str, none_type,),  # noqa: E501
-            'company': (str, none_type,),  # noqa: E501
-            'first_name': (str, none_type,),  # noqa: E501
-            'last_name': (str, none_type,),  # noqa: E501
-            'display_full_name': (str, none_type,),  # noqa: E501
-            'username': (str, none_type,),  # noqa: E501
-            'groups': ([str, none_type],),  # noqa: E501
-            'work_email': (str, none_type,),  # noqa: E501
-            'personal_email': (str, none_type,),  # noqa: E501
-            'mobile_phone_number': (str, none_type,),  # noqa: E501
-            'employments': ([str, none_type],),  # noqa: E501
-            'home_location': (str, none_type,),  # noqa: E501
-            'work_location': (str, none_type,),  # noqa: E501
-            'manager': (str, none_type,),  # noqa: E501
-            'team': (str, none_type,),  # noqa: E501
-            'pay_group': (str, none_type,),  # noqa: E501
-            'ssn': (str, none_type,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
+            'remote_id': (str, none_type, none_type,),  # noqa: E501
+            'employee_number': (str, none_type, none_type,),  # noqa: E501
+            'company': (str, none_type, none_type,),  # noqa: E501
+            'first_name': (str, none_type, none_type,),  # noqa: E501
+            'last_name': (str, none_type, none_type,),  # noqa: E501
+            'display_full_name': (str, none_type, none_type,),  # noqa: E501
+            'username': (str, none_type, none_type,),  # noqa: E501
+            'groups': ([str, none_type], none_type,),  # noqa: E501
+            'work_email': (str, none_type, none_type,),  # noqa: E501
+            'personal_email': (str, none_type, none_type,),  # noqa: E501
+            'mobile_phone_number': (str, none_type, none_type,),  # noqa: E501
+            'employments': ([str, none_type], none_type,),  # noqa: E501
+            'home_location': (str, none_type, none_type,),  # noqa: E501
+            'work_location': (str, none_type, none_type,),  # noqa: E501
+            'manager': (str, none_type, none_type,),  # noqa: E501
+            'team': (str, none_type, none_type,),  # noqa: E501
+            'pay_group': (str, none_type, none_type,),  # noqa: E501
+            'ssn': (str, none_type, none_type,),  # noqa: E501
             'gender': (GenderEnum, str, none_type,),
             'ethnicity': (EthnicityEnum, str, none_type,),
             'marital_status': (MaritalStatusEnum, str, none_type,),
-            'date_of_birth': (datetime, none_type,),  # noqa: E501
-            'hire_date': (datetime, none_type,),  # noqa: E501
-            'start_date': (datetime, none_type,),  # noqa: E501
-            'remote_created_at': (datetime, none_type,),  # noqa: E501
+            'date_of_birth': (datetime, none_type, none_type,),  # noqa: E501
+            'hire_date': (datetime, none_type, none_type,),  # noqa: E501
+            'start_date': (datetime, none_type, none_type,),  # noqa: E501
+            'remote_created_at': (datetime, none_type, none_type,),  # noqa: E501
             'employment_status': (EmploymentStatusEnum, str, none_type,),
-            'termination_date': (datetime, none_type,),  # noqa: E501
-            'avatar': (str, none_type,),  # noqa: E501
-            'remote_data': ([RemoteData], none_type,),  # noqa: E501
-            'custom_fields': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'remote_was_deleted': (bool,),  # noqa: E501
+            'termination_date': (datetime, none_type, none_type,),  # noqa: E501
+            'avatar': (str, none_type, none_type,),  # noqa: E501
+            'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
+            'custom_fields': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'remote_was_deleted': (bool, none_type,),  # noqa: E501
         }
         expands_types = {"employments": "Employment", "groups": "Group", "home_location": "Location", "work_location": "Location", "manager": "Employee", "team": "Team", "company": "Company", "pay_group": "PayGroup"}
 
@@ -304,6 +304,7 @@ class Employee(ModelNormal):
         self._path_to_item = _path_to_item
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
+
 
         self.remote_id = kwargs.get("remote_id", None)
         self.employee_number = kwargs.get("employee_number", None)

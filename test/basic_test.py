@@ -14,7 +14,9 @@ from MergePythonSDK.accounting.api.invoices_api import InvoicesApi
 from MergePythonSDK.ats.api.candidates_api import CandidatesApi
 from MergePythonSDK.crm.api.contacts_api import ContactsApi
 from MergePythonSDK.hris.api.employees_api import EmployeesApi
+from MergePythonSDK.shared.model.categories_enum import CategoriesEnum
 from MergePythonSDK.shared import Configuration, ApiClient, ApiException
+from MergePythonSDK.ticketing.api.linked_accounts_api import LinkedAccountsApi
 from MergePythonSDK.ticketing.api.tickets_api import TicketsApi
 
 
@@ -22,7 +24,7 @@ class BasicClientTest(unittest.TestCase):
     def setUp(self):
         # Swap YOUR_ACCESS_KEY below with your production key from:
         # https://app.merge.dev/configuration/keys
-        self.bearer_token = "YOUR_ACCESS_KEY"
+        self.bearer_token = "YOUR_API_KEY"
 
     def tearDown(self):
         pass
@@ -35,7 +37,7 @@ class BasicClientTest(unittest.TestCase):
         accounting_configuration.api_key_prefix['tokenAuth'] = 'Bearer'
         # Swap YOUR_X_ACCOUNT_TOKEN below with your production key from:
         # https://app.merge.dev/linked-accounts/account/{ACCOUNT_ID}/overview
-        accounting_configuration.api_key['accountTokenAuth'] = 'YOUR_X_ACCOUNT_TOKEN'
+        accounting_configuration.api_key['accountTokenAuth'] = 'YOUR_X_ACCOUNT_TOKEN_HERE'
         with ApiClient(accounting_configuration) as api_client:
             accounting_invoices_api_instance = InvoicesApi(api_client)
             try:
@@ -49,7 +51,7 @@ class BasicClientTest(unittest.TestCase):
         ats_configuration = Configuration()
         ats_configuration.access_token = self.bearer_token
         ats_configuration.api_key_prefix['tokenAuth'] = 'Bearer'
-        ats_configuration.api_key['accountTokenAuth'] = 'YOUR_X_ACCOUNT_TOKEN'
+        ats_configuration.api_key['accountTokenAuth'] = 'YOUR_X_ACCOUNT_TOKEN_HERE'
         with ApiClient(ats_configuration) as api_client:
             ats_candidates_api_instance = CandidatesApi(api_client)
             try:
@@ -63,7 +65,7 @@ class BasicClientTest(unittest.TestCase):
         crm_configuration = Configuration()
         crm_configuration.access_token = self.bearer_token
         crm_configuration.api_key_prefix['tokenAuth'] = 'Bearer'
-        crm_configuration.api_key['accountTokenAuth'] = 'YOUR_X_ACCOUNT_TOKEN'
+        crm_configuration.api_key['accountTokenAuth'] = 'YOUR_X_ACCOUNT_TOKEN_HERE'
         with ApiClient(crm_configuration) as api_client:
             crm_contacts_api_instance = ContactsApi(api_client)
             try:
@@ -85,7 +87,7 @@ class BasicClientTest(unittest.TestCase):
         hris_configuration = Configuration()
         hris_configuration.access_token = self.bearer_token
         hris_configuration.api_key_prefix['tokenAuth'] = 'Bearer'
-        hris_configuration.api_key['accountTokenAuth'] = 'YOUR_X_ACCOUNT_TOKEN'
+        hris_configuration.api_key['accountTokenAuth'] = 'YOUR_X_ACCOUNT_TOKEN_HERE'
         with ApiClient(hris_configuration) as api_client:
             hris_employees_api_instance = EmployeesApi(api_client)
             try:
@@ -111,11 +113,11 @@ class BasicClientTest(unittest.TestCase):
                 print('Exception when calling HRIS API: %s' % e)
                 raise e
 
-        # # Ticketing
+        # Ticketing
         ticketing_configuration = Configuration()
         ticketing_configuration.access_token = self.bearer_token
         ticketing_configuration.api_key_prefix['tokenAuth'] = 'Bearer'
-        ticketing_configuration.api_key['accountTokenAuth'] = 'YOUR_X_ACCOUNT_TOKEN'
+        ticketing_configuration.api_key['accountTokenAuth'] = 'YOUR_X_ACCOUNT_TOKEN_HERE'
         with ApiClient(ticketing_configuration) as api_client:
             ticketing_tickets_api_instance = TicketsApi(api_client)
             try:
@@ -126,6 +128,16 @@ class BasicClientTest(unittest.TestCase):
             except ApiException as e:
                 print('Exception when calling Ticketing API: %s' % e)
                 raise e
+
+        # Test ENUM serialization
+        ticketing_category = CategoriesEnum("ticketing")
+        assert ticketing_category.value == "ticketing"
+
+        # List LinkedAccounts test enum serialization and deserialization
+        api_client = ApiClient(ticketing_configuration)
+        linked_account_api_instance = LinkedAccountsApi(api_client)
+        api_response = linked_account_api_instance.linked_accounts_list(category=ticketing_category.value).results
+        assert api_response[0].category == CategoriesEnum("ticketing").value
 
 
 if __name__ == '__main__':

@@ -186,6 +186,7 @@ class ApplicationEndpointRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+
         self.model = model
         self.remote_user_id = remote_user_id
         return self

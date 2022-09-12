@@ -95,14 +95,15 @@ class User(ModelNormal):
         lazy_import()
 
         defined_types = {
-            'id': (str,),  # noqa: E501
-            'remote_id': (str, none_type,),  # noqa: E501
-            'name': (str, none_type,),  # noqa: E501
-            'email_address': (str, none_type,),  # noqa: E501
-            'is_active': (bool, none_type,),  # noqa: E501
-            'teams': ([str, none_type],),  # noqa: E501
-            'remote_data': ([RemoteData], none_type,),  # noqa: E501
-            'remote_was_deleted': (bool,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
+            'remote_id': (str, none_type, none_type,),  # noqa: E501
+            'name': (str, none_type, none_type,),  # noqa: E501
+            'email_address': (str, none_type, none_type,),  # noqa: E501
+            'is_active': (bool, none_type, none_type,),  # noqa: E501
+            'teams': ([str, none_type], none_type,),  # noqa: E501
+            'avatar': (str, none_type, none_type,),  # noqa: E501
+            'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
+            'remote_was_deleted': (bool, none_type,),  # noqa: E501
         }
         expands_types = {"teams": "Team"}
 
@@ -126,6 +127,7 @@ class User(ModelNormal):
         'email_address': 'email_address',  # noqa: E501
         'is_active': 'is_active',  # noqa: E501
         'teams': 'teams',  # noqa: E501
+        'avatar': 'avatar',  # noqa: E501
         'remote_data': 'remote_data',  # noqa: E501
         'remote_was_deleted': 'remote_was_deleted',  # noqa: E501
     }
@@ -180,6 +182,7 @@ class User(ModelNormal):
             email_address (str, none_type): The user's email address.. [optional]  # noqa: E501
             is_active (bool, none_type): Whether or not the user is active.. [optional]  # noqa: E501
             teams ([str, none_type]): [optional]  # noqa: E501
+            avatar (str, none_type): The user's avatar picture.. [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
         """
@@ -213,11 +216,13 @@ class User(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+
         self.remote_id = kwargs.get("remote_id", None)
         self.name = kwargs.get("name", None)
         self.email_address = kwargs.get("email_address", None)
         self.is_active = kwargs.get("is_active", None)
         self.teams = kwargs.get("teams", None)
+        self.avatar = kwargs.get("avatar", None)
 
         # Read only properties
         self._id = kwargs.get("id", str())
@@ -275,6 +280,7 @@ class User(ModelNormal):
             email_address (str, none_type): The user's email address.. [optional]  # noqa: E501
             is_active (bool, none_type): Whether or not the user is active.. [optional]  # noqa: E501
             teams ([str, none_type]): [optional]  # noqa: E501
+            avatar (str, none_type): The user's avatar picture.. [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
         """
@@ -311,6 +317,7 @@ class User(ModelNormal):
         self.email_address: Union[str, none_type] = kwargs.get("email_address", None)
         self.is_active: Union[bool, none_type] = kwargs.get("is_active", None)
         self.teams: Union[List[str, none_type]] = kwargs.get("teams", list())
+        self.avatar: Union[str, none_type] = kwargs.get("avatar", None)
 
         # Read only properties
         self._id: Union[str] = kwargs.get("id", str())

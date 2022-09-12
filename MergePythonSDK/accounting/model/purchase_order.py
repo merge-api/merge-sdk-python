@@ -101,22 +101,22 @@ class PurchaseOrder(ModelNormal):
         lazy_import()
 
         defined_types = {
-            'id': (str,),  # noqa: E501
-            'remote_id': (str, none_type,),  # noqa: E501
-            'remote_data': ([RemoteData], none_type,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
+            'remote_id': (str, none_type, none_type,),  # noqa: E501
+            'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
             'status': (PurchaseOrderStatusEnum, str, none_type,),
-            'issue_date': (datetime, none_type,),  # noqa: E501
-            'delivery_date': (datetime, none_type,),  # noqa: E501
-            'delivery_address': (str, none_type,),  # noqa: E501
-            'customer': (str, none_type,),  # noqa: E501
-            'vendor': (str, none_type,),  # noqa: E501
-            'memo': (str, none_type,),  # noqa: E501
-            'total_amount': (float, none_type,),  # noqa: E501
+            'issue_date': (datetime, none_type, none_type,),  # noqa: E501
+            'delivery_date': (datetime, none_type, none_type,),  # noqa: E501
+            'delivery_address': (str, none_type, none_type,),  # noqa: E501
+            'customer': (str, none_type, none_type,),  # noqa: E501
+            'vendor': (str, none_type, none_type,),  # noqa: E501
+            'memo': (str, none_type, none_type,),  # noqa: E501
+            'total_amount': (float, none_type, none_type,),  # noqa: E501
             'currency': (CurrencyEnum, str, none_type,),
-            'line_items': ([PurchaseOrderLineItem],),  # noqa: E501
-            'remote_created_at': (datetime, none_type,),  # noqa: E501
-            'remote_updated_at': (datetime, none_type,),  # noqa: E501
-            'remote_was_deleted': (bool,),  # noqa: E501
+            'line_items': ([PurchaseOrderLineItem], none_type,),  # noqa: E501
+            'remote_created_at': (datetime, none_type, none_type,),  # noqa: E501
+            'remote_updated_at': (datetime, none_type, none_type,),  # noqa: E501
+            'remote_was_deleted': (bool, none_type,),  # noqa: E501
         }
         expands_types = {"line_items": "PurchaseOrderLineItem", "delivery_address": "Address"}
 
@@ -243,6 +243,7 @@ class PurchaseOrder(ModelNormal):
         self._path_to_item = _path_to_item
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
+
 
         self.remote_id = kwargs.get("remote_id", None)
         self.status = kwargs.get("status", None)

@@ -99,8 +99,8 @@ class SyncStatus(ModelNormal):
             'model_id': (str,),  # noqa: E501
             'status': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
             'is_initial_sync': (bool,),  # noqa: E501
-            'last_sync_start': (datetime,),  # noqa: E501
-            'next_sync_start': (datetime,),  # noqa: E501
+            'last_sync_start': (datetime, none_type,),  # noqa: E501
+            'next_sync_start': (datetime, none_type,),  # noqa: E501
         }
         return defined_types
 
@@ -197,6 +197,7 @@ class SyncStatus(ModelNormal):
         self._path_to_item = _path_to_item
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
+
 
         self.model_name = model_name
         self.model_id = model_id

@@ -95,11 +95,11 @@ class Earning(ModelNormal):
         lazy_import()
 
         defined_types = {
-            'id': (str,),  # noqa: E501
-            'employee_payroll_run': (str, none_type,),  # noqa: E501
-            'amount': (float, none_type,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
+            'employee_payroll_run': (str, none_type, none_type,),  # noqa: E501
+            'amount': (float, none_type, none_type,),  # noqa: E501
             'type': (EarningTypeEnum, str, none_type,),
-            'remote_was_deleted': (bool,),  # noqa: E501
+            'remote_was_deleted': (bool, none_type,),  # noqa: E501
         }
         expands_types = {"employee": "Employee", "payroll_run": "PayrollRun"}
 
@@ -201,6 +201,7 @@ class Earning(ModelNormal):
         self._path_to_item = _path_to_item
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
+
 
         self.employee_payroll_run = kwargs.get("employee_payroll_run", None)
         self.amount = kwargs.get("amount", None)

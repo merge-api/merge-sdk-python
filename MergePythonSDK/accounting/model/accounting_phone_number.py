@@ -90,8 +90,8 @@ class AccountingPhoneNumber(ModelNormal):
         """
 
         defined_types = {
-            'number': (str, none_type,),  # noqa: E501
-            'type': (str, none_type,),  # noqa: E501
+            'number': (str, none_type, none_type,),  # noqa: E501
+            'type': (str, none_type, none_type,),  # noqa: E501
         }
         expands_types = {"addresses": "Address", "phone_numbers": "AccountingPhoneNumber"}
 
@@ -186,6 +186,7 @@ class AccountingPhoneNumber(ModelNormal):
         self._path_to_item = _path_to_item
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
+
 
         self.number = kwargs.get("number", None)
         self.type = kwargs.get("type", None)

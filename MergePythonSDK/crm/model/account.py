@@ -106,21 +106,21 @@ class Account(ModelNormal):
         lazy_import()
 
         defined_types = {
-            'id': (str,),  # noqa: E501
-            'remote_id': (str, none_type,),  # noqa: E501
-            'owner': (str, none_type,),  # noqa: E501
-            'name': (str, none_type,),  # noqa: E501
-            'description': (str, none_type,),  # noqa: E501
-            'industry': (str, none_type,),  # noqa: E501
-            'website': (str, none_type,),  # noqa: E501
-            'number_of_employees': (int, none_type,),  # noqa: E501
-            'addresses': ([Address],),  # noqa: E501
-            'phone_numbers': ([PhoneNumber],),  # noqa: E501
-            'last_activity_at': (datetime, none_type,),  # noqa: E501
-            'remote_updated_at': (datetime, none_type,),  # noqa: E501
-            'remote_created_at': (datetime, none_type,),  # noqa: E501
-            'remote_data': ([RemoteData], none_type,),  # noqa: E501
-            'remote_was_deleted': (bool,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
+            'remote_id': (str, none_type, none_type,),  # noqa: E501
+            'owner': (str, none_type, none_type,),  # noqa: E501
+            'name': (str, none_type, none_type,),  # noqa: E501
+            'description': (str, none_type, none_type,),  # noqa: E501
+            'industry': (str, none_type, none_type,),  # noqa: E501
+            'website': (str, none_type, none_type,),  # noqa: E501
+            'number_of_employees': (int, none_type, none_type,),  # noqa: E501
+            'addresses': ([Address], none_type,),  # noqa: E501
+            'phone_numbers': ([PhoneNumber], none_type,),  # noqa: E501
+            'last_activity_at': (datetime, none_type, none_type,),  # noqa: E501
+            'remote_updated_at': (datetime, none_type, none_type,),  # noqa: E501
+            'remote_created_at': (datetime, none_type, none_type,),  # noqa: E501
+            'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
+            'remote_was_deleted': (bool, none_type,),  # noqa: E501
         }
         expands_types = {"owner": "User"}
 
@@ -246,6 +246,7 @@ class Account(ModelNormal):
         self._path_to_item = _path_to_item
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
+
 
         self.remote_id = kwargs.get("remote_id", None)
         self.owner = kwargs.get("owner", None)

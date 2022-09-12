@@ -99,7 +99,7 @@ class AvailableActions(ModelNormal):
         defined_types = {
             'integration': (AccountIntegration,),  # noqa: E501
             'passthrough_available': (bool,),  # noqa: E501
-            'available_model_operations': ([ModelOperation],),  # noqa: E501
+            'available_model_operations': ([ModelOperation], none_type,),  # noqa: E501
         }
         return defined_types
 
@@ -190,6 +190,7 @@ class AvailableActions(ModelNormal):
         self._path_to_item = _path_to_item
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
+
 
         self.integration = integration
         self.passthrough_available = passthrough_available

@@ -101,27 +101,27 @@ class Candidate(ModelNormal):
         lazy_import()
 
         defined_types = {
-            'id': (str,),  # noqa: E501
-            'remote_id': (str, none_type,),  # noqa: E501
-            'first_name': (str, none_type,),  # noqa: E501
-            'last_name': (str, none_type,),  # noqa: E501
-            'company': (str, none_type,),  # noqa: E501
-            'title': (str, none_type,),  # noqa: E501
-            'remote_created_at': (datetime, none_type,),  # noqa: E501
-            'remote_updated_at': (datetime, none_type,),  # noqa: E501
-            'last_interaction_at': (datetime, none_type,),  # noqa: E501
-            'is_private': (bool, none_type,),  # noqa: E501
-            'can_email': (bool, none_type,),  # noqa: E501
-            'locations': ([str, none_type], none_type,),  # noqa: E501
-            'phone_numbers': ([PhoneNumber],),  # noqa: E501
-            'email_addresses': ([EmailAddress],),  # noqa: E501
-            'urls': ([Url],),  # noqa: E501
-            'tags': ([str],),  # noqa: E501
-            'applications': ([str, none_type],),  # noqa: E501
-            'attachments': ([str, none_type],),  # noqa: E501
-            'remote_data': ([RemoteData], none_type,),  # noqa: E501
-            'custom_fields': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'remote_was_deleted': (bool,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
+            'remote_id': (str, none_type, none_type,),  # noqa: E501
+            'first_name': (str, none_type, none_type,),  # noqa: E501
+            'last_name': (str, none_type, none_type,),  # noqa: E501
+            'company': (str, none_type, none_type,),  # noqa: E501
+            'title': (str, none_type, none_type,),  # noqa: E501
+            'remote_created_at': (datetime, none_type, none_type,),  # noqa: E501
+            'remote_updated_at': (datetime, none_type, none_type,),  # noqa: E501
+            'last_interaction_at': (datetime, none_type, none_type,),  # noqa: E501
+            'is_private': (bool, none_type, none_type,),  # noqa: E501
+            'can_email': (bool, none_type, none_type,),  # noqa: E501
+            'locations': ([str, none_type], none_type, none_type,),  # noqa: E501
+            'phone_numbers': ([PhoneNumber], none_type,),  # noqa: E501
+            'email_addresses': ([EmailAddress], none_type,),  # noqa: E501
+            'urls': ([Url], none_type,),  # noqa: E501
+            'tags': ([str], none_type,),  # noqa: E501
+            'applications': ([str, none_type], none_type,),  # noqa: E501
+            'attachments': ([str, none_type], none_type,),  # noqa: E501
+            'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
+            'custom_fields': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'remote_was_deleted': (bool, none_type,),  # noqa: E501
         }
         expands_types = {"applications": "Application", "attachments": "Attachment"}
 
@@ -257,6 +257,7 @@ class Candidate(ModelNormal):
         self._path_to_item = _path_to_item
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
+
 
         self.remote_id = kwargs.get("remote_id", None)
         self.first_name = kwargs.get("first_name", None)

@@ -8,7 +8,7 @@ The Python SDK for accessing various Merge Unified APIs. We use the following de
 
 ## Build
 
-You can find the latest published pypi package [here]()
+You can find the latest published pypi package [here](https://pypi.org/project/MergePythonSDK/)
 
 ## Usage
 

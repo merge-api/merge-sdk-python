@@ -98,7 +98,7 @@ class WebhookReceiverRequest(ModelNormal):
         defined_types = {
             'event': (str,),  # noqa: E501
             'is_active': (bool,),  # noqa: E501
-            'key': (str,),  # noqa: E501
+            'key': (str, none_type,),  # noqa: E501
         }
         return defined_types
 
@@ -189,6 +189,7 @@ class WebhookReceiverRequest(ModelNormal):
         self._path_to_item = _path_to_item
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
+
 
         self.event = event
         self.is_active = is_active

@@ -7,7 +7,9 @@ Method | HTTP request | Description
 [**tickets_collaborators_list**](TicketsApi.md#tickets_collaborators_list) | **GET** /tickets/{id}/collaborators | 
 [**tickets_create**](TicketsApi.md#tickets_create) | **POST** /tickets | 
 [**tickets_list**](TicketsApi.md#tickets_list) | **GET** /tickets | 
+[**tickets_meta_patch_retrieve**](TicketsApi.md#tickets_meta_patch_retrieve) | **GET** /tickets/meta/patch/{id} | 
 [**tickets_meta_post_retrieve**](TicketsApi.md#tickets_meta_post_retrieve) | **GET** /tickets/meta/post | 
+[**tickets_partial_update**](TicketsApi.md#tickets_partial_update) | **PATCH** /tickets/{id} | 
 [**tickets_retrieve**](TicketsApi.md#tickets_retrieve) | **GET** /tickets/{id} | 
 
 
@@ -172,6 +174,9 @@ with MergePythonSDK.ticketing.ApiClient(configuration) as api_client:
             tags=["enterprise","other-tag"],
             remote_created_at=dateutil_parser('2021-11-10T00:00:00Z'),
             remote_updated_at=dateutil_parser('2021-12-09T00:00:00Z'),
+            completed_at=dateutil_parser('2021-12-09T00:00:00Z'),
+            ticket_url="https://thirdpartysoftware.com/project/3/issue/1",
+            priority=None,
         ),
     ) # TicketEndpointRequest | 
     is_debug_mode = True # bool | Whether to include debug fields (such as log file links) in the response. (optional)
@@ -332,6 +337,89 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **tickets_meta_patch_retrieve**
+> MetaResponse tickets_meta_patch_retrieve(id)
+
+
+
+Returns metadata for `Ticket` PATCHs.
+
+### Example
+
+* Api Key Authentication (accountTokenAuth):
+* Bearer Authentication (bearerAuth):
+
+```python
+import time
+import MergePythonSDK.ticketing
+from MergePythonSDK.ticketing.api import tickets_api
+from MergePythonSDK.ticketing.model.meta_response import MetaResponse
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.merge.dev/api/ticketing/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = MergePythonSDK.ticketing.Configuration(
+    host = "https://api.merge.dev/api/ticketing/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: accountTokenAuth
+configuration.api_key['accountTokenAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['accountTokenAuth'] = 'Bearer'
+
+# Configure Bearer authorization: bearerAuth
+configuration = MergePythonSDK.ticketing.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with MergePythonSDK.ticketing.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = tickets_api.TicketsApi(api_client)
+    id = "id_example" # str | 
+
+    # example passing only required values which don't have defaults set
+    try:
+        api_response = api_instance.tickets_meta_patch_retrieve(id)
+        pprint(api_response)
+    except MergePythonSDK.ticketing.ApiException as e:
+        print("Exception when calling TicketsApi->tickets_meta_patch_retrieve: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**|  |
+
+### Return type
+
+[**MetaResponse**](MetaResponse.md)
+
+### Authorization
+
+[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **tickets_meta_post_retrieve**
 > MetaResponse tickets_meta_post_retrieve()
 
@@ -400,6 +488,121 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **tickets_partial_update**
+> TicketResponse tickets_partial_update(id, patched_ticket_endpoint_request)
+
+
+
+### Example
+
+* Api Key Authentication (accountTokenAuth):
+* Bearer Authentication (bearerAuth):
+
+```python
+import time
+import MergePythonSDK.ticketing
+from MergePythonSDK.ticketing.api import tickets_api
+from MergePythonSDK.ticketing.model.patched_ticket_endpoint_request import PatchedTicketEndpointRequest
+from MergePythonSDK.ticketing.model.ticket_response import TicketResponse
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.merge.dev/api/ticketing/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = MergePythonSDK.ticketing.Configuration(
+    host = "https://api.merge.dev/api/ticketing/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: accountTokenAuth
+configuration.api_key['accountTokenAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['accountTokenAuth'] = 'Bearer'
+
+# Configure Bearer authorization: bearerAuth
+configuration = MergePythonSDK.ticketing.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with MergePythonSDK.ticketing.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = tickets_api.TicketsApi(api_client)
+    id = "id_example" # str | 
+    patched_ticket_endpoint_request = PatchedTicketEndpointRequest(
+        model=PatchedTicketRequest(
+            name="Please add more integrations",
+            assignees=["17a54124-287f-494d-965e-3c5b330c9a68"],
+            due_date=dateutil_parser('2022-10-11T00:00:00Z'),
+            status=None,
+            description="Can you please add more integrations? It'll make syncing data much easier!",
+            project="fb8c55b6-1cb8-4b4c-9fb6-17924231619d",
+            ticket_type="incident",
+            account="0958cbc6-6040-430a-848e-aafacbadf4ae",
+            contact="65c345ba-6870-4974-87ba-dd31509c367a",
+            parent_ticket="75b33d04-30d2-4f3e-be45-27838bc94342",
+            tags=["enterprise","other-tag"],
+            remote_created_at=dateutil_parser('2021-11-10T00:00:00Z'),
+            remote_updated_at=dateutil_parser('2021-12-09T00:00:00Z'),
+            completed_at=dateutil_parser('2021-12-09T00:00:00Z'),
+            ticket_url="https://thirdpartysoftware.com/project/3/issue/1",
+            priority=None,
+        ),
+    ) # PatchedTicketEndpointRequest | 
+    is_debug_mode = True # bool | Whether to include debug fields (such as log file links) in the response. (optional)
+    run_async = True # bool | Whether or not third-party updates should be run asynchronously. (optional)
+
+    # example passing only required values which don't have defaults set
+    try:
+        api_response = api_instance.tickets_partial_update(id, patched_ticket_endpoint_request)
+        pprint(api_response)
+    except MergePythonSDK.ticketing.ApiException as e:
+        print("Exception when calling TicketsApi->tickets_partial_update: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        api_response = api_instance.tickets_partial_update(id, patched_ticket_endpoint_request, is_debug_mode=is_debug_mode, run_async=run_async)
+        pprint(api_response)
+    except MergePythonSDK.ticketing.ApiException as e:
+        print("Exception when calling TicketsApi->tickets_partial_update: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**|  |
+ **patched_ticket_endpoint_request** | [**PatchedTicketEndpointRequest**](PatchedTicketEndpointRequest.md)|  |
+ **is_debug_mode** | **bool**| Whether to include debug fields (such as log file links) in the response. | [optional]
+ **run_async** | **bool**| Whether or not third-party updates should be run asynchronously. | [optional]
+
+### Return type
+
+[**TicketResponse**](TicketResponse.md)
+
+### Authorization
+
+[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 

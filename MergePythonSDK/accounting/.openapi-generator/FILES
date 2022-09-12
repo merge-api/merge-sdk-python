@@ -56,6 +56,7 @@ MergePythonSDK/accounting/model/balance_sheet.py
 MergePythonSDK/accounting/model/cash_flow_statement.py
 MergePythonSDK/accounting/model/categories_enum.py
 MergePythonSDK/accounting/model/category_enum.py
+MergePythonSDK/accounting/model/category_type_enum.py
 MergePythonSDK/accounting/model/classification_enum.py
 MergePythonSDK/accounting/model/company_info.py
 MergePythonSDK/accounting/model/contact.py
@@ -102,6 +103,7 @@ MergePythonSDK/accounting/model/purchase_order_line_item.py
 MergePythonSDK/accounting/model/purchase_order_status_enum.py
 MergePythonSDK/accounting/model/report_item.py
 MergePythonSDK/accounting/model/request_format_enum.py
+MergePythonSDK/accounting/model/response_type_enum.py
 MergePythonSDK/accounting/model/state_enum.py
 MergePythonSDK/accounting/model/status7d1_enum.py
 MergePythonSDK/accounting/model/sync_status.py
@@ -144,6 +146,7 @@ docs/CashFlowStatement.md
 docs/CashFlowStatementsApi.md
 docs/CategoriesEnum.md
 docs/CategoryEnum.md
+docs/CategoryTypeEnum.md
 docs/ClassificationEnum.md
 docs/CompanyInfo.md
 docs/CompanyInfoApi.md
@@ -234,6 +237,7 @@ docs/RemoteKeyForRegenerationRequest.md
 docs/RemoteResponse.md
 docs/ReportItem.md
 docs/RequestFormatEnum.md
+docs/ResponseTypeEnum.md
 docs/StateEnum.md
 docs/Status7d1Enum.md
 docs/SyncStatus.md
@@ -284,6 +288,7 @@ test/test_cash_flow_statement.py
 test/test_cash_flow_statements_api.py
 test/test_categories_enum.py
 test/test_category_enum.py
+test/test_category_type_enum.py
 test/test_classification_enum.py
 test/test_company_info.py
 test/test_company_info_api.py
@@ -374,6 +379,7 @@ test/test_remote_key_for_regeneration_request.py
 test/test_remote_response.py
 test/test_report_item.py
 test/test_request_format_enum.py
+test/test_response_type_enum.py
 test/test_state_enum.py
 test/test_status7d1_enum.py
 test/test_sync_status.py

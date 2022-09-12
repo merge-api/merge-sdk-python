@@ -100,16 +100,16 @@ class RemoteUser(ModelNormal):
         lazy_import()
 
         defined_types = {
-            'id': (str,),  # noqa: E501
-            'remote_id': (str, none_type,),  # noqa: E501
-            'first_name': (str, none_type,),  # noqa: E501
-            'last_name': (str, none_type,),  # noqa: E501
-            'email': (str, none_type,),  # noqa: E501
-            'disabled': (bool, none_type,),  # noqa: E501
-            'remote_created_at': (datetime, none_type,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
+            'remote_id': (str, none_type, none_type,),  # noqa: E501
+            'first_name': (str, none_type, none_type,),  # noqa: E501
+            'last_name': (str, none_type, none_type,),  # noqa: E501
+            'email': (str, none_type, none_type,),  # noqa: E501
+            'disabled': (bool, none_type, none_type,),  # noqa: E501
+            'remote_created_at': (datetime, none_type, none_type,),  # noqa: E501
             'access_role': (AccessRoleEnum, str, none_type,),
-            'remote_data': ([RemoteData], none_type,),  # noqa: E501
-            'remote_was_deleted': (bool,),  # noqa: E501
+            'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
+            'remote_was_deleted': (bool, none_type,),  # noqa: E501
         }
         expands_types = {}
 
@@ -223,6 +223,7 @@ class RemoteUser(ModelNormal):
         self._path_to_item = _path_to_item
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
+
 
         self.remote_id = kwargs.get("remote_id", None)
         self.first_name = kwargs.get("first_name", None)

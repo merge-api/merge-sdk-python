@@ -184,6 +184,7 @@ class DebugModelLogSummary(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+
         self.url = url
         self.method = method
         self.status_code = status_code

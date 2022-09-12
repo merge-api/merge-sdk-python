@@ -39,8 +39,10 @@ from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 def lazy_import():
+    from MergePythonSDK.accounting.model.currency_enum import CurrencyEnum
     from MergePythonSDK.shared.model.remote_data import RemoteData
     from MergePythonSDK.accounting.model.report_item import ReportItem
+    globals()['CurrencyEnum'] = CurrencyEnum
     globals()['RemoteData'] = RemoteData
     globals()['ReportItem'] = ReportItem
 
@@ -97,17 +99,18 @@ class BalanceSheet(ModelNormal):
         lazy_import()
 
         defined_types = {
-            'id': (str,),  # noqa: E501
-            'remote_id': (str, none_type,),  # noqa: E501
-            'remote_data': ([RemoteData], none_type,),  # noqa: E501
-            'name': (str, none_type,),  # noqa: E501
-            'date': (datetime, none_type,),  # noqa: E501
-            'net_assets': (float, none_type,),  # noqa: E501
-            'assets': ([ReportItem],),  # noqa: E501
-            'liabilities': ([ReportItem],),  # noqa: E501
-            'equity': ([ReportItem],),  # noqa: E501
-            'remote_generated_at': (datetime, none_type,),  # noqa: E501
-            'remote_was_deleted': (bool,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
+            'remote_id': (str, none_type, none_type,),  # noqa: E501
+            'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
+            'name': (str, none_type, none_type,),  # noqa: E501
+            'currency': (CurrencyEnum, str, none_type,),
+            'date': (datetime, none_type, none_type,),  # noqa: E501
+            'net_assets': (float, none_type, none_type,),  # noqa: E501
+            'assets': ([ReportItem], none_type,),  # noqa: E501
+            'liabilities': ([ReportItem], none_type,),  # noqa: E501
+            'equity': ([ReportItem], none_type,),  # noqa: E501
+            'remote_generated_at': (datetime, none_type, none_type,),  # noqa: E501
+            'remote_was_deleted': (bool, none_type,),  # noqa: E501
         }
         expands_types = {}
 
@@ -129,6 +132,7 @@ class BalanceSheet(ModelNormal):
         'remote_id': 'remote_id',  # noqa: E501
         'remote_data': 'remote_data',  # noqa: E501
         'name': 'name',  # noqa: E501
+        'currency': 'currency',  # noqa: E501
         'date': 'date',  # noqa: E501
         'net_assets': 'net_assets',  # noqa: E501
         'assets': 'assets',  # noqa: E501
@@ -189,6 +193,7 @@ class BalanceSheet(ModelNormal):
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             name (str, none_type): The balance sheet's name.. [optional]  # noqa: E501
+            currency (bool, date, datetime, dict, float, int, list, str, none_type): The balance sheet's currency.. [optional]  # noqa: E501
             date (datetime, none_type): The balance sheet's date. The balance sheet data will reflect the company's financial position this point in time.. [optional]  # noqa: E501
             net_assets (float, none_type): The balance sheet's net assets.. [optional]  # noqa: E501
             assets ([ReportItem]): [optional]  # noqa: E501
@@ -227,8 +232,10 @@ class BalanceSheet(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+
         self.remote_id = kwargs.get("remote_id", None)
         self.name = kwargs.get("name", None)
+        self.currency = kwargs.get("currency", None)
         self.date = kwargs.get("date", None)
         self.net_assets = kwargs.get("net_assets", None)
         self.remote_generated_at = kwargs.get("remote_generated_at", None)
@@ -290,6 +297,7 @@ class BalanceSheet(ModelNormal):
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             name (str, none_type): The balance sheet's name.. [optional]  # noqa: E501
+            currency (bool, date, datetime, dict, float, int, list, str, none_type): The balance sheet's currency.. [optional]  # noqa: E501
             date (datetime, none_type): The balance sheet's date. The balance sheet data will reflect the company's financial position this point in time.. [optional]  # noqa: E501
             net_assets (float, none_type): The balance sheet's net assets.. [optional]  # noqa: E501
             assets ([ReportItem]): [optional]  # noqa: E501
@@ -328,6 +336,7 @@ class BalanceSheet(ModelNormal):
 
         self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
         self.name: Union[str, none_type] = kwargs.get("name", None)
+        self.currency: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("currency", None)
         self.date: Union[datetime, none_type] = kwargs.get("date", None)
         self.net_assets: Union[float, none_type] = kwargs.get("net_assets", None)
         self.remote_generated_at: Union[datetime, none_type] = kwargs.get("remote_generated_at", None)

@@ -26,6 +26,7 @@ from MergePythonSDK.ticketing.model.meta_response import MetaResponse
 from MergePythonSDK.shared.model.merge_paginated_response import MergePaginatedResponse
 from MergePythonSDK.ticketing.model.ticket import Ticket
 from MergePythonSDK.ticketing.model.user import User
+from MergePythonSDK.ticketing.model.patched_ticket_endpoint_request import PatchedTicketEndpointRequest
 from MergePythonSDK.ticketing.model.ticket_endpoint_request import TicketEndpointRequest
 from MergePythonSDK.ticketing.model.ticket_response import TicketResponse
 
@@ -366,6 +367,58 @@ class TicketsApi(object):
             },
             api_client=api_client
         )
+        self.tickets_meta_patch_retrieve_endpoint = _Endpoint(
+            settings={
+                'response_type': (MetaResponse,),
+                'auth': [
+                    'accountTokenAuth',
+                    'bearerAuth'
+                ],
+                'endpoint_path': '/ticketing/v1/tickets/meta/patch/{id}',
+                'operation_id': 'tickets_meta_patch_retrieve',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'id',
+                ],
+                'required': [
+                    'id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'id': 'id',
+                },
+                'location_map': {
+                    'id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
         self.tickets_meta_post_retrieve_endpoint = _Endpoint(
             settings={
                 'response_type': (MetaResponse,),
@@ -408,6 +461,77 @@ class TicketsApi(object):
                     'application/json'
                 ],
                 'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.tickets_partial_update_endpoint = _Endpoint(
+            settings={
+                'response_type': (TicketResponse,),
+                'auth': [
+                    'accountTokenAuth',
+                    'bearerAuth'
+                ],
+                'endpoint_path': '/ticketing/v1/tickets/{id}',
+                'operation_id': 'tickets_partial_update',
+                'http_method': 'PATCH',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'id',
+                    'patched_ticket_endpoint_request',
+                    'is_debug_mode',
+                    'run_async',
+                ],
+                'required': [
+                    'id',
+                    'patched_ticket_endpoint_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'id':
+                        (str,),
+                    'patched_ticket_endpoint_request':
+                        (PatchedTicketEndpointRequest,),
+                    'is_debug_mode':
+                        (bool,),
+                    'run_async':
+                        (bool,),
+                },
+                'attribute_map': {
+                    'id': 'id',
+                    'is_debug_mode': 'is_debug_mode',
+                    'run_async': 'run_async',
+                },
+                'location_map': {
+                    'id': 'path',
+                    'patched_ticket_endpoint_request': 'body',
+                    'is_debug_mode': 'query',
+                    'run_async': 'query',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json',
+                    'application/x-www-form-urlencoded',
+                    'multipart/form-data'
+                ]
             },
             api_client=api_client
         )
@@ -814,6 +938,89 @@ class TicketsApi(object):
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
         return self.tickets_list_endpoint.call_with_http_info(**kwargs)
 
+    def tickets_meta_patch_retrieve(
+        self,
+        id,
+        **kwargs
+    ) -> "MetaResponse":
+        """tickets_meta_patch_retrieve  # noqa: E501
+
+        Returns metadata for `Ticket` PATCHs.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.tickets_meta_patch_retrieve(id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            id (str):
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            _request_auths (list): set to override the auth_settings for an a single
+                request; this effectively ignores the authentication
+                in the spec for a single request.
+                Default is None
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            MetaResponse
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['id'] = \
+            id
+        return self.tickets_meta_patch_retrieve_endpoint.call_with_http_info(**kwargs)
+
     def tickets_meta_post_retrieve(
         self,
         **kwargs
@@ -891,6 +1098,94 @@ class TicketsApi(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
         return self.tickets_meta_post_retrieve_endpoint.call_with_http_info(**kwargs)
+
+    def tickets_partial_update(
+        self,
+        id,
+        patched_ticket_endpoint_request,
+        **kwargs
+    ) -> "TicketResponse":
+        """tickets_partial_update  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.tickets_partial_update(id, patched_ticket_endpoint_request, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            id (str):
+            patched_ticket_endpoint_request (PatchedTicketEndpointRequest):
+
+        Keyword Args:
+            is_debug_mode (bool): Whether to include debug fields (such as log file links) in the response.. [optional]
+            run_async (bool): Whether or not third-party updates should be run asynchronously.. [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            _request_auths (list): set to override the auth_settings for an a single
+                request; this effectively ignores the authentication
+                in the spec for a single request.
+                Default is None
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            TicketResponse
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['id'] = \
+            id
+        kwargs['patched_ticket_endpoint_request'] = \
+            patched_ticket_endpoint_request
+        return self.tickets_partial_update_endpoint.call_with_http_info(**kwargs)
 
     def tickets_retrieve(
         self,

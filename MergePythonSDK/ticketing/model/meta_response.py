@@ -98,7 +98,7 @@ class MetaResponse(ModelNormal):
             'request_schema': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'has_conditional_params': (bool,),  # noqa: E501
             'has_required_linked_account_params': (bool,),  # noqa: E501
-            'status': (LinkedAccountStatus,),  # noqa: E501
+            'status': (LinkedAccountStatus, none_type,),  # noqa: E501
         }
         return defined_types
 
@@ -191,6 +191,7 @@ class MetaResponse(ModelNormal):
         self._path_to_item = _path_to_item
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
+
 
         self.request_schema = request_schema
         self.has_conditional_params = has_conditional_params

@@ -97,11 +97,11 @@ class Address(ModelNormal):
         lazy_import()
 
         defined_types = {
-            'street_1': (str, none_type,),  # noqa: E501
-            'street_2': (str, none_type,),  # noqa: E501
-            'city': (str, none_type,),  # noqa: E501
-            'state': (str, none_type,),  # noqa: E501
-            'postal_code': (str, none_type,),  # noqa: E501
+            'street_1': (str, none_type, none_type,),  # noqa: E501
+            'street_2': (str, none_type, none_type,),  # noqa: E501
+            'city': (str, none_type, none_type,),  # noqa: E501
+            'state': (str, none_type, none_type,),  # noqa: E501
+            'postal_code': (str, none_type, none_type,),  # noqa: E501
             'country': (CountryEnum, str, none_type,),
             'address_type': (AddressTypeEnum, str, none_type,),
         }
@@ -208,6 +208,7 @@ class Address(ModelNormal):
         self._path_to_item = _path_to_item
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
+
 
         self.street_1 = kwargs.get("street_1", None)
         self.street_2 = kwargs.get("street_2", None)

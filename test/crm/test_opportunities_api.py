@@ -36,8 +36,20 @@ class TestOpportunitiesApi(unittest.TestCase):
         """
         pass
 
+    def test_opportunities_meta_patch_retrieve(self):
+        """Test case for opportunities_meta_patch_retrieve
+
+        """
+        pass
+
     def test_opportunities_meta_post_retrieve(self):
         """Test case for opportunities_meta_post_retrieve
+
+        """
+        pass
+
+    def test_opportunities_partial_update(self):
+        """Test case for opportunities_partial_update
 
         """
         pass

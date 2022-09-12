@@ -39,7 +39,9 @@ from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 def lazy_import():
+    from MergePythonSDK.ticketing.model.priority_enum import PriorityEnum
     from MergePythonSDK.ticketing.model.ticket_status_enum import TicketStatusEnum
+    globals()['PriorityEnum'] = PriorityEnum
     globals()['TicketStatusEnum'] = TicketStatusEnum
 
 class TicketRequest(ModelNormal):
@@ -70,6 +72,9 @@ class TicketRequest(ModelNormal):
     }
 
     validations = {
+        ('ticket_url',): {
+            'max_length': 2000,
+        },
     }
 
     @cached_property
@@ -95,21 +100,24 @@ class TicketRequest(ModelNormal):
         lazy_import()
 
         defined_types = {
-            'remote_id': (str, none_type,),  # noqa: E501
-            'name': (str, none_type,),  # noqa: E501
-            'assignees': ([str, none_type],),  # noqa: E501
-            'due_date': (datetime, none_type,),  # noqa: E501
+            'remote_id': (str, none_type, none_type,),  # noqa: E501
+            'name': (str, none_type, none_type,),  # noqa: E501
+            'assignees': ([str, none_type], none_type,),  # noqa: E501
+            'due_date': (datetime, none_type, none_type,),  # noqa: E501
             'status': (TicketStatusEnum, str, none_type,),
-            'description': (str, none_type,),  # noqa: E501
-            'project': (str, none_type,),  # noqa: E501
-            'ticket_type': (str, none_type,),  # noqa: E501
-            'account': (str, none_type,),  # noqa: E501
-            'contact': (str, none_type,),  # noqa: E501
-            'parent_ticket': (str, none_type,),  # noqa: E501
-            'attachments': ([str, none_type],),  # noqa: E501
-            'tags': ([str],),  # noqa: E501
-            'remote_created_at': (datetime, none_type,),  # noqa: E501
-            'remote_updated_at': (datetime, none_type,),  # noqa: E501
+            'description': (str, none_type, none_type,),  # noqa: E501
+            'project': (str, none_type, none_type,),  # noqa: E501
+            'ticket_type': (str, none_type, none_type,),  # noqa: E501
+            'account': (str, none_type, none_type,),  # noqa: E501
+            'contact': (str, none_type, none_type,),  # noqa: E501
+            'parent_ticket': (str, none_type, none_type,),  # noqa: E501
+            'attachments': ([str, none_type], none_type,),  # noqa: E501
+            'tags': ([str], none_type,),  # noqa: E501
+            'remote_created_at': (datetime, none_type, none_type,),  # noqa: E501
+            'remote_updated_at': (datetime, none_type, none_type,),  # noqa: E501
+            'completed_at': (datetime, none_type, none_type,),  # noqa: E501
+            'ticket_url': (str, none_type, none_type,),  # noqa: E501
+            'priority': (PriorityEnum, str, none_type,),
         }
         expands_types = {"attachments": "Attachment", "assignees": "User", "project": "Project", "account": "Account", "contact": "Contact", "parent_ticket": "Ticket"}
 
@@ -142,6 +150,9 @@ class TicketRequest(ModelNormal):
         'tags': 'tags',  # noqa: E501
         'remote_created_at': 'remote_created_at',  # noqa: E501
         'remote_updated_at': 'remote_updated_at',  # noqa: E501
+        'completed_at': 'completed_at',  # noqa: E501
+        'ticket_url': 'ticket_url',  # noqa: E501
+        'priority': 'priority',  # noqa: E501
     }
 
     read_only_vars = {
@@ -200,6 +211,9 @@ class TicketRequest(ModelNormal):
             tags ([str]): [optional]  # noqa: E501
             remote_created_at (datetime, none_type): When the third party's ticket was created.. [optional]  # noqa: E501
             remote_updated_at (datetime, none_type): When the third party's ticket was updated.. [optional]  # noqa: E501
+            completed_at (datetime, none_type): When the ticket was completed.. [optional]  # noqa: E501
+            ticket_url (str, none_type): The 3rd party url of the Ticket.. [optional]  # noqa: E501
+            priority (bool, date, datetime, dict, float, int, list, str, none_type): The priority or urgency of the Ticket. Possible values include: URGENT, HIGH, NORMAL, LOW - in cases where there is no clear mapping - the original value passed through.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -231,6 +245,7 @@ class TicketRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+
         self.remote_id = kwargs.get("remote_id", None)
         self.name = kwargs.get("name", None)
         self.assignees = kwargs.get("assignees", None)
@@ -246,6 +261,9 @@ class TicketRequest(ModelNormal):
         self.tags = kwargs.get("tags", None)
         self.remote_created_at = kwargs.get("remote_created_at", None)
         self.remote_updated_at = kwargs.get("remote_updated_at", None)
+        self.completed_at = kwargs.get("completed_at", None)
+        self.ticket_url = kwargs.get("ticket_url", None)
+        self.priority = kwargs.get("priority", None)
         return self
 
     required_properties = set([
@@ -307,6 +325,9 @@ class TicketRequest(ModelNormal):
             tags ([str]): [optional]  # noqa: E501
             remote_created_at (datetime, none_type): When the third party's ticket was created.. [optional]  # noqa: E501
             remote_updated_at (datetime, none_type): When the third party's ticket was updated.. [optional]  # noqa: E501
+            completed_at (datetime, none_type): When the ticket was completed.. [optional]  # noqa: E501
+            ticket_url (str, none_type): The 3rd party url of the Ticket.. [optional]  # noqa: E501
+            priority (bool, date, datetime, dict, float, int, list, str, none_type): The priority or urgency of the Ticket. Possible values include: URGENT, HIGH, NORMAL, LOW - in cases where there is no clear mapping - the original value passed through.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -351,5 +372,8 @@ class TicketRequest(ModelNormal):
         self.tags: Union[List[str]] = kwargs.get("tags", list())
         self.remote_created_at: Union[datetime, none_type] = kwargs.get("remote_created_at", None)
         self.remote_updated_at: Union[datetime, none_type] = kwargs.get("remote_updated_at", None)
+        self.completed_at: Union[datetime, none_type] = kwargs.get("completed_at", None)
+        self.ticket_url: Union[str, none_type] = kwargs.get("ticket_url", None)
+        self.priority: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("priority", None)
 
 

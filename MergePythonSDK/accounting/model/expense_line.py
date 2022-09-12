@@ -90,12 +90,12 @@ class ExpenseLine(ModelNormal):
         """
 
         defined_types = {
-            'remote_id': (str, none_type,),  # noqa: E501
-            'item': (str, none_type,),  # noqa: E501
-            'net_amount': (float, none_type,),  # noqa: E501
-            'tracking_category': (str, none_type,),  # noqa: E501
-            'account': (str, none_type,),  # noqa: E501
-            'description': (str, none_type,),  # noqa: E501
+            'remote_id': (str, none_type, none_type,),  # noqa: E501
+            'item': (str, none_type, none_type,),  # noqa: E501
+            'net_amount': (float, none_type, none_type,),  # noqa: E501
+            'tracking_category': (str, none_type, none_type,),  # noqa: E501
+            'account': (str, none_type, none_type,),  # noqa: E501
+            'description': (str, none_type, none_type,),  # noqa: E501
         }
         expands_types = {"account": "Account", "contact": "Contact"}
 
@@ -198,6 +198,7 @@ class ExpenseLine(ModelNormal):
         self._path_to_item = _path_to_item
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
+
 
         self.remote_id = kwargs.get("remote_id", None)
         self.item = kwargs.get("item", None)

@@ -100,12 +100,12 @@ class Address(ModelNormal):
 
         defined_types = {
             'type': (AddressTypeEnum, str, none_type,),
-            'street_1': (str, none_type,),  # noqa: E501
-            'street_2': (str, none_type,),  # noqa: E501
-            'city': (str, none_type,),  # noqa: E501
+            'street_1': (str, none_type, none_type,),  # noqa: E501
+            'street_2': (str, none_type, none_type,),  # noqa: E501
+            'city': (str, none_type, none_type,),  # noqa: E501
             'state': (StateEnum, str, none_type,),
             'country': (CountryEnum, str, none_type,),
-            'zip_code': (str, none_type,),  # noqa: E501
+            'zip_code': (str, none_type, none_type,),  # noqa: E501
         }
         expands_types = {}
 
@@ -210,6 +210,7 @@ class Address(ModelNormal):
         self._path_to_item = _path_to_item
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
+
 
         self.type = kwargs.get("type", None)
         self.street_1 = kwargs.get("street_1", None)
