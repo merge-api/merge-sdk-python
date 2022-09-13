@@ -5,7 +5,7 @@
 - Fix Enum serialization
 - Fix bug in pypi setup causing installer to not find model files
 
-# Version 2.1.0
+# Version 2.2.0
 
 ## Date: 2022-08-29
 
