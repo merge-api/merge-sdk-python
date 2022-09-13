@@ -13,9 +13,11 @@ import unittest
 from MergePythonSDK.accounting.api.invoices_api import InvoicesApi
 from MergePythonSDK.ats.api.candidates_api import CandidatesApi
 from MergePythonSDK.crm.api.contacts_api import ContactsApi
+from MergePythonSDK.crm.model.address_type_enum import AddressTypeEnum
 from MergePythonSDK.hris.api.employees_api import EmployeesApi
 from MergePythonSDK.shared.model.categories_enum import CategoriesEnum
 from MergePythonSDK.shared import Configuration, ApiClient, ApiException
+from MergePythonSDK.shared.model_utils import MergeEnumType, validate_and_convert_types
 from MergePythonSDK.ticketing.api.linked_accounts_api import LinkedAccountsApi
 from MergePythonSDK.ticketing.api.tickets_api import TicketsApi
 
@@ -37,7 +39,7 @@ class BasicClientTest(unittest.TestCase):
         accounting_configuration.api_key_prefix['tokenAuth'] = 'Bearer'
         # Swap YOUR_X_ACCOUNT_TOKEN below with your production key from:
         # https://app.merge.dev/linked-accounts/account/{ACCOUNT_ID}/overview
-        accounting_configuration.api_key['accountTokenAuth'] = 'YOUR_X_ACCOUNT_TOKEN_HERE'
+        accounting_configuration.api_key['accountTokenAuth'] = 'YOUR_X_ACCOUNT_TOKEN'
         with ApiClient(accounting_configuration) as api_client:
             accounting_invoices_api_instance = InvoicesApi(api_client)
             try:
@@ -51,7 +53,7 @@ class BasicClientTest(unittest.TestCase):
         ats_configuration = Configuration()
         ats_configuration.access_token = self.bearer_token
         ats_configuration.api_key_prefix['tokenAuth'] = 'Bearer'
-        ats_configuration.api_key['accountTokenAuth'] = 'YOUR_X_ACCOUNT_TOKEN_HERE'
+        ats_configuration.api_key['accountTokenAuth'] = 'YOUR_X_ACCOUNT_TOKEN'
         with ApiClient(ats_configuration) as api_client:
             ats_candidates_api_instance = CandidatesApi(api_client)
             try:
@@ -65,7 +67,7 @@ class BasicClientTest(unittest.TestCase):
         crm_configuration = Configuration()
         crm_configuration.access_token = self.bearer_token
         crm_configuration.api_key_prefix['tokenAuth'] = 'Bearer'
-        crm_configuration.api_key['accountTokenAuth'] = 'YOUR_X_ACCOUNT_TOKEN_HERE'
+        crm_configuration.api_key['accountTokenAuth'] = 'YOUR_X_ACCOUNT_TOKEN'
         with ApiClient(crm_configuration) as api_client:
             crm_contacts_api_instance = ContactsApi(api_client)
             try:
@@ -87,7 +89,7 @@ class BasicClientTest(unittest.TestCase):
         hris_configuration = Configuration()
         hris_configuration.access_token = self.bearer_token
         hris_configuration.api_key_prefix['tokenAuth'] = 'Bearer'
-        hris_configuration.api_key['accountTokenAuth'] = 'YOUR_X_ACCOUNT_TOKEN_HERE'
+        hris_configuration.api_key['accountTokenAuth'] = 'YOUR_X_ACCOUNT_TOKEN'
         with ApiClient(hris_configuration) as api_client:
             hris_employees_api_instance = EmployeesApi(api_client)
             try:
@@ -100,7 +102,7 @@ class BasicClientTest(unittest.TestCase):
                 assert next_response.get("results") is not None
 
                 # Test remote fields
-                _id = "YOUR_EMPLOYEE_ID_HERE"
+                _id = "YOUR_EMPLOYEE_ID"
                 employee_remote_field = hris_employees_api_instance.employees_retrieve(_id, remote_fields="gender")
                 employee = hris_employees_api_instance.employees_retrieve(_id)
                 assert employee_remote_field.gender != employee.gender
@@ -117,7 +119,7 @@ class BasicClientTest(unittest.TestCase):
         ticketing_configuration = Configuration()
         ticketing_configuration.access_token = self.bearer_token
         ticketing_configuration.api_key_prefix['tokenAuth'] = 'Bearer'
-        ticketing_configuration.api_key['accountTokenAuth'] = 'YOUR_X_ACCOUNT_TOKEN_HERE'
+        ticketing_configuration.api_key['accountTokenAuth'] = 'YOUR_X_ACCOUNT_TOKEN'
         with ApiClient(ticketing_configuration) as api_client:
             ticketing_tickets_api_instance = TicketsApi(api_client)
             try:
@@ -138,6 +140,10 @@ class BasicClientTest(unittest.TestCase):
         linked_account_api_instance = LinkedAccountsApi(api_client)
         api_response = linked_account_api_instance.linked_accounts_list(category=ticketing_category.value).results
         assert api_response[0].category == CategoriesEnum("ticketing").value
+
+        # Test non-normalized enum values
+        returned_address_enum = validate_and_convert_types("non standard value", (AddressTypeEnum,), [], {}, True)
+        assert returned_address_enum.value == "non standard value"
 
 
 if __name__ == '__main__':

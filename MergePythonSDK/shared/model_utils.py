@@ -141,6 +141,11 @@ class OpenApiModel(object):
                 key_type=True
             )
 
+        # Allow for APIs to return values not in ENUM valid values
+        if isinstance(value, str) and issubclass(self.__class__, MergeEnumType):
+            self.__dict__['_data_store'][name] = value
+            return
+
         if self._check_type:
             value = validate_and_convert_types(
                 value, required_types_mixed, path_to_item, self._spec_property_naming,
@@ -1433,7 +1438,7 @@ def validate_and_convert_types(input_value, required_types_mixed, path_to_item,
         if isinstance(input_value, str):
             for _typ in valid_classes:
                 if issubclass(_typ, MergeEnumType):
-                    return _typ(input_value)
+                    return _typ(input_value, _check_type=False)
         if configuration:
             # if input_value is not valid_type try to convert it
             converted_instance = attempt_convert_item(
