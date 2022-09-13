@@ -39,7 +39,7 @@ from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 def lazy_import():
-    from MergePythonSDK.ats.model.categories_enum import CategoriesEnum
+    from MergePythonSDK.shared.model.categories_enum import CategoriesEnum
     globals()['CategoriesEnum'] = CategoriesEnum
 
 class EndUserDetailsRequest(ModelNormal):
@@ -118,9 +118,9 @@ class EndUserDetailsRequest(ModelNormal):
             'end_user_organization_name': (str,),  # noqa: E501
             'end_user_origin_id': (str,),  # noqa: E501
             'categories': ([CategoriesEnum],),  # noqa: E501
-            'integration': (str, none_type,),  # noqa: E501
-            'link_expiry_mins': (int,),  # noqa: E501
-            'should_create_magic_link_url': (bool, none_type,),  # noqa: E501
+            'integration': (str, none_type, none_type,),  # noqa: E501
+            'link_expiry_mins': (int, none_type,),  # noqa: E501
+            'should_create_magic_link_url': (bool, none_type, none_type,),  # noqa: E501
         }
         return defined_types
 
@@ -219,6 +219,7 @@ class EndUserDetailsRequest(ModelNormal):
         self._path_to_item = _path_to_item
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
+
 
         self.end_user_email_address = end_user_email_address
         self.end_user_organization_name = end_user_organization_name

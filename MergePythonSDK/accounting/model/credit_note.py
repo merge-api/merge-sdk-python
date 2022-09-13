@@ -101,21 +101,21 @@ class CreditNote(ModelNormal):
         lazy_import()
 
         defined_types = {
-            'id': (str,),  # noqa: E501
-            'remote_id': (str, none_type,),  # noqa: E501
-            'remote_data': ([RemoteData], none_type,),  # noqa: E501
-            'transaction_date': (datetime, none_type,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
+            'remote_id': (str, none_type, none_type,),  # noqa: E501
+            'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
+            'transaction_date': (datetime, none_type, none_type,),  # noqa: E501
             'status': (CreditNoteStatusEnum, str, none_type,),
-            'number': (str, none_type,),  # noqa: E501
-            'contact': (str, none_type,),  # noqa: E501
-            'total_amount': (float, none_type,),  # noqa: E501
-            'remaining_credit': (float, none_type,),  # noqa: E501
-            'line_items': ([CreditNoteLineItem],),  # noqa: E501
+            'number': (str, none_type, none_type,),  # noqa: E501
+            'contact': (str, none_type, none_type,),  # noqa: E501
+            'total_amount': (float, none_type, none_type,),  # noqa: E501
+            'remaining_credit': (float, none_type, none_type,),  # noqa: E501
+            'line_items': ([CreditNoteLineItem], none_type,),  # noqa: E501
             'currency': (CurrencyEnum, str, none_type,),
-            'remote_created_at': (datetime, none_type,),  # noqa: E501
-            'remote_updated_at': (datetime, none_type,),  # noqa: E501
-            'payments': ([str, none_type],),  # noqa: E501
-            'remote_was_deleted': (bool,),  # noqa: E501
+            'remote_created_at': (datetime, none_type, none_type,),  # noqa: E501
+            'remote_updated_at': (datetime, none_type, none_type,),  # noqa: E501
+            'payments': ([str, none_type], none_type,),  # noqa: E501
+            'remote_was_deleted': (bool, none_type,),  # noqa: E501
         }
         expands_types = {"payments": "Payment"}
 
@@ -240,6 +240,7 @@ class CreditNote(ModelNormal):
         self._path_to_item = _path_to_item
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
+
 
         self.remote_id = kwargs.get("remote_id", None)
         self.transaction_date = kwargs.get("transaction_date", None)

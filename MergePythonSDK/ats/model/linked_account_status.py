@@ -181,6 +181,7 @@ class LinkedAccountStatus(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+
         self.linked_account_status = linked_account_status
         self.can_make_request = can_make_request
         return self

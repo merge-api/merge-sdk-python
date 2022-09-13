@@ -39,7 +39,7 @@ from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 def lazy_import():
-    from MergePythonSDK.ats.model.categories_enum import CategoriesEnum
+    from MergePythonSDK.shared.model.categories_enum import CategoriesEnum
     from MergePythonSDK.ats.model.model_operation import ModelOperation
     globals()['CategoriesEnum'] = CategoriesEnum
     globals()['ModelOperation'] = ModelOperation
@@ -101,10 +101,10 @@ class AccountDetailsAndActionsIntegration(ModelNormal):
             'categories': ([CategoriesEnum],),  # noqa: E501
             'color': (str,),  # noqa: E501
             'slug': (str,),  # noqa: E501
-            'passthrough_available': (bool,),  # noqa: E501
-            'image': (str,),  # noqa: E501
-            'square_image': (str,),  # noqa: E501
-            'available_model_operations': ([ModelOperation],),  # noqa: E501
+            'passthrough_available': (bool, none_type,),  # noqa: E501
+            'image': (str, none_type,),  # noqa: E501
+            'square_image': (str, none_type,),  # noqa: E501
+            'available_model_operations': ([ModelOperation], none_type,),  # noqa: E501
         }
         return defined_types
 
@@ -205,6 +205,7 @@ class AccountDetailsAndActionsIntegration(ModelNormal):
         self._path_to_item = _path_to_item
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
+
 
         self.name = name
         self.categories = categories

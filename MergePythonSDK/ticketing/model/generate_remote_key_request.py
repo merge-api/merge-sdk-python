@@ -181,6 +181,7 @@ class GenerateRemoteKeyRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+
         self.name = name
         return self
 

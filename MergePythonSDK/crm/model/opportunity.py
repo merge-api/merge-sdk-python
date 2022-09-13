@@ -101,20 +101,20 @@ class Opportunity(ModelNormal):
         lazy_import()
 
         defined_types = {
-            'id': (str,),  # noqa: E501
-            'remote_id': (str, none_type,),  # noqa: E501
-            'name': (str, none_type,),  # noqa: E501
-            'description': (str, none_type,),  # noqa: E501
-            'amount': (int, none_type,),  # noqa: E501
-            'owner': (str, none_type,),  # noqa: E501
-            'account': (str, none_type,),  # noqa: E501
-            'stage': (str, none_type,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
+            'remote_id': (str, none_type, none_type,),  # noqa: E501
+            'name': (str, none_type, none_type,),  # noqa: E501
+            'description': (str, none_type, none_type,),  # noqa: E501
+            'amount': (int, none_type, none_type,),  # noqa: E501
+            'owner': (str, none_type, none_type,),  # noqa: E501
+            'account': (str, none_type, none_type,),  # noqa: E501
+            'stage': (str, none_type, none_type,),  # noqa: E501
             'status': (OpportunityStatusEnum, str, none_type,),
-            'last_activity_at': (datetime, none_type,),  # noqa: E501
-            'close_date': (datetime, none_type,),  # noqa: E501
-            'remote_created_at': (datetime, none_type,),  # noqa: E501
-            'remote_data': ([RemoteData], none_type,),  # noqa: E501
-            'remote_was_deleted': (bool,),  # noqa: E501
+            'last_activity_at': (datetime, none_type, none_type,),  # noqa: E501
+            'close_date': (datetime, none_type, none_type,),  # noqa: E501
+            'remote_created_at': (datetime, none_type, none_type,),  # noqa: E501
+            'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
+            'remote_was_deleted': (bool, none_type,),  # noqa: E501
         }
         expands_types = {"owner": "User", "stage": "Stage", "account": "Account"}
 
@@ -236,6 +236,7 @@ class Opportunity(ModelNormal):
         self._path_to_item = _path_to_item
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
+
 
         self.remote_id = kwargs.get("remote_id", None)
         self.name = kwargs.get("name", None)

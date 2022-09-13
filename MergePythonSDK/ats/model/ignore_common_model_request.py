@@ -100,7 +100,7 @@ class IgnoreCommonModelRequest(ModelNormal):
 
         defined_types = {
             'reason': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
-            'message': (str,),  # noqa: E501
+            'message': (str, none_type,),  # noqa: E501
         }
         return defined_types
 
@@ -189,6 +189,7 @@ class IgnoreCommonModelRequest(ModelNormal):
         self._path_to_item = _path_to_item
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
+
 
         self.reason = reason
         self.message = kwargs.get("message", None)

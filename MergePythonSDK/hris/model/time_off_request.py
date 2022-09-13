@@ -99,16 +99,16 @@ class TimeOffRequest(ModelNormal):
         lazy_import()
 
         defined_types = {
-            'remote_id': (str, none_type,),  # noqa: E501
-            'employee': (str, none_type,),  # noqa: E501
-            'approver': (str, none_type,),  # noqa: E501
+            'remote_id': (str, none_type, none_type,),  # noqa: E501
+            'employee': (str, none_type, none_type,),  # noqa: E501
+            'approver': (str, none_type, none_type,),  # noqa: E501
             'status': (TimeOffStatusEnum, str, none_type,),
-            'employee_note': (str, none_type,),  # noqa: E501
+            'employee_note': (str, none_type, none_type,),  # noqa: E501
             'units': (UnitsEnum, str, none_type,),
-            'amount': (float, none_type,),  # noqa: E501
+            'amount': (float, none_type, none_type,),  # noqa: E501
             'request_type': (RequestTypeEnum, str, none_type,),
-            'start_time': (datetime, none_type,),  # noqa: E501
-            'end_time': (datetime, none_type,),  # noqa: E501
+            'start_time': (datetime, none_type, none_type,),  # noqa: E501
+            'end_time': (datetime, none_type, none_type,),  # noqa: E501
         }
         expands_types = {"employee": "Employee", "approver": "Employee"}
 
@@ -219,6 +219,7 @@ class TimeOffRequest(ModelNormal):
         self._path_to_item = _path_to_item
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
+
 
         self.remote_id = kwargs.get("remote_id", None)
         self.employee = kwargs.get("employee", None)

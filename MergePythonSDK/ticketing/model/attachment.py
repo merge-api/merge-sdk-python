@@ -95,16 +95,16 @@ class Attachment(ModelNormal):
         lazy_import()
 
         defined_types = {
-            'id': (str,),  # noqa: E501
-            'remote_id': (str, none_type,),  # noqa: E501
-            'file_name': (str, none_type,),  # noqa: E501
-            'ticket': (str, none_type,),  # noqa: E501
-            'file_url': (str, none_type,),  # noqa: E501
-            'content_type': (str, none_type,),  # noqa: E501
-            'uploaded_by': (str, none_type,),  # noqa: E501
-            'remote_created_at': (datetime, none_type,),  # noqa: E501
-            'remote_data': ([RemoteData], none_type,),  # noqa: E501
-            'remote_was_deleted': (bool,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
+            'remote_id': (str, none_type, none_type,),  # noqa: E501
+            'file_name': (str, none_type, none_type,),  # noqa: E501
+            'ticket': (str, none_type, none_type,),  # noqa: E501
+            'file_url': (str, none_type, none_type,),  # noqa: E501
+            'content_type': (str, none_type, none_type,),  # noqa: E501
+            'uploaded_by': (str, none_type, none_type,),  # noqa: E501
+            'remote_created_at': (datetime, none_type, none_type,),  # noqa: E501
+            'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
+            'remote_was_deleted': (bool, none_type,),  # noqa: E501
         }
         expands_types = {"ticket": "Ticket"}
 
@@ -218,6 +218,7 @@ class Attachment(ModelNormal):
         self._path_to_item = _path_to_item
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
+
 
         self.remote_id = kwargs.get("remote_id", None)
         self.file_name = kwargs.get("file_name", None)

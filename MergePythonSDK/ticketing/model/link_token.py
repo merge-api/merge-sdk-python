@@ -92,7 +92,7 @@ class LinkToken(ModelNormal):
         defined_types = {
             'link_token': (str,),  # noqa: E501
             'integration_name': (str,),  # noqa: E501
-            'magic_link_url': (str,),  # noqa: E501
+            'magic_link_url': (str, none_type,),  # noqa: E501
         }
         return defined_types
 
@@ -183,6 +183,7 @@ class LinkToken(ModelNormal):
         self._path_to_item = _path_to_item
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
+
 
         self.link_token = link_token
         self.integration_name = integration_name

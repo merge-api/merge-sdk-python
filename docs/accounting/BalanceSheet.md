@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **remote_id** | **str, none_type** | The third-party API ID of the matching object. | [optional] 
 **remote_data** | [**[RemoteData], none_type**](RemoteData.md) |  | [optional] [readonly] 
 **name** | **str, none_type** | The balance sheet&#39;s name. | [optional] 
+**currency** | **bool, date, datetime, dict, float, int, list, str, none_type** | The balance sheet&#39;s currency. | [optional] 
 **date** | **datetime, none_type** | The balance sheet&#39;s date. The balance sheet data will reflect the company&#39;s financial position this point in time. | [optional] 
 **net_assets** | **float, none_type** | The balance sheet&#39;s net assets. | [optional] 
 **assets** | [**[ReportItem]**](ReportItem.md) |  | [optional] [readonly] 

@@ -90,10 +90,10 @@ class ReportItem(ModelNormal):
         """
 
         defined_types = {
-            'remote_id': (str, none_type,),  # noqa: E501
-            'name': (str, none_type,),  # noqa: E501
-            'value': (float, none_type,),  # noqa: E501
-            'sub_items': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'remote_id': (str, none_type, none_type,),  # noqa: E501
+            'name': (str, none_type, none_type,),  # noqa: E501
+            'value': (float, none_type, none_type,),  # noqa: E501
+            'sub_items': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
         expands_types = {}
 
@@ -193,6 +193,7 @@ class ReportItem(ModelNormal):
         self._path_to_item = _path_to_item
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
+
 
         self.remote_id = kwargs.get("remote_id", None)
         self.name = kwargs.get("name", None)

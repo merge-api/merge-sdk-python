@@ -60,8 +60,12 @@ MergePythonSDK/ticketing/model/meta_response.py
 MergePythonSDK/ticketing/model/method_enum.py
 MergePythonSDK/ticketing/model/model_operation.py
 MergePythonSDK/ticketing/model/multipart_form_field_request.py
+MergePythonSDK/ticketing/model/patched_ticket_endpoint_request.py
+MergePythonSDK/ticketing/model/patched_ticket_request.py
+MergePythonSDK/ticketing/model/priority_enum.py
 MergePythonSDK/ticketing/model/project.py
 MergePythonSDK/ticketing/model/request_format_enum.py
+MergePythonSDK/ticketing/model/response_type_enum.py
 MergePythonSDK/ticketing/model/sync_status.py
 MergePythonSDK/ticketing/model/sync_status_status_enum.py
 MergePythonSDK/ticketing/model/tag.py
@@ -139,6 +143,9 @@ docs/PaginatedTeamList.md
 docs/PaginatedTicketList.md
 docs/PaginatedUserList.md
 docs/PassthroughApi.md
+docs/PatchedTicketEndpointRequest.md
+docs/PatchedTicketRequest.md
+docs/PriorityEnum.md
 docs/Project.md
 docs/ProjectsApi.md
 docs/RegenerateKeyApi.md
@@ -147,6 +154,7 @@ docs/RemoteKey.md
 docs/RemoteKeyForRegenerationRequest.md
 docs/RemoteResponse.md
 docs/RequestFormatEnum.md
+docs/ResponseTypeEnum.md
 docs/SyncStatus.md
 docs/SyncStatusApi.md
 docs/SyncStatusStatusEnum.md
@@ -232,6 +240,9 @@ test/test_paginated_team_list.py
 test/test_paginated_ticket_list.py
 test/test_paginated_user_list.py
 test/test_passthrough_api.py
+test/test_patched_ticket_endpoint_request.py
+test/test_patched_ticket_request.py
+test/test_priority_enum.py
 test/test_project.py
 test/test_projects_api.py
 test/test_regenerate_key_api.py
@@ -240,6 +251,7 @@ test/test_remote_key.py
 test/test_remote_key_for_regeneration_request.py
 test/test_remote_response.py
 test/test_request_format_enum.py
+test/test_response_type_enum.py
 test/test_sync_status.py
 test/test_sync_status_api.py
 test/test_sync_status_status_enum.py

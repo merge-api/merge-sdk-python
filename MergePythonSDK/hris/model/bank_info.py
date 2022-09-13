@@ -100,16 +100,16 @@ class BankInfo(ModelNormal):
         lazy_import()
 
         defined_types = {
-            'id': (str,),  # noqa: E501
-            'remote_id': (str, none_type,),  # noqa: E501
-            'employee': (str, none_type,),  # noqa: E501
-            'account_number': (str, none_type,),  # noqa: E501
-            'routing_number': (str, none_type,),  # noqa: E501
-            'bank_name': (str, none_type,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
+            'remote_id': (str, none_type, none_type,),  # noqa: E501
+            'employee': (str, none_type, none_type,),  # noqa: E501
+            'account_number': (str, none_type, none_type,),  # noqa: E501
+            'routing_number': (str, none_type, none_type,),  # noqa: E501
+            'bank_name': (str, none_type, none_type,),  # noqa: E501
             'account_type': (AccountTypeEnum, str, none_type,),
-            'remote_created_at': (datetime, none_type,),  # noqa: E501
-            'remote_data': ([RemoteData], none_type,),  # noqa: E501
-            'remote_was_deleted': (bool,),  # noqa: E501
+            'remote_created_at': (datetime, none_type, none_type,),  # noqa: E501
+            'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
+            'remote_was_deleted': (bool, none_type,),  # noqa: E501
         }
         expands_types = {"employee": "Employee"}
 
@@ -223,6 +223,7 @@ class BankInfo(ModelNormal):
         self._path_to_item = _path_to_item
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
+
 
         self.remote_id = kwargs.get("remote_id", None)
         self.employee = kwargs.get("employee", None)

@@ -39,7 +39,7 @@ from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 def lazy_import():
-    from MergePythonSDK.accounting.model.categories_enum import CategoriesEnum
+    from MergePythonSDK.shared.model.categories_enum import CategoriesEnum
     globals()['CategoriesEnum'] = CategoriesEnum
 
 class AccountIntegration(ModelNormal):
@@ -102,11 +102,11 @@ class AccountIntegration(ModelNormal):
 
         defined_types = {
             'name': (str,),  # noqa: E501
-            'categories': ([CategoriesEnum],),  # noqa: E501
-            'image': (str, none_type,),  # noqa: E501
-            'square_image': (str, none_type,),  # noqa: E501
-            'color': (str,),  # noqa: E501
-            'slug': (str,),  # noqa: E501
+            'categories': ([CategoriesEnum], none_type,),  # noqa: E501
+            'image': (str, none_type, none_type,),  # noqa: E501
+            'square_image': (str, none_type, none_type,),  # noqa: E501
+            'color': (str, none_type,),  # noqa: E501
+            'slug': (str, none_type,),  # noqa: E501
         }
         return defined_types
 
@@ -204,6 +204,7 @@ class AccountIntegration(ModelNormal):
         self._path_to_item = _path_to_item
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
+
 
         self.name = name
         self.categories = kwargs.get("categories", None)

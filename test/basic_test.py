@@ -13,8 +13,12 @@ import unittest
 from MergePythonSDK.accounting.api.invoices_api import InvoicesApi
 from MergePythonSDK.ats.api.candidates_api import CandidatesApi
 from MergePythonSDK.crm.api.contacts_api import ContactsApi
+from MergePythonSDK.crm.model.address_type_enum import AddressTypeEnum
 from MergePythonSDK.hris.api.employees_api import EmployeesApi
+from MergePythonSDK.shared.model.categories_enum import CategoriesEnum
 from MergePythonSDK.shared import Configuration, ApiClient, ApiException
+from MergePythonSDK.shared.model_utils import MergeEnumType, validate_and_convert_types
+from MergePythonSDK.ticketing.api.linked_accounts_api import LinkedAccountsApi
 from MergePythonSDK.ticketing.api.tickets_api import TicketsApi
 
 
@@ -22,7 +26,7 @@ class BasicClientTest(unittest.TestCase):
     def setUp(self):
         # Swap YOUR_ACCESS_KEY below with your production key from:
         # https://app.merge.dev/configuration/keys
-        self.bearer_token = "YOUR_ACCESS_KEY"
+        self.bearer_token = "YOUR_API_KEY"
 
     def tearDown(self):
         pass
@@ -98,7 +102,7 @@ class BasicClientTest(unittest.TestCase):
                 assert next_response.get("results") is not None
 
                 # Test remote fields
-                _id = "YOUR_EMPLOYEE_ID_HERE"
+                _id = "YOUR_EMPLOYEE_ID"
                 employee_remote_field = hris_employees_api_instance.employees_retrieve(_id, remote_fields="gender")
                 employee = hris_employees_api_instance.employees_retrieve(_id)
                 assert employee_remote_field.gender != employee.gender
@@ -111,7 +115,7 @@ class BasicClientTest(unittest.TestCase):
                 print('Exception when calling HRIS API: %s' % e)
                 raise e
 
-        # # Ticketing
+        # Ticketing
         ticketing_configuration = Configuration()
         ticketing_configuration.access_token = self.bearer_token
         ticketing_configuration.api_key_prefix['tokenAuth'] = 'Bearer'
@@ -126,6 +130,20 @@ class BasicClientTest(unittest.TestCase):
             except ApiException as e:
                 print('Exception when calling Ticketing API: %s' % e)
                 raise e
+
+        # Test ENUM serialization
+        ticketing_category = CategoriesEnum("ticketing")
+        assert ticketing_category.value == "ticketing"
+
+        # List LinkedAccounts test enum serialization and deserialization
+        api_client = ApiClient(ticketing_configuration)
+        linked_account_api_instance = LinkedAccountsApi(api_client)
+        api_response = linked_account_api_instance.linked_accounts_list(category=ticketing_category.value).results
+        assert api_response[0].category == CategoriesEnum("ticketing").value
+
+        # Test non-normalized enum values
+        returned_address_enum = validate_and_convert_types("non standard value", (AddressTypeEnum,), [], {}, True)
+        assert returned_address_enum.value == "non standard value"
 
 
 if __name__ == '__main__':

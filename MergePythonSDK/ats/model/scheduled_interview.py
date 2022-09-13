@@ -97,20 +97,20 @@ class ScheduledInterview(ModelNormal):
         lazy_import()
 
         defined_types = {
-            'id': (str,),  # noqa: E501
-            'remote_id': (str, none_type,),  # noqa: E501
-            'application': (str, none_type,),  # noqa: E501
-            'job_interview_stage': (str, none_type,),  # noqa: E501
-            'organizer': (str, none_type,),  # noqa: E501
-            'interviewers': ([str, none_type],),  # noqa: E501
-            'location': (str, none_type,),  # noqa: E501
-            'start_at': (datetime, none_type,),  # noqa: E501
-            'end_at': (datetime, none_type,),  # noqa: E501
-            'remote_created_at': (datetime, none_type,),  # noqa: E501
-            'remote_updated_at': (datetime, none_type,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
+            'remote_id': (str, none_type, none_type,),  # noqa: E501
+            'application': (str, none_type, none_type,),  # noqa: E501
+            'job_interview_stage': (str, none_type, none_type,),  # noqa: E501
+            'organizer': (str, none_type, none_type,),  # noqa: E501
+            'interviewers': ([str, none_type], none_type,),  # noqa: E501
+            'location': (str, none_type, none_type,),  # noqa: E501
+            'start_at': (datetime, none_type, none_type,),  # noqa: E501
+            'end_at': (datetime, none_type, none_type,),  # noqa: E501
+            'remote_created_at': (datetime, none_type, none_type,),  # noqa: E501
+            'remote_updated_at': (datetime, none_type, none_type,),  # noqa: E501
             'status': (ScheduledInterviewStatusEnum, str, none_type,),
-            'remote_data': ([RemoteData], none_type,),  # noqa: E501
-            'remote_was_deleted': (bool,),  # noqa: E501
+            'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
+            'remote_was_deleted': (bool, none_type,),  # noqa: E501
         }
         expands_types = {"interviewers": "RemoteUser", "organizer": "RemoteUser", "application": "Application", "job_interview_stage": "JobInterviewStage"}
 
@@ -232,6 +232,7 @@ class ScheduledInterview(ModelNormal):
         self._path_to_item = _path_to_item
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
+
 
         self.remote_id = kwargs.get("remote_id", None)
         self.application = kwargs.get("application", None)

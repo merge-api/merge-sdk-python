@@ -104,7 +104,7 @@ class AttachmentResponse(ModelNormal):
             'model': (Attachment,),  # noqa: E501
             'warnings': ([WarningValidationProblem],),  # noqa: E501
             'errors': ([ErrorValidationProblem],),  # noqa: E501
-            'logs': ([DebugModeLog],),  # noqa: E501
+            'logs': ([DebugModeLog], none_type,),  # noqa: E501
         }
         return defined_types
 
@@ -197,6 +197,7 @@ class AttachmentResponse(ModelNormal):
         self._path_to_item = _path_to_item
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
+
 
         self.model = model
         self.warnings = warnings

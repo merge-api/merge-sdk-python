@@ -14,7 +14,9 @@ import unittest
 from unittest.mock import MagicMock
 
 import MergePythonSDK.ticketing
+from MergePythonSDK.ticketing.model.priority_enum import PriorityEnum
 from MergePythonSDK.ticketing.model.ticket_status_enum import TicketStatusEnum
+globals()['PriorityEnum'] = PriorityEnum
 globals()['TicketStatusEnum'] = TicketStatusEnum
 from MergePythonSDK.ticketing.model.ticket_request import TicketRequest
 from MergePythonSDK.shared.api_client import ApiClient

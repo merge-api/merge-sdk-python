@@ -90,8 +90,8 @@ class PhoneNumber(ModelNormal):
         """
 
         defined_types = {
-            'phone_number': (str, none_type,),  # noqa: E501
-            'phone_number_type': (str, none_type,),  # noqa: E501
+            'phone_number': (str, none_type, none_type,),  # noqa: E501
+            'phone_number_type': (str, none_type, none_type,),  # noqa: E501
         }
         expands_types = {"owner": "User"}
 
@@ -186,6 +186,7 @@ class PhoneNumber(ModelNormal):
         self._path_to_item = _path_to_item
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
+
 
         self.phone_number = kwargs.get("phone_number", None)
         self.phone_number_type = kwargs.get("phone_number_type", None)

@@ -98,6 +98,7 @@ MergePythonSDK/ats/model/reason_enum.py
 MergePythonSDK/ats/model/reject_reason.py
 MergePythonSDK/ats/model/remote_user.py
 MergePythonSDK/ats/model/request_format_enum.py
+MergePythonSDK/ats/model/response_type_enum.py
 MergePythonSDK/ats/model/scheduled_interview.py
 MergePythonSDK/ats/model/scheduled_interview_status_enum.py
 MergePythonSDK/ats/model/scorecard.py
@@ -226,6 +227,7 @@ docs/RemoteKeyForRegenerationRequest.md
 docs/RemoteResponse.md
 docs/RemoteUser.md
 docs/RequestFormatEnum.md
+docs/ResponseTypeEnum.md
 docs/ScheduledInterview.md
 docs/ScheduledInterviewStatusEnum.md
 docs/Scorecard.md
@@ -361,6 +363,7 @@ test/test_remote_key_for_regeneration_request.py
 test/test_remote_response.py
 test/test_remote_user.py
 test/test_request_format_enum.py
+test/test_response_type_enum.py
 test/test_scheduled_interview.py
 test/test_scheduled_interview_status_enum.py
 test/test_scorecard.py

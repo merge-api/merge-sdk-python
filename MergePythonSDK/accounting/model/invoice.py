@@ -101,26 +101,26 @@ class Invoice(ModelNormal):
         lazy_import()
 
         defined_types = {
-            'id': (str,),  # noqa: E501
-            'remote_id': (str, none_type,),  # noqa: E501
-            'remote_data': ([RemoteData], none_type,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
+            'remote_id': (str, none_type, none_type,),  # noqa: E501
+            'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
             'type': (InvoiceTypeEnum, str, none_type,),
-            'contact': (str, none_type,),  # noqa: E501
-            'number': (str, none_type,),  # noqa: E501
-            'issue_date': (datetime, none_type,),  # noqa: E501
-            'due_date': (datetime, none_type,),  # noqa: E501
-            'paid_on_date': (datetime, none_type,),  # noqa: E501
-            'memo': (str, none_type,),  # noqa: E501
+            'contact': (str, none_type, none_type,),  # noqa: E501
+            'number': (str, none_type, none_type,),  # noqa: E501
+            'issue_date': (datetime, none_type, none_type,),  # noqa: E501
+            'due_date': (datetime, none_type, none_type,),  # noqa: E501
+            'paid_on_date': (datetime, none_type, none_type,),  # noqa: E501
+            'memo': (str, none_type, none_type,),  # noqa: E501
             'currency': (CurrencyEnum, str, none_type,),
-            'total_discount': (float, none_type,),  # noqa: E501
-            'sub_total': (float, none_type,),  # noqa: E501
-            'total_tax_amount': (float, none_type,),  # noqa: E501
-            'total_amount': (float, none_type,),  # noqa: E501
-            'balance': (float, none_type,),  # noqa: E501
-            'remote_updated_at': (datetime, none_type,),  # noqa: E501
-            'payments': ([str, none_type],),  # noqa: E501
-            'line_items': ([InvoiceLineItem],),  # noqa: E501
-            'remote_was_deleted': (bool,),  # noqa: E501
+            'total_discount': (float, none_type, none_type,),  # noqa: E501
+            'sub_total': (float, none_type, none_type,),  # noqa: E501
+            'total_tax_amount': (float, none_type, none_type,),  # noqa: E501
+            'total_amount': (float, none_type, none_type,),  # noqa: E501
+            'balance': (float, none_type, none_type,),  # noqa: E501
+            'remote_updated_at': (datetime, none_type, none_type,),  # noqa: E501
+            'payments': ([str, none_type], none_type,),  # noqa: E501
+            'line_items': ([InvoiceLineItem], none_type,),  # noqa: E501
+            'remote_was_deleted': (bool, none_type,),  # noqa: E501
         }
         expands_types = {"payments": "Payment", "line_items": "InvoiceLineItem", "contact": "Contact"}
 
@@ -255,6 +255,7 @@ class Invoice(ModelNormal):
         self._path_to_item = _path_to_item
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
+
 
         self.remote_id = kwargs.get("remote_id", None)
         self.type = kwargs.get("type", None)

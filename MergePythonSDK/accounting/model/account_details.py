@@ -39,7 +39,7 @@ from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 def lazy_import():
-    from MergePythonSDK.accounting.model.category_enum import CategoryEnum
+    from MergePythonSDK.shared.model.category_enum import CategoryEnum
     globals()['CategoryEnum'] = CategoryEnum
 
 class AccountDetails(ModelNormal):
@@ -95,16 +95,16 @@ class AccountDetails(ModelNormal):
         lazy_import()
 
         defined_types = {
-            'id': (str,),  # noqa: E501
-            'integration': (str,),  # noqa: E501
-            'integration_slug': (str,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
+            'integration': (str, none_type,),  # noqa: E501
+            'integration_slug': (str, none_type,),  # noqa: E501
             'category': (CategoryEnum, str, none_type,),
-            'end_user_origin_id': (str,),  # noqa: E501
-            'end_user_organization_name': (str,),  # noqa: E501
-            'end_user_email_address': (str,),  # noqa: E501
-            'status': (str,),  # noqa: E501
-            'webhook_listener_url': (str,),  # noqa: E501
-            'is_duplicate': (bool, none_type,),  # noqa: E501
+            'end_user_origin_id': (str, none_type,),  # noqa: E501
+            'end_user_organization_name': (str, none_type,),  # noqa: E501
+            'end_user_email_address': (str, none_type,),  # noqa: E501
+            'status': (str, none_type,),  # noqa: E501
+            'webhook_listener_url': (str, none_type,),  # noqa: E501
+            'is_duplicate': (bool, none_type, none_type,),  # noqa: E501
         }
         return defined_types
 
@@ -216,6 +216,7 @@ class AccountDetails(ModelNormal):
         self._path_to_item = _path_to_item
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
+
 
         self.category = kwargs.get("category", None)
 

@@ -101,18 +101,19 @@ class Account(ModelNormal):
         lazy_import()
 
         defined_types = {
-            'id': (str,),  # noqa: E501
-            'remote_id': (str, none_type,),  # noqa: E501
-            'remote_data': ([RemoteData], none_type,),  # noqa: E501
-            'name': (str, none_type,),  # noqa: E501
-            'description': (str, none_type,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
+            'remote_id': (str, none_type, none_type,),  # noqa: E501
+            'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
+            'name': (str, none_type, none_type,),  # noqa: E501
+            'description': (str, none_type, none_type,),  # noqa: E501
             'classification': (ClassificationEnum, str, none_type,),
-            'type': (str, none_type,),  # noqa: E501
+            'type': (str, none_type, none_type,),  # noqa: E501
             'status': (AccountStatusEnum, str, none_type,),
-            'current_balance': (float, none_type,),  # noqa: E501
+            'current_balance': (float, none_type, none_type,),  # noqa: E501
             'currency': (CurrencyEnum, str, none_type,),
-            'account_number': (str, none_type,),  # noqa: E501
-            'remote_was_deleted': (bool,),  # noqa: E501
+            'account_number': (str, none_type, none_type,),  # noqa: E501
+            'parent_account': (str, none_type, none_type,),  # noqa: E501
+            'remote_was_deleted': (bool, none_type,),  # noqa: E501
         }
         expands_types = {}
 
@@ -141,6 +142,7 @@ class Account(ModelNormal):
         'current_balance': 'current_balance',  # noqa: E501
         'currency': 'currency',  # noqa: E501
         'account_number': 'account_number',  # noqa: E501
+        'parent_account': 'parent_account',  # noqa: E501
         'remote_was_deleted': 'remote_was_deleted',  # noqa: E501
     }
 
@@ -199,6 +201,7 @@ class Account(ModelNormal):
             current_balance (float, none_type): The account's current balance.. [optional]  # noqa: E501
             currency (bool, date, datetime, dict, float, int, list, str, none_type): The account's currency.. [optional]  # noqa: E501
             account_number (str, none_type): The account's number.. [optional]  # noqa: E501
+            parent_account (str, none_type): [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
         """
 
@@ -231,6 +234,7 @@ class Account(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+
         self.remote_id = kwargs.get("remote_id", None)
         self.name = kwargs.get("name", None)
         self.description = kwargs.get("description", None)
@@ -240,6 +244,7 @@ class Account(ModelNormal):
         self.current_balance = kwargs.get("current_balance", None)
         self.currency = kwargs.get("currency", None)
         self.account_number = kwargs.get("account_number", None)
+        self.parent_account = kwargs.get("parent_account", None)
 
         # Read only properties
         self._id = kwargs.get("id", str())
@@ -302,6 +307,7 @@ class Account(ModelNormal):
             current_balance (float, none_type): The account's current balance.. [optional]  # noqa: E501
             currency (bool, date, datetime, dict, float, int, list, str, none_type): The account's currency.. [optional]  # noqa: E501
             account_number (str, none_type): The account's number.. [optional]  # noqa: E501
+            parent_account (str, none_type): [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
         """
 
@@ -341,6 +347,7 @@ class Account(ModelNormal):
         self.current_balance: Union[float, none_type] = kwargs.get("current_balance", None)
         self.currency: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("currency", None)
         self.account_number: Union[str, none_type] = kwargs.get("account_number", None)
+        self.parent_account: Union[str, none_type] = kwargs.get("parent_account", None)
 
         # Read only properties
         self._id: Union[str] = kwargs.get("id", str())

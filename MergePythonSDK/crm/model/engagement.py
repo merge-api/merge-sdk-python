@@ -97,18 +97,18 @@ class Engagement(ModelNormal):
         lazy_import()
 
         defined_types = {
-            'id': (str,),  # noqa: E501
-            'remote_id': (str, none_type,),  # noqa: E501
-            'owner': (str, none_type,),  # noqa: E501
-            'content': (str, none_type,),  # noqa: E501
-            'subject': (str, none_type,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
+            'remote_id': (str, none_type, none_type,),  # noqa: E501
+            'owner': (str, none_type, none_type,),  # noqa: E501
+            'content': (str, none_type, none_type,),  # noqa: E501
+            'subject': (str, none_type, none_type,),  # noqa: E501
             'direction': (DirectionEnum, str, none_type,),
-            'engagement_type': (str, none_type,),  # noqa: E501
-            'start_time': (datetime, none_type,),  # noqa: E501
-            'end_time': (datetime, none_type,),  # noqa: E501
-            'account': (str, none_type,),  # noqa: E501
-            'remote_data': ([RemoteData], none_type,),  # noqa: E501
-            'remote_was_deleted': (bool,),  # noqa: E501
+            'engagement_type': (str, none_type, none_type,),  # noqa: E501
+            'start_time': (datetime, none_type, none_type,),  # noqa: E501
+            'end_time': (datetime, none_type, none_type,),  # noqa: E501
+            'account': (str, none_type, none_type,),  # noqa: E501
+            'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
+            'remote_was_deleted': (bool, none_type,),  # noqa: E501
         }
         expands_types = {"owner": "User", "account": "Account", "engagement_type": "EngagementType"}
 
@@ -226,6 +226,7 @@ class Engagement(ModelNormal):
         self._path_to_item = _path_to_item
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
+
 
         self.remote_id = kwargs.get("remote_id", None)
         self.owner = kwargs.get("owner", None)

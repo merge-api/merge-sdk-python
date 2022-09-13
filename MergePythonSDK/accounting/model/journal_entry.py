@@ -99,16 +99,17 @@ class JournalEntry(ModelNormal):
         lazy_import()
 
         defined_types = {
-            'id': (str,),  # noqa: E501
-            'remote_id': (str, none_type,),  # noqa: E501
-            'remote_data': ([RemoteData], none_type,),  # noqa: E501
-            'transaction_date': (datetime, none_type,),  # noqa: E501
-            'remote_created_at': (datetime, none_type,),  # noqa: E501
-            'payments': ([str, none_type],),  # noqa: E501
-            'memo': (str, none_type,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
+            'remote_id': (str, none_type, none_type,),  # noqa: E501
+            'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
+            'transaction_date': (datetime, none_type, none_type,),  # noqa: E501
+            'remote_created_at': (datetime, none_type, none_type,),  # noqa: E501
+            'remote_updated_at': (datetime, none_type, none_type,),  # noqa: E501
+            'payments': ([str, none_type], none_type,),  # noqa: E501
+            'memo': (str, none_type, none_type,),  # noqa: E501
             'currency': (CurrencyEnum, str, none_type,),
-            'lines': ([JournalLine],),  # noqa: E501
-            'remote_was_deleted': (bool,),  # noqa: E501
+            'lines': ([JournalLine], none_type,),  # noqa: E501
+            'remote_was_deleted': (bool, none_type,),  # noqa: E501
         }
         expands_types = {"lines": "JournalLine", "payments": "Payment"}
 
@@ -131,6 +132,7 @@ class JournalEntry(ModelNormal):
         'remote_data': 'remote_data',  # noqa: E501
         'transaction_date': 'transaction_date',  # noqa: E501
         'remote_created_at': 'remote_created_at',  # noqa: E501
+        'remote_updated_at': 'remote_updated_at',  # noqa: E501
         'payments': 'payments',  # noqa: E501
         'memo': 'memo',  # noqa: E501
         'currency': 'currency',  # noqa: E501
@@ -188,6 +190,7 @@ class JournalEntry(ModelNormal):
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             transaction_date (datetime, none_type): The journal entry's transaction date.. [optional]  # noqa: E501
             remote_created_at (datetime, none_type): When the third party's journal entry was created.. [optional]  # noqa: E501
+            remote_updated_at (datetime, none_type): When the third party's journal entry was updated.. [optional]  # noqa: E501
             payments ([str, none_type]): Array of `Payment` object IDs.. [optional]  # noqa: E501
             memo (str, none_type): The journal entry's private note.. [optional]  # noqa: E501
             currency (bool, date, datetime, dict, float, int, list, str, none_type): The journal's currency.. [optional]  # noqa: E501
@@ -224,9 +227,11 @@ class JournalEntry(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+
         self.remote_id = kwargs.get("remote_id", None)
         self.transaction_date = kwargs.get("transaction_date", None)
         self.remote_created_at = kwargs.get("remote_created_at", None)
+        self.remote_updated_at = kwargs.get("remote_updated_at", None)
         self.payments = kwargs.get("payments", None)
         self.memo = kwargs.get("memo", None)
         self.currency = kwargs.get("currency", None)
@@ -287,6 +292,7 @@ class JournalEntry(ModelNormal):
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             transaction_date (datetime, none_type): The journal entry's transaction date.. [optional]  # noqa: E501
             remote_created_at (datetime, none_type): When the third party's journal entry was created.. [optional]  # noqa: E501
+            remote_updated_at (datetime, none_type): When the third party's journal entry was updated.. [optional]  # noqa: E501
             payments ([str, none_type]): Array of `Payment` object IDs.. [optional]  # noqa: E501
             memo (str, none_type): The journal entry's private note.. [optional]  # noqa: E501
             currency (bool, date, datetime, dict, float, int, list, str, none_type): The journal's currency.. [optional]  # noqa: E501
@@ -324,6 +330,7 @@ class JournalEntry(ModelNormal):
         self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
         self.transaction_date: Union[datetime, none_type] = kwargs.get("transaction_date", None)
         self.remote_created_at: Union[datetime, none_type] = kwargs.get("remote_created_at", None)
+        self.remote_updated_at: Union[datetime, none_type] = kwargs.get("remote_updated_at", None)
         self.payments: Union[List[str, none_type]] = kwargs.get("payments", list())
         self.memo: Union[str, none_type] = kwargs.get("memo", None)
         self.currency: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("currency", None)

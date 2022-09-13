@@ -101,20 +101,20 @@ class EmployeePayrollRun(ModelNormal):
         lazy_import()
 
         defined_types = {
-            'id': (str,),  # noqa: E501
-            'remote_id': (str, none_type,),  # noqa: E501
-            'employee': (str, none_type,),  # noqa: E501
-            'payroll_run': (str, none_type,),  # noqa: E501
-            'gross_pay': (float, none_type,),  # noqa: E501
-            'net_pay': (float, none_type,),  # noqa: E501
-            'start_date': (datetime, none_type,),  # noqa: E501
-            'end_date': (datetime, none_type,),  # noqa: E501
-            'check_date': (datetime, none_type,),  # noqa: E501
-            'earnings': ([Earning],),  # noqa: E501
-            'deductions': ([Deduction],),  # noqa: E501
-            'taxes': ([Tax],),  # noqa: E501
-            'remote_data': ([RemoteData], none_type,),  # noqa: E501
-            'remote_was_deleted': (bool,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
+            'remote_id': (str, none_type, none_type,),  # noqa: E501
+            'employee': (str, none_type, none_type,),  # noqa: E501
+            'payroll_run': (str, none_type, none_type,),  # noqa: E501
+            'gross_pay': (float, none_type, none_type,),  # noqa: E501
+            'net_pay': (float, none_type, none_type,),  # noqa: E501
+            'start_date': (datetime, none_type, none_type,),  # noqa: E501
+            'end_date': (datetime, none_type, none_type,),  # noqa: E501
+            'check_date': (datetime, none_type, none_type,),  # noqa: E501
+            'earnings': ([Earning], none_type,),  # noqa: E501
+            'deductions': ([Deduction], none_type,),  # noqa: E501
+            'taxes': ([Tax], none_type,),  # noqa: E501
+            'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
+            'remote_was_deleted': (bool, none_type,),  # noqa: E501
         }
         expands_types = {"employee": "Employee", "payroll_run": "PayrollRun"}
 
@@ -239,6 +239,7 @@ class EmployeePayrollRun(ModelNormal):
         self._path_to_item = _path_to_item
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
+
 
         self.remote_id = kwargs.get("remote_id", None)
         self.employee = kwargs.get("employee", None)

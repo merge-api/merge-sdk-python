@@ -93,8 +93,8 @@ class UpdateApplicationStageRequest(ModelNormal):
         """
 
         defined_types = {
-            'job_interview_stage': (str, none_type,),  # noqa: E501
-            'remote_user_id': (str,),  # noqa: E501
+            'job_interview_stage': (str, none_type, none_type,),  # noqa: E501
+            'remote_user_id': (str, none_type,),  # noqa: E501
         }
         return defined_types
 
@@ -181,6 +181,7 @@ class UpdateApplicationStageRequest(ModelNormal):
         self._path_to_item = _path_to_item
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
+
 
         self.job_interview_stage = kwargs.get("job_interview_stage", None)
         self.remote_user_id = kwargs.get("remote_user_id", None)

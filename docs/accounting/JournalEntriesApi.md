@@ -60,6 +60,7 @@ with MergePythonSDK.accounting.ApiClient(configuration) as api_client:
             remote_id="088899",
             transaction_date=dateutil_parser('2020-03-31T00:00:00Z'),
             remote_created_at=dateutil_parser('2020-03-31T00:00:00Z'),
+            remote_updated_at=dateutil_parser('2020-03-31T00:00:00Z'),
             payments=["b26fd49a-cbae-470a-a8f8-bcbc119e0390"],
             memo="Weekly Payment",
             currency=None,

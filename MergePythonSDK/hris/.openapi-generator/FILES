@@ -92,6 +92,7 @@ MergePythonSDK/hris/model/policy_type_enum.py
 MergePythonSDK/hris/model/reason_enum.py
 MergePythonSDK/hris/model/request_format_enum.py
 MergePythonSDK/hris/model/request_type_enum.py
+MergePythonSDK/hris/model/response_type_enum.py
 MergePythonSDK/hris/model/run_state_enum.py
 MergePythonSDK/hris/model/run_type_enum.py
 MergePythonSDK/hris/model/sync_status.py
@@ -214,6 +215,7 @@ docs/RemoteKeyForRegenerationRequest.md
 docs/RemoteResponse.md
 docs/RequestFormatEnum.md
 docs/RequestTypeEnum.md
+docs/ResponseTypeEnum.md
 docs/RunStateEnum.md
 docs/RunTypeEnum.md
 docs/SyncStatus.md
@@ -343,6 +345,7 @@ test/test_remote_key_for_regeneration_request.py
 test/test_remote_response.py
 test/test_request_format_enum.py
 test/test_request_type_enum.py
+test/test_response_type_enum.py
 test/test_run_state_enum.py
 test/test_run_type_enum.py
 test/test_sync_status.py

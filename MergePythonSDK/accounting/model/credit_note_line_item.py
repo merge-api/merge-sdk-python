@@ -105,17 +105,17 @@ class CreditNoteLineItem(ModelNormal):
         """
 
         defined_types = {
-            'item': (str, none_type,),  # noqa: E501
-            'name': (str, none_type,),  # noqa: E501
-            'description': (str, none_type,),  # noqa: E501
-            'quantity': (str, none_type,),  # noqa: E501
-            'memo': (str, none_type,),  # noqa: E501
-            'unit_price': (str, none_type,),  # noqa: E501
-            'tax_rate': (str, none_type,),  # noqa: E501
-            'total_line_amount': (str, none_type,),  # noqa: E501
-            'tracking_category': (str, none_type,),  # noqa: E501
-            'account': (str, none_type,),  # noqa: E501
-            'remote_id': (str, none_type,),  # noqa: E501
+            'item': (str, none_type, none_type,),  # noqa: E501
+            'name': (str, none_type, none_type,),  # noqa: E501
+            'description': (str, none_type, none_type,),  # noqa: E501
+            'quantity': (str, none_type, none_type,),  # noqa: E501
+            'memo': (str, none_type, none_type,),  # noqa: E501
+            'unit_price': (str, none_type, none_type,),  # noqa: E501
+            'tax_rate': (str, none_type, none_type,),  # noqa: E501
+            'total_line_amount': (str, none_type, none_type,),  # noqa: E501
+            'tracking_category': (str, none_type, none_type,),  # noqa: E501
+            'account': (str, none_type, none_type,),  # noqa: E501
+            'remote_id': (str, none_type, none_type,),  # noqa: E501
         }
         expands_types = {"payments": "Payment"}
 
@@ -228,6 +228,7 @@ class CreditNoteLineItem(ModelNormal):
         self._path_to_item = _path_to_item
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
+
 
         self.item = kwargs.get("item", None)
         self.name = kwargs.get("name", None)

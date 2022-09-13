@@ -8,8 +8,9 @@ Name | Type | Description | Notes
 **method** | **str** |  | 
 **path** | **str** |  | 
 **status** | **int** |  | 
-**response** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** |  | 
+**response** | **bool, date, datetime, dict, float, int, list, str, none_type** |  | 
 **response_headers** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** |  | [optional] 
+**response_type** | **bool, date, datetime, dict, float, int, list, str, none_type** |  | [optional] 
 **headers** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** |  | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 

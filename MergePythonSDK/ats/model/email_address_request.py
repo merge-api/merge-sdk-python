@@ -98,7 +98,7 @@ class EmailAddressRequest(ModelNormal):
         lazy_import()
 
         defined_types = {
-            'value': (str, none_type,),  # noqa: E501
+            'value': (str, none_type, none_type,),  # noqa: E501
             'email_address_type': (EmailAddressTypeEnum, str, none_type,),
         }
         expands_types = {"applications": "Application", "attachments": "Attachment"}
@@ -194,6 +194,7 @@ class EmailAddressRequest(ModelNormal):
         self._path_to_item = _path_to_item
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
+
 
         self.value = kwargs.get("value", None)
         self.email_address_type = kwargs.get("email_address_type", None)

@@ -109,20 +109,20 @@ class CompanyInfo(ModelNormal):
         lazy_import()
 
         defined_types = {
-            'id': (str,),  # noqa: E501
-            'remote_id': (str, none_type,),  # noqa: E501
-            'remote_data': ([RemoteData], none_type,),  # noqa: E501
-            'name': (str, none_type,),  # noqa: E501
-            'legal_name': (str, none_type,),  # noqa: E501
-            'tax_number': (str, none_type,),  # noqa: E501
-            'fiscal_year_end_month': (int, none_type,),  # noqa: E501
-            'fiscal_year_end_day': (int, none_type,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
+            'remote_id': (str, none_type, none_type,),  # noqa: E501
+            'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
+            'name': (str, none_type, none_type,),  # noqa: E501
+            'legal_name': (str, none_type, none_type,),  # noqa: E501
+            'tax_number': (str, none_type, none_type,),  # noqa: E501
+            'fiscal_year_end_month': (int, none_type, none_type,),  # noqa: E501
+            'fiscal_year_end_day': (int, none_type, none_type,),  # noqa: E501
             'currency': (CurrencyEnum, str, none_type,),
-            'remote_created_at': (datetime, none_type,),  # noqa: E501
-            'urls': ([str, none_type], none_type,),  # noqa: E501
-            'addresses': ([Address],),  # noqa: E501
-            'phone_numbers': ([AccountingPhoneNumber],),  # noqa: E501
-            'remote_was_deleted': (bool,),  # noqa: E501
+            'remote_created_at': (datetime, none_type, none_type,),  # noqa: E501
+            'urls': ([str, none_type], none_type, none_type,),  # noqa: E501
+            'addresses': ([Address], none_type,),  # noqa: E501
+            'phone_numbers': ([AccountingPhoneNumber], none_type,),  # noqa: E501
+            'remote_was_deleted': (bool, none_type,),  # noqa: E501
         }
         expands_types = {"addresses": "Address", "phone_numbers": "AccountingPhoneNumber"}
 
@@ -244,6 +244,7 @@ class CompanyInfo(ModelNormal):
         self._path_to_item = _path_to_item
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
+
 
         self.remote_id = kwargs.get("remote_id", None)
         self.name = kwargs.get("name", None)

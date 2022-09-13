@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **remote_id** | **str, none_type** | The third-party API ID of the matching object. | [optional] 
 **remote_data** | [**[RemoteData], none_type**](RemoteData.md) |  | [optional] [readonly] 
 **name** | **str, none_type** | The cash flow statement&#39;s name. | [optional] 
+**currency** | **bool, date, datetime, dict, float, int, list, str, none_type** | The cash flow statement&#39;s currency. | [optional] 
 **start_period** | **datetime, none_type** | The cash flow statement&#39;s start period. | [optional] 
 **end_period** | **datetime, none_type** | The cash flow statement&#39;s end period. | [optional] 
 **cash_at_beginning_of_period** | **float, none_type** | Cash and cash equivalents at the beginning of the cash flow statement&#39;s period. | [optional] 

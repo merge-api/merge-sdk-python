@@ -189,6 +189,7 @@ class DebugModeLog(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+
         self.log_id = log_id
         self.dashboard_view = dashboard_view
         self.log_summary = log_summary

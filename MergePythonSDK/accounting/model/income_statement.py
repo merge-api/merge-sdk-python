@@ -39,8 +39,10 @@ from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 def lazy_import():
+    from MergePythonSDK.accounting.model.currency_enum import CurrencyEnum
     from MergePythonSDK.shared.model.remote_data import RemoteData
     from MergePythonSDK.accounting.model.report_item import ReportItem
+    globals()['CurrencyEnum'] = CurrencyEnum
     globals()['RemoteData'] = RemoteData
     globals()['ReportItem'] = ReportItem
 
@@ -97,20 +99,21 @@ class IncomeStatement(ModelNormal):
         lazy_import()
 
         defined_types = {
-            'id': (str,),  # noqa: E501
-            'remote_id': (str, none_type,),  # noqa: E501
-            'remote_data': ([RemoteData], none_type,),  # noqa: E501
-            'name': (str, none_type,),  # noqa: E501
-            'start_period': (datetime, none_type,),  # noqa: E501
-            'end_period': (datetime, none_type,),  # noqa: E501
-            'income': ([ReportItem],),  # noqa: E501
-            'cost_of_sales': ([ReportItem],),  # noqa: E501
-            'gross_profit': (float, none_type,),  # noqa: E501
-            'operating_expenses': ([ReportItem],),  # noqa: E501
-            'net_operating_income': (float, none_type,),  # noqa: E501
-            'non_operating_expenses': ([ReportItem],),  # noqa: E501
-            'net_income': (float, none_type,),  # noqa: E501
-            'remote_was_deleted': (bool,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
+            'remote_id': (str, none_type, none_type,),  # noqa: E501
+            'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
+            'name': (str, none_type, none_type,),  # noqa: E501
+            'currency': (CurrencyEnum, str, none_type,),
+            'start_period': (datetime, none_type, none_type,),  # noqa: E501
+            'end_period': (datetime, none_type, none_type,),  # noqa: E501
+            'income': ([ReportItem], none_type,),  # noqa: E501
+            'cost_of_sales': ([ReportItem], none_type,),  # noqa: E501
+            'gross_profit': (float, none_type, none_type,),  # noqa: E501
+            'operating_expenses': ([ReportItem], none_type,),  # noqa: E501
+            'net_operating_income': (float, none_type, none_type,),  # noqa: E501
+            'non_operating_expenses': ([ReportItem], none_type,),  # noqa: E501
+            'net_income': (float, none_type, none_type,),  # noqa: E501
+            'remote_was_deleted': (bool, none_type,),  # noqa: E501
         }
         expands_types = {}
 
@@ -132,6 +135,7 @@ class IncomeStatement(ModelNormal):
         'remote_id': 'remote_id',  # noqa: E501
         'remote_data': 'remote_data',  # noqa: E501
         'name': 'name',  # noqa: E501
+        'currency': 'currency',  # noqa: E501
         'start_period': 'start_period',  # noqa: E501
         'end_period': 'end_period',  # noqa: E501
         'income': 'income',  # noqa: E501
@@ -196,6 +200,7 @@ class IncomeStatement(ModelNormal):
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             name (str, none_type): The income statement's name.. [optional]  # noqa: E501
+            currency (bool, date, datetime, dict, float, int, list, str, none_type): The income statement's currency.. [optional]  # noqa: E501
             start_period (datetime, none_type): The income statement's start period.. [optional]  # noqa: E501
             end_period (datetime, none_type): The income statement's end period.. [optional]  # noqa: E501
             income ([ReportItem]): [optional]  # noqa: E501
@@ -237,8 +242,10 @@ class IncomeStatement(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+
         self.remote_id = kwargs.get("remote_id", None)
         self.name = kwargs.get("name", None)
+        self.currency = kwargs.get("currency", None)
         self.start_period = kwargs.get("start_period", None)
         self.end_period = kwargs.get("end_period", None)
         self.gross_profit = kwargs.get("gross_profit", None)
@@ -303,6 +310,7 @@ class IncomeStatement(ModelNormal):
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             name (str, none_type): The income statement's name.. [optional]  # noqa: E501
+            currency (bool, date, datetime, dict, float, int, list, str, none_type): The income statement's currency.. [optional]  # noqa: E501
             start_period (datetime, none_type): The income statement's start period.. [optional]  # noqa: E501
             end_period (datetime, none_type): The income statement's end period.. [optional]  # noqa: E501
             income ([ReportItem]): [optional]  # noqa: E501
@@ -344,6 +352,7 @@ class IncomeStatement(ModelNormal):
 
         self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
         self.name: Union[str, none_type] = kwargs.get("name", None)
+        self.currency: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("currency", None)
         self.start_period: Union[datetime, none_type] = kwargs.get("start_period", None)
         self.end_period: Union[datetime, none_type] = kwargs.get("end_period", None)
         self.gross_profit: Union[float, none_type] = kwargs.get("gross_profit", None)

@@ -105,20 +105,20 @@ class Employment(ModelNormal):
         lazy_import()
 
         defined_types = {
-            'id': (str,),  # noqa: E501
-            'remote_id': (str, none_type,),  # noqa: E501
-            'employee': (str, none_type,),  # noqa: E501
-            'job_title': (str, none_type,),  # noqa: E501
-            'pay_rate': (float, none_type,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
+            'remote_id': (str, none_type, none_type,),  # noqa: E501
+            'employee': (str, none_type, none_type,),  # noqa: E501
+            'job_title': (str, none_type, none_type,),  # noqa: E501
+            'pay_rate': (float, none_type, none_type,),  # noqa: E501
             'pay_period': (PayPeriodEnum, str, none_type,),
             'pay_frequency': (PayFrequencyEnum, str, none_type,),
             'pay_currency': (PayCurrencyEnum, str, none_type,),
-            'pay_group': (str, none_type,),  # noqa: E501
+            'pay_group': (str, none_type, none_type,),  # noqa: E501
             'flsa_status': (FlsaStatusEnum, str, none_type,),
-            'effective_date': (datetime, none_type,),  # noqa: E501
+            'effective_date': (datetime, none_type, none_type,),  # noqa: E501
             'employment_type': (EmploymentTypeEnum, str, none_type,),
-            'remote_data': ([RemoteData], none_type,),  # noqa: E501
-            'remote_was_deleted': (bool,),  # noqa: E501
+            'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
+            'remote_was_deleted': (bool, none_type,),  # noqa: E501
         }
         expands_types = {"employee": "Employee", "pay_group": "PayGroup"}
 
@@ -240,6 +240,7 @@ class Employment(ModelNormal):
         self._path_to_item = _path_to_item
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
+
 
         self.remote_id = kwargs.get("remote_id", None)
         self.employee = kwargs.get("employee", None)

@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **remote_id** | **str, none_type** | The third-party API ID of the matching object. | [optional] 
 **remote_data** | [**[RemoteData], none_type**](RemoteData.md) |  | [optional] [readonly] 
 **name** | **str, none_type** | The income statement&#39;s name. | [optional] 
+**currency** | **bool, date, datetime, dict, float, int, list, str, none_type** | The income statement&#39;s currency. | [optional] 
 **start_period** | **datetime, none_type** | The income statement&#39;s start period. | [optional] 
 **end_period** | **datetime, none_type** | The income statement&#39;s end period. | [optional] 
 **income** | [**[ReportItem]**](ReportItem.md) |  | [optional] [readonly] 
