@@ -80,7 +80,7 @@ class ScheduledInterview(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -200,7 +200,7 @@ class ScheduledInterview(ModelNormal):
             end_at (datetime, none_type): When the interview was ended.. [optional]  # noqa: E501
             remote_created_at (datetime, none_type): When the third party's interview was created.. [optional]  # noqa: E501
             remote_updated_at (datetime, none_type): When the third party's interview was updated.. [optional]  # noqa: E501
-            status (bool, date, datetime, dict, float, int, list, str, none_type): The interview's status.. [optional]  # noqa: E501
+            status (bool, dict, float, int, list, str, none_type): The interview's status.. [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
         """
@@ -308,7 +308,7 @@ class ScheduledInterview(ModelNormal):
             end_at (datetime, none_type): When the interview was ended.. [optional]  # noqa: E501
             remote_created_at (datetime, none_type): When the third party's interview was created.. [optional]  # noqa: E501
             remote_updated_at (datetime, none_type): When the third party's interview was updated.. [optional]  # noqa: E501
-            status (bool, date, datetime, dict, float, int, list, str, none_type): The interview's status.. [optional]  # noqa: E501
+            status (bool, dict, float, int, list, str, none_type): The interview's status.. [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
         """
@@ -350,7 +350,7 @@ class ScheduledInterview(ModelNormal):
         self.end_at: Union[datetime, none_type] = kwargs.get("end_at", None)
         self.remote_created_at: Union[datetime, none_type] = kwargs.get("remote_created_at", None)
         self.remote_updated_at: Union[datetime, none_type] = kwargs.get("remote_updated_at", None)
-        self.status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
+        self.status: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("status", None)
 
         # Read only properties
         self._id: Union[str] = kwargs.get("id", str())

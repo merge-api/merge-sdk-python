@@ -81,7 +81,7 @@ class Url(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -155,7 +155,7 @@ class Url(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             value (str, none_type): The site's url.. [optional]  # noqa: E501
-            url_type (bool, date, datetime, dict, float, int, list, str, none_type): The type of site.. [optional]  # noqa: E501
+            url_type (bool, dict, float, int, list, str, none_type): The type of site.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -237,7 +237,7 @@ class Url(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             value (str, none_type): The site's url.. [optional]  # noqa: E501
-            url_type (bool, date, datetime, dict, float, int, list, str, none_type): The type of site.. [optional]  # noqa: E501
+            url_type (bool, dict, float, int, list, str, none_type): The type of site.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -268,6 +268,6 @@ class Url(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.value: Union[str, none_type] = kwargs.get("value", None)
-        self.url_type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("url_type", None)
+        self.url_type: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("url_type", None)
 
 

@@ -92,7 +92,7 @@ class CompanyInfo(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -209,7 +209,7 @@ class CompanyInfo(ModelNormal):
             tax_number (str, none_type): The company's tax number.. [optional]  # noqa: E501
             fiscal_year_end_month (int, none_type): The company's fiscal year end month.. [optional]  # noqa: E501
             fiscal_year_end_day (int, none_type): The company's fiscal year end day.. [optional]  # noqa: E501
-            currency (bool, date, datetime, dict, float, int, list, str, none_type): The currency set in the company's accounting platform.. [optional]  # noqa: E501
+            currency (bool, dict, float, int, list, str, none_type): The currency set in the company's accounting platform.. [optional]  # noqa: E501
             remote_created_at (datetime, none_type): When the third party's company was created.. [optional]  # noqa: E501
             urls ([str, none_type], none_type): The company's urls.. [optional]  # noqa: E501
             addresses ([Address]): [optional]  # noqa: E501
@@ -317,7 +317,7 @@ class CompanyInfo(ModelNormal):
             tax_number (str, none_type): The company's tax number.. [optional]  # noqa: E501
             fiscal_year_end_month (int, none_type): The company's fiscal year end month.. [optional]  # noqa: E501
             fiscal_year_end_day (int, none_type): The company's fiscal year end day.. [optional]  # noqa: E501
-            currency (bool, date, datetime, dict, float, int, list, str, none_type): The currency set in the company's accounting platform.. [optional]  # noqa: E501
+            currency (bool, dict, float, int, list, str, none_type): The currency set in the company's accounting platform.. [optional]  # noqa: E501
             remote_created_at (datetime, none_type): When the third party's company was created.. [optional]  # noqa: E501
             urls ([str, none_type], none_type): The company's urls.. [optional]  # noqa: E501
             addresses ([Address]): [optional]  # noqa: E501
@@ -358,7 +358,7 @@ class CompanyInfo(ModelNormal):
         self.tax_number: Union[str, none_type] = kwargs.get("tax_number", None)
         self.fiscal_year_end_month: Union[int, none_type] = kwargs.get("fiscal_year_end_month", None)
         self.fiscal_year_end_day: Union[int, none_type] = kwargs.get("fiscal_year_end_day", None)
-        self.currency: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("currency", None)
+        self.currency: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("currency", None)
         self.remote_created_at: Union[datetime, none_type] = kwargs.get("remote_created_at", None)
         self.urls: Union[List[str, none_type], none_type] = kwargs.get("urls", None)
         self.addresses: Union[List["Address"]] = kwargs.get("addresses", None)

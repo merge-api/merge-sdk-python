@@ -83,7 +83,7 @@ class Attachment(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -185,7 +185,7 @@ class Attachment(ModelNormal):
             file_name (str, none_type): The attachment's name.. [optional]  # noqa: E501
             file_url (str, none_type): The attachment's url.. [optional]  # noqa: E501
             candidate (str, none_type): [optional]  # noqa: E501
-            attachment_type (bool, date, datetime, dict, float, int, list, str, none_type): The attachment's type.. [optional]  # noqa: E501
+            attachment_type (bool, dict, float, int, list, str, none_type): The attachment's type.. [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             remote_was_deleted (bool): [optional]  # noqa: E501
         """
@@ -281,7 +281,7 @@ class Attachment(ModelNormal):
             file_name (str, none_type): The attachment's name.. [optional]  # noqa: E501
             file_url (str, none_type): The attachment's url.. [optional]  # noqa: E501
             candidate (str, none_type): [optional]  # noqa: E501
-            attachment_type (bool, date, datetime, dict, float, int, list, str, none_type): The attachment's type.. [optional]  # noqa: E501
+            attachment_type (bool, dict, float, int, list, str, none_type): The attachment's type.. [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             remote_was_deleted (bool): [optional]  # noqa: E501
         """
@@ -317,7 +317,7 @@ class Attachment(ModelNormal):
         self.file_name: Union[str, none_type] = kwargs.get("file_name", None)
         self.file_url: Union[str, none_type] = kwargs.get("file_url", None)
         self.candidate: Union[str, none_type] = kwargs.get("candidate", None)
-        self.attachment_type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("attachment_type", None)
+        self.attachment_type: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("attachment_type", None)
 
         # Read only properties
         self._id: Union[str] = kwargs.get("id", str())

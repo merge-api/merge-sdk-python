@@ -82,7 +82,7 @@ class Address(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -165,12 +165,12 @@ class Address(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            type (bool, date, datetime, dict, float, int, list, str, none_type): The address type.. [optional]  # noqa: E501
+            type (bool, dict, float, int, list, str, none_type): The address type.. [optional]  # noqa: E501
             street_1 (str, none_type): Line 1 of the address's street.. [optional]  # noqa: E501
             street_2 (str, none_type): Line 2 of the address's street.. [optional]  # noqa: E501
             city (str, none_type): The address's city.. [optional]  # noqa: E501
-            state (bool, date, datetime, dict, float, int, list, str, none_type): The address's state.. [optional]  # noqa: E501
-            country (bool, date, datetime, dict, float, int, list, str, none_type): The address's country.. [optional]  # noqa: E501
+            state (bool, dict, float, int, list, str, none_type): The address's state.. [optional]  # noqa: E501
+            country (bool, dict, float, int, list, str, none_type): The address's country.. [optional]  # noqa: E501
             zip_code (str, none_type): The address's zip code.. [optional]  # noqa: E501
         """
 
@@ -257,12 +257,12 @@ class Address(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            type (bool, date, datetime, dict, float, int, list, str, none_type): The address type.. [optional]  # noqa: E501
+            type (bool, dict, float, int, list, str, none_type): The address type.. [optional]  # noqa: E501
             street_1 (str, none_type): Line 1 of the address's street.. [optional]  # noqa: E501
             street_2 (str, none_type): Line 2 of the address's street.. [optional]  # noqa: E501
             city (str, none_type): The address's city.. [optional]  # noqa: E501
-            state (bool, date, datetime, dict, float, int, list, str, none_type): The address's state.. [optional]  # noqa: E501
-            country (bool, date, datetime, dict, float, int, list, str, none_type): The address's country.. [optional]  # noqa: E501
+            state (bool, dict, float, int, list, str, none_type): The address's state.. [optional]  # noqa: E501
+            country (bool, dict, float, int, list, str, none_type): The address's country.. [optional]  # noqa: E501
             zip_code (str, none_type): The address's zip code.. [optional]  # noqa: E501
         """
 
@@ -293,12 +293,12 @@ class Address(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("type", None)
+        self.type: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("type", None)
         self.street_1: Union[str, none_type] = kwargs.get("street_1", None)
         self.street_2: Union[str, none_type] = kwargs.get("street_2", None)
         self.city: Union[str, none_type] = kwargs.get("city", None)
-        self.state: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("state", None)
-        self.country: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("country", None)
+        self.state: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("state", None)
+        self.country: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("country", None)
         self.zip_code: Union[str, none_type] = kwargs.get("zip_code", None)
 
 

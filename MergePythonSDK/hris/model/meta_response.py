@@ -78,7 +78,7 @@ class MetaResponse(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -95,7 +95,7 @@ class MetaResponse(ModelNormal):
         lazy_import()
 
         defined_types = {
-            'request_schema': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'request_schema': ({str: (bool, dict, float, int, list, str, none_type)},),  # noqa: E501
             'has_conditional_params': (bool,),  # noqa: E501
             'has_required_linked_account_params': (bool,),  # noqa: E501
             'status': (LinkedAccountStatus, none_type,),  # noqa: E501
@@ -125,7 +125,7 @@ class MetaResponse(ModelNormal):
         """MetaResponse - a model defined in OpenAPI
 
         Args:
-            request_schema ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}):
+            request_schema ({str: (bool, dict, float, int, list, str, none_type)}):
             has_conditional_params (bool):
             has_required_linked_account_params (bool):
 
@@ -213,7 +213,7 @@ class MetaResponse(ModelNormal):
         """MetaResponse - a model defined in OpenAPI
 
         Args:
-            request_schema ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}):
+            request_schema ({str: (bool, dict, float, int, list, str, none_type)}):
             has_conditional_params (bool):
             has_required_linked_account_params (bool):
 
@@ -278,7 +278,7 @@ class MetaResponse(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.request_schema: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type]] = request_schema
+        self.request_schema: Union[Dict[str, bool, dict, float, int, list, str, none_type]] = request_schema
         self.has_conditional_params: Union[bool] = has_conditional_params
         self.has_required_linked_account_params: Union[bool] = has_required_linked_account_params
         self.status: Union["LinkedAccountStatus"] = kwargs.get("status", None)

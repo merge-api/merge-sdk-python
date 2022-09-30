@@ -80,7 +80,7 @@ class Scorecard(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -188,7 +188,7 @@ class Scorecard(ModelNormal):
             interviewer (str, none_type): [optional]  # noqa: E501
             remote_created_at (datetime, none_type): When the third party's scorecard was created.. [optional]  # noqa: E501
             submitted_at (datetime, none_type): When the scorecard was submitted.. [optional]  # noqa: E501
-            overall_recommendation (bool, date, datetime, dict, float, int, list, str, none_type): The inteviewer's recommendation.. [optional]  # noqa: E501
+            overall_recommendation (bool, dict, float, int, list, str, none_type): The inteviewer's recommendation.. [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
         """
@@ -288,7 +288,7 @@ class Scorecard(ModelNormal):
             interviewer (str, none_type): [optional]  # noqa: E501
             remote_created_at (datetime, none_type): When the third party's scorecard was created.. [optional]  # noqa: E501
             submitted_at (datetime, none_type): When the scorecard was submitted.. [optional]  # noqa: E501
-            overall_recommendation (bool, date, datetime, dict, float, int, list, str, none_type): The inteviewer's recommendation.. [optional]  # noqa: E501
+            overall_recommendation (bool, dict, float, int, list, str, none_type): The inteviewer's recommendation.. [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
         """
@@ -326,7 +326,7 @@ class Scorecard(ModelNormal):
         self.interviewer: Union[str, none_type] = kwargs.get("interviewer", None)
         self.remote_created_at: Union[datetime, none_type] = kwargs.get("remote_created_at", None)
         self.submitted_at: Union[datetime, none_type] = kwargs.get("submitted_at", None)
-        self.overall_recommendation: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("overall_recommendation", None)
+        self.overall_recommendation: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("overall_recommendation", None)
 
         # Read only properties
         self._id: Union[str] = kwargs.get("id", str())

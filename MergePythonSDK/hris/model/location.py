@@ -82,7 +82,7 @@ class Location(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -189,8 +189,8 @@ class Location(ModelNormal):
             city (str, none_type): The location's city.. [optional]  # noqa: E501
             state (str, none_type): The location's state. Represents a region if outside of the US.. [optional]  # noqa: E501
             zip_code (str, none_type): The location's zip code or postal code.. [optional]  # noqa: E501
-            country (bool, date, datetime, dict, float, int, list, str, none_type): The location's country.. [optional]  # noqa: E501
-            location_type (bool, date, datetime, dict, float, int, list, str, none_type): The location's type. Can be either WORK or HOME. [optional]  # noqa: E501
+            country (bool, dict, float, int, list, str, none_type): The location's country.. [optional]  # noqa: E501
+            location_type (bool, dict, float, int, list, str, none_type): The location's type. Can be either WORK or HOME. [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
         """
@@ -295,8 +295,8 @@ class Location(ModelNormal):
             city (str, none_type): The location's city.. [optional]  # noqa: E501
             state (str, none_type): The location's state. Represents a region if outside of the US.. [optional]  # noqa: E501
             zip_code (str, none_type): The location's zip code or postal code.. [optional]  # noqa: E501
-            country (bool, date, datetime, dict, float, int, list, str, none_type): The location's country.. [optional]  # noqa: E501
-            location_type (bool, date, datetime, dict, float, int, list, str, none_type): The location's type. Can be either WORK or HOME. [optional]  # noqa: E501
+            country (bool, dict, float, int, list, str, none_type): The location's country.. [optional]  # noqa: E501
+            location_type (bool, dict, float, int, list, str, none_type): The location's type. Can be either WORK or HOME. [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
         """
@@ -336,8 +336,8 @@ class Location(ModelNormal):
         self.city: Union[str, none_type] = kwargs.get("city", None)
         self.state: Union[str, none_type] = kwargs.get("state", None)
         self.zip_code: Union[str, none_type] = kwargs.get("zip_code", None)
-        self.country: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("country", None)
-        self.location_type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("location_type", None)
+        self.country: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("country", None)
+        self.location_type: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("location_type", None)
 
         # Read only properties
         self._id: Union[str] = kwargs.get("id", str())

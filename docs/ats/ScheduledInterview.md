@@ -16,10 +16,10 @@ Name | Type | Description | Notes
 **end_at** | **datetime, none_type** | When the interview was ended. | [optional] 
 **remote_created_at** | **datetime, none_type** | When the third party&#39;s interview was created. | [optional] 
 **remote_updated_at** | **datetime, none_type** | When the third party&#39;s interview was updated. | [optional] 
-**status** | **bool, date, datetime, dict, float, int, list, str, none_type** | The interview&#39;s status. | [optional] 
+**status** | **bool, dict, float, int, list, str, none_type** | The interview&#39;s status. | [optional] 
 **remote_data** | [**[RemoteData], none_type**](RemoteData.md) |  | [optional] [readonly] 
 **remote_was_deleted** | **bool** | Indicates whether or not this object has been deleted by third party webhooks. | [optional] [readonly] 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+**any string name** | **bool, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -80,7 +80,7 @@ class Group(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -170,7 +170,7 @@ class Group(ModelNormal):
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             parent_group (str, none_type): The parent group for this group.. [optional]  # noqa: E501
             name (str, none_type): The group name.. [optional]  # noqa: E501
-            type (bool, date, datetime, dict, float, int, list, str, none_type): The group type. [optional]  # noqa: E501
+            type (bool, dict, float, int, list, str, none_type): The group type. [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
         """
@@ -264,7 +264,7 @@ class Group(ModelNormal):
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             parent_group (str, none_type): The parent group for this group.. [optional]  # noqa: E501
             name (str, none_type): The group name.. [optional]  # noqa: E501
-            type (bool, date, datetime, dict, float, int, list, str, none_type): The group type. [optional]  # noqa: E501
+            type (bool, dict, float, int, list, str, none_type): The group type. [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
         """
@@ -299,7 +299,7 @@ class Group(ModelNormal):
         self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
         self.parent_group: Union[str, none_type] = kwargs.get("parent_group", None)
         self.name: Union[str, none_type] = kwargs.get("name", None)
-        self.type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("type", None)
+        self.type: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("type", None)
 
         # Read only properties
         self._id: Union[str] = kwargs.get("id", str())

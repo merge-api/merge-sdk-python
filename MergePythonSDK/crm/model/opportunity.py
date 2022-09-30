@@ -84,7 +84,7 @@ class Opportunity(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -201,7 +201,7 @@ class Opportunity(ModelNormal):
             owner (str, none_type): [optional]  # noqa: E501
             account (str, none_type): [optional]  # noqa: E501
             stage (str, none_type): [optional]  # noqa: E501
-            status (bool, date, datetime, dict, float, int, list, str, none_type): The opportunity's status.. [optional]  # noqa: E501
+            status (bool, dict, float, int, list, str, none_type): The opportunity's status.. [optional]  # noqa: E501
             last_activity_at (datetime, none_type): When the opportunity's last activity occurred.. [optional]  # noqa: E501
             close_date (datetime, none_type): When the opportunity was closed.. [optional]  # noqa: E501
             remote_created_at (datetime, none_type): When the third party's opportunity was created.. [optional]  # noqa: E501
@@ -309,7 +309,7 @@ class Opportunity(ModelNormal):
             owner (str, none_type): [optional]  # noqa: E501
             account (str, none_type): [optional]  # noqa: E501
             stage (str, none_type): [optional]  # noqa: E501
-            status (bool, date, datetime, dict, float, int, list, str, none_type): The opportunity's status.. [optional]  # noqa: E501
+            status (bool, dict, float, int, list, str, none_type): The opportunity's status.. [optional]  # noqa: E501
             last_activity_at (datetime, none_type): When the opportunity's last activity occurred.. [optional]  # noqa: E501
             close_date (datetime, none_type): When the opportunity was closed.. [optional]  # noqa: E501
             remote_created_at (datetime, none_type): When the third party's opportunity was created.. [optional]  # noqa: E501
@@ -351,7 +351,7 @@ class Opportunity(ModelNormal):
         self.owner: Union[str, none_type] = kwargs.get("owner", None)
         self.account: Union[str, none_type] = kwargs.get("account", None)
         self.stage: Union[str, none_type] = kwargs.get("stage", None)
-        self.status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
+        self.status: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("status", None)
         self.last_activity_at: Union[datetime, none_type] = kwargs.get("last_activity_at", None)
         self.close_date: Union[datetime, none_type] = kwargs.get("close_date", None)
         self.remote_created_at: Union[datetime, none_type] = kwargs.get("remote_created_at", None)

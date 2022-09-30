@@ -12,10 +12,10 @@ Name | Type | Description | Notes
 **email** | **str, none_type** | The user&#39;s email. | [optional] 
 **disabled** | **bool, none_type** | Whether the user&#39;s account had been disabled. | [optional] 
 **remote_created_at** | **datetime, none_type** | When the third party&#39;s user was created. | [optional] 
-**access_role** | **bool, date, datetime, dict, float, int, list, str, none_type** | The user&#39;s role. | [optional] 
+**access_role** | **bool, dict, float, int, list, str, none_type** | The user&#39;s role. | [optional] 
 **remote_data** | [**[RemoteData], none_type**](RemoteData.md) |  | [optional] [readonly] 
 **remote_was_deleted** | **bool** | Indicates whether or not this object has been deleted by third party webhooks. | [optional] [readonly] 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+**any string name** | **bool, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

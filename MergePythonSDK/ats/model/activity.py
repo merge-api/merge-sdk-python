@@ -82,7 +82,7 @@ class Activity(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -187,10 +187,10 @@ class Activity(ModelNormal):
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             user (str, none_type): [optional]  # noqa: E501
             remote_created_at (datetime, none_type): When the third party's activity was created.. [optional]  # noqa: E501
-            activity_type (bool, date, datetime, dict, float, int, list, str, none_type): The activity's type.. [optional]  # noqa: E501
+            activity_type (bool, dict, float, int, list, str, none_type): The activity's type.. [optional]  # noqa: E501
             subject (str, none_type): The activity's subject.. [optional]  # noqa: E501
             body (str, none_type): The activity's body.. [optional]  # noqa: E501
-            visibility (bool, date, datetime, dict, float, int, list, str, none_type): The activity's visibility.. [optional]  # noqa: E501
+            visibility (bool, dict, float, int, list, str, none_type): The activity's visibility.. [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
         """
@@ -287,10 +287,10 @@ class Activity(ModelNormal):
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             user (str, none_type): [optional]  # noqa: E501
             remote_created_at (datetime, none_type): When the third party's activity was created.. [optional]  # noqa: E501
-            activity_type (bool, date, datetime, dict, float, int, list, str, none_type): The activity's type.. [optional]  # noqa: E501
+            activity_type (bool, dict, float, int, list, str, none_type): The activity's type.. [optional]  # noqa: E501
             subject (str, none_type): The activity's subject.. [optional]  # noqa: E501
             body (str, none_type): The activity's body.. [optional]  # noqa: E501
-            visibility (bool, date, datetime, dict, float, int, list, str, none_type): The activity's visibility.. [optional]  # noqa: E501
+            visibility (bool, dict, float, int, list, str, none_type): The activity's visibility.. [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
         """
@@ -325,10 +325,10 @@ class Activity(ModelNormal):
         self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
         self.user: Union[str, none_type] = kwargs.get("user", None)
         self.remote_created_at: Union[datetime, none_type] = kwargs.get("remote_created_at", None)
-        self.activity_type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("activity_type", None)
+        self.activity_type: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("activity_type", None)
         self.subject: Union[str, none_type] = kwargs.get("subject", None)
         self.body: Union[str, none_type] = kwargs.get("body", None)
-        self.visibility: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("visibility", None)
+        self.visibility: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("visibility", None)
 
         # Read only properties
         self._id: Union[str] = kwargs.get("id", str())

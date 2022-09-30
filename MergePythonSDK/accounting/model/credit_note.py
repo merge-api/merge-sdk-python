@@ -84,7 +84,7 @@ class CreditNote(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -200,13 +200,13 @@ class CreditNote(ModelNormal):
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             transaction_date (datetime, none_type): The credit note's transaction date.. [optional]  # noqa: E501
-            status (bool, date, datetime, dict, float, int, list, str, none_type): The credit note's status.. [optional]  # noqa: E501
+            status (bool, dict, float, int, list, str, none_type): The credit note's status.. [optional]  # noqa: E501
             number (str, none_type): The credit note's number.. [optional]  # noqa: E501
             contact (str, none_type): The credit note's contact.. [optional]  # noqa: E501
             total_amount (float, none_type): The credit note's total amount.. [optional]  # noqa: E501
             remaining_credit (float, none_type): The credit note's remaining credit.. [optional]  # noqa: E501
             line_items ([CreditNoteLineItem]): [optional]  # noqa: E501
-            currency (bool, date, datetime, dict, float, int, list, str, none_type): The credit note's currency.. [optional]  # noqa: E501
+            currency (bool, dict, float, int, list, str, none_type): The credit note's currency.. [optional]  # noqa: E501
             remote_created_at (datetime, none_type): When the third party's credit note was created.. [optional]  # noqa: E501
             remote_updated_at (datetime, none_type): When the third party's credit note was updated.. [optional]  # noqa: E501
             payments ([str, none_type]): Array of `Payment` object IDs. [optional]  # noqa: E501
@@ -310,13 +310,13 @@ class CreditNote(ModelNormal):
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             transaction_date (datetime, none_type): The credit note's transaction date.. [optional]  # noqa: E501
-            status (bool, date, datetime, dict, float, int, list, str, none_type): The credit note's status.. [optional]  # noqa: E501
+            status (bool, dict, float, int, list, str, none_type): The credit note's status.. [optional]  # noqa: E501
             number (str, none_type): The credit note's number.. [optional]  # noqa: E501
             contact (str, none_type): The credit note's contact.. [optional]  # noqa: E501
             total_amount (float, none_type): The credit note's total amount.. [optional]  # noqa: E501
             remaining_credit (float, none_type): The credit note's remaining credit.. [optional]  # noqa: E501
             line_items ([CreditNoteLineItem]): [optional]  # noqa: E501
-            currency (bool, date, datetime, dict, float, int, list, str, none_type): The credit note's currency.. [optional]  # noqa: E501
+            currency (bool, dict, float, int, list, str, none_type): The credit note's currency.. [optional]  # noqa: E501
             remote_created_at (datetime, none_type): When the third party's credit note was created.. [optional]  # noqa: E501
             remote_updated_at (datetime, none_type): When the third party's credit note was updated.. [optional]  # noqa: E501
             payments ([str, none_type]): Array of `Payment` object IDs. [optional]  # noqa: E501
@@ -352,12 +352,12 @@ class CreditNote(ModelNormal):
 
         self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
         self.transaction_date: Union[datetime, none_type] = kwargs.get("transaction_date", None)
-        self.status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
+        self.status: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("status", None)
         self.number: Union[str, none_type] = kwargs.get("number", None)
         self.contact: Union[str, none_type] = kwargs.get("contact", None)
         self.total_amount: Union[float, none_type] = kwargs.get("total_amount", None)
         self.remaining_credit: Union[float, none_type] = kwargs.get("remaining_credit", None)
-        self.currency: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("currency", None)
+        self.currency: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("currency", None)
         self.remote_created_at: Union[datetime, none_type] = kwargs.get("remote_created_at", None)
         self.remote_updated_at: Union[datetime, none_type] = kwargs.get("remote_updated_at", None)
         self.payments: Union[List[str, none_type]] = kwargs.get("payments", list())
