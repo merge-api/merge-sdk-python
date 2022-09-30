@@ -6,6 +6,7 @@
 - Do not attempt to serialize empty lists as null objects
 - Fix datetime() default breaking sync status endpoints
 - Improve expands model attribute handling
+- Remove date and datetime from Any type
 
 # Version 2.2.1
 
