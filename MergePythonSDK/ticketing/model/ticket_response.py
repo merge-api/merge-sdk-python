@@ -84,7 +84,7 @@ class TicketResponse(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -284,7 +284,7 @@ class TicketResponse(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.model: Union["Ticket", {"attachments": "Attachment", "assignees": "User", "project": "Project", "account": "Account", "contact": "Contact", "parent_ticket": "Ticket"}] = model
+        self.model: Union["Ticket", {"account": "Account", "assignees": "User", "attachments": "Attachment", "contact": "Contact", "parent_ticket": "Ticket", "project": "Project"}] = model
         self.warnings: Union[List["WarningValidationProblem"]] = warnings
         self.errors: Union[List["ErrorValidationProblem"]] = errors
         self.logs: Union[List["DebugModeLog"]] = kwargs.get("logs", None)

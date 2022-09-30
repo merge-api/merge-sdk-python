@@ -83,7 +83,7 @@ class BankInfo(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -115,10 +115,11 @@ class BankInfo(ModelNormal):
 
         # update types with expands
         for key, val in expands_types.items():
-            expands_model = import_model_by_name(val, "hris")
-            if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
-                defined_types[key][0].insert(0, expands_model)
-            defined_types[key] = (*defined_types[key], expands_model)
+            if key in defined_types.keys():
+                expands_model = import_model_by_name(val, "hris")
+                if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
+                    defined_types[key][0].insert(0, expands_model)
+                defined_types[key] = (*defined_types[key], expands_model)
         return defined_types
 
     @cached_property
@@ -189,7 +190,7 @@ class BankInfo(ModelNormal):
             account_number (str, none_type): The account number.. [optional]  # noqa: E501
             routing_number (str, none_type): The routing number.. [optional]  # noqa: E501
             bank_name (str, none_type): The bank name.. [optional]  # noqa: E501
-            account_type (bool, date, datetime, dict, float, int, list, str, none_type): The bank account type. [optional]  # noqa: E501
+            account_type (bool, dict, float, int, list, str, none_type): The bank account type. [optional]  # noqa: E501
             remote_created_at (datetime, none_type): When the matching bank object was created in the third party system.. [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
@@ -289,7 +290,7 @@ class BankInfo(ModelNormal):
             account_number (str, none_type): The account number.. [optional]  # noqa: E501
             routing_number (str, none_type): The routing number.. [optional]  # noqa: E501
             bank_name (str, none_type): The bank name.. [optional]  # noqa: E501
-            account_type (bool, date, datetime, dict, float, int, list, str, none_type): The bank account type. [optional]  # noqa: E501
+            account_type (bool, dict, float, int, list, str, none_type): The bank account type. [optional]  # noqa: E501
             remote_created_at (datetime, none_type): When the matching bank object was created in the third party system.. [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
@@ -327,7 +328,7 @@ class BankInfo(ModelNormal):
         self.account_number: Union[str, none_type] = kwargs.get("account_number", None)
         self.routing_number: Union[str, none_type] = kwargs.get("routing_number", None)
         self.bank_name: Union[str, none_type] = kwargs.get("bank_name", None)
-        self.account_type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("account_type", None)
+        self.account_type: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("account_type", None)
         self.remote_created_at: Union[datetime, none_type] = kwargs.get("remote_created_at", None)
 
         # Read only properties

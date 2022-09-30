@@ -80,7 +80,7 @@ class Offer(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -113,10 +113,11 @@ class Offer(ModelNormal):
 
         # update types with expands
         for key, val in expands_types.items():
-            expands_model = import_model_by_name(val, "ats")
-            if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
-                defined_types[key][0].insert(0, expands_model)
-            defined_types[key] = (*defined_types[key], expands_model)
+            if key in defined_types.keys():
+                expands_model = import_model_by_name(val, "ats")
+                if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
+                    defined_types[key][0].insert(0, expands_model)
+                defined_types[key] = (*defined_types[key], expands_model)
         return defined_types
 
     @cached_property
@@ -190,7 +191,7 @@ class Offer(ModelNormal):
             closed_at (datetime, none_type): When the offer was closed.. [optional]  # noqa: E501
             sent_at (datetime, none_type): When the offer was sent.. [optional]  # noqa: E501
             start_date (datetime, none_type): The employment start date on the offer.. [optional]  # noqa: E501
-            status (bool, date, datetime, dict, float, int, list, str, none_type): The offer's status.. [optional]  # noqa: E501
+            status (bool, dict, float, int, list, str, none_type): The offer's status.. [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
         """
@@ -292,7 +293,7 @@ class Offer(ModelNormal):
             closed_at (datetime, none_type): When the offer was closed.. [optional]  # noqa: E501
             sent_at (datetime, none_type): When the offer was sent.. [optional]  # noqa: E501
             start_date (datetime, none_type): The employment start date on the offer.. [optional]  # noqa: E501
-            status (bool, date, datetime, dict, float, int, list, str, none_type): The offer's status.. [optional]  # noqa: E501
+            status (bool, dict, float, int, list, str, none_type): The offer's status.. [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
         """
@@ -331,7 +332,7 @@ class Offer(ModelNormal):
         self.closed_at: Union[datetime, none_type] = kwargs.get("closed_at", None)
         self.sent_at: Union[datetime, none_type] = kwargs.get("sent_at", None)
         self.start_date: Union[datetime, none_type] = kwargs.get("start_date", None)
-        self.status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
+        self.status: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("status", None)
 
         # Read only properties
         self._id: Union[str] = kwargs.get("id", str())

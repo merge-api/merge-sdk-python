@@ -80,7 +80,7 @@ class Engagement(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -110,14 +110,15 @@ class Engagement(ModelNormal):
             'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
             'remote_was_deleted': (bool, none_type,),  # noqa: E501
         }
-        expands_types = {"owner": "User", "account": "Account", "engagement_type": "EngagementType"}
+        expands_types = {"account": "Account", "engagement_type": "EngagementType", "owner": "User"}
 
         # update types with expands
         for key, val in expands_types.items():
-            expands_model = import_model_by_name(val, "crm")
-            if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
-                defined_types[key][0].insert(0, expands_model)
-            defined_types[key] = (*defined_types[key], expands_model)
+            if key in defined_types.keys():
+                expands_model = import_model_by_name(val, "crm")
+                if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
+                    defined_types[key][0].insert(0, expands_model)
+                defined_types[key] = (*defined_types[key], expands_model)
         return defined_types
 
     @cached_property
@@ -189,7 +190,7 @@ class Engagement(ModelNormal):
             owner (str, none_type): [optional]  # noqa: E501
             content (str, none_type): The engagement's content.. [optional]  # noqa: E501
             subject (str, none_type): The engagement's subject.. [optional]  # noqa: E501
-            direction (bool, date, datetime, dict, float, int, list, str, none_type): The engagement's direction.. [optional]  # noqa: E501
+            direction (bool, dict, float, int, list, str, none_type): The engagement's direction.. [optional]  # noqa: E501
             engagement_type (str, none_type): [optional]  # noqa: E501
             start_time (datetime, none_type): The time at which the engagement started.. [optional]  # noqa: E501
             end_time (datetime, none_type): The time at which the engagement ended.. [optional]  # noqa: E501
@@ -293,7 +294,7 @@ class Engagement(ModelNormal):
             owner (str, none_type): [optional]  # noqa: E501
             content (str, none_type): The engagement's content.. [optional]  # noqa: E501
             subject (str, none_type): The engagement's subject.. [optional]  # noqa: E501
-            direction (bool, date, datetime, dict, float, int, list, str, none_type): The engagement's direction.. [optional]  # noqa: E501
+            direction (bool, dict, float, int, list, str, none_type): The engagement's direction.. [optional]  # noqa: E501
             engagement_type (str, none_type): [optional]  # noqa: E501
             start_time (datetime, none_type): The time at which the engagement started.. [optional]  # noqa: E501
             end_time (datetime, none_type): The time at which the engagement ended.. [optional]  # noqa: E501
@@ -333,7 +334,7 @@ class Engagement(ModelNormal):
         self.owner: Union[str, none_type] = kwargs.get("owner", None)
         self.content: Union[str, none_type] = kwargs.get("content", None)
         self.subject: Union[str, none_type] = kwargs.get("subject", None)
-        self.direction: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("direction", None)
+        self.direction: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("direction", None)
         self.engagement_type: Union[str, none_type] = kwargs.get("engagement_type", None)
         self.start_time: Union[datetime, none_type] = kwargs.get("start_time", None)
         self.end_time: Union[datetime, none_type] = kwargs.get("end_time", None)

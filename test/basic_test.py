@@ -15,6 +15,8 @@ from MergePythonSDK.ats.api.candidates_api import CandidatesApi
 from MergePythonSDK.crm.api.contacts_api import ContactsApi
 from MergePythonSDK.crm.model.address_type_enum import AddressTypeEnum
 from MergePythonSDK.hris.api.employees_api import EmployeesApi
+from MergePythonSDK.hris.api.sync_status_api import SyncStatusApi
+from MergePythonSDK.hris.model.employee import Employee
 from MergePythonSDK.shared.model.categories_enum import CategoriesEnum
 from MergePythonSDK.shared import Configuration, ApiClient, ApiException
 from MergePythonSDK.shared.model_utils import MergeEnumType, validate_and_convert_types
@@ -44,7 +46,7 @@ class BasicClientTest(unittest.TestCase):
             accounting_invoices_api_instance = InvoicesApi(api_client)
             try:
                 api_response = accounting_invoices_api_instance.invoices_list()
-                assert api_response.get("results") is not None
+                assert api_response.results is not None
             except ApiException as e:
                 print('Exception when calling Accounting API: %s' % e)
                 raise e
@@ -58,7 +60,7 @@ class BasicClientTest(unittest.TestCase):
             ats_candidates_api_instance = CandidatesApi(api_client)
             try:
                 api_response = ats_candidates_api_instance.candidates_list()
-                assert api_response.get("results") is not None
+                assert api_response.results is not None
             except ApiException as e:
                 print('Exception when calling ATS API: %s' % e)
                 raise e
@@ -72,10 +74,10 @@ class BasicClientTest(unittest.TestCase):
             crm_contacts_api_instance = ContactsApi(api_client)
             try:
                 api_response = crm_contacts_api_instance.contacts_list()
-                assert api_response.get("results") is not None
+                assert api_response.results is not None
 
                 # Test retrieve request
-                first_contact = api_response.get("results")[0]
+                first_contact = api_response.results[0]
                 contact_id = first_contact.id
                 retrieve_first_contact = crm_contacts_api_instance.contacts_retrieve(contact_id)
                 assert retrieve_first_contact.id == first_contact.id
@@ -94,19 +96,18 @@ class BasicClientTest(unittest.TestCase):
             hris_employees_api_instance = EmployeesApi(api_client)
             try:
                 api_response = hris_employees_api_instance.employees_list()
-                assert api_response.get("results") is not None
+                assert api_response.results is not None
 
                 # Test pagination for requests and responses
-                next_page = api_response.get("next")
+                next_page = api_response.next
                 next_response = hris_employees_api_instance.employees_list(cursor=next_page)
                 assert next_response.get("results") is not None
 
                 # Test remote fields
-                _id = "YOUR_EMPLOYEE_ID"
+                _id = "ID_HERE"
                 employee_remote_field = hris_employees_api_instance.employees_retrieve(_id, remote_fields="gender")
                 employee = hris_employees_api_instance.employees_retrieve(_id)
                 assert employee_remote_field.gender != employee.gender
-                assert employee_remote_field.gender.lower() == employee.gender.lower()
 
                 # Test expands
                 employee_expands = hris_employees_api_instance.employees_retrieve(_id, expand="employments")
@@ -114,6 +115,10 @@ class BasicClientTest(unittest.TestCase):
             except ApiException as e:
                 print('Exception when calling HRIS API: %s' % e)
                 raise e
+
+            # Test sync status
+            hris_sync_status_api = SyncStatusApi(api_client)
+            api_response = hris_sync_status_api.sync_status_list()
 
         # Ticketing
         ticketing_configuration = Configuration()
@@ -127,6 +132,10 @@ class BasicClientTest(unittest.TestCase):
                 api_response = ticketing_tickets_api_instance.tickets_meta_post_retrieve()
                 assert api_response
                 assert api_response.status.linked_account_status == "COMPLETE"
+
+                # Test list endpoint
+                api_response = ticketing_tickets_api_instance.tickets_retrieve("ID_HERE")
+                assert api_response.assignees == []
             except ApiException as e:
                 print('Exception when calling Ticketing API: %s' % e)
                 raise e
@@ -144,6 +153,10 @@ class BasicClientTest(unittest.TestCase):
         # Test non-normalized enum values
         returned_address_enum = validate_and_convert_types("non standard value", (AddressTypeEnum,), [], {}, True)
         assert returned_address_enum.value == "non standard value"
+
+        # Test custom fields
+        employee = Employee(custom_fields={"test_field": "225000"})
+        assert employee.custom_fields.get("test_field") == "225000"
 
 
 if __name__ == '__main__':

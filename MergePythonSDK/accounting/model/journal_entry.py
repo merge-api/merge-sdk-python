@@ -82,7 +82,7 @@ class JournalEntry(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -115,10 +115,11 @@ class JournalEntry(ModelNormal):
 
         # update types with expands
         for key, val in expands_types.items():
-            expands_model = import_model_by_name(val, "accounting")
-            if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
-                defined_types[key][0].insert(0, expands_model)
-            defined_types[key] = (*defined_types[key], expands_model)
+            if key in defined_types.keys():
+                expands_model = import_model_by_name(val, "accounting")
+                if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
+                    defined_types[key][0].insert(0, expands_model)
+                defined_types[key] = (*defined_types[key], expands_model)
         return defined_types
 
     @cached_property
@@ -193,7 +194,7 @@ class JournalEntry(ModelNormal):
             remote_updated_at (datetime, none_type): When the third party's journal entry was updated.. [optional]  # noqa: E501
             payments ([str, none_type]): Array of `Payment` object IDs.. [optional]  # noqa: E501
             memo (str, none_type): The journal entry's private note.. [optional]  # noqa: E501
-            currency (bool, date, datetime, dict, float, int, list, str, none_type): The journal's currency.. [optional]  # noqa: E501
+            currency (bool, dict, float, int, list, str, none_type): The journal's currency.. [optional]  # noqa: E501
             lines ([JournalLine]): [optional]  # noqa: E501
             remote_was_deleted (bool): [optional]  # noqa: E501
         """
@@ -295,7 +296,7 @@ class JournalEntry(ModelNormal):
             remote_updated_at (datetime, none_type): When the third party's journal entry was updated.. [optional]  # noqa: E501
             payments ([str, none_type]): Array of `Payment` object IDs.. [optional]  # noqa: E501
             memo (str, none_type): The journal entry's private note.. [optional]  # noqa: E501
-            currency (bool, date, datetime, dict, float, int, list, str, none_type): The journal's currency.. [optional]  # noqa: E501
+            currency (bool, dict, float, int, list, str, none_type): The journal's currency.. [optional]  # noqa: E501
             lines ([JournalLine]): [optional]  # noqa: E501
             remote_was_deleted (bool): [optional]  # noqa: E501
         """
@@ -333,7 +334,7 @@ class JournalEntry(ModelNormal):
         self.remote_updated_at: Union[datetime, none_type] = kwargs.get("remote_updated_at", None)
         self.payments: Union[List[str, none_type]] = kwargs.get("payments", list())
         self.memo: Union[str, none_type] = kwargs.get("memo", None)
-        self.currency: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("currency", None)
+        self.currency: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("currency", None)
 
         # Read only properties
         self._id: Union[str] = kwargs.get("id", str())

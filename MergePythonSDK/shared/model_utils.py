@@ -1312,6 +1312,8 @@ def attempt_convert_item(input_value, valid_classes, path_to_item,
         ApiValueError
         ApiKeyError
     """
+    if not input_value:
+        return input_value
     valid_classes_ordered = order_response_types(valid_classes)
     valid_classes_coercible = remove_uncoercible(
         valid_classes_ordered, input_value, spec_property_naming)

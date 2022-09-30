@@ -96,7 +96,7 @@ class EmployeeRequest(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -141,16 +141,8 @@ class EmployeeRequest(ModelNormal):
             'employment_status': (EmploymentStatusEnum, str, none_type,),
             'termination_date': (datetime, none_type, none_type,),  # noqa: E501
             'avatar': (str, none_type, none_type,),  # noqa: E501
-            'custom_fields': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'custom_fields': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
         }
-        expands_types = {"employments": "Employment", "groups": "Group", "home_location": "Location", "work_location": "Location", "manager": "Employee", "team": "Team", "company": "Company", "pay_group": "PayGroup"}
-
-        # update types with expands
-        for key, val in expands_types.items():
-            expands_model = import_model_by_name(val, "hris")
-            if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
-                defined_types[key][0].insert(0, expands_model)
-            defined_types[key] = (*defined_types[key], expands_model)
         return defined_types
 
     @cached_property
@@ -249,17 +241,17 @@ class EmployeeRequest(ModelNormal):
             team (str, none_type): [optional]  # noqa: E501
             pay_group (str, none_type): [optional]  # noqa: E501
             ssn (str, none_type): The employee's social security number.. [optional]  # noqa: E501
-            gender (bool, date, datetime, dict, float, int, list, str, none_type): The employee's gender.. [optional]  # noqa: E501
-            ethnicity (bool, date, datetime, dict, float, int, list, str, none_type): The employee's ethnicity.. [optional]  # noqa: E501
-            marital_status (bool, date, datetime, dict, float, int, list, str, none_type): The employee's marital status.. [optional]  # noqa: E501
+            gender (bool, dict, float, int, list, str, none_type): The employee's gender.. [optional]  # noqa: E501
+            ethnicity (bool, dict, float, int, list, str, none_type): The employee's ethnicity.. [optional]  # noqa: E501
+            marital_status (bool, dict, float, int, list, str, none_type): The employee's marital status.. [optional]  # noqa: E501
             date_of_birth (datetime, none_type): The employee's date of birth.. [optional]  # noqa: E501
             hire_date (datetime, none_type): The date that the employee was hired, usually the day that an offer letter is signed. If an employee has multiple hire dates from previous employments, this represents the most recent hire date. Note: If you're looking for the employee's start date, refer to the start_date field.. [optional]  # noqa: E501
             start_date (datetime, none_type): The date that the employee started working. If an employee has multiple start dates from previous employments, this represents the most recent start date.. [optional]  # noqa: E501
             remote_created_at (datetime, none_type): When the third party's employee was created.. [optional]  # noqa: E501
-            employment_status (bool, date, datetime, dict, float, int, list, str, none_type): The employment status of the employee.. [optional]  # noqa: E501
+            employment_status (bool, dict, float, int, list, str, none_type): The employment status of the employee.. [optional]  # noqa: E501
             termination_date (datetime, none_type): The employee's termination date.. [optional]  # noqa: E501
             avatar (str, none_type): The URL of the employee's avatar image.. [optional]  # noqa: E501
-            custom_fields ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Custom fields configured for a given model.. [optional]  # noqa: E501
+            custom_fields ({str: (bool, dict, float, int, list, str, none_type)}, none_type): Custom fields configured for a given model.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -385,17 +377,17 @@ class EmployeeRequest(ModelNormal):
             team (str, none_type): [optional]  # noqa: E501
             pay_group (str, none_type): [optional]  # noqa: E501
             ssn (str, none_type): The employee's social security number.. [optional]  # noqa: E501
-            gender (bool, date, datetime, dict, float, int, list, str, none_type): The employee's gender.. [optional]  # noqa: E501
-            ethnicity (bool, date, datetime, dict, float, int, list, str, none_type): The employee's ethnicity.. [optional]  # noqa: E501
-            marital_status (bool, date, datetime, dict, float, int, list, str, none_type): The employee's marital status.. [optional]  # noqa: E501
+            gender (bool, dict, float, int, list, str, none_type): The employee's gender.. [optional]  # noqa: E501
+            ethnicity (bool, dict, float, int, list, str, none_type): The employee's ethnicity.. [optional]  # noqa: E501
+            marital_status (bool, dict, float, int, list, str, none_type): The employee's marital status.. [optional]  # noqa: E501
             date_of_birth (datetime, none_type): The employee's date of birth.. [optional]  # noqa: E501
             hire_date (datetime, none_type): The date that the employee was hired, usually the day that an offer letter is signed. If an employee has multiple hire dates from previous employments, this represents the most recent hire date. Note: If you're looking for the employee's start date, refer to the start_date field.. [optional]  # noqa: E501
             start_date (datetime, none_type): The date that the employee started working. If an employee has multiple start dates from previous employments, this represents the most recent start date.. [optional]  # noqa: E501
             remote_created_at (datetime, none_type): When the third party's employee was created.. [optional]  # noqa: E501
-            employment_status (bool, date, datetime, dict, float, int, list, str, none_type): The employment status of the employee.. [optional]  # noqa: E501
+            employment_status (bool, dict, float, int, list, str, none_type): The employment status of the employee.. [optional]  # noqa: E501
             termination_date (datetime, none_type): The employee's termination date.. [optional]  # noqa: E501
             avatar (str, none_type): The URL of the employee's avatar image.. [optional]  # noqa: E501
-            custom_fields ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Custom fields configured for a given model.. [optional]  # noqa: E501
+            custom_fields ({str: (bool, dict, float, int, list, str, none_type)}, none_type): Custom fields configured for a given model.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -443,16 +435,16 @@ class EmployeeRequest(ModelNormal):
         self.team: Union[str, none_type] = kwargs.get("team", None)
         self.pay_group: Union[str, none_type] = kwargs.get("pay_group", None)
         self.ssn: Union[str, none_type] = kwargs.get("ssn", None)
-        self.gender: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("gender", None)
-        self.ethnicity: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("ethnicity", None)
-        self.marital_status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("marital_status", None)
+        self.gender: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("gender", None)
+        self.ethnicity: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("ethnicity", None)
+        self.marital_status: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("marital_status", None)
         self.date_of_birth: Union[datetime, none_type] = kwargs.get("date_of_birth", None)
         self.hire_date: Union[datetime, none_type] = kwargs.get("hire_date", None)
         self.start_date: Union[datetime, none_type] = kwargs.get("start_date", None)
         self.remote_created_at: Union[datetime, none_type] = kwargs.get("remote_created_at", None)
-        self.employment_status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("employment_status", None)
+        self.employment_status: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("employment_status", None)
         self.termination_date: Union[datetime, none_type] = kwargs.get("termination_date", None)
         self.avatar: Union[str, none_type] = kwargs.get("avatar", None)
-        self.custom_fields: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("custom_fields", None)
+        self.custom_fields: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("custom_fields", None)
 
 

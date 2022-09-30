@@ -86,7 +86,7 @@ class EEOC(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -118,10 +118,11 @@ class EEOC(ModelNormal):
 
         # update types with expands
         for key, val in expands_types.items():
-            expands_model = import_model_by_name(val, "ats")
-            if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
-                defined_types[key][0].insert(0, expands_model)
-            defined_types[key] = (*defined_types[key], expands_model)
+            if key in defined_types.keys():
+                expands_model = import_model_by_name(val, "ats")
+                if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
+                    defined_types[key][0].insert(0, expands_model)
+                defined_types[key] = (*defined_types[key], expands_model)
         return defined_types
 
     @cached_property
@@ -190,10 +191,10 @@ class EEOC(ModelNormal):
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             candidate (str, none_type): [optional]  # noqa: E501
             submitted_at (datetime, none_type): When the information was submitted.. [optional]  # noqa: E501
-            race (bool, date, datetime, dict, float, int, list, str, none_type): The candidate's race.. [optional]  # noqa: E501
-            gender (bool, date, datetime, dict, float, int, list, str, none_type): The candidate's gender.. [optional]  # noqa: E501
-            veteran_status (bool, date, datetime, dict, float, int, list, str, none_type): The candidate's veteran status.. [optional]  # noqa: E501
-            disability_status (bool, date, datetime, dict, float, int, list, str, none_type): The candidate's disability status.. [optional]  # noqa: E501
+            race (bool, dict, float, int, list, str, none_type): The candidate's race.. [optional]  # noqa: E501
+            gender (bool, dict, float, int, list, str, none_type): The candidate's gender.. [optional]  # noqa: E501
+            veteran_status (bool, dict, float, int, list, str, none_type): The candidate's veteran status.. [optional]  # noqa: E501
+            disability_status (bool, dict, float, int, list, str, none_type): The candidate's disability status.. [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
         """
@@ -290,10 +291,10 @@ class EEOC(ModelNormal):
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             candidate (str, none_type): [optional]  # noqa: E501
             submitted_at (datetime, none_type): When the information was submitted.. [optional]  # noqa: E501
-            race (bool, date, datetime, dict, float, int, list, str, none_type): The candidate's race.. [optional]  # noqa: E501
-            gender (bool, date, datetime, dict, float, int, list, str, none_type): The candidate's gender.. [optional]  # noqa: E501
-            veteran_status (bool, date, datetime, dict, float, int, list, str, none_type): The candidate's veteran status.. [optional]  # noqa: E501
-            disability_status (bool, date, datetime, dict, float, int, list, str, none_type): The candidate's disability status.. [optional]  # noqa: E501
+            race (bool, dict, float, int, list, str, none_type): The candidate's race.. [optional]  # noqa: E501
+            gender (bool, dict, float, int, list, str, none_type): The candidate's gender.. [optional]  # noqa: E501
+            veteran_status (bool, dict, float, int, list, str, none_type): The candidate's veteran status.. [optional]  # noqa: E501
+            disability_status (bool, dict, float, int, list, str, none_type): The candidate's disability status.. [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
         """
@@ -328,10 +329,10 @@ class EEOC(ModelNormal):
         self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
         self.candidate: Union[str, none_type] = kwargs.get("candidate", None)
         self.submitted_at: Union[datetime, none_type] = kwargs.get("submitted_at", None)
-        self.race: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("race", None)
-        self.gender: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("gender", None)
-        self.veteran_status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("veteran_status", None)
-        self.disability_status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("disability_status", None)
+        self.race: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("race", None)
+        self.gender: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("gender", None)
+        self.veteran_status: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("veteran_status", None)
+        self.disability_status: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("disability_status", None)
 
         # Read only properties
         self._id: Union[str] = kwargs.get("id", str())

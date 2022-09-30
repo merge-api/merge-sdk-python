@@ -80,7 +80,7 @@ class TimeOffBalance(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -110,10 +110,11 @@ class TimeOffBalance(ModelNormal):
 
         # update types with expands
         for key, val in expands_types.items():
-            expands_model = import_model_by_name(val, "hris")
-            if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
-                defined_types[key][0].insert(0, expands_model)
-            defined_types[key] = (*defined_types[key], expands_model)
+            if key in defined_types.keys():
+                expands_model = import_model_by_name(val, "hris")
+                if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
+                    defined_types[key][0].insert(0, expands_model)
+                defined_types[key] = (*defined_types[key], expands_model)
         return defined_types
 
     @cached_property
@@ -181,7 +182,7 @@ class TimeOffBalance(ModelNormal):
             employee (str, none_type): [optional]  # noqa: E501
             balance (float, none_type): The current remaining PTO balance in terms of hours. This does not represent the starting PTO balance. If the API provider only provides PTO balance in terms of days, we estimate 8 hours per day.. [optional]  # noqa: E501
             used (float, none_type): The amount of PTO used in terms of hours.. [optional]  # noqa: E501
-            policy_type (bool, date, datetime, dict, float, int, list, str, none_type): The policy type of this time off balance.. [optional]  # noqa: E501
+            policy_type (bool, dict, float, int, list, str, none_type): The policy type of this time off balance.. [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
         """
@@ -277,7 +278,7 @@ class TimeOffBalance(ModelNormal):
             employee (str, none_type): [optional]  # noqa: E501
             balance (float, none_type): The current remaining PTO balance in terms of hours. This does not represent the starting PTO balance. If the API provider only provides PTO balance in terms of days, we estimate 8 hours per day.. [optional]  # noqa: E501
             used (float, none_type): The amount of PTO used in terms of hours.. [optional]  # noqa: E501
-            policy_type (bool, date, datetime, dict, float, int, list, str, none_type): The policy type of this time off balance.. [optional]  # noqa: E501
+            policy_type (bool, dict, float, int, list, str, none_type): The policy type of this time off balance.. [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
         """
@@ -313,7 +314,7 @@ class TimeOffBalance(ModelNormal):
         self.employee: Union[str, none_type] = kwargs.get("employee", None)
         self.balance: Union[float, none_type] = kwargs.get("balance", None)
         self.used: Union[float, none_type] = kwargs.get("used", None)
-        self.policy_type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("policy_type", None)
+        self.policy_type: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("policy_type", None)
 
         # Read only properties
         self._id: Union[str] = kwargs.get("id", str())

@@ -84,7 +84,7 @@ class Contact(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -118,10 +118,11 @@ class Contact(ModelNormal):
 
         # update types with expands
         for key, val in expands_types.items():
-            expands_model = import_model_by_name(val, "crm")
-            if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
-                defined_types[key][0].insert(0, expands_model)
-            defined_types[key] = (*defined_types[key], expands_model)
+            if key in defined_types.keys():
+                expands_model = import_model_by_name(val, "crm")
+                if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
+                    defined_types[key][0].insert(0, expands_model)
+                defined_types[key] = (*defined_types[key], expands_model)
         return defined_types
 
     @cached_property
@@ -146,9 +147,6 @@ class Contact(ModelNormal):
 
     read_only_vars = {
         'id',  # noqa: E501
-        'addresses',  # noqa: E501
-        'email_addresses',  # noqa: E501
-        'phone_numbers',  # noqa: E501
         'remote_data',  # noqa: E501
         'remote_was_deleted',  # noqa: E501
     }
@@ -239,14 +237,14 @@ class Contact(ModelNormal):
         self.first_name = kwargs.get("first_name", None)
         self.last_name = kwargs.get("last_name", None)
         self.account = kwargs.get("account", None)
+        self.addresses = kwargs.get("addresses", None)
+        self.email_addresses = kwargs.get("email_addresses", None)
+        self.phone_numbers = kwargs.get("phone_numbers", None)
         self.last_activity_at = kwargs.get("last_activity_at", None)
         self.remote_created_at = kwargs.get("remote_created_at", None)
 
         # Read only properties
         self._id = kwargs.get("id", str())
-        self._addresses = kwargs.get("addresses", None)
-        self._email_addresses = kwargs.get("email_addresses", None)
-        self._phone_numbers = kwargs.get("phone_numbers", None)
         self._remote_data = kwargs.get("remote_data", None)
         self._remote_was_deleted = kwargs.get("remote_was_deleted", bool())
         return self
@@ -340,14 +338,14 @@ class Contact(ModelNormal):
         self.first_name: Union[str, none_type] = kwargs.get("first_name", None)
         self.last_name: Union[str, none_type] = kwargs.get("last_name", None)
         self.account: Union[str, none_type] = kwargs.get("account", None)
+        self.addresses: Union[List["Address"]] = kwargs.get("addresses", None)
+        self.email_addresses: Union[List["EmailAddress"]] = kwargs.get("email_addresses", None)
+        self.phone_numbers: Union[List["PhoneNumber"]] = kwargs.get("phone_numbers", None)
         self.last_activity_at: Union[datetime, none_type] = kwargs.get("last_activity_at", None)
         self.remote_created_at: Union[datetime, none_type] = kwargs.get("remote_created_at", None)
 
         # Read only properties
         self._id: Union[str] = kwargs.get("id", str())
-        self._addresses: Union[List["Address"]] = kwargs.get("addresses", None)
-        self._email_addresses: Union[List["EmailAddress"]] = kwargs.get("email_addresses", None)
-        self._phone_numbers: Union[List["PhoneNumber"]] = kwargs.get("phone_numbers", None)
         self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
         self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
 
@@ -355,18 +353,6 @@ class Contact(ModelNormal):
     @property
     def id(self):
         return self._id
-
-    @property
-    def addresses(self):
-        return self._addresses
-
-    @property
-    def email_addresses(self):
-        return self._email_addresses
-
-    @property
-    def phone_numbers(self):
-        return self._phone_numbers
 
     @property
     def remote_data(self):

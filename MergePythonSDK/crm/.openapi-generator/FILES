@@ -28,7 +28,6 @@ MergePythonSDK/crm/api_client.py
 MergePythonSDK/crm/apis/__init__.py
 MergePythonSDK/crm/configuration.py
 MergePythonSDK/crm/exceptions.py
-MergePythonSDK/crm/model/__init__.py
 MergePythonSDK/crm/model/account.py
 MergePythonSDK/crm/model/account_details.py
 MergePythonSDK/crm/model/account_details_and_actions.py
@@ -42,8 +41,6 @@ MergePythonSDK/crm/model/address.py
 MergePythonSDK/crm/model/address_request.py
 MergePythonSDK/crm/model/address_type_enum.py
 MergePythonSDK/crm/model/available_actions.py
-MergePythonSDK/crm/model/categories_enum.py
-MergePythonSDK/crm/model/category_enum.py
 MergePythonSDK/crm/model/contact.py
 MergePythonSDK/crm/model/contact_request.py
 MergePythonSDK/crm/model/country_enum.py

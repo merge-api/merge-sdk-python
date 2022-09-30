@@ -81,7 +81,7 @@ class AttachmentRequest(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -103,17 +103,9 @@ class AttachmentRequest(ModelNormal):
             'file_url': (str, none_type, none_type,),  # noqa: E501
             'candidate': (str, none_type, none_type,),  # noqa: E501
             'attachment_type': (AttachmentTypeEnum, str, none_type,),
-            'integration_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
-            'linked_account_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'integration_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'linked_account_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
         }
-        expands_types = {"candidate": "Candidate"}
-
-        # update types with expands
-        for key, val in expands_types.items():
-            expands_model = import_model_by_name(val, "ats")
-            if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
-                defined_types[key][0].insert(0, expands_model)
-            defined_types[key] = (*defined_types[key], expands_model)
         return defined_types
 
     @cached_property
@@ -176,9 +168,9 @@ class AttachmentRequest(ModelNormal):
             file_name (str, none_type): The attachment's name.. [optional]  # noqa: E501
             file_url (str, none_type): The attachment's url.. [optional]  # noqa: E501
             candidate (str, none_type): [optional]  # noqa: E501
-            attachment_type (bool, date, datetime, dict, float, int, list, str, none_type): The attachment's type.. [optional]  # noqa: E501
-            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            attachment_type (bool, dict, float, int, list, str, none_type): The attachment's type.. [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -268,9 +260,9 @@ class AttachmentRequest(ModelNormal):
             file_name (str, none_type): The attachment's name.. [optional]  # noqa: E501
             file_url (str, none_type): The attachment's url.. [optional]  # noqa: E501
             candidate (str, none_type): [optional]  # noqa: E501
-            attachment_type (bool, date, datetime, dict, float, int, list, str, none_type): The attachment's type.. [optional]  # noqa: E501
-            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            attachment_type (bool, dict, float, int, list, str, none_type): The attachment's type.. [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -304,8 +296,8 @@ class AttachmentRequest(ModelNormal):
         self.file_name: Union[str, none_type] = kwargs.get("file_name", None)
         self.file_url: Union[str, none_type] = kwargs.get("file_url", None)
         self.candidate: Union[str, none_type] = kwargs.get("candidate", None)
-        self.attachment_type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("attachment_type", None)
-        self.integration_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
-        self.linked_account_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
+        self.attachment_type: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("attachment_type", None)
+        self.integration_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
+        self.linked_account_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
 
 

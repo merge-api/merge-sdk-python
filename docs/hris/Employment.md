@@ -10,16 +10,16 @@ Name | Type | Description | Notes
 **employee** | **str, none_type** |  | [optional] 
 **job_title** | **str, none_type** | The position&#39;s title. | [optional] 
 **pay_rate** | **float, none_type** | The position&#39;s pay rate in dollars. | [optional] 
-**pay_period** | **bool, date, datetime, dict, float, int, list, str, none_type** | The time period this pay rate encompasses. | [optional] 
-**pay_frequency** | **bool, date, datetime, dict, float, int, list, str, none_type** | The position&#39;s pay frequency. | [optional] 
-**pay_currency** | **bool, date, datetime, dict, float, int, list, str, none_type** | The position&#39;s currency code. | [optional] 
+**pay_period** | **bool, dict, float, int, list, str, none_type** | The time period this pay rate encompasses. | [optional] 
+**pay_frequency** | **bool, dict, float, int, list, str, none_type** | The position&#39;s pay frequency. | [optional] 
+**pay_currency** | **bool, dict, float, int, list, str, none_type** | The position&#39;s currency code. | [optional] 
 **pay_group** | **str, none_type** |  | [optional] 
-**flsa_status** | **bool, date, datetime, dict, float, int, list, str, none_type** | The position&#39;s FLSA status. | [optional] 
+**flsa_status** | **bool, dict, float, int, list, str, none_type** | The position&#39;s FLSA status. | [optional] 
 **effective_date** | **datetime, none_type** | The position&#39;s effective date. | [optional] 
-**employment_type** | **bool, date, datetime, dict, float, int, list, str, none_type** | The position&#39;s type of employment. | [optional] 
+**employment_type** | **bool, dict, float, int, list, str, none_type** | The position&#39;s type of employment. | [optional] 
 **remote_data** | [**[RemoteData], none_type**](RemoteData.md) |  | [optional] [readonly] 
 **remote_was_deleted** | **bool** | Indicates whether or not this object has been deleted by third party webhooks. | [optional] [readonly] 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+**any string name** | **bool, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

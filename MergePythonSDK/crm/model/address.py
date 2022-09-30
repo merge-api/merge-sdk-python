@@ -80,7 +80,7 @@ class Address(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -105,14 +105,6 @@ class Address(ModelNormal):
             'country': (CountryEnum, str, none_type,),
             'address_type': (AddressTypeEnum, str, none_type,),
         }
-        expands_types = {"owner": "User"}
-
-        # update types with expands
-        for key, val in expands_types.items():
-            expands_model = import_model_by_name(val, "crm")
-            if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
-                defined_types[key][0].insert(0, expands_model)
-            defined_types[key] = (*defined_types[key], expands_model)
         return defined_types
 
     @cached_property
@@ -176,8 +168,8 @@ class Address(ModelNormal):
             city (str, none_type): The address's city.. [optional]  # noqa: E501
             state (str, none_type): The address's state.. [optional]  # noqa: E501
             postal_code (str, none_type): The address's postal code.. [optional]  # noqa: E501
-            country (bool, date, datetime, dict, float, int, list, str, none_type): The address's country.. [optional]  # noqa: E501
-            address_type (bool, date, datetime, dict, float, int, list, str, none_type): The address type.. [optional]  # noqa: E501
+            country (bool, dict, float, int, list, str, none_type): The address's country.. [optional]  # noqa: E501
+            address_type (bool, dict, float, int, list, str, none_type): The address type.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -268,8 +260,8 @@ class Address(ModelNormal):
             city (str, none_type): The address's city.. [optional]  # noqa: E501
             state (str, none_type): The address's state.. [optional]  # noqa: E501
             postal_code (str, none_type): The address's postal code.. [optional]  # noqa: E501
-            country (bool, date, datetime, dict, float, int, list, str, none_type): The address's country.. [optional]  # noqa: E501
-            address_type (bool, date, datetime, dict, float, int, list, str, none_type): The address type.. [optional]  # noqa: E501
+            country (bool, dict, float, int, list, str, none_type): The address's country.. [optional]  # noqa: E501
+            address_type (bool, dict, float, int, list, str, none_type): The address type.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -304,7 +296,7 @@ class Address(ModelNormal):
         self.city: Union[str, none_type] = kwargs.get("city", None)
         self.state: Union[str, none_type] = kwargs.get("state", None)
         self.postal_code: Union[str, none_type] = kwargs.get("postal_code", None)
-        self.country: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("country", None)
-        self.address_type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("address_type", None)
+        self.country: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("country", None)
+        self.address_type: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("address_type", None)
 
 

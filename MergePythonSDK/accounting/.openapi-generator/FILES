@@ -38,7 +38,6 @@ MergePythonSDK/accounting/api_client.py
 MergePythonSDK/accounting/apis/__init__.py
 MergePythonSDK/accounting/configuration.py
 MergePythonSDK/accounting/exceptions.py
-MergePythonSDK/accounting/model/__init__.py
 MergePythonSDK/accounting/model/account.py
 MergePythonSDK/accounting/model/account_details.py
 MergePythonSDK/accounting/model/account_details_and_actions.py
@@ -54,8 +53,6 @@ MergePythonSDK/accounting/model/address_type_enum.py
 MergePythonSDK/accounting/model/available_actions.py
 MergePythonSDK/accounting/model/balance_sheet.py
 MergePythonSDK/accounting/model/cash_flow_statement.py
-MergePythonSDK/accounting/model/categories_enum.py
-MergePythonSDK/accounting/model/category_enum.py
 MergePythonSDK/accounting/model/category_type_enum.py
 MergePythonSDK/accounting/model/classification_enum.py
 MergePythonSDK/accounting/model/company_info.py

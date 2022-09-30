@@ -66,7 +66,7 @@ class RemoteResponse(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -84,9 +84,9 @@ class RemoteResponse(ModelNormal):
             'method': (str,),  # noqa: E501
             'path': (str,),  # noqa: E501
             'status': (int,),  # noqa: E501
-            'response': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'response_headers': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'headers': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'response': ({str: (bool, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'response_headers': ({str: (bool, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'headers': ({str: (bool, dict, float, int, list, str, none_type)},),  # noqa: E501
         }
 
     @cached_property
@@ -116,7 +116,7 @@ class RemoteResponse(ModelNormal):
             method (str):
             path (str):
             status (int):
-            response ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}):
+            response ({str: (bool, dict, float, int, list, str, none_type)}):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -149,8 +149,8 @@ class RemoteResponse(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            response_headers ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
-            headers ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
+            response_headers ({str: (bool, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
+            headers ({str: (bool, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -207,7 +207,7 @@ class RemoteResponse(ModelNormal):
             method (str):
             path (str):
             status (int):
-            response ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}):
+            response ({str: (bool, dict, float, int, list, str, none_type)}):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -240,8 +240,8 @@ class RemoteResponse(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            response_headers ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
-            headers ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
+            response_headers ({str: (bool, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
+            headers ({str: (bool, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -80,7 +80,7 @@ class AccountDetailsAndActionsIntegration(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -101,7 +101,7 @@ class AccountDetailsAndActionsIntegration(ModelNormal):
             'categories': ([CategoriesEnum],),  # noqa: E501
             'color': (str,),  # noqa: E501
             'slug': (str,),  # noqa: E501
-            'passthrough_available': (bool,),  # noqa: E501
+            'passthrough_available': (bool, none_type,),  # noqa: E501
             'image': (str, none_type,),  # noqa: E501
             'square_image': (str, none_type,),  # noqa: E501
             'available_model_operations': ([ModelOperation], none_type,),  # noqa: E501

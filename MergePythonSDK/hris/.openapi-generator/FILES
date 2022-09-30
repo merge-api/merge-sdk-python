@@ -32,7 +32,6 @@ MergePythonSDK/hris/api_client.py
 MergePythonSDK/hris/apis/__init__.py
 MergePythonSDK/hris/configuration.py
 MergePythonSDK/hris/exceptions.py
-MergePythonSDK/hris/model/__init__.py
 MergePythonSDK/hris/model/account_details.py
 MergePythonSDK/hris/model/account_details_and_actions.py
 MergePythonSDK/hris/model/account_details_and_actions_integration.py
@@ -43,8 +42,6 @@ MergePythonSDK/hris/model/account_type_enum.py
 MergePythonSDK/hris/model/available_actions.py
 MergePythonSDK/hris/model/bank_info.py
 MergePythonSDK/hris/model/benefit.py
-MergePythonSDK/hris/model/categories_enum.py
-MergePythonSDK/hris/model/category_enum.py
 MergePythonSDK/hris/model/company.py
 MergePythonSDK/hris/model/country_enum.py
 MergePythonSDK/hris/model/data_passthrough_request.py

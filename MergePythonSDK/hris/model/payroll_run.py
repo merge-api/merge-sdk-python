@@ -82,7 +82,7 @@ class PayrollRun(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -109,14 +109,6 @@ class PayrollRun(ModelNormal):
             'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
             'remote_was_deleted': (bool, none_type,),  # noqa: E501
         }
-        expands_types = {}
-
-        # update types with expands
-        for key, val in expands_types.items():
-            expands_model = import_model_by_name(val, "hris")
-            if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
-                defined_types[key][0].insert(0, expands_model)
-            defined_types[key] = (*defined_types[key], expands_model)
         return defined_types
 
     @cached_property
@@ -182,8 +174,8 @@ class PayrollRun(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             id (str): [optional]  # noqa: E501
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
-            run_state (bool, date, datetime, dict, float, int, list, str, none_type): The state of the payroll run. [optional]  # noqa: E501
-            run_type (bool, date, datetime, dict, float, int, list, str, none_type): The type of the payroll run. [optional]  # noqa: E501
+            run_state (bool, dict, float, int, list, str, none_type): The state of the payroll run. [optional]  # noqa: E501
+            run_type (bool, dict, float, int, list, str, none_type): The type of the payroll run. [optional]  # noqa: E501
             start_date (datetime, none_type): The day and time the payroll run started.. [optional]  # noqa: E501
             end_date (datetime, none_type): The day and time the payroll run ended.. [optional]  # noqa: E501
             check_date (datetime, none_type): The day and time the payroll run was checked.. [optional]  # noqa: E501
@@ -280,8 +272,8 @@ class PayrollRun(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             id (str): [optional]  # noqa: E501
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
-            run_state (bool, date, datetime, dict, float, int, list, str, none_type): The state of the payroll run. [optional]  # noqa: E501
-            run_type (bool, date, datetime, dict, float, int, list, str, none_type): The type of the payroll run. [optional]  # noqa: E501
+            run_state (bool, dict, float, int, list, str, none_type): The state of the payroll run. [optional]  # noqa: E501
+            run_type (bool, dict, float, int, list, str, none_type): The type of the payroll run. [optional]  # noqa: E501
             start_date (datetime, none_type): The day and time the payroll run started.. [optional]  # noqa: E501
             end_date (datetime, none_type): The day and time the payroll run ended.. [optional]  # noqa: E501
             check_date (datetime, none_type): The day and time the payroll run was checked.. [optional]  # noqa: E501
@@ -317,8 +309,8 @@ class PayrollRun(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
-        self.run_state: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("run_state", None)
-        self.run_type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("run_type", None)
+        self.run_state: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("run_state", None)
+        self.run_type: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("run_type", None)
         self.start_date: Union[datetime, none_type] = kwargs.get("start_date", None)
         self.end_date: Union[datetime, none_type] = kwargs.get("end_date", None)
         self.check_date: Union[datetime, none_type] = kwargs.get("check_date", None)

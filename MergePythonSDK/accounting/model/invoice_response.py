@@ -84,7 +84,7 @@ class InvoiceResponse(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -284,7 +284,7 @@ class InvoiceResponse(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.model: Union["Invoice", {"payments": "Payment", "line_items": "InvoiceLineItem", "contact": "Contact"}] = model
+        self.model: Union["Invoice", {"contact": "Contact", "line_items": "InvoiceLineItem", "payments": "Payment"}] = model
         self.warnings: Union[List["WarningValidationProblem"]] = warnings
         self.errors: Union[List["ErrorValidationProblem"]] = errors
         self.logs: Union[List["DebugModeLog"]] = kwargs.get("logs", None)

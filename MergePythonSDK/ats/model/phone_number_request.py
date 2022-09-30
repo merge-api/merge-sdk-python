@@ -78,7 +78,7 @@ class PhoneNumberRequest(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -98,14 +98,6 @@ class PhoneNumberRequest(ModelNormal):
             'value': (str, none_type, none_type,),  # noqa: E501
             'phone_number_type': (PhoneNumberTypeEnum, str, none_type,),
         }
-        expands_types = {"applications": "Application", "attachments": "Attachment"}
-
-        # update types with expands
-        for key, val in expands_types.items():
-            expands_model = import_model_by_name(val, "ats")
-            if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
-                defined_types[key][0].insert(0, expands_model)
-            defined_types[key] = (*defined_types[key], expands_model)
         return defined_types
 
     @cached_property
@@ -160,7 +152,7 @@ class PhoneNumberRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             value (str, none_type): The phone number.. [optional]  # noqa: E501
-            phone_number_type (bool, date, datetime, dict, float, int, list, str, none_type): The type of phone number.. [optional]  # noqa: E501
+            phone_number_type (bool, dict, float, int, list, str, none_type): The type of phone number.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -242,7 +234,7 @@ class PhoneNumberRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             value (str, none_type): The phone number.. [optional]  # noqa: E501
-            phone_number_type (bool, date, datetime, dict, float, int, list, str, none_type): The type of phone number.. [optional]  # noqa: E501
+            phone_number_type (bool, dict, float, int, list, str, none_type): The type of phone number.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -273,6 +265,6 @@ class PhoneNumberRequest(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.value: Union[str, none_type] = kwargs.get("value", None)
-        self.phone_number_type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("phone_number_type", None)
+        self.phone_number_type: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("phone_number_type", None)
 
 

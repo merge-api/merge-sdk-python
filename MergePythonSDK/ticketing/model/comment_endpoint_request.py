@@ -78,7 +78,7 @@ class CommentEndpointRequest(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -263,6 +263,6 @@ class CommentEndpointRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.model: Union["CommentRequest", {"user": "User", "contact": "Contact", "ticket": "Ticket"}] = model
+        self.model: Union["CommentRequest"] = model
 
 

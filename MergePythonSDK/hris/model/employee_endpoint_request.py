@@ -78,7 +78,7 @@ class EmployeeEndpointRequest(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -263,6 +263,6 @@ class EmployeeEndpointRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.model: Union["EmployeeRequest", {"employments": "Employment", "groups": "Group", "home_location": "Location", "work_location": "Location", "manager": "Employee", "team": "Team", "company": "Company", "pay_group": "PayGroup"}] = model
+        self.model: Union["EmployeeRequest"] = model
 
 
