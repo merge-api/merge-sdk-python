@@ -292,7 +292,7 @@ class SyncStatus(ModelNormal):
         self.model_id: Union[str] = model_id
         self.status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = status
         self.is_initial_sync: Union[bool] = is_initial_sync
-        self.last_sync_start: Union[datetime] = kwargs.get("last_sync_start", datetime())
-        self.next_sync_start: Union[datetime] = kwargs.get("next_sync_start", datetime())
+        self.last_sync_start: Union[datetime] = kwargs.get("last_sync_start", None)
+        self.next_sync_start: Union[datetime] = kwargs.get("next_sync_start", None)
 
 

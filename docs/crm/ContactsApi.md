@@ -61,6 +61,29 @@ with MergePythonSDK.crm.ApiClient(configuration) as api_client:
             first_name="Gil",
             last_name="Feig",
             account="0958cbc6-6040-430a-848e-aafacbadf4ae",
+            addresses=[
+                AddressRequest(
+                    street_1="50 Bowling Green Dr",
+                    street_2="Golden Gate Park",
+                    city="San Francisco",
+                    state="CA",
+                    postal_code="94122",
+                    country=None,
+                    address_type=None,
+                ),
+            ],
+            email_addresses=[
+                EmailAddressRequest(
+                    email_address="merge_is_hiring@merge.dev",
+                    email_address_type="Work",
+                ),
+            ],
+            phone_numbers=[
+                PhoneNumberRequest(
+                    phone_number="+3198675309",
+                    phone_number_type="Mobile",
+                ),
+            ],
             last_activity_at=dateutil_parser('2022-02-10T00:00:00Z'),
             remote_created_at=dateutil_parser('2021-11-10T00:00:00Z'),
             integration_params={

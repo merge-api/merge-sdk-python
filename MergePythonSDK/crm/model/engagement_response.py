@@ -284,7 +284,7 @@ class EngagementResponse(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.model: Union["Engagement", {"owner": "User", "account": "Account", "engagement_type": "EngagementType"}] = model
+        self.model: Union["Engagement", {"account": "Account", "engagement_type": "EngagementType", "owner": "User"}] = model
         self.warnings: Union[List["WarningValidationProblem"]] = warnings
         self.errors: Union[List["ErrorValidationProblem"]] = errors
         self.logs: Union[List["DebugModeLog"]] = kwargs.get("logs", None)

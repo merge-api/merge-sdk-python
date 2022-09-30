@@ -284,7 +284,7 @@ class TimeOffResponse(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.model: Union["TimeOff", {"employee": "Employee", "approver": "Employee"}] = model
+        self.model: Union["TimeOff", {"approver": "Employee", "employee": "Employee"}] = model
         self.warnings: Union[List["WarningValidationProblem"]] = warnings
         self.errors: Union[List["ErrorValidationProblem"]] = errors
         self.logs: Union[List["DebugModeLog"]] = kwargs.get("logs", None)

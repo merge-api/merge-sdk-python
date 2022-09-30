@@ -22,8 +22,8 @@ from MergePythonSDK.shared.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from MergePythonSDK.accounting.model.remote_key import RemoteKey
-from MergePythonSDK.accounting.model.remote_key_for_regeneration_request import RemoteKeyForRegenerationRequest
+from MergePythonSDK.shared.model.remote_key import RemoteKey
+from MergePythonSDK.shared.model.remote_key_for_regeneration_request import RemoteKeyForRegenerationRequest
 
 
 class RegenerateKeyApi(object):

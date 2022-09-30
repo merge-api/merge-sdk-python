@@ -148,14 +148,15 @@ class Employee(ModelNormal):
             'custom_fields': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
             'remote_was_deleted': (bool, none_type,),  # noqa: E501
         }
-        expands_types = {"employments": "Employment", "groups": "Group", "home_location": "Location", "work_location": "Location", "manager": "Employee", "team": "Team", "company": "Company", "pay_group": "PayGroup"}
+        expands_types = {"company": "Company", "employments": "Employment", "groups": "Group", "home_location": "Location", "manager": "Employee", "pay_group": "PayGroup", "team": "Team", "work_location": "Location"}
 
         # update types with expands
         for key, val in expands_types.items():
-            expands_model = import_model_by_name(val, "hris")
-            if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
-                defined_types[key][0].insert(0, expands_model)
-            defined_types[key] = (*defined_types[key], expands_model)
+            if key in defined_types.keys():
+                expands_model = import_model_by_name(val, "hris")
+                if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
+                    defined_types[key][0].insert(0, expands_model)
+                defined_types[key] = (*defined_types[key], expands_model)
         return defined_types
 
     @cached_property

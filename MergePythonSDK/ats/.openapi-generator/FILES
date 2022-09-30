@@ -33,7 +33,6 @@ MergePythonSDK/ats/api_client.py
 MergePythonSDK/ats/apis/__init__.py
 MergePythonSDK/ats/configuration.py
 MergePythonSDK/ats/exceptions.py
-MergePythonSDK/ats/model/__init__.py
 MergePythonSDK/ats/model/access_role_enum.py
 MergePythonSDK/ats/model/account_details.py
 MergePythonSDK/ats/model/account_details_and_actions.py
@@ -57,8 +56,6 @@ MergePythonSDK/ats/model/candidate.py
 MergePythonSDK/ats/model/candidate_endpoint_request.py
 MergePythonSDK/ats/model/candidate_request.py
 MergePythonSDK/ats/model/candidate_response.py
-MergePythonSDK/ats/model/categories_enum.py
-MergePythonSDK/ats/model/category_enum.py
 MergePythonSDK/ats/model/data_passthrough_request.py
 MergePythonSDK/ats/model/debug_mode_log.py
 MergePythonSDK/ats/model/debug_model_log_summary.py

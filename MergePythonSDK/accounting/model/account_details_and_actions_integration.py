@@ -101,7 +101,7 @@ class AccountDetailsAndActionsIntegration(ModelNormal):
             'categories': ([CategoriesEnum],),  # noqa: E501
             'color': (str,),  # noqa: E501
             'slug': (str,),  # noqa: E501
-            'passthrough_available': (bool,),  # noqa: E501
+            'passthrough_available': (bool, none_type,),  # noqa: E501
             'image': (str, none_type,),  # noqa: E501
             'square_image': (str, none_type,),  # noqa: E501
             'available_model_operations': ([ModelOperation], none_type,),  # noqa: E501

@@ -263,6 +263,6 @@ class InvoiceEndpointRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.model: Union["InvoiceRequest", {"payments": "Payment", "line_items": "InvoiceLineItem", "contact": "Contact"}] = model
+        self.model: Union["InvoiceRequest"] = model
 
 

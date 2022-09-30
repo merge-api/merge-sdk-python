@@ -284,7 +284,7 @@ class CommentResponse(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.model: Union["Comment", {"user": "User", "contact": "Contact", "ticket": "Ticket"}] = model
+        self.model: Union["Comment", {"contact": "Contact", "ticket": "Ticket", "user": "User"}] = model
         self.warnings: Union[List["WarningValidationProblem"]] = warnings
         self.errors: Union[List["ErrorValidationProblem"]] = errors
         self.logs: Union[List["DebugModeLog"]] = kwargs.get("logs", None)

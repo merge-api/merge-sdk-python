@@ -23,7 +23,7 @@ from MergePythonSDK.shared.model_utils import (  # noqa: F401
     validate_and_convert_types
 )
 from MergePythonSDK.ats.model.data_passthrough_request import DataPassthroughRequest
-from MergePythonSDK.ats.model.remote_response import RemoteResponse
+from MergePythonSDK.shared.model.remote_response import RemoteResponse
 
 
 class PassthroughApi(object):

@@ -122,14 +122,15 @@ class Invoice(ModelNormal):
             'line_items': ([InvoiceLineItem], none_type,),  # noqa: E501
             'remote_was_deleted': (bool, none_type,),  # noqa: E501
         }
-        expands_types = {"payments": "Payment", "line_items": "InvoiceLineItem", "contact": "Contact"}
+        expands_types = {"contact": "Contact", "line_items": "InvoiceLineItem", "payments": "Payment"}
 
         # update types with expands
         for key, val in expands_types.items():
-            expands_model = import_model_by_name(val, "accounting")
-            if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
-                defined_types[key][0].insert(0, expands_model)
-            defined_types[key] = (*defined_types[key], expands_model)
+            if key in defined_types.keys():
+                expands_model = import_model_by_name(val, "accounting")
+                if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
+                    defined_types[key][0].insert(0, expands_model)
+                defined_types[key] = (*defined_types[key], expands_model)
         return defined_types
 
     @cached_property

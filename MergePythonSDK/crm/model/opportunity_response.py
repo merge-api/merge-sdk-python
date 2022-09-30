@@ -284,7 +284,7 @@ class OpportunityResponse(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.model: Union["Opportunity", {"owner": "User", "stage": "Stage", "account": "Account"}] = model
+        self.model: Union["Opportunity", {"account": "Account", "owner": "User", "stage": "Stage"}] = model
         self.warnings: Union[List["WarningValidationProblem"]] = warnings
         self.errors: Union[List["ErrorValidationProblem"]] = errors
         self.logs: Union[List["DebugModeLog"]] = kwargs.get("logs", None)

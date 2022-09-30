@@ -284,7 +284,7 @@ class LeadResponse(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.model: Union["Lead", {"owner": "User", "converted_contact": "Contact", "converted_account": "Account"}] = model
+        self.model: Union["Lead", {"converted_account": "Account", "converted_contact": "Contact", "owner": "User"}] = model
         self.warnings: Union[List["WarningValidationProblem"]] = warnings
         self.errors: Union[List["ErrorValidationProblem"]] = errors
         self.logs: Union[List["DebugModeLog"]] = kwargs.get("logs", None)

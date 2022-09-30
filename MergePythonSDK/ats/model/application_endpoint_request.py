@@ -268,7 +268,7 @@ class ApplicationEndpointRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.model: Union["ApplicationRequest", {"candidate": "Candidate", "job": "Job", "credited_to": "RemoteUser", "current_stage": "JobInterviewStage", "reject_reason": "RejectReason"}] = model
+        self.model: Union["ApplicationRequest"] = model
         self.remote_user_id: Union[str] = remote_user_id
 
 

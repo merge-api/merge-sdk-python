@@ -1,3 +1,12 @@
+# Version 2.2.2
+
+## Date: 2022-09-30
+
+- Fix paths for shared passthrough models
+- Do not attempt to serialize empty lists as null objects
+- Fix datetime() default breaking sync status endpoints
+- Improve expands model attribute handling
+
 # Version 2.2.1
 
 ## Date: 2022-09-23

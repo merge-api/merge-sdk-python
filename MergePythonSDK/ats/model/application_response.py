@@ -284,7 +284,7 @@ class ApplicationResponse(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.model: Union["Application", {"candidate": "Candidate", "job": "Job", "credited_to": "RemoteUser", "current_stage": "JobInterviewStage", "reject_reason": "RejectReason"}] = model
+        self.model: Union["Application", {"candidate": "Candidate", "credited_to": "RemoteUser", "current_stage": "JobInterviewStage", "job": "Job", "reject_reason": "RejectReason"}] = model
         self.warnings: Union[List["WarningValidationProblem"]] = warnings
         self.errors: Union[List["ErrorValidationProblem"]] = errors
         self.logs: Union[List["DebugModeLog"]] = kwargs.get("logs", None)

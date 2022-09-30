@@ -23,7 +23,7 @@ from MergePythonSDK.shared.model_utils import (  # noqa: F401
     validate_and_convert_types
 )
 from MergePythonSDK.accounting.model.generate_remote_key_request import GenerateRemoteKeyRequest
-from MergePythonSDK.accounting.model.remote_key import RemoteKey
+from MergePythonSDK.shared.model.remote_key import RemoteKey
 
 
 class GenerateKeyApi(object):

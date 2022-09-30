@@ -98,7 +98,7 @@ class AvailableActions(ModelNormal):
 
         defined_types = {
             'integration': (AccountIntegration,),  # noqa: E501
-            'passthrough_available': (bool,),  # noqa: E501
+            'passthrough_available': (bool, none_type,),  # noqa: E501
             'available_model_operations': ([ModelOperation], none_type,),  # noqa: E501
         }
         return defined_types

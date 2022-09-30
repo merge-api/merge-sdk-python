@@ -27,7 +27,6 @@ MergePythonSDK/ticketing/api_client.py
 MergePythonSDK/ticketing/apis/__init__.py
 MergePythonSDK/ticketing/configuration.py
 MergePythonSDK/ticketing/exceptions.py
-MergePythonSDK/ticketing/model/__init__.py
 MergePythonSDK/ticketing/model/account.py
 MergePythonSDK/ticketing/model/account_details.py
 MergePythonSDK/ticketing/model/account_details_and_actions.py
@@ -38,8 +37,6 @@ MergePythonSDK/ticketing/model/account_token.py
 MergePythonSDK/ticketing/model/attachment.py
 MergePythonSDK/ticketing/model/attachment_request.py
 MergePythonSDK/ticketing/model/available_actions.py
-MergePythonSDK/ticketing/model/categories_enum.py
-MergePythonSDK/ticketing/model/category_enum.py
 MergePythonSDK/ticketing/model/comment.py
 MergePythonSDK/ticketing/model/comment_endpoint_request.py
 MergePythonSDK/ticketing/model/comment_request.py
