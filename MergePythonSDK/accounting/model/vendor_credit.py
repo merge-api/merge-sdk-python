@@ -82,7 +82,7 @@ class VendorCredit(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -191,7 +191,7 @@ class VendorCredit(ModelNormal):
             transaction_date (datetime, none_type): The vendor credit's transaction date.. [optional]  # noqa: E501
             vendor (str, none_type): [optional]  # noqa: E501
             total_amount (float, none_type): The vendor credit's total amount.. [optional]  # noqa: E501
-            currency (bool, dict, float, int, list, str, none_type): The vendor credit's currency.. [optional]  # noqa: E501
+            currency (bool, date, datetime, dict, float, int, list, str, none_type): The vendor credit's currency.. [optional]  # noqa: E501
             lines ([VendorCreditLine]): [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
         """
@@ -291,7 +291,7 @@ class VendorCredit(ModelNormal):
             transaction_date (datetime, none_type): The vendor credit's transaction date.. [optional]  # noqa: E501
             vendor (str, none_type): [optional]  # noqa: E501
             total_amount (float, none_type): The vendor credit's total amount.. [optional]  # noqa: E501
-            currency (bool, dict, float, int, list, str, none_type): The vendor credit's currency.. [optional]  # noqa: E501
+            currency (bool, date, datetime, dict, float, int, list, str, none_type): The vendor credit's currency.. [optional]  # noqa: E501
             lines ([VendorCreditLine]): [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
         """
@@ -328,7 +328,7 @@ class VendorCredit(ModelNormal):
         self.transaction_date: Union[datetime, none_type] = kwargs.get("transaction_date", None)
         self.vendor: Union[str, none_type] = kwargs.get("vendor", None)
         self.total_amount: Union[float, none_type] = kwargs.get("total_amount", None)
-        self.currency: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("currency", None)
+        self.currency: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("currency", None)
 
         # Read only properties
         self._id: Union[str] = kwargs.get("id", str())

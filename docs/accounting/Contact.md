@@ -13,13 +13,13 @@ Name | Type | Description | Notes
 **is_customer** | **bool, none_type** | Whether the contact is a customer. | [optional] 
 **email_address** | **str, none_type** | The contact&#39;s email address. | [optional] 
 **tax_number** | **str, none_type** | The contact&#39;s tax number. | [optional] 
-**status** | **bool, dict, float, int, list, str, none_type** | The contact&#39;s status | [optional] 
+**status** | **bool, date, datetime, dict, float, int, list, str, none_type** | The contact&#39;s status | [optional] 
 **currency** | **str, none_type** | The currency the contact&#39;s transactions are in. | [optional] 
 **remote_updated_at** | **datetime, none_type** | When the third party&#39;s contact was updated. | [optional] 
 **addresses** | **[str, none_type]** | &#x60;Address&#x60; object IDs for the given &#x60;Contacts&#x60; object. | [optional] 
 **phone_numbers** | [**[AccountingPhoneNumber]**](AccountingPhoneNumber.md) | &#x60;AccountingPhoneNumber&#x60; object for the given &#x60;Contacts&#x60; object. | [optional] 
 **remote_was_deleted** | **bool** | Indicates whether or not this object has been deleted by third party webhooks. | [optional] [readonly] 
-**any string name** | **bool, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

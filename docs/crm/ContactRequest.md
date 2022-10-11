@@ -14,9 +14,9 @@ Name | Type | Description | Notes
 **phone_numbers** | [**[PhoneNumberRequest]**](PhoneNumberRequest.md) |  | [optional] 
 **last_activity_at** | **datetime, none_type** | When the contact&#39;s last activity occurred. | [optional] 
 **remote_created_at** | **datetime, none_type** | When the third party&#39;s contact was created. | [optional] 
-**integration_params** | **{str: (bool, dict, float, int, list, str, none_type)}, none_type** |  | [optional] 
-**linked_account_params** | **{str: (bool, dict, float, int, list, str, none_type)}, none_type** |  | [optional] 
-**any string name** | **bool, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+**integration_params** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** |  | [optional] 
+**linked_account_params** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** |  | [optional] 
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

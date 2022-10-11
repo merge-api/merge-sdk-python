@@ -85,7 +85,7 @@ class Ticket(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -213,7 +213,7 @@ class Ticket(ModelNormal):
             name (str, none_type): The ticket's name.. [optional]  # noqa: E501
             assignees ([str, none_type]): [optional]  # noqa: E501
             due_date (datetime, none_type): The ticket's due date.. [optional]  # noqa: E501
-            status (bool, dict, float, int, list, str, none_type): The current status of the ticket.. [optional]  # noqa: E501
+            status (bool, date, datetime, dict, float, int, list, str, none_type): The current status of the ticket.. [optional]  # noqa: E501
             description (str, none_type): The ticket's description.. [optional]  # noqa: E501
             project (str, none_type): [optional]  # noqa: E501
             ticket_type (str, none_type): The ticket's type.. [optional]  # noqa: E501
@@ -228,7 +228,7 @@ class Ticket(ModelNormal):
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             remote_was_deleted (bool): [optional]  # noqa: E501
             ticket_url (str, none_type): The 3rd party url of the Ticket.. [optional]  # noqa: E501
-            priority (bool, dict, float, int, list, str, none_type): The priority or urgency of the Ticket. Possible values include: URGENT, HIGH, NORMAL, LOW - in cases where there is no clear mapping - the original value passed through.. [optional]  # noqa: E501
+            priority (bool, date, datetime, dict, float, int, list, str, none_type): The priority or urgency of the Ticket. Possible values include: URGENT, HIGH, NORMAL, LOW - in cases where there is no clear mapping - the original value passed through.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -335,7 +335,7 @@ class Ticket(ModelNormal):
             name (str, none_type): The ticket's name.. [optional]  # noqa: E501
             assignees ([str, none_type]): [optional]  # noqa: E501
             due_date (datetime, none_type): The ticket's due date.. [optional]  # noqa: E501
-            status (bool, dict, float, int, list, str, none_type): The current status of the ticket.. [optional]  # noqa: E501
+            status (bool, date, datetime, dict, float, int, list, str, none_type): The current status of the ticket.. [optional]  # noqa: E501
             description (str, none_type): The ticket's description.. [optional]  # noqa: E501
             project (str, none_type): [optional]  # noqa: E501
             ticket_type (str, none_type): The ticket's type.. [optional]  # noqa: E501
@@ -350,7 +350,7 @@ class Ticket(ModelNormal):
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             remote_was_deleted (bool): [optional]  # noqa: E501
             ticket_url (str, none_type): The 3rd party url of the Ticket.. [optional]  # noqa: E501
-            priority (bool, dict, float, int, list, str, none_type): The priority or urgency of the Ticket. Possible values include: URGENT, HIGH, NORMAL, LOW - in cases where there is no clear mapping - the original value passed through.. [optional]  # noqa: E501
+            priority (bool, date, datetime, dict, float, int, list, str, none_type): The priority or urgency of the Ticket. Possible values include: URGENT, HIGH, NORMAL, LOW - in cases where there is no clear mapping - the original value passed through.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -384,7 +384,7 @@ class Ticket(ModelNormal):
         self.name: Union[str, none_type] = kwargs.get("name", None)
         self.assignees: Union[List[str, none_type]] = kwargs.get("assignees", list())
         self.due_date: Union[datetime, none_type] = kwargs.get("due_date", None)
-        self.status: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("status", None)
+        self.status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
         self.description: Union[str, none_type] = kwargs.get("description", None)
         self.project: Union[str, none_type] = kwargs.get("project", None)
         self.ticket_type: Union[str, none_type] = kwargs.get("ticket_type", None)
@@ -397,7 +397,7 @@ class Ticket(ModelNormal):
         self.remote_updated_at: Union[datetime, none_type] = kwargs.get("remote_updated_at", None)
         self.completed_at: Union[datetime, none_type] = kwargs.get("completed_at", None)
         self.ticket_url: Union[str, none_type] = kwargs.get("ticket_url", None)
-        self.priority: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("priority", None)
+        self.priority: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("priority", None)
 
         # Read only properties
         self._id: Union[str] = kwargs.get("id", str())

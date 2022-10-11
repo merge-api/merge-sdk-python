@@ -7,6 +7,7 @@
 - Fix datetime() default breaking sync status endpoints
 - Improve expands model attribute handling
 - Remove date and datetime from Any type
+- Various model updates
 
 # Version 2.2.1
 

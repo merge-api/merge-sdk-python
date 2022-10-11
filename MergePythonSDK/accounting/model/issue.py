@@ -78,7 +78,7 @@ class Issue(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -98,7 +98,7 @@ class Issue(ModelNormal):
             'error_description': (str,),  # noqa: E501
             'id': (str, none_type,),  # noqa: E501
             'status': (IssueStatusEnum, none_type,),  # noqa: E501
-            'end_user': ({str: (bool, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'end_user': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'first_incident_time': (datetime, none_type, none_type,),  # noqa: E501
             'last_incident_time': (datetime, none_type, none_type,),  # noqa: E501
             'is_muted': (bool, none_type,),  # noqa: E501
@@ -169,7 +169,7 @@ class Issue(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             id (str): [optional]  # noqa: E501
             status (IssueStatusEnum): [optional]  # noqa: E501
-            end_user ({str: (bool, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
+            end_user ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
             first_incident_time (datetime, none_type): [optional]  # noqa: E501
             last_incident_time (datetime, none_type): [optional]  # noqa: E501
             is_muted (bool): [optional]  # noqa: E501
@@ -265,7 +265,7 @@ class Issue(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             id (str): [optional]  # noqa: E501
             status (IssueStatusEnum): [optional]  # noqa: E501
-            end_user ({str: (bool, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
+            end_user ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
             first_incident_time (datetime, none_type): [optional]  # noqa: E501
             last_incident_time (datetime, none_type): [optional]  # noqa: E501
             is_muted (bool): [optional]  # noqa: E501
@@ -305,7 +305,7 @@ class Issue(ModelNormal):
 
         # Read only properties
         self._id: Union[str] = kwargs.get("id", str())
-        self._end_user: Union[Dict[str, bool, dict, float, int, list, str, none_type]] = kwargs.get("end_user", dict())
+        self._end_user: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type]] = kwargs.get("end_user", dict())
         self._is_muted: Union[bool] = kwargs.get("is_muted", bool())
 
     # Read only property getters

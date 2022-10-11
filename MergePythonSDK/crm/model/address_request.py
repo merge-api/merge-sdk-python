@@ -80,7 +80,7 @@ class AddressRequest(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -168,8 +168,8 @@ class AddressRequest(ModelNormal):
             city (str, none_type): The address's city.. [optional]  # noqa: E501
             state (str, none_type): The address's state.. [optional]  # noqa: E501
             postal_code (str, none_type): The address's postal code.. [optional]  # noqa: E501
-            country (bool, dict, float, int, list, str, none_type): The address's country.. [optional]  # noqa: E501
-            address_type (bool, dict, float, int, list, str, none_type): The address type.. [optional]  # noqa: E501
+            country (bool, date, datetime, dict, float, int, list, str, none_type): The address's country.. [optional]  # noqa: E501
+            address_type (bool, date, datetime, dict, float, int, list, str, none_type): The address type.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -260,8 +260,8 @@ class AddressRequest(ModelNormal):
             city (str, none_type): The address's city.. [optional]  # noqa: E501
             state (str, none_type): The address's state.. [optional]  # noqa: E501
             postal_code (str, none_type): The address's postal code.. [optional]  # noqa: E501
-            country (bool, dict, float, int, list, str, none_type): The address's country.. [optional]  # noqa: E501
-            address_type (bool, dict, float, int, list, str, none_type): The address type.. [optional]  # noqa: E501
+            country (bool, date, datetime, dict, float, int, list, str, none_type): The address's country.. [optional]  # noqa: E501
+            address_type (bool, date, datetime, dict, float, int, list, str, none_type): The address type.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -296,7 +296,7 @@ class AddressRequest(ModelNormal):
         self.city: Union[str, none_type] = kwargs.get("city", None)
         self.state: Union[str, none_type] = kwargs.get("state", None)
         self.postal_code: Union[str, none_type] = kwargs.get("postal_code", None)
-        self.country: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("country", None)
-        self.address_type: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("address_type", None)
+        self.country: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("country", None)
+        self.address_type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("address_type", None)
 
 

@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **total_tax_rate** | **float, none_type** | The tax rate&#39;s total tax rate. | [optional] 
 **effective_tax_rate** | **float, none_type** | The tax rate&#39;s effective tax rate. | [optional] 
 **remote_was_deleted** | **bool** | Indicates whether or not this object has been deleted by third party webhooks. | [optional] [readonly] 
-**any string name** | **bool, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
