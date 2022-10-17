@@ -105,6 +105,7 @@ class TrackingCategory(ModelNormal):
             'name': (str, none_type, none_type,),  # noqa: E501
             'status': (Status7d1Enum, str, none_type,),
             'category_type': (CategoryTypeEnum, str, none_type,),
+            'parent_category': (str, none_type,),  # noqa: E501
             'remote_was_deleted': (bool, none_type,),  # noqa: E501
         }
         return defined_types
@@ -121,6 +122,7 @@ class TrackingCategory(ModelNormal):
         'name': 'name',  # noqa: E501
         'status': 'status',  # noqa: E501
         'category_type': 'category_type',  # noqa: E501
+        'parent_category': 'parent_category',  # noqa: E501
         'remote_was_deleted': 'remote_was_deleted',  # noqa: E501
     }
 
@@ -211,6 +213,7 @@ class TrackingCategory(ModelNormal):
         self.name = kwargs.get("name", None)
         self.status = kwargs.get("status", None)
         self.category_type = kwargs.get("category_type", None)
+        self.parent_category = kwargs.get("parent_category", None)
 
         # Read only properties
         self._id = kwargs.get("id", str())
@@ -302,6 +305,7 @@ class TrackingCategory(ModelNormal):
         self.name: Union[str, none_type] = kwargs.get("name", None)
         self.status: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("status", None)
         self.category_type: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("category_type", None)
+        self.parent_category: Union[str, none_type] = kwargs.get("parent_category", None)
 
         # Read only properties
         self._id: Union[str] = kwargs.get("id", str())
