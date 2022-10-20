@@ -1,3 +1,9 @@
+# Version 2.2.3
+
+## Date: 2022-10-20
+
+- Remove erroneous shared.model.remote_user import
+
 # Version 2.2.2
 
 ## Date: 2022-09-30
