@@ -1,7 +1,7 @@
 """
-    Merge Ticketing API
+    Merge Unified API
 
-    The unified API for building rich integrations with multiple Ticketing platforms.  # noqa: E501
+    The unified API for building rich integrations with multiple integration platforms.  # noqa: E501
 
     The version of the OpenAPI document: 1.0
     Contact: hello@merge.dev
@@ -32,7 +32,7 @@ file_type = io.IOBase
 MERGE_NONSTANDARD_VALUE = "MERGE_NONSTANDARD_VALUE"
 
 
-class MergeEnumType:
+class MergeEnumType(str):
     pass
 
 
