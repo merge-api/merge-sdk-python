@@ -80,7 +80,7 @@ class PurchaseOrderRequest(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -109,8 +109,8 @@ class PurchaseOrderRequest(ModelNormal):
             'currency': (CurrencyEnum, str, none_type,),
             'remote_created_at': (datetime, none_type, none_type,),  # noqa: E501
             'remote_updated_at': (datetime, none_type, none_type,),  # noqa: E501
-            'integration_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
-            'linked_account_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'integration_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'linked_account_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
         }
         return defined_types
 
@@ -178,7 +178,7 @@ class PurchaseOrderRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
-            status (bool, date, datetime, dict, float, int, list, str, none_type): The purchase order's status.. [optional]  # noqa: E501
+            status (bool, dict, float, int, list, str, none_type): The purchase order's status.. [optional]  # noqa: E501
             issue_date (datetime, none_type): The purchase order's issue date.. [optional]  # noqa: E501
             delivery_date (datetime, none_type): The purchase order's delivery date.. [optional]  # noqa: E501
             delivery_address (str, none_type): The purchase order's delivery address.. [optional]  # noqa: E501
@@ -186,11 +186,11 @@ class PurchaseOrderRequest(ModelNormal):
             vendor (str, none_type): The purchase_order's vendor.. [optional]  # noqa: E501
             memo (str, none_type): A memo attached to the purchase order.. [optional]  # noqa: E501
             total_amount (float, none_type): The purchase order's total amount.. [optional]  # noqa: E501
-            currency (bool, date, datetime, dict, float, int, list, str, none_type): The purchase order's currency.. [optional]  # noqa: E501
+            currency (bool, dict, float, int, list, str, none_type): The purchase order's currency.. [optional]  # noqa: E501
             remote_created_at (datetime, none_type): When the third party's purchase order note was created.. [optional]  # noqa: E501
             remote_updated_at (datetime, none_type): When the third party's purchase order note was updated.. [optional]  # noqa: E501
-            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -284,7 +284,7 @@ class PurchaseOrderRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
-            status (bool, date, datetime, dict, float, int, list, str, none_type): The purchase order's status.. [optional]  # noqa: E501
+            status (bool, dict, float, int, list, str, none_type): The purchase order's status.. [optional]  # noqa: E501
             issue_date (datetime, none_type): The purchase order's issue date.. [optional]  # noqa: E501
             delivery_date (datetime, none_type): The purchase order's delivery date.. [optional]  # noqa: E501
             delivery_address (str, none_type): The purchase order's delivery address.. [optional]  # noqa: E501
@@ -292,11 +292,11 @@ class PurchaseOrderRequest(ModelNormal):
             vendor (str, none_type): The purchase_order's vendor.. [optional]  # noqa: E501
             memo (str, none_type): A memo attached to the purchase order.. [optional]  # noqa: E501
             total_amount (float, none_type): The purchase order's total amount.. [optional]  # noqa: E501
-            currency (bool, date, datetime, dict, float, int, list, str, none_type): The purchase order's currency.. [optional]  # noqa: E501
+            currency (bool, dict, float, int, list, str, none_type): The purchase order's currency.. [optional]  # noqa: E501
             remote_created_at (datetime, none_type): When the third party's purchase order note was created.. [optional]  # noqa: E501
             remote_updated_at (datetime, none_type): When the third party's purchase order note was updated.. [optional]  # noqa: E501
-            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -327,7 +327,7 @@ class PurchaseOrderRequest(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
-        self.status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
+        self.status: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("status", None)
         self.issue_date: Union[datetime, none_type] = kwargs.get("issue_date", None)
         self.delivery_date: Union[datetime, none_type] = kwargs.get("delivery_date", None)
         self.delivery_address: Union[str, none_type] = kwargs.get("delivery_address", None)
@@ -335,10 +335,10 @@ class PurchaseOrderRequest(ModelNormal):
         self.vendor: Union[str, none_type] = kwargs.get("vendor", None)
         self.memo: Union[str, none_type] = kwargs.get("memo", None)
         self.total_amount: Union[float, none_type] = kwargs.get("total_amount", None)
-        self.currency: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("currency", None)
+        self.currency: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("currency", None)
         self.remote_created_at: Union[datetime, none_type] = kwargs.get("remote_created_at", None)
         self.remote_updated_at: Union[datetime, none_type] = kwargs.get("remote_updated_at", None)
-        self.integration_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
-        self.linked_account_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
+        self.integration_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
+        self.linked_account_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
 
 

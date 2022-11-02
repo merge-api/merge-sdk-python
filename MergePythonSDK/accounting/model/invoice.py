@@ -84,7 +84,7 @@ class Invoice(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -209,14 +209,14 @@ class Invoice(ModelNormal):
             id (str): [optional]  # noqa: E501
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
-            type (bool, date, datetime, dict, float, int, list, str, none_type): The invoice's type.. [optional]  # noqa: E501
+            type (bool, dict, float, int, list, str, none_type): The invoice's type.. [optional]  # noqa: E501
             contact (str, none_type): [optional]  # noqa: E501
             number (str, none_type): The invoice's number.. [optional]  # noqa: E501
             issue_date (datetime, none_type): The invoice's issue date.. [optional]  # noqa: E501
             due_date (datetime, none_type): The invoice's due date.. [optional]  # noqa: E501
             paid_on_date (datetime, none_type): The invoice's paid date.. [optional]  # noqa: E501
             memo (str, none_type): The invoice's private note.. [optional]  # noqa: E501
-            currency (bool, date, datetime, dict, float, int, list, str, none_type): The invoice's currency.. [optional]  # noqa: E501
+            currency (bool, dict, float, int, list, str, none_type): The invoice's currency.. [optional]  # noqa: E501
             total_discount (float, none_type): The invoice's total discount.. [optional]  # noqa: E501
             sub_total (float, none_type): The invoice's sub-total.. [optional]  # noqa: E501
             total_tax_amount (float, none_type): The invoice's total tax amount.. [optional]  # noqa: E501
@@ -329,14 +329,14 @@ class Invoice(ModelNormal):
             id (str): [optional]  # noqa: E501
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
-            type (bool, date, datetime, dict, float, int, list, str, none_type): The invoice's type.. [optional]  # noqa: E501
+            type (bool, dict, float, int, list, str, none_type): The invoice's type.. [optional]  # noqa: E501
             contact (str, none_type): [optional]  # noqa: E501
             number (str, none_type): The invoice's number.. [optional]  # noqa: E501
             issue_date (datetime, none_type): The invoice's issue date.. [optional]  # noqa: E501
             due_date (datetime, none_type): The invoice's due date.. [optional]  # noqa: E501
             paid_on_date (datetime, none_type): The invoice's paid date.. [optional]  # noqa: E501
             memo (str, none_type): The invoice's private note.. [optional]  # noqa: E501
-            currency (bool, date, datetime, dict, float, int, list, str, none_type): The invoice's currency.. [optional]  # noqa: E501
+            currency (bool, dict, float, int, list, str, none_type): The invoice's currency.. [optional]  # noqa: E501
             total_discount (float, none_type): The invoice's total discount.. [optional]  # noqa: E501
             sub_total (float, none_type): The invoice's sub-total.. [optional]  # noqa: E501
             total_tax_amount (float, none_type): The invoice's total tax amount.. [optional]  # noqa: E501
@@ -376,14 +376,14 @@ class Invoice(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
-        self.type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("type", None)
+        self.type: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("type", None)
         self.contact: Union[str, none_type] = kwargs.get("contact", None)
         self.number: Union[str, none_type] = kwargs.get("number", None)
         self.issue_date: Union[datetime, none_type] = kwargs.get("issue_date", None)
         self.due_date: Union[datetime, none_type] = kwargs.get("due_date", None)
         self.paid_on_date: Union[datetime, none_type] = kwargs.get("paid_on_date", None)
         self.memo: Union[str, none_type] = kwargs.get("memo", None)
-        self.currency: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("currency", None)
+        self.currency: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("currency", None)
         self.total_discount: Union[float, none_type] = kwargs.get("total_discount", None)
         self.sub_total: Union[float, none_type] = kwargs.get("sub_total", None)
         self.total_tax_amount: Union[float, none_type] = kwargs.get("total_tax_amount", None)

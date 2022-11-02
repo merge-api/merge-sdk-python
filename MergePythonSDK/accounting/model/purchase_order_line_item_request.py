@@ -84,7 +84,7 @@ class PurchaseOrderLineItemRequest(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -108,8 +108,8 @@ class PurchaseOrderLineItemRequest(ModelNormal):
             'tracking_category': (str, none_type, none_type,),  # noqa: E501
             'tax_amount': (str, none_type, none_type,),  # noqa: E501
             'total_line_amount': (str, none_type, none_type,),  # noqa: E501
-            'integration_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
-            'linked_account_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'integration_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'linked_account_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
         }
         return defined_types
 
@@ -180,8 +180,8 @@ class PurchaseOrderLineItemRequest(ModelNormal):
             tracking_category (str, none_type): The purchase order line item's associated tracking category.. [optional]  # noqa: E501
             tax_amount (str, none_type): The purchase order line item's tax amount.. [optional]  # noqa: E501
             total_line_amount (str, none_type): The purchase order line item's total amount.. [optional]  # noqa: E501
-            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -278,8 +278,8 @@ class PurchaseOrderLineItemRequest(ModelNormal):
             tracking_category (str, none_type): The purchase order line item's associated tracking category.. [optional]  # noqa: E501
             tax_amount (str, none_type): The purchase order line item's tax amount.. [optional]  # noqa: E501
             total_line_amount (str, none_type): The purchase order line item's total amount.. [optional]  # noqa: E501
-            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -317,7 +317,7 @@ class PurchaseOrderLineItemRequest(ModelNormal):
         self.tracking_category: Union[str, none_type] = kwargs.get("tracking_category", None)
         self.tax_amount: Union[str, none_type] = kwargs.get("tax_amount", None)
         self.total_line_amount: Union[str, none_type] = kwargs.get("total_line_amount", None)
-        self.integration_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
-        self.linked_account_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
+        self.integration_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
+        self.linked_account_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
 
 

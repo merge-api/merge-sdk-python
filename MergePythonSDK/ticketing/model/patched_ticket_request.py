@@ -83,7 +83,7 @@ class PatchedTicketRequest(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -117,8 +117,8 @@ class PatchedTicketRequest(ModelNormal):
             'completed_at': (datetime, none_type, none_type,),  # noqa: E501
             'ticket_url': (str, none_type, none_type,),  # noqa: E501
             'priority': (PriorityEnum, str, none_type,),
-            'integration_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
-            'linked_account_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'integration_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'linked_account_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
         }
         return defined_types
 
@@ -194,7 +194,7 @@ class PatchedTicketRequest(ModelNormal):
             assignees ([str, none_type]): [optional]  # noqa: E501
             creator (str, none_type): [optional]  # noqa: E501
             due_date (datetime, none_type): The ticket's due date.. [optional]  # noqa: E501
-            status (bool, date, datetime, dict, float, int, list, str, none_type): The current status of the ticket.. [optional]  # noqa: E501
+            status (bool, dict, float, int, list, str, none_type): The current status of the ticket.. [optional]  # noqa: E501
             description (str, none_type): The ticket’s description. HTML version of description is mapped if supported by the third-party platform.. [optional]  # noqa: E501
             project (str, none_type): [optional]  # noqa: E501
             ticket_type (str, none_type): The ticket's type.. [optional]  # noqa: E501
@@ -206,9 +206,9 @@ class PatchedTicketRequest(ModelNormal):
             remote_updated_at (datetime, none_type): When the third party's ticket was updated.. [optional]  # noqa: E501
             completed_at (datetime, none_type): When the ticket was completed.. [optional]  # noqa: E501
             ticket_url (str, none_type): The 3rd party url of the Ticket.. [optional]  # noqa: E501
-            priority (bool, date, datetime, dict, float, int, list, str, none_type): The priority or urgency of the Ticket. Possible values include: URGENT, HIGH, NORMAL, LOW - in cases where there is no clear mapping - the original value passed through.. [optional]  # noqa: E501
-            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            priority (bool, dict, float, int, list, str, none_type): The priority or urgency of the Ticket. Possible values include: URGENT, HIGH, NORMAL, LOW - in cases where there is no clear mapping - the original value passed through.. [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -310,7 +310,7 @@ class PatchedTicketRequest(ModelNormal):
             assignees ([str, none_type]): [optional]  # noqa: E501
             creator (str, none_type): [optional]  # noqa: E501
             due_date (datetime, none_type): The ticket's due date.. [optional]  # noqa: E501
-            status (bool, date, datetime, dict, float, int, list, str, none_type): The current status of the ticket.. [optional]  # noqa: E501
+            status (bool, dict, float, int, list, str, none_type): The current status of the ticket.. [optional]  # noqa: E501
             description (str, none_type): The ticket’s description. HTML version of description is mapped if supported by the third-party platform.. [optional]  # noqa: E501
             project (str, none_type): [optional]  # noqa: E501
             ticket_type (str, none_type): The ticket's type.. [optional]  # noqa: E501
@@ -322,9 +322,9 @@ class PatchedTicketRequest(ModelNormal):
             remote_updated_at (datetime, none_type): When the third party's ticket was updated.. [optional]  # noqa: E501
             completed_at (datetime, none_type): When the ticket was completed.. [optional]  # noqa: E501
             ticket_url (str, none_type): The 3rd party url of the Ticket.. [optional]  # noqa: E501
-            priority (bool, date, datetime, dict, float, int, list, str, none_type): The priority or urgency of the Ticket. Possible values include: URGENT, HIGH, NORMAL, LOW - in cases where there is no clear mapping - the original value passed through.. [optional]  # noqa: E501
-            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            priority (bool, dict, float, int, list, str, none_type): The priority or urgency of the Ticket. Possible values include: URGENT, HIGH, NORMAL, LOW - in cases where there is no clear mapping - the original value passed through.. [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -358,7 +358,7 @@ class PatchedTicketRequest(ModelNormal):
         self.assignees: Union[List[str, none_type]] = kwargs.get("assignees", list())
         self.creator: Union[str, none_type] = kwargs.get("creator", None)
         self.due_date: Union[datetime, none_type] = kwargs.get("due_date", None)
-        self.status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
+        self.status: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("status", None)
         self.description: Union[str, none_type] = kwargs.get("description", None)
         self.project: Union[str, none_type] = kwargs.get("project", None)
         self.ticket_type: Union[str, none_type] = kwargs.get("ticket_type", None)
@@ -370,8 +370,8 @@ class PatchedTicketRequest(ModelNormal):
         self.remote_updated_at: Union[datetime, none_type] = kwargs.get("remote_updated_at", None)
         self.completed_at: Union[datetime, none_type] = kwargs.get("completed_at", None)
         self.ticket_url: Union[str, none_type] = kwargs.get("ticket_url", None)
-        self.priority: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("priority", None)
-        self.integration_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
-        self.linked_account_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
+        self.priority: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("priority", None)
+        self.integration_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
+        self.linked_account_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
 
 

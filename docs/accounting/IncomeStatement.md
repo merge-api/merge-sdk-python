@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **remote_id** | **str, none_type** | The third-party API ID of the matching object. | [optional] 
 **remote_data** | [**[RemoteData], none_type**](RemoteData.md) |  | [optional] [readonly] 
 **name** | **str, none_type** | The income statement&#39;s name. | [optional] 
-**currency** | **bool, date, datetime, dict, float, int, list, str, none_type** | The income statement&#39;s currency. | [optional] 
+**currency** | **bool, dict, float, int, list, str, none_type** | The income statement&#39;s currency. | [optional] 
 **start_period** | **datetime, none_type** | The income statement&#39;s start period. | [optional] 
 **end_period** | **datetime, none_type** | The income statement&#39;s end period. | [optional] 
 **income** | [**[ReportItem]**](ReportItem.md) |  | [optional] [readonly] 
@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 **non_operating_expenses** | [**[ReportItem]**](ReportItem.md) |  | [optional] [readonly] 
 **net_income** | **float, none_type** | The income statement&#39;s net income. | [optional] 
 **remote_was_deleted** | **bool** | Indicates whether or not this object has been deleted by third party webhooks. | [optional] [readonly] 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+**any string name** | **bool, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

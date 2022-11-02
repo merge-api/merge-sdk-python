@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **tracking_category** | **str, none_type** | The purchase order line item&#39;s associated tracking category. | [optional] 
 **account** | **str, none_type** | The credit note line item&#39;s account. | [optional] 
 **remote_id** | **str, none_type** | The third-party API ID of the matching object. | [optional] 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+**any string name** | **bool, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

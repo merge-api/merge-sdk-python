@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **assignees** | **[str, none_type]** |  | [optional] 
 **creator** | **str, none_type** |  | [optional] 
 **due_date** | **datetime, none_type** | The ticket&#39;s due date. | [optional] 
-**status** | **bool, date, datetime, dict, float, int, list, str, none_type** | The current status of the ticket. | [optional] 
+**status** | **bool, dict, float, int, list, str, none_type** | The current status of the ticket. | [optional] 
 **description** | **str, none_type** | The ticket’s description. HTML version of description is mapped if supported by the third-party platform. | [optional] 
 **project** | **str, none_type** |  | [optional] 
 **ticket_type** | **str, none_type** | The ticket&#39;s type. | [optional] 
@@ -26,8 +26,8 @@ Name | Type | Description | Notes
 **remote_data** | [**[RemoteData], none_type**](RemoteData.md) |  | [optional] [readonly] 
 **remote_was_deleted** | **bool** |  | [optional] [readonly] 
 **ticket_url** | **str, none_type** | The 3rd party url of the Ticket. | [optional] 
-**priority** | **bool, date, datetime, dict, float, int, list, str, none_type** | The priority or urgency of the Ticket. Possible values include: URGENT, HIGH, NORMAL, LOW - in cases where there is no clear mapping - the original value passed through. | [optional] 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+**priority** | **bool, dict, float, int, list, str, none_type** | The priority or urgency of the Ticket. Possible values include: URGENT, HIGH, NORMAL, LOW - in cases where there is no clear mapping - the original value passed through. | [optional] 
+**any string name** | **bool, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

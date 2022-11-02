@@ -84,7 +84,7 @@ class PurchaseOrder(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -201,7 +201,7 @@ class PurchaseOrder(ModelNormal):
             id (str): [optional]  # noqa: E501
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
-            status (bool, date, datetime, dict, float, int, list, str, none_type): The purchase order's status.. [optional]  # noqa: E501
+            status (bool, dict, float, int, list, str, none_type): The purchase order's status.. [optional]  # noqa: E501
             issue_date (datetime, none_type): The purchase order's issue date.. [optional]  # noqa: E501
             delivery_date (datetime, none_type): The purchase order's delivery date.. [optional]  # noqa: E501
             delivery_address (str, none_type): The purchase order's delivery address.. [optional]  # noqa: E501
@@ -209,7 +209,7 @@ class PurchaseOrder(ModelNormal):
             vendor (str, none_type): The purchase_order's vendor.. [optional]  # noqa: E501
             memo (str, none_type): A memo attached to the purchase order.. [optional]  # noqa: E501
             total_amount (float, none_type): The purchase order's total amount.. [optional]  # noqa: E501
-            currency (bool, date, datetime, dict, float, int, list, str, none_type): The purchase order's currency.. [optional]  # noqa: E501
+            currency (bool, dict, float, int, list, str, none_type): The purchase order's currency.. [optional]  # noqa: E501
             line_items ([PurchaseOrderLineItem]): [optional]  # noqa: E501
             remote_created_at (datetime, none_type): When the third party's purchase order note was created.. [optional]  # noqa: E501
             remote_updated_at (datetime, none_type): When the third party's purchase order note was updated.. [optional]  # noqa: E501
@@ -313,7 +313,7 @@ class PurchaseOrder(ModelNormal):
             id (str): [optional]  # noqa: E501
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
-            status (bool, date, datetime, dict, float, int, list, str, none_type): The purchase order's status.. [optional]  # noqa: E501
+            status (bool, dict, float, int, list, str, none_type): The purchase order's status.. [optional]  # noqa: E501
             issue_date (datetime, none_type): The purchase order's issue date.. [optional]  # noqa: E501
             delivery_date (datetime, none_type): The purchase order's delivery date.. [optional]  # noqa: E501
             delivery_address (str, none_type): The purchase order's delivery address.. [optional]  # noqa: E501
@@ -321,7 +321,7 @@ class PurchaseOrder(ModelNormal):
             vendor (str, none_type): The purchase_order's vendor.. [optional]  # noqa: E501
             memo (str, none_type): A memo attached to the purchase order.. [optional]  # noqa: E501
             total_amount (float, none_type): The purchase order's total amount.. [optional]  # noqa: E501
-            currency (bool, date, datetime, dict, float, int, list, str, none_type): The purchase order's currency.. [optional]  # noqa: E501
+            currency (bool, dict, float, int, list, str, none_type): The purchase order's currency.. [optional]  # noqa: E501
             line_items ([PurchaseOrderLineItem]): [optional]  # noqa: E501
             remote_created_at (datetime, none_type): When the third party's purchase order note was created.. [optional]  # noqa: E501
             remote_updated_at (datetime, none_type): When the third party's purchase order note was updated.. [optional]  # noqa: E501
@@ -356,7 +356,7 @@ class PurchaseOrder(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
-        self.status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
+        self.status: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("status", None)
         self.issue_date: Union[datetime, none_type] = kwargs.get("issue_date", None)
         self.delivery_date: Union[datetime, none_type] = kwargs.get("delivery_date", None)
         self.delivery_address: Union[str, none_type] = kwargs.get("delivery_address", None)
@@ -364,7 +364,7 @@ class PurchaseOrder(ModelNormal):
         self.vendor: Union[str, none_type] = kwargs.get("vendor", None)
         self.memo: Union[str, none_type] = kwargs.get("memo", None)
         self.total_amount: Union[float, none_type] = kwargs.get("total_amount", None)
-        self.currency: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("currency", None)
+        self.currency: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("currency", None)
         self.remote_created_at: Union[datetime, none_type] = kwargs.get("remote_created_at", None)
         self.remote_updated_at: Union[datetime, none_type] = kwargs.get("remote_updated_at", None)
 

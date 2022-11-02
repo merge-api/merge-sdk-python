@@ -9,8 +9,8 @@ Name | Type | Description | Notes
 **operator** | **str** | The operator for a specific condition. | 
 **field_name** | **str, none_type** | The name of the field on the common model that this condition corresponds to, if they conceptually match. e.g. \&quot;location_type\&quot;. | 
 **common_model** | **str** | The common model for a specific condition. | [optional] [readonly] 
-**value** | **bool, date, datetime, dict, float, int, list, str, none_type** | The value for a condition. | [optional] [readonly] 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+**value** | **bool, dict, float, int, list, str, none_type** | The value for a condition. | [optional] [readonly] 
+**any string name** | **bool, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

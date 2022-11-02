@@ -16,9 +16,9 @@ Name | Type | Description | Notes
 **current_stage** | **str, none_type** |  | [optional] 
 **reject_reason** | **str, none_type** |  | [optional] 
 **remote_data** | [**[RemoteData], none_type**](RemoteData.md) |  | [optional] [readonly] 
-**custom_fields** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Custom fields configured for a given model. | [optional] 
+**custom_fields** | **{str: (bool, dict, float, int, list, str, none_type)}, none_type** | Custom fields configured for a given model. | [optional] 
 **remote_was_deleted** | **bool** |  | [optional] [readonly] 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+**any string name** | **bool, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

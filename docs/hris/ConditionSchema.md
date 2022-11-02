@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **operators** | [**[OperatorSchema]**](OperatorSchema.md) | The schemas for the operators that can be used on a condition. | 
 **common_model** | **str** | The common model for which a condition schema is defined. | [optional] [readonly] 
 **is_unique** | **bool** | Whether this condition can only be applied once. If false, the condition can be AND&#39;d together multiple times. | [optional] 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+**any string name** | **bool, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

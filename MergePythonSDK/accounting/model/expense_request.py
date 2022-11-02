@@ -78,7 +78,7 @@ class ExpenseRequest(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -103,8 +103,8 @@ class ExpenseRequest(ModelNormal):
             'total_amount': (float, none_type, none_type,),  # noqa: E501
             'currency': (CurrencyEnum, str, none_type,),
             'memo': (str, none_type, none_type,),  # noqa: E501
-            'integration_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
-            'linked_account_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'integration_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'linked_account_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
         }
         return defined_types
 
@@ -173,10 +173,10 @@ class ExpenseRequest(ModelNormal):
             account (str, none_type): [optional]  # noqa: E501
             contact (str, none_type): [optional]  # noqa: E501
             total_amount (float, none_type): The expense's total amount.. [optional]  # noqa: E501
-            currency (bool, date, datetime, dict, float, int, list, str, none_type): The expense's currency.. [optional]  # noqa: E501
+            currency (bool, dict, float, int, list, str, none_type): The expense's currency.. [optional]  # noqa: E501
             memo (str, none_type): The expense's private note.. [optional]  # noqa: E501
-            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -271,10 +271,10 @@ class ExpenseRequest(ModelNormal):
             account (str, none_type): [optional]  # noqa: E501
             contact (str, none_type): [optional]  # noqa: E501
             total_amount (float, none_type): The expense's total amount.. [optional]  # noqa: E501
-            currency (bool, date, datetime, dict, float, int, list, str, none_type): The expense's currency.. [optional]  # noqa: E501
+            currency (bool, dict, float, int, list, str, none_type): The expense's currency.. [optional]  # noqa: E501
             memo (str, none_type): The expense's private note.. [optional]  # noqa: E501
-            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -310,9 +310,9 @@ class ExpenseRequest(ModelNormal):
         self.account: Union[str, none_type] = kwargs.get("account", None)
         self.contact: Union[str, none_type] = kwargs.get("contact", None)
         self.total_amount: Union[float, none_type] = kwargs.get("total_amount", None)
-        self.currency: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("currency", None)
+        self.currency: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("currency", None)
         self.memo: Union[str, none_type] = kwargs.get("memo", None)
-        self.integration_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
-        self.linked_account_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
+        self.integration_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
+        self.linked_account_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
 
 

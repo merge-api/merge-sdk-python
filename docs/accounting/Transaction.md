@@ -14,10 +14,10 @@ Name | Type | Description | Notes
 **account** | **str, none_type** | The transaction&#39;s account. | [optional] 
 **contact** | **str, none_type** | The transaction&#39;s contact. | [optional] 
 **total_amount** | **str, none_type** | The transaction&#39;s total amount. | [optional] 
-**currency** | **bool, date, datetime, dict, float, int, list, str, none_type** | The transaction&#39;s currency. | [optional] 
+**currency** | **bool, dict, float, int, list, str, none_type** | The transaction&#39;s currency. | [optional] 
 **line_items** | [**[TransactionLineItem]**](TransactionLineItem.md) |  | [optional] [readonly] 
 **remote_was_deleted** | **bool** | Indicates whether or not this object has been deleted by third party webhooks. | [optional] [readonly] 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+**any string name** | **bool, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

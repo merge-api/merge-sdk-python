@@ -80,7 +80,7 @@ class Task(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -191,7 +191,7 @@ class Task(ModelNormal):
             account (str, none_type): [optional]  # noqa: E501
             completed_date (datetime, none_type): When the task is completed.. [optional]  # noqa: E501
             due_date (datetime, none_type): When the task is due.. [optional]  # noqa: E501
-            status (bool, date, datetime, dict, float, int, list, str, none_type): The task's status.. [optional]  # noqa: E501
+            status (bool, dict, float, int, list, str, none_type): The task's status.. [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
         """
@@ -293,7 +293,7 @@ class Task(ModelNormal):
             account (str, none_type): [optional]  # noqa: E501
             completed_date (datetime, none_type): When the task is completed.. [optional]  # noqa: E501
             due_date (datetime, none_type): When the task is due.. [optional]  # noqa: E501
-            status (bool, date, datetime, dict, float, int, list, str, none_type): The task's status.. [optional]  # noqa: E501
+            status (bool, dict, float, int, list, str, none_type): The task's status.. [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
         """
@@ -332,7 +332,7 @@ class Task(ModelNormal):
         self.account: Union[str, none_type] = kwargs.get("account", None)
         self.completed_date: Union[datetime, none_type] = kwargs.get("completed_date", None)
         self.due_date: Union[datetime, none_type] = kwargs.get("due_date", None)
-        self.status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
+        self.status: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("status", None)
 
         # Read only properties
         self._id: Union[str] = kwargs.get("id", str())
