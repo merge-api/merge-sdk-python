@@ -97,7 +97,7 @@ class EndUserDetailsRequest(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -150,9 +150,9 @@ class EndUserDetailsRequest(ModelNormal):
         """EndUserDetailsRequest - a model defined in OpenAPI
 
         Args:
-            end_user_email_address (str): Your end user's email address.
+            end_user_email_address (str): Your end user's email address. This is purely for identification purposes - setting this value will not cause any emails to be sent.
             end_user_organization_name (str): Your end user's organization.
-            end_user_origin_id (str): Unique ID for your end user.
+            end_user_origin_id (str): This unique identifier typically represents the ID for your end user in your product's database. This value must be distinct from other Linked Accounts' unique identifiers.
             categories ([CategoriesEnum]): The integration categories to show in Merge Link.
 
         Keyword Args:
@@ -244,9 +244,9 @@ class EndUserDetailsRequest(ModelNormal):
         """EndUserDetailsRequest - a model defined in OpenAPI
 
         Args:
-            end_user_email_address (str): Your end user's email address.
+            end_user_email_address (str): Your end user's email address. This is purely for identification purposes - setting this value will not cause any emails to be sent.
             end_user_organization_name (str): Your end user's organization.
-            end_user_origin_id (str): Unique ID for your end user.
+            end_user_origin_id (str): This unique identifier typically represents the ID for your end user in your product's database. This value must be distinct from other Linked Accounts' unique identifiers.
             categories ([CategoriesEnum]): The integration categories to show in Merge Link.
 
         Keyword Args:

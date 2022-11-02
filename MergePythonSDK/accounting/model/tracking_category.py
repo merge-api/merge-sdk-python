@@ -82,7 +82,7 @@ class TrackingCategory(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -105,7 +105,7 @@ class TrackingCategory(ModelNormal):
             'name': (str, none_type, none_type,),  # noqa: E501
             'status': (Status7d1Enum, str, none_type,),
             'category_type': (CategoryTypeEnum, str, none_type,),
-            'parent_category': (str, none_type,),  # noqa: E501
+            'parent_category': (str, none_type, none_type,),  # noqa: E501
             'remote_was_deleted': (bool, none_type,),  # noqa: E501
         }
         return defined_types
@@ -174,8 +174,9 @@ class TrackingCategory(ModelNormal):
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             name (str, none_type): The tracking category's name.. [optional]  # noqa: E501
-            status (bool, dict, float, int, list, str, none_type): The tracking category's status.. [optional]  # noqa: E501
-            category_type (bool, dict, float, int, list, str, none_type): The tracking category’s type.. [optional]  # noqa: E501
+            status (bool, date, datetime, dict, float, int, list, str, none_type): The tracking category's status.. [optional]  # noqa: E501
+            category_type (bool, date, datetime, dict, float, int, list, str, none_type): The tracking category’s type.. [optional]  # noqa: E501
+            parent_category (str, none_type): [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
         """
 
@@ -269,8 +270,9 @@ class TrackingCategory(ModelNormal):
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             name (str, none_type): The tracking category's name.. [optional]  # noqa: E501
-            status (bool, dict, float, int, list, str, none_type): The tracking category's status.. [optional]  # noqa: E501
-            category_type (bool, dict, float, int, list, str, none_type): The tracking category’s type.. [optional]  # noqa: E501
+            status (bool, date, datetime, dict, float, int, list, str, none_type): The tracking category's status.. [optional]  # noqa: E501
+            category_type (bool, date, datetime, dict, float, int, list, str, none_type): The tracking category’s type.. [optional]  # noqa: E501
+            parent_category (str, none_type): [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
         """
 
@@ -303,8 +305,8 @@ class TrackingCategory(ModelNormal):
 
         self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
         self.name: Union[str, none_type] = kwargs.get("name", None)
-        self.status: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("status", None)
-        self.category_type: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("category_type", None)
+        self.status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
+        self.category_type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("category_type", None)
         self.parent_category: Union[str, none_type] = kwargs.get("parent_category", None)
 
         # Read only properties

@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **name** | **str, none_type** | The job&#39;s name. | [optional] 
 **description** | **str, none_type** | The job&#39;s description. | [optional] 
 **code** | **str, none_type** | The job&#39;s code. Typically an additional identifier used to reference the particular job that is displayed on the ATS. | [optional] 
-**status** | **bool, dict, float, int, list, str, none_type** | The job&#39;s status. | [optional] 
+**status** | **bool, date, datetime, dict, float, int, list, str, none_type** | The job&#39;s status. | [optional] 
 **job_posting_urls** | [**[Url]**](Url.md) |  | [optional] 
 **remote_created_at** | **datetime, none_type** | When the third party&#39;s job was created. | [optional] 
 **remote_updated_at** | **datetime, none_type** | When the third party&#39;s job was updated. | [optional] 
@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 **recruiters** | **[str, none_type]** | IDs of &#x60;RemoteUser&#x60; objects that serve as recruiters for this &#x60;Job&#x60;. | [optional] 
 **remote_data** | [**[RemoteData], none_type**](RemoteData.md) |  | [optional] [readonly] 
 **remote_was_deleted** | **bool** | Indicates whether or not this object has been deleted by third party webhooks. | [optional] [readonly] 
-**any string name** | **bool, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

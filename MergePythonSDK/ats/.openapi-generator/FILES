@@ -25,6 +25,7 @@ MergePythonSDK/ats/api/passthrough_api.py
 MergePythonSDK/ats/api/regenerate_key_api.py
 MergePythonSDK/ats/api/reject_reasons_api.py
 MergePythonSDK/ats/api/scorecards_api.py
+MergePythonSDK/ats/api/selective_sync_api.py
 MergePythonSDK/ats/api/sync_status_api.py
 MergePythonSDK/ats/api/tags_api.py
 MergePythonSDK/ats/api/users_api.py
@@ -56,6 +57,8 @@ MergePythonSDK/ats/model/candidate.py
 MergePythonSDK/ats/model/candidate_endpoint_request.py
 MergePythonSDK/ats/model/candidate_request.py
 MergePythonSDK/ats/model/candidate_response.py
+MergePythonSDK/ats/model/condition_schema.py
+MergePythonSDK/ats/model/condition_type_enum.py
 MergePythonSDK/ats/model/data_passthrough_request.py
 MergePythonSDK/ats/model/debug_mode_log.py
 MergePythonSDK/ats/model/debug_model_log_summary.py
@@ -78,6 +81,11 @@ MergePythonSDK/ats/model/job.py
 MergePythonSDK/ats/model/job_interview_stage.py
 MergePythonSDK/ats/model/job_status_enum.py
 MergePythonSDK/ats/model/link_token.py
+MergePythonSDK/ats/model/linked_account_condition.py
+MergePythonSDK/ats/model/linked_account_condition_request.py
+MergePythonSDK/ats/model/linked_account_selective_sync_configuration.py
+MergePythonSDK/ats/model/linked_account_selective_sync_configuration_list_request.py
+MergePythonSDK/ats/model/linked_account_selective_sync_configuration_request.py
 MergePythonSDK/ats/model/linked_account_status.py
 MergePythonSDK/ats/model/meta_response.py
 MergePythonSDK/ats/model/method_enum.py
@@ -86,6 +94,7 @@ MergePythonSDK/ats/model/multipart_form_field_request.py
 MergePythonSDK/ats/model/offer.py
 MergePythonSDK/ats/model/offer_status_enum.py
 MergePythonSDK/ats/model/office.py
+MergePythonSDK/ats/model/operator_schema.py
 MergePythonSDK/ats/model/overall_recommendation_enum.py
 MergePythonSDK/ats/model/phone_number.py
 MergePythonSDK/ats/model/phone_number_request.py
@@ -147,6 +156,8 @@ docs/CandidateResponse.md
 docs/CandidatesApi.md
 docs/CategoriesEnum.md
 docs/CategoryEnum.md
+docs/ConditionSchema.md
+docs/ConditionTypeEnum.md
 docs/DataPassthroughRequest.md
 docs/DebugModeLog.md
 docs/DebugModelLogSummary.md
@@ -179,6 +190,11 @@ docs/JobStatusEnum.md
 docs/JobsApi.md
 docs/LinkToken.md
 docs/LinkTokenApi.md
+docs/LinkedAccountCondition.md
+docs/LinkedAccountConditionRequest.md
+docs/LinkedAccountSelectiveSyncConfiguration.md
+docs/LinkedAccountSelectiveSyncConfigurationListRequest.md
+docs/LinkedAccountSelectiveSyncConfigurationRequest.md
 docs/LinkedAccountStatus.md
 docs/LinkedAccountsApi.md
 docs/MetaResponse.md
@@ -190,12 +206,14 @@ docs/OfferStatusEnum.md
 docs/OffersApi.md
 docs/Office.md
 docs/OfficesApi.md
+docs/OperatorSchema.md
 docs/OverallRecommendationEnum.md
 docs/PaginatedAccountDetailsAndActionsList.md
 docs/PaginatedActivityList.md
 docs/PaginatedApplicationList.md
 docs/PaginatedAttachmentList.md
 docs/PaginatedCandidateList.md
+docs/PaginatedConditionSchemaList.md
 docs/PaginatedDepartmentList.md
 docs/PaginatedEEOCList.md
 docs/PaginatedIssueList.md
@@ -229,6 +247,7 @@ docs/ScheduledInterview.md
 docs/ScheduledInterviewStatusEnum.md
 docs/Scorecard.md
 docs/ScorecardsApi.md
+docs/SelectiveSyncApi.md
 docs/SyncStatus.md
 docs/SyncStatusApi.md
 docs/SyncStatusStatusEnum.md
@@ -247,8 +266,6 @@ docs/WebhookReceiver.md
 docs/WebhookReceiverRequest.md
 docs/WebhookReceiversApi.md
 requirements.txt
-setup.cfg
-setup.py
 test-requirements.txt
 test/__init__.py
 test/test_access_role_enum.py
@@ -283,6 +300,8 @@ test/test_candidate_response.py
 test/test_candidates_api.py
 test/test_categories_enum.py
 test/test_category_enum.py
+test/test_condition_schema.py
+test/test_condition_type_enum.py
 test/test_data_passthrough_request.py
 test/test_debug_mode_log.py
 test/test_debug_model_log_summary.py
@@ -315,6 +334,11 @@ test/test_job_status_enum.py
 test/test_jobs_api.py
 test/test_link_token.py
 test/test_link_token_api.py
+test/test_linked_account_condition.py
+test/test_linked_account_condition_request.py
+test/test_linked_account_selective_sync_configuration.py
+test/test_linked_account_selective_sync_configuration_list_request.py
+test/test_linked_account_selective_sync_configuration_request.py
 test/test_linked_account_status.py
 test/test_linked_accounts_api.py
 test/test_meta_response.py
@@ -326,12 +350,14 @@ test/test_offer_status_enum.py
 test/test_offers_api.py
 test/test_office.py
 test/test_offices_api.py
+test/test_operator_schema.py
 test/test_overall_recommendation_enum.py
 test/test_paginated_account_details_and_actions_list.py
 test/test_paginated_activity_list.py
 test/test_paginated_application_list.py
 test/test_paginated_attachment_list.py
 test/test_paginated_candidate_list.py
+test/test_paginated_condition_schema_list.py
 test/test_paginated_department_list.py
 test/test_paginated_eeoc_list.py
 test/test_paginated_issue_list.py
@@ -365,6 +391,7 @@ test/test_scheduled_interview.py
 test/test_scheduled_interview_status_enum.py
 test/test_scorecard.py
 test/test_scorecards_api.py
+test/test_selective_sync_api.py
 test/test_sync_status.py
 test/test_sync_status_api.py
 test/test_sync_status_status_enum.py

@@ -78,7 +78,7 @@ class SyncStatus(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -97,7 +97,7 @@ class SyncStatus(ModelNormal):
         defined_types = {
             'model_name': (str,),  # noqa: E501
             'model_id': (str,),  # noqa: E501
-            'status': (bool, dict, float, int, list, str, none_type,),  # noqa: E501
+            'status': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
             'is_initial_sync': (bool,),  # noqa: E501
             'last_sync_start': (datetime, none_type,),  # noqa: E501
             'next_sync_start': (datetime, none_type,),  # noqa: E501
@@ -131,7 +131,7 @@ class SyncStatus(ModelNormal):
         Args:
             model_name (str):
             model_id (str):
-            status (bool, dict, float, int, list, str, none_type):
+            status (bool, date, datetime, dict, float, int, list, str, none_type):
             is_initial_sync (bool):
 
         Keyword Args:
@@ -223,7 +223,7 @@ class SyncStatus(ModelNormal):
         Args:
             model_name (str):
             model_id (str):
-            status (bool, dict, float, int, list, str, none_type):
+            status (bool, date, datetime, dict, float, int, list, str, none_type):
             is_initial_sync (bool):
 
         Keyword Args:
@@ -290,7 +290,7 @@ class SyncStatus(ModelNormal):
 
         self.model_name: Union[str] = model_name
         self.model_id: Union[str] = model_id
-        self.status: Union[bool, dict, float, int, list, str, none_type] = status
+        self.status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = status
         self.is_initial_sync: Union[bool] = is_initial_sync
         self.last_sync_start: Union[datetime] = kwargs.get("last_sync_start", None)
         self.next_sync_start: Union[datetime] = kwargs.get("next_sync_start", None)

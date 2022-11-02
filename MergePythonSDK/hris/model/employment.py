@@ -88,7 +88,7 @@ class Employment(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -202,13 +202,13 @@ class Employment(ModelNormal):
             employee (str, none_type): [optional]  # noqa: E501
             job_title (str, none_type): The position's title.. [optional]  # noqa: E501
             pay_rate (float, none_type): The position's pay rate in dollars.. [optional]  # noqa: E501
-            pay_period (bool, dict, float, int, list, str, none_type): The time period this pay rate encompasses.. [optional]  # noqa: E501
-            pay_frequency (bool, dict, float, int, list, str, none_type): The position's pay frequency.. [optional]  # noqa: E501
-            pay_currency (bool, dict, float, int, list, str, none_type): The position's currency code.. [optional]  # noqa: E501
+            pay_period (bool, date, datetime, dict, float, int, list, str, none_type): The time period this pay rate encompasses.. [optional]  # noqa: E501
+            pay_frequency (bool, date, datetime, dict, float, int, list, str, none_type): The position's pay frequency.. [optional]  # noqa: E501
+            pay_currency (bool, date, datetime, dict, float, int, list, str, none_type): The position's currency code.. [optional]  # noqa: E501
             pay_group (str, none_type): [optional]  # noqa: E501
-            flsa_status (bool, dict, float, int, list, str, none_type): The position's FLSA status.. [optional]  # noqa: E501
+            flsa_status (bool, date, datetime, dict, float, int, list, str, none_type): The position's FLSA status.. [optional]  # noqa: E501
             effective_date (datetime, none_type): The position's effective date.. [optional]  # noqa: E501
-            employment_type (bool, dict, float, int, list, str, none_type): The position's type of employment.. [optional]  # noqa: E501
+            employment_type (bool, date, datetime, dict, float, int, list, str, none_type): The position's type of employment.. [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
         """
@@ -310,13 +310,13 @@ class Employment(ModelNormal):
             employee (str, none_type): [optional]  # noqa: E501
             job_title (str, none_type): The position's title.. [optional]  # noqa: E501
             pay_rate (float, none_type): The position's pay rate in dollars.. [optional]  # noqa: E501
-            pay_period (bool, dict, float, int, list, str, none_type): The time period this pay rate encompasses.. [optional]  # noqa: E501
-            pay_frequency (bool, dict, float, int, list, str, none_type): The position's pay frequency.. [optional]  # noqa: E501
-            pay_currency (bool, dict, float, int, list, str, none_type): The position's currency code.. [optional]  # noqa: E501
+            pay_period (bool, date, datetime, dict, float, int, list, str, none_type): The time period this pay rate encompasses.. [optional]  # noqa: E501
+            pay_frequency (bool, date, datetime, dict, float, int, list, str, none_type): The position's pay frequency.. [optional]  # noqa: E501
+            pay_currency (bool, date, datetime, dict, float, int, list, str, none_type): The position's currency code.. [optional]  # noqa: E501
             pay_group (str, none_type): [optional]  # noqa: E501
-            flsa_status (bool, dict, float, int, list, str, none_type): The position's FLSA status.. [optional]  # noqa: E501
+            flsa_status (bool, date, datetime, dict, float, int, list, str, none_type): The position's FLSA status.. [optional]  # noqa: E501
             effective_date (datetime, none_type): The position's effective date.. [optional]  # noqa: E501
-            employment_type (bool, dict, float, int, list, str, none_type): The position's type of employment.. [optional]  # noqa: E501
+            employment_type (bool, date, datetime, dict, float, int, list, str, none_type): The position's type of employment.. [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
         """
@@ -352,13 +352,13 @@ class Employment(ModelNormal):
         self.employee: Union[str, none_type] = kwargs.get("employee", None)
         self.job_title: Union[str, none_type] = kwargs.get("job_title", None)
         self.pay_rate: Union[float, none_type] = kwargs.get("pay_rate", None)
-        self.pay_period: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("pay_period", None)
-        self.pay_frequency: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("pay_frequency", None)
-        self.pay_currency: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("pay_currency", None)
+        self.pay_period: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("pay_period", None)
+        self.pay_frequency: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("pay_frequency", None)
+        self.pay_currency: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("pay_currency", None)
         self.pay_group: Union[str, none_type] = kwargs.get("pay_group", None)
-        self.flsa_status: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("flsa_status", None)
+        self.flsa_status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("flsa_status", None)
         self.effective_date: Union[datetime, none_type] = kwargs.get("effective_date", None)
-        self.employment_type: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("employment_type", None)
+        self.employment_type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("employment_type", None)
 
         # Read only properties
         self._id: Union[str] = kwargs.get("id", str())

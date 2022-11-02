@@ -78,7 +78,7 @@ class EngagementType(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -158,7 +158,7 @@ class EngagementType(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             id (str): [optional]  # noqa: E501
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
-            activity_type (bool, dict, float, int, list, str, none_type): The engagement type's activity type.. [optional]  # noqa: E501
+            activity_type (bool, date, datetime, dict, float, int, list, str, none_type): The engagement type's activity type.. [optional]  # noqa: E501
             name (str, none_type): The engagement type's name.. [optional]  # noqa: E501
         """
 
@@ -246,7 +246,7 @@ class EngagementType(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             id (str): [optional]  # noqa: E501
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
-            activity_type (bool, dict, float, int, list, str, none_type): The engagement type's activity type.. [optional]  # noqa: E501
+            activity_type (bool, date, datetime, dict, float, int, list, str, none_type): The engagement type's activity type.. [optional]  # noqa: E501
             name (str, none_type): The engagement type's name.. [optional]  # noqa: E501
         """
 
@@ -278,7 +278,7 @@ class EngagementType(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
-        self.activity_type: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("activity_type", None)
+        self.activity_type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("activity_type", None)
         self.name: Union[str, none_type] = kwargs.get("name", None)
 
         # Read only properties

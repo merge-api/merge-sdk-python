@@ -14,11 +14,11 @@ Name | Type | Description | Notes
 **city** | **str, none_type** | The location&#39;s city. | [optional] 
 **state** | **str, none_type** | The location&#39;s state. Represents a region if outside of the US. | [optional] 
 **zip_code** | **str, none_type** | The location&#39;s zip code or postal code. | [optional] 
-**country** | **bool, dict, float, int, list, str, none_type** | The location&#39;s country. | [optional] 
-**location_type** | **bool, dict, float, int, list, str, none_type** | The location&#39;s type. Can be either WORK or HOME | [optional] 
+**country** | **bool, date, datetime, dict, float, int, list, str, none_type** | The location&#39;s country. | [optional] 
+**location_type** | **bool, date, datetime, dict, float, int, list, str, none_type** | The location&#39;s type. Can be either WORK or HOME | [optional] 
 **remote_data** | [**[RemoteData], none_type**](RemoteData.md) |  | [optional] [readonly] 
 **remote_was_deleted** | **bool** | Indicates whether or not this object has been deleted by third party webhooks. | [optional] [readonly] 
-**any string name** | **bool, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -74,7 +74,7 @@ class Tag(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -92,7 +92,7 @@ class Tag(ModelNormal):
         defined_types = {
             'remote_id': (str, none_type, none_type,),  # noqa: E501
             'name': (str, none_type, none_type,),  # noqa: E501
-            'remote_data': ([{str: (bool, dict, float, int, list, str, none_type)}, none_type], none_type, none_type,),  # noqa: E501
+            'remote_data': ([{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type], none_type, none_type,),  # noqa: E501
             'remote_was_deleted': (bool, none_type,),  # noqa: E501
         }
         return defined_types
@@ -152,7 +152,7 @@ class Tag(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             name (str, none_type): The tag's name.. [optional]  # noqa: E501
-            remote_data ([{str: (bool, dict, float, int, list, str, none_type)}, none_type], none_type): [optional]  # noqa: E501
+            remote_data ([{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type], none_type): [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
         """
 
@@ -238,7 +238,7 @@ class Tag(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             name (str, none_type): The tag's name.. [optional]  # noqa: E501
-            remote_data ([{str: (bool, dict, float, int, list, str, none_type)}, none_type], none_type): [optional]  # noqa: E501
+            remote_data ([{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type], none_type): [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
         """
 
@@ -271,7 +271,7 @@ class Tag(ModelNormal):
 
         self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
         self.name: Union[str, none_type] = kwargs.get("name", None)
-        self.remote_data: Union[List[{str: (bool, dict, float, int, list, str, none_type)}, none_type], none_type] = kwargs.get("remote_data", None)
+        self.remote_data: Union[List[{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type], none_type] = kwargs.get("remote_data", None)
         self.remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
 
 

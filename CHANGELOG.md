@@ -1,3 +1,9 @@
+# Version 2.2.4
+
+## Date: 2022-11-2
+
+- Model updates and updates to Writes
+
 # Version 2.2.3
 
 ## Date: 2022-10-20

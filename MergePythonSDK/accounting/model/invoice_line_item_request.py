@@ -74,7 +74,7 @@ class InvoiceLineItemRequest(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -98,6 +98,8 @@ class InvoiceLineItemRequest(ModelNormal):
             'item': (str, none_type, none_type,),  # noqa: E501
             'account': (str, none_type, none_type,),  # noqa: E501
             'tracking_category': (str, none_type, none_type,),  # noqa: E501
+            'integration_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'linked_account_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
         }
         return defined_types
 
@@ -115,6 +117,8 @@ class InvoiceLineItemRequest(ModelNormal):
         'item': 'item',  # noqa: E501
         'account': 'account',  # noqa: E501
         'tracking_category': 'tracking_category',  # noqa: E501
+        'integration_params': 'integration_params',  # noqa: E501
+        'linked_account_params': 'linked_account_params',  # noqa: E501
     }
 
     read_only_vars = {
@@ -166,6 +170,8 @@ class InvoiceLineItemRequest(ModelNormal):
             item (str, none_type): [optional]  # noqa: E501
             account (str, none_type): [optional]  # noqa: E501
             tracking_category (str, none_type): [optional]  # noqa: E501
+            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -206,6 +212,8 @@ class InvoiceLineItemRequest(ModelNormal):
         self.item = kwargs.get("item", None)
         self.account = kwargs.get("account", None)
         self.tracking_category = kwargs.get("tracking_category", None)
+        self.integration_params = kwargs.get("integration_params", None)
+        self.linked_account_params = kwargs.get("linked_account_params", None)
         return self
 
     required_properties = set([
@@ -260,6 +268,8 @@ class InvoiceLineItemRequest(ModelNormal):
             item (str, none_type): [optional]  # noqa: E501
             account (str, none_type): [optional]  # noqa: E501
             tracking_category (str, none_type): [optional]  # noqa: E501
+            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -297,5 +307,7 @@ class InvoiceLineItemRequest(ModelNormal):
         self.item: Union[str, none_type] = kwargs.get("item", None)
         self.account: Union[str, none_type] = kwargs.get("account", None)
         self.tracking_category: Union[str, none_type] = kwargs.get("tracking_category", None)
+        self.integration_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
+        self.linked_account_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
 
 

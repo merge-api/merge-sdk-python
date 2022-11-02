@@ -16,10 +16,8 @@ from unittest.mock import MagicMock
 import MergePythonSDK.accounting
 from MergePythonSDK.accounting.model.address_type_enum import AddressTypeEnum
 from MergePythonSDK.accounting.model.country_enum import CountryEnum
-from MergePythonSDK.accounting.model.state_enum import StateEnum
 globals()['AddressTypeEnum'] = AddressTypeEnum
 globals()['CountryEnum'] = CountryEnum
-globals()['StateEnum'] = StateEnum
 from MergePythonSDK.accounting.model.address import Address
 from MergePythonSDK.shared.api_client import ApiClient
 

@@ -24,8 +24,20 @@ class TestExpensesApi(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def test_expenses_create(self):
+        """Test case for expenses_create
+
+        """
+        pass
+
     def test_expenses_list(self):
         """Test case for expenses_list
+
+        """
+        pass
+
+    def test_expenses_meta_post_retrieve(self):
+        """Test case for expenses_meta_post_retrieve
 
         """
         pass

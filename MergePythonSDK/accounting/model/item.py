@@ -80,7 +80,7 @@ class Item(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -187,7 +187,7 @@ class Item(ModelNormal):
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             name (str, none_type): The item's name.. [optional]  # noqa: E501
-            status (bool, dict, float, int, list, str, none_type): The item's status.. [optional]  # noqa: E501
+            status (bool, date, datetime, dict, float, int, list, str, none_type): The item's status.. [optional]  # noqa: E501
             unit_price (float, none_type): The item's unit price.. [optional]  # noqa: E501
             purchase_price (float, none_type): The item's purchase price.. [optional]  # noqa: E501
             purchase_account (str, none_type): [optional]  # noqa: E501
@@ -289,7 +289,7 @@ class Item(ModelNormal):
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             name (str, none_type): The item's name.. [optional]  # noqa: E501
-            status (bool, dict, float, int, list, str, none_type): The item's status.. [optional]  # noqa: E501
+            status (bool, date, datetime, dict, float, int, list, str, none_type): The item's status.. [optional]  # noqa: E501
             unit_price (float, none_type): The item's unit price.. [optional]  # noqa: E501
             purchase_price (float, none_type): The item's purchase price.. [optional]  # noqa: E501
             purchase_account (str, none_type): [optional]  # noqa: E501
@@ -327,7 +327,7 @@ class Item(ModelNormal):
 
         self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
         self.name: Union[str, none_type] = kwargs.get("name", None)
-        self.status: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("status", None)
+        self.status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
         self.unit_price: Union[float, none_type] = kwargs.get("unit_price", None)
         self.purchase_price: Union[float, none_type] = kwargs.get("purchase_price", None)
         self.purchase_account: Union[str, none_type] = kwargs.get("purchase_account", None)

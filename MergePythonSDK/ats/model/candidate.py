@@ -84,7 +84,7 @@ class Candidate(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -120,7 +120,7 @@ class Candidate(ModelNormal):
             'applications': ([str, none_type], none_type,),  # noqa: E501
             'attachments': ([str, none_type], none_type,),  # noqa: E501
             'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
-            'custom_fields': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'custom_fields': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
             'remote_was_deleted': (bool, none_type,),  # noqa: E501
         }
         expands_types = {"applications": "Application", "attachments": "Attachment"}
@@ -226,7 +226,7 @@ class Candidate(ModelNormal):
             applications ([str, none_type]): Array of `Application` object IDs.. [optional]  # noqa: E501
             attachments ([str, none_type]): Array of `Attachment` object IDs.. [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
-            custom_fields ({str: (bool, dict, float, int, list, str, none_type)}, none_type): Custom fields configured for a given model.. [optional]  # noqa: E501
+            custom_fields ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Custom fields configured for a given model.. [optional]  # noqa: E501
             remote_was_deleted (bool): [optional]  # noqa: E501
         """
 
@@ -348,7 +348,7 @@ class Candidate(ModelNormal):
             applications ([str, none_type]): Array of `Application` object IDs.. [optional]  # noqa: E501
             attachments ([str, none_type]): Array of `Attachment` object IDs.. [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
-            custom_fields ({str: (bool, dict, float, int, list, str, none_type)}, none_type): Custom fields configured for a given model.. [optional]  # noqa: E501
+            custom_fields ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Custom fields configured for a given model.. [optional]  # noqa: E501
             remote_was_deleted (bool): [optional]  # noqa: E501
         """
 
@@ -396,7 +396,7 @@ class Candidate(ModelNormal):
         self.tags: Union[List[str]] = kwargs.get("tags", list())
         self.applications: Union[List[str, none_type]] = kwargs.get("applications", list())
         self.attachments: Union[List[str, none_type]] = kwargs.get("attachments", list())
-        self.custom_fields: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("custom_fields", None)
+        self.custom_fields: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("custom_fields", None)
 
         # Read only properties
         self._id: Union[str] = kwargs.get("id", str())

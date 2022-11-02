@@ -11,11 +11,11 @@ Name | Type | Description | Notes
 **account_number** | **str, none_type** | The account number. | [optional] 
 **routing_number** | **str, none_type** | The routing number. | [optional] 
 **bank_name** | **str, none_type** | The bank name. | [optional] 
-**account_type** | **bool, dict, float, int, list, str, none_type** | The bank account type | [optional] 
+**account_type** | **bool, date, datetime, dict, float, int, list, str, none_type** | The bank account type | [optional] 
 **remote_created_at** | **datetime, none_type** | When the matching bank object was created in the third party system. | [optional] 
 **remote_data** | [**[RemoteData], none_type**](RemoteData.md) |  | [optional] [readonly] 
 **remote_was_deleted** | **bool** | Indicates whether or not this object has been deleted by third party webhooks. | [optional] [readonly] 
-**any string name** | **bool, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

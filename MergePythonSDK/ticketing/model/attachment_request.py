@@ -74,7 +74,7 @@ class AttachmentRequest(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -97,6 +97,8 @@ class AttachmentRequest(ModelNormal):
             'content_type': (str, none_type, none_type,),  # noqa: E501
             'uploaded_by': (str, none_type, none_type,),  # noqa: E501
             'remote_created_at': (datetime, none_type, none_type,),  # noqa: E501
+            'integration_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'linked_account_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
         }
         return defined_types
 
@@ -113,6 +115,8 @@ class AttachmentRequest(ModelNormal):
         'content_type': 'content_type',  # noqa: E501
         'uploaded_by': 'uploaded_by',  # noqa: E501
         'remote_created_at': 'remote_created_at',  # noqa: E501
+        'integration_params': 'integration_params',  # noqa: E501
+        'linked_account_params': 'linked_account_params',  # noqa: E501
     }
 
     read_only_vars = {
@@ -163,6 +167,8 @@ class AttachmentRequest(ModelNormal):
             content_type (str, none_type): The attachment's file format.. [optional]  # noqa: E501
             uploaded_by (str, none_type): [optional]  # noqa: E501
             remote_created_at (datetime, none_type): When the third party's attachment was created.. [optional]  # noqa: E501
+            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -202,6 +208,8 @@ class AttachmentRequest(ModelNormal):
         self.content_type = kwargs.get("content_type", None)
         self.uploaded_by = kwargs.get("uploaded_by", None)
         self.remote_created_at = kwargs.get("remote_created_at", None)
+        self.integration_params = kwargs.get("integration_params", None)
+        self.linked_account_params = kwargs.get("linked_account_params", None)
         return self
 
     required_properties = set([
@@ -255,6 +263,8 @@ class AttachmentRequest(ModelNormal):
             content_type (str, none_type): The attachment's file format.. [optional]  # noqa: E501
             uploaded_by (str, none_type): [optional]  # noqa: E501
             remote_created_at (datetime, none_type): When the third party's attachment was created.. [optional]  # noqa: E501
+            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -291,5 +301,7 @@ class AttachmentRequest(ModelNormal):
         self.content_type: Union[str, none_type] = kwargs.get("content_type", None)
         self.uploaded_by: Union[str, none_type] = kwargs.get("uploaded_by", None)
         self.remote_created_at: Union[datetime, none_type] = kwargs.get("remote_created_at", None)
+        self.integration_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
+        self.linked_account_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
 
 

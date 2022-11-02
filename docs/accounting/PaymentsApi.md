@@ -4,9 +4,122 @@ All URIs are relative to *https://api.merge.dev/api/accounting/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**payments_create**](PaymentsApi.md#payments_create) | **POST** /payments | 
 [**payments_list**](PaymentsApi.md#payments_list) | **GET** /payments | 
+[**payments_meta_post_retrieve**](PaymentsApi.md#payments_meta_post_retrieve) | **GET** /payments/meta/post | 
 [**payments_retrieve**](PaymentsApi.md#payments_retrieve) | **GET** /payments/{id} | 
 
+
+# **payments_create**
+> PaymentResponse payments_create(payment_endpoint_request)
+
+
+
+Creates a `Payment` object with the given values.
+
+### Example
+
+* Api Key Authentication (accountTokenAuth):
+* Bearer Authentication (bearerAuth):
+
+```python
+import time
+import MergePythonSDK.accounting
+from MergePythonSDK.accounting.api import payments_api
+from MergePythonSDK.accounting.model.payment_endpoint_request import PaymentEndpointRequest
+from MergePythonSDK.accounting.model.payment_response import PaymentResponse
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.merge.dev/api/accounting/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = MergePythonSDK.accounting.Configuration(
+    host = "https://api.merge.dev/api/accounting/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: accountTokenAuth
+configuration.api_key['accountTokenAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['accountTokenAuth'] = 'Bearer'
+
+# Configure Bearer authorization: bearerAuth
+configuration = MergePythonSDK.accounting.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with MergePythonSDK.accounting.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = payments_api.PaymentsApi(api_client)
+    payment_endpoint_request = PaymentEndpointRequest(
+        model=PaymentRequest(
+            remote_id="987300",
+            transaction_date=dateutil_parser('2020-03-31T00:00:00Z'),
+            contact="5b3c1341-a20f-4e51-b72c-f3830a16c97b",
+            account="d6e687d6-0c36-48a1-8114-35324b5cb38f",
+            total_amount=50.0,
+            remote_updated_at=dateutil_parser('2020-03-31T00:00:00Z'),
+            integration_params={
+                "key": None,
+            },
+            linked_account_params={
+                "key": None,
+            },
+        ),
+    ) # PaymentEndpointRequest | 
+    is_debug_mode = True # bool | Whether to include debug fields (such as log file links) in the response. (optional)
+    run_async = True # bool | Whether or not third-party updates should be run asynchronously. (optional)
+
+    # example passing only required values which don't have defaults set
+    try:
+        api_response = api_instance.payments_create(payment_endpoint_request)
+        pprint(api_response)
+    except MergePythonSDK.accounting.ApiException as e:
+        print("Exception when calling PaymentsApi->payments_create: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        api_response = api_instance.payments_create(payment_endpoint_request, is_debug_mode=is_debug_mode, run_async=run_async)
+        pprint(api_response)
+    except MergePythonSDK.accounting.ApiException as e:
+        print("Exception when calling PaymentsApi->payments_create: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **payment_endpoint_request** | [**PaymentEndpointRequest**](PaymentEndpointRequest.md)|  |
+ **is_debug_mode** | **bool**| Whether to include debug fields (such as log file links) in the response. | [optional]
+ **run_async** | **bool**| Whether or not third-party updates should be run asynchronously. | [optional]
+
+### Return type
+
+[**PaymentResponse**](PaymentResponse.md)
+
+### Authorization
+
+[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **payments_list**
 > PaginatedPaymentList payments_list()
@@ -95,6 +208,85 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**PaginatedPaymentList**](PaginatedPaymentList.md)
+
+### Authorization
+
+[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **payments_meta_post_retrieve**
+> MetaResponse payments_meta_post_retrieve()
+
+
+
+Returns metadata for `Payment` POSTs.
+
+### Example
+
+* Api Key Authentication (accountTokenAuth):
+* Bearer Authentication (bearerAuth):
+
+```python
+import time
+import MergePythonSDK.accounting
+from MergePythonSDK.accounting.api import payments_api
+from MergePythonSDK.accounting.model.meta_response import MetaResponse
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.merge.dev/api/accounting/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = MergePythonSDK.accounting.Configuration(
+    host = "https://api.merge.dev/api/accounting/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: accountTokenAuth
+configuration.api_key['accountTokenAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['accountTokenAuth'] = 'Bearer'
+
+# Configure Bearer authorization: bearerAuth
+configuration = MergePythonSDK.accounting.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with MergePythonSDK.accounting.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = payments_api.PaymentsApi(api_client)
+
+    # example, this endpoint has no required or optional parameters
+    try:
+        api_response = api_instance.payments_meta_post_retrieve()
+        pprint(api_response)
+    except MergePythonSDK.accounting.ApiException as e:
+        print("Exception when calling PaymentsApi->payments_meta_post_retrieve: %s\n" % e)
+```
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**MetaResponse**](MetaResponse.md)
 
 ### Authorization
 

@@ -407,6 +407,8 @@ This endpoint does not need any parameter.
 
 
 
+Updates an `Opportunity` object with the given `id`.
+
 ### Example
 
 * Api Key Authentication (accountTokenAuth):

@@ -80,7 +80,7 @@ class InvoiceRequest(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -113,6 +113,8 @@ class InvoiceRequest(ModelNormal):
             'balance': (float, none_type, none_type,),  # noqa: E501
             'remote_updated_at': (datetime, none_type, none_type,),  # noqa: E501
             'payments': ([str, none_type], none_type,),  # noqa: E501
+            'integration_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'linked_account_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
         }
         return defined_types
 
@@ -138,6 +140,8 @@ class InvoiceRequest(ModelNormal):
         'balance': 'balance',  # noqa: E501
         'remote_updated_at': 'remote_updated_at',  # noqa: E501
         'payments': 'payments',  # noqa: E501
+        'integration_params': 'integration_params',  # noqa: E501
+        'linked_account_params': 'linked_account_params',  # noqa: E501
     }
 
     read_only_vars = {
@@ -182,14 +186,14 @@ class InvoiceRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
-            type (bool, dict, float, int, list, str, none_type): The invoice's type.. [optional]  # noqa: E501
+            type (bool, date, datetime, dict, float, int, list, str, none_type): The invoice's type.. [optional]  # noqa: E501
             contact (str, none_type): [optional]  # noqa: E501
             number (str, none_type): The invoice's number.. [optional]  # noqa: E501
             issue_date (datetime, none_type): The invoice's issue date.. [optional]  # noqa: E501
             due_date (datetime, none_type): The invoice's due date.. [optional]  # noqa: E501
             paid_on_date (datetime, none_type): The invoice's paid date.. [optional]  # noqa: E501
             memo (str, none_type): The invoice's private note.. [optional]  # noqa: E501
-            currency (bool, dict, float, int, list, str, none_type): The invoice's currency.. [optional]  # noqa: E501
+            currency (bool, date, datetime, dict, float, int, list, str, none_type): The invoice's currency.. [optional]  # noqa: E501
             total_discount (float, none_type): The invoice's total discount.. [optional]  # noqa: E501
             sub_total (float, none_type): The invoice's sub-total.. [optional]  # noqa: E501
             total_tax_amount (float, none_type): The invoice's total tax amount.. [optional]  # noqa: E501
@@ -197,6 +201,8 @@ class InvoiceRequest(ModelNormal):
             balance (float, none_type): The invoice's remaining balance.. [optional]  # noqa: E501
             remote_updated_at (datetime, none_type): When the third party's invoice entry was updated.. [optional]  # noqa: E501
             payments ([str, none_type]): Array of `Payment` object IDs.. [optional]  # noqa: E501
+            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -245,6 +251,8 @@ class InvoiceRequest(ModelNormal):
         self.balance = kwargs.get("balance", None)
         self.remote_updated_at = kwargs.get("remote_updated_at", None)
         self.payments = kwargs.get("payments", None)
+        self.integration_params = kwargs.get("integration_params", None)
+        self.linked_account_params = kwargs.get("linked_account_params", None)
         return self
 
     required_properties = set([
@@ -292,14 +300,14 @@ class InvoiceRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
-            type (bool, dict, float, int, list, str, none_type): The invoice's type.. [optional]  # noqa: E501
+            type (bool, date, datetime, dict, float, int, list, str, none_type): The invoice's type.. [optional]  # noqa: E501
             contact (str, none_type): [optional]  # noqa: E501
             number (str, none_type): The invoice's number.. [optional]  # noqa: E501
             issue_date (datetime, none_type): The invoice's issue date.. [optional]  # noqa: E501
             due_date (datetime, none_type): The invoice's due date.. [optional]  # noqa: E501
             paid_on_date (datetime, none_type): The invoice's paid date.. [optional]  # noqa: E501
             memo (str, none_type): The invoice's private note.. [optional]  # noqa: E501
-            currency (bool, dict, float, int, list, str, none_type): The invoice's currency.. [optional]  # noqa: E501
+            currency (bool, date, datetime, dict, float, int, list, str, none_type): The invoice's currency.. [optional]  # noqa: E501
             total_discount (float, none_type): The invoice's total discount.. [optional]  # noqa: E501
             sub_total (float, none_type): The invoice's sub-total.. [optional]  # noqa: E501
             total_tax_amount (float, none_type): The invoice's total tax amount.. [optional]  # noqa: E501
@@ -307,6 +315,8 @@ class InvoiceRequest(ModelNormal):
             balance (float, none_type): The invoice's remaining balance.. [optional]  # noqa: E501
             remote_updated_at (datetime, none_type): When the third party's invoice entry was updated.. [optional]  # noqa: E501
             payments ([str, none_type]): Array of `Payment` object IDs.. [optional]  # noqa: E501
+            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -337,14 +347,14 @@ class InvoiceRequest(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
-        self.type: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("type", None)
+        self.type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("type", None)
         self.contact: Union[str, none_type] = kwargs.get("contact", None)
         self.number: Union[str, none_type] = kwargs.get("number", None)
         self.issue_date: Union[datetime, none_type] = kwargs.get("issue_date", None)
         self.due_date: Union[datetime, none_type] = kwargs.get("due_date", None)
         self.paid_on_date: Union[datetime, none_type] = kwargs.get("paid_on_date", None)
         self.memo: Union[str, none_type] = kwargs.get("memo", None)
-        self.currency: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("currency", None)
+        self.currency: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("currency", None)
         self.total_discount: Union[float, none_type] = kwargs.get("total_discount", None)
         self.sub_total: Union[float, none_type] = kwargs.get("sub_total", None)
         self.total_tax_amount: Union[float, none_type] = kwargs.get("total_tax_amount", None)
@@ -352,5 +362,7 @@ class InvoiceRequest(ModelNormal):
         self.balance: Union[float, none_type] = kwargs.get("balance", None)
         self.remote_updated_at: Union[datetime, none_type] = kwargs.get("remote_updated_at", None)
         self.payments: Union[List[str, none_type]] = kwargs.get("payments", list())
+        self.integration_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
+        self.linked_account_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
 
 

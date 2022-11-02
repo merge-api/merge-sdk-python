@@ -82,7 +82,7 @@ class Job(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -200,7 +200,7 @@ class Job(ModelNormal):
             name (str, none_type): The job's name.. [optional]  # noqa: E501
             description (str, none_type): The job's description.. [optional]  # noqa: E501
             code (str, none_type): The job's code. Typically an additional identifier used to reference the particular job that is displayed on the ATS.. [optional]  # noqa: E501
-            status (bool, dict, float, int, list, str, none_type): The job's status.. [optional]  # noqa: E501
+            status (bool, date, datetime, dict, float, int, list, str, none_type): The job's status.. [optional]  # noqa: E501
             job_posting_urls ([Url]): [optional]  # noqa: E501
             remote_created_at (datetime, none_type): When the third party's job was created.. [optional]  # noqa: E501
             remote_updated_at (datetime, none_type): When the third party's job was updated.. [optional]  # noqa: E501
@@ -312,7 +312,7 @@ class Job(ModelNormal):
             name (str, none_type): The job's name.. [optional]  # noqa: E501
             description (str, none_type): The job's description.. [optional]  # noqa: E501
             code (str, none_type): The job's code. Typically an additional identifier used to reference the particular job that is displayed on the ATS.. [optional]  # noqa: E501
-            status (bool, dict, float, int, list, str, none_type): The job's status.. [optional]  # noqa: E501
+            status (bool, date, datetime, dict, float, int, list, str, none_type): The job's status.. [optional]  # noqa: E501
             job_posting_urls ([Url]): [optional]  # noqa: E501
             remote_created_at (datetime, none_type): When the third party's job was created.. [optional]  # noqa: E501
             remote_updated_at (datetime, none_type): When the third party's job was updated.. [optional]  # noqa: E501
@@ -356,7 +356,7 @@ class Job(ModelNormal):
         self.name: Union[str, none_type] = kwargs.get("name", None)
         self.description: Union[str, none_type] = kwargs.get("description", None)
         self.code: Union[str, none_type] = kwargs.get("code", None)
-        self.status: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("status", None)
+        self.status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
         self.job_posting_urls: Union[List["Url"]] = kwargs.get("job_posting_urls", None)
         self.remote_created_at: Union[datetime, none_type] = kwargs.get("remote_created_at", None)
         self.remote_updated_at: Union[datetime, none_type] = kwargs.get("remote_updated_at", None)
