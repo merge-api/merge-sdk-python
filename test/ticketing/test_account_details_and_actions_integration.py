@@ -14,7 +14,7 @@ import unittest
 from unittest.mock import MagicMock
 
 import MergePythonSDK.ticketing
-from MergePythonSDK.ticketing.model.categories_enum import CategoriesEnum
+from MergePythonSDK.shared.model.categories_enum import CategoriesEnum
 from MergePythonSDK.ticketing.model.model_operation import ModelOperation
 globals()['CategoriesEnum'] = CategoriesEnum
 globals()['ModelOperation'] = ModelOperation
