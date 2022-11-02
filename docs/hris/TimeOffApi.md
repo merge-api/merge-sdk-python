@@ -67,6 +67,12 @@ with MergePythonSDK.hris.ApiClient(configuration) as api_client:
             request_type=None,
             start_time=dateutil_parser('2020-11-10T00:00:00Z'),
             end_time=dateutil_parser('2020-11-17T00:00:00Z'),
+            integration_params={
+                "key": None,
+            },
+            linked_account_params={
+                "key": None,
+            },
         ),
     ) # TimeOffEndpointRequest | 
     is_debug_mode = True # bool | Whether to include debug fields (such as log file links) in the response. (optional)

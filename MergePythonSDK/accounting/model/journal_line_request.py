@@ -96,6 +96,8 @@ class JournalLineRequest(ModelNormal):
             'tracking_category': (str, none_type, none_type,),  # noqa: E501
             'contact': (str, none_type, none_type,),  # noqa: E501
             'description': (str, none_type, none_type,),  # noqa: E501
+            'integration_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'linked_account_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
         }
         return defined_types
 
@@ -111,6 +113,8 @@ class JournalLineRequest(ModelNormal):
         'tracking_category': 'tracking_category',  # noqa: E501
         'contact': 'contact',  # noqa: E501
         'description': 'description',  # noqa: E501
+        'integration_params': 'integration_params',  # noqa: E501
+        'linked_account_params': 'linked_account_params',  # noqa: E501
     }
 
     read_only_vars = {
@@ -160,6 +164,8 @@ class JournalLineRequest(ModelNormal):
             tracking_category (str, none_type): [optional]  # noqa: E501
             contact (str, none_type): [optional]  # noqa: E501
             description (str, none_type): The line's description.. [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -198,6 +204,8 @@ class JournalLineRequest(ModelNormal):
         self.tracking_category = kwargs.get("tracking_category", None)
         self.contact = kwargs.get("contact", None)
         self.description = kwargs.get("description", None)
+        self.integration_params = kwargs.get("integration_params", None)
+        self.linked_account_params = kwargs.get("linked_account_params", None)
         return self
 
     required_properties = set([
@@ -250,6 +258,8 @@ class JournalLineRequest(ModelNormal):
             tracking_category (str, none_type): [optional]  # noqa: E501
             contact (str, none_type): [optional]  # noqa: E501
             description (str, none_type): The line's description.. [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -285,5 +295,7 @@ class JournalLineRequest(ModelNormal):
         self.tracking_category: Union[str, none_type] = kwargs.get("tracking_category", None)
         self.contact: Union[str, none_type] = kwargs.get("contact", None)
         self.description: Union[str, none_type] = kwargs.get("description", None)
+        self.integration_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
+        self.linked_account_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
 
 

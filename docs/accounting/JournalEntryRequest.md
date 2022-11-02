@@ -12,6 +12,8 @@ Name | Type | Description | Notes
 **payments** | **[str, none_type]** | Array of &#x60;Payment&#x60; object IDs. | [optional] 
 **memo** | **str, none_type** | The journal entry&#39;s private note. | [optional] 
 **currency** | **bool, dict, float, int, list, str, none_type** | The journal&#39;s currency. | [optional] 
+**integration_params** | **{str: (bool, dict, float, int, list, str, none_type)}, none_type** |  | [optional] 
+**linked_account_params** | **{str: (bool, dict, float, int, list, str, none_type)}, none_type** |  | [optional] 
 **any string name** | **bool, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

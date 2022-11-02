@@ -22,8 +22,11 @@ from MergePythonSDK.shared.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
+from MergePythonSDK.accounting.model.meta_response import MetaResponse
 from MergePythonSDK.shared.model.merge_paginated_response import MergePaginatedResponse
 from MergePythonSDK.accounting.model.purchase_order import PurchaseOrder
+from MergePythonSDK.accounting.model.purchase_order_endpoint_request import PurchaseOrderEndpointRequest
+from MergePythonSDK.accounting.model.purchase_order_response import PurchaseOrderResponse
 
 
 class PurchaseOrdersApi(object):
@@ -37,6 +40,71 @@ class PurchaseOrdersApi(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
+        self.purchase_orders_create_endpoint = _Endpoint(
+            settings={
+                'response_type': (PurchaseOrderResponse,),
+                'auth': [
+                    'accountTokenAuth',
+                    'bearerAuth'
+                ],
+                'endpoint_path': '/accounting/v1/purchase-orders',
+                'operation_id': 'purchase_orders_create',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'purchase_order_endpoint_request',
+                    'is_debug_mode',
+                    'run_async',
+                ],
+                'required': [
+                    'purchase_order_endpoint_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'purchase_order_endpoint_request':
+                        (PurchaseOrderEndpointRequest,),
+                    'is_debug_mode':
+                        (bool,),
+                    'run_async':
+                        (bool,),
+                },
+                'attribute_map': {
+                    'is_debug_mode': 'is_debug_mode',
+                    'run_async': 'run_async',
+                },
+                'location_map': {
+                    'purchase_order_endpoint_request': 'body',
+                    'is_debug_mode': 'query',
+                    'run_async': 'query',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json',
+                    'application/x-www-form-urlencoded',
+                    'multipart/form-data'
+                ]
+            },
+            api_client=api_client
+        )
         self.purchase_orders_list_endpoint = _Endpoint(
             settings={
                 'response_type': (MergePaginatedResponse(PurchaseOrder),),
@@ -150,6 +218,51 @@ class PurchaseOrdersApi(object):
             },
             api_client=api_client
         )
+        self.purchase_orders_meta_post_retrieve_endpoint = _Endpoint(
+            settings={
+                'response_type': (MetaResponse,),
+                'auth': [
+                    'accountTokenAuth',
+                    'bearerAuth'
+                ],
+                'endpoint_path': '/accounting/v1/purchase-orders/meta/post',
+                'operation_id': 'purchase_orders_meta_post_retrieve',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
         self.purchase_orders_retrieve_endpoint = _Endpoint(
             settings={
                 'response_type': (PurchaseOrder,),
@@ -229,6 +342,91 @@ class PurchaseOrdersApi(object):
             },
             api_client=api_client
         )
+
+    def purchase_orders_create(
+        self,
+        purchase_order_endpoint_request,
+        **kwargs
+    ) -> "PurchaseOrderResponse":
+        """purchase_orders_create  # noqa: E501
+
+        Creates a `PurchaseOrder` object with the given values.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.purchase_orders_create(purchase_order_endpoint_request, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            purchase_order_endpoint_request (PurchaseOrderEndpointRequest):
+
+        Keyword Args:
+            is_debug_mode (bool): Whether to include debug fields (such as log file links) in the response.. [optional]
+            run_async (bool): Whether or not third-party updates should be run asynchronously.. [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            _request_auths (list): set to override the auth_settings for an a single
+                request; this effectively ignores the authentication
+                in the spec for a single request.
+                Default is None
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            PurchaseOrderResponse
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['purchase_order_endpoint_request'] = \
+            purchase_order_endpoint_request
+        return self.purchase_orders_create_endpoint.call_with_http_info(**kwargs)
 
     def purchase_orders_list(
         self,
@@ -318,6 +516,84 @@ class PurchaseOrdersApi(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
         return self.purchase_orders_list_endpoint.call_with_http_info(**kwargs)
+
+    def purchase_orders_meta_post_retrieve(
+        self,
+        **kwargs
+    ) -> "MetaResponse":
+        """purchase_orders_meta_post_retrieve  # noqa: E501
+
+        Returns metadata for `PurchaseOrder` POSTs.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.purchase_orders_meta_post_retrieve(async_req=True)
+        >>> result = thread.get()
+
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            _request_auths (list): set to override the auth_settings for an a single
+                request; this effectively ignores the authentication
+                in the spec for a single request.
+                Default is None
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            MetaResponse
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        return self.purchase_orders_meta_post_retrieve_endpoint.call_with_http_info(**kwargs)
 
     def purchase_orders_retrieve(
         self,

@@ -73,18 +73,36 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
                 PhoneNumberRequest(
                     value="+3198675309",
                     phone_number_type=None,
+                    integration_params={
+                        "key": None,
+                    },
+                    linked_account_params={
+                        "key": None,
+                    },
                 ),
             ],
             email_addresses=[
                 EmailAddressRequest(
                     value="merge_is_hiring@merge.dev",
                     email_address_type=None,
+                    integration_params={
+                        "key": None,
+                    },
+                    linked_account_params={
+                        "key": None,
+                    },
                 ),
             ],
             urls=[
                 UrlRequest(
                     value="http://alturl.com/p749b",
                     url_type=None,
+                    integration_params={
+                        "key": None,
+                    },
+                    linked_account_params={
+                        "key": None,
+                    },
                 ),
             ],
             tags=["High-Priority"],

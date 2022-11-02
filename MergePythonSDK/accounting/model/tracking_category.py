@@ -105,7 +105,7 @@ class TrackingCategory(ModelNormal):
             'name': (str, none_type, none_type,),  # noqa: E501
             'status': (Status7d1Enum, str, none_type,),
             'category_type': (CategoryTypeEnum, str, none_type,),
-            'parent_category': (str, none_type,),  # noqa: E501
+            'parent_category': (str, none_type, none_type,),  # noqa: E501
             'remote_was_deleted': (bool, none_type,),  # noqa: E501
         }
         return defined_types
@@ -176,6 +176,7 @@ class TrackingCategory(ModelNormal):
             name (str, none_type): The tracking category's name.. [optional]  # noqa: E501
             status (bool, dict, float, int, list, str, none_type): The tracking category's status.. [optional]  # noqa: E501
             category_type (bool, dict, float, int, list, str, none_type): The tracking category’s type.. [optional]  # noqa: E501
+            parent_category (str, none_type): [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
         """
 
@@ -271,6 +272,7 @@ class TrackingCategory(ModelNormal):
             name (str, none_type): The tracking category's name.. [optional]  # noqa: E501
             status (bool, dict, float, int, list, str, none_type): The tracking category's status.. [optional]  # noqa: E501
             category_type (bool, dict, float, int, list, str, none_type): The tracking category’s type.. [optional]  # noqa: E501
+            parent_category (str, none_type): [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
         """
 

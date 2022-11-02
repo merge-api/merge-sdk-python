@@ -476,7 +476,7 @@ class Employee(ModelNormal):
         self.employment_status: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("employment_status", None)
         self.termination_date: Union[datetime, none_type] = kwargs.get("termination_date", None)
         self.avatar: Union[str, none_type] = kwargs.get("avatar", None)
-        self.custom_fields: Union[Dict[str, object], none_type] = kwargs.get("custom_fields", None)
+        self.custom_fields: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("custom_fields", None)
 
         # Read only properties
         self._id: Union[str] = kwargs.get("id", str())

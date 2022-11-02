@@ -109,6 +109,8 @@ class TimeOffRequest(ModelNormal):
             'request_type': (RequestTypeEnum, str, none_type,),
             'start_time': (datetime, none_type, none_type,),  # noqa: E501
             'end_time': (datetime, none_type, none_type,),  # noqa: E501
+            'integration_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'linked_account_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
         }
         return defined_types
 
@@ -128,6 +130,8 @@ class TimeOffRequest(ModelNormal):
         'request_type': 'request_type',  # noqa: E501
         'start_time': 'start_time',  # noqa: E501
         'end_time': 'end_time',  # noqa: E501
+        'integration_params': 'integration_params',  # noqa: E501
+        'linked_account_params': 'linked_account_params',  # noqa: E501
     }
 
     read_only_vars = {
@@ -181,6 +185,8 @@ class TimeOffRequest(ModelNormal):
             request_type (bool, dict, float, int, list, str, none_type): The type of time off request.. [optional]  # noqa: E501
             start_time (datetime, none_type): The day and time of the start of the time requested off.. [optional]  # noqa: E501
             end_time (datetime, none_type): The day and time of the end of the time requested off.. [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -223,6 +229,8 @@ class TimeOffRequest(ModelNormal):
         self.request_type = kwargs.get("request_type", None)
         self.start_time = kwargs.get("start_time", None)
         self.end_time = kwargs.get("end_time", None)
+        self.integration_params = kwargs.get("integration_params", None)
+        self.linked_account_params = kwargs.get("linked_account_params", None)
         return self
 
     required_properties = set([
@@ -279,6 +287,8 @@ class TimeOffRequest(ModelNormal):
             request_type (bool, dict, float, int, list, str, none_type): The type of time off request.. [optional]  # noqa: E501
             start_time (datetime, none_type): The day and time of the start of the time requested off.. [optional]  # noqa: E501
             end_time (datetime, none_type): The day and time of the end of the time requested off.. [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -318,5 +328,7 @@ class TimeOffRequest(ModelNormal):
         self.request_type: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("request_type", None)
         self.start_time: Union[datetime, none_type] = kwargs.get("start_time", None)
         self.end_time: Union[datetime, none_type] = kwargs.get("end_time", None)
+        self.integration_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
+        self.linked_account_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
 
 

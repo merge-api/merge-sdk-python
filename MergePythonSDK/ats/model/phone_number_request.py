@@ -97,6 +97,8 @@ class PhoneNumberRequest(ModelNormal):
         defined_types = {
             'value': (str, none_type, none_type,),  # noqa: E501
             'phone_number_type': (PhoneNumberTypeEnum, str, none_type,),
+            'integration_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'linked_account_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
         }
         return defined_types
 
@@ -108,6 +110,8 @@ class PhoneNumberRequest(ModelNormal):
     attribute_map = {
         'value': 'value',  # noqa: E501
         'phone_number_type': 'phone_number_type',  # noqa: E501
+        'integration_params': 'integration_params',  # noqa: E501
+        'linked_account_params': 'linked_account_params',  # noqa: E501
     }
 
     read_only_vars = {
@@ -153,6 +157,8 @@ class PhoneNumberRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             value (str, none_type): The phone number.. [optional]  # noqa: E501
             phone_number_type (bool, dict, float, int, list, str, none_type): The type of phone number.. [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -187,6 +193,8 @@ class PhoneNumberRequest(ModelNormal):
 
         self.value = kwargs.get("value", None)
         self.phone_number_type = kwargs.get("phone_number_type", None)
+        self.integration_params = kwargs.get("integration_params", None)
+        self.linked_account_params = kwargs.get("linked_account_params", None)
         return self
 
     required_properties = set([
@@ -235,6 +243,8 @@ class PhoneNumberRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             value (str, none_type): The phone number.. [optional]  # noqa: E501
             phone_number_type (bool, dict, float, int, list, str, none_type): The type of phone number.. [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -266,5 +276,7 @@ class PhoneNumberRequest(ModelNormal):
 
         self.value: Union[str, none_type] = kwargs.get("value", None)
         self.phone_number_type: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("phone_number_type", None)
+        self.integration_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
+        self.linked_account_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
 
 

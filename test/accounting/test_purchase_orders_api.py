@@ -24,8 +24,20 @@ class TestPurchaseOrdersApi(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def test_purchase_orders_create(self):
+        """Test case for purchase_orders_create
+
+        """
+        pass
+
     def test_purchase_orders_list(self):
         """Test case for purchase_orders_list
+
+        """
+        pass
+
+    def test_purchase_orders_meta_post_retrieve(self):
+        """Test case for purchase_orders_meta_post_retrieve
 
         """
         pass

@@ -54,6 +54,7 @@ class UsersApi(object):
                     'created_after',
                     'created_before',
                     'cursor',
+                    'email_address',
                     'expand',
                     'include_deleted_data',
                     'include_remote_data',
@@ -64,6 +65,7 @@ class UsersApi(object):
                 ],
                 'required': [],
                 'nullable': [
+                    'email_address',
                     'remote_id',
                 ],
                 'enum': [
@@ -88,6 +90,8 @@ class UsersApi(object):
                         (datetime,),
                     'cursor':
                         (str,),
+                    'email_address':
+                        (str, none_type,),
                     'expand':
                         (str,),
                     'include_deleted_data':
@@ -107,6 +111,7 @@ class UsersApi(object):
                     'created_after': 'created_after',
                     'created_before': 'created_before',
                     'cursor': 'cursor',
+                    'email_address': 'email_address',
                     'expand': 'expand',
                     'include_deleted_data': 'include_deleted_data',
                     'include_remote_data': 'include_remote_data',
@@ -119,6 +124,7 @@ class UsersApi(object):
                     'created_after': 'query',
                     'created_before': 'query',
                     'cursor': 'query',
+                    'email_address': 'query',
                     'expand': 'query',
                     'include_deleted_data': 'query',
                     'include_remote_data': 'query',
@@ -224,6 +230,7 @@ class UsersApi(object):
             created_after (datetime): If provided, will only return objects created after this datetime.. [optional]
             created_before (datetime): If provided, will only return objects created before this datetime.. [optional]
             cursor (str): The pagination cursor value.. [optional]
+            email_address (str, none_type): If provided, will only return users with emails equal to this value (case insensitive).. [optional]
             expand (str): Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.. [optional] if omitted the server will use the default value of "teams"
             include_deleted_data (bool): Whether to include data that was marked as deleted by third party webhooks.. [optional]
             include_remote_data (bool): Whether to include the original data Merge fetched from the third-party to produce these models.. [optional]

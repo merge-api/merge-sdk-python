@@ -24,8 +24,20 @@ class TestPaymentsApi(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def test_payments_create(self):
+        """Test case for payments_create
+
+        """
+        pass
+
     def test_payments_list(self):
         """Test case for payments_list
+
+        """
+        pass
+
+    def test_payments_meta_post_retrieve(self):
+        """Test case for payments_meta_post_retrieve
 
         """
         pass

@@ -1,3 +1,11 @@
+# Version 2.2.4
+
+## Date: 2022-11-2
+
+- `integration_params` and `linked_account_params` properties have long been a part of our POST endpoints but were missing from HRIS, Accounting and Ticketing model definitions. They are now usable.
+- New query params for Ticketing category list tickets endpoint and list user endpoints. See docs.merge.dev for a full list.
+- BETA - selective sync is Merge's upcoming feature to limit the amount of data ingested by dynamically setting query params or request properties to integrations to filter before it reaches Merge. This feature is under active development but the initial models are in this version. Subject to (likely minor) change. Feature limited by plan, consult your customer success contact before using.
+
 # Version 2.2.3
 
 ## Date: 2022-10-20

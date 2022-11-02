@@ -70,18 +70,36 @@ with MergePythonSDK.crm.ApiClient(configuration) as api_client:
                     postal_code="94122",
                     country=None,
                     address_type=None,
+                    integration_params={
+                        "key": None,
+                    },
+                    linked_account_params={
+                        "key": None,
+                    },
                 ),
             ],
             email_addresses=[
                 EmailAddressRequest(
                     email_address="merge_is_hiring@merge.dev",
                     email_address_type="Work",
+                    integration_params={
+                        "key": None,
+                    },
+                    linked_account_params={
+                        "key": None,
+                    },
                 ),
             ],
             phone_numbers=[
                 PhoneNumberRequest(
                     phone_number="+3198675309",
                     phone_number_type="Mobile",
+                    integration_params={
+                        "key": None,
+                    },
+                    linked_account_params={
+                        "key": None,
+                    },
                 ),
             ],
             last_activity_at=dateutil_parser('2022-02-10T00:00:00Z'),

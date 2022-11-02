@@ -102,6 +102,7 @@ class PatchedTicketRequest(ModelNormal):
         defined_types = {
             'name': (str, none_type, none_type,),  # noqa: E501
             'assignees': ([str, none_type], none_type,),  # noqa: E501
+            'creator': (str, none_type, none_type,),  # noqa: E501
             'due_date': (datetime, none_type, none_type,),  # noqa: E501
             'status': (TicketStatusEnum, str, none_type,),
             'description': (str, none_type, none_type,),  # noqa: E501
@@ -116,6 +117,8 @@ class PatchedTicketRequest(ModelNormal):
             'completed_at': (datetime, none_type, none_type,),  # noqa: E501
             'ticket_url': (str, none_type, none_type,),  # noqa: E501
             'priority': (PriorityEnum, str, none_type,),
+            'integration_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'linked_account_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
         }
         return defined_types
 
@@ -127,6 +130,7 @@ class PatchedTicketRequest(ModelNormal):
     attribute_map = {
         'name': 'name',  # noqa: E501
         'assignees': 'assignees',  # noqa: E501
+        'creator': 'creator',  # noqa: E501
         'due_date': 'due_date',  # noqa: E501
         'status': 'status',  # noqa: E501
         'description': 'description',  # noqa: E501
@@ -141,6 +145,8 @@ class PatchedTicketRequest(ModelNormal):
         'completed_at': 'completed_at',  # noqa: E501
         'ticket_url': 'ticket_url',  # noqa: E501
         'priority': 'priority',  # noqa: E501
+        'integration_params': 'integration_params',  # noqa: E501
+        'linked_account_params': 'linked_account_params',  # noqa: E501
     }
 
     read_only_vars = {
@@ -186,9 +192,10 @@ class PatchedTicketRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             name (str, none_type): The ticket's name.. [optional]  # noqa: E501
             assignees ([str, none_type]): [optional]  # noqa: E501
+            creator (str, none_type): [optional]  # noqa: E501
             due_date (datetime, none_type): The ticket's due date.. [optional]  # noqa: E501
             status (bool, dict, float, int, list, str, none_type): The current status of the ticket.. [optional]  # noqa: E501
-            description (str, none_type): The ticket's description.. [optional]  # noqa: E501
+            description (str, none_type): The ticket’s description. HTML version of description is mapped if supported by the third-party platform.. [optional]  # noqa: E501
             project (str, none_type): [optional]  # noqa: E501
             ticket_type (str, none_type): The ticket's type.. [optional]  # noqa: E501
             account (str, none_type): [optional]  # noqa: E501
@@ -200,6 +207,8 @@ class PatchedTicketRequest(ModelNormal):
             completed_at (datetime, none_type): When the ticket was completed.. [optional]  # noqa: E501
             ticket_url (str, none_type): The 3rd party url of the Ticket.. [optional]  # noqa: E501
             priority (bool, dict, float, int, list, str, none_type): The priority or urgency of the Ticket. Possible values include: URGENT, HIGH, NORMAL, LOW - in cases where there is no clear mapping - the original value passed through.. [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -234,6 +243,7 @@ class PatchedTicketRequest(ModelNormal):
 
         self.name = kwargs.get("name", None)
         self.assignees = kwargs.get("assignees", None)
+        self.creator = kwargs.get("creator", None)
         self.due_date = kwargs.get("due_date", None)
         self.status = kwargs.get("status", None)
         self.description = kwargs.get("description", None)
@@ -248,6 +258,8 @@ class PatchedTicketRequest(ModelNormal):
         self.completed_at = kwargs.get("completed_at", None)
         self.ticket_url = kwargs.get("ticket_url", None)
         self.priority = kwargs.get("priority", None)
+        self.integration_params = kwargs.get("integration_params", None)
+        self.linked_account_params = kwargs.get("linked_account_params", None)
         return self
 
     required_properties = set([
@@ -296,9 +308,10 @@ class PatchedTicketRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             name (str, none_type): The ticket's name.. [optional]  # noqa: E501
             assignees ([str, none_type]): [optional]  # noqa: E501
+            creator (str, none_type): [optional]  # noqa: E501
             due_date (datetime, none_type): The ticket's due date.. [optional]  # noqa: E501
             status (bool, dict, float, int, list, str, none_type): The current status of the ticket.. [optional]  # noqa: E501
-            description (str, none_type): The ticket's description.. [optional]  # noqa: E501
+            description (str, none_type): The ticket’s description. HTML version of description is mapped if supported by the third-party platform.. [optional]  # noqa: E501
             project (str, none_type): [optional]  # noqa: E501
             ticket_type (str, none_type): The ticket's type.. [optional]  # noqa: E501
             account (str, none_type): [optional]  # noqa: E501
@@ -310,6 +323,8 @@ class PatchedTicketRequest(ModelNormal):
             completed_at (datetime, none_type): When the ticket was completed.. [optional]  # noqa: E501
             ticket_url (str, none_type): The 3rd party url of the Ticket.. [optional]  # noqa: E501
             priority (bool, dict, float, int, list, str, none_type): The priority or urgency of the Ticket. Possible values include: URGENT, HIGH, NORMAL, LOW - in cases where there is no clear mapping - the original value passed through.. [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -341,6 +356,7 @@ class PatchedTicketRequest(ModelNormal):
 
         self.name: Union[str, none_type] = kwargs.get("name", None)
         self.assignees: Union[List[str, none_type]] = kwargs.get("assignees", list())
+        self.creator: Union[str, none_type] = kwargs.get("creator", None)
         self.due_date: Union[datetime, none_type] = kwargs.get("due_date", None)
         self.status: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("status", None)
         self.description: Union[str, none_type] = kwargs.get("description", None)
@@ -355,5 +371,7 @@ class PatchedTicketRequest(ModelNormal):
         self.completed_at: Union[datetime, none_type] = kwargs.get("completed_at", None)
         self.ticket_url: Union[str, none_type] = kwargs.get("ticket_url", None)
         self.priority: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("priority", None)
+        self.integration_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
+        self.linked_account_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
 
 

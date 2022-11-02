@@ -102,6 +102,8 @@ class JournalEntryRequest(ModelNormal):
             'payments': ([str, none_type], none_type,),  # noqa: E501
             'memo': (str, none_type, none_type,),  # noqa: E501
             'currency': (CurrencyEnum, str, none_type,),
+            'integration_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'linked_account_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
         }
         return defined_types
 
@@ -118,6 +120,8 @@ class JournalEntryRequest(ModelNormal):
         'payments': 'payments',  # noqa: E501
         'memo': 'memo',  # noqa: E501
         'currency': 'currency',  # noqa: E501
+        'integration_params': 'integration_params',  # noqa: E501
+        'linked_account_params': 'linked_account_params',  # noqa: E501
     }
 
     read_only_vars = {
@@ -168,6 +172,8 @@ class JournalEntryRequest(ModelNormal):
             payments ([str, none_type]): Array of `Payment` object IDs.. [optional]  # noqa: E501
             memo (str, none_type): The journal entry's private note.. [optional]  # noqa: E501
             currency (bool, dict, float, int, list, str, none_type): The journal's currency.. [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -207,6 +213,8 @@ class JournalEntryRequest(ModelNormal):
         self.payments = kwargs.get("payments", None)
         self.memo = kwargs.get("memo", None)
         self.currency = kwargs.get("currency", None)
+        self.integration_params = kwargs.get("integration_params", None)
+        self.linked_account_params = kwargs.get("linked_account_params", None)
         return self
 
     required_properties = set([
@@ -260,6 +268,8 @@ class JournalEntryRequest(ModelNormal):
             payments ([str, none_type]): Array of `Payment` object IDs.. [optional]  # noqa: E501
             memo (str, none_type): The journal entry's private note.. [optional]  # noqa: E501
             currency (bool, dict, float, int, list, str, none_type): The journal's currency.. [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -296,5 +306,7 @@ class JournalEntryRequest(ModelNormal):
         self.payments: Union[List[str, none_type]] = kwargs.get("payments", list())
         self.memo: Union[str, none_type] = kwargs.get("memo", None)
         self.currency: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("currency", None)
+        self.integration_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
+        self.linked_account_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
 
 

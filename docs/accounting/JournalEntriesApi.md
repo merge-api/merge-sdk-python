@@ -64,6 +64,12 @@ with MergePythonSDK.accounting.ApiClient(configuration) as api_client:
             payments=["b26fd49a-cbae-470a-a8f8-bcbc119e0390"],
             memo="Weekly Payment",
             currency=None,
+            integration_params={
+                "key": None,
+            },
+            linked_account_params={
+                "key": None,
+            },
         ),
     ) # JournalEntryEndpointRequest | 
     is_debug_mode = True # bool | Whether to include debug fields (such as log file links) in the response. (optional)

@@ -850,6 +850,7 @@ class OpportunitiesApi(object):
     ) -> "OpportunityResponse":
         """opportunities_partial_update  # noqa: E501
 
+        Updates an `Opportunity` object with the given `id`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 

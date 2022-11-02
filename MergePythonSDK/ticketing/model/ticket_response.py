@@ -284,7 +284,7 @@ class TicketResponse(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.model: Union["Ticket", {"account": "Account", "assignees": "User", "attachments": "Attachment", "contact": "Contact", "parent_ticket": "Ticket", "project": "Project"}] = model
+        self.model: Union["Ticket", {"account": "Account", "assignees": "User", "attachments": "Attachment", "contact": "Contact", "creator": "User", "parent_ticket": "Ticket", "project": "Project"}] = model
         self.warnings: Union[List["WarningValidationProblem"]] = warnings
         self.errors: Union[List["ErrorValidationProblem"]] = errors
         self.logs: Union[List["DebugModeLog"]] = kwargs.get("logs", None)

@@ -89,6 +89,12 @@ with MergePythonSDK.hris.ApiClient(configuration) as api_client:
             custom_fields={
                 "key": None,
             },
+            integration_params={
+                "key": None,
+            },
+            linked_account_params={
+                "key": None,
+            },
         ),
     ) # EmployeeEndpointRequest | 
     is_debug_mode = True # bool | Whether to include debug fields (such as log file links) in the response. (optional)

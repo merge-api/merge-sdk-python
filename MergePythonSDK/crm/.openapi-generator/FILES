@@ -19,6 +19,7 @@ MergePythonSDK/crm/api/notes_api.py
 MergePythonSDK/crm/api/opportunities_api.py
 MergePythonSDK/crm/api/passthrough_api.py
 MergePythonSDK/crm/api/regenerate_key_api.py
+MergePythonSDK/crm/api/selective_sync_api.py
 MergePythonSDK/crm/api/stages_api.py
 MergePythonSDK/crm/api/sync_status_api.py
 MergePythonSDK/crm/api/tasks_api.py
@@ -41,6 +42,8 @@ MergePythonSDK/crm/model/address.py
 MergePythonSDK/crm/model/address_request.py
 MergePythonSDK/crm/model/address_type_enum.py
 MergePythonSDK/crm/model/available_actions.py
+MergePythonSDK/crm/model/condition_schema.py
+MergePythonSDK/crm/model/condition_type_enum.py
 MergePythonSDK/crm/model/contact.py
 MergePythonSDK/crm/model/contact_request.py
 MergePythonSDK/crm/model/country_enum.py
@@ -70,6 +73,11 @@ MergePythonSDK/crm/model/lead_endpoint_request.py
 MergePythonSDK/crm/model/lead_request.py
 MergePythonSDK/crm/model/lead_response.py
 MergePythonSDK/crm/model/link_token.py
+MergePythonSDK/crm/model/linked_account_condition.py
+MergePythonSDK/crm/model/linked_account_condition_request.py
+MergePythonSDK/crm/model/linked_account_selective_sync_configuration.py
+MergePythonSDK/crm/model/linked_account_selective_sync_configuration_list_request.py
+MergePythonSDK/crm/model/linked_account_selective_sync_configuration_request.py
 MergePythonSDK/crm/model/linked_account_status.py
 MergePythonSDK/crm/model/meta_response.py
 MergePythonSDK/crm/model/method_enum.py
@@ -79,6 +87,7 @@ MergePythonSDK/crm/model/note.py
 MergePythonSDK/crm/model/note_endpoint_request.py
 MergePythonSDK/crm/model/note_request.py
 MergePythonSDK/crm/model/note_response.py
+MergePythonSDK/crm/model/operator_schema.py
 MergePythonSDK/crm/model/opportunity.py
 MergePythonSDK/crm/model/opportunity_endpoint_request.py
 MergePythonSDK/crm/model/opportunity_request.py
@@ -126,6 +135,8 @@ docs/CRMContactEndpointRequest.md
 docs/CRMContactResponse.md
 docs/CategoriesEnum.md
 docs/CategoryEnum.md
+docs/ConditionSchema.md
+docs/ConditionTypeEnum.md
 docs/Contact.md
 docs/ContactRequest.md
 docs/ContactsApi.md
@@ -160,6 +171,11 @@ docs/LeadResponse.md
 docs/LeadsApi.md
 docs/LinkToken.md
 docs/LinkTokenApi.md
+docs/LinkedAccountCondition.md
+docs/LinkedAccountConditionRequest.md
+docs/LinkedAccountSelectiveSyncConfiguration.md
+docs/LinkedAccountSelectiveSyncConfigurationListRequest.md
+docs/LinkedAccountSelectiveSyncConfigurationRequest.md
 docs/LinkedAccountStatus.md
 docs/LinkedAccountsApi.md
 docs/MetaResponse.md
@@ -171,6 +187,7 @@ docs/NoteEndpointRequest.md
 docs/NoteRequest.md
 docs/NoteResponse.md
 docs/NotesApi.md
+docs/OperatorSchema.md
 docs/OpportunitiesApi.md
 docs/Opportunity.md
 docs/OpportunityEndpointRequest.md
@@ -179,6 +196,7 @@ docs/OpportunityResponse.md
 docs/OpportunityStatusEnum.md
 docs/PaginatedAccountDetailsAndActionsList.md
 docs/PaginatedAccountList.md
+docs/PaginatedConditionSchemaList.md
 docs/PaginatedContactList.md
 docs/PaginatedEngagementList.md
 docs/PaginatedEngagementTypeList.md
@@ -202,6 +220,7 @@ docs/RemoteKeyForRegenerationRequest.md
 docs/RemoteResponse.md
 docs/RequestFormatEnum.md
 docs/ResponseTypeEnum.md
+docs/SelectiveSyncApi.md
 docs/Stage.md
 docs/StagesApi.md
 docs/SyncStatus.md
@@ -218,8 +237,6 @@ docs/WebhookReceiver.md
 docs/WebhookReceiverRequest.md
 docs/WebhookReceiversApi.md
 requirements.txt
-setup.cfg
-setup.py
 test-requirements.txt
 test/__init__.py
 test/test_account.py
@@ -241,6 +258,8 @@ test/test_available_actions.py
 test/test_available_actions_api.py
 test/test_categories_enum.py
 test/test_category_enum.py
+test/test_condition_schema.py
+test/test_condition_type_enum.py
 test/test_contact.py
 test/test_contact_request.py
 test/test_contacts_api.py
@@ -279,6 +298,11 @@ test/test_lead_response.py
 test/test_leads_api.py
 test/test_link_token.py
 test/test_link_token_api.py
+test/test_linked_account_condition.py
+test/test_linked_account_condition_request.py
+test/test_linked_account_selective_sync_configuration.py
+test/test_linked_account_selective_sync_configuration_list_request.py
+test/test_linked_account_selective_sync_configuration_request.py
 test/test_linked_account_status.py
 test/test_linked_accounts_api.py
 test/test_meta_response.py
@@ -290,6 +314,7 @@ test/test_note_endpoint_request.py
 test/test_note_request.py
 test/test_note_response.py
 test/test_notes_api.py
+test/test_operator_schema.py
 test/test_opportunities_api.py
 test/test_opportunity.py
 test/test_opportunity_endpoint_request.py
@@ -298,6 +323,7 @@ test/test_opportunity_response.py
 test/test_opportunity_status_enum.py
 test/test_paginated_account_details_and_actions_list.py
 test/test_paginated_account_list.py
+test/test_paginated_condition_schema_list.py
 test/test_paginated_contact_list.py
 test/test_paginated_engagement_list.py
 test/test_paginated_engagement_type_list.py
@@ -321,6 +347,7 @@ test/test_remote_key_for_regeneration_request.py
 test/test_remote_response.py
 test/test_request_format_enum.py
 test/test_response_type_enum.py
+test/test_selective_sync_api.py
 test/test_stage.py
 test/test_stages_api.py
 test/test_sync_status.py

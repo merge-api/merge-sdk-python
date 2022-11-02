@@ -142,6 +142,8 @@ class EmployeeRequest(ModelNormal):
             'termination_date': (datetime, none_type, none_type,),  # noqa: E501
             'avatar': (str, none_type, none_type,),  # noqa: E501
             'custom_fields': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'integration_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'linked_account_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
         }
         return defined_types
 
@@ -180,6 +182,8 @@ class EmployeeRequest(ModelNormal):
         'termination_date': 'termination_date',  # noqa: E501
         'avatar': 'avatar',  # noqa: E501
         'custom_fields': 'custom_fields',  # noqa: E501
+        'integration_params': 'integration_params',  # noqa: E501
+        'linked_account_params': 'linked_account_params',  # noqa: E501
     }
 
     read_only_vars = {
@@ -252,6 +256,8 @@ class EmployeeRequest(ModelNormal):
             termination_date (datetime, none_type): The employee's termination date.. [optional]  # noqa: E501
             avatar (str, none_type): The URL of the employee's avatar image.. [optional]  # noqa: E501
             custom_fields ({str: (bool, dict, float, int, list, str, none_type)}, none_type): Custom fields configured for a given model.. [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -313,6 +319,8 @@ class EmployeeRequest(ModelNormal):
         self.termination_date = kwargs.get("termination_date", None)
         self.avatar = kwargs.get("avatar", None)
         self.custom_fields = kwargs.get("custom_fields", None)
+        self.integration_params = kwargs.get("integration_params", None)
+        self.linked_account_params = kwargs.get("linked_account_params", None)
         return self
 
     required_properties = set([
@@ -388,6 +396,8 @@ class EmployeeRequest(ModelNormal):
             termination_date (datetime, none_type): The employee's termination date.. [optional]  # noqa: E501
             avatar (str, none_type): The URL of the employee's avatar image.. [optional]  # noqa: E501
             custom_fields ({str: (bool, dict, float, int, list, str, none_type)}, none_type): Custom fields configured for a given model.. [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -446,5 +456,7 @@ class EmployeeRequest(ModelNormal):
         self.termination_date: Union[datetime, none_type] = kwargs.get("termination_date", None)
         self.avatar: Union[str, none_type] = kwargs.get("avatar", None)
         self.custom_fields: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("custom_fields", None)
+        self.integration_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
+        self.linked_account_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
 
 

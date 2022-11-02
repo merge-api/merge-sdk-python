@@ -73,6 +73,12 @@ with MergePythonSDK.accounting.ApiClient(configuration) as api_client:
             balance=105,
             remote_updated_at=dateutil_parser('2020-04-01T00:00:00Z'),
             payments=["b26fd49a-cbae-470a-a8f8-bcbc119e0390"],
+            integration_params={
+                "key": None,
+            },
+            linked_account_params={
+                "key": None,
+            },
         ),
     ) # InvoiceEndpointRequest | 
     is_debug_mode = True # bool | Whether to include debug fields (such as log file links) in the response. (optional)

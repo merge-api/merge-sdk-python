@@ -100,6 +100,8 @@ class UrlRequest(ModelNormal):
         defined_types = {
             'value': (str, none_type, none_type,),  # noqa: E501
             'url_type': (UrlTypeEnum, str, none_type,),
+            'integration_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'linked_account_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
         }
         return defined_types
 
@@ -111,6 +113,8 @@ class UrlRequest(ModelNormal):
     attribute_map = {
         'value': 'value',  # noqa: E501
         'url_type': 'url_type',  # noqa: E501
+        'integration_params': 'integration_params',  # noqa: E501
+        'linked_account_params': 'linked_account_params',  # noqa: E501
     }
 
     read_only_vars = {
@@ -156,6 +160,8 @@ class UrlRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             value (str, none_type): The site's url.. [optional]  # noqa: E501
             url_type (bool, dict, float, int, list, str, none_type): The type of site.. [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -190,6 +196,8 @@ class UrlRequest(ModelNormal):
 
         self.value = kwargs.get("value", None)
         self.url_type = kwargs.get("url_type", None)
+        self.integration_params = kwargs.get("integration_params", None)
+        self.linked_account_params = kwargs.get("linked_account_params", None)
         return self
 
     required_properties = set([
@@ -238,6 +246,8 @@ class UrlRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             value (str, none_type): The site's url.. [optional]  # noqa: E501
             url_type (bool, dict, float, int, list, str, none_type): The type of site.. [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -269,5 +279,7 @@ class UrlRequest(ModelNormal):
 
         self.value: Union[str, none_type] = kwargs.get("value", None)
         self.url_type: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("url_type", None)
+        self.integration_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
+        self.linked_account_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
 
 

@@ -24,8 +24,20 @@ class TestContactsApi(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def test_contacts_create(self):
+        """Test case for contacts_create
+
+        """
+        pass
+
     def test_contacts_list(self):
         """Test case for contacts_list
+
+        """
+        pass
+
+    def test_contacts_meta_post_retrieve(self):
+        """Test case for contacts_meta_post_retrieve
 
         """
         pass
