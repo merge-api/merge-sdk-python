@@ -24,7 +24,6 @@ from MergePythonSDK.shared.model_utils import (  # noqa: F401
 )
 from MergePythonSDK.shared.model.merge_paginated_response import MergePaginatedResponse
 from MergePythonSDK.ats.model.remote_user import RemoteUser
-from MergePythonSDK.shared.model.remote_user import RemoteUser
 
 
 class UsersApi(object):
