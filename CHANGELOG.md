@@ -1,3 +1,9 @@
+# Version 2.2.5
+
+## Date: 2023-01-31
+
+- Remove invalid `MergePythonSDK.shared.model.remote_user` import from `ats/api/users_api.py`
+
 # Version 2.2.4
 
 ## Date: 2022-11-2
