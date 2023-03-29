@@ -1,3 +1,9 @@
+# Version 2.2.6
+
+## Date: 2023-03-28
+
+- Fix deserialization bug where expanded lists where incorrectly returning only the first item
+
 # Version 2.2.5
 
 ## Date: 2023-01-31
