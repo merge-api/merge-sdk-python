@@ -27,6 +27,7 @@ from MergePythonSDK.crm.model.note import Note
 from MergePythonSDK.crm.model.note_endpoint_request import NoteEndpointRequest
 from MergePythonSDK.crm.model.note_response import NoteResponse
 from MergePythonSDK.shared.model.merge_paginated_response import MergePaginatedResponse
+from MergePythonSDK.crm.model.remote_field_class import RemoteFieldClass
 
 
 class NotesApi(object):
@@ -127,6 +128,7 @@ class NotesApi(object):
                     'expand',
                     'include_deleted_data',
                     'include_remote_data',
+                    'include_remote_fields',
                     'modified_after',
                     'modified_before',
                     'opportunity_id',
@@ -184,6 +186,8 @@ class NotesApi(object):
                         (bool,),
                     'include_remote_data':
                         (bool,),
+                    'include_remote_fields':
+                        (bool,),
                     'modified_after':
                         (datetime,),
                     'modified_before':
@@ -206,6 +210,7 @@ class NotesApi(object):
                     'expand': 'expand',
                     'include_deleted_data': 'include_deleted_data',
                     'include_remote_data': 'include_remote_data',
+                    'include_remote_fields': 'include_remote_fields',
                     'modified_after': 'modified_after',
                     'modified_before': 'modified_before',
                     'opportunity_id': 'opportunity_id',
@@ -222,6 +227,7 @@ class NotesApi(object):
                     'expand': 'query',
                     'include_deleted_data': 'query',
                     'include_remote_data': 'query',
+                    'include_remote_fields': 'query',
                     'modified_after': 'query',
                     'modified_before': 'query',
                     'opportunity_id': 'query',
@@ -285,6 +291,76 @@ class NotesApi(object):
             },
             api_client=api_client
         )
+        self.notes_remote_field_classes_list_endpoint = _Endpoint(
+            settings={
+                'response_type': (MergePaginatedResponse(RemoteFieldClass),),
+                'auth': [
+                    'accountTokenAuth',
+                    'bearerAuth'
+                ],
+                'endpoint_path': '/crm/v1/notes/remote-field-classes',
+                'operation_id': 'notes_remote_field_classes_list',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'cursor',
+                    'include_deleted_data',
+                    'include_remote_data',
+                    'include_remote_fields',
+                    'page_size',
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'cursor':
+                        (str,),
+                    'include_deleted_data':
+                        (bool,),
+                    'include_remote_data':
+                        (bool,),
+                    'include_remote_fields':
+                        (bool,),
+                    'page_size':
+                        (int,),
+                },
+                'attribute_map': {
+                    'cursor': 'cursor',
+                    'include_deleted_data': 'include_deleted_data',
+                    'include_remote_data': 'include_remote_data',
+                    'include_remote_fields': 'include_remote_fields',
+                    'page_size': 'page_size',
+                },
+                'location_map': {
+                    'cursor': 'query',
+                    'include_deleted_data': 'query',
+                    'include_remote_data': 'query',
+                    'include_remote_fields': 'query',
+                    'page_size': 'query',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
         self.notes_retrieve_endpoint = _Endpoint(
             settings={
                 'response_type': (Note,),
@@ -302,6 +378,7 @@ class NotesApi(object):
                     'id',
                     'expand',
                     'include_remote_data',
+                    'include_remote_fields',
                 ],
                 'required': [
                     'id',
@@ -344,16 +421,20 @@ class NotesApi(object):
                         (str,),
                     'include_remote_data':
                         (bool,),
+                    'include_remote_fields':
+                        (bool,),
                 },
                 'attribute_map': {
                     'id': 'id',
                     'expand': 'expand',
                     'include_remote_data': 'include_remote_data',
+                    'include_remote_fields': 'include_remote_fields',
                 },
                 'location_map': {
                     'id': 'path',
                     'expand': 'query',
                     'include_remote_data': 'query',
+                    'include_remote_fields': 'query',
                 },
                 'collection_format_map': {
                 }
@@ -475,8 +556,9 @@ class NotesApi(object):
             expand (str): Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.. [optional]
             include_deleted_data (bool): Whether to include data that was marked as deleted by third party webhooks.. [optional]
             include_remote_data (bool): Whether to include the original data Merge fetched from the third-party to produce these models.. [optional]
-            modified_after (datetime): If provided, will only return objects modified after this datetime.. [optional]
-            modified_before (datetime): If provided, will only return objects modified before this datetime.. [optional]
+            include_remote_fields (bool): Whether to include all remote fields, including fields that Merge did not map to common models, in a normalized format.. [optional]
+            modified_after (datetime): If provided, only objects synced by Merge after this date time will be returned.. [optional]
+            modified_before (datetime): If provided, only objects synced by Merge before this date time will be returned.. [optional]
             opportunity_id (str): If provided, will only return notes with this opportunity.. [optional]
             owner_id (str): If provided, will only return notes with this owner.. [optional]
             page_size (int): Number of results to return per page.. [optional]
@@ -622,6 +704,89 @@ class NotesApi(object):
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
         return self.notes_meta_post_retrieve_endpoint.call_with_http_info(**kwargs)
 
+    def notes_remote_field_classes_list(
+        self,
+        **kwargs
+    ) -> "MergePaginatedResponse(RemoteFieldClass)":
+        """notes_remote_field_classes_list  # noqa: E501
+
+        Returns a list of `RemoteFieldClass` objects.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.notes_remote_field_classes_list(async_req=True)
+        >>> result = thread.get()
+
+
+        Keyword Args:
+            cursor (str): The pagination cursor value.. [optional]
+            include_deleted_data (bool): Whether to include data that was marked as deleted by third party webhooks.. [optional]
+            include_remote_data (bool): Whether to include the original data Merge fetched from the third-party to produce these models.. [optional]
+            include_remote_fields (bool): Whether to include all remote fields, including fields that Merge did not map to common models, in a normalized format.. [optional]
+            page_size (int): Number of results to return per page.. [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            _request_auths (list): set to override the auth_settings for an a single
+                request; this effectively ignores the authentication
+                in the spec for a single request.
+                Default is None
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            MergePaginatedResponse(RemoteFieldClass)
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        return self.notes_remote_field_classes_list_endpoint.call_with_http_info(**kwargs)
+
     def notes_retrieve(
         self,
         id,
@@ -642,6 +807,7 @@ class NotesApi(object):
         Keyword Args:
             expand (str): Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.. [optional]
             include_remote_data (bool): Whether to include the original data Merge fetched from the third-party to produce these models.. [optional]
+            include_remote_fields (bool): Whether to include all remote fields, including fields that Merge did not map to common models, in a normalized format.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object

@@ -83,7 +83,7 @@ class TicketRequest(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -100,7 +100,6 @@ class TicketRequest(ModelNormal):
         lazy_import()
 
         defined_types = {
-            'remote_id': (str, none_type, none_type,),  # noqa: E501
             'name': (str, none_type, none_type,),  # noqa: E501
             'assignees': ([str, none_type], none_type,),  # noqa: E501
             'creator': (str, none_type, none_type,),  # noqa: E501
@@ -108,20 +107,29 @@ class TicketRequest(ModelNormal):
             'status': (TicketStatusEnum, str, none_type,),
             'description': (str, none_type, none_type,),  # noqa: E501
             'project': (str, none_type, none_type,),  # noqa: E501
+            'collections': ([str, none_type], none_type,),  # noqa: E501
             'ticket_type': (str, none_type, none_type,),  # noqa: E501
             'account': (str, none_type, none_type,),  # noqa: E501
             'contact': (str, none_type, none_type,),  # noqa: E501
             'parent_ticket': (str, none_type, none_type,),  # noqa: E501
             'attachments': ([str, none_type], none_type,),  # noqa: E501
-            'tags': ([str], none_type,),  # noqa: E501
-            'remote_created_at': (datetime, none_type, none_type,),  # noqa: E501
-            'remote_updated_at': (datetime, none_type, none_type,),  # noqa: E501
+            'tags': ([str, none_type], none_type,),  # noqa: E501
             'completed_at': (datetime, none_type, none_type,),  # noqa: E501
             'ticket_url': (str, none_type, none_type,),  # noqa: E501
             'priority': (PriorityEnum, str, none_type,),
-            'integration_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
-            'linked_account_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'integration_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'linked_account_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
         }
+        expands_types = {"account": "Account", "assignees": "User", "attachments": "Attachment", "collections": "Collection", "contact": "Contact", "creator": "User", "parent_ticket": "Ticket", "project": "Project"}
+
+        # update types with expands
+        for key, val in expands_types.items():
+            if key in defined_types.keys():
+                expands_model = import_model_by_name(val, "ticketing")
+                if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
+                    defined_types[key][0].insert(0, expands_model)
+                else:
+                    defined_types[key] = (*defined_types[key], expands_model)
         return defined_types
 
     @cached_property
@@ -130,7 +138,6 @@ class TicketRequest(ModelNormal):
 
 
     attribute_map = {
-        'remote_id': 'remote_id',  # noqa: E501
         'name': 'name',  # noqa: E501
         'assignees': 'assignees',  # noqa: E501
         'creator': 'creator',  # noqa: E501
@@ -138,14 +145,13 @@ class TicketRequest(ModelNormal):
         'status': 'status',  # noqa: E501
         'description': 'description',  # noqa: E501
         'project': 'project',  # noqa: E501
+        'collections': 'collections',  # noqa: E501
         'ticket_type': 'ticket_type',  # noqa: E501
         'account': 'account',  # noqa: E501
         'contact': 'contact',  # noqa: E501
         'parent_ticket': 'parent_ticket',  # noqa: E501
         'attachments': 'attachments',  # noqa: E501
         'tags': 'tags',  # noqa: E501
-        'remote_created_at': 'remote_created_at',  # noqa: E501
-        'remote_updated_at': 'remote_updated_at',  # noqa: E501
         'completed_at': 'completed_at',  # noqa: E501
         'ticket_url': 'ticket_url',  # noqa: E501
         'priority': 'priority',  # noqa: E501
@@ -194,27 +200,25 @@ class TicketRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             name (str, none_type): The ticket's name.. [optional]  # noqa: E501
             assignees ([str, none_type]): [optional]  # noqa: E501
-            creator (str, none_type): [optional]  # noqa: E501
+            creator (str, none_type): The user who created this ticket.. [optional]  # noqa: E501
             due_date (datetime, none_type): The ticket's due date.. [optional]  # noqa: E501
-            status (bool, dict, float, int, list, str, none_type): The current status of the ticket.. [optional]  # noqa: E501
+            status (bool, date, datetime, dict, float, int, list, str, none_type): The current status of the ticket.  * `OPEN` - OPEN * `CLOSED` - CLOSED * `IN_PROGRESS` - IN_PROGRESS * `ON_HOLD` - ON_HOLD. [optional]  # noqa: E501
             description (str, none_type): The ticket’s description. HTML version of description is mapped if supported by the third-party platform.. [optional]  # noqa: E501
-            project (str, none_type): [optional]  # noqa: E501
+            project (str, none_type): The project the ticket belongs to.. [optional]  # noqa: E501
+            collections ([str, none_type]): [optional]  # noqa: E501
             ticket_type (str, none_type): The ticket's type.. [optional]  # noqa: E501
-            account (str, none_type): [optional]  # noqa: E501
-            contact (str, none_type): [optional]  # noqa: E501
-            parent_ticket (str, none_type): [optional]  # noqa: E501
+            account (str, none_type): The account associated with the ticket.. [optional]  # noqa: E501
+            contact (str, none_type): The contact associated with the ticket.. [optional]  # noqa: E501
+            parent_ticket (str, none_type): The ticket's parent ticket.. [optional]  # noqa: E501
             attachments ([str, none_type]): [optional]  # noqa: E501
-            tags ([str]): [optional]  # noqa: E501
-            remote_created_at (datetime, none_type): When the third party's ticket was created.. [optional]  # noqa: E501
-            remote_updated_at (datetime, none_type): When the third party's ticket was updated.. [optional]  # noqa: E501
+            tags ([str, none_type]): [optional]  # noqa: E501
             completed_at (datetime, none_type): When the ticket was completed.. [optional]  # noqa: E501
             ticket_url (str, none_type): The 3rd party url of the Ticket.. [optional]  # noqa: E501
-            priority (bool, dict, float, int, list, str, none_type): The priority or urgency of the Ticket. Possible values include: URGENT, HIGH, NORMAL, LOW - in cases where there is no clear mapping - the original value passed through.. [optional]  # noqa: E501
-            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            priority (bool, date, datetime, dict, float, int, list, str, none_type): The priority or urgency of the Ticket.  * `URGENT` - URGENT * `HIGH` - HIGH * `NORMAL` - NORMAL * `LOW` - LOW. [optional]  # noqa: E501
+            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -247,7 +251,6 @@ class TicketRequest(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.remote_id = kwargs.get("remote_id", None)
         self.name = kwargs.get("name", None)
         self.assignees = kwargs.get("assignees", None)
         self.creator = kwargs.get("creator", None)
@@ -255,14 +258,13 @@ class TicketRequest(ModelNormal):
         self.status = kwargs.get("status", None)
         self.description = kwargs.get("description", None)
         self.project = kwargs.get("project", None)
+        self.collections = kwargs.get("collections", None)
         self.ticket_type = kwargs.get("ticket_type", None)
         self.account = kwargs.get("account", None)
         self.contact = kwargs.get("contact", None)
         self.parent_ticket = kwargs.get("parent_ticket", None)
         self.attachments = kwargs.get("attachments", None)
         self.tags = kwargs.get("tags", None)
-        self.remote_created_at = kwargs.get("remote_created_at", None)
-        self.remote_updated_at = kwargs.get("remote_updated_at", None)
         self.completed_at = kwargs.get("completed_at", None)
         self.ticket_url = kwargs.get("ticket_url", None)
         self.priority = kwargs.get("priority", None)
@@ -314,27 +316,25 @@ class TicketRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             name (str, none_type): The ticket's name.. [optional]  # noqa: E501
             assignees ([str, none_type]): [optional]  # noqa: E501
-            creator (str, none_type): [optional]  # noqa: E501
+            creator (str, none_type): The user who created this ticket.. [optional]  # noqa: E501
             due_date (datetime, none_type): The ticket's due date.. [optional]  # noqa: E501
-            status (bool, dict, float, int, list, str, none_type): The current status of the ticket.. [optional]  # noqa: E501
+            status (bool, date, datetime, dict, float, int, list, str, none_type): The current status of the ticket.  * `OPEN` - OPEN * `CLOSED` - CLOSED * `IN_PROGRESS` - IN_PROGRESS * `ON_HOLD` - ON_HOLD. [optional]  # noqa: E501
             description (str, none_type): The ticket’s description. HTML version of description is mapped if supported by the third-party platform.. [optional]  # noqa: E501
-            project (str, none_type): [optional]  # noqa: E501
+            project (str, none_type): The project the ticket belongs to.. [optional]  # noqa: E501
+            collections ([str, none_type]): [optional]  # noqa: E501
             ticket_type (str, none_type): The ticket's type.. [optional]  # noqa: E501
-            account (str, none_type): [optional]  # noqa: E501
-            contact (str, none_type): [optional]  # noqa: E501
-            parent_ticket (str, none_type): [optional]  # noqa: E501
+            account (str, none_type): The account associated with the ticket.. [optional]  # noqa: E501
+            contact (str, none_type): The contact associated with the ticket.. [optional]  # noqa: E501
+            parent_ticket (str, none_type): The ticket's parent ticket.. [optional]  # noqa: E501
             attachments ([str, none_type]): [optional]  # noqa: E501
-            tags ([str]): [optional]  # noqa: E501
-            remote_created_at (datetime, none_type): When the third party's ticket was created.. [optional]  # noqa: E501
-            remote_updated_at (datetime, none_type): When the third party's ticket was updated.. [optional]  # noqa: E501
+            tags ([str, none_type]): [optional]  # noqa: E501
             completed_at (datetime, none_type): When the ticket was completed.. [optional]  # noqa: E501
             ticket_url (str, none_type): The 3rd party url of the Ticket.. [optional]  # noqa: E501
-            priority (bool, dict, float, int, list, str, none_type): The priority or urgency of the Ticket. Possible values include: URGENT, HIGH, NORMAL, LOW - in cases where there is no clear mapping - the original value passed through.. [optional]  # noqa: E501
-            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            priority (bool, date, datetime, dict, float, int, list, str, none_type): The priority or urgency of the Ticket.  * `URGENT` - URGENT * `HIGH` - HIGH * `NORMAL` - NORMAL * `LOW` - LOW. [optional]  # noqa: E501
+            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -364,26 +364,24 @@ class TicketRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
         self.name: Union[str, none_type] = kwargs.get("name", None)
         self.assignees: Union[List[str, none_type]] = kwargs.get("assignees", list())
         self.creator: Union[str, none_type] = kwargs.get("creator", None)
         self.due_date: Union[datetime, none_type] = kwargs.get("due_date", None)
-        self.status: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("status", None)
+        self.status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
         self.description: Union[str, none_type] = kwargs.get("description", None)
         self.project: Union[str, none_type] = kwargs.get("project", None)
+        self.collections: Union[List[str, none_type]] = kwargs.get("collections", list())
         self.ticket_type: Union[str, none_type] = kwargs.get("ticket_type", None)
         self.account: Union[str, none_type] = kwargs.get("account", None)
         self.contact: Union[str, none_type] = kwargs.get("contact", None)
         self.parent_ticket: Union[str, none_type] = kwargs.get("parent_ticket", None)
         self.attachments: Union[List[str, none_type]] = kwargs.get("attachments", list())
-        self.tags: Union[List[str]] = kwargs.get("tags", list())
-        self.remote_created_at: Union[datetime, none_type] = kwargs.get("remote_created_at", None)
-        self.remote_updated_at: Union[datetime, none_type] = kwargs.get("remote_updated_at", None)
+        self.tags: Union[List[str, none_type]] = kwargs.get("tags", list())
         self.completed_at: Union[datetime, none_type] = kwargs.get("completed_at", None)
         self.ticket_url: Union[str, none_type] = kwargs.get("ticket_url", None)
-        self.priority: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("priority", None)
-        self.integration_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
-        self.linked_account_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
+        self.priority: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("priority", None)
+        self.integration_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
+        self.linked_account_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
 
 

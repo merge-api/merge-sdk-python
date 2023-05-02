@@ -40,7 +40,7 @@ from MergePythonSDK.shared.model_utils import import_model_by_name
 
 def lazy_import():
     from MergePythonSDK.accounting.model.accounting_phone_number import AccountingPhoneNumber
-    from MergePythonSDK.shared.model.remote_data import RemoteData
+    from MergePythonSDK.shared.model.remote_remote_data import RemoteData
     from MergePythonSDK.accounting.model.status7d1_enum import Status7d1Enum
     globals()['AccountingPhoneNumber'] = AccountingPhoneNumber
     globals()['RemoteData'] = RemoteData
@@ -82,7 +82,7 @@ class Contact(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -101,7 +101,6 @@ class Contact(ModelNormal):
         defined_types = {
             'id': (str, none_type,),  # noqa: E501
             'remote_id': (str, none_type, none_type,),  # noqa: E501
-            'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
             'name': (str, none_type, none_type,),  # noqa: E501
             'is_supplier': (bool, none_type, none_type,),  # noqa: E501
             'is_customer': (bool, none_type, none_type,),  # noqa: E501
@@ -110,9 +109,13 @@ class Contact(ModelNormal):
             'status': (Status7d1Enum, str, none_type,),
             'currency': (str, none_type, none_type,),  # noqa: E501
             'remote_updated_at': (datetime, none_type, none_type,),  # noqa: E501
+            'company': (str, none_type, none_type,),  # noqa: E501
             'addresses': ([str, none_type], none_type,),  # noqa: E501
             'phone_numbers': ([AccountingPhoneNumber], none_type,),  # noqa: E501
             'remote_was_deleted': (bool, none_type,),  # noqa: E501
+            'field_mappings': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'modified_at': (datetime, none_type,),  # noqa: E501
+            'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
         }
         expands_types = {"account": "Account"}
 
@@ -134,7 +137,6 @@ class Contact(ModelNormal):
     attribute_map = {
         'id': 'id',  # noqa: E501
         'remote_id': 'remote_id',  # noqa: E501
-        'remote_data': 'remote_data',  # noqa: E501
         'name': 'name',  # noqa: E501
         'is_supplier': 'is_supplier',  # noqa: E501
         'is_customer': 'is_customer',  # noqa: E501
@@ -143,15 +145,21 @@ class Contact(ModelNormal):
         'status': 'status',  # noqa: E501
         'currency': 'currency',  # noqa: E501
         'remote_updated_at': 'remote_updated_at',  # noqa: E501
+        'company': 'company',  # noqa: E501
         'addresses': 'addresses',  # noqa: E501
         'phone_numbers': 'phone_numbers',  # noqa: E501
         'remote_was_deleted': 'remote_was_deleted',  # noqa: E501
+        'field_mappings': 'field_mappings',  # noqa: E501
+        'modified_at': 'modified_at',  # noqa: E501
+        'remote_data': 'remote_data',  # noqa: E501
     }
 
     read_only_vars = {
         'id',  # noqa: E501
-        'remote_data',  # noqa: E501
         'remote_was_deleted',  # noqa: E501
+        'field_mappings',  # noqa: E501
+        'modified_at',  # noqa: E501
+        'remote_data',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -194,18 +202,21 @@ class Contact(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             id (str): [optional]  # noqa: E501
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
-            remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             name (str, none_type): The contact's name.. [optional]  # noqa: E501
             is_supplier (bool, none_type): Whether the contact is a supplier.. [optional]  # noqa: E501
             is_customer (bool, none_type): Whether the contact is a customer.. [optional]  # noqa: E501
             email_address (str, none_type): The contact's email address.. [optional]  # noqa: E501
             tax_number (str, none_type): The contact's tax number.. [optional]  # noqa: E501
-            status (bool, dict, float, int, list, str, none_type): The contact's status. [optional]  # noqa: E501
+            status (bool, date, datetime, dict, float, int, list, str, none_type): The contact's status  * `ACTIVE` - ACTIVE * `ARCHIVED` - ARCHIVED. [optional]  # noqa: E501
             currency (str, none_type): The currency the contact's transactions are in.. [optional]  # noqa: E501
             remote_updated_at (datetime, none_type): When the third party's contact was updated.. [optional]  # noqa: E501
+            company (str, none_type): The company the contact belongs to.. [optional]  # noqa: E501
             addresses ([str, none_type]): `Address` object IDs for the given `Contacts` object.. [optional]  # noqa: E501
             phone_numbers ([AccountingPhoneNumber]): `AccountingPhoneNumber` object for the given `Contacts` object.. [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
+            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
+            remote_data ([RemoteData], none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -247,13 +258,16 @@ class Contact(ModelNormal):
         self.status = kwargs.get("status", None)
         self.currency = kwargs.get("currency", None)
         self.remote_updated_at = kwargs.get("remote_updated_at", None)
+        self.company = kwargs.get("company", None)
         self.addresses = kwargs.get("addresses", None)
         self.phone_numbers = kwargs.get("phone_numbers", None)
 
         # Read only properties
         self._id = kwargs.get("id", str())
-        self._remote_data = kwargs.get("remote_data", None)
         self._remote_was_deleted = kwargs.get("remote_was_deleted", bool())
+        self._field_mappings = kwargs.get("field_mappings", None)
+        self._modified_at = kwargs.get("modified_at", None)
+        self._remote_data = kwargs.get("remote_data", None)
         return self
 
     required_properties = set([
@@ -302,18 +316,21 @@ class Contact(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             id (str): [optional]  # noqa: E501
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
-            remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             name (str, none_type): The contact's name.. [optional]  # noqa: E501
             is_supplier (bool, none_type): Whether the contact is a supplier.. [optional]  # noqa: E501
             is_customer (bool, none_type): Whether the contact is a customer.. [optional]  # noqa: E501
             email_address (str, none_type): The contact's email address.. [optional]  # noqa: E501
             tax_number (str, none_type): The contact's tax number.. [optional]  # noqa: E501
-            status (bool, dict, float, int, list, str, none_type): The contact's status. [optional]  # noqa: E501
+            status (bool, date, datetime, dict, float, int, list, str, none_type): The contact's status  * `ACTIVE` - ACTIVE * `ARCHIVED` - ARCHIVED. [optional]  # noqa: E501
             currency (str, none_type): The currency the contact's transactions are in.. [optional]  # noqa: E501
             remote_updated_at (datetime, none_type): When the third party's contact was updated.. [optional]  # noqa: E501
+            company (str, none_type): The company the contact belongs to.. [optional]  # noqa: E501
             addresses ([str, none_type]): `Address` object IDs for the given `Contacts` object.. [optional]  # noqa: E501
             phone_numbers ([AccountingPhoneNumber]): `AccountingPhoneNumber` object for the given `Contacts` object.. [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
+            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
+            remote_data ([RemoteData], none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -349,16 +366,19 @@ class Contact(ModelNormal):
         self.is_customer: Union[bool, none_type] = kwargs.get("is_customer", None)
         self.email_address: Union[str, none_type] = kwargs.get("email_address", None)
         self.tax_number: Union[str, none_type] = kwargs.get("tax_number", None)
-        self.status: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("status", None)
+        self.status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
         self.currency: Union[str, none_type] = kwargs.get("currency", None)
         self.remote_updated_at: Union[datetime, none_type] = kwargs.get("remote_updated_at", None)
+        self.company: Union[str, none_type] = kwargs.get("company", None)
         self.addresses: Union[List[str, none_type]] = kwargs.get("addresses", list())
         self.phone_numbers: Union[List["AccountingPhoneNumber"]] = kwargs.get("phone_numbers", None)
 
         # Read only properties
         self._id: Union[str] = kwargs.get("id", str())
-        self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
         self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
+        self._field_mappings: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("field_mappings", None)
+        self._modified_at: Union[datetime] = kwargs.get("modified_at", None)
+        self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
 
     # Read only property getters
     @property
@@ -366,12 +386,20 @@ class Contact(ModelNormal):
         return self._id
 
     @property
-    def remote_data(self):
-        return self._remote_data
-
-    @property
     def remote_was_deleted(self):
         return self._remote_was_deleted
+
+    @property
+    def field_mappings(self):
+        return self._field_mappings
+
+    @property
+    def modified_at(self):
+        return self._modified_at
+
+    @property
+    def remote_data(self):
+        return self._remote_data
 
 
 

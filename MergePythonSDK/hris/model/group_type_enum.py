@@ -69,6 +69,7 @@ class GroupTypeEnum(ModelNormal, MergeEnumType):
             'DEPARTMENT': "DEPARTMENT",
             'COST_CENTER': "COST_CENTER",
             'BUSINESS_UNIT': "BUSINESS_UNIT",
+            'GROUP': "GROUP",
         },
     }
 

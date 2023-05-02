@@ -30,6 +30,12 @@ class TestStagesApi(unittest.TestCase):
         """
         pass
 
+    def test_stages_remote_field_classes_list(self):
+        """Test case for stages_remote_field_classes_list
+
+        """
+        pass
+
     def test_stages_retrieve(self):
         """Test case for stages_retrieve
 

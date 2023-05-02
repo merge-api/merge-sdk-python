@@ -68,17 +68,17 @@ class CreditNoteLineItem(ModelNormal):
     validations = {
         ('quantity',): {
             'regex': {
-                'pattern': r'^\d{0,24}(?:\.\d{0,8})?$',  # noqa: E501
+                'pattern': r'^-?\d{0,24}(?:\.\d{0,8})?$',  # noqa: E501
             },
         },
         ('unit_price',): {
             'regex': {
-                'pattern': r'^\d{0,32}(?:\.\d{0,16})?$',  # noqa: E501
+                'pattern': r'^-?\d{0,32}(?:\.\d{0,16})?$',  # noqa: E501
             },
         },
         ('total_line_amount',): {
             'regex': {
-                'pattern': r'^\d{0,32}(?:\.\d{0,16})?$',  # noqa: E501
+                'pattern': r'^-?\d{0,32}(?:\.\d{0,16})?$',  # noqa: E501
             },
         },
     }
@@ -89,7 +89,7 @@ class CreditNoteLineItem(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -105,6 +105,7 @@ class CreditNoteLineItem(ModelNormal):
         """
 
         defined_types = {
+            'tracking_categories': ([str],),  # noqa: E501
             'item': (str, none_type, none_type,),  # noqa: E501
             'name': (str, none_type, none_type,),  # noqa: E501
             'description': (str, none_type, none_type,),  # noqa: E501
@@ -115,9 +116,11 @@ class CreditNoteLineItem(ModelNormal):
             'total_line_amount': (str, none_type, none_type,),  # noqa: E501
             'tracking_category': (str, none_type, none_type,),  # noqa: E501
             'account': (str, none_type, none_type,),  # noqa: E501
+            'company': (str, none_type, none_type,),  # noqa: E501
             'remote_id': (str, none_type, none_type,),  # noqa: E501
+            'modified_at': (datetime, none_type,),  # noqa: E501
         }
-        expands_types = {"item": "Item"}
+        expands_types = {"company": "CompanyInfo", "item": "Item"}
 
         # update types with expands
         for key, val in expands_types.items():
@@ -135,6 +138,7 @@ class CreditNoteLineItem(ModelNormal):
 
 
     attribute_map = {
+        'tracking_categories': 'tracking_categories',  # noqa: E501
         'item': 'item',  # noqa: E501
         'name': 'name',  # noqa: E501
         'description': 'description',  # noqa: E501
@@ -145,18 +149,24 @@ class CreditNoteLineItem(ModelNormal):
         'total_line_amount': 'total_line_amount',  # noqa: E501
         'tracking_category': 'tracking_category',  # noqa: E501
         'account': 'account',  # noqa: E501
+        'company': 'company',  # noqa: E501
         'remote_id': 'remote_id',  # noqa: E501
+        'modified_at': 'modified_at',  # noqa: E501
     }
 
     read_only_vars = {
+        'modified_at',  # noqa: E501
     }
 
     _composed_schemas = {}
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, tracking_categories, *args, **kwargs):  # noqa: E501
         """CreditNoteLineItem - a model defined in OpenAPI
+
+        Args:
+            tracking_categories ([str]): The credit note line item's associated tracking categories.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -191,15 +201,17 @@ class CreditNoteLineItem(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             item (str, none_type): [optional]  # noqa: E501
             name (str, none_type): The credit note line item's name.. [optional]  # noqa: E501
-            description (str, none_type): The credit note line item's description.. [optional]  # noqa: E501
+            description (str, none_type): The description of the item that is owed.. [optional]  # noqa: E501
             quantity (str, none_type): The credit note line item's quantity.. [optional]  # noqa: E501
             memo (str, none_type): The credit note line item's memo.. [optional]  # noqa: E501
             unit_price (str, none_type): The credit note line item's unit price.. [optional]  # noqa: E501
             tax_rate (str, none_type): The credit note line item's tax rate.. [optional]  # noqa: E501
             total_line_amount (str, none_type): The credit note line item's total.. [optional]  # noqa: E501
-            tracking_category (str, none_type): The purchase order line item's associated tracking category.. [optional]  # noqa: E501
+            tracking_category (str, none_type): The credit note line item's associated tracking category.. [optional]  # noqa: E501
             account (str, none_type): The credit note line item's account.. [optional]  # noqa: E501
+            company (str, none_type): The company the credit note belongs to.. [optional]  # noqa: E501
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
+            modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -232,6 +244,7 @@ class CreditNoteLineItem(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
+        self.tracking_categories = tracking_categories
         self.item = kwargs.get("item", None)
         self.name = kwargs.get("name", None)
         self.description = kwargs.get("description", None)
@@ -242,7 +255,9 @@ class CreditNoteLineItem(ModelNormal):
         self.total_line_amount = kwargs.get("total_line_amount", None)
         self.tracking_category = kwargs.get("tracking_category", None)
         self.account = kwargs.get("account", None)
+        self.company = kwargs.get("company", None)
         self.remote_id = kwargs.get("remote_id", None)
+        self._modified_at = kwargs.get("modified_at", None)
         return self
 
     required_properties = set([
@@ -255,8 +270,11 @@ class CreditNoteLineItem(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, tracking_categories, *args, **kwargs):  # noqa: E501
         """CreditNoteLineItem - a model defined in OpenAPI
+
+        Args:
+            tracking_categories ([str]): The credit note line item's associated tracking categories.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -291,15 +309,17 @@ class CreditNoteLineItem(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             item (str, none_type): [optional]  # noqa: E501
             name (str, none_type): The credit note line item's name.. [optional]  # noqa: E501
-            description (str, none_type): The credit note line item's description.. [optional]  # noqa: E501
+            description (str, none_type): The description of the item that is owed.. [optional]  # noqa: E501
             quantity (str, none_type): The credit note line item's quantity.. [optional]  # noqa: E501
             memo (str, none_type): The credit note line item's memo.. [optional]  # noqa: E501
             unit_price (str, none_type): The credit note line item's unit price.. [optional]  # noqa: E501
             tax_rate (str, none_type): The credit note line item's tax rate.. [optional]  # noqa: E501
             total_line_amount (str, none_type): The credit note line item's total.. [optional]  # noqa: E501
-            tracking_category (str, none_type): The purchase order line item's associated tracking category.. [optional]  # noqa: E501
+            tracking_category (str, none_type): The credit note line item's associated tracking category.. [optional]  # noqa: E501
             account (str, none_type): The credit note line item's account.. [optional]  # noqa: E501
+            company (str, none_type): The company the credit note belongs to.. [optional]  # noqa: E501
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
+            modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -329,6 +349,7 @@ class CreditNoteLineItem(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.tracking_categories: Union[List[str]] = tracking_categories
         self.item: Union[str, none_type] = kwargs.get("item", None)
         self.name: Union[str, none_type] = kwargs.get("name", None)
         self.description: Union[str, none_type] = kwargs.get("description", None)
@@ -339,6 +360,12 @@ class CreditNoteLineItem(ModelNormal):
         self.total_line_amount: Union[str, none_type] = kwargs.get("total_line_amount", None)
         self.tracking_category: Union[str, none_type] = kwargs.get("tracking_category", None)
         self.account: Union[str, none_type] = kwargs.get("account", None)
+        self.company: Union[str, none_type] = kwargs.get("company", None)
         self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+        self._modified_at: Union[datetime] = kwargs.get("modified_at", None)
+    @property
+    def modified_at(self):
+        return self._modified_at
+
 
 

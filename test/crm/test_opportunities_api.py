@@ -54,6 +54,12 @@ class TestOpportunitiesApi(unittest.TestCase):
         """
         pass
 
+    def test_opportunities_remote_field_classes_list(self):
+        """Test case for opportunities_remote_field_classes_list
+
+        """
+        pass
+
     def test_opportunities_retrieve(self):
         """Test case for opportunities_retrieve
 

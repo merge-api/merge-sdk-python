@@ -15,8 +15,10 @@ from unittest.mock import MagicMock
 
 import MergePythonSDK.accounting
 from MergePythonSDK.accounting.model.currency_enum import CurrencyEnum
+from MergePythonSDK.accounting.model.invoice_line_item_request import InvoiceLineItemRequest
 from MergePythonSDK.accounting.model.invoice_type_enum import InvoiceTypeEnum
 globals()['CurrencyEnum'] = CurrencyEnum
+globals()['InvoiceLineItemRequest'] = InvoiceLineItemRequest
 globals()['InvoiceTypeEnum'] = InvoiceTypeEnum
 from MergePythonSDK.accounting.model.invoice_request import InvoiceRequest
 from MergePythonSDK.shared.api_client import ApiClient

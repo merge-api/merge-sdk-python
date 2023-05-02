@@ -119,6 +119,7 @@ class InvoicesApi(object):
             },
             params_map={
                 'all': [
+                    'company_id',
                     'contact_id',
                     'created_after',
                     'created_before',
@@ -126,21 +127,27 @@ class InvoicesApi(object):
                     'expand',
                     'include_deleted_data',
                     'include_remote_data',
+                    'issue_date_after',
+                    'issue_date_before',
                     'modified_after',
                     'modified_before',
                     'page_size',
                     'remote_fields',
                     'remote_id',
+                    'show_enum_origins',
                     'type',
                 ],
                 'required': [],
                 'nullable': [
+                    'issue_date_after',
+                    'issue_date_before',
                     'remote_id',
                     'type',
                 ],
                 'enum': [
                     'expand',
                     'remote_fields',
+                    'show_enum_origins',
                     'type',
                 ],
                 'validation': [
@@ -152,15 +159,27 @@ class InvoicesApi(object):
                 'allowed_values': {
                     ('expand',): {
 
+                        "COMPANY": "company",
                         "CONTACT": "contact",
+                        "CONTACT,COMPANY": "contact,company",
                         "LINE_ITEMS": "line_items",
+                        "LINE_ITEMS,COMPANY": "line_items,company",
                         "LINE_ITEMS,CONTACT": "line_items,contact",
+                        "LINE_ITEMS,CONTACT,COMPANY": "line_items,contact,company",
                         "PAYMENTS": "payments",
+                        "PAYMENTS,COMPANY": "payments,company",
                         "PAYMENTS,CONTACT": "payments,contact",
+                        "PAYMENTS,CONTACT,COMPANY": "payments,contact,company",
                         "PAYMENTS,LINE_ITEMS": "payments,line_items",
-                        "PAYMENTS,LINE_ITEMS,CONTACT": "payments,line_items,contact"
+                        "PAYMENTS,LINE_ITEMS,COMPANY": "payments,line_items,company",
+                        "PAYMENTS,LINE_ITEMS,CONTACT": "payments,line_items,contact",
+                        "PAYMENTS,LINE_ITEMS,CONTACT,COMPANY": "payments,line_items,contact,company"
                     },
                     ('remote_fields',): {
+
+                        "TYPE": "type"
+                    },
+                    ('show_enum_origins',): {
 
                         "TYPE": "type"
                     },
@@ -171,6 +190,8 @@ class InvoicesApi(object):
                     },
                 },
                 'openapi_types': {
+                    'company_id':
+                        (str,),
                     'contact_id':
                         (str,),
                     'created_after':
@@ -185,6 +206,10 @@ class InvoicesApi(object):
                         (bool,),
                     'include_remote_data':
                         (bool,),
+                    'issue_date_after':
+                        (datetime, none_type,),
+                    'issue_date_before':
+                        (datetime, none_type,),
                     'modified_after':
                         (datetime,),
                     'modified_before':
@@ -195,10 +220,13 @@ class InvoicesApi(object):
                         (str,),
                     'remote_id':
                         (str, none_type,),
+                    'show_enum_origins':
+                        (str,),
                     'type':
                         (str, none_type,),
                 },
                 'attribute_map': {
+                    'company_id': 'company_id',
                     'contact_id': 'contact_id',
                     'created_after': 'created_after',
                     'created_before': 'created_before',
@@ -206,14 +234,18 @@ class InvoicesApi(object):
                     'expand': 'expand',
                     'include_deleted_data': 'include_deleted_data',
                     'include_remote_data': 'include_remote_data',
+                    'issue_date_after': 'issue_date_after',
+                    'issue_date_before': 'issue_date_before',
                     'modified_after': 'modified_after',
                     'modified_before': 'modified_before',
                     'page_size': 'page_size',
                     'remote_fields': 'remote_fields',
                     'remote_id': 'remote_id',
+                    'show_enum_origins': 'show_enum_origins',
                     'type': 'type',
                 },
                 'location_map': {
+                    'company_id': 'query',
                     'contact_id': 'query',
                     'created_after': 'query',
                     'created_before': 'query',
@@ -221,11 +253,14 @@ class InvoicesApi(object):
                     'expand': 'query',
                     'include_deleted_data': 'query',
                     'include_remote_data': 'query',
+                    'issue_date_after': 'query',
+                    'issue_date_before': 'query',
                     'modified_after': 'query',
                     'modified_before': 'query',
                     'page_size': 'query',
                     'remote_fields': 'query',
                     'remote_id': 'query',
+                    'show_enum_origins': 'query',
                     'type': 'query',
                 },
                 'collection_format_map': {
@@ -302,6 +337,7 @@ class InvoicesApi(object):
                     'expand',
                     'include_remote_data',
                     'remote_fields',
+                    'show_enum_origins',
                 ],
                 'required': [
                     'id',
@@ -311,6 +347,7 @@ class InvoicesApi(object):
                 'enum': [
                     'expand',
                     'remote_fields',
+                    'show_enum_origins',
                 ],
                 'validation': [
                 ]
@@ -321,15 +358,27 @@ class InvoicesApi(object):
                 'allowed_values': {
                     ('expand',): {
 
+                        "COMPANY": "company",
                         "CONTACT": "contact",
+                        "CONTACT,COMPANY": "contact,company",
                         "LINE_ITEMS": "line_items",
+                        "LINE_ITEMS,COMPANY": "line_items,company",
                         "LINE_ITEMS,CONTACT": "line_items,contact",
+                        "LINE_ITEMS,CONTACT,COMPANY": "line_items,contact,company",
                         "PAYMENTS": "payments",
+                        "PAYMENTS,COMPANY": "payments,company",
                         "PAYMENTS,CONTACT": "payments,contact",
+                        "PAYMENTS,CONTACT,COMPANY": "payments,contact,company",
                         "PAYMENTS,LINE_ITEMS": "payments,line_items",
-                        "PAYMENTS,LINE_ITEMS,CONTACT": "payments,line_items,contact"
+                        "PAYMENTS,LINE_ITEMS,COMPANY": "payments,line_items,company",
+                        "PAYMENTS,LINE_ITEMS,CONTACT": "payments,line_items,contact",
+                        "PAYMENTS,LINE_ITEMS,CONTACT,COMPANY": "payments,line_items,contact,company"
                     },
                     ('remote_fields',): {
+
+                        "TYPE": "type"
+                    },
+                    ('show_enum_origins',): {
 
                         "TYPE": "type"
                     },
@@ -343,18 +392,22 @@ class InvoicesApi(object):
                         (bool,),
                     'remote_fields':
                         (str,),
+                    'show_enum_origins':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
                     'expand': 'expand',
                     'include_remote_data': 'include_remote_data',
                     'remote_fields': 'remote_fields',
+                    'show_enum_origins': 'show_enum_origins',
                 },
                 'location_map': {
                     'id': 'path',
                     'expand': 'query',
                     'include_remote_data': 'query',
                     'remote_fields': 'query',
+                    'show_enum_origins': 'query',
                 },
                 'collection_format_map': {
                 }
@@ -468,6 +521,7 @@ class InvoicesApi(object):
 
 
         Keyword Args:
+            company_id (str): If provided, will only return invoices for this company.. [optional]
             contact_id (str): If provided, will only return invoices for this contact.. [optional]
             created_after (datetime): If provided, will only return objects created after this datetime.. [optional]
             created_before (datetime): If provided, will only return objects created before this datetime.. [optional]
@@ -475,12 +529,15 @@ class InvoicesApi(object):
             expand (str): Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.. [optional]
             include_deleted_data (bool): Whether to include data that was marked as deleted by third party webhooks.. [optional]
             include_remote_data (bool): Whether to include the original data Merge fetched from the third-party to produce these models.. [optional]
-            modified_after (datetime): If provided, will only return objects modified after this datetime.. [optional]
-            modified_before (datetime): If provided, will only return objects modified before this datetime.. [optional]
+            issue_date_after (datetime, none_type): If provided, will only return objects created after this datetime.. [optional]
+            issue_date_before (datetime, none_type): If provided, will only return objects created before this datetime.. [optional]
+            modified_after (datetime): If provided, only objects synced by Merge after this date time will be returned.. [optional]
+            modified_before (datetime): If provided, only objects synced by Merge before this date time will be returned.. [optional]
             page_size (int): Number of results to return per page.. [optional]
-            remote_fields (str): Which fields should be returned in non-normalized form.. [optional] if omitted the server will use the default value of "type"
+            remote_fields (str): Deprecated. Use show_enum_origins.. [optional] if omitted the server will use the default value of "type"
             remote_id (str, none_type): The API provider's ID for the given object.. [optional]
-            type (str, none_type): If provided, will only return Invoices with this type. [optional]
+            show_enum_origins (str): Which fields should be returned in non-normalized form.. [optional] if omitted the server will use the default value of "type"
+            type (str, none_type): If provided, will only return Invoices with this type  * `ACCOUNTS_RECEIVABLE` - ACCOUNTS_RECEIVABLE * `ACCOUNTS_PAYABLE` - ACCOUNTS_PAYABLE. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -642,7 +699,8 @@ class InvoicesApi(object):
         Keyword Args:
             expand (str): Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.. [optional]
             include_remote_data (bool): Whether to include the original data Merge fetched from the third-party to produce these models.. [optional]
-            remote_fields (str): Which fields should be returned in non-normalized form.. [optional] if omitted the server will use the default value of "type"
+            remote_fields (str): Deprecated. Use show_enum_origins.. [optional] if omitted the server will use the default value of "type"
+            show_enum_origins (str): Which fields should be returned in non-normalized form.. [optional] if omitted the server will use the default value of "type"
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object

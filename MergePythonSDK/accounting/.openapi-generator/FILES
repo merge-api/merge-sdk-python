@@ -9,6 +9,7 @@ MergePythonSDK/accounting/api/attachments_api.py
 MergePythonSDK/accounting/api/available_actions_api.py
 MergePythonSDK/accounting/api/balance_sheets_api.py
 MergePythonSDK/accounting/api/cash_flow_statements_api.py
+MergePythonSDK/accounting/api/common_model_scopes_api.py
 MergePythonSDK/accounting/api/company_info_api.py
 MergePythonSDK/accounting/api/contacts_api.py
 MergePythonSDK/accounting/api/credit_notes_api.py
@@ -51,6 +52,9 @@ MergePythonSDK/accounting/model/account_response.py
 MergePythonSDK/accounting/model/account_status_enum.py
 MergePythonSDK/accounting/model/account_token.py
 MergePythonSDK/accounting/model/accounting_attachment.py
+MergePythonSDK/accounting/model/accounting_attachment_endpoint_request.py
+MergePythonSDK/accounting/model/accounting_attachment_request.py
+MergePythonSDK/accounting/model/accounting_attachment_response.py
 MergePythonSDK/accounting/model/accounting_phone_number.py
 MergePythonSDK/accounting/model/accounting_phone_number_request.py
 MergePythonSDK/accounting/model/address.py
@@ -60,6 +64,13 @@ MergePythonSDK/accounting/model/balance_sheet.py
 MergePythonSDK/accounting/model/cash_flow_statement.py
 MergePythonSDK/accounting/model/category_type_enum.py
 MergePythonSDK/accounting/model/classification_enum.py
+MergePythonSDK/accounting/model/common_model_scope_data.py
+MergePythonSDK/accounting/model/common_model_scopes.py
+MergePythonSDK/accounting/model/common_model_scopes_body_request.py
+MergePythonSDK/accounting/model/common_model_scopes_disabled_models.py
+MergePythonSDK/accounting/model/common_model_scopes_disabled_models_enabled_actions_enum.py
+MergePythonSDK/accounting/model/common_model_scopes_post_inner_deserializer_request.py
+MergePythonSDK/accounting/model/common_model_scopes_update_serializer.py
 MergePythonSDK/accounting/model/company_info.py
 MergePythonSDK/accounting/model/condition_schema.py
 MergePythonSDK/accounting/model/condition_type_enum.py
@@ -75,6 +86,7 @@ MergePythonSDK/accounting/model/currency_enum.py
 MergePythonSDK/accounting/model/data_passthrough_request.py
 MergePythonSDK/accounting/model/debug_mode_log.py
 MergePythonSDK/accounting/model/debug_model_log_summary.py
+MergePythonSDK/accounting/model/enabled_actions_enum.py
 MergePythonSDK/accounting/model/encoding_enum.py
 MergePythonSDK/accounting/model/end_user_details_request.py
 MergePythonSDK/accounting/model/error_validation_problem.py
@@ -118,6 +130,7 @@ MergePythonSDK/accounting/model/payment.py
 MergePythonSDK/accounting/model/payment_endpoint_request.py
 MergePythonSDK/accounting/model/payment_request.py
 MergePythonSDK/accounting/model/payment_response.py
+MergePythonSDK/accounting/model/posting_status_enum.py
 MergePythonSDK/accounting/model/purchase_order.py
 MergePythonSDK/accounting/model/purchase_order_endpoint_request.py
 MergePythonSDK/accounting/model/purchase_order_line_item.py
@@ -128,6 +141,7 @@ MergePythonSDK/accounting/model/purchase_order_status_enum.py
 MergePythonSDK/accounting/model/report_item.py
 MergePythonSDK/accounting/model/request_format_enum.py
 MergePythonSDK/accounting/model/response_type_enum.py
+MergePythonSDK/accounting/model/selective_sync_configurations_usage_enum.py
 MergePythonSDK/accounting/model/status7d1_enum.py
 MergePythonSDK/accounting/model/sync_status.py
 MergePythonSDK/accounting/model/sync_status_status_enum.py
@@ -158,6 +172,9 @@ docs/AccountStatusEnum.md
 docs/AccountToken.md
 docs/AccountTokenApi.md
 docs/AccountingAttachment.md
+docs/AccountingAttachmentEndpointRequest.md
+docs/AccountingAttachmentRequest.md
+docs/AccountingAttachmentResponse.md
 docs/AccountingPhoneNumber.md
 docs/AccountingPhoneNumberRequest.md
 docs/AccountsApi.md
@@ -175,6 +192,14 @@ docs/CategoriesEnum.md
 docs/CategoryEnum.md
 docs/CategoryTypeEnum.md
 docs/ClassificationEnum.md
+docs/CommonModelScopeData.md
+docs/CommonModelScopes.md
+docs/CommonModelScopesApi.md
+docs/CommonModelScopesBodyRequest.md
+docs/CommonModelScopesDisabledModels.md
+docs/CommonModelScopesDisabledModelsEnabledActionsEnum.md
+docs/CommonModelScopesPostInnerDeserializerRequest.md
+docs/CommonModelScopesUpdateSerializer.md
 docs/CompanyInfo.md
 docs/CompanyInfoApi.md
 docs/ConditionSchema.md
@@ -194,6 +219,7 @@ docs/DataPassthroughRequest.md
 docs/DebugModeLog.md
 docs/DebugModelLogSummary.md
 docs/DeleteAccountApi.md
+docs/EnabledActionsEnum.md
 docs/EncodingEnum.md
 docs/EndUserDetailsRequest.md
 docs/ErrorValidationProblem.md
@@ -272,6 +298,7 @@ docs/PaymentRequest.md
 docs/PaymentResponse.md
 docs/PaymentsApi.md
 docs/PhoneNumbersApi.md
+docs/PostingStatusEnum.md
 docs/PurchaseOrder.md
 docs/PurchaseOrderEndpointRequest.md
 docs/PurchaseOrderLineItem.md
@@ -289,6 +316,7 @@ docs/ReportItem.md
 docs/RequestFormatEnum.md
 docs/ResponseTypeEnum.md
 docs/SelectiveSyncApi.md
+docs/SelectiveSyncConfigurationsUsageEnum.md
 docs/Status7d1Enum.md
 docs/SyncStatus.md
 docs/SyncStatusApi.md
@@ -325,6 +353,9 @@ test/test_account_status_enum.py
 test/test_account_token.py
 test/test_account_token_api.py
 test/test_accounting_attachment.py
+test/test_accounting_attachment_endpoint_request.py
+test/test_accounting_attachment_request.py
+test/test_accounting_attachment_response.py
 test/test_accounting_phone_number.py
 test/test_accounting_phone_number_request.py
 test/test_accounts_api.py
@@ -342,6 +373,14 @@ test/test_categories_enum.py
 test/test_category_enum.py
 test/test_category_type_enum.py
 test/test_classification_enum.py
+test/test_common_model_scope_data.py
+test/test_common_model_scopes.py
+test/test_common_model_scopes_api.py
+test/test_common_model_scopes_body_request.py
+test/test_common_model_scopes_disabled_models.py
+test/test_common_model_scopes_disabled_models_enabled_actions_enum.py
+test/test_common_model_scopes_post_inner_deserializer_request.py
+test/test_common_model_scopes_update_serializer.py
 test/test_company_info.py
 test/test_company_info_api.py
 test/test_condition_schema.py
@@ -361,6 +400,7 @@ test/test_data_passthrough_request.py
 test/test_debug_mode_log.py
 test/test_debug_model_log_summary.py
 test/test_delete_account_api.py
+test/test_enabled_actions_enum.py
 test/test_encoding_enum.py
 test/test_end_user_details_request.py
 test/test_error_validation_problem.py
@@ -439,6 +479,7 @@ test/test_payment_request.py
 test/test_payment_response.py
 test/test_payments_api.py
 test/test_phone_numbers_api.py
+test/test_posting_status_enum.py
 test/test_purchase_order.py
 test/test_purchase_order_endpoint_request.py
 test/test_purchase_order_line_item.py
@@ -456,6 +497,7 @@ test/test_report_item.py
 test/test_request_format_enum.py
 test/test_response_type_enum.py
 test/test_selective_sync_api.py
+test/test_selective_sync_configurations_usage_enum.py
 test/test_status7d1_enum.py
 test/test_sync_status.py
 test/test_sync_status_api.py

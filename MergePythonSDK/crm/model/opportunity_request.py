@@ -82,7 +82,7 @@ class OpportunityRequest(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -99,7 +99,6 @@ class OpportunityRequest(ModelNormal):
         lazy_import()
 
         defined_types = {
-            'remote_id': (str, none_type, none_type,),  # noqa: E501
             'name': (str, none_type, none_type,),  # noqa: E501
             'description': (str, none_type, none_type,),  # noqa: E501
             'amount': (int, none_type, none_type,),  # noqa: E501
@@ -109,10 +108,19 @@ class OpportunityRequest(ModelNormal):
             'status': (OpportunityStatusEnum, str, none_type,),
             'last_activity_at': (datetime, none_type, none_type,),  # noqa: E501
             'close_date': (datetime, none_type, none_type,),  # noqa: E501
-            'remote_created_at': (datetime, none_type, none_type,),  # noqa: E501
-            'integration_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
-            'linked_account_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'integration_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'linked_account_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
         }
+        expands_types = {"account": "Account", "owner": "User", "stage": "Stage"}
+
+        # update types with expands
+        for key, val in expands_types.items():
+            if key in defined_types.keys():
+                expands_model = import_model_by_name(val, "crm")
+                if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
+                    defined_types[key][0].insert(0, expands_model)
+                else:
+                    defined_types[key] = (*defined_types[key], expands_model)
         return defined_types
 
     @cached_property
@@ -121,7 +129,6 @@ class OpportunityRequest(ModelNormal):
 
 
     attribute_map = {
-        'remote_id': 'remote_id',  # noqa: E501
         'name': 'name',  # noqa: E501
         'description': 'description',  # noqa: E501
         'amount': 'amount',  # noqa: E501
@@ -131,7 +138,6 @@ class OpportunityRequest(ModelNormal):
         'status': 'status',  # noqa: E501
         'last_activity_at': 'last_activity_at',  # noqa: E501
         'close_date': 'close_date',  # noqa: E501
-        'remote_created_at': 'remote_created_at',  # noqa: E501
         'integration_params': 'integration_params',  # noqa: E501
         'linked_account_params': 'linked_account_params',  # noqa: E501
     }
@@ -177,19 +183,17 @@ class OpportunityRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             name (str, none_type): The opportunity's name.. [optional]  # noqa: E501
             description (str, none_type): The opportunity's description.. [optional]  # noqa: E501
             amount (int, none_type): The opportunity's amount.. [optional]  # noqa: E501
-            owner (str, none_type): [optional]  # noqa: E501
-            account (str, none_type): [optional]  # noqa: E501
-            stage (str, none_type): [optional]  # noqa: E501
-            status (bool, dict, float, int, list, str, none_type): The opportunity's status.. [optional]  # noqa: E501
+            owner (str, none_type): The opportunity's owner.. [optional]  # noqa: E501
+            account (str, none_type): The account of the opportunity.. [optional]  # noqa: E501
+            stage (str, none_type): The stage of the opportunity.. [optional]  # noqa: E501
+            status (bool, date, datetime, dict, float, int, list, str, none_type): The opportunity's status.  * `OPEN` - OPEN * `WON` - WON * `LOST` - LOST. [optional]  # noqa: E501
             last_activity_at (datetime, none_type): When the opportunity's last activity occurred.. [optional]  # noqa: E501
             close_date (datetime, none_type): When the opportunity was closed.. [optional]  # noqa: E501
-            remote_created_at (datetime, none_type): When the third party's opportunity was created.. [optional]  # noqa: E501
-            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -222,7 +226,6 @@ class OpportunityRequest(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.remote_id = kwargs.get("remote_id", None)
         self.name = kwargs.get("name", None)
         self.description = kwargs.get("description", None)
         self.amount = kwargs.get("amount", None)
@@ -232,7 +235,6 @@ class OpportunityRequest(ModelNormal):
         self.status = kwargs.get("status", None)
         self.last_activity_at = kwargs.get("last_activity_at", None)
         self.close_date = kwargs.get("close_date", None)
-        self.remote_created_at = kwargs.get("remote_created_at", None)
         self.integration_params = kwargs.get("integration_params", None)
         self.linked_account_params = kwargs.get("linked_account_params", None)
         return self
@@ -281,19 +283,17 @@ class OpportunityRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             name (str, none_type): The opportunity's name.. [optional]  # noqa: E501
             description (str, none_type): The opportunity's description.. [optional]  # noqa: E501
             amount (int, none_type): The opportunity's amount.. [optional]  # noqa: E501
-            owner (str, none_type): [optional]  # noqa: E501
-            account (str, none_type): [optional]  # noqa: E501
-            stage (str, none_type): [optional]  # noqa: E501
-            status (bool, dict, float, int, list, str, none_type): The opportunity's status.. [optional]  # noqa: E501
+            owner (str, none_type): The opportunity's owner.. [optional]  # noqa: E501
+            account (str, none_type): The account of the opportunity.. [optional]  # noqa: E501
+            stage (str, none_type): The stage of the opportunity.. [optional]  # noqa: E501
+            status (bool, date, datetime, dict, float, int, list, str, none_type): The opportunity's status.  * `OPEN` - OPEN * `WON` - WON * `LOST` - LOST. [optional]  # noqa: E501
             last_activity_at (datetime, none_type): When the opportunity's last activity occurred.. [optional]  # noqa: E501
             close_date (datetime, none_type): When the opportunity was closed.. [optional]  # noqa: E501
-            remote_created_at (datetime, none_type): When the third party's opportunity was created.. [optional]  # noqa: E501
-            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -323,18 +323,16 @@ class OpportunityRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
         self.name: Union[str, none_type] = kwargs.get("name", None)
         self.description: Union[str, none_type] = kwargs.get("description", None)
         self.amount: Union[int, none_type] = kwargs.get("amount", None)
         self.owner: Union[str, none_type] = kwargs.get("owner", None)
         self.account: Union[str, none_type] = kwargs.get("account", None)
         self.stage: Union[str, none_type] = kwargs.get("stage", None)
-        self.status: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("status", None)
+        self.status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
         self.last_activity_at: Union[datetime, none_type] = kwargs.get("last_activity_at", None)
         self.close_date: Union[datetime, none_type] = kwargs.get("close_date", None)
-        self.remote_created_at: Union[datetime, none_type] = kwargs.get("remote_created_at", None)
-        self.integration_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
-        self.linked_account_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
+        self.integration_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
+        self.linked_account_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
 
 

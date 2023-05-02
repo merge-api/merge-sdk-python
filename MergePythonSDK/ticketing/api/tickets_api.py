@@ -24,6 +24,7 @@ from MergePythonSDK.shared.model_utils import (  # noqa: F401
 )
 from MergePythonSDK.ticketing.model.meta_response import MetaResponse
 from MergePythonSDK.shared.model.merge_paginated_response import MergePaginatedResponse
+from MergePythonSDK.ticketing.model.remote_field_class import RemoteFieldClass
 from MergePythonSDK.ticketing.model.ticket import Ticket
 from MergePythonSDK.ticketing.model.user import User
 from MergePythonSDK.ticketing.model.patched_ticket_endpoint_request import PatchedTicketEndpointRequest
@@ -49,21 +50,22 @@ class TicketsApi(object):
                     'accountTokenAuth',
                     'bearerAuth'
                 ],
-                'endpoint_path': '/ticketing/v1/tickets/{id}/collaborators',
+                'endpoint_path': '/ticketing/v1/tickets/{parent_id}/collaborators',
                 'operation_id': 'tickets_collaborators_list',
                 'http_method': 'GET',
                 'servers': None,
             },
             params_map={
                 'all': [
-                    'id',
+                    'parent_id',
                     'cursor',
                     'expand',
+                    'include_deleted_data',
                     'include_remote_data',
                     'page_size',
                 ],
                 'required': [
-                    'id',
+                    'parent_id',
                 ],
                 'nullable': [
                 ],
@@ -83,28 +85,32 @@ class TicketsApi(object):
                     },
                 },
                 'openapi_types': {
-                    'id':
+                    'parent_id':
                         (str,),
                     'cursor':
                         (str,),
                     'expand':
                         (str,),
+                    'include_deleted_data':
+                        (bool,),
                     'include_remote_data':
                         (bool,),
                     'page_size':
                         (int,),
                 },
                 'attribute_map': {
-                    'id': 'id',
+                    'parent_id': 'parent_id',
                     'cursor': 'cursor',
                     'expand': 'expand',
+                    'include_deleted_data': 'include_deleted_data',
                     'include_remote_data': 'include_remote_data',
                     'page_size': 'page_size',
                 },
                 'location_map': {
-                    'id': 'path',
+                    'parent_id': 'path',
                     'cursor': 'query',
                     'expand': 'query',
+                    'include_deleted_data': 'query',
                     'include_remote_data': 'query',
                     'page_size': 'query',
                 },
@@ -200,6 +206,7 @@ class TicketsApi(object):
                 'all': [
                     'account_id',
                     'assignee_ids',
+                    'collection_ids',
                     'completed_after',
                     'completed_before',
                     'contact_id',
@@ -211,14 +218,20 @@ class TicketsApi(object):
                     'expand',
                     'include_deleted_data',
                     'include_remote_data',
+                    'include_remote_fields',
                     'modified_after',
                     'modified_before',
                     'page_size',
                     'parent_ticket_id',
                     'priority',
                     'project_id',
+                    'remote_created_after',
+                    'remote_created_before',
                     'remote_fields',
                     'remote_id',
+                    'remote_updated_after',
+                    'remote_updated_before',
+                    'show_enum_origins',
                     'status',
                     'tags',
                     'ticket_type',
@@ -230,7 +243,11 @@ class TicketsApi(object):
                     'due_after',
                     'due_before',
                     'priority',
+                    'remote_created_after',
+                    'remote_created_before',
                     'remote_id',
+                    'remote_updated_after',
+                    'remote_updated_before',
                     'status',
                     'ticket_type',
                 ],
@@ -238,6 +255,7 @@ class TicketsApi(object):
                     'expand',
                     'priority',
                     'remote_fields',
+                    'show_enum_origins',
                     'status',
                 ],
                 'validation': [
@@ -266,6 +284,38 @@ class TicketsApi(object):
                         "ASSIGNEES,ACCOUNT,CREATOR": "assignees,account,creator",
                         "ASSIGNEES,ACCOUNT,CREATOR,PARENT_TICKET": "assignees,account,creator,parent_ticket",
                         "ASSIGNEES,ACCOUNT,PARENT_TICKET": "assignees,account,parent_ticket",
+                        "ASSIGNEES,COLLECTIONS": "assignees,collections",
+                        "ASSIGNEES,COLLECTIONS,ACCOUNT": "assignees,collections,account",
+                        "ASSIGNEES,COLLECTIONS,ACCOUNT,CONTACT": "assignees,collections,account,contact",
+                        "ASSIGNEES,COLLECTIONS,ACCOUNT,CONTACT,CREATOR": "assignees,collections,account,contact,creator",
+                        "ASSIGNEES,COLLECTIONS,ACCOUNT,CONTACT,CREATOR,PARENT_TICKET": "assignees,collections,account,contact,creator,parent_ticket",
+                        "ASSIGNEES,COLLECTIONS,ACCOUNT,CONTACT,PARENT_TICKET": "assignees,collections,account,contact,parent_ticket",
+                        "ASSIGNEES,COLLECTIONS,ACCOUNT,CREATOR": "assignees,collections,account,creator",
+                        "ASSIGNEES,COLLECTIONS,ACCOUNT,CREATOR,PARENT_TICKET": "assignees,collections,account,creator,parent_ticket",
+                        "ASSIGNEES,COLLECTIONS,ACCOUNT,PARENT_TICKET": "assignees,collections,account,parent_ticket",
+                        "ASSIGNEES,COLLECTIONS,CONTACT": "assignees,collections,contact",
+                        "ASSIGNEES,COLLECTIONS,CONTACT,CREATOR": "assignees,collections,contact,creator",
+                        "ASSIGNEES,COLLECTIONS,CONTACT,CREATOR,PARENT_TICKET": "assignees,collections,contact,creator,parent_ticket",
+                        "ASSIGNEES,COLLECTIONS,CONTACT,PARENT_TICKET": "assignees,collections,contact,parent_ticket",
+                        "ASSIGNEES,COLLECTIONS,CREATOR": "assignees,collections,creator",
+                        "ASSIGNEES,COLLECTIONS,CREATOR,PARENT_TICKET": "assignees,collections,creator,parent_ticket",
+                        "ASSIGNEES,COLLECTIONS,PARENT_TICKET": "assignees,collections,parent_ticket",
+                        "ASSIGNEES,COLLECTIONS,PROJECT": "assignees,collections,project",
+                        "ASSIGNEES,COLLECTIONS,PROJECT,ACCOUNT": "assignees,collections,project,account",
+                        "ASSIGNEES,COLLECTIONS,PROJECT,ACCOUNT,CONTACT": "assignees,collections,project,account,contact",
+                        "ASSIGNEES,COLLECTIONS,PROJECT,ACCOUNT,CONTACT,CREATOR": "assignees,collections,project,account,contact,creator",
+                        "ASSIGNEES,COLLECTIONS,PROJECT,ACCOUNT,CONTACT,CREATOR,PARENT_TICKET": "assignees,collections,project,account,contact,creator,parent_ticket",
+                        "ASSIGNEES,COLLECTIONS,PROJECT,ACCOUNT,CONTACT,PARENT_TICKET": "assignees,collections,project,account,contact,parent_ticket",
+                        "ASSIGNEES,COLLECTIONS,PROJECT,ACCOUNT,CREATOR": "assignees,collections,project,account,creator",
+                        "ASSIGNEES,COLLECTIONS,PROJECT,ACCOUNT,CREATOR,PARENT_TICKET": "assignees,collections,project,account,creator,parent_ticket",
+                        "ASSIGNEES,COLLECTIONS,PROJECT,ACCOUNT,PARENT_TICKET": "assignees,collections,project,account,parent_ticket",
+                        "ASSIGNEES,COLLECTIONS,PROJECT,CONTACT": "assignees,collections,project,contact",
+                        "ASSIGNEES,COLLECTIONS,PROJECT,CONTACT,CREATOR": "assignees,collections,project,contact,creator",
+                        "ASSIGNEES,COLLECTIONS,PROJECT,CONTACT,CREATOR,PARENT_TICKET": "assignees,collections,project,contact,creator,parent_ticket",
+                        "ASSIGNEES,COLLECTIONS,PROJECT,CONTACT,PARENT_TICKET": "assignees,collections,project,contact,parent_ticket",
+                        "ASSIGNEES,COLLECTIONS,PROJECT,CREATOR": "assignees,collections,project,creator",
+                        "ASSIGNEES,COLLECTIONS,PROJECT,CREATOR,PARENT_TICKET": "assignees,collections,project,creator,parent_ticket",
+                        "ASSIGNEES,COLLECTIONS,PROJECT,PARENT_TICKET": "assignees,collections,project,parent_ticket",
                         "ASSIGNEES,CONTACT": "assignees,contact",
                         "ASSIGNEES,CONTACT,CREATOR": "assignees,contact,creator",
                         "ASSIGNEES,CONTACT,CREATOR,PARENT_TICKET": "assignees,contact,creator,parent_ticket",
@@ -307,6 +357,38 @@ class TicketsApi(object):
                         "ATTACHMENTS,ASSIGNEES,ACCOUNT,CREATOR": "attachments,assignees,account,creator",
                         "ATTACHMENTS,ASSIGNEES,ACCOUNT,CREATOR,PARENT_TICKET": "attachments,assignees,account,creator,parent_ticket",
                         "ATTACHMENTS,ASSIGNEES,ACCOUNT,PARENT_TICKET": "attachments,assignees,account,parent_ticket",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS": "attachments,assignees,collections",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,ACCOUNT": "attachments,assignees,collections,account",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,ACCOUNT,CONTACT": "attachments,assignees,collections,account,contact",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,ACCOUNT,CONTACT,CREATOR": "attachments,assignees,collections,account,contact,creator",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,ACCOUNT,CONTACT,CREATOR,PARENT_TICKET": "attachments,assignees,collections,account,contact,creator,parent_ticket",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,ACCOUNT,CONTACT,PARENT_TICKET": "attachments,assignees,collections,account,contact,parent_ticket",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,ACCOUNT,CREATOR": "attachments,assignees,collections,account,creator",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,ACCOUNT,CREATOR,PARENT_TICKET": "attachments,assignees,collections,account,creator,parent_ticket",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,ACCOUNT,PARENT_TICKET": "attachments,assignees,collections,account,parent_ticket",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,CONTACT": "attachments,assignees,collections,contact",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,CONTACT,CREATOR": "attachments,assignees,collections,contact,creator",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,CONTACT,CREATOR,PARENT_TICKET": "attachments,assignees,collections,contact,creator,parent_ticket",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,CONTACT,PARENT_TICKET": "attachments,assignees,collections,contact,parent_ticket",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,CREATOR": "attachments,assignees,collections,creator",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,CREATOR,PARENT_TICKET": "attachments,assignees,collections,creator,parent_ticket",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,PARENT_TICKET": "attachments,assignees,collections,parent_ticket",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,PROJECT": "attachments,assignees,collections,project",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,PROJECT,ACCOUNT": "attachments,assignees,collections,project,account",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,PROJECT,ACCOUNT,CONTACT": "attachments,assignees,collections,project,account,contact",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,PROJECT,ACCOUNT,CONTACT,CREATOR": "attachments,assignees,collections,project,account,contact,creator",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,PROJECT,ACCOUNT,CONTACT,CREATOR,PARENT_TICKET": "attachments,assignees,collections,project,account,contact,creator,parent_ticket",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,PROJECT,ACCOUNT,CONTACT,PARENT_TICKET": "attachments,assignees,collections,project,account,contact,parent_ticket",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,PROJECT,ACCOUNT,CREATOR": "attachments,assignees,collections,project,account,creator",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,PROJECT,ACCOUNT,CREATOR,PARENT_TICKET": "attachments,assignees,collections,project,account,creator,parent_ticket",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,PROJECT,ACCOUNT,PARENT_TICKET": "attachments,assignees,collections,project,account,parent_ticket",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,PROJECT,CONTACT": "attachments,assignees,collections,project,contact",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,PROJECT,CONTACT,CREATOR": "attachments,assignees,collections,project,contact,creator",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,PROJECT,CONTACT,CREATOR,PARENT_TICKET": "attachments,assignees,collections,project,contact,creator,parent_ticket",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,PROJECT,CONTACT,PARENT_TICKET": "attachments,assignees,collections,project,contact,parent_ticket",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,PROJECT,CREATOR": "attachments,assignees,collections,project,creator",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,PROJECT,CREATOR,PARENT_TICKET": "attachments,assignees,collections,project,creator,parent_ticket",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,PROJECT,PARENT_TICKET": "attachments,assignees,collections,project,parent_ticket",
                         "ATTACHMENTS,ASSIGNEES,CONTACT": "attachments,assignees,contact",
                         "ATTACHMENTS,ASSIGNEES,CONTACT,CREATOR": "attachments,assignees,contact,creator",
                         "ATTACHMENTS,ASSIGNEES,CONTACT,CREATOR,PARENT_TICKET": "attachments,assignees,contact,creator,parent_ticket",
@@ -330,6 +412,38 @@ class TicketsApi(object):
                         "ATTACHMENTS,ASSIGNEES,PROJECT,CREATOR": "attachments,assignees,project,creator",
                         "ATTACHMENTS,ASSIGNEES,PROJECT,CREATOR,PARENT_TICKET": "attachments,assignees,project,creator,parent_ticket",
                         "ATTACHMENTS,ASSIGNEES,PROJECT,PARENT_TICKET": "attachments,assignees,project,parent_ticket",
+                        "ATTACHMENTS,COLLECTIONS": "attachments,collections",
+                        "ATTACHMENTS,COLLECTIONS,ACCOUNT": "attachments,collections,account",
+                        "ATTACHMENTS,COLLECTIONS,ACCOUNT,CONTACT": "attachments,collections,account,contact",
+                        "ATTACHMENTS,COLLECTIONS,ACCOUNT,CONTACT,CREATOR": "attachments,collections,account,contact,creator",
+                        "ATTACHMENTS,COLLECTIONS,ACCOUNT,CONTACT,CREATOR,PARENT_TICKET": "attachments,collections,account,contact,creator,parent_ticket",
+                        "ATTACHMENTS,COLLECTIONS,ACCOUNT,CONTACT,PARENT_TICKET": "attachments,collections,account,contact,parent_ticket",
+                        "ATTACHMENTS,COLLECTIONS,ACCOUNT,CREATOR": "attachments,collections,account,creator",
+                        "ATTACHMENTS,COLLECTIONS,ACCOUNT,CREATOR,PARENT_TICKET": "attachments,collections,account,creator,parent_ticket",
+                        "ATTACHMENTS,COLLECTIONS,ACCOUNT,PARENT_TICKET": "attachments,collections,account,parent_ticket",
+                        "ATTACHMENTS,COLLECTIONS,CONTACT": "attachments,collections,contact",
+                        "ATTACHMENTS,COLLECTIONS,CONTACT,CREATOR": "attachments,collections,contact,creator",
+                        "ATTACHMENTS,COLLECTIONS,CONTACT,CREATOR,PARENT_TICKET": "attachments,collections,contact,creator,parent_ticket",
+                        "ATTACHMENTS,COLLECTIONS,CONTACT,PARENT_TICKET": "attachments,collections,contact,parent_ticket",
+                        "ATTACHMENTS,COLLECTIONS,CREATOR": "attachments,collections,creator",
+                        "ATTACHMENTS,COLLECTIONS,CREATOR,PARENT_TICKET": "attachments,collections,creator,parent_ticket",
+                        "ATTACHMENTS,COLLECTIONS,PARENT_TICKET": "attachments,collections,parent_ticket",
+                        "ATTACHMENTS,COLLECTIONS,PROJECT": "attachments,collections,project",
+                        "ATTACHMENTS,COLLECTIONS,PROJECT,ACCOUNT": "attachments,collections,project,account",
+                        "ATTACHMENTS,COLLECTIONS,PROJECT,ACCOUNT,CONTACT": "attachments,collections,project,account,contact",
+                        "ATTACHMENTS,COLLECTIONS,PROJECT,ACCOUNT,CONTACT,CREATOR": "attachments,collections,project,account,contact,creator",
+                        "ATTACHMENTS,COLLECTIONS,PROJECT,ACCOUNT,CONTACT,CREATOR,PARENT_TICKET": "attachments,collections,project,account,contact,creator,parent_ticket",
+                        "ATTACHMENTS,COLLECTIONS,PROJECT,ACCOUNT,CONTACT,PARENT_TICKET": "attachments,collections,project,account,contact,parent_ticket",
+                        "ATTACHMENTS,COLLECTIONS,PROJECT,ACCOUNT,CREATOR": "attachments,collections,project,account,creator",
+                        "ATTACHMENTS,COLLECTIONS,PROJECT,ACCOUNT,CREATOR,PARENT_TICKET": "attachments,collections,project,account,creator,parent_ticket",
+                        "ATTACHMENTS,COLLECTIONS,PROJECT,ACCOUNT,PARENT_TICKET": "attachments,collections,project,account,parent_ticket",
+                        "ATTACHMENTS,COLLECTIONS,PROJECT,CONTACT": "attachments,collections,project,contact",
+                        "ATTACHMENTS,COLLECTIONS,PROJECT,CONTACT,CREATOR": "attachments,collections,project,contact,creator",
+                        "ATTACHMENTS,COLLECTIONS,PROJECT,CONTACT,CREATOR,PARENT_TICKET": "attachments,collections,project,contact,creator,parent_ticket",
+                        "ATTACHMENTS,COLLECTIONS,PROJECT,CONTACT,PARENT_TICKET": "attachments,collections,project,contact,parent_ticket",
+                        "ATTACHMENTS,COLLECTIONS,PROJECT,CREATOR": "attachments,collections,project,creator",
+                        "ATTACHMENTS,COLLECTIONS,PROJECT,CREATOR,PARENT_TICKET": "attachments,collections,project,creator,parent_ticket",
+                        "ATTACHMENTS,COLLECTIONS,PROJECT,PARENT_TICKET": "attachments,collections,project,parent_ticket",
                         "ATTACHMENTS,CONTACT": "attachments,contact",
                         "ATTACHMENTS,CONTACT,CREATOR": "attachments,contact,creator",
                         "ATTACHMENTS,CONTACT,CREATOR,PARENT_TICKET": "attachments,contact,creator,parent_ticket",
@@ -353,6 +467,38 @@ class TicketsApi(object):
                         "ATTACHMENTS,PROJECT,CREATOR": "attachments,project,creator",
                         "ATTACHMENTS,PROJECT,CREATOR,PARENT_TICKET": "attachments,project,creator,parent_ticket",
                         "ATTACHMENTS,PROJECT,PARENT_TICKET": "attachments,project,parent_ticket",
+                        "COLLECTIONS": "collections",
+                        "COLLECTIONS,ACCOUNT": "collections,account",
+                        "COLLECTIONS,ACCOUNT,CONTACT": "collections,account,contact",
+                        "COLLECTIONS,ACCOUNT,CONTACT,CREATOR": "collections,account,contact,creator",
+                        "COLLECTIONS,ACCOUNT,CONTACT,CREATOR,PARENT_TICKET": "collections,account,contact,creator,parent_ticket",
+                        "COLLECTIONS,ACCOUNT,CONTACT,PARENT_TICKET": "collections,account,contact,parent_ticket",
+                        "COLLECTIONS,ACCOUNT,CREATOR": "collections,account,creator",
+                        "COLLECTIONS,ACCOUNT,CREATOR,PARENT_TICKET": "collections,account,creator,parent_ticket",
+                        "COLLECTIONS,ACCOUNT,PARENT_TICKET": "collections,account,parent_ticket",
+                        "COLLECTIONS,CONTACT": "collections,contact",
+                        "COLLECTIONS,CONTACT,CREATOR": "collections,contact,creator",
+                        "COLLECTIONS,CONTACT,CREATOR,PARENT_TICKET": "collections,contact,creator,parent_ticket",
+                        "COLLECTIONS,CONTACT,PARENT_TICKET": "collections,contact,parent_ticket",
+                        "COLLECTIONS,CREATOR": "collections,creator",
+                        "COLLECTIONS,CREATOR,PARENT_TICKET": "collections,creator,parent_ticket",
+                        "COLLECTIONS,PARENT_TICKET": "collections,parent_ticket",
+                        "COLLECTIONS,PROJECT": "collections,project",
+                        "COLLECTIONS,PROJECT,ACCOUNT": "collections,project,account",
+                        "COLLECTIONS,PROJECT,ACCOUNT,CONTACT": "collections,project,account,contact",
+                        "COLLECTIONS,PROJECT,ACCOUNT,CONTACT,CREATOR": "collections,project,account,contact,creator",
+                        "COLLECTIONS,PROJECT,ACCOUNT,CONTACT,CREATOR,PARENT_TICKET": "collections,project,account,contact,creator,parent_ticket",
+                        "COLLECTIONS,PROJECT,ACCOUNT,CONTACT,PARENT_TICKET": "collections,project,account,contact,parent_ticket",
+                        "COLLECTIONS,PROJECT,ACCOUNT,CREATOR": "collections,project,account,creator",
+                        "COLLECTIONS,PROJECT,ACCOUNT,CREATOR,PARENT_TICKET": "collections,project,account,creator,parent_ticket",
+                        "COLLECTIONS,PROJECT,ACCOUNT,PARENT_TICKET": "collections,project,account,parent_ticket",
+                        "COLLECTIONS,PROJECT,CONTACT": "collections,project,contact",
+                        "COLLECTIONS,PROJECT,CONTACT,CREATOR": "collections,project,contact,creator",
+                        "COLLECTIONS,PROJECT,CONTACT,CREATOR,PARENT_TICKET": "collections,project,contact,creator,parent_ticket",
+                        "COLLECTIONS,PROJECT,CONTACT,PARENT_TICKET": "collections,project,contact,parent_ticket",
+                        "COLLECTIONS,PROJECT,CREATOR": "collections,project,creator",
+                        "COLLECTIONS,PROJECT,CREATOR,PARENT_TICKET": "collections,project,creator,parent_ticket",
+                        "COLLECTIONS,PROJECT,PARENT_TICKET": "collections,project,parent_ticket",
                         "CONTACT": "contact",
                         "CONTACT,CREATOR": "contact,creator",
                         "CONTACT,CREATOR,PARENT_TICKET": "contact,creator,parent_ticket",
@@ -386,7 +532,23 @@ class TicketsApi(object):
                     },
                     ('remote_fields',): {
 
-                        "STATUS": "status"
+                        "PRIORITY": "priority",
+                        "PRIORITY,STATUS": "priority,status",
+                        "PRIORITY,STATUS,TICKET_TYPE": "priority,status,ticket_type",
+                        "PRIORITY,TICKET_TYPE": "priority,ticket_type",
+                        "STATUS": "status",
+                        "STATUS,TICKET_TYPE": "status,ticket_type",
+                        "TICKET_TYPE": "ticket_type"
+                    },
+                    ('show_enum_origins',): {
+
+                        "PRIORITY": "priority",
+                        "PRIORITY,STATUS": "priority,status",
+                        "PRIORITY,STATUS,TICKET_TYPE": "priority,status,ticket_type",
+                        "PRIORITY,TICKET_TYPE": "priority,ticket_type",
+                        "STATUS": "status",
+                        "STATUS,TICKET_TYPE": "status,ticket_type",
+                        "TICKET_TYPE": "ticket_type"
                     },
                     ('status',): {
                         'None': None,
@@ -400,6 +562,8 @@ class TicketsApi(object):
                     'account_id':
                         (str,),
                     'assignee_ids':
+                        (str,),
+                    'collection_ids':
                         (str,),
                     'completed_after':
                         (datetime, none_type,),
@@ -423,6 +587,8 @@ class TicketsApi(object):
                         (bool,),
                     'include_remote_data':
                         (bool,),
+                    'include_remote_fields':
+                        (bool,),
                     'modified_after':
                         (datetime,),
                     'modified_before':
@@ -435,10 +601,20 @@ class TicketsApi(object):
                         (str, none_type,),
                     'project_id':
                         (str,),
+                    'remote_created_after':
+                        (datetime, none_type,),
+                    'remote_created_before':
+                        (datetime, none_type,),
                     'remote_fields':
                         (str,),
                     'remote_id':
                         (str, none_type,),
+                    'remote_updated_after':
+                        (datetime, none_type,),
+                    'remote_updated_before':
+                        (datetime, none_type,),
+                    'show_enum_origins':
+                        (str,),
                     'status':
                         (str, none_type,),
                     'tags':
@@ -449,6 +625,7 @@ class TicketsApi(object):
                 'attribute_map': {
                     'account_id': 'account_id',
                     'assignee_ids': 'assignee_ids',
+                    'collection_ids': 'collection_ids',
                     'completed_after': 'completed_after',
                     'completed_before': 'completed_before',
                     'contact_id': 'contact_id',
@@ -460,14 +637,20 @@ class TicketsApi(object):
                     'expand': 'expand',
                     'include_deleted_data': 'include_deleted_data',
                     'include_remote_data': 'include_remote_data',
+                    'include_remote_fields': 'include_remote_fields',
                     'modified_after': 'modified_after',
                     'modified_before': 'modified_before',
                     'page_size': 'page_size',
                     'parent_ticket_id': 'parent_ticket_id',
                     'priority': 'priority',
                     'project_id': 'project_id',
+                    'remote_created_after': 'remote_created_after',
+                    'remote_created_before': 'remote_created_before',
                     'remote_fields': 'remote_fields',
                     'remote_id': 'remote_id',
+                    'remote_updated_after': 'remote_updated_after',
+                    'remote_updated_before': 'remote_updated_before',
+                    'show_enum_origins': 'show_enum_origins',
                     'status': 'status',
                     'tags': 'tags',
                     'ticket_type': 'ticket_type',
@@ -475,6 +658,7 @@ class TicketsApi(object):
                 'location_map': {
                     'account_id': 'query',
                     'assignee_ids': 'query',
+                    'collection_ids': 'query',
                     'completed_after': 'query',
                     'completed_before': 'query',
                     'contact_id': 'query',
@@ -486,14 +670,20 @@ class TicketsApi(object):
                     'expand': 'query',
                     'include_deleted_data': 'query',
                     'include_remote_data': 'query',
+                    'include_remote_fields': 'query',
                     'modified_after': 'query',
                     'modified_before': 'query',
                     'page_size': 'query',
                     'parent_ticket_id': 'query',
                     'priority': 'query',
                     'project_id': 'query',
+                    'remote_created_after': 'query',
+                    'remote_created_before': 'query',
                     'remote_fields': 'query',
                     'remote_id': 'query',
+                    'remote_updated_after': 'query',
+                    'remote_updated_before': 'query',
+                    'show_enum_origins': 'query',
                     'status': 'query',
                     'tags': 'query',
                     'ticket_type': 'query',
@@ -677,6 +867,71 @@ class TicketsApi(object):
             },
             api_client=api_client
         )
+        self.tickets_remote_field_classes_list_endpoint = _Endpoint(
+            settings={
+                'response_type': (MergePaginatedResponse(RemoteFieldClass),),
+                'auth': [
+                    'accountTokenAuth',
+                    'bearerAuth'
+                ],
+                'endpoint_path': '/ticketing/v1/tickets/remote-field-classes',
+                'operation_id': 'tickets_remote_field_classes_list',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'cursor',
+                    'include_deleted_data',
+                    'include_remote_data',
+                    'page_size',
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'cursor':
+                        (str,),
+                    'include_deleted_data':
+                        (bool,),
+                    'include_remote_data':
+                        (bool,),
+                    'page_size':
+                        (int,),
+                },
+                'attribute_map': {
+                    'cursor': 'cursor',
+                    'include_deleted_data': 'include_deleted_data',
+                    'include_remote_data': 'include_remote_data',
+                    'page_size': 'page_size',
+                },
+                'location_map': {
+                    'cursor': 'query',
+                    'include_deleted_data': 'query',
+                    'include_remote_data': 'query',
+                    'page_size': 'query',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
         self.tickets_retrieve_endpoint = _Endpoint(
             settings={
                 'response_type': (Ticket,),
@@ -694,7 +949,9 @@ class TicketsApi(object):
                     'id',
                     'expand',
                     'include_remote_data',
+                    'include_remote_fields',
                     'remote_fields',
+                    'show_enum_origins',
                 ],
                 'required': [
                     'id',
@@ -704,6 +961,7 @@ class TicketsApi(object):
                 'enum': [
                     'expand',
                     'remote_fields',
+                    'show_enum_origins',
                 ],
                 'validation': [
                 ]
@@ -731,6 +989,38 @@ class TicketsApi(object):
                         "ASSIGNEES,ACCOUNT,CREATOR": "assignees,account,creator",
                         "ASSIGNEES,ACCOUNT,CREATOR,PARENT_TICKET": "assignees,account,creator,parent_ticket",
                         "ASSIGNEES,ACCOUNT,PARENT_TICKET": "assignees,account,parent_ticket",
+                        "ASSIGNEES,COLLECTIONS": "assignees,collections",
+                        "ASSIGNEES,COLLECTIONS,ACCOUNT": "assignees,collections,account",
+                        "ASSIGNEES,COLLECTIONS,ACCOUNT,CONTACT": "assignees,collections,account,contact",
+                        "ASSIGNEES,COLLECTIONS,ACCOUNT,CONTACT,CREATOR": "assignees,collections,account,contact,creator",
+                        "ASSIGNEES,COLLECTIONS,ACCOUNT,CONTACT,CREATOR,PARENT_TICKET": "assignees,collections,account,contact,creator,parent_ticket",
+                        "ASSIGNEES,COLLECTIONS,ACCOUNT,CONTACT,PARENT_TICKET": "assignees,collections,account,contact,parent_ticket",
+                        "ASSIGNEES,COLLECTIONS,ACCOUNT,CREATOR": "assignees,collections,account,creator",
+                        "ASSIGNEES,COLLECTIONS,ACCOUNT,CREATOR,PARENT_TICKET": "assignees,collections,account,creator,parent_ticket",
+                        "ASSIGNEES,COLLECTIONS,ACCOUNT,PARENT_TICKET": "assignees,collections,account,parent_ticket",
+                        "ASSIGNEES,COLLECTIONS,CONTACT": "assignees,collections,contact",
+                        "ASSIGNEES,COLLECTIONS,CONTACT,CREATOR": "assignees,collections,contact,creator",
+                        "ASSIGNEES,COLLECTIONS,CONTACT,CREATOR,PARENT_TICKET": "assignees,collections,contact,creator,parent_ticket",
+                        "ASSIGNEES,COLLECTIONS,CONTACT,PARENT_TICKET": "assignees,collections,contact,parent_ticket",
+                        "ASSIGNEES,COLLECTIONS,CREATOR": "assignees,collections,creator",
+                        "ASSIGNEES,COLLECTIONS,CREATOR,PARENT_TICKET": "assignees,collections,creator,parent_ticket",
+                        "ASSIGNEES,COLLECTIONS,PARENT_TICKET": "assignees,collections,parent_ticket",
+                        "ASSIGNEES,COLLECTIONS,PROJECT": "assignees,collections,project",
+                        "ASSIGNEES,COLLECTIONS,PROJECT,ACCOUNT": "assignees,collections,project,account",
+                        "ASSIGNEES,COLLECTIONS,PROJECT,ACCOUNT,CONTACT": "assignees,collections,project,account,contact",
+                        "ASSIGNEES,COLLECTIONS,PROJECT,ACCOUNT,CONTACT,CREATOR": "assignees,collections,project,account,contact,creator",
+                        "ASSIGNEES,COLLECTIONS,PROJECT,ACCOUNT,CONTACT,CREATOR,PARENT_TICKET": "assignees,collections,project,account,contact,creator,parent_ticket",
+                        "ASSIGNEES,COLLECTIONS,PROJECT,ACCOUNT,CONTACT,PARENT_TICKET": "assignees,collections,project,account,contact,parent_ticket",
+                        "ASSIGNEES,COLLECTIONS,PROJECT,ACCOUNT,CREATOR": "assignees,collections,project,account,creator",
+                        "ASSIGNEES,COLLECTIONS,PROJECT,ACCOUNT,CREATOR,PARENT_TICKET": "assignees,collections,project,account,creator,parent_ticket",
+                        "ASSIGNEES,COLLECTIONS,PROJECT,ACCOUNT,PARENT_TICKET": "assignees,collections,project,account,parent_ticket",
+                        "ASSIGNEES,COLLECTIONS,PROJECT,CONTACT": "assignees,collections,project,contact",
+                        "ASSIGNEES,COLLECTIONS,PROJECT,CONTACT,CREATOR": "assignees,collections,project,contact,creator",
+                        "ASSIGNEES,COLLECTIONS,PROJECT,CONTACT,CREATOR,PARENT_TICKET": "assignees,collections,project,contact,creator,parent_ticket",
+                        "ASSIGNEES,COLLECTIONS,PROJECT,CONTACT,PARENT_TICKET": "assignees,collections,project,contact,parent_ticket",
+                        "ASSIGNEES,COLLECTIONS,PROJECT,CREATOR": "assignees,collections,project,creator",
+                        "ASSIGNEES,COLLECTIONS,PROJECT,CREATOR,PARENT_TICKET": "assignees,collections,project,creator,parent_ticket",
+                        "ASSIGNEES,COLLECTIONS,PROJECT,PARENT_TICKET": "assignees,collections,project,parent_ticket",
                         "ASSIGNEES,CONTACT": "assignees,contact",
                         "ASSIGNEES,CONTACT,CREATOR": "assignees,contact,creator",
                         "ASSIGNEES,CONTACT,CREATOR,PARENT_TICKET": "assignees,contact,creator,parent_ticket",
@@ -772,6 +1062,38 @@ class TicketsApi(object):
                         "ATTACHMENTS,ASSIGNEES,ACCOUNT,CREATOR": "attachments,assignees,account,creator",
                         "ATTACHMENTS,ASSIGNEES,ACCOUNT,CREATOR,PARENT_TICKET": "attachments,assignees,account,creator,parent_ticket",
                         "ATTACHMENTS,ASSIGNEES,ACCOUNT,PARENT_TICKET": "attachments,assignees,account,parent_ticket",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS": "attachments,assignees,collections",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,ACCOUNT": "attachments,assignees,collections,account",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,ACCOUNT,CONTACT": "attachments,assignees,collections,account,contact",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,ACCOUNT,CONTACT,CREATOR": "attachments,assignees,collections,account,contact,creator",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,ACCOUNT,CONTACT,CREATOR,PARENT_TICKET": "attachments,assignees,collections,account,contact,creator,parent_ticket",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,ACCOUNT,CONTACT,PARENT_TICKET": "attachments,assignees,collections,account,contact,parent_ticket",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,ACCOUNT,CREATOR": "attachments,assignees,collections,account,creator",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,ACCOUNT,CREATOR,PARENT_TICKET": "attachments,assignees,collections,account,creator,parent_ticket",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,ACCOUNT,PARENT_TICKET": "attachments,assignees,collections,account,parent_ticket",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,CONTACT": "attachments,assignees,collections,contact",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,CONTACT,CREATOR": "attachments,assignees,collections,contact,creator",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,CONTACT,CREATOR,PARENT_TICKET": "attachments,assignees,collections,contact,creator,parent_ticket",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,CONTACT,PARENT_TICKET": "attachments,assignees,collections,contact,parent_ticket",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,CREATOR": "attachments,assignees,collections,creator",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,CREATOR,PARENT_TICKET": "attachments,assignees,collections,creator,parent_ticket",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,PARENT_TICKET": "attachments,assignees,collections,parent_ticket",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,PROJECT": "attachments,assignees,collections,project",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,PROJECT,ACCOUNT": "attachments,assignees,collections,project,account",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,PROJECT,ACCOUNT,CONTACT": "attachments,assignees,collections,project,account,contact",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,PROJECT,ACCOUNT,CONTACT,CREATOR": "attachments,assignees,collections,project,account,contact,creator",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,PROJECT,ACCOUNT,CONTACT,CREATOR,PARENT_TICKET": "attachments,assignees,collections,project,account,contact,creator,parent_ticket",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,PROJECT,ACCOUNT,CONTACT,PARENT_TICKET": "attachments,assignees,collections,project,account,contact,parent_ticket",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,PROJECT,ACCOUNT,CREATOR": "attachments,assignees,collections,project,account,creator",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,PROJECT,ACCOUNT,CREATOR,PARENT_TICKET": "attachments,assignees,collections,project,account,creator,parent_ticket",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,PROJECT,ACCOUNT,PARENT_TICKET": "attachments,assignees,collections,project,account,parent_ticket",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,PROJECT,CONTACT": "attachments,assignees,collections,project,contact",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,PROJECT,CONTACT,CREATOR": "attachments,assignees,collections,project,contact,creator",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,PROJECT,CONTACT,CREATOR,PARENT_TICKET": "attachments,assignees,collections,project,contact,creator,parent_ticket",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,PROJECT,CONTACT,PARENT_TICKET": "attachments,assignees,collections,project,contact,parent_ticket",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,PROJECT,CREATOR": "attachments,assignees,collections,project,creator",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,PROJECT,CREATOR,PARENT_TICKET": "attachments,assignees,collections,project,creator,parent_ticket",
+                        "ATTACHMENTS,ASSIGNEES,COLLECTIONS,PROJECT,PARENT_TICKET": "attachments,assignees,collections,project,parent_ticket",
                         "ATTACHMENTS,ASSIGNEES,CONTACT": "attachments,assignees,contact",
                         "ATTACHMENTS,ASSIGNEES,CONTACT,CREATOR": "attachments,assignees,contact,creator",
                         "ATTACHMENTS,ASSIGNEES,CONTACT,CREATOR,PARENT_TICKET": "attachments,assignees,contact,creator,parent_ticket",
@@ -795,6 +1117,38 @@ class TicketsApi(object):
                         "ATTACHMENTS,ASSIGNEES,PROJECT,CREATOR": "attachments,assignees,project,creator",
                         "ATTACHMENTS,ASSIGNEES,PROJECT,CREATOR,PARENT_TICKET": "attachments,assignees,project,creator,parent_ticket",
                         "ATTACHMENTS,ASSIGNEES,PROJECT,PARENT_TICKET": "attachments,assignees,project,parent_ticket",
+                        "ATTACHMENTS,COLLECTIONS": "attachments,collections",
+                        "ATTACHMENTS,COLLECTIONS,ACCOUNT": "attachments,collections,account",
+                        "ATTACHMENTS,COLLECTIONS,ACCOUNT,CONTACT": "attachments,collections,account,contact",
+                        "ATTACHMENTS,COLLECTIONS,ACCOUNT,CONTACT,CREATOR": "attachments,collections,account,contact,creator",
+                        "ATTACHMENTS,COLLECTIONS,ACCOUNT,CONTACT,CREATOR,PARENT_TICKET": "attachments,collections,account,contact,creator,parent_ticket",
+                        "ATTACHMENTS,COLLECTIONS,ACCOUNT,CONTACT,PARENT_TICKET": "attachments,collections,account,contact,parent_ticket",
+                        "ATTACHMENTS,COLLECTIONS,ACCOUNT,CREATOR": "attachments,collections,account,creator",
+                        "ATTACHMENTS,COLLECTIONS,ACCOUNT,CREATOR,PARENT_TICKET": "attachments,collections,account,creator,parent_ticket",
+                        "ATTACHMENTS,COLLECTIONS,ACCOUNT,PARENT_TICKET": "attachments,collections,account,parent_ticket",
+                        "ATTACHMENTS,COLLECTIONS,CONTACT": "attachments,collections,contact",
+                        "ATTACHMENTS,COLLECTIONS,CONTACT,CREATOR": "attachments,collections,contact,creator",
+                        "ATTACHMENTS,COLLECTIONS,CONTACT,CREATOR,PARENT_TICKET": "attachments,collections,contact,creator,parent_ticket",
+                        "ATTACHMENTS,COLLECTIONS,CONTACT,PARENT_TICKET": "attachments,collections,contact,parent_ticket",
+                        "ATTACHMENTS,COLLECTIONS,CREATOR": "attachments,collections,creator",
+                        "ATTACHMENTS,COLLECTIONS,CREATOR,PARENT_TICKET": "attachments,collections,creator,parent_ticket",
+                        "ATTACHMENTS,COLLECTIONS,PARENT_TICKET": "attachments,collections,parent_ticket",
+                        "ATTACHMENTS,COLLECTIONS,PROJECT": "attachments,collections,project",
+                        "ATTACHMENTS,COLLECTIONS,PROJECT,ACCOUNT": "attachments,collections,project,account",
+                        "ATTACHMENTS,COLLECTIONS,PROJECT,ACCOUNT,CONTACT": "attachments,collections,project,account,contact",
+                        "ATTACHMENTS,COLLECTIONS,PROJECT,ACCOUNT,CONTACT,CREATOR": "attachments,collections,project,account,contact,creator",
+                        "ATTACHMENTS,COLLECTIONS,PROJECT,ACCOUNT,CONTACT,CREATOR,PARENT_TICKET": "attachments,collections,project,account,contact,creator,parent_ticket",
+                        "ATTACHMENTS,COLLECTIONS,PROJECT,ACCOUNT,CONTACT,PARENT_TICKET": "attachments,collections,project,account,contact,parent_ticket",
+                        "ATTACHMENTS,COLLECTIONS,PROJECT,ACCOUNT,CREATOR": "attachments,collections,project,account,creator",
+                        "ATTACHMENTS,COLLECTIONS,PROJECT,ACCOUNT,CREATOR,PARENT_TICKET": "attachments,collections,project,account,creator,parent_ticket",
+                        "ATTACHMENTS,COLLECTIONS,PROJECT,ACCOUNT,PARENT_TICKET": "attachments,collections,project,account,parent_ticket",
+                        "ATTACHMENTS,COLLECTIONS,PROJECT,CONTACT": "attachments,collections,project,contact",
+                        "ATTACHMENTS,COLLECTIONS,PROJECT,CONTACT,CREATOR": "attachments,collections,project,contact,creator",
+                        "ATTACHMENTS,COLLECTIONS,PROJECT,CONTACT,CREATOR,PARENT_TICKET": "attachments,collections,project,contact,creator,parent_ticket",
+                        "ATTACHMENTS,COLLECTIONS,PROJECT,CONTACT,PARENT_TICKET": "attachments,collections,project,contact,parent_ticket",
+                        "ATTACHMENTS,COLLECTIONS,PROJECT,CREATOR": "attachments,collections,project,creator",
+                        "ATTACHMENTS,COLLECTIONS,PROJECT,CREATOR,PARENT_TICKET": "attachments,collections,project,creator,parent_ticket",
+                        "ATTACHMENTS,COLLECTIONS,PROJECT,PARENT_TICKET": "attachments,collections,project,parent_ticket",
                         "ATTACHMENTS,CONTACT": "attachments,contact",
                         "ATTACHMENTS,CONTACT,CREATOR": "attachments,contact,creator",
                         "ATTACHMENTS,CONTACT,CREATOR,PARENT_TICKET": "attachments,contact,creator,parent_ticket",
@@ -818,6 +1172,38 @@ class TicketsApi(object):
                         "ATTACHMENTS,PROJECT,CREATOR": "attachments,project,creator",
                         "ATTACHMENTS,PROJECT,CREATOR,PARENT_TICKET": "attachments,project,creator,parent_ticket",
                         "ATTACHMENTS,PROJECT,PARENT_TICKET": "attachments,project,parent_ticket",
+                        "COLLECTIONS": "collections",
+                        "COLLECTIONS,ACCOUNT": "collections,account",
+                        "COLLECTIONS,ACCOUNT,CONTACT": "collections,account,contact",
+                        "COLLECTIONS,ACCOUNT,CONTACT,CREATOR": "collections,account,contact,creator",
+                        "COLLECTIONS,ACCOUNT,CONTACT,CREATOR,PARENT_TICKET": "collections,account,contact,creator,parent_ticket",
+                        "COLLECTIONS,ACCOUNT,CONTACT,PARENT_TICKET": "collections,account,contact,parent_ticket",
+                        "COLLECTIONS,ACCOUNT,CREATOR": "collections,account,creator",
+                        "COLLECTIONS,ACCOUNT,CREATOR,PARENT_TICKET": "collections,account,creator,parent_ticket",
+                        "COLLECTIONS,ACCOUNT,PARENT_TICKET": "collections,account,parent_ticket",
+                        "COLLECTIONS,CONTACT": "collections,contact",
+                        "COLLECTIONS,CONTACT,CREATOR": "collections,contact,creator",
+                        "COLLECTIONS,CONTACT,CREATOR,PARENT_TICKET": "collections,contact,creator,parent_ticket",
+                        "COLLECTIONS,CONTACT,PARENT_TICKET": "collections,contact,parent_ticket",
+                        "COLLECTIONS,CREATOR": "collections,creator",
+                        "COLLECTIONS,CREATOR,PARENT_TICKET": "collections,creator,parent_ticket",
+                        "COLLECTIONS,PARENT_TICKET": "collections,parent_ticket",
+                        "COLLECTIONS,PROJECT": "collections,project",
+                        "COLLECTIONS,PROJECT,ACCOUNT": "collections,project,account",
+                        "COLLECTIONS,PROJECT,ACCOUNT,CONTACT": "collections,project,account,contact",
+                        "COLLECTIONS,PROJECT,ACCOUNT,CONTACT,CREATOR": "collections,project,account,contact,creator",
+                        "COLLECTIONS,PROJECT,ACCOUNT,CONTACT,CREATOR,PARENT_TICKET": "collections,project,account,contact,creator,parent_ticket",
+                        "COLLECTIONS,PROJECT,ACCOUNT,CONTACT,PARENT_TICKET": "collections,project,account,contact,parent_ticket",
+                        "COLLECTIONS,PROJECT,ACCOUNT,CREATOR": "collections,project,account,creator",
+                        "COLLECTIONS,PROJECT,ACCOUNT,CREATOR,PARENT_TICKET": "collections,project,account,creator,parent_ticket",
+                        "COLLECTIONS,PROJECT,ACCOUNT,PARENT_TICKET": "collections,project,account,parent_ticket",
+                        "COLLECTIONS,PROJECT,CONTACT": "collections,project,contact",
+                        "COLLECTIONS,PROJECT,CONTACT,CREATOR": "collections,project,contact,creator",
+                        "COLLECTIONS,PROJECT,CONTACT,CREATOR,PARENT_TICKET": "collections,project,contact,creator,parent_ticket",
+                        "COLLECTIONS,PROJECT,CONTACT,PARENT_TICKET": "collections,project,contact,parent_ticket",
+                        "COLLECTIONS,PROJECT,CREATOR": "collections,project,creator",
+                        "COLLECTIONS,PROJECT,CREATOR,PARENT_TICKET": "collections,project,creator,parent_ticket",
+                        "COLLECTIONS,PROJECT,PARENT_TICKET": "collections,project,parent_ticket",
                         "CONTACT": "contact",
                         "CONTACT,CREATOR": "contact,creator",
                         "CONTACT,CREATOR,PARENT_TICKET": "contact,creator,parent_ticket",
@@ -844,7 +1230,23 @@ class TicketsApi(object):
                     },
                     ('remote_fields',): {
 
-                        "STATUS": "status"
+                        "PRIORITY": "priority",
+                        "PRIORITY,STATUS": "priority,status",
+                        "PRIORITY,STATUS,TICKET_TYPE": "priority,status,ticket_type",
+                        "PRIORITY,TICKET_TYPE": "priority,ticket_type",
+                        "STATUS": "status",
+                        "STATUS,TICKET_TYPE": "status,ticket_type",
+                        "TICKET_TYPE": "ticket_type"
+                    },
+                    ('show_enum_origins',): {
+
+                        "PRIORITY": "priority",
+                        "PRIORITY,STATUS": "priority,status",
+                        "PRIORITY,STATUS,TICKET_TYPE": "priority,status,ticket_type",
+                        "PRIORITY,TICKET_TYPE": "priority,ticket_type",
+                        "STATUS": "status",
+                        "STATUS,TICKET_TYPE": "status,ticket_type",
+                        "TICKET_TYPE": "ticket_type"
                     },
                 },
                 'openapi_types': {
@@ -854,20 +1256,28 @@ class TicketsApi(object):
                         (str,),
                     'include_remote_data':
                         (bool,),
+                    'include_remote_fields':
+                        (bool,),
                     'remote_fields':
+                        (str,),
+                    'show_enum_origins':
                         (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
                     'expand': 'expand',
                     'include_remote_data': 'include_remote_data',
+                    'include_remote_fields': 'include_remote_fields',
                     'remote_fields': 'remote_fields',
+                    'show_enum_origins': 'show_enum_origins',
                 },
                 'location_map': {
                     'id': 'path',
                     'expand': 'query',
                     'include_remote_data': 'query',
+                    'include_remote_fields': 'query',
                     'remote_fields': 'query',
+                    'show_enum_origins': 'query',
                 },
                 'collection_format_map': {
                 }
@@ -883,24 +1293,25 @@ class TicketsApi(object):
 
     def tickets_collaborators_list(
         self,
-        id,
+        parent_id,
         **kwargs
     ) -> "MergePaginatedResponse(User)":
         """tickets_collaborators_list  # noqa: E501
 
-        Returns a `User` object with the given `id`.  # noqa: E501
+        Returns a list of `User` objects.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.tickets_collaborators_list(id, async_req=True)
+        >>> thread = api.tickets_collaborators_list(parent_id, async_req=True)
         >>> result = thread.get()
 
         Args:
-            id (str):
+            parent_id (str):
 
         Keyword Args:
             cursor (str): The pagination cursor value.. [optional]
             expand (str): Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.. [optional] if omitted the server will use the default value of "teams"
+            include_deleted_data (bool): Whether to include data that was marked as deleted by third party webhooks.. [optional]
             include_remote_data (bool): Whether to include the original data Merge fetched from the third-party to produce these models.. [optional]
             page_size (int): Number of results to return per page.. [optional]
             _return_http_data_only (bool): response data without head status
@@ -964,8 +1375,8 @@ class TicketsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['id'] = \
-            id
+        kwargs['parent_id'] = \
+            parent_id
         return self.tickets_collaborators_list_endpoint.call_with_http_info(**kwargs)
 
     def tickets_create(
@@ -1070,6 +1481,7 @@ class TicketsApi(object):
         Keyword Args:
             account_id (str): If provided, will only return tickets for this account.. [optional]
             assignee_ids (str): If provided, will only return tickets assigned to the assignee_ids; multiple assignee_ids can be separated by commas.. [optional]
+            collection_ids (str): If provided, will only return tickets assigned to the collection_ids; multiple collection_ids can be separated by commas.. [optional]
             completed_after (datetime, none_type): If provided, will only return tickets completed after this datetime.. [optional]
             completed_before (datetime, none_type): If provided, will only return tickets completed before this datetime.. [optional]
             contact_id (str): If provided, will only return tickets for this contact.. [optional]
@@ -1081,15 +1493,21 @@ class TicketsApi(object):
             expand (str): Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.. [optional]
             include_deleted_data (bool): Whether to include data that was marked as deleted by third party webhooks.. [optional]
             include_remote_data (bool): Whether to include the original data Merge fetched from the third-party to produce these models.. [optional]
-            modified_after (datetime): If provided, will only return objects modified after this datetime.. [optional]
-            modified_before (datetime): If provided, will only return objects modified before this datetime.. [optional]
+            include_remote_fields (bool): Whether to include all remote fields, including fields that Merge did not map to common models, in a normalized format.. [optional]
+            modified_after (datetime): If provided, only objects synced by Merge after this date time will be returned.. [optional]
+            modified_before (datetime): If provided, only objects synced by Merge before this date time will be returned.. [optional]
             page_size (int): Number of results to return per page.. [optional]
             parent_ticket_id (str): If provided, will only return sub tickets of the parent_ticket_id.. [optional]
-            priority (str, none_type): If provided, will only return tickets of this priority.. [optional]
+            priority (str, none_type): If provided, will only return tickets of this priority.  * `URGENT` - URGENT * `HIGH` - HIGH * `NORMAL` - NORMAL * `LOW` - LOW. [optional]
             project_id (str): If provided, will only return tickets for this project.. [optional]
-            remote_fields (str): Which fields should be returned in non-normalized form.. [optional] if omitted the server will use the default value of "status"
+            remote_created_after (datetime, none_type): If provided, will only return tickets created in the third party platform after this datetime.. [optional]
+            remote_created_before (datetime, none_type): If provided, will only return tickets created in the third party platform before this datetime.. [optional]
+            remote_fields (str): Deprecated. Use show_enum_origins.. [optional]
             remote_id (str, none_type): The API provider's ID for the given object.. [optional]
-            status (str, none_type): If provided, will only return tickets of this status.. [optional]
+            remote_updated_after (datetime, none_type): If provided, will only return tickets updated in the third party platform after this datetime.. [optional]
+            remote_updated_before (datetime, none_type): If provided, will only return tickets updated in the third party platform before this datetime.. [optional]
+            show_enum_origins (str): Which fields should be returned in non-normalized form.. [optional]
+            status (str, none_type): If provided, will only return tickets of this status.  * `OPEN` - OPEN * `CLOSED` - CLOSED * `IN_PROGRESS` - IN_PROGRESS * `ON_HOLD` - ON_HOLD. [optional]
             tags (str): If provided, will only return tickets matching the tags; multiple tags can be separated by commas.. [optional]
             ticket_type (str, none_type): If provided, will only return tickets of this type.. [optional]
             _return_http_data_only (bool): response data without head status
@@ -1405,6 +1823,88 @@ class TicketsApi(object):
             patched_ticket_endpoint_request
         return self.tickets_partial_update_endpoint.call_with_http_info(**kwargs)
 
+    def tickets_remote_field_classes_list(
+        self,
+        **kwargs
+    ) -> "MergePaginatedResponse(RemoteFieldClass)":
+        """tickets_remote_field_classes_list  # noqa: E501
+
+        Returns a list of `RemoteFieldClass` objects.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.tickets_remote_field_classes_list(async_req=True)
+        >>> result = thread.get()
+
+
+        Keyword Args:
+            cursor (str): The pagination cursor value.. [optional]
+            include_deleted_data (bool): Whether to include data that was marked as deleted by third party webhooks.. [optional]
+            include_remote_data (bool): Whether to include the original data Merge fetched from the third-party to produce these models.. [optional]
+            page_size (int): Number of results to return per page.. [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            _request_auths (list): set to override the auth_settings for an a single
+                request; this effectively ignores the authentication
+                in the spec for a single request.
+                Default is None
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            MergePaginatedResponse(RemoteFieldClass)
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        return self.tickets_remote_field_classes_list_endpoint.call_with_http_info(**kwargs)
+
     def tickets_retrieve(
         self,
         id,
@@ -1425,7 +1925,9 @@ class TicketsApi(object):
         Keyword Args:
             expand (str): Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.. [optional]
             include_remote_data (bool): Whether to include the original data Merge fetched from the third-party to produce these models.. [optional]
-            remote_fields (str): Which fields should be returned in non-normalized form.. [optional] if omitted the server will use the default value of "status"
+            include_remote_fields (bool): Whether to include all remote fields, including fields that Merge did not map to common models, in a normalized format.. [optional]
+            remote_fields (str): Deprecated. Use show_enum_origins.. [optional]
+            show_enum_origins (str): Which fields should be returned in non-normalized form.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object

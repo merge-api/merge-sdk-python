@@ -159,7 +159,6 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
     api_instance = applications_api.ApplicationsApi(api_client)
     application_endpoint_request = ApplicationEndpointRequest(
         model=ApplicationRequest(
-            remote_id="98796",
             candidate="2872ba14-4084-492b-be96-e5eee6fc33ef",
             job="52bf9b5e-0beb-4f6f-8a72-cd4dca7ca633",
             applied_at=dateutil_parser('2021-10-15T00:00:00Z'),
@@ -168,9 +167,6 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
             credited_to="58166795-8d68-4b30-9bfb-bfd402479484",
             current_stage="d578dfdc-7b0a-4ab6-a2b0-4b40f20eb9ea",
             reject_reason="59b25f2b-da02-40f5-9656-9fa0db555784",
-            custom_fields={
-                "key": None,
-            },
             remote_template_id="92830948203",
             integration_params={
                 "key": None,
@@ -285,8 +281,8 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
     include_deleted_data = True # bool | Whether to include data that was marked as deleted by third party webhooks. (optional)
     include_remote_data = True # bool | Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
     job_id = "job_id_example" # str | If provided, will only return applications for this job. (optional)
-    modified_after = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, will only return objects modified after this datetime. (optional)
-    modified_before = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, will only return objects modified before this datetime. (optional)
+    modified_after = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, only objects synced by Merge after this date time will be returned. (optional)
+    modified_before = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, only objects synced by Merge before this date time will be returned. (optional)
     page_size = 1 # int | Number of results to return per page. (optional)
     reject_reason_id = "reject_reason_id_example" # str | If provided, will only return applications with this reject reason. (optional)
     remote_id = "remote_id_example" # str, none_type | The API provider's ID for the given object. (optional)
@@ -316,8 +312,8 @@ Name | Type | Description  | Notes
  **include_deleted_data** | **bool**| Whether to include data that was marked as deleted by third party webhooks. | [optional]
  **include_remote_data** | **bool**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional]
  **job_id** | **str**| If provided, will only return applications for this job. | [optional]
- **modified_after** | **datetime**| If provided, will only return objects modified after this datetime. | [optional]
- **modified_before** | **datetime**| If provided, will only return objects modified before this datetime. | [optional]
+ **modified_after** | **datetime**| If provided, only objects synced by Merge after this date time will be returned. | [optional]
+ **modified_before** | **datetime**| If provided, only objects synced by Merge before this date time will be returned. | [optional]
  **page_size** | **int**| Number of results to return per page. | [optional]
  **reject_reason_id** | **str**| If provided, will only return applications with this reject reason. | [optional]
  **remote_id** | **str, none_type**| The API provider&#39;s ID for the given object. | [optional]

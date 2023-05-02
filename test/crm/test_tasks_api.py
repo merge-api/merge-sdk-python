@@ -24,8 +24,38 @@ class TestTasksApi(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def test_tasks_create(self):
+        """Test case for tasks_create
+
+        """
+        pass
+
     def test_tasks_list(self):
         """Test case for tasks_list
+
+        """
+        pass
+
+    def test_tasks_meta_patch_retrieve(self):
+        """Test case for tasks_meta_patch_retrieve
+
+        """
+        pass
+
+    def test_tasks_meta_post_retrieve(self):
+        """Test case for tasks_meta_post_retrieve
+
+        """
+        pass
+
+    def test_tasks_partial_update(self):
+        """Test case for tasks_partial_update
+
+        """
+        pass
+
+    def test_tasks_remote_field_classes_list(self):
+        """Test case for tasks_remote_field_classes_list
 
         """
         pass

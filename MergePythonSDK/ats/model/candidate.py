@@ -41,7 +41,7 @@ from MergePythonSDK.shared.model_utils import import_model_by_name
 def lazy_import():
     from MergePythonSDK.ats.model.email_address import EmailAddress
     from MergePythonSDK.ats.model.phone_number import PhoneNumber
-    from MergePythonSDK.shared.model.remote_data import RemoteData
+    from MergePythonSDK.shared.model.remote_remote_data import RemoteData
     from MergePythonSDK.ats.model.url import Url
     globals()['EmailAddress'] = EmailAddress
     globals()['PhoneNumber'] = PhoneNumber
@@ -84,7 +84,7 @@ class Candidate(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -116,12 +116,13 @@ class Candidate(ModelNormal):
             'phone_numbers': ([PhoneNumber], none_type,),  # noqa: E501
             'email_addresses': ([EmailAddress], none_type,),  # noqa: E501
             'urls': ([Url], none_type,),  # noqa: E501
-            'tags': ([str], none_type,),  # noqa: E501
+            'tags': ([str, none_type], none_type,),  # noqa: E501
             'applications': ([str, none_type], none_type,),  # noqa: E501
             'attachments': ([str, none_type], none_type,),  # noqa: E501
-            'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
-            'custom_fields': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
             'remote_was_deleted': (bool, none_type,),  # noqa: E501
+            'field_mappings': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'modified_at': (datetime, none_type,),  # noqa: E501
+            'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
         }
         expands_types = {"applications": "Application", "attachments": "Attachment"}
 
@@ -159,15 +160,18 @@ class Candidate(ModelNormal):
         'tags': 'tags',  # noqa: E501
         'applications': 'applications',  # noqa: E501
         'attachments': 'attachments',  # noqa: E501
-        'remote_data': 'remote_data',  # noqa: E501
-        'custom_fields': 'custom_fields',  # noqa: E501
         'remote_was_deleted': 'remote_was_deleted',  # noqa: E501
+        'field_mappings': 'field_mappings',  # noqa: E501
+        'modified_at': 'modified_at',  # noqa: E501
+        'remote_data': 'remote_data',  # noqa: E501
     }
 
     read_only_vars = {
         'id',  # noqa: E501
-        'remote_data',  # noqa: E501
         'remote_was_deleted',  # noqa: E501
+        'field_mappings',  # noqa: E501
+        'modified_at',  # noqa: E501
+        'remote_data',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -216,19 +220,20 @@ class Candidate(ModelNormal):
             title (str, none_type): The candidate's current title.. [optional]  # noqa: E501
             remote_created_at (datetime, none_type): When the third party's candidate was created.. [optional]  # noqa: E501
             remote_updated_at (datetime, none_type): When the third party's candidate was updated.. [optional]  # noqa: E501
-            last_interaction_at (datetime, none_type): When the most recent candidate interaction occurred.. [optional]  # noqa: E501
+            last_interaction_at (datetime, none_type): When the most recent interaction with the candidate occurred.. [optional]  # noqa: E501
             is_private (bool, none_type): Whether or not the candidate is private.. [optional]  # noqa: E501
             can_email (bool, none_type): Whether or not the candidate can be emailed.. [optional]  # noqa: E501
             locations ([str, none_type], none_type): The candidate's locations.. [optional]  # noqa: E501
             phone_numbers ([PhoneNumber]): [optional]  # noqa: E501
             email_addresses ([EmailAddress]): [optional]  # noqa: E501
             urls ([Url]): [optional]  # noqa: E501
-            tags ([str]): Array of `Tag` names as strings.. [optional]  # noqa: E501
+            tags ([str, none_type]): Array of `Tag` names as strings.. [optional]  # noqa: E501
             applications ([str, none_type]): Array of `Application` object IDs.. [optional]  # noqa: E501
             attachments ([str, none_type]): Array of `Attachment` object IDs.. [optional]  # noqa: E501
-            remote_data ([RemoteData], none_type): [optional]  # noqa: E501
-            custom_fields ({str: (bool, dict, float, int, list, str, none_type)}, none_type): Custom fields configured for a given model.. [optional]  # noqa: E501
             remote_was_deleted (bool): [optional]  # noqa: E501
+            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
+            remote_data ([RemoteData], none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -278,12 +283,13 @@ class Candidate(ModelNormal):
         self.tags = kwargs.get("tags", None)
         self.applications = kwargs.get("applications", None)
         self.attachments = kwargs.get("attachments", None)
-        self.custom_fields = kwargs.get("custom_fields", None)
 
         # Read only properties
         self._id = kwargs.get("id", str())
-        self._remote_data = kwargs.get("remote_data", None)
         self._remote_was_deleted = kwargs.get("remote_was_deleted", bool())
+        self._field_mappings = kwargs.get("field_mappings", None)
+        self._modified_at = kwargs.get("modified_at", None)
+        self._remote_data = kwargs.get("remote_data", None)
         return self
 
     required_properties = set([
@@ -338,19 +344,20 @@ class Candidate(ModelNormal):
             title (str, none_type): The candidate's current title.. [optional]  # noqa: E501
             remote_created_at (datetime, none_type): When the third party's candidate was created.. [optional]  # noqa: E501
             remote_updated_at (datetime, none_type): When the third party's candidate was updated.. [optional]  # noqa: E501
-            last_interaction_at (datetime, none_type): When the most recent candidate interaction occurred.. [optional]  # noqa: E501
+            last_interaction_at (datetime, none_type): When the most recent interaction with the candidate occurred.. [optional]  # noqa: E501
             is_private (bool, none_type): Whether or not the candidate is private.. [optional]  # noqa: E501
             can_email (bool, none_type): Whether or not the candidate can be emailed.. [optional]  # noqa: E501
             locations ([str, none_type], none_type): The candidate's locations.. [optional]  # noqa: E501
             phone_numbers ([PhoneNumber]): [optional]  # noqa: E501
             email_addresses ([EmailAddress]): [optional]  # noqa: E501
             urls ([Url]): [optional]  # noqa: E501
-            tags ([str]): Array of `Tag` names as strings.. [optional]  # noqa: E501
+            tags ([str, none_type]): Array of `Tag` names as strings.. [optional]  # noqa: E501
             applications ([str, none_type]): Array of `Application` object IDs.. [optional]  # noqa: E501
             attachments ([str, none_type]): Array of `Attachment` object IDs.. [optional]  # noqa: E501
-            remote_data ([RemoteData], none_type): [optional]  # noqa: E501
-            custom_fields ({str: (bool, dict, float, int, list, str, none_type)}, none_type): Custom fields configured for a given model.. [optional]  # noqa: E501
             remote_was_deleted (bool): [optional]  # noqa: E501
+            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
+            remote_data ([RemoteData], none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -394,15 +401,16 @@ class Candidate(ModelNormal):
         self.phone_numbers: Union[List["PhoneNumber"]] = kwargs.get("phone_numbers", None)
         self.email_addresses: Union[List["EmailAddress"]] = kwargs.get("email_addresses", None)
         self.urls: Union[List["Url"]] = kwargs.get("urls", None)
-        self.tags: Union[List[str]] = kwargs.get("tags", list())
+        self.tags: Union[List[str, none_type]] = kwargs.get("tags", list())
         self.applications: Union[List[str, none_type]] = kwargs.get("applications", list())
         self.attachments: Union[List[str, none_type]] = kwargs.get("attachments", list())
-        self.custom_fields: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("custom_fields", None)
 
         # Read only properties
         self._id: Union[str] = kwargs.get("id", str())
-        self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
         self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
+        self._field_mappings: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("field_mappings", None)
+        self._modified_at: Union[datetime] = kwargs.get("modified_at", None)
+        self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
 
     # Read only property getters
     @property
@@ -410,12 +418,20 @@ class Candidate(ModelNormal):
         return self._id
 
     @property
-    def remote_data(self):
-        return self._remote_data
-
-    @property
     def remote_was_deleted(self):
         return self._remote_was_deleted
+
+    @property
+    def field_mappings(self):
+        return self._field_mappings
+
+    @property
+    def modified_at(self):
+        return self._modified_at
+
+    @property
+    def remote_data(self):
+        return self._remote_data
 
 
 

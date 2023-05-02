@@ -24,8 +24,20 @@ class TestInterviewsApi(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def test_interviews_create(self):
+        """Test case for interviews_create
+
+        """
+        pass
+
     def test_interviews_list(self):
         """Test case for interviews_list
+
+        """
+        pass
+
+    def test_interviews_meta_post_retrieve(self):
+        """Test case for interviews_meta_post_retrieve
 
         """
         pass

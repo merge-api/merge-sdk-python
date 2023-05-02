@@ -47,6 +47,7 @@ class TestCreditNoteLineItem(unittest.TestCase):
 
         assert deserialized is not None
 
+        assert deserialized.tracking_categories is not None
 
 
 if __name__ == '__main__':
