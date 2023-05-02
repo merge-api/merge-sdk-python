@@ -1,3 +1,7 @@
+# Version 2.2.7
+
+- Add field_mappings to all common models
+
 # Version 2.2.6
 
 ## Date: 2023-03-28
@@ -51,11 +55,11 @@
 
 ## Date: 2022-08-29
 
-- Add type hints 
+- Add type hints
   - Mypy type hints for model attributes
 - Expands
   - APIs now support `expand` request query parameter
-  - Expanded models are type checked and cast, attributes can be 
+  - Expanded models are type checked and cast, attributes can be
     accessed as a normal model
 
 ```python
@@ -76,12 +80,12 @@ with ApiClient(configuration) as api_client:
         )
         assert employee_expands.employments.employee == employee_expands.id
 ```
-  
+
 # Version 2.0.0
 
 ## Date: 2022-08-23
 
-- Initial commit of the Merge Python SDK 
+- Initial commit of the Merge Python SDK
   - /merge-api/merge-sdk-python in github
   - MergePythonSDK in package naming
 - Includes all Merge categories in one package
@@ -89,4 +93,4 @@ with ApiClient(configuration) as api_client:
   - ATS (applicant Tracking Systems)
   - CRM (Customer Relationship Management)
   - HRIS (Human Resource Information Systems)
-  - Ticketing 
+  - Ticketing
