@@ -2,23 +2,21 @@
 
 All URIs are relative to *https://api.merge.dev/api/hris/v1*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**teams_list**](TeamsApi.md#teams_list) | **GET** /teams | 
-[**teams_retrieve**](TeamsApi.md#teams_retrieve) | **GET** /teams/{id} | 
-
+| Method                                           | HTTP request        | Description |
+| ------------------------------------------------ | ------------------- | ----------- |
+| [**teams_list**](TeamsApi.md#teams_list)         | **GET** /teams      |
+| [**teams_retrieve**](TeamsApi.md#teams_retrieve) | **GET** /teams/{id} |
 
 # **teams_list**
+
 > PaginatedTeamList teams_list()
-
-
 
 Returns a list of `Team` objects.
 
 ### Example
 
-* Api Key Authentication (accountTokenAuth):
-* Bearer Authentication (bearerAuth):
+- Api Key Authentication (accountTokenAuth):
+- Bearer Authentication (bearerAuth):
 
 ```python
 import time
@@ -73,22 +71,21 @@ with MergePythonSDK.hris.ApiClient(configuration) as api_client:
         print("Exception when calling TeamsApi->teams_list: %s\n" % e)
 ```
 
-
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **created_after** | **datetime**| If provided, will only return objects created after this datetime. | [optional]
- **created_before** | **datetime**| If provided, will only return objects created before this datetime. | [optional]
- **cursor** | **str**| The pagination cursor value. | [optional]
- **expand** | **str**| Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. | [optional] if omitted the server will use the default value of "parent_team"
- **include_deleted_data** | **bool**| Whether to include data that was marked as deleted by third party webhooks. | [optional]
- **include_remote_data** | **bool**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional]
- **modified_after** | **datetime**| If provided, only objects synced by Merge after this date time will be returned. | [optional]
- **modified_before** | **datetime**| If provided, only objects synced by Merge before this date time will be returned. | [optional]
- **page_size** | **int**| Number of results to return per page. | [optional]
- **parent_team_id** | **str**| If provided, will only return teams with this parent team. | [optional]
- **remote_id** | **str, none_type**| The API provider&#39;s ID for the given object. | [optional]
+| Name                     | Type               | Description                                                                                                            | Notes                                                                        |
+| ------------------------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| **created_after**        | **datetime**       | If provided, will only return objects created after this datetime.                                                     | [optional]                                                                   |
+| **created_before**       | **datetime**       | If provided, will only return objects created before this datetime.                                                    | [optional]                                                                   |
+| **cursor**               | **str**            | The pagination cursor value.                                                                                           | [optional]                                                                   |
+| **expand**               | **str**            | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. | [optional] if omitted the server will use the default value of "parent_team" |
+| **include_deleted_data** | **bool**           | Whether to include data that was marked as deleted by third party webhooks.                                            | [optional]                                                                   |
+| **include_remote_data**  | **bool**           | Whether to include the original data Merge fetched from the third-party to produce these models.                       | [optional]                                                                   |
+| **modified_after**       | **datetime**       | If provided, only objects synced by Merge after this date time will be returned.                                       | [optional]                                                                   |
+| **modified_before**      | **datetime**       | If provided, only objects synced by Merge before this date time will be returned.                                      | [optional]                                                                   |
+| **page_size**            | **int**            | Number of results to return per page.                                                                                  | [optional]                                                                   |
+| **parent_team_id**       | **str**            | If provided, will only return teams with this parent team.                                                             | [optional]                                                                   |
+| **remote_id**            | **str, none_type** | The API provider&#39;s ID for the given object.                                                                        | [optional]                                                                   |
 
 ### Return type
 
@@ -100,29 +97,27 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** |  |  -  |
+| ----------- | ----------- | ---------------- |
+| **200**     |             | -                |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **teams_retrieve**
+
 > Team teams_retrieve(id)
-
-
 
 Returns a `Team` object with the given `id`.
 
 ### Example
 
-* Api Key Authentication (accountTokenAuth):
-* Bearer Authentication (bearerAuth):
+- Api Key Authentication (accountTokenAuth):
+- Bearer Authentication (bearerAuth):
 
 ```python
 import time
@@ -156,7 +151,7 @@ configuration = MergePythonSDK.hris.Configuration(
 with MergePythonSDK.hris.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = teams_api.TeamsApi(api_client)
-    id = "id_example" # str | 
+    id = "id_example" # str |
     expand = "parent_team" # str | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. (optional) if omitted the server will use the default value of "parent_team"
     include_remote_data = True # bool | Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
 
@@ -176,14 +171,13 @@ with MergePythonSDK.hris.ApiClient(configuration) as api_client:
         print("Exception when calling TeamsApi->teams_retrieve: %s\n" % e)
 ```
 
-
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **str**|  |
- **expand** | **str**| Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. | [optional] if omitted the server will use the default value of "parent_team"
- **include_remote_data** | **bool**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional]
+| Name                    | Type     | Description                                                                                                            | Notes                                                                        |
+| ----------------------- | -------- | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| **id**                  | **str**  |                                                                                                                        |
+| **expand**              | **str**  | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. | [optional] if omitted the server will use the default value of "parent_team" |
+| **include_remote_data** | **bool** | Whether to include the original data Merge fetched from the third-party to produce these models.                       | [optional]                                                                   |
 
 ### Return type
 
@@ -195,15 +189,13 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** |  |  -  |
+| ----------- | ----------- | ---------------- |
+| **200**     |             | -                |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-

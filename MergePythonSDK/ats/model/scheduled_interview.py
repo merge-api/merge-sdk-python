@@ -39,7 +39,7 @@ from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 def lazy_import():
-    from MergePythonSDK.shared.model.remote_remote_data import RemoteData
+    from MergePythonSDK.shared.model.remote_data import RemoteData
     from MergePythonSDK.ats.model.scheduled_interview_status_enum import ScheduledInterviewStatusEnum
     globals()['RemoteData'] = RemoteData
     globals()['ScheduledInterviewStatusEnum'] = ScheduledInterviewStatusEnum

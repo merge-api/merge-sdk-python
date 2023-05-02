@@ -14,7 +14,7 @@ import unittest
 from unittest.mock import MagicMock
 
 import MergePythonSDK.accounting
-from MergePythonSDK.accounting.model.remote_data import RemoteData
+from MergePythonSDK.shared.model.remote_data import RemoteData
 from MergePythonSDK.shared.api_client import ApiClient
 
 

@@ -32,7 +32,7 @@ file_type = io.IOBase
 MERGE_NONSTANDARD_VALUE = "MERGE_NONSTANDARD_VALUE"
 
 
-class MergeEnumType(type):
+class MergeEnumType(str):
     pass
 
 

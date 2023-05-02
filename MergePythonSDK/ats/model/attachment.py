@@ -40,7 +40,7 @@ from MergePythonSDK.shared.model_utils import import_model_by_name
 
 def lazy_import():
     from MergePythonSDK.ats.model.attachment_type_enum import AttachmentTypeEnum
-    from MergePythonSDK.shared.model.remote_remote_data import RemoteData
+    from MergePythonSDK.shared.model.remote_data import RemoteData
     globals()['AttachmentTypeEnum'] = AttachmentTypeEnum
     globals()['RemoteData'] = RemoteData
 

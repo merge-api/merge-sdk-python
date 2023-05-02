@@ -15,7 +15,7 @@ from unittest.mock import MagicMock
 
 import MergePythonSDK.accounting
 from MergePythonSDK.accounting.model.category_type_enum import CategoryTypeEnum
-from MergePythonSDK.accounting.model.remote_data import RemoteData
+from MergePythonSDK.shared.model.remote_data import RemoteData
 from MergePythonSDK.accounting.model.status7d1_enum import Status7d1Enum
 globals()['CategoryTypeEnum'] = CategoryTypeEnum
 globals()['RemoteData'] = RemoteData

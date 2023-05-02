@@ -39,7 +39,7 @@ from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 def lazy_import():
-    from MergePythonSDK.shared.model.remote_remote_data import RemoteData
+    from MergePythonSDK.shared.model.remote_data import RemoteData
     from MergePythonSDK.accounting.model.status7d1_enum import Status7d1Enum
     globals()['RemoteData'] = RemoteData
     globals()['Status7d1Enum'] = Status7d1Enum

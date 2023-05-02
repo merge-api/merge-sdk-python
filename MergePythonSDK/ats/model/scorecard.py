@@ -40,7 +40,7 @@ from MergePythonSDK.shared.model_utils import import_model_by_name
 
 def lazy_import():
     from MergePythonSDK.ats.model.overall_recommendation_enum import OverallRecommendationEnum
-    from MergePythonSDK.shared.model.remote_remote_data import RemoteData
+    from MergePythonSDK.shared.model.remote_data import RemoteData
     globals()['OverallRecommendationEnum'] = OverallRecommendationEnum
     globals()['RemoteData'] = RemoteData
 

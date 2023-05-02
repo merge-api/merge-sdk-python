@@ -2,28 +2,26 @@
 
 All URIs are relative to *https://api.merge.dev/api/crm/v1*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**generate_key_create**](GenerateKeyApi.md#generate_key_create) | **POST** /generate-key | 
-
+| Method                                                           | HTTP request           | Description |
+| ---------------------------------------------------------------- | ---------------------- | ----------- |
+| [**generate_key_create**](GenerateKeyApi.md#generate_key_create) | **POST** /generate-key |
 
 # **generate_key_create**
+
 > RemoteKey generate_key_create(generate_remote_key_request)
-
-
 
 Create a remote key.
 
 ### Example
 
-* Bearer Authentication (bearerAuth):
+- Bearer Authentication (bearerAuth):
 
 ```python
 import time
 import MergePythonSDK.crm
 from MergePythonSDK.crm.api import generate_key_api
 from MergePythonSDK.crm.model.generate_remote_key_request import GenerateRemoteKeyRequest
-from MergePythonSDK.crm.model.remote_key import RemoteKey
+from MergePythonSDK.shared.model.remote_key import RemoteKey
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/crm/v1
 # See configuration.py for a list of all supported configuration parameters.
@@ -47,7 +45,7 @@ with MergePythonSDK.crm.ApiClient(configuration) as api_client:
     api_instance = generate_key_api.GenerateKeyApi(api_client)
     generate_remote_key_request = GenerateRemoteKeyRequest(
         name="Remote Deployment Key 1",
-    ) # GenerateRemoteKeyRequest | 
+    ) # GenerateRemoteKeyRequest |
 
     # example passing only required values which don't have defaults set
     try:
@@ -57,12 +55,11 @@ with MergePythonSDK.crm.ApiClient(configuration) as api_client:
         print("Exception when calling GenerateKeyApi->generate_key_create: %s\n" % e)
 ```
 
-
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **generate_remote_key_request** | [**GenerateRemoteKeyRequest**](GenerateRemoteKeyRequest.md)|  |
+| Name                            | Type                                                        | Description | Notes |
+| ------------------------------- | ----------------------------------------------------------- | ----------- | ----- |
+| **generate_remote_key_request** | [**GenerateRemoteKeyRequest**](GenerateRemoteKeyRequest.md) |             |
 
 ### Return type
 
@@ -74,15 +71,13 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
- - **Accept**: application/json
-
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** |  |  -  |
+| ----------- | ----------- | ---------------- |
+| **200**     |             | -                |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-

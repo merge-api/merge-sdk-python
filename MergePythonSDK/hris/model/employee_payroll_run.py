@@ -41,7 +41,7 @@ from MergePythonSDK.shared.model_utils import import_model_by_name
 def lazy_import():
     from MergePythonSDK.hris.model.deduction import Deduction
     from MergePythonSDK.hris.model.earning import Earning
-    from MergePythonSDK.shared.model.remote_remote_data import RemoteData
+    from MergePythonSDK.shared.model.remote_data import RemoteData
     from MergePythonSDK.hris.model.tax import Tax
     globals()['Deduction'] = Deduction
     globals()['Earning'] = Earning
