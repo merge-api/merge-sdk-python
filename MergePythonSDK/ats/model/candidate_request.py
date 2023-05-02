@@ -102,13 +102,10 @@ class CandidateRequest(ModelNormal):
         lazy_import()
 
         defined_types = {
-            'remote_id': (str, none_type, none_type,),  # noqa: E501
             'first_name': (str, none_type, none_type,),  # noqa: E501
             'last_name': (str, none_type, none_type,),  # noqa: E501
             'company': (str, none_type, none_type,),  # noqa: E501
             'title': (str, none_type, none_type,),  # noqa: E501
-            'remote_created_at': (datetime, none_type, none_type,),  # noqa: E501
-            'remote_updated_at': (datetime, none_type, none_type,),  # noqa: E501
             'last_interaction_at': (datetime, none_type, none_type,),  # noqa: E501
             'is_private': (bool, none_type, none_type,),  # noqa: E501
             'can_email': (bool, none_type, none_type,),  # noqa: E501
@@ -116,14 +113,23 @@ class CandidateRequest(ModelNormal):
             'phone_numbers': ([PhoneNumberRequest], none_type,),  # noqa: E501
             'email_addresses': ([EmailAddressRequest], none_type,),  # noqa: E501
             'urls': ([UrlRequest], none_type,),  # noqa: E501
-            'tags': ([str], none_type,),  # noqa: E501
+            'tags': ([str, none_type], none_type,),  # noqa: E501
             'applications': ([str, none_type], none_type,),  # noqa: E501
             'attachments': ([str, none_type], none_type,),  # noqa: E501
-            'custom_fields': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
             'remote_template_id': (str, none_type, none_type,),  # noqa: E501
-            'integration_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
-            'linked_account_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'integration_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'linked_account_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
         }
+        expands_types = {"applications": "Application", "attachments": "Attachment"}
+
+        # update types with expands
+        for key, val in expands_types.items():
+            if key in defined_types.keys():
+                expands_model = import_model_by_name(val, "ats")
+                if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
+                    defined_types[key][0].insert(0, expands_model)
+                else:
+                    defined_types[key] = (*defined_types[key], expands_model)
         return defined_types
 
     @cached_property
@@ -132,13 +138,10 @@ class CandidateRequest(ModelNormal):
 
 
     attribute_map = {
-        'remote_id': 'remote_id',  # noqa: E501
         'first_name': 'first_name',  # noqa: E501
         'last_name': 'last_name',  # noqa: E501
         'company': 'company',  # noqa: E501
         'title': 'title',  # noqa: E501
-        'remote_created_at': 'remote_created_at',  # noqa: E501
-        'remote_updated_at': 'remote_updated_at',  # noqa: E501
         'last_interaction_at': 'last_interaction_at',  # noqa: E501
         'is_private': 'is_private',  # noqa: E501
         'can_email': 'can_email',  # noqa: E501
@@ -149,7 +152,6 @@ class CandidateRequest(ModelNormal):
         'tags': 'tags',  # noqa: E501
         'applications': 'applications',  # noqa: E501
         'attachments': 'attachments',  # noqa: E501
-        'custom_fields': 'custom_fields',  # noqa: E501
         'remote_template_id': 'remote_template_id',  # noqa: E501
         'integration_params': 'integration_params',  # noqa: E501
         'linked_account_params': 'linked_account_params',  # noqa: E501
@@ -196,27 +198,23 @@ class CandidateRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             first_name (str, none_type): The candidate's first name.. [optional]  # noqa: E501
             last_name (str, none_type): The candidate's last name.. [optional]  # noqa: E501
             company (str, none_type): The candidate's current company.. [optional]  # noqa: E501
             title (str, none_type): The candidate's current title.. [optional]  # noqa: E501
-            remote_created_at (datetime, none_type): When the third party's candidate was created.. [optional]  # noqa: E501
-            remote_updated_at (datetime, none_type): When the third party's candidate was updated.. [optional]  # noqa: E501
-            last_interaction_at (datetime, none_type): When the most recent candidate interaction occurred.. [optional]  # noqa: E501
+            last_interaction_at (datetime, none_type): When the most recent interaction with the candidate occurred.. [optional]  # noqa: E501
             is_private (bool, none_type): Whether or not the candidate is private.. [optional]  # noqa: E501
             can_email (bool, none_type): Whether or not the candidate can be emailed.. [optional]  # noqa: E501
             locations ([str, none_type], none_type): The candidate's locations.. [optional]  # noqa: E501
             phone_numbers ([PhoneNumberRequest]): [optional]  # noqa: E501
             email_addresses ([EmailAddressRequest]): [optional]  # noqa: E501
             urls ([UrlRequest]): [optional]  # noqa: E501
-            tags ([str]): Array of `Tag` names as strings.. [optional]  # noqa: E501
+            tags ([str, none_type]): Array of `Tag` names as strings.. [optional]  # noqa: E501
             applications ([str, none_type]): Array of `Application` object IDs.. [optional]  # noqa: E501
             attachments ([str, none_type]): Array of `Attachment` object IDs.. [optional]  # noqa: E501
-            custom_fields ({str: (bool, dict, float, int, list, str, none_type)}, none_type): Custom fields configured for a given model.. [optional]  # noqa: E501
             remote_template_id (str, none_type): [optional]  # noqa: E501
-            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -249,13 +247,10 @@ class CandidateRequest(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.remote_id = kwargs.get("remote_id", None)
         self.first_name = kwargs.get("first_name", None)
         self.last_name = kwargs.get("last_name", None)
         self.company = kwargs.get("company", None)
         self.title = kwargs.get("title", None)
-        self.remote_created_at = kwargs.get("remote_created_at", None)
-        self.remote_updated_at = kwargs.get("remote_updated_at", None)
         self.last_interaction_at = kwargs.get("last_interaction_at", None)
         self.is_private = kwargs.get("is_private", None)
         self.can_email = kwargs.get("can_email", None)
@@ -266,7 +261,6 @@ class CandidateRequest(ModelNormal):
         self.tags = kwargs.get("tags", None)
         self.applications = kwargs.get("applications", None)
         self.attachments = kwargs.get("attachments", None)
-        self.custom_fields = kwargs.get("custom_fields", None)
         self.remote_template_id = kwargs.get("remote_template_id", None)
         self.integration_params = kwargs.get("integration_params", None)
         self.linked_account_params = kwargs.get("linked_account_params", None)
@@ -316,27 +310,23 @@ class CandidateRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             first_name (str, none_type): The candidate's first name.. [optional]  # noqa: E501
             last_name (str, none_type): The candidate's last name.. [optional]  # noqa: E501
             company (str, none_type): The candidate's current company.. [optional]  # noqa: E501
             title (str, none_type): The candidate's current title.. [optional]  # noqa: E501
-            remote_created_at (datetime, none_type): When the third party's candidate was created.. [optional]  # noqa: E501
-            remote_updated_at (datetime, none_type): When the third party's candidate was updated.. [optional]  # noqa: E501
-            last_interaction_at (datetime, none_type): When the most recent candidate interaction occurred.. [optional]  # noqa: E501
+            last_interaction_at (datetime, none_type): When the most recent interaction with the candidate occurred.. [optional]  # noqa: E501
             is_private (bool, none_type): Whether or not the candidate is private.. [optional]  # noqa: E501
             can_email (bool, none_type): Whether or not the candidate can be emailed.. [optional]  # noqa: E501
             locations ([str, none_type], none_type): The candidate's locations.. [optional]  # noqa: E501
             phone_numbers ([PhoneNumberRequest]): [optional]  # noqa: E501
             email_addresses ([EmailAddressRequest]): [optional]  # noqa: E501
             urls ([UrlRequest]): [optional]  # noqa: E501
-            tags ([str]): Array of `Tag` names as strings.. [optional]  # noqa: E501
+            tags ([str, none_type]): Array of `Tag` names as strings.. [optional]  # noqa: E501
             applications ([str, none_type]): Array of `Application` object IDs.. [optional]  # noqa: E501
             attachments ([str, none_type]): Array of `Attachment` object IDs.. [optional]  # noqa: E501
-            custom_fields ({str: (bool, dict, float, int, list, str, none_type)}, none_type): Custom fields configured for a given model.. [optional]  # noqa: E501
             remote_template_id (str, none_type): [optional]  # noqa: E501
-            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -366,13 +356,10 @@ class CandidateRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
         self.first_name: Union[str, none_type] = kwargs.get("first_name", None)
         self.last_name: Union[str, none_type] = kwargs.get("last_name", None)
         self.company: Union[str, none_type] = kwargs.get("company", None)
         self.title: Union[str, none_type] = kwargs.get("title", None)
-        self.remote_created_at: Union[datetime, none_type] = kwargs.get("remote_created_at", None)
-        self.remote_updated_at: Union[datetime, none_type] = kwargs.get("remote_updated_at", None)
         self.last_interaction_at: Union[datetime, none_type] = kwargs.get("last_interaction_at", None)
         self.is_private: Union[bool, none_type] = kwargs.get("is_private", None)
         self.can_email: Union[bool, none_type] = kwargs.get("can_email", None)
@@ -380,12 +367,11 @@ class CandidateRequest(ModelNormal):
         self.phone_numbers: Union[List["PhoneNumberRequest"]] = kwargs.get("phone_numbers", None)
         self.email_addresses: Union[List["EmailAddressRequest"]] = kwargs.get("email_addresses", None)
         self.urls: Union[List["UrlRequest"]] = kwargs.get("urls", None)
-        self.tags: Union[List[str]] = kwargs.get("tags", list())
+        self.tags: Union[List[str, none_type]] = kwargs.get("tags", list())
         self.applications: Union[List[str, none_type]] = kwargs.get("applications", list())
         self.attachments: Union[List[str, none_type]] = kwargs.get("attachments", list())
-        self.custom_fields: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("custom_fields", None)
         self.remote_template_id: Union[str, none_type] = kwargs.get("remote_template_id", None)
-        self.integration_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
-        self.linked_account_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
+        self.integration_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
+        self.linked_account_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
 
 

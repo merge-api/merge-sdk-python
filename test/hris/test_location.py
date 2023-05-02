@@ -16,7 +16,7 @@ from unittest.mock import MagicMock
 import MergePythonSDK.hris
 from MergePythonSDK.hris.model.country_enum import CountryEnum
 from MergePythonSDK.hris.model.location_type_enum import LocationTypeEnum
-from MergePythonSDK.hris.model.remote_data import RemoteData
+from MergePythonSDK.shared.model.remote_data import RemoteData
 globals()['CountryEnum'] = CountryEnum
 globals()['LocationTypeEnum'] = LocationTypeEnum
 globals()['RemoteData'] = RemoteData

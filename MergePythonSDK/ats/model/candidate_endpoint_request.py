@@ -268,7 +268,7 @@ class CandidateEndpointRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.model: Union["CandidateRequest"] = model
+        self.model: Union["CandidateRequest", {"applications": "Application", "attachments": "Attachment"}] = model
         self.remote_user_id: Union[str] = remote_user_id
 
 

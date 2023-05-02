@@ -15,7 +15,7 @@ from unittest.mock import MagicMock
 
 import MergePythonSDK.hris
 from MergePythonSDK.hris.model.group_type_enum import GroupTypeEnum
-from MergePythonSDK.hris.model.remote_data import RemoteData
+from MergePythonSDK.shared.model.remote_data import RemoteData
 globals()['GroupTypeEnum'] = GroupTypeEnum
 globals()['RemoteData'] = RemoteData
 from MergePythonSDK.hris.model.group import Group

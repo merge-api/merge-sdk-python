@@ -30,14 +30,38 @@ class TestContactsApi(unittest.TestCase):
         """
         pass
 
+    def test_contacts_ignore_create(self):
+        """Test case for contacts_ignore_create
+
+        """
+        pass
+
     def test_contacts_list(self):
         """Test case for contacts_list
 
         """
         pass
 
+    def test_contacts_meta_patch_retrieve(self):
+        """Test case for contacts_meta_patch_retrieve
+
+        """
+        pass
+
     def test_contacts_meta_post_retrieve(self):
         """Test case for contacts_meta_post_retrieve
+
+        """
+        pass
+
+    def test_contacts_partial_update(self):
+        """Test case for contacts_partial_update
+
+        """
+        pass
+
+    def test_contacts_remote_field_classes_list(self):
+        """Test case for contacts_remote_field_classes_list
 
         """
         pass

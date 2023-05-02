@@ -40,8 +40,10 @@ from MergePythonSDK.shared.model_utils import import_model_by_name
 
 def lazy_import():
     from MergePythonSDK.shared.model.remote_data import RemoteData
+    from MergePythonSDK.crm.model.remote_field import RemoteField
     from MergePythonSDK.crm.model.task_status_enum import TaskStatusEnum
     globals()['RemoteData'] = RemoteData
+    globals()['RemoteField'] = RemoteField
     globals()['TaskStatusEnum'] = TaskStatusEnum
 
 class Task(ModelNormal):
@@ -97,8 +99,6 @@ class Task(ModelNormal):
         lazy_import()
 
         defined_types = {
-            'id': (str, none_type,),  # noqa: E501
-            'remote_id': (str, none_type, none_type,),  # noqa: E501
             'subject': (str, none_type, none_type,),  # noqa: E501
             'content': (str, none_type, none_type,),  # noqa: E501
             'owner': (str, none_type, none_type,),  # noqa: E501
@@ -106,8 +106,13 @@ class Task(ModelNormal):
             'completed_date': (datetime, none_type, none_type,),  # noqa: E501
             'due_date': (datetime, none_type, none_type,),  # noqa: E501
             'status': (TaskStatusEnum, str, none_type,),
-            'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
             'remote_was_deleted': (bool, none_type,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
+            'remote_id': (str, none_type, none_type,),  # noqa: E501
+            'field_mappings': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'modified_at': (datetime, none_type,),  # noqa: E501
+            'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
+            'remote_fields': ([RemoteField], none_type,),  # noqa: E501
         }
         expands_types = {"account": "Account", "owner": "User"}
 
@@ -127,8 +132,6 @@ class Task(ModelNormal):
 
 
     attribute_map = {
-        'id': 'id',  # noqa: E501
-        'remote_id': 'remote_id',  # noqa: E501
         'subject': 'subject',  # noqa: E501
         'content': 'content',  # noqa: E501
         'owner': 'owner',  # noqa: E501
@@ -136,14 +139,22 @@ class Task(ModelNormal):
         'completed_date': 'completed_date',  # noqa: E501
         'due_date': 'due_date',  # noqa: E501
         'status': 'status',  # noqa: E501
-        'remote_data': 'remote_data',  # noqa: E501
         'remote_was_deleted': 'remote_was_deleted',  # noqa: E501
+        'id': 'id',  # noqa: E501
+        'remote_id': 'remote_id',  # noqa: E501
+        'field_mappings': 'field_mappings',  # noqa: E501
+        'modified_at': 'modified_at',  # noqa: E501
+        'remote_data': 'remote_data',  # noqa: E501
+        'remote_fields': 'remote_fields',  # noqa: E501
     }
 
     read_only_vars = {
-        'id',  # noqa: E501
-        'remote_data',  # noqa: E501
         'remote_was_deleted',  # noqa: E501
+        'id',  # noqa: E501
+        'field_mappings',  # noqa: E501
+        'modified_at',  # noqa: E501
+        'remote_data',  # noqa: E501
+        'remote_fields',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -184,17 +195,20 @@ class Task(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            id (str): [optional]  # noqa: E501
-            remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             subject (str, none_type): The task's subject.. [optional]  # noqa: E501
             content (str, none_type): The task's content.. [optional]  # noqa: E501
-            owner (str, none_type): [optional]  # noqa: E501
-            account (str, none_type): [optional]  # noqa: E501
+            owner (str, none_type): The task's owner.. [optional]  # noqa: E501
+            account (str, none_type): The task's account.. [optional]  # noqa: E501
             completed_date (datetime, none_type): When the task is completed.. [optional]  # noqa: E501
             due_date (datetime, none_type): When the task is due.. [optional]  # noqa: E501
-            status (bool, dict, float, int, list, str, none_type): The task's status.. [optional]  # noqa: E501
-            remote_data ([RemoteData], none_type): [optional]  # noqa: E501
+            status (bool, date, datetime, dict, float, int, list, str, none_type): The task's status.  * `OPEN` - OPEN * `CLOSED` - CLOSED. [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
+            id (str): [optional]  # noqa: E501
+            remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
+            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
+            remote_data ([RemoteData], none_type): [optional]  # noqa: E501
+            remote_fields ([RemoteField]): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -227,7 +241,6 @@ class Task(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.remote_id = kwargs.get("remote_id", None)
         self.subject = kwargs.get("subject", None)
         self.content = kwargs.get("content", None)
         self.owner = kwargs.get("owner", None)
@@ -235,11 +248,13 @@ class Task(ModelNormal):
         self.completed_date = kwargs.get("completed_date", None)
         self.due_date = kwargs.get("due_date", None)
         self.status = kwargs.get("status", None)
-
-        # Read only properties
-        self._id = kwargs.get("id", str())
-        self._remote_data = kwargs.get("remote_data", None)
+        self.remote_id = kwargs.get("remote_id", None)
         self._remote_was_deleted = kwargs.get("remote_was_deleted", bool())
+        self._id = kwargs.get("id", str())
+        self._field_mappings = kwargs.get("field_mappings", None)
+        self._modified_at = kwargs.get("modified_at", None)
+        self._remote_data = kwargs.get("remote_data", None)
+        self._remote_fields = kwargs.get("remote_fields", None)
         return self
 
     required_properties = set([
@@ -286,17 +301,20 @@ class Task(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            id (str): [optional]  # noqa: E501
-            remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             subject (str, none_type): The task's subject.. [optional]  # noqa: E501
             content (str, none_type): The task's content.. [optional]  # noqa: E501
-            owner (str, none_type): [optional]  # noqa: E501
-            account (str, none_type): [optional]  # noqa: E501
+            owner (str, none_type): The task's owner.. [optional]  # noqa: E501
+            account (str, none_type): The task's account.. [optional]  # noqa: E501
             completed_date (datetime, none_type): When the task is completed.. [optional]  # noqa: E501
             due_date (datetime, none_type): When the task is due.. [optional]  # noqa: E501
-            status (bool, dict, float, int, list, str, none_type): The task's status.. [optional]  # noqa: E501
-            remote_data ([RemoteData], none_type): [optional]  # noqa: E501
+            status (bool, date, datetime, dict, float, int, list, str, none_type): The task's status.  * `OPEN` - OPEN * `CLOSED` - CLOSED. [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
+            id (str): [optional]  # noqa: E501
+            remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
+            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
+            remote_data ([RemoteData], none_type): [optional]  # noqa: E501
+            remote_fields ([RemoteField]): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -326,32 +344,43 @@ class Task(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
         self.subject: Union[str, none_type] = kwargs.get("subject", None)
         self.content: Union[str, none_type] = kwargs.get("content", None)
         self.owner: Union[str, none_type] = kwargs.get("owner", None)
         self.account: Union[str, none_type] = kwargs.get("account", None)
         self.completed_date: Union[datetime, none_type] = kwargs.get("completed_date", None)
         self.due_date: Union[datetime, none_type] = kwargs.get("due_date", None)
-        self.status: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("status", None)
-
-        # Read only properties
-        self._id: Union[str] = kwargs.get("id", str())
-        self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
+        self.status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
+        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
         self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
+        self._id: Union[str] = kwargs.get("id", str())
+        self._field_mappings: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("field_mappings", None)
+        self._modified_at: Union[datetime] = kwargs.get("modified_at", None)
+        self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
+        self._remote_fields: Union[List["RemoteField"]] = kwargs.get("remote_fields", None)
+    @property
+    def remote_was_deleted(self):
+        return self._remote_was_deleted
 
-    # Read only property getters
     @property
     def id(self):
         return self._id
+
+    @property
+    def field_mappings(self):
+        return self._field_mappings
+
+    @property
+    def modified_at(self):
+        return self._modified_at
 
     @property
     def remote_data(self):
         return self._remote_data
 
     @property
-    def remote_was_deleted(self):
-        return self._remote_was_deleted
+    def remote_fields(self):
+        return self._remote_fields
 
 
 

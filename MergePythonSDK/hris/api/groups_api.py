@@ -61,6 +61,8 @@ class GroupsApi(object):
                     'page_size',
                     'remote_fields',
                     'remote_id',
+                    'show_enum_origins',
+                    'types',
                 ],
                 'required': [],
                 'nullable': [
@@ -68,6 +70,7 @@ class GroupsApi(object):
                 ],
                 'enum': [
                     'remote_fields',
+                    'show_enum_origins',
                 ],
                 'validation': [
                 ]
@@ -77,6 +80,10 @@ class GroupsApi(object):
                 },
                 'allowed_values': {
                     ('remote_fields',): {
+
+                        "TYPE": "type"
+                    },
+                    ('show_enum_origins',): {
 
                         "TYPE": "type"
                     },
@@ -102,6 +109,10 @@ class GroupsApi(object):
                         (str,),
                     'remote_id':
                         (str, none_type,),
+                    'show_enum_origins':
+                        (str,),
+                    'types':
+                        (str,),
                 },
                 'attribute_map': {
                     'created_after': 'created_after',
@@ -114,6 +125,8 @@ class GroupsApi(object):
                     'page_size': 'page_size',
                     'remote_fields': 'remote_fields',
                     'remote_id': 'remote_id',
+                    'show_enum_origins': 'show_enum_origins',
+                    'types': 'types',
                 },
                 'location_map': {
                     'created_after': 'query',
@@ -126,6 +139,8 @@ class GroupsApi(object):
                     'page_size': 'query',
                     'remote_fields': 'query',
                     'remote_id': 'query',
+                    'show_enum_origins': 'query',
+                    'types': 'query',
                 },
                 'collection_format_map': {
                 }
@@ -155,6 +170,7 @@ class GroupsApi(object):
                     'id',
                     'include_remote_data',
                     'remote_fields',
+                    'show_enum_origins',
                 ],
                 'required': [
                     'id',
@@ -163,6 +179,7 @@ class GroupsApi(object):
                 ],
                 'enum': [
                     'remote_fields',
+                    'show_enum_origins',
                 ],
                 'validation': [
                 ]
@@ -175,6 +192,10 @@ class GroupsApi(object):
 
                         "TYPE": "type"
                     },
+                    ('show_enum_origins',): {
+
+                        "TYPE": "type"
+                    },
                 },
                 'openapi_types': {
                     'id':
@@ -183,16 +204,20 @@ class GroupsApi(object):
                         (bool,),
                     'remote_fields':
                         (str,),
+                    'show_enum_origins':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
                     'include_remote_data': 'include_remote_data',
                     'remote_fields': 'remote_fields',
+                    'show_enum_origins': 'show_enum_origins',
                 },
                 'location_map': {
                     'id': 'path',
                     'include_remote_data': 'query',
                     'remote_fields': 'query',
+                    'show_enum_origins': 'query',
                 },
                 'collection_format_map': {
                 }
@@ -226,11 +251,13 @@ class GroupsApi(object):
             cursor (str): The pagination cursor value.. [optional]
             include_deleted_data (bool): Whether to include data that was marked as deleted by third party webhooks.. [optional]
             include_remote_data (bool): Whether to include the original data Merge fetched from the third-party to produce these models.. [optional]
-            modified_after (datetime): If provided, will only return objects modified after this datetime.. [optional]
-            modified_before (datetime): If provided, will only return objects modified before this datetime.. [optional]
+            modified_after (datetime): If provided, only objects synced by Merge after this date time will be returned.. [optional]
+            modified_before (datetime): If provided, only objects synced by Merge before this date time will be returned.. [optional]
             page_size (int): Number of results to return per page.. [optional]
-            remote_fields (str): Which fields should be returned in non-normalized form.. [optional] if omitted the server will use the default value of "type"
+            remote_fields (str): Deprecated. Use show_enum_origins.. [optional] if omitted the server will use the default value of "type"
             remote_id (str, none_type): The API provider's ID for the given object.. [optional]
+            show_enum_origins (str): Which fields should be returned in non-normalized form.. [optional] if omitted the server will use the default value of "type"
+            types (str): If provided, will only return groups of these types. Multiple values can be separated by commas.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -313,7 +340,8 @@ class GroupsApi(object):
 
         Keyword Args:
             include_remote_data (bool): Whether to include the original data Merge fetched from the third-party to produce these models.. [optional]
-            remote_fields (str): Which fields should be returned in non-normalized form.. [optional] if omitted the server will use the default value of "type"
+            remote_fields (str): Deprecated. Use show_enum_origins.. [optional] if omitted the server will use the default value of "type"
+            show_enum_origins (str): Which fields should be returned in non-normalized form.. [optional] if omitted the server will use the default value of "type"
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object

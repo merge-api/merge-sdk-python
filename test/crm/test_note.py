@@ -14,8 +14,10 @@ import unittest
 from unittest.mock import MagicMock
 
 import MergePythonSDK.crm
-from MergePythonSDK.crm.model.remote_data import RemoteData
+from MergePythonSDK.shared.model.remote_data import RemoteData
+from MergePythonSDK.crm.model.remote_field import RemoteField
 globals()['RemoteData'] = RemoteData
+globals()['RemoteField'] = RemoteField
 from MergePythonSDK.crm.model.note import Note
 from MergePythonSDK.shared.api_client import ApiClient
 

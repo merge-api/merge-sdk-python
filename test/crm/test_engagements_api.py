@@ -36,8 +36,26 @@ class TestEngagementsApi(unittest.TestCase):
         """
         pass
 
+    def test_engagements_meta_patch_retrieve(self):
+        """Test case for engagements_meta_patch_retrieve
+
+        """
+        pass
+
     def test_engagements_meta_post_retrieve(self):
         """Test case for engagements_meta_post_retrieve
+
+        """
+        pass
+
+    def test_engagements_partial_update(self):
+        """Test case for engagements_partial_update
+
+        """
+        pass
+
+    def test_engagements_remote_field_classes_list(self):
+        """Test case for engagements_remote_field_classes_list
 
         """
         pass

@@ -263,6 +263,6 @@ class PurchaseOrderEndpointRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.model: Union["PurchaseOrderRequest"] = model
+        self.model: Union["PurchaseOrderRequest", {"company": "CompanyInfo", "delivery_address": "Address", "line_items": "PurchaseOrderLineItem", "vendor": "Contact"}] = model
 
 

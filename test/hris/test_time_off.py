@@ -14,7 +14,7 @@ import unittest
 from unittest.mock import MagicMock
 
 import MergePythonSDK.hris
-from MergePythonSDK.hris.model.remote_data import RemoteData
+from MergePythonSDK.shared.model.remote_data import RemoteData
 from MergePythonSDK.hris.model.request_type_enum import RequestTypeEnum
 from MergePythonSDK.hris.model.time_off_status_enum import TimeOffStatusEnum
 from MergePythonSDK.hris.model.units_enum import UnitsEnum

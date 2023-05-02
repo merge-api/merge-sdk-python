@@ -30,6 +30,12 @@ class TestEngagementTypesApi(unittest.TestCase):
         """
         pass
 
+    def test_engagement_types_remote_field_classes_list(self):
+        """Test case for engagement_types_remote_field_classes_list
+
+        """
+        pass
+
     def test_engagement_types_retrieve(self):
         """Test case for engagement_types_retrieve
 

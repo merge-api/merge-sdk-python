@@ -105,9 +105,10 @@ class Application(ModelNormal):
             'credited_to': (str, none_type, none_type,),  # noqa: E501
             'current_stage': (str, none_type, none_type,),  # noqa: E501
             'reject_reason': (str, none_type, none_type,),  # noqa: E501
-            'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
-            'custom_fields': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
             'remote_was_deleted': (bool, none_type,),  # noqa: E501
+            'field_mappings': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'modified_at': (datetime, none_type,),  # noqa: E501
+            'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
         }
         expands_types = {"candidate": "Candidate", "credited_to": "RemoteUser", "current_stage": "JobInterviewStage", "job": "Job", "reject_reason": "RejectReason"}
 
@@ -137,15 +138,18 @@ class Application(ModelNormal):
         'credited_to': 'credited_to',  # noqa: E501
         'current_stage': 'current_stage',  # noqa: E501
         'reject_reason': 'reject_reason',  # noqa: E501
-        'remote_data': 'remote_data',  # noqa: E501
-        'custom_fields': 'custom_fields',  # noqa: E501
         'remote_was_deleted': 'remote_was_deleted',  # noqa: E501
+        'field_mappings': 'field_mappings',  # noqa: E501
+        'modified_at': 'modified_at',  # noqa: E501
+        'remote_data': 'remote_data',  # noqa: E501
     }
 
     read_only_vars = {
         'id',  # noqa: E501
-        'remote_data',  # noqa: E501
         'remote_was_deleted',  # noqa: E501
+        'field_mappings',  # noqa: E501
+        'modified_at',  # noqa: E501
+        'remote_data',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -188,17 +192,18 @@ class Application(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             id (str): [optional]  # noqa: E501
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
-            candidate (str, none_type): [optional]  # noqa: E501
-            job (str, none_type): [optional]  # noqa: E501
+            candidate (str, none_type): The candidate applying.. [optional]  # noqa: E501
+            job (str, none_type): The job being applied for.. [optional]  # noqa: E501
             applied_at (datetime, none_type): When the application was submitted.. [optional]  # noqa: E501
             rejected_at (datetime, none_type): When the application was rejected.. [optional]  # noqa: E501
             source (str, none_type): The application's source.. [optional]  # noqa: E501
-            credited_to (str, none_type): [optional]  # noqa: E501
-            current_stage (str, none_type): [optional]  # noqa: E501
-            reject_reason (str, none_type): [optional]  # noqa: E501
-            remote_data ([RemoteData], none_type): [optional]  # noqa: E501
-            custom_fields ({str: (bool, dict, float, int, list, str, none_type)}, none_type): Custom fields configured for a given model.. [optional]  # noqa: E501
+            credited_to (str, none_type): The user credited for this application.. [optional]  # noqa: E501
+            current_stage (str, none_type): The application's current stage.. [optional]  # noqa: E501
+            reject_reason (str, none_type): The application's reason for rejection.. [optional]  # noqa: E501
             remote_was_deleted (bool): [optional]  # noqa: E501
+            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
+            remote_data ([RemoteData], none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -240,12 +245,13 @@ class Application(ModelNormal):
         self.credited_to = kwargs.get("credited_to", None)
         self.current_stage = kwargs.get("current_stage", None)
         self.reject_reason = kwargs.get("reject_reason", None)
-        self.custom_fields = kwargs.get("custom_fields", None)
 
         # Read only properties
         self._id = kwargs.get("id", str())
-        self._remote_data = kwargs.get("remote_data", None)
         self._remote_was_deleted = kwargs.get("remote_was_deleted", bool())
+        self._field_mappings = kwargs.get("field_mappings", None)
+        self._modified_at = kwargs.get("modified_at", None)
+        self._remote_data = kwargs.get("remote_data", None)
         return self
 
     required_properties = set([
@@ -294,17 +300,18 @@ class Application(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             id (str): [optional]  # noqa: E501
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
-            candidate (str, none_type): [optional]  # noqa: E501
-            job (str, none_type): [optional]  # noqa: E501
+            candidate (str, none_type): The candidate applying.. [optional]  # noqa: E501
+            job (str, none_type): The job being applied for.. [optional]  # noqa: E501
             applied_at (datetime, none_type): When the application was submitted.. [optional]  # noqa: E501
             rejected_at (datetime, none_type): When the application was rejected.. [optional]  # noqa: E501
             source (str, none_type): The application's source.. [optional]  # noqa: E501
-            credited_to (str, none_type): [optional]  # noqa: E501
-            current_stage (str, none_type): [optional]  # noqa: E501
-            reject_reason (str, none_type): [optional]  # noqa: E501
-            remote_data ([RemoteData], none_type): [optional]  # noqa: E501
-            custom_fields ({str: (bool, dict, float, int, list, str, none_type)}, none_type): Custom fields configured for a given model.. [optional]  # noqa: E501
+            credited_to (str, none_type): The user credited for this application.. [optional]  # noqa: E501
+            current_stage (str, none_type): The application's current stage.. [optional]  # noqa: E501
+            reject_reason (str, none_type): The application's reason for rejection.. [optional]  # noqa: E501
             remote_was_deleted (bool): [optional]  # noqa: E501
+            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
+            remote_data ([RemoteData], none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -343,12 +350,13 @@ class Application(ModelNormal):
         self.credited_to: Union[str, none_type] = kwargs.get("credited_to", None)
         self.current_stage: Union[str, none_type] = kwargs.get("current_stage", None)
         self.reject_reason: Union[str, none_type] = kwargs.get("reject_reason", None)
-        self.custom_fields: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("custom_fields", None)
 
         # Read only properties
         self._id: Union[str] = kwargs.get("id", str())
-        self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
         self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
+        self._field_mappings: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("field_mappings", None)
+        self._modified_at: Union[datetime] = kwargs.get("modified_at", None)
+        self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
 
     # Read only property getters
     @property
@@ -356,12 +364,20 @@ class Application(ModelNormal):
         return self._id
 
     @property
-    def remote_data(self):
-        return self._remote_data
-
-    @property
     def remote_was_deleted(self):
         return self._remote_was_deleted
+
+    @property
+    def field_mappings(self):
+        return self._field_mappings
+
+    @property
+    def modified_at(self):
+        return self._modified_at
+
+    @property
+    def remote_data(self):
+        return self._remote_data
 
 
 

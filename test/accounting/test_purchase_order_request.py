@@ -15,8 +15,10 @@ from unittest.mock import MagicMock
 
 import MergePythonSDK.accounting
 from MergePythonSDK.accounting.model.currency_enum import CurrencyEnum
+from MergePythonSDK.accounting.model.purchase_order_line_item_request import PurchaseOrderLineItemRequest
 from MergePythonSDK.accounting.model.purchase_order_status_enum import PurchaseOrderStatusEnum
 globals()['CurrencyEnum'] = CurrencyEnum
+globals()['PurchaseOrderLineItemRequest'] = PurchaseOrderLineItemRequest
 globals()['PurchaseOrderStatusEnum'] = PurchaseOrderStatusEnum
 from MergePythonSDK.accounting.model.purchase_order_request import PurchaseOrderRequest
 from MergePythonSDK.shared.api_client import ApiClient

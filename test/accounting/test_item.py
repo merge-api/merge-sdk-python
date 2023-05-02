@@ -14,7 +14,7 @@ import unittest
 from unittest.mock import MagicMock
 
 import MergePythonSDK.accounting
-from MergePythonSDK.accounting.model.remote_data import RemoteData
+from MergePythonSDK.shared.model.remote_data import RemoteData
 from MergePythonSDK.accounting.model.status7d1_enum import Status7d1Enum
 globals()['RemoteData'] = RemoteData
 globals()['Status7d1Enum'] = Status7d1Enum

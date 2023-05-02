@@ -263,6 +263,6 @@ class ExpenseEndpointRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.model: Union["ExpenseRequest"] = model
+        self.model: Union["ExpenseRequest", {"account": "Account", "company": "CompanyInfo", "contact": "Contact"}] = model
 
 

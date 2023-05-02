@@ -263,6 +263,6 @@ class NoteEndpointRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.model: Union["NoteRequest"] = model
+        self.model: Union["NoteRequest", {"account": "Account", "contact": "Contact", "opportunity": "Opportunity", "owner": "User"}] = model
 
 

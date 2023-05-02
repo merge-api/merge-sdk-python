@@ -11,7 +11,7 @@
 """
 
 
-__version__ = "2.2.6"
+__version__ = "2.2.7"
 
 # import ApiClient
 from MergePythonSDK.shared.api_client import ApiClient

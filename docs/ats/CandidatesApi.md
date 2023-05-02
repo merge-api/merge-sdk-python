@@ -58,13 +58,10 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
     api_instance = candidates_api.CandidatesApi(api_client)
     candidate_endpoint_request = CandidateEndpointRequest(
         model=CandidateRequest(
-            remote_id="21198",
             first_name="Gil",
             last_name="Feig",
             company="Columbia Dining App.",
             title="Software Engineer",
-            remote_created_at=dateutil_parser('2021-10-15T00:00:00Z'),
-            remote_updated_at=dateutil_parser('2021-10-16T00:00:00Z'),
             last_interaction_at=dateutil_parser('2021-10-17T00:00:00Z'),
             is_private=True,
             can_email=True,
@@ -108,9 +105,6 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
             tags=["High-Priority"],
             applications=["29eb9867-ce2a-403f-b8ce-f2844b89f078","b4d08e5c-de00-4d64-a29f-66addac9af99","4ff877d2-fb3e-4a5b-a7a5-168ddf2ffa56"],
             attachments=["bea08964-32b4-4a20-8bb4-2612ba09de1d"],
-            custom_fields={
-                "key": None,
-            },
             remote_template_id="92830948203",
             integration_params={
                 "key": None,
@@ -172,7 +166,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **candidates_ignore_create**
-> IgnoreCommonModel candidates_ignore_create(model_id, ignore_common_model_request)
+> candidates_ignore_create(model_id, ignore_common_model_request)
 
 
 
@@ -188,7 +182,6 @@ import time
 import MergePythonSDK.ats
 from MergePythonSDK.ats.api import candidates_api
 from MergePythonSDK.ats.model.ignore_common_model_request import IgnoreCommonModelRequest
-from MergePythonSDK.ats.model.ignore_common_model import IgnoreCommonModel
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/ats/v1
 # See configuration.py for a list of all supported configuration parameters.
@@ -224,8 +217,7 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        api_response = api_instance.candidates_ignore_create(model_id, ignore_common_model_request)
-        pprint(api_response)
+        api_instance.candidates_ignore_create(model_id, ignore_common_model_request)
     except MergePythonSDK.ats.ApiException as e:
         print("Exception when calling CandidatesApi->candidates_ignore_create: %s\n" % e)
 ```
@@ -240,7 +232,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**IgnoreCommonModel**](IgnoreCommonModel.md)
+void (empty response body)
 
 ### Authorization
 
@@ -249,14 +241,14 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
- - **Accept**: application/json
+ - **Accept**: Not defined
 
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** |  |  -  |
+**200** | No response body |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -307,20 +299,22 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
     created_after = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, will only return objects created after this datetime. (optional)
     created_before = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, will only return objects created before this datetime. (optional)
     cursor = "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw" # str | The pagination cursor value. (optional)
+    email_addresses = "email_addresses_example" # str | If provided, will only return candidates with these email addresses; multiple addresses can be separated by commas. (optional)
     expand = "applications,attachments" # str | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. (optional)
     first_name = "first_name_example" # str, none_type | If provided, will only return candidates with this first name. (optional)
     include_deleted_data = True # bool | Whether to include data that was marked as deleted by third party webhooks. (optional)
     include_remote_data = True # bool | Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
     last_name = "last_name_example" # str, none_type | If provided, will only return candidates with this last name. (optional)
-    modified_after = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, will only return objects modified after this datetime. (optional)
-    modified_before = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, will only return objects modified before this datetime. (optional)
+    modified_after = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, only objects synced by Merge after this date time will be returned. (optional)
+    modified_before = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, only objects synced by Merge before this date time will be returned. (optional)
     page_size = 1 # int | Number of results to return per page. (optional)
     remote_id = "remote_id_example" # str, none_type | The API provider's ID for the given object. (optional)
+    tags = "tags_example" # str | If provided, will only return candidates with these tags; multiple tags can be separated by commas. (optional)
 
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        api_response = api_instance.candidates_list(created_after=created_after, created_before=created_before, cursor=cursor, expand=expand, first_name=first_name, include_deleted_data=include_deleted_data, include_remote_data=include_remote_data, last_name=last_name, modified_after=modified_after, modified_before=modified_before, page_size=page_size, remote_id=remote_id)
+        api_response = api_instance.candidates_list(created_after=created_after, created_before=created_before, cursor=cursor, email_addresses=email_addresses, expand=expand, first_name=first_name, include_deleted_data=include_deleted_data, include_remote_data=include_remote_data, last_name=last_name, modified_after=modified_after, modified_before=modified_before, page_size=page_size, remote_id=remote_id, tags=tags)
         pprint(api_response)
     except MergePythonSDK.ats.ApiException as e:
         print("Exception when calling CandidatesApi->candidates_list: %s\n" % e)
@@ -334,15 +328,17 @@ Name | Type | Description  | Notes
  **created_after** | **datetime**| If provided, will only return objects created after this datetime. | [optional]
  **created_before** | **datetime**| If provided, will only return objects created before this datetime. | [optional]
  **cursor** | **str**| The pagination cursor value. | [optional]
+ **email_addresses** | **str**| If provided, will only return candidates with these email addresses; multiple addresses can be separated by commas. | [optional]
  **expand** | **str**| Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. | [optional]
  **first_name** | **str, none_type**| If provided, will only return candidates with this first name. | [optional]
  **include_deleted_data** | **bool**| Whether to include data that was marked as deleted by third party webhooks. | [optional]
  **include_remote_data** | **bool**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional]
  **last_name** | **str, none_type**| If provided, will only return candidates with this last name. | [optional]
- **modified_after** | **datetime**| If provided, will only return objects modified after this datetime. | [optional]
- **modified_before** | **datetime**| If provided, will only return objects modified before this datetime. | [optional]
+ **modified_after** | **datetime**| If provided, only objects synced by Merge after this date time will be returned. | [optional]
+ **modified_before** | **datetime**| If provided, only objects synced by Merge before this date time will be returned. | [optional]
  **page_size** | **int**| Number of results to return per page. | [optional]
  **remote_id** | **str, none_type**| The API provider&#39;s ID for the given object. | [optional]
+ **tags** | **str**| If provided, will only return candidates with these tags; multiple tags can be separated by commas. | [optional]
 
 ### Return type
 

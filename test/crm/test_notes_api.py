@@ -42,6 +42,12 @@ class TestNotesApi(unittest.TestCase):
         """
         pass
 
+    def test_notes_remote_field_classes_list(self):
+        """Test case for notes_remote_field_classes_list
+
+        """
+        pass
+
     def test_notes_retrieve(self):
         """Test case for notes_retrieve
 

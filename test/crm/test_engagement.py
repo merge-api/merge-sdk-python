@@ -15,9 +15,11 @@ from unittest.mock import MagicMock
 
 import MergePythonSDK.crm
 from MergePythonSDK.crm.model.direction_enum import DirectionEnum
-from MergePythonSDK.crm.model.remote_data import RemoteData
+from MergePythonSDK.shared.model.remote_data import RemoteData
+from MergePythonSDK.crm.model.remote_field import RemoteField
 globals()['DirectionEnum'] = DirectionEnum
 globals()['RemoteData'] = RemoteData
+globals()['RemoteField'] = RemoteField
 from MergePythonSDK.crm.model.engagement import Engagement
 from MergePythonSDK.shared.api_client import ApiClient
 

@@ -90,17 +90,24 @@ class NoteRequest(ModelNormal):
         """
 
         defined_types = {
-            'remote_id': (str, none_type, none_type,),  # noqa: E501
             'owner': (str, none_type, none_type,),  # noqa: E501
             'content': (str, none_type, none_type,),  # noqa: E501
             'contact': (str, none_type, none_type,),  # noqa: E501
             'account': (str, none_type, none_type,),  # noqa: E501
             'opportunity': (str, none_type, none_type,),  # noqa: E501
-            'remote_updated_at': (datetime, none_type, none_type,),  # noqa: E501
-            'remote_created_at': (datetime, none_type, none_type,),  # noqa: E501
-            'integration_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
-            'linked_account_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'integration_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'linked_account_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
         }
+        expands_types = {"account": "Account", "contact": "Contact", "opportunity": "Opportunity", "owner": "User"}
+
+        # update types with expands
+        for key, val in expands_types.items():
+            if key in defined_types.keys():
+                expands_model = import_model_by_name(val, "crm")
+                if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
+                    defined_types[key][0].insert(0, expands_model)
+                else:
+                    defined_types[key] = (*defined_types[key], expands_model)
         return defined_types
 
     @cached_property
@@ -109,14 +116,11 @@ class NoteRequest(ModelNormal):
 
 
     attribute_map = {
-        'remote_id': 'remote_id',  # noqa: E501
         'owner': 'owner',  # noqa: E501
         'content': 'content',  # noqa: E501
         'contact': 'contact',  # noqa: E501
         'account': 'account',  # noqa: E501
         'opportunity': 'opportunity',  # noqa: E501
-        'remote_updated_at': 'remote_updated_at',  # noqa: E501
-        'remote_created_at': 'remote_created_at',  # noqa: E501
         'integration_params': 'integration_params',  # noqa: E501
         'linked_account_params': 'linked_account_params',  # noqa: E501
     }
@@ -162,16 +166,13 @@ class NoteRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
-            owner (str, none_type): [optional]  # noqa: E501
+            owner (str, none_type): The note's owner.. [optional]  # noqa: E501
             content (str, none_type): The note's content.. [optional]  # noqa: E501
-            contact (str, none_type): [optional]  # noqa: E501
-            account (str, none_type): [optional]  # noqa: E501
-            opportunity (str, none_type): [optional]  # noqa: E501
-            remote_updated_at (datetime, none_type): When the third party's lead was updated.. [optional]  # noqa: E501
-            remote_created_at (datetime, none_type): When the third party's lead was created.. [optional]  # noqa: E501
-            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            contact (str, none_type): The note's contact.. [optional]  # noqa: E501
+            account (str, none_type): The note's account.. [optional]  # noqa: E501
+            opportunity (str, none_type): The note's opportunity.. [optional]  # noqa: E501
+            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -204,14 +205,11 @@ class NoteRequest(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.remote_id = kwargs.get("remote_id", None)
         self.owner = kwargs.get("owner", None)
         self.content = kwargs.get("content", None)
         self.contact = kwargs.get("contact", None)
         self.account = kwargs.get("account", None)
         self.opportunity = kwargs.get("opportunity", None)
-        self.remote_updated_at = kwargs.get("remote_updated_at", None)
-        self.remote_created_at = kwargs.get("remote_created_at", None)
         self.integration_params = kwargs.get("integration_params", None)
         self.linked_account_params = kwargs.get("linked_account_params", None)
         return self
@@ -260,16 +258,13 @@ class NoteRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
-            owner (str, none_type): [optional]  # noqa: E501
+            owner (str, none_type): The note's owner.. [optional]  # noqa: E501
             content (str, none_type): The note's content.. [optional]  # noqa: E501
-            contact (str, none_type): [optional]  # noqa: E501
-            account (str, none_type): [optional]  # noqa: E501
-            opportunity (str, none_type): [optional]  # noqa: E501
-            remote_updated_at (datetime, none_type): When the third party's lead was updated.. [optional]  # noqa: E501
-            remote_created_at (datetime, none_type): When the third party's lead was created.. [optional]  # noqa: E501
-            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            contact (str, none_type): The note's contact.. [optional]  # noqa: E501
+            account (str, none_type): The note's account.. [optional]  # noqa: E501
+            opportunity (str, none_type): The note's opportunity.. [optional]  # noqa: E501
+            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -299,15 +294,12 @@ class NoteRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
         self.owner: Union[str, none_type] = kwargs.get("owner", None)
         self.content: Union[str, none_type] = kwargs.get("content", None)
         self.contact: Union[str, none_type] = kwargs.get("contact", None)
         self.account: Union[str, none_type] = kwargs.get("account", None)
         self.opportunity: Union[str, none_type] = kwargs.get("opportunity", None)
-        self.remote_updated_at: Union[datetime, none_type] = kwargs.get("remote_updated_at", None)
-        self.remote_created_at: Union[datetime, none_type] = kwargs.get("remote_created_at", None)
-        self.integration_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
-        self.linked_account_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
+        self.integration_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
+        self.linked_account_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
 
 

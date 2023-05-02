@@ -60,9 +60,11 @@ class JobsApi(object):
                     'include_remote_data',
                     'modified_after',
                     'modified_before',
+                    'offices',
                     'page_size',
                     'remote_fields',
                     'remote_id',
+                    'show_enum_origins',
                     'status',
                 ],
                 'required': [],
@@ -74,6 +76,7 @@ class JobsApi(object):
                 'enum': [
                     'expand',
                     'remote_fields',
+                    'show_enum_origins',
                     'status',
                 ],
                 'validation': [
@@ -102,6 +105,10 @@ class JobsApi(object):
                         "RECRUITERS": "recruiters"
                     },
                     ('remote_fields',): {
+
+                        "STATUS": "status"
+                    },
+                    ('show_enum_origins',): {
 
                         "STATUS": "status"
                     },
@@ -133,12 +140,16 @@ class JobsApi(object):
                         (datetime,),
                     'modified_before':
                         (datetime,),
+                    'offices':
+                        (str,),
                     'page_size':
                         (int,),
                     'remote_fields':
                         (str,),
                     'remote_id':
                         (str, none_type,),
+                    'show_enum_origins':
+                        (str,),
                     'status':
                         (str, none_type,),
                 },
@@ -152,9 +163,11 @@ class JobsApi(object):
                     'include_remote_data': 'include_remote_data',
                     'modified_after': 'modified_after',
                     'modified_before': 'modified_before',
+                    'offices': 'offices',
                     'page_size': 'page_size',
                     'remote_fields': 'remote_fields',
                     'remote_id': 'remote_id',
+                    'show_enum_origins': 'show_enum_origins',
                     'status': 'status',
                 },
                 'location_map': {
@@ -167,9 +180,11 @@ class JobsApi(object):
                     'include_remote_data': 'query',
                     'modified_after': 'query',
                     'modified_before': 'query',
+                    'offices': 'query',
                     'page_size': 'query',
                     'remote_fields': 'query',
                     'remote_id': 'query',
+                    'show_enum_origins': 'query',
                     'status': 'query',
                 },
                 'collection_format_map': {
@@ -201,6 +216,7 @@ class JobsApi(object):
                     'expand',
                     'include_remote_data',
                     'remote_fields',
+                    'show_enum_origins',
                 ],
                 'required': [
                     'id',
@@ -210,6 +226,7 @@ class JobsApi(object):
                 'enum': [
                     'expand',
                     'remote_fields',
+                    'show_enum_origins',
                 ],
                 'validation': [
                 ]
@@ -240,6 +257,10 @@ class JobsApi(object):
 
                         "STATUS": "status"
                     },
+                    ('show_enum_origins',): {
+
+                        "STATUS": "status"
+                    },
                 },
                 'openapi_types': {
                     'id':
@@ -250,18 +271,22 @@ class JobsApi(object):
                         (bool,),
                     'remote_fields':
                         (str,),
+                    'show_enum_origins':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
                     'expand': 'expand',
                     'include_remote_data': 'include_remote_data',
                     'remote_fields': 'remote_fields',
+                    'show_enum_origins': 'show_enum_origins',
                 },
                 'location_map': {
                     'id': 'path',
                     'expand': 'query',
                     'include_remote_data': 'query',
                     'remote_fields': 'query',
+                    'show_enum_origins': 'query',
                 },
                 'collection_format_map': {
                 }
@@ -297,12 +322,14 @@ class JobsApi(object):
             expand (str): Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.. [optional]
             include_deleted_data (bool): Whether to include data that was marked as deleted by third party webhooks.. [optional]
             include_remote_data (bool): Whether to include the original data Merge fetched from the third-party to produce these models.. [optional]
-            modified_after (datetime): If provided, will only return objects modified after this datetime.. [optional]
-            modified_before (datetime): If provided, will only return objects modified before this datetime.. [optional]
+            modified_after (datetime): If provided, only objects synced by Merge after this date time will be returned.. [optional]
+            modified_before (datetime): If provided, only objects synced by Merge before this date time will be returned.. [optional]
+            offices (str): If provided, will only return jobs for this office; multiple offices can be separated by commas.. [optional]
             page_size (int): Number of results to return per page.. [optional]
-            remote_fields (str): Which fields should be returned in non-normalized form.. [optional] if omitted the server will use the default value of "status"
+            remote_fields (str): Deprecated. Use show_enum_origins.. [optional] if omitted the server will use the default value of "status"
             remote_id (str, none_type): The API provider's ID for the given object.. [optional]
-            status (str, none_type): If provided, will only return jobs with this status. Options: ('OPEN', 'CLOSED', 'DRAFT', 'ARCHIVED', 'PENDING'). [optional]
+            show_enum_origins (str): Which fields should be returned in non-normalized form.. [optional] if omitted the server will use the default value of "status"
+            status (str, none_type): If provided, will only return jobs with this status. Options: ('OPEN', 'CLOSED', 'DRAFT', 'ARCHIVED', 'PENDING')  * `OPEN` - OPEN * `CLOSED` - CLOSED * `DRAFT` - DRAFT * `ARCHIVED` - ARCHIVED * `PENDING` - PENDING. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -386,7 +413,8 @@ class JobsApi(object):
         Keyword Args:
             expand (str): Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.. [optional]
             include_remote_data (bool): Whether to include the original data Merge fetched from the third-party to produce these models.. [optional]
-            remote_fields (str): Which fields should be returned in non-normalized form.. [optional] if omitted the server will use the default value of "status"
+            remote_fields (str): Deprecated. Use show_enum_origins.. [optional] if omitted the server will use the default value of "status"
+            show_enum_origins (str): Which fields should be returned in non-normalized form.. [optional] if omitted the server will use the default value of "status"
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object

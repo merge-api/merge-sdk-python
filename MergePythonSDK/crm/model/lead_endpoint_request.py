@@ -263,6 +263,6 @@ class LeadEndpointRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.model: Union["LeadRequest"] = model
+        self.model: Union["LeadRequest", {"converted_account": "Account", "converted_contact": "Contact", "owner": "User"}] = model
 
 

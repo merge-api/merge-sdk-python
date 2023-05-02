@@ -98,14 +98,23 @@ class AttachmentRequest(ModelNormal):
         lazy_import()
 
         defined_types = {
-            'remote_id': (str, none_type, none_type,),  # noqa: E501
             'file_name': (str, none_type, none_type,),  # noqa: E501
             'file_url': (str, none_type, none_type,),  # noqa: E501
             'candidate': (str, none_type, none_type,),  # noqa: E501
             'attachment_type': (AttachmentTypeEnum, str, none_type,),
-            'integration_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
-            'linked_account_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'integration_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'linked_account_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
         }
+        expands_types = {"ticket": "Ticket"}
+
+        # update types with expands
+        for key, val in expands_types.items():
+            if key in defined_types.keys():
+                expands_model = import_model_by_name(val, "ats")
+                if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
+                    defined_types[key][0].insert(0, expands_model)
+                else:
+                    defined_types[key] = (*defined_types[key], expands_model)
         return defined_types
 
     @cached_property
@@ -114,7 +123,6 @@ class AttachmentRequest(ModelNormal):
 
 
     attribute_map = {
-        'remote_id': 'remote_id',  # noqa: E501
         'file_name': 'file_name',  # noqa: E501
         'file_url': 'file_url',  # noqa: E501
         'candidate': 'candidate',  # noqa: E501
@@ -164,13 +172,12 @@ class AttachmentRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             file_name (str, none_type): The attachment's name.. [optional]  # noqa: E501
             file_url (str, none_type): The attachment's url.. [optional]  # noqa: E501
-            candidate (str, none_type): [optional]  # noqa: E501
-            attachment_type (bool, dict, float, int, list, str, none_type): The attachment's type.. [optional]  # noqa: E501
-            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            candidate (str, none_type): . [optional]  # noqa: E501
+            attachment_type (bool, date, datetime, dict, float, int, list, str, none_type): The attachment's type.  * `RESUME` - RESUME * `COVER_LETTER` - COVER_LETTER * `OFFER_LETTER` - OFFER_LETTER * `OTHER` - OTHER. [optional]  # noqa: E501
+            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -203,7 +210,6 @@ class AttachmentRequest(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.remote_id = kwargs.get("remote_id", None)
         self.file_name = kwargs.get("file_name", None)
         self.file_url = kwargs.get("file_url", None)
         self.candidate = kwargs.get("candidate", None)
@@ -256,13 +262,12 @@ class AttachmentRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             file_name (str, none_type): The attachment's name.. [optional]  # noqa: E501
             file_url (str, none_type): The attachment's url.. [optional]  # noqa: E501
-            candidate (str, none_type): [optional]  # noqa: E501
-            attachment_type (bool, dict, float, int, list, str, none_type): The attachment's type.. [optional]  # noqa: E501
-            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            candidate (str, none_type): . [optional]  # noqa: E501
+            attachment_type (bool, date, datetime, dict, float, int, list, str, none_type): The attachment's type.  * `RESUME` - RESUME * `COVER_LETTER` - COVER_LETTER * `OFFER_LETTER` - OFFER_LETTER * `OTHER` - OTHER. [optional]  # noqa: E501
+            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -292,12 +297,11 @@ class AttachmentRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
         self.file_name: Union[str, none_type] = kwargs.get("file_name", None)
         self.file_url: Union[str, none_type] = kwargs.get("file_url", None)
         self.candidate: Union[str, none_type] = kwargs.get("candidate", None)
-        self.attachment_type: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("attachment_type", None)
-        self.integration_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
-        self.linked_account_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
+        self.attachment_type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("attachment_type", None)
+        self.integration_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
+        self.linked_account_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
 
 

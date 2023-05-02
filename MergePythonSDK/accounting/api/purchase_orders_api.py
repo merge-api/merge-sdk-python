@@ -119,25 +119,32 @@ class PurchaseOrdersApi(object):
             },
             params_map={
                 'all': [
+                    'company_id',
                     'created_after',
                     'created_before',
                     'cursor',
                     'expand',
                     'include_deleted_data',
                     'include_remote_data',
+                    'issue_date_after',
+                    'issue_date_before',
                     'modified_after',
                     'modified_before',
                     'page_size',
                     'remote_fields',
                     'remote_id',
+                    'show_enum_origins',
                 ],
                 'required': [],
                 'nullable': [
+                    'issue_date_after',
+                    'issue_date_before',
                     'remote_id',
                 ],
                 'enum': [
                     'expand',
                     'remote_fields',
+                    'show_enum_origins',
                 ],
                 'validation': [
                 ]
@@ -148,16 +155,34 @@ class PurchaseOrdersApi(object):
                 'allowed_values': {
                     ('expand',): {
 
+                        "COMPANY": "company",
                         "DELIVERY_ADDRESS": "delivery_address",
+                        "DELIVERY_ADDRESS,COMPANY": "delivery_address,company",
+                        "DELIVERY_ADDRESS,VENDOR": "delivery_address,vendor",
+                        "DELIVERY_ADDRESS,VENDOR,COMPANY": "delivery_address,vendor,company",
                         "LINE_ITEMS": "line_items",
-                        "LINE_ITEMS,DELIVERY_ADDRESS": "line_items,delivery_address"
+                        "LINE_ITEMS,COMPANY": "line_items,company",
+                        "LINE_ITEMS,DELIVERY_ADDRESS": "line_items,delivery_address",
+                        "LINE_ITEMS,DELIVERY_ADDRESS,COMPANY": "line_items,delivery_address,company",
+                        "LINE_ITEMS,DELIVERY_ADDRESS,VENDOR": "line_items,delivery_address,vendor",
+                        "LINE_ITEMS,DELIVERY_ADDRESS,VENDOR,COMPANY": "line_items,delivery_address,vendor,company",
+                        "LINE_ITEMS,VENDOR": "line_items,vendor",
+                        "LINE_ITEMS,VENDOR,COMPANY": "line_items,vendor,company",
+                        "VENDOR": "vendor",
+                        "VENDOR,COMPANY": "vendor,company"
                     },
                     ('remote_fields',): {
 
                         "STATUS": "status"
                     },
+                    ('show_enum_origins',): {
+
+                        "STATUS": "status"
+                    },
                 },
                 'openapi_types': {
+                    'company_id':
+                        (str,),
                     'created_after':
                         (datetime,),
                     'created_before':
@@ -170,6 +195,10 @@ class PurchaseOrdersApi(object):
                         (bool,),
                     'include_remote_data':
                         (bool,),
+                    'issue_date_after':
+                        (datetime, none_type,),
+                    'issue_date_before':
+                        (datetime, none_type,),
                     'modified_after':
                         (datetime,),
                     'modified_before':
@@ -180,32 +209,42 @@ class PurchaseOrdersApi(object):
                         (str,),
                     'remote_id':
                         (str, none_type,),
+                    'show_enum_origins':
+                        (str,),
                 },
                 'attribute_map': {
+                    'company_id': 'company_id',
                     'created_after': 'created_after',
                     'created_before': 'created_before',
                     'cursor': 'cursor',
                     'expand': 'expand',
                     'include_deleted_data': 'include_deleted_data',
                     'include_remote_data': 'include_remote_data',
+                    'issue_date_after': 'issue_date_after',
+                    'issue_date_before': 'issue_date_before',
                     'modified_after': 'modified_after',
                     'modified_before': 'modified_before',
                     'page_size': 'page_size',
                     'remote_fields': 'remote_fields',
                     'remote_id': 'remote_id',
+                    'show_enum_origins': 'show_enum_origins',
                 },
                 'location_map': {
+                    'company_id': 'query',
                     'created_after': 'query',
                     'created_before': 'query',
                     'cursor': 'query',
                     'expand': 'query',
                     'include_deleted_data': 'query',
                     'include_remote_data': 'query',
+                    'issue_date_after': 'query',
+                    'issue_date_before': 'query',
                     'modified_after': 'query',
                     'modified_before': 'query',
                     'page_size': 'query',
                     'remote_fields': 'query',
                     'remote_id': 'query',
+                    'show_enum_origins': 'query',
                 },
                 'collection_format_map': {
                 }
@@ -281,6 +320,7 @@ class PurchaseOrdersApi(object):
                     'expand',
                     'include_remote_data',
                     'remote_fields',
+                    'show_enum_origins',
                 ],
                 'required': [
                     'id',
@@ -290,6 +330,7 @@ class PurchaseOrdersApi(object):
                 'enum': [
                     'expand',
                     'remote_fields',
+                    'show_enum_origins',
                 ],
                 'validation': [
                 ]
@@ -300,11 +341,27 @@ class PurchaseOrdersApi(object):
                 'allowed_values': {
                     ('expand',): {
 
+                        "COMPANY": "company",
                         "DELIVERY_ADDRESS": "delivery_address",
+                        "DELIVERY_ADDRESS,COMPANY": "delivery_address,company",
+                        "DELIVERY_ADDRESS,VENDOR": "delivery_address,vendor",
+                        "DELIVERY_ADDRESS,VENDOR,COMPANY": "delivery_address,vendor,company",
                         "LINE_ITEMS": "line_items",
-                        "LINE_ITEMS,DELIVERY_ADDRESS": "line_items,delivery_address"
+                        "LINE_ITEMS,COMPANY": "line_items,company",
+                        "LINE_ITEMS,DELIVERY_ADDRESS": "line_items,delivery_address",
+                        "LINE_ITEMS,DELIVERY_ADDRESS,COMPANY": "line_items,delivery_address,company",
+                        "LINE_ITEMS,DELIVERY_ADDRESS,VENDOR": "line_items,delivery_address,vendor",
+                        "LINE_ITEMS,DELIVERY_ADDRESS,VENDOR,COMPANY": "line_items,delivery_address,vendor,company",
+                        "LINE_ITEMS,VENDOR": "line_items,vendor",
+                        "LINE_ITEMS,VENDOR,COMPANY": "line_items,vendor,company",
+                        "VENDOR": "vendor",
+                        "VENDOR,COMPANY": "vendor,company"
                     },
                     ('remote_fields',): {
+
+                        "STATUS": "status"
+                    },
+                    ('show_enum_origins',): {
 
                         "STATUS": "status"
                     },
@@ -318,18 +375,22 @@ class PurchaseOrdersApi(object):
                         (bool,),
                     'remote_fields':
                         (str,),
+                    'show_enum_origins':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
                     'expand': 'expand',
                     'include_remote_data': 'include_remote_data',
                     'remote_fields': 'remote_fields',
+                    'show_enum_origins': 'show_enum_origins',
                 },
                 'location_map': {
                     'id': 'path',
                     'expand': 'query',
                     'include_remote_data': 'query',
                     'remote_fields': 'query',
+                    'show_enum_origins': 'query',
                 },
                 'collection_format_map': {
                 }
@@ -443,17 +504,21 @@ class PurchaseOrdersApi(object):
 
 
         Keyword Args:
+            company_id (str): If provided, will only return purchase orders for this company.. [optional]
             created_after (datetime): If provided, will only return objects created after this datetime.. [optional]
             created_before (datetime): If provided, will only return objects created before this datetime.. [optional]
             cursor (str): The pagination cursor value.. [optional]
             expand (str): Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.. [optional]
             include_deleted_data (bool): Whether to include data that was marked as deleted by third party webhooks.. [optional]
             include_remote_data (bool): Whether to include the original data Merge fetched from the third-party to produce these models.. [optional]
-            modified_after (datetime): If provided, will only return objects modified after this datetime.. [optional]
-            modified_before (datetime): If provided, will only return objects modified before this datetime.. [optional]
+            issue_date_after (datetime, none_type): If provided, will only return objects created after this datetime.. [optional]
+            issue_date_before (datetime, none_type): If provided, will only return objects created before this datetime.. [optional]
+            modified_after (datetime): If provided, only objects synced by Merge after this date time will be returned.. [optional]
+            modified_before (datetime): If provided, only objects synced by Merge before this date time will be returned.. [optional]
             page_size (int): Number of results to return per page.. [optional]
-            remote_fields (str): Which fields should be returned in non-normalized form.. [optional] if omitted the server will use the default value of "status"
+            remote_fields (str): Deprecated. Use show_enum_origins.. [optional] if omitted the server will use the default value of "status"
             remote_id (str, none_type): The API provider's ID for the given object.. [optional]
+            show_enum_origins (str): Which fields should be returned in non-normalized form.. [optional] if omitted the server will use the default value of "status"
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -615,7 +680,8 @@ class PurchaseOrdersApi(object):
         Keyword Args:
             expand (str): Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.. [optional]
             include_remote_data (bool): Whether to include the original data Merge fetched from the third-party to produce these models.. [optional]
-            remote_fields (str): Which fields should be returned in non-normalized form.. [optional] if omitted the server will use the default value of "status"
+            remote_fields (str): Deprecated. Use show_enum_origins.. [optional] if omitted the server will use the default value of "status"
+            show_enum_origins (str): Which fields should be returned in non-normalized form.. [optional] if omitted the server will use the default value of "status"
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object

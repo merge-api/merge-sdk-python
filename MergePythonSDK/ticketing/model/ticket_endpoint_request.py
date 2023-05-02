@@ -263,6 +263,6 @@ class TicketEndpointRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.model: Union["TicketRequest"] = model
+        self.model: Union["TicketRequest", {"account": "Account", "assignees": "User", "attachments": "Attachment", "collections": "Collection", "contact": "Contact", "creator": "User", "parent_ticket": "Ticket", "project": "Project"}] = model
 
 

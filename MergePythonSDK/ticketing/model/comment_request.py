@@ -90,17 +90,25 @@ class CommentRequest(ModelNormal):
         """
 
         defined_types = {
-            'remote_id': (str, none_type, none_type,),  # noqa: E501
             'user': (str, none_type, none_type,),  # noqa: E501
             'contact': (str, none_type, none_type,),  # noqa: E501
             'body': (str, none_type, none_type,),  # noqa: E501
             'html_body': (str, none_type, none_type,),  # noqa: E501
             'ticket': (str, none_type, none_type,),  # noqa: E501
             'is_private': (bool, none_type, none_type,),  # noqa: E501
-            'remote_created_at': (datetime, none_type, none_type,),  # noqa: E501
-            'integration_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
-            'linked_account_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'integration_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'linked_account_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
         }
+        expands_types = {"contact": "Contact", "ticket": "Ticket", "user": "User"}
+
+        # update types with expands
+        for key, val in expands_types.items():
+            if key in defined_types.keys():
+                expands_model = import_model_by_name(val, "ticketing")
+                if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
+                    defined_types[key][0].insert(0, expands_model)
+                else:
+                    defined_types[key] = (*defined_types[key], expands_model)
         return defined_types
 
     @cached_property
@@ -109,14 +117,12 @@ class CommentRequest(ModelNormal):
 
 
     attribute_map = {
-        'remote_id': 'remote_id',  # noqa: E501
         'user': 'user',  # noqa: E501
         'contact': 'contact',  # noqa: E501
         'body': 'body',  # noqa: E501
         'html_body': 'html_body',  # noqa: E501
         'ticket': 'ticket',  # noqa: E501
         'is_private': 'is_private',  # noqa: E501
-        'remote_created_at': 'remote_created_at',  # noqa: E501
         'integration_params': 'integration_params',  # noqa: E501
         'linked_account_params': 'linked_account_params',  # noqa: E501
     }
@@ -162,16 +168,14 @@ class CommentRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
-            user (str, none_type): [optional]  # noqa: E501
-            contact (str, none_type): [optional]  # noqa: E501
+            user (str, none_type): The author of the Comment, if the author is a User.. [optional]  # noqa: E501
+            contact (str, none_type): The author of the Comment, if the author is a Contact.. [optional]  # noqa: E501
             body (str, none_type): The comment's text body.. [optional]  # noqa: E501
             html_body (str, none_type): The comment's text body formatted as html.. [optional]  # noqa: E501
-            ticket (str, none_type): [optional]  # noqa: E501
+            ticket (str, none_type): The ticket associated with the comment. . [optional]  # noqa: E501
             is_private (bool, none_type): Whether or not the comment is internal.. [optional]  # noqa: E501
-            remote_created_at (datetime, none_type): When the third party's comment was created.. [optional]  # noqa: E501
-            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -204,14 +208,12 @@ class CommentRequest(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.remote_id = kwargs.get("remote_id", None)
         self.user = kwargs.get("user", None)
         self.contact = kwargs.get("contact", None)
         self.body = kwargs.get("body", None)
         self.html_body = kwargs.get("html_body", None)
         self.ticket = kwargs.get("ticket", None)
         self.is_private = kwargs.get("is_private", None)
-        self.remote_created_at = kwargs.get("remote_created_at", None)
         self.integration_params = kwargs.get("integration_params", None)
         self.linked_account_params = kwargs.get("linked_account_params", None)
         return self
@@ -260,16 +262,14 @@ class CommentRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
-            user (str, none_type): [optional]  # noqa: E501
-            contact (str, none_type): [optional]  # noqa: E501
+            user (str, none_type): The author of the Comment, if the author is a User.. [optional]  # noqa: E501
+            contact (str, none_type): The author of the Comment, if the author is a Contact.. [optional]  # noqa: E501
             body (str, none_type): The comment's text body.. [optional]  # noqa: E501
             html_body (str, none_type): The comment's text body formatted as html.. [optional]  # noqa: E501
-            ticket (str, none_type): [optional]  # noqa: E501
+            ticket (str, none_type): The ticket associated with the comment. . [optional]  # noqa: E501
             is_private (bool, none_type): Whether or not the comment is internal.. [optional]  # noqa: E501
-            remote_created_at (datetime, none_type): When the third party's comment was created.. [optional]  # noqa: E501
-            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -299,15 +299,13 @@ class CommentRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
         self.user: Union[str, none_type] = kwargs.get("user", None)
         self.contact: Union[str, none_type] = kwargs.get("contact", None)
         self.body: Union[str, none_type] = kwargs.get("body", None)
         self.html_body: Union[str, none_type] = kwargs.get("html_body", None)
         self.ticket: Union[str, none_type] = kwargs.get("ticket", None)
         self.is_private: Union[bool, none_type] = kwargs.get("is_private", None)
-        self.remote_created_at: Union[datetime, none_type] = kwargs.get("remote_created_at", None)
-        self.integration_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
-        self.linked_account_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
+        self.integration_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
+        self.linked_account_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
 
 

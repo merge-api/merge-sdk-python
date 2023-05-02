@@ -23,6 +23,9 @@ from MergePythonSDK.shared.model_utils import (  # noqa: F401
     validate_and_convert_types
 )
 from MergePythonSDK.ats.model.activity import Activity
+from MergePythonSDK.ats.model.activity_endpoint_request import ActivityEndpointRequest
+from MergePythonSDK.ats.model.activity_response import ActivityResponse
+from MergePythonSDK.ats.model.meta_response import MetaResponse
 from MergePythonSDK.shared.model.merge_paginated_response import MergePaginatedResponse
 
 
@@ -37,6 +40,71 @@ class ActivitiesApi(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
+        self.activities_create_endpoint = _Endpoint(
+            settings={
+                'response_type': (ActivityResponse,),
+                'auth': [
+                    'accountTokenAuth',
+                    'bearerAuth'
+                ],
+                'endpoint_path': '/ats/v1/activities',
+                'operation_id': 'activities_create',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'activity_endpoint_request',
+                    'is_debug_mode',
+                    'run_async',
+                ],
+                'required': [
+                    'activity_endpoint_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'activity_endpoint_request':
+                        (ActivityEndpointRequest,),
+                    'is_debug_mode':
+                        (bool,),
+                    'run_async':
+                        (bool,),
+                },
+                'attribute_map': {
+                    'is_debug_mode': 'is_debug_mode',
+                    'run_async': 'run_async',
+                },
+                'location_map': {
+                    'activity_endpoint_request': 'body',
+                    'is_debug_mode': 'query',
+                    'run_async': 'query',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json',
+                    'application/x-www-form-urlencoded',
+                    'multipart/form-data'
+                ]
+            },
+            api_client=api_client
+        )
         self.activities_list_endpoint = _Endpoint(
             settings={
                 'response_type': (MergePaginatedResponse(Activity),),
@@ -62,6 +130,7 @@ class ActivitiesApi(object):
                     'page_size',
                     'remote_fields',
                     'remote_id',
+                    'show_enum_origins',
                     'user_id',
                 ],
                 'required': [],
@@ -71,6 +140,7 @@ class ActivitiesApi(object):
                 'enum': [
                     'expand',
                     'remote_fields',
+                    'show_enum_origins',
                 ],
                 'validation': [
                 ]
@@ -84,6 +154,12 @@ class ActivitiesApi(object):
                         "USER": "user"
                     },
                     ('remote_fields',): {
+
+                        "ACTIVITY_TYPE": "activity_type",
+                        "ACTIVITY_TYPE,VISIBILITY": "activity_type,visibility",
+                        "VISIBILITY": "visibility"
+                    },
+                    ('show_enum_origins',): {
 
                         "ACTIVITY_TYPE": "activity_type",
                         "ACTIVITY_TYPE,VISIBILITY": "activity_type,visibility",
@@ -113,6 +189,8 @@ class ActivitiesApi(object):
                         (str,),
                     'remote_id':
                         (str, none_type,),
+                    'show_enum_origins':
+                        (str,),
                     'user_id':
                         (str,),
                 },
@@ -128,6 +206,7 @@ class ActivitiesApi(object):
                     'page_size': 'page_size',
                     'remote_fields': 'remote_fields',
                     'remote_id': 'remote_id',
+                    'show_enum_origins': 'show_enum_origins',
                     'user_id': 'user_id',
                 },
                 'location_map': {
@@ -142,7 +221,53 @@ class ActivitiesApi(object):
                     'page_size': 'query',
                     'remote_fields': 'query',
                     'remote_id': 'query',
+                    'show_enum_origins': 'query',
                     'user_id': 'query',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.activities_meta_post_retrieve_endpoint = _Endpoint(
+            settings={
+                'response_type': (MetaResponse,),
+                'auth': [
+                    'accountTokenAuth',
+                    'bearerAuth'
+                ],
+                'endpoint_path': '/ats/v1/activities/meta/post',
+                'operation_id': 'activities_meta_post_retrieve',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                },
+                'attribute_map': {
+                },
+                'location_map': {
                 },
                 'collection_format_map': {
                 }
@@ -173,6 +298,7 @@ class ActivitiesApi(object):
                     'expand',
                     'include_remote_data',
                     'remote_fields',
+                    'show_enum_origins',
                 ],
                 'required': [
                     'id',
@@ -182,6 +308,7 @@ class ActivitiesApi(object):
                 'enum': [
                     'expand',
                     'remote_fields',
+                    'show_enum_origins',
                 ],
                 'validation': [
                 ]
@@ -200,6 +327,12 @@ class ActivitiesApi(object):
                         "ACTIVITY_TYPE,VISIBILITY": "activity_type,visibility",
                         "VISIBILITY": "visibility"
                     },
+                    ('show_enum_origins',): {
+
+                        "ACTIVITY_TYPE": "activity_type",
+                        "ACTIVITY_TYPE,VISIBILITY": "activity_type,visibility",
+                        "VISIBILITY": "visibility"
+                    },
                 },
                 'openapi_types': {
                     'id':
@@ -210,18 +343,22 @@ class ActivitiesApi(object):
                         (bool,),
                     'remote_fields':
                         (str,),
+                    'show_enum_origins':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
                     'expand': 'expand',
                     'include_remote_data': 'include_remote_data',
                     'remote_fields': 'remote_fields',
+                    'show_enum_origins': 'show_enum_origins',
                 },
                 'location_map': {
                     'id': 'path',
                     'expand': 'query',
                     'include_remote_data': 'query',
                     'remote_fields': 'query',
+                    'show_enum_origins': 'query',
                 },
                 'collection_format_map': {
                 }
@@ -234,6 +371,91 @@ class ActivitiesApi(object):
             },
             api_client=api_client
         )
+
+    def activities_create(
+        self,
+        activity_endpoint_request,
+        **kwargs
+    ) -> "ActivityResponse":
+        """activities_create  # noqa: E501
+
+        Creates an `Activity` object with the given values.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.activities_create(activity_endpoint_request, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            activity_endpoint_request (ActivityEndpointRequest):
+
+        Keyword Args:
+            is_debug_mode (bool): Whether to include debug fields (such as log file links) in the response.. [optional]
+            run_async (bool): Whether or not third-party updates should be run asynchronously.. [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            _request_auths (list): set to override the auth_settings for an a single
+                request; this effectively ignores the authentication
+                in the spec for a single request.
+                Default is None
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            ActivityResponse
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['activity_endpoint_request'] = \
+            activity_endpoint_request
+        return self.activities_create_endpoint.call_with_http_info(**kwargs)
 
     def activities_list(
         self,
@@ -256,11 +478,12 @@ class ActivitiesApi(object):
             expand (str): Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.. [optional] if omitted the server will use the default value of "user"
             include_deleted_data (bool): Whether to include data that was marked as deleted by third party webhooks.. [optional]
             include_remote_data (bool): Whether to include the original data Merge fetched from the third-party to produce these models.. [optional]
-            modified_after (datetime): If provided, will only return objects modified after this datetime.. [optional]
-            modified_before (datetime): If provided, will only return objects modified before this datetime.. [optional]
+            modified_after (datetime): If provided, only objects synced by Merge after this date time will be returned.. [optional]
+            modified_before (datetime): If provided, only objects synced by Merge before this date time will be returned.. [optional]
             page_size (int): Number of results to return per page.. [optional]
-            remote_fields (str): Which fields should be returned in non-normalized form.. [optional]
+            remote_fields (str): Deprecated. Use show_enum_origins.. [optional]
             remote_id (str, none_type): The API provider's ID for the given object.. [optional]
+            show_enum_origins (str): Which fields should be returned in non-normalized form.. [optional]
             user_id (str): If provided, will only return activities done by this user.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
@@ -325,6 +548,84 @@ class ActivitiesApi(object):
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
         return self.activities_list_endpoint.call_with_http_info(**kwargs)
 
+    def activities_meta_post_retrieve(
+        self,
+        **kwargs
+    ) -> "MetaResponse":
+        """activities_meta_post_retrieve  # noqa: E501
+
+        Returns metadata for `Activity` POSTs.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.activities_meta_post_retrieve(async_req=True)
+        >>> result = thread.get()
+
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            _request_auths (list): set to override the auth_settings for an a single
+                request; this effectively ignores the authentication
+                in the spec for a single request.
+                Default is None
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            MetaResponse
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        return self.activities_meta_post_retrieve_endpoint.call_with_http_info(**kwargs)
+
     def activities_retrieve(
         self,
         id,
@@ -345,7 +646,8 @@ class ActivitiesApi(object):
         Keyword Args:
             expand (str): Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.. [optional] if omitted the server will use the default value of "user"
             include_remote_data (bool): Whether to include the original data Merge fetched from the third-party to produce these models.. [optional]
-            remote_fields (str): Which fields should be returned in non-normalized form.. [optional]
+            remote_fields (str): Deprecated. Use show_enum_origins.. [optional]
+            show_enum_origins (str): Which fields should be returned in non-normalized form.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object

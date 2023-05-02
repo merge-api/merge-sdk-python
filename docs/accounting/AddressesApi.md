@@ -53,7 +53,8 @@ with MergePythonSDK.accounting.ApiClient(configuration) as api_client:
     api_instance = addresses_api.AddressesApi(api_client)
     id = "id_example" # str | 
     include_remote_data = True # bool | Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
-    remote_fields = "type" # str | Which fields should be returned in non-normalized form. (optional) if omitted the server will use the default value of "type"
+    remote_fields = "type" # str | Deprecated. Use show_enum_origins. (optional) if omitted the server will use the default value of "type"
+    show_enum_origins = "type" # str | Which fields should be returned in non-normalized form. (optional) if omitted the server will use the default value of "type"
 
     # example passing only required values which don't have defaults set
     try:
@@ -65,7 +66,7 @@ with MergePythonSDK.accounting.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        api_response = api_instance.addresses_retrieve(id, include_remote_data=include_remote_data, remote_fields=remote_fields)
+        api_response = api_instance.addresses_retrieve(id, include_remote_data=include_remote_data, remote_fields=remote_fields, show_enum_origins=show_enum_origins)
         pprint(api_response)
     except MergePythonSDK.accounting.ApiException as e:
         print("Exception when calling AddressesApi->addresses_retrieve: %s\n" % e)
@@ -78,7 +79,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**|  |
  **include_remote_data** | **bool**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional]
- **remote_fields** | **str**| Which fields should be returned in non-normalized form. | [optional] if omitted the server will use the default value of "type"
+ **remote_fields** | **str**| Deprecated. Use show_enum_origins. | [optional] if omitted the server will use the default value of "type"
+ **show_enum_origins** | **str**| Which fields should be returned in non-normalized form. | [optional] if omitted the server will use the default value of "type"
 
 ### Return type
 

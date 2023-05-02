@@ -17,7 +17,7 @@ import MergePythonSDK.ats
 from MergePythonSDK.ats.model.disability_status_enum import DisabilityStatusEnum
 from MergePythonSDK.ats.model.gender_enum import GenderEnum
 from MergePythonSDK.ats.model.race_enum import RaceEnum
-from MergePythonSDK.ats.model.remote_data import RemoteData
+from MergePythonSDK.shared.model.remote_data import RemoteData
 from MergePythonSDK.ats.model.veteran_status_enum import VeteranStatusEnum
 globals()['DisabilityStatusEnum'] = DisabilityStatusEnum
 globals()['GenderEnum'] = GenderEnum

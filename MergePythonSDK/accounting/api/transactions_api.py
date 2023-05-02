@@ -51,6 +51,7 @@ class TransactionsApi(object):
             },
             params_map={
                 'all': [
+                    'company_id',
                     'created_after',
                     'created_before',
                     'cursor',
@@ -61,10 +62,14 @@ class TransactionsApi(object):
                     'modified_before',
                     'page_size',
                     'remote_id',
+                    'transaction_date_after',
+                    'transaction_date_before',
                 ],
                 'required': [],
                 'nullable': [
                     'remote_id',
+                    'transaction_date_after',
+                    'transaction_date_before',
                 ],
                 'enum': [
                     'expand',
@@ -78,10 +83,26 @@ class TransactionsApi(object):
                 'allowed_values': {
                     ('expand',): {
 
-                        "LINE_ITEMS": "line_items"
+                        "ACCOUNT": "account",
+                        "CONTACT": "contact",
+                        "CONTACT,ACCOUNT": "contact,account",
+                        "LINE_ITEMS": "line_items",
+                        "LINE_ITEMS,ACCOUNT": "line_items,account",
+                        "LINE_ITEMS,CONTACT": "line_items,contact",
+                        "LINE_ITEMS,CONTACT,ACCOUNT": "line_items,contact,account",
+                        "LINE_ITEMS,TRACKING_CATEGORIES": "line_items,tracking_categories",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,ACCOUNT": "line_items,tracking_categories,account",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,CONTACT": "line_items,tracking_categories,contact",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,CONTACT,ACCOUNT": "line_items,tracking_categories,contact,account",
+                        "TRACKING_CATEGORIES": "tracking_categories",
+                        "TRACKING_CATEGORIES,ACCOUNT": "tracking_categories,account",
+                        "TRACKING_CATEGORIES,CONTACT": "tracking_categories,contact",
+                        "TRACKING_CATEGORIES,CONTACT,ACCOUNT": "tracking_categories,contact,account"
                     },
                 },
                 'openapi_types': {
+                    'company_id':
+                        (str,),
                     'created_after':
                         (datetime,),
                     'created_before':
@@ -102,8 +123,13 @@ class TransactionsApi(object):
                         (int,),
                     'remote_id':
                         (str, none_type,),
+                    'transaction_date_after':
+                        (datetime, none_type,),
+                    'transaction_date_before':
+                        (datetime, none_type,),
                 },
                 'attribute_map': {
+                    'company_id': 'company_id',
                     'created_after': 'created_after',
                     'created_before': 'created_before',
                     'cursor': 'cursor',
@@ -114,8 +140,11 @@ class TransactionsApi(object):
                     'modified_before': 'modified_before',
                     'page_size': 'page_size',
                     'remote_id': 'remote_id',
+                    'transaction_date_after': 'transaction_date_after',
+                    'transaction_date_before': 'transaction_date_before',
                 },
                 'location_map': {
+                    'company_id': 'query',
                     'created_after': 'query',
                     'created_before': 'query',
                     'cursor': 'query',
@@ -126,6 +155,8 @@ class TransactionsApi(object):
                     'modified_before': 'query',
                     'page_size': 'query',
                     'remote_id': 'query',
+                    'transaction_date_after': 'query',
+                    'transaction_date_before': 'query',
                 },
                 'collection_format_map': {
                 }
@@ -173,7 +204,21 @@ class TransactionsApi(object):
                 'allowed_values': {
                     ('expand',): {
 
-                        "LINE_ITEMS": "line_items"
+                        "ACCOUNT": "account",
+                        "CONTACT": "contact",
+                        "CONTACT,ACCOUNT": "contact,account",
+                        "LINE_ITEMS": "line_items",
+                        "LINE_ITEMS,ACCOUNT": "line_items,account",
+                        "LINE_ITEMS,CONTACT": "line_items,contact",
+                        "LINE_ITEMS,CONTACT,ACCOUNT": "line_items,contact,account",
+                        "LINE_ITEMS,TRACKING_CATEGORIES": "line_items,tracking_categories",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,ACCOUNT": "line_items,tracking_categories,account",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,CONTACT": "line_items,tracking_categories,contact",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,CONTACT,ACCOUNT": "line_items,tracking_categories,contact,account",
+                        "TRACKING_CATEGORIES": "tracking_categories",
+                        "TRACKING_CATEGORIES,ACCOUNT": "tracking_categories,account",
+                        "TRACKING_CATEGORIES,CONTACT": "tracking_categories,contact",
+                        "TRACKING_CATEGORIES,CONTACT,ACCOUNT": "tracking_categories,contact,account"
                     },
                 },
                 'openapi_types': {
@@ -221,16 +266,19 @@ class TransactionsApi(object):
 
 
         Keyword Args:
+            company_id (str): If provided, will only return accounting transactions for this company.. [optional]
             created_after (datetime): If provided, will only return objects created after this datetime.. [optional]
             created_before (datetime): If provided, will only return objects created before this datetime.. [optional]
             cursor (str): The pagination cursor value.. [optional]
-            expand (str): Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.. [optional] if omitted the server will use the default value of "line_items"
+            expand (str): Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.. [optional]
             include_deleted_data (bool): Whether to include data that was marked as deleted by third party webhooks.. [optional]
             include_remote_data (bool): Whether to include the original data Merge fetched from the third-party to produce these models.. [optional]
-            modified_after (datetime): If provided, will only return objects modified after this datetime.. [optional]
-            modified_before (datetime): If provided, will only return objects modified before this datetime.. [optional]
+            modified_after (datetime): If provided, only objects synced by Merge after this date time will be returned.. [optional]
+            modified_before (datetime): If provided, only objects synced by Merge before this date time will be returned.. [optional]
             page_size (int): Number of results to return per page.. [optional]
             remote_id (str, none_type): The API provider's ID for the given object.. [optional]
+            transaction_date_after (datetime, none_type): If provided, will only return objects created after this datetime.. [optional]
+            transaction_date_before (datetime, none_type): If provided, will only return objects created before this datetime.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -312,7 +360,7 @@ class TransactionsApi(object):
             id (str):
 
         Keyword Args:
-            expand (str): Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.. [optional] if omitted the server will use the default value of "line_items"
+            expand (str): Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.. [optional]
             include_remote_data (bool): Whether to include the original data Merge fetched from the third-party to produce these models.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.

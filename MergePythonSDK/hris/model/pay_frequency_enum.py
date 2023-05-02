@@ -73,6 +73,7 @@ class PayFrequencyEnum(ModelNormal, MergeEnumType):
             'ANNUALLY': "ANNUALLY",
             'THIRTEEN-MONTHLY': "THIRTEEN-MONTHLY",
             'PRO_RATA': "PRO_RATA",
+            'SEMIMONTHLY': "SEMIMONTHLY",
         },
     }
 

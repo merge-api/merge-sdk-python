@@ -66,6 +66,11 @@ class ExpenseLineRequest(ModelNormal):
     }
 
     validations = {
+        ('exchange_rate',): {
+            'regex': {
+                'pattern': r'^-?\d{0,32}(?:\.\d{0,16})?$',  # noqa: E501
+            },
+        },
     }
 
     @cached_property
@@ -94,11 +99,25 @@ class ExpenseLineRequest(ModelNormal):
             'item': (str, none_type, none_type,),  # noqa: E501
             'net_amount': (float, none_type, none_type,),  # noqa: E501
             'tracking_category': (str, none_type, none_type,),  # noqa: E501
+            'tracking_categories': ([str, none_type], none_type,),  # noqa: E501
+            'company': (str, none_type, none_type,),  # noqa: E501
             'account': (str, none_type, none_type,),  # noqa: E501
+            'contact': (str, none_type, none_type,),  # noqa: E501
             'description': (str, none_type, none_type,),  # noqa: E501
-            'integration_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
-            'linked_account_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'exchange_rate': (str, none_type, none_type,),  # noqa: E501
+            'integration_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'linked_account_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
         }
+        expands_types = {"account": "Account", "contact": "Contact", "item": "Item", "tracking_categories": "TrackingCategory", "tracking_category": "TrackingCategory"}
+
+        # update types with expands
+        for key, val in expands_types.items():
+            if key in defined_types.keys():
+                expands_model = import_model_by_name(val, "accounting")
+                if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
+                    defined_types[key][0].insert(0, expands_model)
+                else:
+                    defined_types[key] = (*defined_types[key], expands_model)
         return defined_types
 
     @cached_property
@@ -111,8 +130,12 @@ class ExpenseLineRequest(ModelNormal):
         'item': 'item',  # noqa: E501
         'net_amount': 'net_amount',  # noqa: E501
         'tracking_category': 'tracking_category',  # noqa: E501
+        'tracking_categories': 'tracking_categories',  # noqa: E501
+        'company': 'company',  # noqa: E501
         'account': 'account',  # noqa: E501
+        'contact': 'contact',  # noqa: E501
         'description': 'description',  # noqa: E501
+        'exchange_rate': 'exchange_rate',  # noqa: E501
         'integration_params': 'integration_params',  # noqa: E501
         'linked_account_params': 'linked_account_params',  # noqa: E501
     }
@@ -162,10 +185,14 @@ class ExpenseLineRequest(ModelNormal):
             item (str, none_type): The line's item.. [optional]  # noqa: E501
             net_amount (float, none_type): The line's net amount.. [optional]  # noqa: E501
             tracking_category (str, none_type): [optional]  # noqa: E501
-            account (str, none_type): [optional]  # noqa: E501
-            description (str, none_type): The line item's description.. [optional]  # noqa: E501
-            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            tracking_categories ([str, none_type]): [optional]  # noqa: E501
+            company (str, none_type): The company the line belongs to.. [optional]  # noqa: E501
+            account (str, none_type): The expense's payment account.. [optional]  # noqa: E501
+            contact (str, none_type): The expense's contact.. [optional]  # noqa: E501
+            description (str, none_type): The description of the item that was purchased by the company.. [optional]  # noqa: E501
+            exchange_rate (str, none_type): The expense line item's exchange rate.. [optional]  # noqa: E501
+            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -202,8 +229,12 @@ class ExpenseLineRequest(ModelNormal):
         self.item = kwargs.get("item", None)
         self.net_amount = kwargs.get("net_amount", None)
         self.tracking_category = kwargs.get("tracking_category", None)
+        self.tracking_categories = kwargs.get("tracking_categories", None)
+        self.company = kwargs.get("company", None)
         self.account = kwargs.get("account", None)
+        self.contact = kwargs.get("contact", None)
         self.description = kwargs.get("description", None)
+        self.exchange_rate = kwargs.get("exchange_rate", None)
         self.integration_params = kwargs.get("integration_params", None)
         self.linked_account_params = kwargs.get("linked_account_params", None)
         return self
@@ -256,10 +287,14 @@ class ExpenseLineRequest(ModelNormal):
             item (str, none_type): The line's item.. [optional]  # noqa: E501
             net_amount (float, none_type): The line's net amount.. [optional]  # noqa: E501
             tracking_category (str, none_type): [optional]  # noqa: E501
-            account (str, none_type): [optional]  # noqa: E501
-            description (str, none_type): The line item's description.. [optional]  # noqa: E501
-            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            tracking_categories ([str, none_type]): [optional]  # noqa: E501
+            company (str, none_type): The company the line belongs to.. [optional]  # noqa: E501
+            account (str, none_type): The expense's payment account.. [optional]  # noqa: E501
+            contact (str, none_type): The expense's contact.. [optional]  # noqa: E501
+            description (str, none_type): The description of the item that was purchased by the company.. [optional]  # noqa: E501
+            exchange_rate (str, none_type): The expense line item's exchange rate.. [optional]  # noqa: E501
+            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -293,9 +328,13 @@ class ExpenseLineRequest(ModelNormal):
         self.item: Union[str, none_type] = kwargs.get("item", None)
         self.net_amount: Union[float, none_type] = kwargs.get("net_amount", None)
         self.tracking_category: Union[str, none_type] = kwargs.get("tracking_category", None)
+        self.tracking_categories: Union[List[str, none_type]] = kwargs.get("tracking_categories", list())
+        self.company: Union[str, none_type] = kwargs.get("company", None)
         self.account: Union[str, none_type] = kwargs.get("account", None)
+        self.contact: Union[str, none_type] = kwargs.get("contact", None)
         self.description: Union[str, none_type] = kwargs.get("description", None)
-        self.integration_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
-        self.linked_account_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
+        self.exchange_rate: Union[str, none_type] = kwargs.get("exchange_rate", None)
+        self.integration_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
+        self.linked_account_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
 
 

@@ -263,6 +263,6 @@ class EngagementEndpointRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.model: Union["EngagementRequest"] = model
+        self.model: Union["EngagementRequest", {"account": "Account", "contacts": "Contact", "engagement_type": "EngagementType", "owner": "User"}] = model
 
 

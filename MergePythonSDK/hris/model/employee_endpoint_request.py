@@ -263,6 +263,6 @@ class EmployeeEndpointRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.model: Union["EmployeeRequest"] = model
+        self.model: Union["EmployeeRequest", {"company": "Company", "employments": "Employment", "groups": "Group", "home_location": "Location", "manager": "Employee", "pay_group": "PayGroup", "team": "Team", "work_location": "Location"}] = model
 
 

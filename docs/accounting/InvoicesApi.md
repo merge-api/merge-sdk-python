@@ -57,22 +57,46 @@ with MergePythonSDK.accounting.ApiClient(configuration) as api_client:
     api_instance = invoices_api.InvoicesApi(api_client)
     invoice_endpoint_request = InvoiceEndpointRequest(
         model=InvoiceRequest(
-            remote_id="990110",
             type=None,
-            contact="022a2bef-57e5-4def-8ed2-7c41bd9a5ed8",
-            number="AIQ12546",
-            issue_date=dateutil_parser('2020-03-31T00:00:00Z'),
-            due_date=dateutil_parser('2020-04-15T00:00:00Z'),
-            paid_on_date=dateutil_parser('2020-04-01T00:00:00Z'),
-            memo="Weekly Payment",
+            contact="contact_example",
+            number="number_example",
+            issue_date=dateutil_parser('1970-01-01T00:00:00.00Z'),
+            due_date=dateutil_parser('1970-01-01T00:00:00.00Z'),
+            paid_on_date=dateutil_parser('1970-01-01T00:00:00.00Z'),
+            memo="memo_example",
+            company="company_example",
             currency=None,
+            exchange_rate="-80",
             total_discount=3.14,
-            sub_total=100,
-            total_tax_amount=5,
-            total_amount=105,
-            balance=105,
-            remote_updated_at=dateutil_parser('2020-04-01T00:00:00Z'),
-            payments=["b26fd49a-cbae-470a-a8f8-bcbc119e0390"],
+            sub_total=3.14,
+            total_tax_amount=3.14,
+            total_amount=3.14,
+            balance=3.14,
+            payments=[
+                "payments_example",
+            ],
+            line_items=[
+                InvoiceLineItemRequest(
+                    remote_id="8765432",
+                    description="Pickleball lessons",
+                    unit_price=50.0,
+                    quantity=1.0,
+                    total_amount=50.0,
+                    currency=None,
+                    exchange_rate="2.9",
+                    item="5b3c1341-a20f-4e51-b72c-f3830a16c97b",
+                    account="cd0f32d4-a493-11ec-b909-0242ac120002",
+                    tracking_category="b38c59b0-a9d7-4740-b1ee-5436c6751e3d",
+                    tracking_categories=["b38c59b0-a9d7-4740-b1ee-5436c6751e3d","9b840d2-686a-465a-8a8e-7b028498f8e4","a47e11b6-c73b-4a0c-be31-130fc48177fa"],
+                    company="595c8f97-2ac4-45b7-b000-41bdf43240b5",
+                    integration_params={
+                        "key": None,
+                    },
+                    linked_account_params={
+                        "key": None,
+                    },
+                ),
+            ],
             integration_params={
                 "key": None,
             },
@@ -175,24 +199,28 @@ configuration = MergePythonSDK.accounting.Configuration(
 with MergePythonSDK.accounting.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = invoices_api.InvoicesApi(api_client)
+    company_id = "company_id_example" # str | If provided, will only return invoices for this company. (optional)
     contact_id = "contact_id_example" # str | If provided, will only return invoices for this contact. (optional)
     created_after = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, will only return objects created after this datetime. (optional)
     created_before = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, will only return objects created before this datetime. (optional)
     cursor = "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw" # str | The pagination cursor value. (optional)
-    expand = "payments,line_items,contact" # str | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. (optional)
+    expand = "payments,line_items,contact,company" # str | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. (optional)
     include_deleted_data = True # bool | Whether to include data that was marked as deleted by third party webhooks. (optional)
     include_remote_data = True # bool | Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
-    modified_after = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, will only return objects modified after this datetime. (optional)
-    modified_before = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, will only return objects modified before this datetime. (optional)
+    issue_date_after = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime, none_type | If provided, will only return objects created after this datetime. (optional)
+    issue_date_before = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime, none_type | If provided, will only return objects created before this datetime. (optional)
+    modified_after = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, only objects synced by Merge after this date time will be returned. (optional)
+    modified_before = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, only objects synced by Merge before this date time will be returned. (optional)
     page_size = 1 # int | Number of results to return per page. (optional)
-    remote_fields = "type" # str | Which fields should be returned in non-normalized form. (optional) if omitted the server will use the default value of "type"
+    remote_fields = "type" # str | Deprecated. Use show_enum_origins. (optional) if omitted the server will use the default value of "type"
     remote_id = "remote_id_example" # str, none_type | The API provider's ID for the given object. (optional)
-    type = "ACCOUNTS_PAYABLE" # str, none_type | If provided, will only return Invoices with this type (optional)
+    show_enum_origins = "type" # str | Which fields should be returned in non-normalized form. (optional) if omitted the server will use the default value of "type"
+    type = "ACCOUNTS_PAYABLE" # str, none_type | If provided, will only return Invoices with this type  * `ACCOUNTS_RECEIVABLE` - ACCOUNTS_RECEIVABLE * `ACCOUNTS_PAYABLE` - ACCOUNTS_PAYABLE (optional)
 
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        api_response = api_instance.invoices_list(contact_id=contact_id, created_after=created_after, created_before=created_before, cursor=cursor, expand=expand, include_deleted_data=include_deleted_data, include_remote_data=include_remote_data, modified_after=modified_after, modified_before=modified_before, page_size=page_size, remote_fields=remote_fields, remote_id=remote_id, type=type)
+        api_response = api_instance.invoices_list(company_id=company_id, contact_id=contact_id, created_after=created_after, created_before=created_before, cursor=cursor, expand=expand, include_deleted_data=include_deleted_data, include_remote_data=include_remote_data, issue_date_after=issue_date_after, issue_date_before=issue_date_before, modified_after=modified_after, modified_before=modified_before, page_size=page_size, remote_fields=remote_fields, remote_id=remote_id, show_enum_origins=show_enum_origins, type=type)
         pprint(api_response)
     except MergePythonSDK.accounting.ApiException as e:
         print("Exception when calling InvoicesApi->invoices_list: %s\n" % e)
@@ -203,6 +231,7 @@ with MergePythonSDK.accounting.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **company_id** | **str**| If provided, will only return invoices for this company. | [optional]
  **contact_id** | **str**| If provided, will only return invoices for this contact. | [optional]
  **created_after** | **datetime**| If provided, will only return objects created after this datetime. | [optional]
  **created_before** | **datetime**| If provided, will only return objects created before this datetime. | [optional]
@@ -210,12 +239,15 @@ Name | Type | Description  | Notes
  **expand** | **str**| Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. | [optional]
  **include_deleted_data** | **bool**| Whether to include data that was marked as deleted by third party webhooks. | [optional]
  **include_remote_data** | **bool**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional]
- **modified_after** | **datetime**| If provided, will only return objects modified after this datetime. | [optional]
- **modified_before** | **datetime**| If provided, will only return objects modified before this datetime. | [optional]
+ **issue_date_after** | **datetime, none_type**| If provided, will only return objects created after this datetime. | [optional]
+ **issue_date_before** | **datetime, none_type**| If provided, will only return objects created before this datetime. | [optional]
+ **modified_after** | **datetime**| If provided, only objects synced by Merge after this date time will be returned. | [optional]
+ **modified_before** | **datetime**| If provided, only objects synced by Merge before this date time will be returned. | [optional]
  **page_size** | **int**| Number of results to return per page. | [optional]
- **remote_fields** | **str**| Which fields should be returned in non-normalized form. | [optional] if omitted the server will use the default value of "type"
+ **remote_fields** | **str**| Deprecated. Use show_enum_origins. | [optional] if omitted the server will use the default value of "type"
  **remote_id** | **str, none_type**| The API provider&#39;s ID for the given object. | [optional]
- **type** | **str, none_type**| If provided, will only return Invoices with this type | [optional]
+ **show_enum_origins** | **str**| Which fields should be returned in non-normalized form. | [optional] if omitted the server will use the default value of "type"
+ **type** | **str, none_type**| If provided, will only return Invoices with this type  * &#x60;ACCOUNTS_RECEIVABLE&#x60; - ACCOUNTS_RECEIVABLE * &#x60;ACCOUNTS_PAYABLE&#x60; - ACCOUNTS_PAYABLE | [optional]
 
 ### Return type
 
@@ -363,9 +395,10 @@ with MergePythonSDK.accounting.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = invoices_api.InvoicesApi(api_client)
     id = "id_example" # str | 
-    expand = "payments,line_items,contact" # str | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. (optional)
+    expand = "payments,line_items,contact,company" # str | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. (optional)
     include_remote_data = True # bool | Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
-    remote_fields = "type" # str | Which fields should be returned in non-normalized form. (optional) if omitted the server will use the default value of "type"
+    remote_fields = "type" # str | Deprecated. Use show_enum_origins. (optional) if omitted the server will use the default value of "type"
+    show_enum_origins = "type" # str | Which fields should be returned in non-normalized form. (optional) if omitted the server will use the default value of "type"
 
     # example passing only required values which don't have defaults set
     try:
@@ -377,7 +410,7 @@ with MergePythonSDK.accounting.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        api_response = api_instance.invoices_retrieve(id, expand=expand, include_remote_data=include_remote_data, remote_fields=remote_fields)
+        api_response = api_instance.invoices_retrieve(id, expand=expand, include_remote_data=include_remote_data, remote_fields=remote_fields, show_enum_origins=show_enum_origins)
         pprint(api_response)
     except MergePythonSDK.accounting.ApiException as e:
         print("Exception when calling InvoicesApi->invoices_retrieve: %s\n" % e)
@@ -391,7 +424,8 @@ Name | Type | Description  | Notes
  **id** | **str**|  |
  **expand** | **str**| Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. | [optional]
  **include_remote_data** | **bool**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional]
- **remote_fields** | **str**| Which fields should be returned in non-normalized form. | [optional] if omitted the server will use the default value of "type"
+ **remote_fields** | **str**| Deprecated. Use show_enum_origins. | [optional] if omitted the server will use the default value of "type"
+ **show_enum_origins** | **str**| Which fields should be returned in non-normalized form. | [optional] if omitted the server will use the default value of "type"
 
 ### Return type
 

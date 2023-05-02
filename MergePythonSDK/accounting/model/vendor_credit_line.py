@@ -66,6 +66,11 @@ class VendorCreditLine(ModelNormal):
     }
 
     validations = {
+        ('exchange_rate',): {
+            'regex': {
+                'pattern': r'^-?\d{0,32}(?:\.\d{0,16})?$',  # noqa: E501
+            },
+        },
     }
 
     @cached_property
@@ -90,11 +95,15 @@ class VendorCreditLine(ModelNormal):
         """
 
         defined_types = {
+            'tracking_categories': ([str],),  # noqa: E501
             'remote_id': (str, none_type, none_type,),  # noqa: E501
             'net_amount': (float, none_type, none_type,),  # noqa: E501
             'tracking_category': (str, none_type, none_type,),  # noqa: E501
             'description': (str, none_type, none_type,),  # noqa: E501
             'account': (str, none_type, none_type,),  # noqa: E501
+            'company': (str, none_type, none_type,),  # noqa: E501
+            'exchange_rate': (str, none_type, none_type,),  # noqa: E501
+            'modified_at': (datetime, none_type,),  # noqa: E501
         }
         expands_types = {"account": "Account"}
 
@@ -114,22 +123,30 @@ class VendorCreditLine(ModelNormal):
 
 
     attribute_map = {
+        'tracking_categories': 'tracking_categories',  # noqa: E501
         'remote_id': 'remote_id',  # noqa: E501
         'net_amount': 'net_amount',  # noqa: E501
         'tracking_category': 'tracking_category',  # noqa: E501
         'description': 'description',  # noqa: E501
         'account': 'account',  # noqa: E501
+        'company': 'company',  # noqa: E501
+        'exchange_rate': 'exchange_rate',  # noqa: E501
+        'modified_at': 'modified_at',  # noqa: E501
     }
 
     read_only_vars = {
+        'modified_at',  # noqa: E501
     }
 
     _composed_schemas = {}
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, tracking_categories, *args, **kwargs):  # noqa: E501
         """VendorCreditLine - a model defined in OpenAPI
+
+        Args:
+            tracking_categories ([str]): The line's associated tracking categories.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -163,10 +180,13 @@ class VendorCreditLine(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
-            net_amount (float, none_type): The line's net amount.. [optional]  # noqa: E501
+            net_amount (float, none_type): The full value of the credit.. [optional]  # noqa: E501
             tracking_category (str, none_type): The line's associated tracking category.. [optional]  # noqa: E501
             description (str, none_type): The line's description.. [optional]  # noqa: E501
             account (str, none_type): The line's account.. [optional]  # noqa: E501
+            company (str, none_type): The company the line belongs to.. [optional]  # noqa: E501
+            exchange_rate (str, none_type): The vendor credit line item's exchange rate.. [optional]  # noqa: E501
+            modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -199,11 +219,15 @@ class VendorCreditLine(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
+        self.tracking_categories = tracking_categories
         self.remote_id = kwargs.get("remote_id", None)
         self.net_amount = kwargs.get("net_amount", None)
         self.tracking_category = kwargs.get("tracking_category", None)
         self.description = kwargs.get("description", None)
         self.account = kwargs.get("account", None)
+        self.company = kwargs.get("company", None)
+        self.exchange_rate = kwargs.get("exchange_rate", None)
+        self._modified_at = kwargs.get("modified_at", None)
         return self
 
     required_properties = set([
@@ -216,8 +240,11 @@ class VendorCreditLine(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, tracking_categories, *args, **kwargs):  # noqa: E501
         """VendorCreditLine - a model defined in OpenAPI
+
+        Args:
+            tracking_categories ([str]): The line's associated tracking categories.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -251,10 +278,13 @@ class VendorCreditLine(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
-            net_amount (float, none_type): The line's net amount.. [optional]  # noqa: E501
+            net_amount (float, none_type): The full value of the credit.. [optional]  # noqa: E501
             tracking_category (str, none_type): The line's associated tracking category.. [optional]  # noqa: E501
             description (str, none_type): The line's description.. [optional]  # noqa: E501
             account (str, none_type): The line's account.. [optional]  # noqa: E501
+            company (str, none_type): The company the line belongs to.. [optional]  # noqa: E501
+            exchange_rate (str, none_type): The vendor credit line item's exchange rate.. [optional]  # noqa: E501
+            modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -284,10 +314,18 @@ class VendorCreditLine(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.tracking_categories: Union[List[str]] = tracking_categories
         self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
         self.net_amount: Union[float, none_type] = kwargs.get("net_amount", None)
         self.tracking_category: Union[str, none_type] = kwargs.get("tracking_category", None)
         self.description: Union[str, none_type] = kwargs.get("description", None)
         self.account: Union[str, none_type] = kwargs.get("account", None)
+        self.company: Union[str, none_type] = kwargs.get("company", None)
+        self.exchange_rate: Union[str, none_type] = kwargs.get("exchange_rate", None)
+        self._modified_at: Union[datetime] = kwargs.get("modified_at", None)
+    @property
+    def modified_at(self):
+        return self._modified_at
+
 
 

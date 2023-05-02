@@ -263,6 +263,6 @@ class TimeOffEndpointRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.model: Union["TimeOffRequest"] = model
+        self.model: Union["TimeOffRequest", {"approver": "Employee", "employee": "Employee"}] = model
 
 

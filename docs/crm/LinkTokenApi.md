@@ -55,6 +55,15 @@ with MergePythonSDK.crm.ApiClient(configuration) as api_client:
         integration="integration_example",
         link_expiry_mins=30,
         should_create_magic_link_url=False,
+        common_models=[
+            CommonModelScopesBodyRequest(
+                model_id="hris.Employee",
+                enabled_actions=[
+                    EnabledActionsEnum("["READ","WRITE"]"),
+                ],
+                disabled_fields=["first_name"],
+            ),
+        ],
     ) # EndUserDetailsRequest | 
 
     # example passing only required values which don't have defaults set

@@ -125,7 +125,7 @@ class IgnoreCommonModelRequest(ModelNormal):
         """IgnoreCommonModelRequest - a model defined in OpenAPI
 
         Args:
-            reason (bool, dict, float, int, list, str, none_type):
+            reason (bool, date, datetime, dict, float, int, list, str, none_type):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -209,7 +209,7 @@ class IgnoreCommonModelRequest(ModelNormal):
         """IgnoreCommonModelRequest - a model defined in OpenAPI
 
         Args:
-            reason (bool, dict, float, int, list, str, none_type):
+            reason (bool, date, datetime, dict, float, int, list, str, none_type):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -272,7 +272,7 @@ class IgnoreCommonModelRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.reason: Union[bool, dict, float, int, list, str, none_type] = reason
+        self.reason: Union[bool, date, datetime, dict, float, int, list, str, none_type] = reason
         self.message: Union[str] = kwargs.get("message", str())
 
 

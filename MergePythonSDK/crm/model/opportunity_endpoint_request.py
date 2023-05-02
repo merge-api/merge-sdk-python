@@ -263,6 +263,6 @@ class OpportunityEndpointRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.model: Union["OpportunityRequest"] = model
+        self.model: Union["OpportunityRequest", {"account": "Account", "owner": "User", "stage": "Stage"}] = model
 
 

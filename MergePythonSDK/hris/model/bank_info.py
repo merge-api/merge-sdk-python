@@ -108,8 +108,10 @@ class BankInfo(ModelNormal):
             'bank_name': (str, none_type, none_type,),  # noqa: E501
             'account_type': (AccountTypeEnum, str, none_type,),
             'remote_created_at': (datetime, none_type, none_type,),  # noqa: E501
-            'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
             'remote_was_deleted': (bool, none_type,),  # noqa: E501
+            'field_mappings': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'modified_at': (datetime, none_type,),  # noqa: E501
+            'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
         }
         expands_types = {"employee": "Employee"}
 
@@ -137,14 +139,18 @@ class BankInfo(ModelNormal):
         'bank_name': 'bank_name',  # noqa: E501
         'account_type': 'account_type',  # noqa: E501
         'remote_created_at': 'remote_created_at',  # noqa: E501
-        'remote_data': 'remote_data',  # noqa: E501
         'remote_was_deleted': 'remote_was_deleted',  # noqa: E501
+        'field_mappings': 'field_mappings',  # noqa: E501
+        'modified_at': 'modified_at',  # noqa: E501
+        'remote_data': 'remote_data',  # noqa: E501
     }
 
     read_only_vars = {
         'id',  # noqa: E501
-        'remote_data',  # noqa: E501
         'remote_was_deleted',  # noqa: E501
+        'field_mappings',  # noqa: E501
+        'modified_at',  # noqa: E501
+        'remote_data',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -187,14 +193,16 @@ class BankInfo(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             id (str): [optional]  # noqa: E501
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
-            employee (str, none_type): [optional]  # noqa: E501
+            employee (str, none_type): The employee with this bank account.. [optional]  # noqa: E501
             account_number (str, none_type): The account number.. [optional]  # noqa: E501
             routing_number (str, none_type): The routing number.. [optional]  # noqa: E501
             bank_name (str, none_type): The bank name.. [optional]  # noqa: E501
-            account_type (bool, dict, float, int, list, str, none_type): The bank account type. [optional]  # noqa: E501
+            account_type (bool, date, datetime, dict, float, int, list, str, none_type): The bank account type  * `SAVINGS` - SAVINGS * `CHECKING` - CHECKING. [optional]  # noqa: E501
             remote_created_at (datetime, none_type): When the matching bank object was created in the third party system.. [optional]  # noqa: E501
-            remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
+            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
+            remote_data ([RemoteData], none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -237,8 +245,10 @@ class BankInfo(ModelNormal):
 
         # Read only properties
         self._id = kwargs.get("id", str())
-        self._remote_data = kwargs.get("remote_data", None)
         self._remote_was_deleted = kwargs.get("remote_was_deleted", bool())
+        self._field_mappings = kwargs.get("field_mappings", None)
+        self._modified_at = kwargs.get("modified_at", None)
+        self._remote_data = kwargs.get("remote_data", None)
         return self
 
     required_properties = set([
@@ -287,14 +297,16 @@ class BankInfo(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             id (str): [optional]  # noqa: E501
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
-            employee (str, none_type): [optional]  # noqa: E501
+            employee (str, none_type): The employee with this bank account.. [optional]  # noqa: E501
             account_number (str, none_type): The account number.. [optional]  # noqa: E501
             routing_number (str, none_type): The routing number.. [optional]  # noqa: E501
             bank_name (str, none_type): The bank name.. [optional]  # noqa: E501
-            account_type (bool, dict, float, int, list, str, none_type): The bank account type. [optional]  # noqa: E501
+            account_type (bool, date, datetime, dict, float, int, list, str, none_type): The bank account type  * `SAVINGS` - SAVINGS * `CHECKING` - CHECKING. [optional]  # noqa: E501
             remote_created_at (datetime, none_type): When the matching bank object was created in the third party system.. [optional]  # noqa: E501
-            remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
+            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
+            remote_data ([RemoteData], none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -329,13 +341,15 @@ class BankInfo(ModelNormal):
         self.account_number: Union[str, none_type] = kwargs.get("account_number", None)
         self.routing_number: Union[str, none_type] = kwargs.get("routing_number", None)
         self.bank_name: Union[str, none_type] = kwargs.get("bank_name", None)
-        self.account_type: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("account_type", None)
+        self.account_type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("account_type", None)
         self.remote_created_at: Union[datetime, none_type] = kwargs.get("remote_created_at", None)
 
         # Read only properties
         self._id: Union[str] = kwargs.get("id", str())
-        self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
         self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
+        self._field_mappings: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("field_mappings", None)
+        self._modified_at: Union[datetime] = kwargs.get("modified_at", None)
+        self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
 
     # Read only property getters
     @property
@@ -343,12 +357,20 @@ class BankInfo(ModelNormal):
         return self._id
 
     @property
-    def remote_data(self):
-        return self._remote_data
-
-    @property
     def remote_was_deleted(self):
         return self._remote_was_deleted
+
+    @property
+    def field_mappings(self):
+        return self._field_mappings
+
+    @property
+    def modified_at(self):
+        return self._modified_at
+
+    @property
+    def remote_data(self):
+        return self._remote_data
 
 
 

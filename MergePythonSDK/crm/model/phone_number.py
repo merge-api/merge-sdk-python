@@ -92,6 +92,7 @@ class PhoneNumber(ModelNormal):
         defined_types = {
             'phone_number': (str, none_type, none_type,),  # noqa: E501
             'phone_number_type': (str, none_type, none_type,),  # noqa: E501
+            'modified_at': (datetime, none_type,),  # noqa: E501
         }
         return defined_types
 
@@ -103,9 +104,11 @@ class PhoneNumber(ModelNormal):
     attribute_map = {
         'phone_number': 'phone_number',  # noqa: E501
         'phone_number_type': 'phone_number_type',  # noqa: E501
+        'modified_at': 'modified_at',  # noqa: E501
     }
 
     read_only_vars = {
+        'modified_at',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -148,6 +151,7 @@ class PhoneNumber(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             phone_number (str, none_type): The phone number.. [optional]  # noqa: E501
             phone_number_type (str, none_type): The phone number's type.. [optional]  # noqa: E501
+            modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -182,6 +186,7 @@ class PhoneNumber(ModelNormal):
 
         self.phone_number = kwargs.get("phone_number", None)
         self.phone_number_type = kwargs.get("phone_number_type", None)
+        self._modified_at = kwargs.get("modified_at", None)
         return self
 
     required_properties = set([
@@ -230,6 +235,7 @@ class PhoneNumber(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             phone_number (str, none_type): The phone number.. [optional]  # noqa: E501
             phone_number_type (str, none_type): The phone number's type.. [optional]  # noqa: E501
+            modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -261,5 +267,10 @@ class PhoneNumber(ModelNormal):
 
         self.phone_number: Union[str, none_type] = kwargs.get("phone_number", None)
         self.phone_number_type: Union[str, none_type] = kwargs.get("phone_number_type", None)
+        self._modified_at: Union[datetime] = kwargs.get("modified_at", None)
+    @property
+    def modified_at(self):
+        return self._modified_at
+
 
 

@@ -16,9 +16,11 @@ from unittest.mock import MagicMock
 import MergePythonSDK.accounting
 from MergePythonSDK.accounting.model.currency_enum import CurrencyEnum
 from MergePythonSDK.accounting.model.journal_line import JournalLine
-from MergePythonSDK.accounting.model.remote_data import RemoteData
+from MergePythonSDK.accounting.model.posting_status_enum import PostingStatusEnum
+from MergePythonSDK.shared.model.remote_data import RemoteData
 globals()['CurrencyEnum'] = CurrencyEnum
 globals()['JournalLine'] = JournalLine
+globals()['PostingStatusEnum'] = PostingStatusEnum
 globals()['RemoteData'] = RemoteData
 from MergePythonSDK.accounting.model.journal_entry import JournalEntry
 from MergePythonSDK.shared.api_client import ApiClient

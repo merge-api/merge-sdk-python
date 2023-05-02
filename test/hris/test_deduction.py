@@ -14,7 +14,7 @@ import unittest
 from unittest.mock import MagicMock
 
 import MergePythonSDK.hris
-from MergePythonSDK.hris.model.remote_data import RemoteData
+from MergePythonSDK.shared.model.remote_data import RemoteData
 globals()['RemoteData'] = RemoteData
 from MergePythonSDK.hris.model.deduction import Deduction
 from MergePythonSDK.shared.api_client import ApiClient
