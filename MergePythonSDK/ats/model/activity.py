@@ -40,7 +40,7 @@ from MergePythonSDK.shared.model_utils import import_model_by_name
 
 def lazy_import():
     from MergePythonSDK.ats.model.activity_type_enum import ActivityTypeEnum
-    from MergePythonSDK.shared.model.remote_data import RemoteData
+    from MergePythonSDK.shared.model.remote_remote_data import RemoteData
     from MergePythonSDK.ats.model.visibility_enum import VisibilityEnum
     globals()['ActivityTypeEnum'] = ActivityTypeEnum
     globals()['RemoteData'] = RemoteData
@@ -82,7 +82,7 @@ class Activity(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -107,8 +107,10 @@ class Activity(ModelNormal):
             'subject': (str, none_type, none_type,),  # noqa: E501
             'body': (str, none_type, none_type,),  # noqa: E501
             'visibility': (VisibilityEnum, str, none_type,),
-            'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
             'remote_was_deleted': (bool, none_type,),  # noqa: E501
+            'field_mappings': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'modified_at': (datetime, none_type,),  # noqa: E501
+            'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
         }
         expands_types = {"user": "RemoteUser"}
 
@@ -136,14 +138,18 @@ class Activity(ModelNormal):
         'subject': 'subject',  # noqa: E501
         'body': 'body',  # noqa: E501
         'visibility': 'visibility',  # noqa: E501
-        'remote_data': 'remote_data',  # noqa: E501
         'remote_was_deleted': 'remote_was_deleted',  # noqa: E501
+        'field_mappings': 'field_mappings',  # noqa: E501
+        'modified_at': 'modified_at',  # noqa: E501
+        'remote_data': 'remote_data',  # noqa: E501
     }
 
     read_only_vars = {
         'id',  # noqa: E501
-        'remote_data',  # noqa: E501
         'remote_was_deleted',  # noqa: E501
+        'field_mappings',  # noqa: E501
+        'modified_at',  # noqa: E501
+        'remote_data',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -186,14 +192,16 @@ class Activity(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             id (str): [optional]  # noqa: E501
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
-            user (str, none_type): [optional]  # noqa: E501
+            user (str, none_type): The user that performed the action.. [optional]  # noqa: E501
             remote_created_at (datetime, none_type): When the third party's activity was created.. [optional]  # noqa: E501
-            activity_type (bool, dict, float, int, list, str, none_type): The activity's type.. [optional]  # noqa: E501
+            activity_type (bool, date, datetime, dict, float, int, list, str, none_type): The activity's type.  * `NOTE` - NOTE * `EMAIL` - EMAIL * `OTHER` - OTHER. [optional]  # noqa: E501
             subject (str, none_type): The activity's subject.. [optional]  # noqa: E501
             body (str, none_type): The activity's body.. [optional]  # noqa: E501
-            visibility (bool, dict, float, int, list, str, none_type): The activity's visibility.. [optional]  # noqa: E501
-            remote_data ([RemoteData], none_type): [optional]  # noqa: E501
+            visibility (bool, date, datetime, dict, float, int, list, str, none_type): The activity's visibility.  * `ADMIN_ONLY` - ADMIN_ONLY * `PUBLIC` - PUBLIC * `PRIVATE` - PRIVATE. [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
+            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
+            remote_data ([RemoteData], none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -236,8 +244,10 @@ class Activity(ModelNormal):
 
         # Read only properties
         self._id = kwargs.get("id", str())
-        self._remote_data = kwargs.get("remote_data", None)
         self._remote_was_deleted = kwargs.get("remote_was_deleted", bool())
+        self._field_mappings = kwargs.get("field_mappings", None)
+        self._modified_at = kwargs.get("modified_at", None)
+        self._remote_data = kwargs.get("remote_data", None)
         return self
 
     required_properties = set([
@@ -286,14 +296,16 @@ class Activity(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             id (str): [optional]  # noqa: E501
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
-            user (str, none_type): [optional]  # noqa: E501
+            user (str, none_type): The user that performed the action.. [optional]  # noqa: E501
             remote_created_at (datetime, none_type): When the third party's activity was created.. [optional]  # noqa: E501
-            activity_type (bool, dict, float, int, list, str, none_type): The activity's type.. [optional]  # noqa: E501
+            activity_type (bool, date, datetime, dict, float, int, list, str, none_type): The activity's type.  * `NOTE` - NOTE * `EMAIL` - EMAIL * `OTHER` - OTHER. [optional]  # noqa: E501
             subject (str, none_type): The activity's subject.. [optional]  # noqa: E501
             body (str, none_type): The activity's body.. [optional]  # noqa: E501
-            visibility (bool, dict, float, int, list, str, none_type): The activity's visibility.. [optional]  # noqa: E501
-            remote_data ([RemoteData], none_type): [optional]  # noqa: E501
+            visibility (bool, date, datetime, dict, float, int, list, str, none_type): The activity's visibility.  * `ADMIN_ONLY` - ADMIN_ONLY * `PUBLIC` - PUBLIC * `PRIVATE` - PRIVATE. [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
+            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
+            remote_data ([RemoteData], none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -326,15 +338,17 @@ class Activity(ModelNormal):
         self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
         self.user: Union[str, none_type] = kwargs.get("user", None)
         self.remote_created_at: Union[datetime, none_type] = kwargs.get("remote_created_at", None)
-        self.activity_type: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("activity_type", None)
+        self.activity_type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("activity_type", None)
         self.subject: Union[str, none_type] = kwargs.get("subject", None)
         self.body: Union[str, none_type] = kwargs.get("body", None)
-        self.visibility: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("visibility", None)
+        self.visibility: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("visibility", None)
 
         # Read only properties
         self._id: Union[str] = kwargs.get("id", str())
-        self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
         self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
+        self._field_mappings: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("field_mappings", None)
+        self._modified_at: Union[datetime] = kwargs.get("modified_at", None)
+        self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
 
     # Read only property getters
     @property
@@ -342,12 +356,20 @@ class Activity(ModelNormal):
         return self._id
 
     @property
-    def remote_data(self):
-        return self._remote_data
-
-    @property
     def remote_was_deleted(self):
         return self._remote_was_deleted
+
+    @property
+    def field_mappings(self):
+        return self._field_mappings
+
+    @property
+    def modified_at(self):
+        return self._modified_at
+
+    @property
+    def remote_data(self):
+        return self._remote_data
 
 
 

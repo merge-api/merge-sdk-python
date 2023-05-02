@@ -6,8 +6,8 @@ MergePythonSDK/hris/api/account_token_api.py
 MergePythonSDK/hris/api/available_actions_api.py
 MergePythonSDK/hris/api/bank_info_api.py
 MergePythonSDK/hris/api/benefits_api.py
+MergePythonSDK/hris/api/common_model_scopes_api.py
 MergePythonSDK/hris/api/companies_api.py
-MergePythonSDK/hris/api/deductions_api.py
 MergePythonSDK/hris/api/delete_account_api.py
 MergePythonSDK/hris/api/employee_payroll_runs_api.py
 MergePythonSDK/hris/api/employees_api.py
@@ -43,6 +43,13 @@ MergePythonSDK/hris/model/account_type_enum.py
 MergePythonSDK/hris/model/available_actions.py
 MergePythonSDK/hris/model/bank_info.py
 MergePythonSDK/hris/model/benefit.py
+MergePythonSDK/hris/model/common_model_scope_data.py
+MergePythonSDK/hris/model/common_model_scopes.py
+MergePythonSDK/hris/model/common_model_scopes_body_request.py
+MergePythonSDK/hris/model/common_model_scopes_disabled_models.py
+MergePythonSDK/hris/model/common_model_scopes_disabled_models_enabled_actions_enum.py
+MergePythonSDK/hris/model/common_model_scopes_post_inner_deserializer_request.py
+MergePythonSDK/hris/model/common_model_scopes_update_serializer.py
 MergePythonSDK/hris/model/company.py
 MergePythonSDK/hris/model/condition_schema.py
 MergePythonSDK/hris/model/condition_type_enum.py
@@ -61,6 +68,7 @@ MergePythonSDK/hris/model/employee_response.py
 MergePythonSDK/hris/model/employment.py
 MergePythonSDK/hris/model/employment_status_enum.py
 MergePythonSDK/hris/model/employment_type_enum.py
+MergePythonSDK/hris/model/enabled_actions_enum.py
 MergePythonSDK/hris/model/encoding_enum.py
 MergePythonSDK/hris/model/end_user_details_request.py
 MergePythonSDK/hris/model/error_validation_problem.py
@@ -70,7 +78,6 @@ MergePythonSDK/hris/model/gender_enum.py
 MergePythonSDK/hris/model/generate_remote_key_request.py
 MergePythonSDK/hris/model/group.py
 MergePythonSDK/hris/model/group_type_enum.py
-MergePythonSDK/hris/model/ignore_common_model.py
 MergePythonSDK/hris/model/ignore_common_model_request.py
 MergePythonSDK/hris/model/issue.py
 MergePythonSDK/hris/model/issue_status_enum.py
@@ -101,6 +108,7 @@ MergePythonSDK/hris/model/request_type_enum.py
 MergePythonSDK/hris/model/response_type_enum.py
 MergePythonSDK/hris/model/run_state_enum.py
 MergePythonSDK/hris/model/run_type_enum.py
+MergePythonSDK/hris/model/selective_sync_configurations_usage_enum.py
 MergePythonSDK/hris/model/sync_status.py
 MergePythonSDK/hris/model/sync_status_status_enum.py
 MergePythonSDK/hris/model/tax.py
@@ -136,6 +144,14 @@ docs/Benefit.md
 docs/BenefitsApi.md
 docs/CategoriesEnum.md
 docs/CategoryEnum.md
+docs/CommonModelScopeData.md
+docs/CommonModelScopes.md
+docs/CommonModelScopesApi.md
+docs/CommonModelScopesBodyRequest.md
+docs/CommonModelScopesDisabledModels.md
+docs/CommonModelScopesDisabledModelsEnabledActionsEnum.md
+docs/CommonModelScopesPostInnerDeserializerRequest.md
+docs/CommonModelScopesUpdateSerializer.md
 docs/CompaniesApi.md
 docs/Company.md
 docs/ConditionSchema.md
@@ -145,7 +161,6 @@ docs/DataPassthroughRequest.md
 docs/DebugModeLog.md
 docs/DebugModelLogSummary.md
 docs/Deduction.md
-docs/DeductionsApi.md
 docs/DeleteAccountApi.md
 docs/Earning.md
 docs/EarningTypeEnum.md
@@ -160,6 +175,7 @@ docs/Employment.md
 docs/EmploymentStatusEnum.md
 docs/EmploymentTypeEnum.md
 docs/EmploymentsApi.md
+docs/EnabledActionsEnum.md
 docs/EncodingEnum.md
 docs/EndUserDetailsRequest.md
 docs/ErrorValidationProblem.md
@@ -172,7 +188,6 @@ docs/GenerateRemoteKeyRequest.md
 docs/Group.md
 docs/GroupTypeEnum.md
 docs/GroupsApi.md
-docs/IgnoreCommonModel.md
 docs/IgnoreCommonModelRequest.md
 docs/Issue.md
 docs/IssueStatusEnum.md
@@ -200,7 +215,6 @@ docs/PaginatedBankInfoList.md
 docs/PaginatedBenefitList.md
 docs/PaginatedCompanyList.md
 docs/PaginatedConditionSchemaList.md
-docs/PaginatedDeductionList.md
 docs/PaginatedEmployeeList.md
 docs/PaginatedEmployeePayrollRunList.md
 docs/PaginatedEmploymentList.md
@@ -234,6 +248,7 @@ docs/ResponseTypeEnum.md
 docs/RunStateEnum.md
 docs/RunTypeEnum.md
 docs/SelectiveSyncApi.md
+docs/SelectiveSyncConfigurationsUsageEnum.md
 docs/SyncStatus.md
 docs/SyncStatusApi.md
 docs/SyncStatusStatusEnum.md
@@ -274,6 +289,14 @@ test/test_benefit.py
 test/test_benefits_api.py
 test/test_categories_enum.py
 test/test_category_enum.py
+test/test_common_model_scope_data.py
+test/test_common_model_scopes.py
+test/test_common_model_scopes_api.py
+test/test_common_model_scopes_body_request.py
+test/test_common_model_scopes_disabled_models.py
+test/test_common_model_scopes_disabled_models_enabled_actions_enum.py
+test/test_common_model_scopes_post_inner_deserializer_request.py
+test/test_common_model_scopes_update_serializer.py
 test/test_companies_api.py
 test/test_company.py
 test/test_condition_schema.py
@@ -283,7 +306,6 @@ test/test_data_passthrough_request.py
 test/test_debug_mode_log.py
 test/test_debug_model_log_summary.py
 test/test_deduction.py
-test/test_deductions_api.py
 test/test_delete_account_api.py
 test/test_earning.py
 test/test_earning_type_enum.py
@@ -298,6 +320,7 @@ test/test_employment.py
 test/test_employment_status_enum.py
 test/test_employment_type_enum.py
 test/test_employments_api.py
+test/test_enabled_actions_enum.py
 test/test_encoding_enum.py
 test/test_end_user_details_request.py
 test/test_error_validation_problem.py
@@ -310,7 +333,6 @@ test/test_generate_remote_key_request.py
 test/test_group.py
 test/test_group_type_enum.py
 test/test_groups_api.py
-test/test_ignore_common_model.py
 test/test_ignore_common_model_request.py
 test/test_issue.py
 test/test_issue_status_enum.py
@@ -338,7 +360,6 @@ test/test_paginated_bank_info_list.py
 test/test_paginated_benefit_list.py
 test/test_paginated_company_list.py
 test/test_paginated_condition_schema_list.py
-test/test_paginated_deduction_list.py
 test/test_paginated_employee_list.py
 test/test_paginated_employee_payroll_run_list.py
 test/test_paginated_employment_list.py
@@ -372,6 +393,7 @@ test/test_response_type_enum.py
 test/test_run_state_enum.py
 test/test_run_type_enum.py
 test/test_selective_sync_api.py
+test/test_selective_sync_configurations_usage_enum.py
 test/test_sync_status.py
 test/test_sync_status_api.py
 test/test_sync_status_status_enum.py

@@ -14,7 +14,9 @@ import unittest
 from unittest.mock import MagicMock
 
 import MergePythonSDK.ticketing
+from MergePythonSDK.ticketing.model.selective_sync_configurations_usage_enum import SelectiveSyncConfigurationsUsageEnum
 from MergePythonSDK.ticketing.model.sync_status_status_enum import SyncStatusStatusEnum
+globals()['SelectiveSyncConfigurationsUsageEnum'] = SelectiveSyncConfigurationsUsageEnum
 globals()['SyncStatusStatusEnum'] = SyncStatusStatusEnum
 from MergePythonSDK.ticketing.model.sync_status import SyncStatus
 from MergePythonSDK.shared.api_client import ApiClient

@@ -25,7 +25,6 @@ from MergePythonSDK.shared.model_utils import (  # noqa: F401
 from MergePythonSDK.ats.model.candidate import Candidate
 from MergePythonSDK.ats.model.candidate_endpoint_request import CandidateEndpointRequest
 from MergePythonSDK.ats.model.candidate_response import CandidateResponse
-from MergePythonSDK.ats.model.ignore_common_model import IgnoreCommonModel
 from MergePythonSDK.ats.model.ignore_common_model_request import IgnoreCommonModelRequest
 from MergePythonSDK.ats.model.meta_response import MetaResponse
 from MergePythonSDK.shared.model.merge_paginated_response import MergePaginatedResponse
@@ -109,7 +108,7 @@ class CandidatesApi(object):
         )
         self.candidates_ignore_create_endpoint = _Endpoint(
             settings={
-                'response_type': (IgnoreCommonModel,),
+                'response_type': None,
                 'auth': [
                     'accountTokenAuth',
                     'bearerAuth'
@@ -157,9 +156,7 @@ class CandidatesApi(object):
                 }
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
+                'accept': [],
                 'content_type': [
                     'application/json',
                     'application/x-www-form-urlencoded',
@@ -185,6 +182,7 @@ class CandidatesApi(object):
                     'created_after',
                     'created_before',
                     'cursor',
+                    'email_addresses',
                     'expand',
                     'first_name',
                     'include_deleted_data',
@@ -194,6 +192,7 @@ class CandidatesApi(object):
                     'modified_before',
                     'page_size',
                     'remote_id',
+                    'tags',
                 ],
                 'required': [],
                 'nullable': [
@@ -225,6 +224,8 @@ class CandidatesApi(object):
                         (datetime,),
                     'cursor':
                         (str,),
+                    'email_addresses':
+                        (str,),
                     'expand':
                         (str,),
                     'first_name':
@@ -243,11 +244,14 @@ class CandidatesApi(object):
                         (int,),
                     'remote_id':
                         (str, none_type,),
+                    'tags':
+                        (str,),
                 },
                 'attribute_map': {
                     'created_after': 'created_after',
                     'created_before': 'created_before',
                     'cursor': 'cursor',
+                    'email_addresses': 'email_addresses',
                     'expand': 'expand',
                     'first_name': 'first_name',
                     'include_deleted_data': 'include_deleted_data',
@@ -257,11 +261,13 @@ class CandidatesApi(object):
                     'modified_before': 'modified_before',
                     'page_size': 'page_size',
                     'remote_id': 'remote_id',
+                    'tags': 'tags',
                 },
                 'location_map': {
                     'created_after': 'query',
                     'created_before': 'query',
                     'cursor': 'query',
+                    'email_addresses': 'query',
                     'expand': 'query',
                     'first_name': 'query',
                     'include_deleted_data': 'query',
@@ -271,6 +277,7 @@ class CandidatesApi(object):
                     'modified_before': 'query',
                     'page_size': 'query',
                     'remote_id': 'query',
+                    'tags': 'query',
                 },
                 'collection_format_map': {
                 }
@@ -488,7 +495,7 @@ class CandidatesApi(object):
         model_id,
         ignore_common_model_request,
         **kwargs
-    ) -> "IgnoreCommonModel":
+    ) -> None:
         """candidates_ignore_create  # noqa: E501
 
         Ignores a specific row based on the `model_id` in the url. These records will have their properties set to null, and will not be updated in future syncs. The \"reason\" and \"message\" fields in the request body will be stored for audit purposes.  # noqa: E501
@@ -535,7 +542,7 @@ class CandidatesApi(object):
             async_req (bool): execute request asynchronously
 
         Returns:
-            IgnoreCommonModel
+            None
                 If the method is called asynchronously, returns the request
                 thread.
         """
@@ -588,15 +595,17 @@ class CandidatesApi(object):
             created_after (datetime): If provided, will only return objects created after this datetime.. [optional]
             created_before (datetime): If provided, will only return objects created before this datetime.. [optional]
             cursor (str): The pagination cursor value.. [optional]
+            email_addresses (str): If provided, will only return candidates with these email addresses; multiple addresses can be separated by commas.. [optional]
             expand (str): Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.. [optional]
             first_name (str, none_type): If provided, will only return candidates with this first name.. [optional]
             include_deleted_data (bool): Whether to include data that was marked as deleted by third party webhooks.. [optional]
             include_remote_data (bool): Whether to include the original data Merge fetched from the third-party to produce these models.. [optional]
             last_name (str, none_type): If provided, will only return candidates with this last name.. [optional]
-            modified_after (datetime): If provided, will only return objects modified after this datetime.. [optional]
-            modified_before (datetime): If provided, will only return objects modified before this datetime.. [optional]
+            modified_after (datetime): If provided, only objects synced by Merge after this date time will be returned.. [optional]
+            modified_before (datetime): If provided, only objects synced by Merge before this date time will be returned.. [optional]
             page_size (int): Number of results to return per page.. [optional]
             remote_id (str, none_type): The API provider's ID for the given object.. [optional]
+            tags (str): If provided, will only return candidates with these tags; multiple tags can be separated by commas.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object

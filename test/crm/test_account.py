@@ -17,9 +17,11 @@ import MergePythonSDK.crm
 from MergePythonSDK.crm.model.address import Address
 from MergePythonSDK.crm.model.phone_number import PhoneNumber
 from MergePythonSDK.crm.model.remote_data import RemoteData
+from MergePythonSDK.crm.model.remote_field import RemoteField
 globals()['Address'] = Address
 globals()['PhoneNumber'] = PhoneNumber
 globals()['RemoteData'] = RemoteData
+globals()['RemoteField'] = RemoteField
 from MergePythonSDK.crm.model.account import Account
 from MergePythonSDK.shared.api_client import ApiClient
 

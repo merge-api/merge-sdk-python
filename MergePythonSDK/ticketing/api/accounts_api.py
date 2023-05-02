@@ -206,8 +206,8 @@ class AccountsApi(object):
             cursor (str): The pagination cursor value.. [optional]
             include_deleted_data (bool): Whether to include data that was marked as deleted by third party webhooks.. [optional]
             include_remote_data (bool): Whether to include the original data Merge fetched from the third-party to produce these models.. [optional]
-            modified_after (datetime): If provided, will only return objects modified after this datetime.. [optional]
-            modified_before (datetime): If provided, will only return objects modified before this datetime.. [optional]
+            modified_after (datetime): If provided, only objects synced by Merge after this date time will be returned.. [optional]
+            modified_before (datetime): If provided, only objects synced by Merge before this date time will be returned.. [optional]
             page_size (int): Number of results to return per page.. [optional]
             remote_id (str, none_type): The API provider's ID for the given object.. [optional]
             _return_http_data_only (bool): response data without head status

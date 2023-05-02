@@ -80,7 +80,7 @@ class ContactRequest(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -97,7 +97,6 @@ class ContactRequest(ModelNormal):
         lazy_import()
 
         defined_types = {
-            'remote_id': (str, none_type, none_type,),  # noqa: E501
             'name': (str, none_type, none_type,),  # noqa: E501
             'is_supplier': (bool, none_type, none_type,),  # noqa: E501
             'is_customer': (bool, none_type, none_type,),  # noqa: E501
@@ -105,12 +104,22 @@ class ContactRequest(ModelNormal):
             'tax_number': (str, none_type, none_type,),  # noqa: E501
             'status': (Status7d1Enum, str, none_type,),
             'currency': (str, none_type, none_type,),  # noqa: E501
-            'remote_updated_at': (datetime, none_type, none_type,),  # noqa: E501
+            'company': (str, none_type, none_type,),  # noqa: E501
             'addresses': ([str, none_type], none_type,),  # noqa: E501
             'phone_numbers': ([AccountingPhoneNumberRequest], none_type,),  # noqa: E501
-            'integration_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
-            'linked_account_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'integration_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'linked_account_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
         }
+        expands_types = {"account": "Account"}
+
+        # update types with expands
+        for key, val in expands_types.items():
+            if key in defined_types.keys():
+                expands_model = import_model_by_name(val, "accounting")
+                if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
+                    defined_types[key][0].insert(0, expands_model)
+                else:
+                    defined_types[key] = (*defined_types[key], expands_model)
         return defined_types
 
     @cached_property
@@ -119,7 +128,6 @@ class ContactRequest(ModelNormal):
 
 
     attribute_map = {
-        'remote_id': 'remote_id',  # noqa: E501
         'name': 'name',  # noqa: E501
         'is_supplier': 'is_supplier',  # noqa: E501
         'is_customer': 'is_customer',  # noqa: E501
@@ -127,7 +135,7 @@ class ContactRequest(ModelNormal):
         'tax_number': 'tax_number',  # noqa: E501
         'status': 'status',  # noqa: E501
         'currency': 'currency',  # noqa: E501
-        'remote_updated_at': 'remote_updated_at',  # noqa: E501
+        'company': 'company',  # noqa: E501
         'addresses': 'addresses',  # noqa: E501
         'phone_numbers': 'phone_numbers',  # noqa: E501
         'integration_params': 'integration_params',  # noqa: E501
@@ -175,19 +183,18 @@ class ContactRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             name (str, none_type): The contact's name.. [optional]  # noqa: E501
             is_supplier (bool, none_type): Whether the contact is a supplier.. [optional]  # noqa: E501
             is_customer (bool, none_type): Whether the contact is a customer.. [optional]  # noqa: E501
             email_address (str, none_type): The contact's email address.. [optional]  # noqa: E501
             tax_number (str, none_type): The contact's tax number.. [optional]  # noqa: E501
-            status (bool, dict, float, int, list, str, none_type): The contact's status. [optional]  # noqa: E501
+            status (bool, date, datetime, dict, float, int, list, str, none_type): The contact's status  * `ACTIVE` - ACTIVE * `ARCHIVED` - ARCHIVED. [optional]  # noqa: E501
             currency (str, none_type): The currency the contact's transactions are in.. [optional]  # noqa: E501
-            remote_updated_at (datetime, none_type): When the third party's contact was updated.. [optional]  # noqa: E501
+            company (str, none_type): The company the contact belongs to.. [optional]  # noqa: E501
             addresses ([str, none_type]): `Address` object IDs for the given `Contacts` object.. [optional]  # noqa: E501
             phone_numbers ([AccountingPhoneNumberRequest]): `AccountingPhoneNumber` object for the given `Contacts` object.. [optional]  # noqa: E501
-            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -220,7 +227,6 @@ class ContactRequest(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.remote_id = kwargs.get("remote_id", None)
         self.name = kwargs.get("name", None)
         self.is_supplier = kwargs.get("is_supplier", None)
         self.is_customer = kwargs.get("is_customer", None)
@@ -228,7 +234,7 @@ class ContactRequest(ModelNormal):
         self.tax_number = kwargs.get("tax_number", None)
         self.status = kwargs.get("status", None)
         self.currency = kwargs.get("currency", None)
-        self.remote_updated_at = kwargs.get("remote_updated_at", None)
+        self.company = kwargs.get("company", None)
         self.addresses = kwargs.get("addresses", None)
         self.phone_numbers = kwargs.get("phone_numbers", None)
         self.integration_params = kwargs.get("integration_params", None)
@@ -279,19 +285,18 @@ class ContactRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             name (str, none_type): The contact's name.. [optional]  # noqa: E501
             is_supplier (bool, none_type): Whether the contact is a supplier.. [optional]  # noqa: E501
             is_customer (bool, none_type): Whether the contact is a customer.. [optional]  # noqa: E501
             email_address (str, none_type): The contact's email address.. [optional]  # noqa: E501
             tax_number (str, none_type): The contact's tax number.. [optional]  # noqa: E501
-            status (bool, dict, float, int, list, str, none_type): The contact's status. [optional]  # noqa: E501
+            status (bool, date, datetime, dict, float, int, list, str, none_type): The contact's status  * `ACTIVE` - ACTIVE * `ARCHIVED` - ARCHIVED. [optional]  # noqa: E501
             currency (str, none_type): The currency the contact's transactions are in.. [optional]  # noqa: E501
-            remote_updated_at (datetime, none_type): When the third party's contact was updated.. [optional]  # noqa: E501
+            company (str, none_type): The company the contact belongs to.. [optional]  # noqa: E501
             addresses ([str, none_type]): `Address` object IDs for the given `Contacts` object.. [optional]  # noqa: E501
             phone_numbers ([AccountingPhoneNumberRequest]): `AccountingPhoneNumber` object for the given `Contacts` object.. [optional]  # noqa: E501
-            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -321,18 +326,17 @@ class ContactRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
         self.name: Union[str, none_type] = kwargs.get("name", None)
         self.is_supplier: Union[bool, none_type] = kwargs.get("is_supplier", None)
         self.is_customer: Union[bool, none_type] = kwargs.get("is_customer", None)
         self.email_address: Union[str, none_type] = kwargs.get("email_address", None)
         self.tax_number: Union[str, none_type] = kwargs.get("tax_number", None)
-        self.status: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("status", None)
+        self.status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
         self.currency: Union[str, none_type] = kwargs.get("currency", None)
-        self.remote_updated_at: Union[datetime, none_type] = kwargs.get("remote_updated_at", None)
+        self.company: Union[str, none_type] = kwargs.get("company", None)
         self.addresses: Union[List[str, none_type]] = kwargs.get("addresses", list())
         self.phone_numbers: Union[List["AccountingPhoneNumberRequest"]] = kwargs.get("phone_numbers", None)
-        self.integration_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
-        self.linked_account_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
+        self.integration_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
+        self.linked_account_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
 
 

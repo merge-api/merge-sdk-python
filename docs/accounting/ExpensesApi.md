@@ -57,14 +57,34 @@ with MergePythonSDK.accounting.ApiClient(configuration) as api_client:
     api_instance = expenses_api.ExpensesApi(api_client)
     expense_endpoint_request = ExpenseEndpointRequest(
         model=ExpenseRequest(
-            remote_id="088899",
             transaction_date=dateutil_parser('1970-01-01T00:00:00.00Z'),
-            remote_created_at=dateutil_parser('2020-03-31T00:00:00Z'),
             account="9d892439-5fab-4dbb-8bd8-34f7f96c7912",
             contact="3d263469-51a1-4766-9205-f6c997826be1",
             total_amount=10000.0,
             currency=None,
+            exchange_rate="2.9",
+            company="595c8f97-2ac4-45b7-b000-41bdf43240b5",
             memo="New employee supplies",
+            lines=[
+                ExpenseLineRequest(
+                    remote_id="121222",
+                    item="b38c59b0-a9d7-4740-b1ee-5436c6751e3d",
+                    net_amount=25.54,
+                    tracking_category="b38c59b0-a9d7-4740-b1ee-5436c6751e3d",
+                    tracking_categories=["b38c59b0-a9d7-4740-b1ee-5436c6751e3d","9b840d2-686a-465a-8a8e-7b028498f8e4","a47e11b6-c73b-4a0c-be31-130fc48177fa"],
+                    company="595c8f97-2ac4-45b7-b000-41bdf43240b5",
+                    account="2a56344a-a491-11ec-b909-0242ac120002",
+                    contact="c640b80b-fac9-409f-aa19-1f9221aec445",
+                    description="MacBook Pro",
+                    exchange_rate="2.9",
+                    integration_params={
+                        "key": None,
+                    },
+                    linked_account_params={
+                        "key": None,
+                    },
+                ),
+            ],
             integration_params={
                 "key": None,
             },
@@ -167,21 +187,24 @@ configuration = MergePythonSDK.accounting.Configuration(
 with MergePythonSDK.accounting.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = expenses_api.ExpensesApi(api_client)
+    company_id = "company_id_example" # str | If provided, will only return expenses for this company. (optional)
     created_after = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, will only return objects created after this datetime. (optional)
     created_before = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, will only return objects created before this datetime. (optional)
     cursor = "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw" # str | The pagination cursor value. (optional)
-    expand = "account,contact" # str | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. (optional)
+    expand = "account,contact,company" # str | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. (optional)
     include_deleted_data = True # bool | Whether to include data that was marked as deleted by third party webhooks. (optional)
     include_remote_data = True # bool | Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
-    modified_after = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, will only return objects modified after this datetime. (optional)
-    modified_before = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, will only return objects modified before this datetime. (optional)
+    modified_after = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, only objects synced by Merge after this date time will be returned. (optional)
+    modified_before = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, only objects synced by Merge before this date time will be returned. (optional)
     page_size = 1 # int | Number of results to return per page. (optional)
     remote_id = "remote_id_example" # str, none_type | The API provider's ID for the given object. (optional)
+    transaction_date_after = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime, none_type | If provided, will only return objects created after this datetime. (optional)
+    transaction_date_before = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime, none_type | If provided, will only return objects created before this datetime. (optional)
 
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        api_response = api_instance.expenses_list(created_after=created_after, created_before=created_before, cursor=cursor, expand=expand, include_deleted_data=include_deleted_data, include_remote_data=include_remote_data, modified_after=modified_after, modified_before=modified_before, page_size=page_size, remote_id=remote_id)
+        api_response = api_instance.expenses_list(company_id=company_id, created_after=created_after, created_before=created_before, cursor=cursor, expand=expand, include_deleted_data=include_deleted_data, include_remote_data=include_remote_data, modified_after=modified_after, modified_before=modified_before, page_size=page_size, remote_id=remote_id, transaction_date_after=transaction_date_after, transaction_date_before=transaction_date_before)
         pprint(api_response)
     except MergePythonSDK.accounting.ApiException as e:
         print("Exception when calling ExpensesApi->expenses_list: %s\n" % e)
@@ -192,16 +215,19 @@ with MergePythonSDK.accounting.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **company_id** | **str**| If provided, will only return expenses for this company. | [optional]
  **created_after** | **datetime**| If provided, will only return objects created after this datetime. | [optional]
  **created_before** | **datetime**| If provided, will only return objects created before this datetime. | [optional]
  **cursor** | **str**| The pagination cursor value. | [optional]
  **expand** | **str**| Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. | [optional]
  **include_deleted_data** | **bool**| Whether to include data that was marked as deleted by third party webhooks. | [optional]
  **include_remote_data** | **bool**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional]
- **modified_after** | **datetime**| If provided, will only return objects modified after this datetime. | [optional]
- **modified_before** | **datetime**| If provided, will only return objects modified before this datetime. | [optional]
+ **modified_after** | **datetime**| If provided, only objects synced by Merge after this date time will be returned. | [optional]
+ **modified_before** | **datetime**| If provided, only objects synced by Merge before this date time will be returned. | [optional]
  **page_size** | **int**| Number of results to return per page. | [optional]
  **remote_id** | **str, none_type**| The API provider&#39;s ID for the given object. | [optional]
+ **transaction_date_after** | **datetime, none_type**| If provided, will only return objects created after this datetime. | [optional]
+ **transaction_date_before** | **datetime, none_type**| If provided, will only return objects created before this datetime. | [optional]
 
 ### Return type
 
@@ -349,7 +375,7 @@ with MergePythonSDK.accounting.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = expenses_api.ExpensesApi(api_client)
     id = "id_example" # str | 
-    expand = "account,contact" # str | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. (optional)
+    expand = "account,contact,company" # str | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. (optional)
     include_remote_data = True # bool | Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
 
     # example passing only required values which don't have defaults set

@@ -39,7 +39,7 @@ from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 def lazy_import():
-    from MergePythonSDK.shared.model.remote_data import RemoteData
+    from MergePythonSDK.shared.model.remote_remote_data import RemoteData
     from MergePythonSDK.ats.model.scheduled_interview_status_enum import ScheduledInterviewStatusEnum
     globals()['RemoteData'] = RemoteData
     globals()['ScheduledInterviewStatusEnum'] = ScheduledInterviewStatusEnum
@@ -80,7 +80,7 @@ class ScheduledInterview(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -109,8 +109,10 @@ class ScheduledInterview(ModelNormal):
             'remote_created_at': (datetime, none_type, none_type,),  # noqa: E501
             'remote_updated_at': (datetime, none_type, none_type,),  # noqa: E501
             'status': (ScheduledInterviewStatusEnum, str, none_type,),
-            'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
             'remote_was_deleted': (bool, none_type,),  # noqa: E501
+            'field_mappings': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'modified_at': (datetime, none_type,),  # noqa: E501
+            'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
         }
         expands_types = {"application": "Application", "interviewers": "RemoteUser", "job_interview_stage": "JobInterviewStage", "organizer": "RemoteUser"}
 
@@ -142,14 +144,18 @@ class ScheduledInterview(ModelNormal):
         'remote_created_at': 'remote_created_at',  # noqa: E501
         'remote_updated_at': 'remote_updated_at',  # noqa: E501
         'status': 'status',  # noqa: E501
-        'remote_data': 'remote_data',  # noqa: E501
         'remote_was_deleted': 'remote_was_deleted',  # noqa: E501
+        'field_mappings': 'field_mappings',  # noqa: E501
+        'modified_at': 'modified_at',  # noqa: E501
+        'remote_data': 'remote_data',  # noqa: E501
     }
 
     read_only_vars = {
         'id',  # noqa: E501
-        'remote_data',  # noqa: E501
         'remote_was_deleted',  # noqa: E501
+        'field_mappings',  # noqa: E501
+        'modified_at',  # noqa: E501
+        'remote_data',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -192,18 +198,20 @@ class ScheduledInterview(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             id (str): [optional]  # noqa: E501
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
-            application (str, none_type): [optional]  # noqa: E501
-            job_interview_stage (str, none_type): [optional]  # noqa: E501
-            organizer (str, none_type): [optional]  # noqa: E501
+            application (str, none_type): The application being interviewed.. [optional]  # noqa: E501
+            job_interview_stage (str, none_type): The stage of the interview.. [optional]  # noqa: E501
+            organizer (str, none_type): The user organizing the interview.. [optional]  # noqa: E501
             interviewers ([str, none_type]): Array of `RemoteUser` IDs.. [optional]  # noqa: E501
             location (str, none_type): The interview's location.. [optional]  # noqa: E501
             start_at (datetime, none_type): When the interview was started.. [optional]  # noqa: E501
             end_at (datetime, none_type): When the interview was ended.. [optional]  # noqa: E501
             remote_created_at (datetime, none_type): When the third party's interview was created.. [optional]  # noqa: E501
             remote_updated_at (datetime, none_type): When the third party's interview was updated.. [optional]  # noqa: E501
-            status (bool, dict, float, int, list, str, none_type): The interview's status.. [optional]  # noqa: E501
-            remote_data ([RemoteData], none_type): [optional]  # noqa: E501
+            status (bool, date, datetime, dict, float, int, list, str, none_type): The interview's status.  * `SCHEDULED` - SCHEDULED * `AWAITING_FEEDBACK` - AWAITING_FEEDBACK * `COMPLETE` - COMPLETE. [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
+            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
+            remote_data ([RemoteData], none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -250,8 +258,10 @@ class ScheduledInterview(ModelNormal):
 
         # Read only properties
         self._id = kwargs.get("id", str())
-        self._remote_data = kwargs.get("remote_data", None)
         self._remote_was_deleted = kwargs.get("remote_was_deleted", bool())
+        self._field_mappings = kwargs.get("field_mappings", None)
+        self._modified_at = kwargs.get("modified_at", None)
+        self._remote_data = kwargs.get("remote_data", None)
         return self
 
     required_properties = set([
@@ -300,18 +310,20 @@ class ScheduledInterview(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             id (str): [optional]  # noqa: E501
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
-            application (str, none_type): [optional]  # noqa: E501
-            job_interview_stage (str, none_type): [optional]  # noqa: E501
-            organizer (str, none_type): [optional]  # noqa: E501
+            application (str, none_type): The application being interviewed.. [optional]  # noqa: E501
+            job_interview_stage (str, none_type): The stage of the interview.. [optional]  # noqa: E501
+            organizer (str, none_type): The user organizing the interview.. [optional]  # noqa: E501
             interviewers ([str, none_type]): Array of `RemoteUser` IDs.. [optional]  # noqa: E501
             location (str, none_type): The interview's location.. [optional]  # noqa: E501
             start_at (datetime, none_type): When the interview was started.. [optional]  # noqa: E501
             end_at (datetime, none_type): When the interview was ended.. [optional]  # noqa: E501
             remote_created_at (datetime, none_type): When the third party's interview was created.. [optional]  # noqa: E501
             remote_updated_at (datetime, none_type): When the third party's interview was updated.. [optional]  # noqa: E501
-            status (bool, dict, float, int, list, str, none_type): The interview's status.. [optional]  # noqa: E501
-            remote_data ([RemoteData], none_type): [optional]  # noqa: E501
+            status (bool, date, datetime, dict, float, int, list, str, none_type): The interview's status.  * `SCHEDULED` - SCHEDULED * `AWAITING_FEEDBACK` - AWAITING_FEEDBACK * `COMPLETE` - COMPLETE. [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
+            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
+            remote_data ([RemoteData], none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -351,12 +363,14 @@ class ScheduledInterview(ModelNormal):
         self.end_at: Union[datetime, none_type] = kwargs.get("end_at", None)
         self.remote_created_at: Union[datetime, none_type] = kwargs.get("remote_created_at", None)
         self.remote_updated_at: Union[datetime, none_type] = kwargs.get("remote_updated_at", None)
-        self.status: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("status", None)
+        self.status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
 
         # Read only properties
         self._id: Union[str] = kwargs.get("id", str())
-        self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
         self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
+        self._field_mappings: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("field_mappings", None)
+        self._modified_at: Union[datetime] = kwargs.get("modified_at", None)
+        self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
 
     # Read only property getters
     @property
@@ -364,12 +378,20 @@ class ScheduledInterview(ModelNormal):
         return self._id
 
     @property
-    def remote_data(self):
-        return self._remote_data
-
-    @property
     def remote_was_deleted(self):
         return self._remote_was_deleted
+
+    @property
+    def field_mappings(self):
+        return self._field_mappings
+
+    @property
+    def modified_at(self):
+        return self._modified_at
+
+    @property
+    def remote_data(self):
+        return self._remote_data
 
 
 

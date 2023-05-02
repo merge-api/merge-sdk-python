@@ -57,7 +57,6 @@ with MergePythonSDK.hris.ApiClient(configuration) as api_client:
     api_instance = time_off_api.TimeOffApi(api_client)
     time_off_endpoint_request = TimeOffEndpointRequest(
         model=TimeOffRequest(
-            remote_id="19202938",
             employee="d2f972d0-2526-434b-9409-4c3b468e08f0",
             approver="9efbc633-3387-4306-aa55-e2c635e6bb4f",
             status=None,
@@ -177,18 +176,19 @@ with MergePythonSDK.hris.ApiClient(configuration) as api_client:
     expand = "employee,approver" # str | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. (optional)
     include_deleted_data = True # bool | Whether to include data that was marked as deleted by third party webhooks. (optional)
     include_remote_data = True # bool | Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
-    modified_after = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, will only return objects modified after this datetime. (optional)
-    modified_before = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, will only return objects modified before this datetime. (optional)
+    modified_after = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, only objects synced by Merge after this date time will be returned. (optional)
+    modified_before = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, only objects synced by Merge before this date time will be returned. (optional)
     page_size = 1 # int | Number of results to return per page. (optional)
-    remote_fields = "request_type,status,units" # str | Which fields should be returned in non-normalized form. (optional)
+    remote_fields = "request_type,status,units" # str | Deprecated. Use show_enum_origins. (optional)
     remote_id = "remote_id_example" # str, none_type | The API provider's ID for the given object. (optional)
-    request_type = "BEREAVEMENT" # str, none_type | If provided, will only return TimeOff with this request type. Options: ('VACATION', 'SICK', 'PERSONAL', 'JURY_DUTY', 'VOLUNTEER', 'BEREAVEMENT') (optional)
-    status = "APPROVED" # str, none_type | If provided, will only return TimeOff with this status. Options: ('REQUESTED', 'APPROVED', 'DECLINED', 'CANCELLED', 'DELETED') (optional)
+    request_type = "BEREAVEMENT" # str, none_type | If provided, will only return TimeOff with this request type. Options: ('VACATION', 'SICK', 'PERSONAL', 'JURY_DUTY', 'VOLUNTEER', 'BEREAVEMENT')  * `VACATION` - VACATION * `SICK` - SICK * `PERSONAL` - PERSONAL * `JURY_DUTY` - JURY_DUTY * `VOLUNTEER` - VOLUNTEER * `BEREAVEMENT` - BEREAVEMENT (optional)
+    show_enum_origins = "request_type,status,units" # str | Which fields should be returned in non-normalized form. (optional)
+    status = "APPROVED" # str, none_type | If provided, will only return TimeOff with this status. Options: ('REQUESTED', 'APPROVED', 'DECLINED', 'CANCELLED', 'DELETED')  * `REQUESTED` - REQUESTED * `APPROVED` - APPROVED * `DECLINED` - DECLINED * `CANCELLED` - CANCELLED * `DELETED` - DELETED (optional)
 
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        api_response = api_instance.time_off_list(approver_id=approver_id, created_after=created_after, created_before=created_before, cursor=cursor, employee_id=employee_id, expand=expand, include_deleted_data=include_deleted_data, include_remote_data=include_remote_data, modified_after=modified_after, modified_before=modified_before, page_size=page_size, remote_fields=remote_fields, remote_id=remote_id, request_type=request_type, status=status)
+        api_response = api_instance.time_off_list(approver_id=approver_id, created_after=created_after, created_before=created_before, cursor=cursor, employee_id=employee_id, expand=expand, include_deleted_data=include_deleted_data, include_remote_data=include_remote_data, modified_after=modified_after, modified_before=modified_before, page_size=page_size, remote_fields=remote_fields, remote_id=remote_id, request_type=request_type, show_enum_origins=show_enum_origins, status=status)
         pprint(api_response)
     except MergePythonSDK.hris.ApiException as e:
         print("Exception when calling TimeOffApi->time_off_list: %s\n" % e)
@@ -207,13 +207,14 @@ Name | Type | Description  | Notes
  **expand** | **str**| Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. | [optional]
  **include_deleted_data** | **bool**| Whether to include data that was marked as deleted by third party webhooks. | [optional]
  **include_remote_data** | **bool**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional]
- **modified_after** | **datetime**| If provided, will only return objects modified after this datetime. | [optional]
- **modified_before** | **datetime**| If provided, will only return objects modified before this datetime. | [optional]
+ **modified_after** | **datetime**| If provided, only objects synced by Merge after this date time will be returned. | [optional]
+ **modified_before** | **datetime**| If provided, only objects synced by Merge before this date time will be returned. | [optional]
  **page_size** | **int**| Number of results to return per page. | [optional]
- **remote_fields** | **str**| Which fields should be returned in non-normalized form. | [optional]
+ **remote_fields** | **str**| Deprecated. Use show_enum_origins. | [optional]
  **remote_id** | **str, none_type**| The API provider&#39;s ID for the given object. | [optional]
- **request_type** | **str, none_type**| If provided, will only return TimeOff with this request type. Options: (&#39;VACATION&#39;, &#39;SICK&#39;, &#39;PERSONAL&#39;, &#39;JURY_DUTY&#39;, &#39;VOLUNTEER&#39;, &#39;BEREAVEMENT&#39;) | [optional]
- **status** | **str, none_type**| If provided, will only return TimeOff with this status. Options: (&#39;REQUESTED&#39;, &#39;APPROVED&#39;, &#39;DECLINED&#39;, &#39;CANCELLED&#39;, &#39;DELETED&#39;) | [optional]
+ **request_type** | **str, none_type**| If provided, will only return TimeOff with this request type. Options: (&#39;VACATION&#39;, &#39;SICK&#39;, &#39;PERSONAL&#39;, &#39;JURY_DUTY&#39;, &#39;VOLUNTEER&#39;, &#39;BEREAVEMENT&#39;)  * &#x60;VACATION&#x60; - VACATION * &#x60;SICK&#x60; - SICK * &#x60;PERSONAL&#x60; - PERSONAL * &#x60;JURY_DUTY&#x60; - JURY_DUTY * &#x60;VOLUNTEER&#x60; - VOLUNTEER * &#x60;BEREAVEMENT&#x60; - BEREAVEMENT | [optional]
+ **show_enum_origins** | **str**| Which fields should be returned in non-normalized form. | [optional]
+ **status** | **str, none_type**| If provided, will only return TimeOff with this status. Options: (&#39;REQUESTED&#39;, &#39;APPROVED&#39;, &#39;DECLINED&#39;, &#39;CANCELLED&#39;, &#39;DELETED&#39;)  * &#x60;REQUESTED&#x60; - REQUESTED * &#x60;APPROVED&#x60; - APPROVED * &#x60;DECLINED&#x60; - DECLINED * &#x60;CANCELLED&#x60; - CANCELLED * &#x60;DELETED&#x60; - DELETED | [optional]
 
 ### Return type
 
@@ -363,7 +364,8 @@ with MergePythonSDK.hris.ApiClient(configuration) as api_client:
     id = "id_example" # str | 
     expand = "employee,approver" # str | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. (optional)
     include_remote_data = True # bool | Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
-    remote_fields = "request_type,status,units" # str | Which fields should be returned in non-normalized form. (optional)
+    remote_fields = "request_type,status,units" # str | Deprecated. Use show_enum_origins. (optional)
+    show_enum_origins = "request_type,status,units" # str | Which fields should be returned in non-normalized form. (optional)
 
     # example passing only required values which don't have defaults set
     try:
@@ -375,7 +377,7 @@ with MergePythonSDK.hris.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        api_response = api_instance.time_off_retrieve(id, expand=expand, include_remote_data=include_remote_data, remote_fields=remote_fields)
+        api_response = api_instance.time_off_retrieve(id, expand=expand, include_remote_data=include_remote_data, remote_fields=remote_fields, show_enum_origins=show_enum_origins)
         pprint(api_response)
     except MergePythonSDK.hris.ApiException as e:
         print("Exception when calling TimeOffApi->time_off_retrieve: %s\n" % e)
@@ -389,7 +391,8 @@ Name | Type | Description  | Notes
  **id** | **str**|  |
  **expand** | **str**| Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. | [optional]
  **include_remote_data** | **bool**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional]
- **remote_fields** | **str**| Which fields should be returned in non-normalized form. | [optional]
+ **remote_fields** | **str**| Deprecated. Use show_enum_origins. | [optional]
+ **show_enum_origins** | **str**| Which fields should be returned in non-normalized form. | [optional]
 
 ### Return type
 

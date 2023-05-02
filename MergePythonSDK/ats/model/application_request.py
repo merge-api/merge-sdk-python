@@ -77,7 +77,7 @@ class ApplicationRequest(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -93,7 +93,6 @@ class ApplicationRequest(ModelNormal):
         """
 
         defined_types = {
-            'remote_id': (str, none_type, none_type,),  # noqa: E501
             'candidate': (str, none_type, none_type,),  # noqa: E501
             'job': (str, none_type, none_type,),  # noqa: E501
             'applied_at': (datetime, none_type, none_type,),  # noqa: E501
@@ -102,11 +101,20 @@ class ApplicationRequest(ModelNormal):
             'credited_to': (str, none_type, none_type,),  # noqa: E501
             'current_stage': (str, none_type, none_type,),  # noqa: E501
             'reject_reason': (str, none_type, none_type,),  # noqa: E501
-            'custom_fields': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
             'remote_template_id': (str, none_type, none_type,),  # noqa: E501
-            'integration_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
-            'linked_account_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'integration_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'linked_account_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
         }
+        expands_types = {"candidate": "Candidate", "credited_to": "RemoteUser", "current_stage": "JobInterviewStage", "job": "Job", "reject_reason": "RejectReason"}
+
+        # update types with expands
+        for key, val in expands_types.items():
+            if key in defined_types.keys():
+                expands_model = import_model_by_name(val, "ats")
+                if len(defined_types[key]) > 0 and isinstance(defined_types[key][0], list):
+                    defined_types[key][0].insert(0, expands_model)
+                else:
+                    defined_types[key] = (*defined_types[key], expands_model)
         return defined_types
 
     @cached_property
@@ -115,7 +123,6 @@ class ApplicationRequest(ModelNormal):
 
 
     attribute_map = {
-        'remote_id': 'remote_id',  # noqa: E501
         'candidate': 'candidate',  # noqa: E501
         'job': 'job',  # noqa: E501
         'applied_at': 'applied_at',  # noqa: E501
@@ -124,7 +131,6 @@ class ApplicationRequest(ModelNormal):
         'credited_to': 'credited_to',  # noqa: E501
         'current_stage': 'current_stage',  # noqa: E501
         'reject_reason': 'reject_reason',  # noqa: E501
-        'custom_fields': 'custom_fields',  # noqa: E501
         'remote_template_id': 'remote_template_id',  # noqa: E501
         'integration_params': 'integration_params',  # noqa: E501
         'linked_account_params': 'linked_account_params',  # noqa: E501
@@ -171,19 +177,17 @@ class ApplicationRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
-            candidate (str, none_type): [optional]  # noqa: E501
-            job (str, none_type): [optional]  # noqa: E501
+            candidate (str, none_type): The candidate applying.. [optional]  # noqa: E501
+            job (str, none_type): The job being applied for.. [optional]  # noqa: E501
             applied_at (datetime, none_type): When the application was submitted.. [optional]  # noqa: E501
             rejected_at (datetime, none_type): When the application was rejected.. [optional]  # noqa: E501
             source (str, none_type): The application's source.. [optional]  # noqa: E501
-            credited_to (str, none_type): [optional]  # noqa: E501
-            current_stage (str, none_type): [optional]  # noqa: E501
-            reject_reason (str, none_type): [optional]  # noqa: E501
-            custom_fields ({str: (bool, dict, float, int, list, str, none_type)}, none_type): Custom fields configured for a given model.. [optional]  # noqa: E501
+            credited_to (str, none_type): The user credited for this application.. [optional]  # noqa: E501
+            current_stage (str, none_type): The application's current stage.. [optional]  # noqa: E501
+            reject_reason (str, none_type): The application's reason for rejection.. [optional]  # noqa: E501
             remote_template_id (str, none_type): [optional]  # noqa: E501
-            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -216,7 +220,6 @@ class ApplicationRequest(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.remote_id = kwargs.get("remote_id", None)
         self.candidate = kwargs.get("candidate", None)
         self.job = kwargs.get("job", None)
         self.applied_at = kwargs.get("applied_at", None)
@@ -225,7 +228,6 @@ class ApplicationRequest(ModelNormal):
         self.credited_to = kwargs.get("credited_to", None)
         self.current_stage = kwargs.get("current_stage", None)
         self.reject_reason = kwargs.get("reject_reason", None)
-        self.custom_fields = kwargs.get("custom_fields", None)
         self.remote_template_id = kwargs.get("remote_template_id", None)
         self.integration_params = kwargs.get("integration_params", None)
         self.linked_account_params = kwargs.get("linked_account_params", None)
@@ -275,19 +277,17 @@ class ApplicationRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
-            candidate (str, none_type): [optional]  # noqa: E501
-            job (str, none_type): [optional]  # noqa: E501
+            candidate (str, none_type): The candidate applying.. [optional]  # noqa: E501
+            job (str, none_type): The job being applied for.. [optional]  # noqa: E501
             applied_at (datetime, none_type): When the application was submitted.. [optional]  # noqa: E501
             rejected_at (datetime, none_type): When the application was rejected.. [optional]  # noqa: E501
             source (str, none_type): The application's source.. [optional]  # noqa: E501
-            credited_to (str, none_type): [optional]  # noqa: E501
-            current_stage (str, none_type): [optional]  # noqa: E501
-            reject_reason (str, none_type): [optional]  # noqa: E501
-            custom_fields ({str: (bool, dict, float, int, list, str, none_type)}, none_type): Custom fields configured for a given model.. [optional]  # noqa: E501
+            credited_to (str, none_type): The user credited for this application.. [optional]  # noqa: E501
+            current_stage (str, none_type): The application's current stage.. [optional]  # noqa: E501
+            reject_reason (str, none_type): The application's reason for rejection.. [optional]  # noqa: E501
             remote_template_id (str, none_type): [optional]  # noqa: E501
-            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -317,7 +317,6 @@ class ApplicationRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
         self.candidate: Union[str, none_type] = kwargs.get("candidate", None)
         self.job: Union[str, none_type] = kwargs.get("job", None)
         self.applied_at: Union[datetime, none_type] = kwargs.get("applied_at", None)
@@ -326,9 +325,8 @@ class ApplicationRequest(ModelNormal):
         self.credited_to: Union[str, none_type] = kwargs.get("credited_to", None)
         self.current_stage: Union[str, none_type] = kwargs.get("current_stage", None)
         self.reject_reason: Union[str, none_type] = kwargs.get("reject_reason", None)
-        self.custom_fields: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("custom_fields", None)
         self.remote_template_id: Union[str, none_type] = kwargs.get("remote_template_id", None)
-        self.integration_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
-        self.linked_account_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
+        self.integration_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
+        self.linked_account_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
 
 

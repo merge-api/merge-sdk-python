@@ -24,8 +24,20 @@ class TestActivitiesApi(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def test_activities_create(self):
+        """Test case for activities_create
+
+        """
+        pass
+
     def test_activities_list(self):
         """Test case for activities_list
+
+        """
+        pass
+
+    def test_activities_meta_post_retrieve(self):
+        """Test case for activities_meta_post_retrieve
 
         """
         pass

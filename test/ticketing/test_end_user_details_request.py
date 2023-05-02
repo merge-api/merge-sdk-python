@@ -14,8 +14,10 @@ import unittest
 from unittest.mock import MagicMock
 
 import MergePythonSDK.ticketing
-from MergePythonSDK.shared.model.categories_enum import CategoriesEnum
+from MergePythonSDK.ticketing.model.categories_enum import CategoriesEnum
+from MergePythonSDK.ticketing.model.common_model_scopes_body_request import CommonModelScopesBodyRequest
 globals()['CategoriesEnum'] = CategoriesEnum
+globals()['CommonModelScopesBodyRequest'] = CommonModelScopesBodyRequest
 from MergePythonSDK.ticketing.model.end_user_details_request import EndUserDetailsRequest
 from MergePythonSDK.shared.api_client import ApiClient
 

@@ -83,7 +83,9 @@ class LinkedAccountsApi(object):
                         "ACCOUNTING": "accounting",
                         "ATS": "ats",
                         "CRM": "crm",
+                        "FILESTORAGE": "filestorage",
                         "HRIS": "hris",
+                        "MKTG": "mktg",
                         "TICKETING": "ticketing"
                     },
                 },
@@ -172,7 +174,7 @@ class LinkedAccountsApi(object):
 
 
         Keyword Args:
-            category (str, none_type): [optional]
+            category (str, none_type): * `hris` - hris * `ats` - ats * `accounting` - accounting * `ticketing` - ticketing * `crm` - crm * `mktg` - mktg * `filestorage` - filestorage  * `hris` - hris * `ats` - ats * `accounting` - accounting * `ticketing` - ticketing * `crm` - crm * `mktg` - mktg * `filestorage` - filestorage. [optional]
             cursor (str): The pagination cursor value.. [optional]
             end_user_email_address (str): If provided, will only return linked accounts associated with the given email address.. [optional]
             end_user_organization_name (str): If provided, will only return linked accounts associated with the given organization name.. [optional]

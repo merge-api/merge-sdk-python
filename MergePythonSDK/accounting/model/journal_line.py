@@ -66,6 +66,11 @@ class JournalLine(ModelNormal):
     }
 
     validations = {
+        ('exchange_rate',): {
+            'regex': {
+                'pattern': r'^-?\d{0,32}(?:\.\d{0,16})?$',  # noqa: E501
+            },
+        },
     }
 
     @cached_property
@@ -74,7 +79,7 @@ class JournalLine(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -94,10 +99,13 @@ class JournalLine(ModelNormal):
             'account': (str, none_type, none_type,),  # noqa: E501
             'net_amount': (float, none_type, none_type,),  # noqa: E501
             'tracking_category': (str, none_type, none_type,),  # noqa: E501
+            'tracking_categories': ([str, none_type], none_type,),  # noqa: E501
             'contact': (str, none_type, none_type,),  # noqa: E501
             'description': (str, none_type, none_type,),  # noqa: E501
+            'exchange_rate': (str, none_type, none_type,),  # noqa: E501
+            'modified_at': (datetime, none_type,),  # noqa: E501
         }
-        expands_types = {"account": "Account", "tracking_category": "TrackingCategory"}
+        expands_types = {"account": "Account", "tracking_categories": "TrackingCategory", "tracking_category": "TrackingCategory"}
 
         # update types with expands
         for key, val in expands_types.items():
@@ -119,11 +127,15 @@ class JournalLine(ModelNormal):
         'account': 'account',  # noqa: E501
         'net_amount': 'net_amount',  # noqa: E501
         'tracking_category': 'tracking_category',  # noqa: E501
+        'tracking_categories': 'tracking_categories',  # noqa: E501
         'contact': 'contact',  # noqa: E501
         'description': 'description',  # noqa: E501
+        'exchange_rate': 'exchange_rate',  # noqa: E501
+        'modified_at': 'modified_at',  # noqa: E501
     }
 
     read_only_vars = {
+        'modified_at',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -166,10 +178,13 @@ class JournalLine(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             account (str, none_type): [optional]  # noqa: E501
-            net_amount (float, none_type): The line's net amount.. [optional]  # noqa: E501
+            net_amount (float, none_type): The value of the line item including taxes and other fees.. [optional]  # noqa: E501
             tracking_category (str, none_type): [optional]  # noqa: E501
+            tracking_categories ([str, none_type]): [optional]  # noqa: E501
             contact (str, none_type): [optional]  # noqa: E501
             description (str, none_type): The line's description.. [optional]  # noqa: E501
+            exchange_rate (str, none_type): The journal line item's exchange rate.. [optional]  # noqa: E501
+            modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -206,8 +221,11 @@ class JournalLine(ModelNormal):
         self.account = kwargs.get("account", None)
         self.net_amount = kwargs.get("net_amount", None)
         self.tracking_category = kwargs.get("tracking_category", None)
+        self.tracking_categories = kwargs.get("tracking_categories", None)
         self.contact = kwargs.get("contact", None)
         self.description = kwargs.get("description", None)
+        self.exchange_rate = kwargs.get("exchange_rate", None)
+        self._modified_at = kwargs.get("modified_at", None)
         return self
 
     required_properties = set([
@@ -256,10 +274,13 @@ class JournalLine(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             account (str, none_type): [optional]  # noqa: E501
-            net_amount (float, none_type): The line's net amount.. [optional]  # noqa: E501
+            net_amount (float, none_type): The value of the line item including taxes and other fees.. [optional]  # noqa: E501
             tracking_category (str, none_type): [optional]  # noqa: E501
+            tracking_categories ([str, none_type]): [optional]  # noqa: E501
             contact (str, none_type): [optional]  # noqa: E501
             description (str, none_type): The line's description.. [optional]  # noqa: E501
+            exchange_rate (str, none_type): The journal line item's exchange rate.. [optional]  # noqa: E501
+            modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -293,7 +314,14 @@ class JournalLine(ModelNormal):
         self.account: Union[str, none_type] = kwargs.get("account", None)
         self.net_amount: Union[float, none_type] = kwargs.get("net_amount", None)
         self.tracking_category: Union[str, none_type] = kwargs.get("tracking_category", None)
+        self.tracking_categories: Union[List[str, none_type]] = kwargs.get("tracking_categories", list())
         self.contact: Union[str, none_type] = kwargs.get("contact", None)
         self.description: Union[str, none_type] = kwargs.get("description", None)
+        self.exchange_rate: Union[str, none_type] = kwargs.get("exchange_rate", None)
+        self._modified_at: Union[datetime] = kwargs.get("modified_at", None)
+    @property
+    def modified_at(self):
+        return self._modified_at
+
 
 

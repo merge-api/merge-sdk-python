@@ -84,7 +84,7 @@ class AccountIntegration(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -107,6 +107,7 @@ class AccountIntegration(ModelNormal):
             'square_image': (str, none_type, none_type,),  # noqa: E501
             'color': (str, none_type,),  # noqa: E501
             'slug': (str, none_type,),  # noqa: E501
+            'is_in_beta': (bool, none_type,),  # noqa: E501
         }
         return defined_types
 
@@ -122,6 +123,7 @@ class AccountIntegration(ModelNormal):
         'square_image': 'square_image',  # noqa: E501
         'color': 'color',  # noqa: E501
         'slug': 'slug',  # noqa: E501
+        'is_in_beta': 'is_in_beta',  # noqa: E501
     }
 
     read_only_vars = {
@@ -169,11 +171,12 @@ class AccountIntegration(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            categories ([CategoriesEnum]): Category or categories this integration belongs to. Multiple categories should be comma separated.<br/><br>Example: For [ats, hris], enter <i>ats,hris</i>. [optional]  # noqa: E501
+            categories ([CategoriesEnum]): Category or categories this integration belongs to. Multiple categories should be comma separated, i.e. [ats, hris].. [optional]  # noqa: E501
             image (str, none_type): Company logo in rectangular shape. <b>Upload an image with a clear background.</b>. [optional]  # noqa: E501
             square_image (str, none_type): Company logo in square shape. <b>Upload an image with a white background.</b>. [optional]  # noqa: E501
             color (str): The color of this integration used for buttons and text throughout the app and landing pages. <b>Choose a darker, saturated color.</b>. [optional]  # noqa: E501
             slug (str): [optional]  # noqa: E501
+            is_in_beta (bool): If checked, this integration will not appear in the linking flow, and will appear elsewhere with a Beta tag.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -211,6 +214,7 @@ class AccountIntegration(ModelNormal):
         self.image = kwargs.get("image", None)
         self.square_image = kwargs.get("square_image", None)
         self.color = kwargs.get("color", None)
+        self.is_in_beta = kwargs.get("is_in_beta", None)
         self._slug = kwargs.get("slug", str())
         return self
 
@@ -261,11 +265,12 @@ class AccountIntegration(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            categories ([CategoriesEnum]): Category or categories this integration belongs to. Multiple categories should be comma separated.<br/><br>Example: For [ats, hris], enter <i>ats,hris</i>. [optional]  # noqa: E501
+            categories ([CategoriesEnum]): Category or categories this integration belongs to. Multiple categories should be comma separated, i.e. [ats, hris].. [optional]  # noqa: E501
             image (str, none_type): Company logo in rectangular shape. <b>Upload an image with a clear background.</b>. [optional]  # noqa: E501
             square_image (str, none_type): Company logo in square shape. <b>Upload an image with a white background.</b>. [optional]  # noqa: E501
             color (str): The color of this integration used for buttons and text throughout the app and landing pages. <b>Choose a darker, saturated color.</b>. [optional]  # noqa: E501
             slug (str): [optional]  # noqa: E501
+            is_in_beta (bool): If checked, this integration will not appear in the linking flow, and will appear elsewhere with a Beta tag.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -300,6 +305,7 @@ class AccountIntegration(ModelNormal):
         self.image: Union[str, none_type] = kwargs.get("image", None)
         self.square_image: Union[str, none_type] = kwargs.get("square_image", None)
         self.color: Union[str] = kwargs.get("color", str())
+        self.is_in_beta: Union[bool] = kwargs.get("is_in_beta", bool())
         self._slug: Union[str] = kwargs.get("slug", str())
     @property
     def slug(self):

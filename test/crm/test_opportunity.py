@@ -16,8 +16,10 @@ from unittest.mock import MagicMock
 import MergePythonSDK.crm
 from MergePythonSDK.crm.model.opportunity_status_enum import OpportunityStatusEnum
 from MergePythonSDK.crm.model.remote_data import RemoteData
+from MergePythonSDK.crm.model.remote_field import RemoteField
 globals()['OpportunityStatusEnum'] = OpportunityStatusEnum
 globals()['RemoteData'] = RemoteData
+globals()['RemoteField'] = RemoteField
 from MergePythonSDK.crm.model.opportunity import Opportunity
 from MergePythonSDK.shared.api_client import ApiClient
 

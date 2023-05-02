@@ -51,9 +51,11 @@ class TrackingCategoriesApi(object):
             },
             params_map={
                 'all': [
+                    'company_id',
                     'created_after',
                     'created_before',
                     'cursor',
+                    'expand',
                     'include_deleted_data',
                     'include_remote_data',
                     'modified_after',
@@ -61,13 +63,16 @@ class TrackingCategoriesApi(object):
                     'page_size',
                     'remote_fields',
                     'remote_id',
+                    'show_enum_origins',
                 ],
                 'required': [],
                 'nullable': [
                     'remote_id',
                 ],
                 'enum': [
+                    'expand',
                     'remote_fields',
+                    'show_enum_origins',
                 ],
                 'validation': [
                 ]
@@ -76,17 +81,29 @@ class TrackingCategoriesApi(object):
                 'validations': {
                 },
                 'allowed_values': {
+                    ('expand',): {
+
+                        "COMPANY": "company"
+                    },
                     ('remote_fields',): {
+
+                        "STATUS": "status"
+                    },
+                    ('show_enum_origins',): {
 
                         "STATUS": "status"
                     },
                 },
                 'openapi_types': {
+                    'company_id':
+                        (str,),
                     'created_after':
                         (datetime,),
                     'created_before':
                         (datetime,),
                     'cursor':
+                        (str,),
+                    'expand':
                         (str,),
                     'include_deleted_data':
                         (bool,),
@@ -102,11 +119,15 @@ class TrackingCategoriesApi(object):
                         (str,),
                     'remote_id':
                         (str, none_type,),
+                    'show_enum_origins':
+                        (str,),
                 },
                 'attribute_map': {
+                    'company_id': 'company_id',
                     'created_after': 'created_after',
                     'created_before': 'created_before',
                     'cursor': 'cursor',
+                    'expand': 'expand',
                     'include_deleted_data': 'include_deleted_data',
                     'include_remote_data': 'include_remote_data',
                     'modified_after': 'modified_after',
@@ -114,11 +135,14 @@ class TrackingCategoriesApi(object):
                     'page_size': 'page_size',
                     'remote_fields': 'remote_fields',
                     'remote_id': 'remote_id',
+                    'show_enum_origins': 'show_enum_origins',
                 },
                 'location_map': {
+                    'company_id': 'query',
                     'created_after': 'query',
                     'created_before': 'query',
                     'cursor': 'query',
+                    'expand': 'query',
                     'include_deleted_data': 'query',
                     'include_remote_data': 'query',
                     'modified_after': 'query',
@@ -126,6 +150,7 @@ class TrackingCategoriesApi(object):
                     'page_size': 'query',
                     'remote_fields': 'query',
                     'remote_id': 'query',
+                    'show_enum_origins': 'query',
                 },
                 'collection_format_map': {
                 }
@@ -153,8 +178,10 @@ class TrackingCategoriesApi(object):
             params_map={
                 'all': [
                     'id',
+                    'expand',
                     'include_remote_data',
                     'remote_fields',
+                    'show_enum_origins',
                 ],
                 'required': [
                     'id',
@@ -162,7 +189,9 @@ class TrackingCategoriesApi(object):
                 'nullable': [
                 ],
                 'enum': [
+                    'expand',
                     'remote_fields',
+                    'show_enum_origins',
                 ],
                 'validation': [
                 ]
@@ -171,7 +200,15 @@ class TrackingCategoriesApi(object):
                 'validations': {
                 },
                 'allowed_values': {
+                    ('expand',): {
+
+                        "COMPANY": "company"
+                    },
                     ('remote_fields',): {
+
+                        "STATUS": "status"
+                    },
+                    ('show_enum_origins',): {
 
                         "STATUS": "status"
                     },
@@ -179,20 +216,28 @@ class TrackingCategoriesApi(object):
                 'openapi_types': {
                     'id':
                         (str,),
+                    'expand':
+                        (str,),
                     'include_remote_data':
                         (bool,),
                     'remote_fields':
                         (str,),
+                    'show_enum_origins':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'expand': 'expand',
                     'include_remote_data': 'include_remote_data',
                     'remote_fields': 'remote_fields',
+                    'show_enum_origins': 'show_enum_origins',
                 },
                 'location_map': {
                     'id': 'path',
+                    'expand': 'query',
                     'include_remote_data': 'query',
                     'remote_fields': 'query',
+                    'show_enum_origins': 'query',
                 },
                 'collection_format_map': {
                 }
@@ -221,16 +266,19 @@ class TrackingCategoriesApi(object):
 
 
         Keyword Args:
+            company_id (str): If provided, will only return tracking categories for this company.. [optional]
             created_after (datetime): If provided, will only return objects created after this datetime.. [optional]
             created_before (datetime): If provided, will only return objects created before this datetime.. [optional]
             cursor (str): The pagination cursor value.. [optional]
+            expand (str): Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.. [optional] if omitted the server will use the default value of "company"
             include_deleted_data (bool): Whether to include data that was marked as deleted by third party webhooks.. [optional]
             include_remote_data (bool): Whether to include the original data Merge fetched from the third-party to produce these models.. [optional]
-            modified_after (datetime): If provided, will only return objects modified after this datetime.. [optional]
-            modified_before (datetime): If provided, will only return objects modified before this datetime.. [optional]
+            modified_after (datetime): If provided, only objects synced by Merge after this date time will be returned.. [optional]
+            modified_before (datetime): If provided, only objects synced by Merge before this date time will be returned.. [optional]
             page_size (int): Number of results to return per page.. [optional]
-            remote_fields (str): Which fields should be returned in non-normalized form.. [optional] if omitted the server will use the default value of "status"
+            remote_fields (str): Deprecated. Use show_enum_origins.. [optional] if omitted the server will use the default value of "status"
             remote_id (str, none_type): The API provider's ID for the given object.. [optional]
+            show_enum_origins (str): Which fields should be returned in non-normalized form.. [optional] if omitted the server will use the default value of "status"
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -312,8 +360,10 @@ class TrackingCategoriesApi(object):
             id (str):
 
         Keyword Args:
+            expand (str): Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.. [optional] if omitted the server will use the default value of "company"
             include_remote_data (bool): Whether to include the original data Merge fetched from the third-party to produce these models.. [optional]
-            remote_fields (str): Which fields should be returned in non-normalized form.. [optional] if omitted the server will use the default value of "status"
+            remote_fields (str): Deprecated. Use show_enum_origins.. [optional] if omitted the server will use the default value of "status"
+            show_enum_origins (str): Which fields should be returned in non-normalized form.. [optional] if omitted the server will use the default value of "status"
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object

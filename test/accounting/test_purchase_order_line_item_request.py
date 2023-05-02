@@ -14,6 +14,8 @@ import unittest
 from unittest.mock import MagicMock
 
 import MergePythonSDK.accounting
+from MergePythonSDK.accounting.model.currency_enum import CurrencyEnum
+globals()['CurrencyEnum'] = CurrencyEnum
 from MergePythonSDK.accounting.model.purchase_order_line_item_request import PurchaseOrderLineItemRequest
 from MergePythonSDK.shared.api_client import ApiClient
 
@@ -47,6 +49,7 @@ class TestPurchaseOrderLineItemRequest(unittest.TestCase):
 
         assert deserialized is not None
 
+        assert deserialized.tracking_categories is not None
 
 
 if __name__ == '__main__':

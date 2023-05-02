@@ -40,7 +40,7 @@ from MergePythonSDK.shared.model_utils import import_model_by_name
 
 def lazy_import():
     from MergePythonSDK.ats.model.overall_recommendation_enum import OverallRecommendationEnum
-    from MergePythonSDK.shared.model.remote_data import RemoteData
+    from MergePythonSDK.shared.model.remote_remote_data import RemoteData
     globals()['OverallRecommendationEnum'] = OverallRecommendationEnum
     globals()['RemoteData'] = RemoteData
 
@@ -80,7 +80,7 @@ class Scorecard(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -105,8 +105,10 @@ class Scorecard(ModelNormal):
             'remote_created_at': (datetime, none_type, none_type,),  # noqa: E501
             'submitted_at': (datetime, none_type, none_type,),  # noqa: E501
             'overall_recommendation': (OverallRecommendationEnum, str, none_type,),
-            'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
             'remote_was_deleted': (bool, none_type,),  # noqa: E501
+            'field_mappings': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'modified_at': (datetime, none_type,),  # noqa: E501
+            'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
         }
         expands_types = {"application": "Application", "interview": "ScheduledInterview", "interviewer": "RemoteUser"}
 
@@ -134,14 +136,18 @@ class Scorecard(ModelNormal):
         'remote_created_at': 'remote_created_at',  # noqa: E501
         'submitted_at': 'submitted_at',  # noqa: E501
         'overall_recommendation': 'overall_recommendation',  # noqa: E501
-        'remote_data': 'remote_data',  # noqa: E501
         'remote_was_deleted': 'remote_was_deleted',  # noqa: E501
+        'field_mappings': 'field_mappings',  # noqa: E501
+        'modified_at': 'modified_at',  # noqa: E501
+        'remote_data': 'remote_data',  # noqa: E501
     }
 
     read_only_vars = {
         'id',  # noqa: E501
-        'remote_data',  # noqa: E501
         'remote_was_deleted',  # noqa: E501
+        'field_mappings',  # noqa: E501
+        'modified_at',  # noqa: E501
+        'remote_data',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -184,14 +190,16 @@ class Scorecard(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             id (str): [optional]  # noqa: E501
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
-            application (str, none_type): [optional]  # noqa: E501
-            interview (str, none_type): [optional]  # noqa: E501
-            interviewer (str, none_type): [optional]  # noqa: E501
+            application (str, none_type): The application being scored.. [optional]  # noqa: E501
+            interview (str, none_type): The interview being scored.. [optional]  # noqa: E501
+            interviewer (str, none_type): The interviewer doing the scoring.. [optional]  # noqa: E501
             remote_created_at (datetime, none_type): When the third party's scorecard was created.. [optional]  # noqa: E501
             submitted_at (datetime, none_type): When the scorecard was submitted.. [optional]  # noqa: E501
-            overall_recommendation (bool, dict, float, int, list, str, none_type): The inteviewer's recommendation.. [optional]  # noqa: E501
-            remote_data ([RemoteData], none_type): [optional]  # noqa: E501
+            overall_recommendation (bool, date, datetime, dict, float, int, list, str, none_type): The inteviewer's recommendation.  * `DEFINITELY_NO` - DEFINITELY_NO * `NO` - NO * `YES` - YES * `STRONG_YES` - STRONG_YES * `NO_DECISION` - NO_DECISION. [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
+            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
+            remote_data ([RemoteData], none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -234,8 +242,10 @@ class Scorecard(ModelNormal):
 
         # Read only properties
         self._id = kwargs.get("id", str())
-        self._remote_data = kwargs.get("remote_data", None)
         self._remote_was_deleted = kwargs.get("remote_was_deleted", bool())
+        self._field_mappings = kwargs.get("field_mappings", None)
+        self._modified_at = kwargs.get("modified_at", None)
+        self._remote_data = kwargs.get("remote_data", None)
         return self
 
     required_properties = set([
@@ -284,14 +294,16 @@ class Scorecard(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             id (str): [optional]  # noqa: E501
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
-            application (str, none_type): [optional]  # noqa: E501
-            interview (str, none_type): [optional]  # noqa: E501
-            interviewer (str, none_type): [optional]  # noqa: E501
+            application (str, none_type): The application being scored.. [optional]  # noqa: E501
+            interview (str, none_type): The interview being scored.. [optional]  # noqa: E501
+            interviewer (str, none_type): The interviewer doing the scoring.. [optional]  # noqa: E501
             remote_created_at (datetime, none_type): When the third party's scorecard was created.. [optional]  # noqa: E501
             submitted_at (datetime, none_type): When the scorecard was submitted.. [optional]  # noqa: E501
-            overall_recommendation (bool, dict, float, int, list, str, none_type): The inteviewer's recommendation.. [optional]  # noqa: E501
-            remote_data ([RemoteData], none_type): [optional]  # noqa: E501
+            overall_recommendation (bool, date, datetime, dict, float, int, list, str, none_type): The inteviewer's recommendation.  * `DEFINITELY_NO` - DEFINITELY_NO * `NO` - NO * `YES` - YES * `STRONG_YES` - STRONG_YES * `NO_DECISION` - NO_DECISION. [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
+            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
+            remote_data ([RemoteData], none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -327,12 +339,14 @@ class Scorecard(ModelNormal):
         self.interviewer: Union[str, none_type] = kwargs.get("interviewer", None)
         self.remote_created_at: Union[datetime, none_type] = kwargs.get("remote_created_at", None)
         self.submitted_at: Union[datetime, none_type] = kwargs.get("submitted_at", None)
-        self.overall_recommendation: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("overall_recommendation", None)
+        self.overall_recommendation: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("overall_recommendation", None)
 
         # Read only properties
         self._id: Union[str] = kwargs.get("id", str())
-        self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
         self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
+        self._field_mappings: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("field_mappings", None)
+        self._modified_at: Union[datetime] = kwargs.get("modified_at", None)
+        self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
 
     # Read only property getters
     @property
@@ -340,12 +354,20 @@ class Scorecard(ModelNormal):
         return self._id
 
     @property
-    def remote_data(self):
-        return self._remote_data
-
-    @property
     def remote_was_deleted(self):
         return self._remote_was_deleted
+
+    @property
+    def field_mappings(self):
+        return self._field_mappings
+
+    @property
+    def modified_at(self):
+        return self._modified_at
+
+    @property
+    def remote_data(self):
+        return self._remote_data
 
 
 

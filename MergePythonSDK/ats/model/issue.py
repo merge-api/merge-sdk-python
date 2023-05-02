@@ -78,7 +78,7 @@ class Issue(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -97,11 +97,12 @@ class Issue(ModelNormal):
         defined_types = {
             'error_description': (str,),  # noqa: E501
             'id': (str, none_type,),  # noqa: E501
-            'status': (IssueStatusEnum, none_type,),  # noqa: E501
-            'end_user': ({str: (bool, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'status': (IssueStatusEnum, str, none_type,),
+            'end_user': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'first_incident_time': (datetime, none_type, none_type,),  # noqa: E501
             'last_incident_time': (datetime, none_type, none_type,),  # noqa: E501
             'is_muted': (bool, none_type,),  # noqa: E501
+            'error_details': ([str], none_type,),  # noqa: E501
         }
         return defined_types
 
@@ -118,12 +119,14 @@ class Issue(ModelNormal):
         'first_incident_time': 'first_incident_time',  # noqa: E501
         'last_incident_time': 'last_incident_time',  # noqa: E501
         'is_muted': 'is_muted',  # noqa: E501
+        'error_details': 'error_details',  # noqa: E501
     }
 
     read_only_vars = {
         'id',  # noqa: E501
         'end_user',  # noqa: E501
         'is_muted',  # noqa: E501
+        'error_details',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -168,11 +171,12 @@ class Issue(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             id (str): [optional]  # noqa: E501
-            status (IssueStatusEnum): [optional]  # noqa: E501
-            end_user ({str: (bool, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
+            status (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
+            end_user ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
             first_incident_time (datetime, none_type): [optional]  # noqa: E501
             last_incident_time (datetime, none_type): [optional]  # noqa: E501
             is_muted (bool): [optional]  # noqa: E501
+            error_details ([str]): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -214,6 +218,7 @@ class Issue(ModelNormal):
         self._id = kwargs.get("id", str())
         self._end_user = kwargs.get("end_user", dict())
         self._is_muted = kwargs.get("is_muted", bool())
+        self._error_details = kwargs.get("error_details", list())
         return self
 
     required_properties = set([
@@ -264,11 +269,12 @@ class Issue(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             id (str): [optional]  # noqa: E501
-            status (IssueStatusEnum): [optional]  # noqa: E501
-            end_user ({str: (bool, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
+            status (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
+            end_user ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
             first_incident_time (datetime, none_type): [optional]  # noqa: E501
             last_incident_time (datetime, none_type): [optional]  # noqa: E501
             is_muted (bool): [optional]  # noqa: E501
+            error_details ([str]): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -299,14 +305,15 @@ class Issue(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.error_description: Union[str] = error_description
-        self.status: Union["IssueStatusEnum"] = kwargs.get("status", None)
+        self.status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
         self.first_incident_time: Union[datetime, none_type] = kwargs.get("first_incident_time", None)
         self.last_incident_time: Union[datetime, none_type] = kwargs.get("last_incident_time", None)
 
         # Read only properties
         self._id: Union[str] = kwargs.get("id", str())
-        self._end_user: Union[Dict[str, bool, dict, float, int, list, str, none_type]] = kwargs.get("end_user", dict())
+        self._end_user: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type]] = kwargs.get("end_user", dict())
         self._is_muted: Union[bool] = kwargs.get("is_muted", bool())
+        self._error_details: Union[List[str]] = kwargs.get("error_details", list())
 
     # Read only property getters
     @property
@@ -320,6 +327,10 @@ class Issue(ModelNormal):
     @property
     def is_muted(self):
         return self._is_muted
+
+    @property
+    def error_details(self):
+        return self._error_details
 
 
 

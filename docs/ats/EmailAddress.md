@@ -6,8 +6,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **value** | **str, none_type** | The email address. | [optional] 
-**email_address_type** | **bool, dict, float, int, list, str, none_type** | The type of email address. | [optional] 
-**any string name** | **bool, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+**email_address_type** | **bool, date, datetime, dict, float, int, list, str, none_type** | The type of email address.  * &#x60;PERSONAL&#x60; - PERSONAL * &#x60;WORK&#x60; - WORK * &#x60;OTHER&#x60; - OTHER | [optional] 
+**modified_at** | **datetime** | This is the datetime that this object was last updated by Merge | [optional] [readonly] 
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

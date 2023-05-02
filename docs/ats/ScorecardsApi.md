@@ -61,16 +61,17 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
     include_remote_data = True # bool | Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
     interview_id = "interview_id_example" # str | If provided, will only return scorecards for this interview. (optional)
     interviewer_id = "interviewer_id_example" # str | If provided, will only return scorecards for this interviewer. (optional)
-    modified_after = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, will only return objects modified after this datetime. (optional)
-    modified_before = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, will only return objects modified before this datetime. (optional)
+    modified_after = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, only objects synced by Merge after this date time will be returned. (optional)
+    modified_before = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, only objects synced by Merge before this date time will be returned. (optional)
     page_size = 1 # int | Number of results to return per page. (optional)
-    remote_fields = "overall_recommendation" # str | Which fields should be returned in non-normalized form. (optional) if omitted the server will use the default value of "overall_recommendation"
+    remote_fields = "overall_recommendation" # str | Deprecated. Use show_enum_origins. (optional) if omitted the server will use the default value of "overall_recommendation"
     remote_id = "remote_id_example" # str, none_type | The API provider's ID for the given object. (optional)
+    show_enum_origins = "overall_recommendation" # str | Which fields should be returned in non-normalized form. (optional) if omitted the server will use the default value of "overall_recommendation"
 
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        api_response = api_instance.scorecards_list(application_id=application_id, created_after=created_after, created_before=created_before, cursor=cursor, expand=expand, include_deleted_data=include_deleted_data, include_remote_data=include_remote_data, interview_id=interview_id, interviewer_id=interviewer_id, modified_after=modified_after, modified_before=modified_before, page_size=page_size, remote_fields=remote_fields, remote_id=remote_id)
+        api_response = api_instance.scorecards_list(application_id=application_id, created_after=created_after, created_before=created_before, cursor=cursor, expand=expand, include_deleted_data=include_deleted_data, include_remote_data=include_remote_data, interview_id=interview_id, interviewer_id=interviewer_id, modified_after=modified_after, modified_before=modified_before, page_size=page_size, remote_fields=remote_fields, remote_id=remote_id, show_enum_origins=show_enum_origins)
         pprint(api_response)
     except MergePythonSDK.ats.ApiException as e:
         print("Exception when calling ScorecardsApi->scorecards_list: %s\n" % e)
@@ -90,11 +91,12 @@ Name | Type | Description  | Notes
  **include_remote_data** | **bool**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional]
  **interview_id** | **str**| If provided, will only return scorecards for this interview. | [optional]
  **interviewer_id** | **str**| If provided, will only return scorecards for this interviewer. | [optional]
- **modified_after** | **datetime**| If provided, will only return objects modified after this datetime. | [optional]
- **modified_before** | **datetime**| If provided, will only return objects modified before this datetime. | [optional]
+ **modified_after** | **datetime**| If provided, only objects synced by Merge after this date time will be returned. | [optional]
+ **modified_before** | **datetime**| If provided, only objects synced by Merge before this date time will be returned. | [optional]
  **page_size** | **int**| Number of results to return per page. | [optional]
- **remote_fields** | **str**| Which fields should be returned in non-normalized form. | [optional] if omitted the server will use the default value of "overall_recommendation"
+ **remote_fields** | **str**| Deprecated. Use show_enum_origins. | [optional] if omitted the server will use the default value of "overall_recommendation"
  **remote_id** | **str, none_type**| The API provider&#39;s ID for the given object. | [optional]
+ **show_enum_origins** | **str**| Which fields should be returned in non-normalized form. | [optional] if omitted the server will use the default value of "overall_recommendation"
 
 ### Return type
 
@@ -165,7 +167,8 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
     id = "id_example" # str | 
     expand = "application,interview,interviewer" # str | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. (optional)
     include_remote_data = True # bool | Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
-    remote_fields = "overall_recommendation" # str | Which fields should be returned in non-normalized form. (optional) if omitted the server will use the default value of "overall_recommendation"
+    remote_fields = "overall_recommendation" # str | Deprecated. Use show_enum_origins. (optional) if omitted the server will use the default value of "overall_recommendation"
+    show_enum_origins = "overall_recommendation" # str | Which fields should be returned in non-normalized form. (optional) if omitted the server will use the default value of "overall_recommendation"
 
     # example passing only required values which don't have defaults set
     try:
@@ -177,7 +180,7 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        api_response = api_instance.scorecards_retrieve(id, expand=expand, include_remote_data=include_remote_data, remote_fields=remote_fields)
+        api_response = api_instance.scorecards_retrieve(id, expand=expand, include_remote_data=include_remote_data, remote_fields=remote_fields, show_enum_origins=show_enum_origins)
         pprint(api_response)
     except MergePythonSDK.ats.ApiException as e:
         print("Exception when calling ScorecardsApi->scorecards_retrieve: %s\n" % e)
@@ -191,7 +194,8 @@ Name | Type | Description  | Notes
  **id** | **str**|  |
  **expand** | **str**| Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. | [optional]
  **include_remote_data** | **bool**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional]
- **remote_fields** | **str**| Which fields should be returned in non-normalized form. | [optional] if omitted the server will use the default value of "overall_recommendation"
+ **remote_fields** | **str**| Deprecated. Use show_enum_origins. | [optional] if omitted the server will use the default value of "overall_recommendation"
+ **show_enum_origins** | **str**| Which fields should be returned in non-normalized form. | [optional] if omitted the server will use the default value of "overall_recommendation"
 
 ### Return type
 

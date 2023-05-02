@@ -15,7 +15,9 @@ from unittest.mock import MagicMock
 
 import MergePythonSDK.crm
 from MergePythonSDK.crm.model.activity_type_enum import ActivityTypeEnum
+from MergePythonSDK.crm.model.remote_field import RemoteField
 globals()['ActivityTypeEnum'] = ActivityTypeEnum
+globals()['RemoteField'] = RemoteField
 from MergePythonSDK.crm.model.engagement_type import EngagementType
 from MergePythonSDK.shared.api_client import ApiClient
 

@@ -57,13 +57,11 @@ with MergePythonSDK.ticketing.ApiClient(configuration) as api_client:
     api_instance = attachments_api.AttachmentsApi(api_client)
     ticketing_attachment_endpoint_request = TicketingAttachmentEndpointRequest(
         model=AttachmentRequest(
-            remote_id="19202938",
             file_name="Screenshot.png",
             ticket="0958cbc6-6040-430a-848e-aafacbadf4ae",
             file_url="http://alturl.com/p749b",
             content_type="jpeg",
             uploaded_by="28b54125-287f-494d-965e-3c5b330c9a68",
-            remote_created_at=dateutil_parser('2022-11-10T00:00:00Z'),
             integration_params={
                 "key": None,
             },
@@ -172,8 +170,8 @@ with MergePythonSDK.ticketing.ApiClient(configuration) as api_client:
     expand = "ticket" # str | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. (optional) if omitted the server will use the default value of "ticket"
     include_deleted_data = True # bool | Whether to include data that was marked as deleted by third party webhooks. (optional)
     include_remote_data = True # bool | Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
-    modified_after = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, will only return objects modified after this datetime. (optional)
-    modified_before = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, will only return objects modified before this datetime. (optional)
+    modified_after = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, only objects synced by Merge after this date time will be returned. (optional)
+    modified_before = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, only objects synced by Merge before this date time will be returned. (optional)
     page_size = 1 # int | Number of results to return per page. (optional)
     remote_id = "remote_id_example" # str, none_type | The API provider's ID for the given object. (optional)
     ticket_id = "ticket_id_example" # str | If provided, will only return comments for this ticket. (optional)
@@ -198,8 +196,8 @@ Name | Type | Description  | Notes
  **expand** | **str**| Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. | [optional] if omitted the server will use the default value of "ticket"
  **include_deleted_data** | **bool**| Whether to include data that was marked as deleted by third party webhooks. | [optional]
  **include_remote_data** | **bool**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional]
- **modified_after** | **datetime**| If provided, will only return objects modified after this datetime. | [optional]
- **modified_before** | **datetime**| If provided, will only return objects modified before this datetime. | [optional]
+ **modified_after** | **datetime**| If provided, only objects synced by Merge after this date time will be returned. | [optional]
+ **modified_before** | **datetime**| If provided, only objects synced by Merge before this date time will be returned. | [optional]
  **page_size** | **int**| Number of results to return per page. | [optional]
  **remote_id** | **str, none_type**| The API provider&#39;s ID for the given object. | [optional]
  **ticket_id** | **str**| If provided, will only return comments for this ticket. | [optional]

@@ -69,6 +69,7 @@ class PayPeriodEnum(ModelNormal, MergeEnumType):
             'DAY': "DAY",
             'WEEK': "WEEK",
             'EVERY_TWO_WEEKS': "EVERY_TWO_WEEKS",
+            'SEMIMONTHLY': "SEMIMONTHLY",
             'MONTH': "MONTH",
             'QUARTER': "QUARTER",
             'EVERY_SIX_MONTHS': "EVERY_SIX_MONTHS",

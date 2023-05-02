@@ -1,9 +1,9 @@
 # flake8: noqa
 
 """
-    Merge Unified API
+    Merge Ticketing API
 
-    The unified API for building rich integrations with multiple integration platforms.  # noqa: E501
+    The unified API for building rich integrations with multiple Ticketing platforms.  # noqa: E501
 
     The version of the OpenAPI document: 1.0
     Contact: hello@merge.dev

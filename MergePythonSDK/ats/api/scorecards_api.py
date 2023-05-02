@@ -65,6 +65,7 @@ class ScorecardsApi(object):
                     'page_size',
                     'remote_fields',
                     'remote_id',
+                    'show_enum_origins',
                 ],
                 'required': [],
                 'nullable': [
@@ -73,6 +74,7 @@ class ScorecardsApi(object):
                 'enum': [
                     'expand',
                     'remote_fields',
+                    'show_enum_origins',
                 ],
                 'validation': [
                 ]
@@ -92,6 +94,10 @@ class ScorecardsApi(object):
                         "INTERVIEWER": "interviewer"
                     },
                     ('remote_fields',): {
+
+                        "OVERALL_RECOMMENDATION": "overall_recommendation"
+                    },
+                    ('show_enum_origins',): {
 
                         "OVERALL_RECOMMENDATION": "overall_recommendation"
                     },
@@ -125,6 +131,8 @@ class ScorecardsApi(object):
                         (str,),
                     'remote_id':
                         (str, none_type,),
+                    'show_enum_origins':
+                        (str,),
                 },
                 'attribute_map': {
                     'application_id': 'application_id',
@@ -141,6 +149,7 @@ class ScorecardsApi(object):
                     'page_size': 'page_size',
                     'remote_fields': 'remote_fields',
                     'remote_id': 'remote_id',
+                    'show_enum_origins': 'show_enum_origins',
                 },
                 'location_map': {
                     'application_id': 'query',
@@ -157,6 +166,7 @@ class ScorecardsApi(object):
                     'page_size': 'query',
                     'remote_fields': 'query',
                     'remote_id': 'query',
+                    'show_enum_origins': 'query',
                 },
                 'collection_format_map': {
                 }
@@ -187,6 +197,7 @@ class ScorecardsApi(object):
                     'expand',
                     'include_remote_data',
                     'remote_fields',
+                    'show_enum_origins',
                 ],
                 'required': [
                     'id',
@@ -196,6 +207,7 @@ class ScorecardsApi(object):
                 'enum': [
                     'expand',
                     'remote_fields',
+                    'show_enum_origins',
                 ],
                 'validation': [
                 ]
@@ -218,6 +230,10 @@ class ScorecardsApi(object):
 
                         "OVERALL_RECOMMENDATION": "overall_recommendation"
                     },
+                    ('show_enum_origins',): {
+
+                        "OVERALL_RECOMMENDATION": "overall_recommendation"
+                    },
                 },
                 'openapi_types': {
                     'id':
@@ -228,18 +244,22 @@ class ScorecardsApi(object):
                         (bool,),
                     'remote_fields':
                         (str,),
+                    'show_enum_origins':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
                     'expand': 'expand',
                     'include_remote_data': 'include_remote_data',
                     'remote_fields': 'remote_fields',
+                    'show_enum_origins': 'show_enum_origins',
                 },
                 'location_map': {
                     'id': 'path',
                     'expand': 'query',
                     'include_remote_data': 'query',
                     'remote_fields': 'query',
+                    'show_enum_origins': 'query',
                 },
                 'collection_format_map': {
                 }
@@ -277,11 +297,12 @@ class ScorecardsApi(object):
             include_remote_data (bool): Whether to include the original data Merge fetched from the third-party to produce these models.. [optional]
             interview_id (str): If provided, will only return scorecards for this interview.. [optional]
             interviewer_id (str): If provided, will only return scorecards for this interviewer.. [optional]
-            modified_after (datetime): If provided, will only return objects modified after this datetime.. [optional]
-            modified_before (datetime): If provided, will only return objects modified before this datetime.. [optional]
+            modified_after (datetime): If provided, only objects synced by Merge after this date time will be returned.. [optional]
+            modified_before (datetime): If provided, only objects synced by Merge before this date time will be returned.. [optional]
             page_size (int): Number of results to return per page.. [optional]
-            remote_fields (str): Which fields should be returned in non-normalized form.. [optional] if omitted the server will use the default value of "overall_recommendation"
+            remote_fields (str): Deprecated. Use show_enum_origins.. [optional] if omitted the server will use the default value of "overall_recommendation"
             remote_id (str, none_type): The API provider's ID for the given object.. [optional]
+            show_enum_origins (str): Which fields should be returned in non-normalized form.. [optional] if omitted the server will use the default value of "overall_recommendation"
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -365,7 +386,8 @@ class ScorecardsApi(object):
         Keyword Args:
             expand (str): Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.. [optional]
             include_remote_data (bool): Whether to include the original data Merge fetched from the third-party to produce these models.. [optional]
-            remote_fields (str): Which fields should be returned in non-normalized form.. [optional] if omitted the server will use the default value of "overall_recommendation"
+            remote_fields (str): Deprecated. Use show_enum_origins.. [optional] if omitted the server will use the default value of "overall_recommendation"
+            show_enum_origins (str): Which fields should be returned in non-normalized form.. [optional] if omitted the server will use the default value of "overall_recommendation"
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object

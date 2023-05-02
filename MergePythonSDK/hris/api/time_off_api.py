@@ -133,6 +133,7 @@ class TimeOffApi(object):
                     'remote_fields',
                     'remote_id',
                     'request_type',
+                    'show_enum_origins',
                     'status',
                 ],
                 'required': [],
@@ -145,6 +146,7 @@ class TimeOffApi(object):
                     'expand',
                     'remote_fields',
                     'request_type',
+                    'show_enum_origins',
                     'status',
                 ],
                 'validation': [
@@ -178,6 +180,16 @@ class TimeOffApi(object):
                         "SICK": "SICK",
                         "VACATION": "VACATION",
                         "VOLUNTEER": "VOLUNTEER"
+                    },
+                    ('show_enum_origins',): {
+
+                        "REQUEST_TYPE": "request_type",
+                        "REQUEST_TYPE,STATUS": "request_type,status",
+                        "REQUEST_TYPE,STATUS,UNITS": "request_type,status,units",
+                        "REQUEST_TYPE,UNITS": "request_type,units",
+                        "STATUS": "status",
+                        "STATUS,UNITS": "status,units",
+                        "UNITS": "units"
                     },
                     ('status',): {
                         'None': None,
@@ -217,6 +229,8 @@ class TimeOffApi(object):
                         (str, none_type,),
                     'request_type':
                         (str, none_type,),
+                    'show_enum_origins':
+                        (str,),
                     'status':
                         (str, none_type,),
                 },
@@ -235,6 +249,7 @@ class TimeOffApi(object):
                     'remote_fields': 'remote_fields',
                     'remote_id': 'remote_id',
                     'request_type': 'request_type',
+                    'show_enum_origins': 'show_enum_origins',
                     'status': 'status',
                 },
                 'location_map': {
@@ -252,6 +267,7 @@ class TimeOffApi(object):
                     'remote_fields': 'query',
                     'remote_id': 'query',
                     'request_type': 'query',
+                    'show_enum_origins': 'query',
                     'status': 'query',
                 },
                 'collection_format_map': {
@@ -328,6 +344,7 @@ class TimeOffApi(object):
                     'expand',
                     'include_remote_data',
                     'remote_fields',
+                    'show_enum_origins',
                 ],
                 'required': [
                     'id',
@@ -337,6 +354,7 @@ class TimeOffApi(object):
                 'enum': [
                     'expand',
                     'remote_fields',
+                    'show_enum_origins',
                 ],
                 'validation': [
                 ]
@@ -361,6 +379,16 @@ class TimeOffApi(object):
                         "STATUS,UNITS": "status,units",
                         "UNITS": "units"
                     },
+                    ('show_enum_origins',): {
+
+                        "REQUEST_TYPE": "request_type",
+                        "REQUEST_TYPE,STATUS": "request_type,status",
+                        "REQUEST_TYPE,STATUS,UNITS": "request_type,status,units",
+                        "REQUEST_TYPE,UNITS": "request_type,units",
+                        "STATUS": "status",
+                        "STATUS,UNITS": "status,units",
+                        "UNITS": "units"
+                    },
                 },
                 'openapi_types': {
                     'id':
@@ -371,18 +399,22 @@ class TimeOffApi(object):
                         (bool,),
                     'remote_fields':
                         (str,),
+                    'show_enum_origins':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
                     'expand': 'expand',
                     'include_remote_data': 'include_remote_data',
                     'remote_fields': 'remote_fields',
+                    'show_enum_origins': 'show_enum_origins',
                 },
                 'location_map': {
                     'id': 'path',
                     'expand': 'query',
                     'include_remote_data': 'query',
                     'remote_fields': 'query',
+                    'show_enum_origins': 'query',
                 },
                 'collection_format_map': {
                 }
@@ -504,13 +536,14 @@ class TimeOffApi(object):
             expand (str): Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.. [optional]
             include_deleted_data (bool): Whether to include data that was marked as deleted by third party webhooks.. [optional]
             include_remote_data (bool): Whether to include the original data Merge fetched from the third-party to produce these models.. [optional]
-            modified_after (datetime): If provided, will only return objects modified after this datetime.. [optional]
-            modified_before (datetime): If provided, will only return objects modified before this datetime.. [optional]
+            modified_after (datetime): If provided, only objects synced by Merge after this date time will be returned.. [optional]
+            modified_before (datetime): If provided, only objects synced by Merge before this date time will be returned.. [optional]
             page_size (int): Number of results to return per page.. [optional]
-            remote_fields (str): Which fields should be returned in non-normalized form.. [optional]
+            remote_fields (str): Deprecated. Use show_enum_origins.. [optional]
             remote_id (str, none_type): The API provider's ID for the given object.. [optional]
-            request_type (str, none_type): If provided, will only return TimeOff with this request type. Options: ('VACATION', 'SICK', 'PERSONAL', 'JURY_DUTY', 'VOLUNTEER', 'BEREAVEMENT'). [optional]
-            status (str, none_type): If provided, will only return TimeOff with this status. Options: ('REQUESTED', 'APPROVED', 'DECLINED', 'CANCELLED', 'DELETED'). [optional]
+            request_type (str, none_type): If provided, will only return TimeOff with this request type. Options: ('VACATION', 'SICK', 'PERSONAL', 'JURY_DUTY', 'VOLUNTEER', 'BEREAVEMENT')  * `VACATION` - VACATION * `SICK` - SICK * `PERSONAL` - PERSONAL * `JURY_DUTY` - JURY_DUTY * `VOLUNTEER` - VOLUNTEER * `BEREAVEMENT` - BEREAVEMENT. [optional]
+            show_enum_origins (str): Which fields should be returned in non-normalized form.. [optional]
+            status (str, none_type): If provided, will only return TimeOff with this status. Options: ('REQUESTED', 'APPROVED', 'DECLINED', 'CANCELLED', 'DELETED')  * `REQUESTED` - REQUESTED * `APPROVED` - APPROVED * `DECLINED` - DECLINED * `CANCELLED` - CANCELLED * `DELETED` - DELETED. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -672,7 +705,8 @@ class TimeOffApi(object):
         Keyword Args:
             expand (str): Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.. [optional]
             include_remote_data (bool): Whether to include the original data Merge fetched from the third-party to produce these models.. [optional]
-            remote_fields (str): Which fields should be returned in non-normalized form.. [optional]
+            remote_fields (str): Deprecated. Use show_enum_origins.. [optional]
+            show_enum_origins (str): Which fields should be returned in non-normalized form.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object

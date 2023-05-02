@@ -81,7 +81,7 @@ class EmailAddress(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -100,6 +100,7 @@ class EmailAddress(ModelNormal):
         defined_types = {
             'value': (str, none_type, none_type,),  # noqa: E501
             'email_address_type': (EmailAddressTypeEnum, str, none_type,),
+            'modified_at': (datetime, none_type,),  # noqa: E501
         }
         return defined_types
 
@@ -111,9 +112,11 @@ class EmailAddress(ModelNormal):
     attribute_map = {
         'value': 'value',  # noqa: E501
         'email_address_type': 'email_address_type',  # noqa: E501
+        'modified_at': 'modified_at',  # noqa: E501
     }
 
     read_only_vars = {
+        'modified_at',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -155,7 +158,8 @@ class EmailAddress(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             value (str, none_type): The email address.. [optional]  # noqa: E501
-            email_address_type (bool, dict, float, int, list, str, none_type): The type of email address.. [optional]  # noqa: E501
+            email_address_type (bool, date, datetime, dict, float, int, list, str, none_type): The type of email address.  * `PERSONAL` - PERSONAL * `WORK` - WORK * `OTHER` - OTHER. [optional]  # noqa: E501
+            modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -190,6 +194,7 @@ class EmailAddress(ModelNormal):
 
         self.value = kwargs.get("value", None)
         self.email_address_type = kwargs.get("email_address_type", None)
+        self._modified_at = kwargs.get("modified_at", None)
         return self
 
     required_properties = set([
@@ -237,7 +242,8 @@ class EmailAddress(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             value (str, none_type): The email address.. [optional]  # noqa: E501
-            email_address_type (bool, dict, float, int, list, str, none_type): The type of email address.. [optional]  # noqa: E501
+            email_address_type (bool, date, datetime, dict, float, int, list, str, none_type): The type of email address.  * `PERSONAL` - PERSONAL * `WORK` - WORK * `OTHER` - OTHER. [optional]  # noqa: E501
+            modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -268,6 +274,11 @@ class EmailAddress(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.value: Union[str, none_type] = kwargs.get("value", None)
-        self.email_address_type: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("email_address_type", None)
+        self.email_address_type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("email_address_type", None)
+        self._modified_at: Union[datetime] = kwargs.get("modified_at", None)
+    @property
+    def modified_at(self):
+        return self._modified_at
+
 
 

@@ -193,21 +193,22 @@ class ProjectsApi(object):
                     'accountTokenAuth',
                     'bearerAuth'
                 ],
-                'endpoint_path': '/ticketing/v1/projects/{id}/users',
+                'endpoint_path': '/ticketing/v1/projects/{parent_id}/users',
                 'operation_id': 'projects_users_list',
                 'http_method': 'GET',
                 'servers': None,
             },
             params_map={
                 'all': [
-                    'id',
+                    'parent_id',
                     'cursor',
                     'expand',
+                    'include_deleted_data',
                     'include_remote_data',
                     'page_size',
                 ],
                 'required': [
-                    'id',
+                    'parent_id',
                 ],
                 'nullable': [
                 ],
@@ -227,28 +228,32 @@ class ProjectsApi(object):
                     },
                 },
                 'openapi_types': {
-                    'id':
+                    'parent_id':
                         (str,),
                     'cursor':
                         (str,),
                     'expand':
                         (str,),
+                    'include_deleted_data':
+                        (bool,),
                     'include_remote_data':
                         (bool,),
                     'page_size':
                         (int,),
                 },
                 'attribute_map': {
-                    'id': 'id',
+                    'parent_id': 'parent_id',
                     'cursor': 'cursor',
                     'expand': 'expand',
+                    'include_deleted_data': 'include_deleted_data',
                     'include_remote_data': 'include_remote_data',
                     'page_size': 'page_size',
                 },
                 'location_map': {
-                    'id': 'path',
+                    'parent_id': 'path',
                     'cursor': 'query',
                     'expand': 'query',
+                    'include_deleted_data': 'query',
                     'include_remote_data': 'query',
                     'page_size': 'query',
                 },
@@ -284,8 +289,8 @@ class ProjectsApi(object):
             cursor (str): The pagination cursor value.. [optional]
             include_deleted_data (bool): Whether to include data that was marked as deleted by third party webhooks.. [optional]
             include_remote_data (bool): Whether to include the original data Merge fetched from the third-party to produce these models.. [optional]
-            modified_after (datetime): If provided, will only return objects modified after this datetime.. [optional]
-            modified_before (datetime): If provided, will only return objects modified before this datetime.. [optional]
+            modified_after (datetime): If provided, only objects synced by Merge after this date time will be returned.. [optional]
+            modified_before (datetime): If provided, only objects synced by Merge before this date time will be returned.. [optional]
             page_size (int): Number of results to return per page.. [optional]
             remote_id (str, none_type): The API provider's ID for the given object.. [optional]
             _return_http_data_only (bool): response data without head status
@@ -437,24 +442,25 @@ class ProjectsApi(object):
 
     def projects_users_list(
         self,
-        id,
+        parent_id,
         **kwargs
     ) -> "MergePaginatedResponse(User)":
         """projects_users_list  # noqa: E501
 
-        Returns a `User` object with the given `id`.  # noqa: E501
+        Returns a list of `User` objects.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.projects_users_list(id, async_req=True)
+        >>> thread = api.projects_users_list(parent_id, async_req=True)
         >>> result = thread.get()
 
         Args:
-            id (str):
+            parent_id (str):
 
         Keyword Args:
             cursor (str): The pagination cursor value.. [optional]
             expand (str): Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.. [optional] if omitted the server will use the default value of "teams"
+            include_deleted_data (bool): Whether to include data that was marked as deleted by third party webhooks.. [optional]
             include_remote_data (bool): Whether to include the original data Merge fetched from the third-party to produce these models.. [optional]
             page_size (int): Number of results to return per page.. [optional]
             _return_http_data_only (bool): response data without head status
@@ -518,7 +524,7 @@ class ProjectsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['id'] = \
-            id
+        kwargs['parent_id'] = \
+            parent_id
         return self.projects_users_list_endpoint.call_with_http_info(**kwargs)
 

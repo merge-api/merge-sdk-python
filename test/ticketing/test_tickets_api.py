@@ -60,6 +60,12 @@ class TestTicketsApi(unittest.TestCase):
         """
         pass
 
+    def test_tickets_remote_field_classes_list(self):
+        """Test case for tickets_remote_field_classes_list
+
+        """
+        pass
+
     def test_tickets_retrieve(self):
         """Test case for tickets_retrieve
 

@@ -42,6 +42,12 @@ class TestLeadsApi(unittest.TestCase):
         """
         pass
 
+    def test_leads_remote_field_classes_list(self):
+        """Test case for leads_remote_field_classes_list
+
+        """
+        pass
+
     def test_leads_retrieve(self):
         """Test case for leads_retrieve
 

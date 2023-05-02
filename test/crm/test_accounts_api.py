@@ -36,8 +36,26 @@ class TestAccountsApi(unittest.TestCase):
         """
         pass
 
+    def test_accounts_meta_patch_retrieve(self):
+        """Test case for accounts_meta_patch_retrieve
+
+        """
+        pass
+
     def test_accounts_meta_post_retrieve(self):
         """Test case for accounts_meta_post_retrieve
+
+        """
+        pass
+
+    def test_accounts_partial_update(self):
+        """Test case for accounts_partial_update
+
+        """
+        pass
+
+    def test_accounts_remote_field_classes_list(self):
+        """Test case for accounts_remote_field_classes_list
 
         """
         pass
