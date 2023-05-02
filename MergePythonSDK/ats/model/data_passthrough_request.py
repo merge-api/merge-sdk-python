@@ -91,7 +91,7 @@ class DataPassthroughRequest(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -108,7 +108,7 @@ class DataPassthroughRequest(ModelNormal):
         lazy_import()
 
         defined_types = {
-            'method': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'method': (bool, dict, float, int, list, str, none_type,),  # noqa: E501
             'path': (str,),  # noqa: E501
             'base_url_override': (str, none_type, none_type,),  # noqa: E501
             'data': (str, none_type, none_type,),  # noqa: E501
