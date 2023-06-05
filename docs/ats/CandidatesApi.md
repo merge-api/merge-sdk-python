@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 
 # **candidates_create**
-> CandidateResponse candidates_create(x_account_token, candidate_endpoint_request)
+> CandidateResponse candidates_create(candidate_endpoint_request)
 
 
 
@@ -20,7 +20,8 @@ Creates a `Candidate` object with the given values.
 
 ### Example
 
-* Api Key Authentication (tokenAuth):
+* Api Key Authentication (accountTokenAuth):
+* Bearer Authentication (bearerAuth):
 
 ```python
 import time
@@ -40,17 +41,21 @@ configuration = MergePythonSDK.ats.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: tokenAuth
-configuration.api_key['tokenAuth'] = 'YOUR_API_KEY'
+# Configure API key authorization: accountTokenAuth
+configuration.api_key['accountTokenAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['tokenAuth'] = 'Bearer'
+# configuration.api_key_prefix['accountTokenAuth'] = 'Bearer'
+
+# Configure Bearer authorization: bearerAuth
+configuration = MergePythonSDK.ats.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 
 # Enter a context with an instance of the API client
 with MergePythonSDK.ats.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = candidates_api.CandidatesApi(api_client)
-    x_account_token = "X-Account-Token_example" # str | Token identifying the end user.
     candidate_endpoint_request = CandidateEndpointRequest(
         model=CandidateRequest(
             first_name="Gil",
@@ -115,7 +120,7 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        api_response = api_instance.candidates_create(x_account_token, candidate_endpoint_request)
+        api_response = api_instance.candidates_create(candidate_endpoint_request)
         pprint(api_response)
     except MergePythonSDK.ats.ApiException as e:
         print("Exception when calling CandidatesApi->candidates_create: %s\n" % e)
@@ -123,7 +128,7 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        api_response = api_instance.candidates_create(x_account_token, candidate_endpoint_request, is_debug_mode=is_debug_mode, run_async=run_async)
+        api_response = api_instance.candidates_create(candidate_endpoint_request, is_debug_mode=is_debug_mode, run_async=run_async)
         pprint(api_response)
     except MergePythonSDK.ats.ApiException as e:
         print("Exception when calling CandidatesApi->candidates_create: %s\n" % e)
@@ -134,7 +139,6 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **x_account_token** | **str**| Token identifying the end user. |
  **candidate_endpoint_request** | [**CandidateEndpointRequest**](CandidateEndpointRequest.md)|  |
  **is_debug_mode** | **bool**| Whether to include debug fields (such as log file links) in the response. | [optional]
  **run_async** | **bool**| Whether or not third-party updates should be run asynchronously. | [optional]
@@ -145,7 +149,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -162,7 +166,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **candidates_ignore_create**
-> candidates_ignore_create(x_account_token, model_id, ignore_common_model_request)
+> candidates_ignore_create(model_id, ignore_common_model_request)
 
 
 
@@ -170,7 +174,8 @@ Ignores a specific row based on the `model_id` in the url. These records will ha
 
 ### Example
 
-* Api Key Authentication (tokenAuth):
+* Api Key Authentication (accountTokenAuth):
+* Bearer Authentication (bearerAuth):
 
 ```python
 import time
@@ -189,17 +194,21 @@ configuration = MergePythonSDK.ats.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: tokenAuth
-configuration.api_key['tokenAuth'] = 'YOUR_API_KEY'
+# Configure API key authorization: accountTokenAuth
+configuration.api_key['accountTokenAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['tokenAuth'] = 'Bearer'
+# configuration.api_key_prefix['accountTokenAuth'] = 'Bearer'
+
+# Configure Bearer authorization: bearerAuth
+configuration = MergePythonSDK.ats.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 
 # Enter a context with an instance of the API client
 with MergePythonSDK.ats.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = candidates_api.CandidatesApi(api_client)
-    x_account_token = "X-Account-Token_example" # str | Token identifying the end user.
     model_id = "model_id_example" # str | 
     ignore_common_model_request = IgnoreCommonModelRequest(
         reason=None,
@@ -208,7 +217,7 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        api_instance.candidates_ignore_create(x_account_token, model_id, ignore_common_model_request)
+        api_instance.candidates_ignore_create(model_id, ignore_common_model_request)
     except MergePythonSDK.ats.ApiException as e:
         print("Exception when calling CandidatesApi->candidates_ignore_create: %s\n" % e)
 ```
@@ -218,7 +227,6 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **x_account_token** | **str**| Token identifying the end user. |
  **model_id** | **str**|  |
  **ignore_common_model_request** | [**IgnoreCommonModelRequest**](IgnoreCommonModelRequest.md)|  |
 
@@ -228,7 +236,7 @@ void (empty response body)
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -245,7 +253,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **candidates_list**
-> PaginatedCandidateList candidates_list(x_account_token)
+> PaginatedCandidateList candidates_list()
 
 
 
@@ -253,7 +261,8 @@ Returns a list of `Candidate` objects.
 
 ### Example
 
-* Api Key Authentication (tokenAuth):
+* Api Key Authentication (accountTokenAuth):
+* Bearer Authentication (bearerAuth):
 
 ```python
 import time
@@ -272,17 +281,21 @@ configuration = MergePythonSDK.ats.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: tokenAuth
-configuration.api_key['tokenAuth'] = 'YOUR_API_KEY'
+# Configure API key authorization: accountTokenAuth
+configuration.api_key['accountTokenAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['tokenAuth'] = 'Bearer'
+# configuration.api_key_prefix['accountTokenAuth'] = 'Bearer'
+
+# Configure Bearer authorization: bearerAuth
+configuration = MergePythonSDK.ats.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 
 # Enter a context with an instance of the API client
 with MergePythonSDK.ats.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = candidates_api.CandidatesApi(api_client)
-    x_account_token = "X-Account-Token_example" # str | Token identifying the end user.
     created_after = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, will only return objects created after this datetime. (optional)
     created_before = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, will only return objects created before this datetime. (optional)
     cursor = "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw" # str | The pagination cursor value. (optional)
@@ -299,16 +312,9 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
     tags = "tags_example" # str | If provided, will only return candidates with these tags; multiple tags can be separated by commas. (optional)
 
     # example passing only required values which don't have defaults set
-    try:
-        api_response = api_instance.candidates_list(x_account_token)
-        pprint(api_response)
-    except MergePythonSDK.ats.ApiException as e:
-        print("Exception when calling CandidatesApi->candidates_list: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
     # and optional values
     try:
-        api_response = api_instance.candidates_list(x_account_token, created_after=created_after, created_before=created_before, cursor=cursor, email_addresses=email_addresses, expand=expand, first_name=first_name, include_deleted_data=include_deleted_data, include_remote_data=include_remote_data, last_name=last_name, modified_after=modified_after, modified_before=modified_before, page_size=page_size, remote_id=remote_id, tags=tags)
+        api_response = api_instance.candidates_list(created_after=created_after, created_before=created_before, cursor=cursor, email_addresses=email_addresses, expand=expand, first_name=first_name, include_deleted_data=include_deleted_data, include_remote_data=include_remote_data, last_name=last_name, modified_after=modified_after, modified_before=modified_before, page_size=page_size, remote_id=remote_id, tags=tags)
         pprint(api_response)
     except MergePythonSDK.ats.ApiException as e:
         print("Exception when calling CandidatesApi->candidates_list: %s\n" % e)
@@ -319,7 +325,6 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **x_account_token** | **str**| Token identifying the end user. |
  **created_after** | **datetime**| If provided, will only return objects created after this datetime. | [optional]
  **created_before** | **datetime**| If provided, will only return objects created before this datetime. | [optional]
  **cursor** | **str**| The pagination cursor value. | [optional]
@@ -341,7 +346,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -358,7 +363,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **candidates_meta_post_retrieve**
-> MetaResponse candidates_meta_post_retrieve(x_account_token)
+> MetaResponse candidates_meta_post_retrieve()
 
 
 
@@ -366,7 +371,8 @@ Returns metadata for `Candidate` POSTs.
 
 ### Example
 
-* Api Key Authentication (tokenAuth):
+* Api Key Authentication (accountTokenAuth):
+* Bearer Authentication (bearerAuth):
 
 ```python
 import time
@@ -385,21 +391,25 @@ configuration = MergePythonSDK.ats.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: tokenAuth
-configuration.api_key['tokenAuth'] = 'YOUR_API_KEY'
+# Configure API key authorization: accountTokenAuth
+configuration.api_key['accountTokenAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['tokenAuth'] = 'Bearer'
+# configuration.api_key_prefix['accountTokenAuth'] = 'Bearer'
+
+# Configure Bearer authorization: bearerAuth
+configuration = MergePythonSDK.ats.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 
 # Enter a context with an instance of the API client
 with MergePythonSDK.ats.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = candidates_api.CandidatesApi(api_client)
-    x_account_token = "X-Account-Token_example" # str | Token identifying the end user.
 
-    # example passing only required values which don't have defaults set
+    # example, this endpoint has no required or optional parameters
     try:
-        api_response = api_instance.candidates_meta_post_retrieve(x_account_token)
+        api_response = api_instance.candidates_meta_post_retrieve()
         pprint(api_response)
     except MergePythonSDK.ats.ApiException as e:
         print("Exception when calling CandidatesApi->candidates_meta_post_retrieve: %s\n" % e)
@@ -407,10 +417,7 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
 
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **x_account_token** | **str**| Token identifying the end user. |
+This endpoint does not need any parameter.
 
 ### Return type
 
@@ -418,7 +425,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -435,7 +442,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **candidates_retrieve**
-> Candidate candidates_retrieve(x_account_token, id)
+> Candidate candidates_retrieve(id)
 
 
 
@@ -443,7 +450,8 @@ Returns a `Candidate` object with the given `id`.
 
 ### Example
 
-* Api Key Authentication (tokenAuth):
+* Api Key Authentication (accountTokenAuth):
+* Bearer Authentication (bearerAuth):
 
 ```python
 import time
@@ -462,24 +470,28 @@ configuration = MergePythonSDK.ats.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: tokenAuth
-configuration.api_key['tokenAuth'] = 'YOUR_API_KEY'
+# Configure API key authorization: accountTokenAuth
+configuration.api_key['accountTokenAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['tokenAuth'] = 'Bearer'
+# configuration.api_key_prefix['accountTokenAuth'] = 'Bearer'
+
+# Configure Bearer authorization: bearerAuth
+configuration = MergePythonSDK.ats.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 
 # Enter a context with an instance of the API client
 with MergePythonSDK.ats.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = candidates_api.CandidatesApi(api_client)
-    x_account_token = "X-Account-Token_example" # str | Token identifying the end user.
     id = "id_example" # str | 
     expand = "applications,attachments" # str | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. (optional)
     include_remote_data = True # bool | Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
 
     # example passing only required values which don't have defaults set
     try:
-        api_response = api_instance.candidates_retrieve(x_account_token, id)
+        api_response = api_instance.candidates_retrieve(id)
         pprint(api_response)
     except MergePythonSDK.ats.ApiException as e:
         print("Exception when calling CandidatesApi->candidates_retrieve: %s\n" % e)
@@ -487,7 +499,7 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        api_response = api_instance.candidates_retrieve(x_account_token, id, expand=expand, include_remote_data=include_remote_data)
+        api_response = api_instance.candidates_retrieve(id, expand=expand, include_remote_data=include_remote_data)
         pprint(api_response)
     except MergePythonSDK.ats.ApiException as e:
         print("Exception when calling CandidatesApi->candidates_retrieve: %s\n" % e)
@@ -498,7 +510,6 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **x_account_token** | **str**| Token identifying the end user. |
  **id** | **str**|  |
  **expand** | **str**| Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. | [optional]
  **include_remote_data** | **bool**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional]
@@ -509,7 +520,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 

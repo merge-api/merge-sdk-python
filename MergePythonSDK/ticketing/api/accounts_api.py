@@ -41,7 +41,8 @@ class AccountsApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(Account),),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/ticketing/v1/accounts',
                 'operation_id': 'accounts_list',
@@ -50,7 +51,6 @@ class AccountsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'created_after',
                     'created_before',
                     'cursor',
@@ -61,9 +61,7 @@ class AccountsApi(object):
                     'page_size',
                     'remote_id',
                 ],
-                'required': [
-                    'x_account_token',
-                ],
+                'required': [],
                 'nullable': [
                     'remote_id',
                 ],
@@ -78,8 +76,6 @@ class AccountsApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'created_after':
                         (datetime,),
                     'created_before':
@@ -100,7 +96,6 @@ class AccountsApi(object):
                         (str, none_type,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'created_after': 'created_after',
                     'created_before': 'created_before',
                     'cursor': 'cursor',
@@ -112,7 +107,6 @@ class AccountsApi(object):
                     'remote_id': 'remote_id',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'created_after': 'query',
                     'created_before': 'query',
                     'cursor': 'query',
@@ -138,7 +132,8 @@ class AccountsApi(object):
             settings={
                 'response_type': (Account,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/ticketing/v1/accounts/{id}',
                 'operation_id': 'accounts_retrieve',
@@ -147,12 +142,10 @@ class AccountsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'id',
                     'include_remote_data',
                 ],
                 'required': [
-                    'x_account_token',
                     'id',
                 ],
                 'nullable': [
@@ -168,20 +161,16 @@ class AccountsApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'id':
                         (str,),
                     'include_remote_data':
                         (bool,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                     'include_remote_data': 'include_remote_data',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'id': 'path',
                     'include_remote_data': 'query',
                 },
@@ -199,7 +188,6 @@ class AccountsApi(object):
 
     def accounts_list(
         self,
-        x_account_token,
         **kwargs
     ) -> "MergePaginatedResponse(Account)":
         """accounts_list  # noqa: E501
@@ -208,11 +196,9 @@ class AccountsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.accounts_list(x_account_token, async_req=True)
+        >>> thread = api.accounts_list(async_req=True)
         >>> result = thread.get()
 
-        Args:
-            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             created_after (datetime): If provided, will only return objects created after this datetime.. [optional]
@@ -285,13 +271,10 @@ class AccountsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         return self.accounts_list_endpoint.call_with_http_info(**kwargs)
 
     def accounts_retrieve(
         self,
-        x_account_token,
         id,
         **kwargs
     ) -> "Account":
@@ -301,11 +284,10 @@ class AccountsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.accounts_retrieve(x_account_token, id, async_req=True)
+        >>> thread = api.accounts_retrieve(id, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             id (str):
 
         Keyword Args:
@@ -371,8 +353,6 @@ class AccountsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['id'] = \
             id
         return self.accounts_retrieve_endpoint.call_with_http_info(**kwargs)

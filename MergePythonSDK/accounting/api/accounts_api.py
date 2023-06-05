@@ -44,7 +44,8 @@ class AccountsApi(object):
             settings={
                 'response_type': (AccountResponse,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/accounting/v1/accounts',
                 'operation_id': 'accounts_create',
@@ -53,13 +54,11 @@ class AccountsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'account_endpoint_request',
                     'is_debug_mode',
                     'run_async',
                 ],
                 'required': [
-                    'x_account_token',
                     'account_endpoint_request',
                 ],
                 'nullable': [
@@ -75,8 +74,6 @@ class AccountsApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'account_endpoint_request':
                         (AccountEndpointRequest,),
                     'is_debug_mode':
@@ -85,12 +82,10 @@ class AccountsApi(object):
                         (bool,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'is_debug_mode': 'is_debug_mode',
                     'run_async': 'run_async',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'account_endpoint_request': 'body',
                     'is_debug_mode': 'query',
                     'run_async': 'query',
@@ -114,7 +109,8 @@ class AccountsApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(Account),),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/accounting/v1/accounts',
                 'operation_id': 'accounts_list',
@@ -123,7 +119,6 @@ class AccountsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'company_id',
                     'created_after',
                     'created_before',
@@ -138,9 +133,7 @@ class AccountsApi(object):
                     'remote_id',
                     'show_enum_origins',
                 ],
-                'required': [
-                    'x_account_token',
-                ],
+                'required': [],
                 'nullable': [
                     'remote_id',
                 ],
@@ -174,8 +167,6 @@ class AccountsApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'company_id':
                         (str,),
                     'created_after':
@@ -204,7 +195,6 @@ class AccountsApi(object):
                         (str,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'company_id': 'company_id',
                     'created_after': 'created_after',
                     'created_before': 'created_before',
@@ -220,7 +210,6 @@ class AccountsApi(object):
                     'show_enum_origins': 'show_enum_origins',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'company_id': 'query',
                     'created_after': 'query',
                     'created_before': 'query',
@@ -250,7 +239,8 @@ class AccountsApi(object):
             settings={
                 'response_type': (MetaResponse,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/accounting/v1/accounts/meta/post',
                 'operation_id': 'accounts_meta_post_retrieve',
@@ -259,11 +249,8 @@ class AccountsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                 ],
-                'required': [
-                    'x_account_token',
-                ],
+                'required': [],
                 'nullable': [
                 ],
                 'enum': [
@@ -277,14 +264,10 @@ class AccountsApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -301,7 +284,8 @@ class AccountsApi(object):
             settings={
                 'response_type': (Account,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/accounting/v1/accounts/{id}',
                 'operation_id': 'accounts_retrieve',
@@ -310,7 +294,6 @@ class AccountsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'id',
                     'expand',
                     'include_remote_data',
@@ -318,7 +301,6 @@ class AccountsApi(object):
                     'show_enum_origins',
                 ],
                 'required': [
-                    'x_account_token',
                     'id',
                 ],
                 'nullable': [
@@ -353,8 +335,6 @@ class AccountsApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'id':
                         (str,),
                     'expand':
@@ -367,7 +347,6 @@ class AccountsApi(object):
                         (str,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                     'expand': 'expand',
                     'include_remote_data': 'include_remote_data',
@@ -375,7 +354,6 @@ class AccountsApi(object):
                     'show_enum_origins': 'show_enum_origins',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'id': 'path',
                     'expand': 'query',
                     'include_remote_data': 'query',
@@ -396,7 +374,6 @@ class AccountsApi(object):
 
     def accounts_create(
         self,
-        x_account_token,
         account_endpoint_request,
         **kwargs
     ) -> "AccountResponse":
@@ -406,11 +383,10 @@ class AccountsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.accounts_create(x_account_token, account_endpoint_request, async_req=True)
+        >>> thread = api.accounts_create(account_endpoint_request, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             account_endpoint_request (AccountEndpointRequest):
 
         Keyword Args:
@@ -477,15 +453,12 @@ class AccountsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['account_endpoint_request'] = \
             account_endpoint_request
         return self.accounts_create_endpoint.call_with_http_info(**kwargs)
 
     def accounts_list(
         self,
-        x_account_token,
         **kwargs
     ) -> "MergePaginatedResponse(Account)":
         """accounts_list  # noqa: E501
@@ -494,11 +467,9 @@ class AccountsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.accounts_list(x_account_token, async_req=True)
+        >>> thread = api.accounts_list(async_req=True)
         >>> result = thread.get()
 
-        Args:
-            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             company_id (str): If provided, will only return accounts for this company.. [optional]
@@ -575,13 +546,10 @@ class AccountsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         return self.accounts_list_endpoint.call_with_http_info(**kwargs)
 
     def accounts_meta_post_retrieve(
         self,
-        x_account_token,
         **kwargs
     ) -> "MetaResponse":
         """accounts_meta_post_retrieve  # noqa: E501
@@ -590,11 +558,9 @@ class AccountsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.accounts_meta_post_retrieve(x_account_token, async_req=True)
+        >>> thread = api.accounts_meta_post_retrieve(async_req=True)
         >>> result = thread.get()
 
-        Args:
-            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -658,13 +624,10 @@ class AccountsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         return self.accounts_meta_post_retrieve_endpoint.call_with_http_info(**kwargs)
 
     def accounts_retrieve(
         self,
-        x_account_token,
         id,
         **kwargs
     ) -> "Account":
@@ -674,11 +637,10 @@ class AccountsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.accounts_retrieve(x_account_token, id, async_req=True)
+        >>> thread = api.accounts_retrieve(id, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             id (str):
 
         Keyword Args:
@@ -747,8 +709,6 @@ class AccountsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['id'] = \
             id
         return self.accounts_retrieve_endpoint.call_with_http_info(**kwargs)

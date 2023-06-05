@@ -41,7 +41,8 @@ class ItemsApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(Item),),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/accounting/v1/items',
                 'operation_id': 'items_list',
@@ -50,7 +51,6 @@ class ItemsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'company_id',
                     'created_after',
                     'created_before',
@@ -65,9 +65,7 @@ class ItemsApi(object):
                     'remote_id',
                     'show_enum_origins',
                 ],
-                'required': [
-                    'x_account_token',
-                ],
+                'required': [],
                 'nullable': [
                     'remote_id',
                 ],
@@ -103,8 +101,6 @@ class ItemsApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'company_id':
                         (str,),
                     'created_after':
@@ -133,7 +129,6 @@ class ItemsApi(object):
                         (str,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'company_id': 'company_id',
                     'created_after': 'created_after',
                     'created_before': 'created_before',
@@ -149,7 +144,6 @@ class ItemsApi(object):
                     'show_enum_origins': 'show_enum_origins',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'company_id': 'query',
                     'created_after': 'query',
                     'created_before': 'query',
@@ -179,7 +173,8 @@ class ItemsApi(object):
             settings={
                 'response_type': (Item,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/accounting/v1/items/{id}',
                 'operation_id': 'items_retrieve',
@@ -188,7 +183,6 @@ class ItemsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'id',
                     'expand',
                     'include_remote_data',
@@ -196,7 +190,6 @@ class ItemsApi(object):
                     'show_enum_origins',
                 ],
                 'required': [
-                    'x_account_token',
                     'id',
                 ],
                 'nullable': [
@@ -233,8 +226,6 @@ class ItemsApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'id':
                         (str,),
                     'expand':
@@ -247,7 +238,6 @@ class ItemsApi(object):
                         (str,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                     'expand': 'expand',
                     'include_remote_data': 'include_remote_data',
@@ -255,7 +245,6 @@ class ItemsApi(object):
                     'show_enum_origins': 'show_enum_origins',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'id': 'path',
                     'expand': 'query',
                     'include_remote_data': 'query',
@@ -276,7 +265,6 @@ class ItemsApi(object):
 
     def items_list(
         self,
-        x_account_token,
         **kwargs
     ) -> "MergePaginatedResponse(Item)":
         """items_list  # noqa: E501
@@ -285,11 +273,9 @@ class ItemsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.items_list(x_account_token, async_req=True)
+        >>> thread = api.items_list(async_req=True)
         >>> result = thread.get()
 
-        Args:
-            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             company_id (str): If provided, will only return items for this company.. [optional]
@@ -366,13 +352,10 @@ class ItemsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         return self.items_list_endpoint.call_with_http_info(**kwargs)
 
     def items_retrieve(
         self,
-        x_account_token,
         id,
         **kwargs
     ) -> "Item":
@@ -382,11 +365,10 @@ class ItemsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.items_retrieve(x_account_token, id, async_req=True)
+        >>> thread = api.items_retrieve(id, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             id (str):
 
         Keyword Args:
@@ -455,8 +437,6 @@ class ItemsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['id'] = \
             id
         return self.items_retrieve_endpoint.call_with_http_info(**kwargs)

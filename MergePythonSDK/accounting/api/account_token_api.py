@@ -40,7 +40,7 @@ class AccountTokenApi(object):
             settings={
                 'response_type': (AccountToken,),
                 'auth': [
-                    'tokenAuth'
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/accounting/v1/account-token/{public_token}',
                 'operation_id': 'account_token_retrieve',

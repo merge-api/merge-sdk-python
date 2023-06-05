@@ -40,7 +40,8 @@ class AddressesApi(object):
             settings={
                 'response_type': (Address,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/accounting/v1/addresses/{id}',
                 'operation_id': 'addresses_retrieve',
@@ -49,14 +50,12 @@ class AddressesApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'id',
                     'include_remote_data',
                     'remote_fields',
                     'show_enum_origins',
                 ],
                 'required': [
-                    'x_account_token',
                     'id',
                 ],
                 'nullable': [
@@ -82,8 +81,6 @@ class AddressesApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'id':
                         (str,),
                     'include_remote_data':
@@ -94,14 +91,12 @@ class AddressesApi(object):
                         (str,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                     'include_remote_data': 'include_remote_data',
                     'remote_fields': 'remote_fields',
                     'show_enum_origins': 'show_enum_origins',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'id': 'path',
                     'include_remote_data': 'query',
                     'remote_fields': 'query',
@@ -121,7 +116,6 @@ class AddressesApi(object):
 
     def addresses_retrieve(
         self,
-        x_account_token,
         id,
         **kwargs
     ) -> "Address":
@@ -131,11 +125,10 @@ class AddressesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.addresses_retrieve(x_account_token, id, async_req=True)
+        >>> thread = api.addresses_retrieve(id, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             id (str):
 
         Keyword Args:
@@ -203,8 +196,6 @@ class AddressesApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['id'] = \
             id
         return self.addresses_retrieve_endpoint.call_with_http_info(**kwargs)

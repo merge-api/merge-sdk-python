@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **sync_status_list**
-> PaginatedSyncStatusList sync_status_list(x_account_token)
+> PaginatedSyncStatusList sync_status_list()
 
 
 
@@ -16,7 +16,8 @@ Get syncing status. Possible values: `DISABLED`, `DONE`, `FAILED`, `PARTIALLY_SY
 
 ### Example
 
-* Api Key Authentication (tokenAuth):
+* Api Key Authentication (accountTokenAuth):
+* Bearer Authentication (bearerAuth):
 
 ```python
 import time
@@ -35,31 +36,28 @@ configuration = MergePythonSDK.hris.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: tokenAuth
-configuration.api_key['tokenAuth'] = 'YOUR_API_KEY'
+# Configure API key authorization: accountTokenAuth
+configuration.api_key['accountTokenAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['tokenAuth'] = 'Bearer'
+# configuration.api_key_prefix['accountTokenAuth'] = 'Bearer'
+
+# Configure Bearer authorization: bearerAuth
+configuration = MergePythonSDK.hris.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 
 # Enter a context with an instance of the API client
 with MergePythonSDK.hris.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = sync_status_api.SyncStatusApi(api_client)
-    x_account_token = "X-Account-Token_example" # str | Token identifying the end user.
     cursor = "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw" # str | The pagination cursor value. (optional)
     page_size = 1 # int | Number of results to return per page. (optional)
 
     # example passing only required values which don't have defaults set
-    try:
-        api_response = api_instance.sync_status_list(x_account_token)
-        pprint(api_response)
-    except MergePythonSDK.hris.ApiException as e:
-        print("Exception when calling SyncStatusApi->sync_status_list: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
     # and optional values
     try:
-        api_response = api_instance.sync_status_list(x_account_token, cursor=cursor, page_size=page_size)
+        api_response = api_instance.sync_status_list(cursor=cursor, page_size=page_size)
         pprint(api_response)
     except MergePythonSDK.hris.ApiException as e:
         print("Exception when calling SyncStatusApi->sync_status_list: %s\n" % e)
@@ -70,7 +68,6 @@ with MergePythonSDK.hris.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **x_account_token** | **str**| Token identifying the end user. |
  **cursor** | **str**| The pagination cursor value. | [optional]
  **page_size** | **int**| Number of results to return per page. | [optional]
 
@@ -80,7 +77,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 

@@ -46,7 +46,8 @@ class TasksApi(object):
             settings={
                 'response_type': (TaskResponse,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/crm/v1/tasks',
                 'operation_id': 'tasks_create',
@@ -55,13 +56,11 @@ class TasksApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'task_endpoint_request',
                     'is_debug_mode',
                     'run_async',
                 ],
                 'required': [
-                    'x_account_token',
                     'task_endpoint_request',
                 ],
                 'nullable': [
@@ -77,8 +76,6 @@ class TasksApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'task_endpoint_request':
                         (TaskEndpointRequest,),
                     'is_debug_mode':
@@ -87,12 +84,10 @@ class TasksApi(object):
                         (bool,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'is_debug_mode': 'is_debug_mode',
                     'run_async': 'run_async',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'task_endpoint_request': 'body',
                     'is_debug_mode': 'query',
                     'run_async': 'query',
@@ -116,7 +111,8 @@ class TasksApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(Task),),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/crm/v1/tasks',
                 'operation_id': 'tasks_list',
@@ -125,7 +121,6 @@ class TasksApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'created_after',
                     'created_before',
                     'cursor',
@@ -138,9 +133,7 @@ class TasksApi(object):
                     'page_size',
                     'remote_id',
                 ],
-                'required': [
-                    'x_account_token',
-                ],
+                'required': [],
                 'nullable': [
                     'remote_id',
                 ],
@@ -162,8 +155,6 @@ class TasksApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'created_after':
                         (datetime,),
                     'created_before':
@@ -188,7 +179,6 @@ class TasksApi(object):
                         (str, none_type,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'created_after': 'created_after',
                     'created_before': 'created_before',
                     'cursor': 'cursor',
@@ -202,7 +192,6 @@ class TasksApi(object):
                     'remote_id': 'remote_id',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'created_after': 'query',
                     'created_before': 'query',
                     'cursor': 'query',
@@ -230,7 +219,8 @@ class TasksApi(object):
             settings={
                 'response_type': (MetaResponse,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/crm/v1/tasks/meta/patch/{id}',
                 'operation_id': 'tasks_meta_patch_retrieve',
@@ -239,11 +229,9 @@ class TasksApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'id',
                 ],
                 'required': [
-                    'x_account_token',
                     'id',
                 ],
                 'nullable': [
@@ -259,17 +247,13 @@ class TasksApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'id':
                         (str,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'id': 'path',
                 },
                 'collection_format_map': {
@@ -287,7 +271,8 @@ class TasksApi(object):
             settings={
                 'response_type': (MetaResponse,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/crm/v1/tasks/meta/post',
                 'operation_id': 'tasks_meta_post_retrieve',
@@ -296,11 +281,8 @@ class TasksApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                 ],
-                'required': [
-                    'x_account_token',
-                ],
+                'required': [],
                 'nullable': [
                 ],
                 'enum': [
@@ -314,14 +296,10 @@ class TasksApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -338,7 +316,8 @@ class TasksApi(object):
             settings={
                 'response_type': (TaskResponse,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/crm/v1/tasks/{id}',
                 'operation_id': 'tasks_partial_update',
@@ -347,14 +326,12 @@ class TasksApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'id',
                     'patched_task_endpoint_request',
                     'is_debug_mode',
                     'run_async',
                 ],
                 'required': [
-                    'x_account_token',
                     'id',
                     'patched_task_endpoint_request',
                 ],
@@ -371,8 +348,6 @@ class TasksApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'id':
                         (str,),
                     'patched_task_endpoint_request':
@@ -383,13 +358,11 @@ class TasksApi(object):
                         (bool,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                     'is_debug_mode': 'is_debug_mode',
                     'run_async': 'run_async',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'id': 'path',
                     'patched_task_endpoint_request': 'body',
                     'is_debug_mode': 'query',
@@ -414,7 +387,8 @@ class TasksApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(RemoteFieldClass),),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/crm/v1/tasks/remote-field-classes',
                 'operation_id': 'tasks_remote_field_classes_list',
@@ -423,16 +397,13 @@ class TasksApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'cursor',
                     'include_deleted_data',
                     'include_remote_data',
                     'include_remote_fields',
                     'page_size',
                 ],
-                'required': [
-                    'x_account_token',
-                ],
+                'required': [],
                 'nullable': [
                 ],
                 'enum': [
@@ -446,8 +417,6 @@ class TasksApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'cursor':
                         (str,),
                     'include_deleted_data':
@@ -460,7 +429,6 @@ class TasksApi(object):
                         (int,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'cursor': 'cursor',
                     'include_deleted_data': 'include_deleted_data',
                     'include_remote_data': 'include_remote_data',
@@ -468,7 +436,6 @@ class TasksApi(object):
                     'page_size': 'page_size',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'cursor': 'query',
                     'include_deleted_data': 'query',
                     'include_remote_data': 'query',
@@ -490,7 +457,8 @@ class TasksApi(object):
             settings={
                 'response_type': (Task,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/crm/v1/tasks/{id}',
                 'operation_id': 'tasks_retrieve',
@@ -499,14 +467,12 @@ class TasksApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'id',
                     'expand',
                     'include_remote_data',
                     'include_remote_fields',
                 ],
                 'required': [
-                    'x_account_token',
                     'id',
                 ],
                 'nullable': [
@@ -529,8 +495,6 @@ class TasksApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'id':
                         (str,),
                     'expand':
@@ -541,14 +505,12 @@ class TasksApi(object):
                         (bool,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                     'expand': 'expand',
                     'include_remote_data': 'include_remote_data',
                     'include_remote_fields': 'include_remote_fields',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'id': 'path',
                     'expand': 'query',
                     'include_remote_data': 'query',
@@ -568,7 +530,6 @@ class TasksApi(object):
 
     def tasks_create(
         self,
-        x_account_token,
         task_endpoint_request,
         **kwargs
     ) -> "TaskResponse":
@@ -578,11 +539,10 @@ class TasksApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.tasks_create(x_account_token, task_endpoint_request, async_req=True)
+        >>> thread = api.tasks_create(task_endpoint_request, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             task_endpoint_request (TaskEndpointRequest):
 
         Keyword Args:
@@ -649,15 +609,12 @@ class TasksApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['task_endpoint_request'] = \
             task_endpoint_request
         return self.tasks_create_endpoint.call_with_http_info(**kwargs)
 
     def tasks_list(
         self,
-        x_account_token,
         **kwargs
     ) -> "MergePaginatedResponse(Task)":
         """tasks_list  # noqa: E501
@@ -666,11 +623,9 @@ class TasksApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.tasks_list(x_account_token, async_req=True)
+        >>> thread = api.tasks_list(async_req=True)
         >>> result = thread.get()
 
-        Args:
-            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             created_after (datetime): If provided, will only return objects created after this datetime.. [optional]
@@ -745,13 +700,10 @@ class TasksApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         return self.tasks_list_endpoint.call_with_http_info(**kwargs)
 
     def tasks_meta_patch_retrieve(
         self,
-        x_account_token,
         id,
         **kwargs
     ) -> "MetaResponse":
@@ -761,11 +713,10 @@ class TasksApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.tasks_meta_patch_retrieve(x_account_token, id, async_req=True)
+        >>> thread = api.tasks_meta_patch_retrieve(id, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             id (str):
 
         Keyword Args:
@@ -830,15 +781,12 @@ class TasksApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['id'] = \
             id
         return self.tasks_meta_patch_retrieve_endpoint.call_with_http_info(**kwargs)
 
     def tasks_meta_post_retrieve(
         self,
-        x_account_token,
         **kwargs
     ) -> "MetaResponse":
         """tasks_meta_post_retrieve  # noqa: E501
@@ -847,11 +795,9 @@ class TasksApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.tasks_meta_post_retrieve(x_account_token, async_req=True)
+        >>> thread = api.tasks_meta_post_retrieve(async_req=True)
         >>> result = thread.get()
 
-        Args:
-            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -915,13 +861,10 @@ class TasksApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         return self.tasks_meta_post_retrieve_endpoint.call_with_http_info(**kwargs)
 
     def tasks_partial_update(
         self,
-        x_account_token,
         id,
         patched_task_endpoint_request,
         **kwargs
@@ -932,11 +875,10 @@ class TasksApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.tasks_partial_update(x_account_token, id, patched_task_endpoint_request, async_req=True)
+        >>> thread = api.tasks_partial_update(id, patched_task_endpoint_request, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             id (str):
             patched_task_endpoint_request (PatchedTaskEndpointRequest):
 
@@ -1004,8 +946,6 @@ class TasksApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['id'] = \
             id
         kwargs['patched_task_endpoint_request'] = \
@@ -1014,7 +954,6 @@ class TasksApi(object):
 
     def tasks_remote_field_classes_list(
         self,
-        x_account_token,
         **kwargs
     ) -> "MergePaginatedResponse(RemoteFieldClass)":
         """tasks_remote_field_classes_list  # noqa: E501
@@ -1023,11 +962,9 @@ class TasksApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.tasks_remote_field_classes_list(x_account_token, async_req=True)
+        >>> thread = api.tasks_remote_field_classes_list(async_req=True)
         >>> result = thread.get()
 
-        Args:
-            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             cursor (str): The pagination cursor value.. [optional]
@@ -1096,13 +1033,10 @@ class TasksApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         return self.tasks_remote_field_classes_list_endpoint.call_with_http_info(**kwargs)
 
     def tasks_retrieve(
         self,
-        x_account_token,
         id,
         **kwargs
     ) -> "Task":
@@ -1112,11 +1046,10 @@ class TasksApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.tasks_retrieve(x_account_token, id, async_req=True)
+        >>> thread = api.tasks_retrieve(id, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             id (str):
 
         Keyword Args:
@@ -1184,8 +1117,6 @@ class TasksApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['id'] = \
             id
         return self.tasks_retrieve_endpoint.call_with_http_info(**kwargs)

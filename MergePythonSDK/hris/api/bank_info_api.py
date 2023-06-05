@@ -41,7 +41,8 @@ class BankInfoApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(BankInfo),),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/hris/v1/bank-info',
                 'operation_id': 'bank_info_list',
@@ -50,7 +51,6 @@ class BankInfoApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'account_type',
                     'bank_name',
                     'created_after',
@@ -68,9 +68,7 @@ class BankInfoApi(object):
                     'remote_id',
                     'show_enum_origins',
                 ],
-                'required': [
-                    'x_account_token',
-                ],
+                'required': [],
                 'nullable': [
                     'account_type',
                     'bank_name',
@@ -114,8 +112,6 @@ class BankInfoApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'account_type':
                         (str, none_type,),
                     'bank_name':
@@ -150,7 +146,6 @@ class BankInfoApi(object):
                         (str,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'account_type': 'account_type',
                     'bank_name': 'bank_name',
                     'created_after': 'created_after',
@@ -169,7 +164,6 @@ class BankInfoApi(object):
                     'show_enum_origins': 'show_enum_origins',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'account_type': 'query',
                     'bank_name': 'query',
                     'created_after': 'query',
@@ -202,7 +196,8 @@ class BankInfoApi(object):
             settings={
                 'response_type': (BankInfo,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/hris/v1/bank-info/{id}',
                 'operation_id': 'bank_info_retrieve',
@@ -211,7 +206,6 @@ class BankInfoApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'id',
                     'expand',
                     'include_remote_data',
@@ -219,7 +213,6 @@ class BankInfoApi(object):
                     'show_enum_origins',
                 ],
                 'required': [
-                    'x_account_token',
                     'id',
                 ],
                 'nullable': [
@@ -250,8 +243,6 @@ class BankInfoApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'id':
                         (str,),
                     'expand':
@@ -264,7 +255,6 @@ class BankInfoApi(object):
                         (str,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                     'expand': 'expand',
                     'include_remote_data': 'include_remote_data',
@@ -272,7 +262,6 @@ class BankInfoApi(object):
                     'show_enum_origins': 'show_enum_origins',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'id': 'path',
                     'expand': 'query',
                     'include_remote_data': 'query',
@@ -293,7 +282,6 @@ class BankInfoApi(object):
 
     def bank_info_list(
         self,
-        x_account_token,
         **kwargs
     ) -> "MergePaginatedResponse(BankInfo)":
         """bank_info_list  # noqa: E501
@@ -302,11 +290,9 @@ class BankInfoApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.bank_info_list(x_account_token, async_req=True)
+        >>> thread = api.bank_info_list(async_req=True)
         >>> result = thread.get()
 
-        Args:
-            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             account_type (str, none_type): If provided, will only return BankInfo's with this account type. Options: ('SAVINGS', 'CHECKING')  * `SAVINGS` - SAVINGS * `CHECKING` - CHECKING. [optional]
@@ -386,13 +372,10 @@ class BankInfoApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         return self.bank_info_list_endpoint.call_with_http_info(**kwargs)
 
     def bank_info_retrieve(
         self,
-        x_account_token,
         id,
         **kwargs
     ) -> "BankInfo":
@@ -402,11 +385,10 @@ class BankInfoApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.bank_info_retrieve(x_account_token, id, async_req=True)
+        >>> thread = api.bank_info_retrieve(id, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             id (str):
 
         Keyword Args:
@@ -475,8 +457,6 @@ class BankInfoApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['id'] = \
             id
         return self.bank_info_retrieve_endpoint.call_with_http_info(**kwargs)

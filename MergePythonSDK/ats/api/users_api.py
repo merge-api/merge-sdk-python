@@ -41,7 +41,8 @@ class UsersApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(RemoteUser),),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/ats/v1/users',
                 'operation_id': 'users_list',
@@ -50,7 +51,6 @@ class UsersApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'created_after',
                     'created_before',
                     'cursor',
@@ -64,9 +64,7 @@ class UsersApi(object):
                     'remote_id',
                     'show_enum_origins',
                 ],
-                'required': [
-                    'x_account_token',
-                ],
+                'required': [],
                 'nullable': [
                     'email',
                     'remote_id',
@@ -92,8 +90,6 @@ class UsersApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'created_after':
                         (datetime,),
                     'created_before':
@@ -120,7 +116,6 @@ class UsersApi(object):
                         (str,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'created_after': 'created_after',
                     'created_before': 'created_before',
                     'cursor': 'cursor',
@@ -135,7 +130,6 @@ class UsersApi(object):
                     'show_enum_origins': 'show_enum_origins',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'created_after': 'query',
                     'created_before': 'query',
                     'cursor': 'query',
@@ -164,7 +158,8 @@ class UsersApi(object):
             settings={
                 'response_type': (RemoteUser,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/ats/v1/users/{id}',
                 'operation_id': 'users_retrieve',
@@ -173,14 +168,12 @@ class UsersApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'id',
                     'include_remote_data',
                     'remote_fields',
                     'show_enum_origins',
                 ],
                 'required': [
-                    'x_account_token',
                     'id',
                 ],
                 'nullable': [
@@ -206,8 +199,6 @@ class UsersApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'id':
                         (str,),
                     'include_remote_data':
@@ -218,14 +209,12 @@ class UsersApi(object):
                         (str,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                     'include_remote_data': 'include_remote_data',
                     'remote_fields': 'remote_fields',
                     'show_enum_origins': 'show_enum_origins',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'id': 'path',
                     'include_remote_data': 'query',
                     'remote_fields': 'query',
@@ -245,7 +234,6 @@ class UsersApi(object):
 
     def users_list(
         self,
-        x_account_token,
         **kwargs
     ) -> "MergePaginatedResponse(RemoteUser)":
         """users_list  # noqa: E501
@@ -254,11 +242,9 @@ class UsersApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.users_list(x_account_token, async_req=True)
+        >>> thread = api.users_list(async_req=True)
         >>> result = thread.get()
 
-        Args:
-            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             created_after (datetime): If provided, will only return objects created after this datetime.. [optional]
@@ -334,13 +320,10 @@ class UsersApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         return self.users_list_endpoint.call_with_http_info(**kwargs)
 
     def users_retrieve(
         self,
-        x_account_token,
         id,
         **kwargs
     ) -> "RemoteUser":
@@ -350,11 +333,10 @@ class UsersApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.users_retrieve(x_account_token, id, async_req=True)
+        >>> thread = api.users_retrieve(id, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             id (str):
 
         Keyword Args:
@@ -422,8 +404,6 @@ class UsersApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['id'] = \
             id
         return self.users_retrieve_endpoint.call_with_http_info(**kwargs)

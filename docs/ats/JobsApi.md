@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **jobs_list**
-> PaginatedJobList jobs_list(x_account_token)
+> PaginatedJobList jobs_list()
 
 
 
@@ -17,7 +17,8 @@ Returns a list of `Job` objects.
 
 ### Example
 
-* Api Key Authentication (tokenAuth):
+* Api Key Authentication (accountTokenAuth):
+* Bearer Authentication (bearerAuth):
 
 ```python
 import time
@@ -36,17 +37,21 @@ configuration = MergePythonSDK.ats.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: tokenAuth
-configuration.api_key['tokenAuth'] = 'YOUR_API_KEY'
+# Configure API key authorization: accountTokenAuth
+configuration.api_key['accountTokenAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['tokenAuth'] = 'Bearer'
+# configuration.api_key_prefix['accountTokenAuth'] = 'Bearer'
+
+# Configure Bearer authorization: bearerAuth
+configuration = MergePythonSDK.ats.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 
 # Enter a context with an instance of the API client
 with MergePythonSDK.ats.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = jobs_api.JobsApi(api_client)
-    x_account_token = "X-Account-Token_example" # str | Token identifying the end user.
     code = "code_example" # str, none_type | If provided, will only return jobs with this code. (optional)
     created_after = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, will only return objects created after this datetime. (optional)
     created_before = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, will only return objects created before this datetime. (optional)
@@ -64,16 +69,9 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
     status = "ARCHIVED" # str, none_type | If provided, will only return jobs with this status. Options: ('OPEN', 'CLOSED', 'DRAFT', 'ARCHIVED', 'PENDING')  * `OPEN` - OPEN * `CLOSED` - CLOSED * `DRAFT` - DRAFT * `ARCHIVED` - ARCHIVED * `PENDING` - PENDING (optional)
 
     # example passing only required values which don't have defaults set
-    try:
-        api_response = api_instance.jobs_list(x_account_token)
-        pprint(api_response)
-    except MergePythonSDK.ats.ApiException as e:
-        print("Exception when calling JobsApi->jobs_list: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
     # and optional values
     try:
-        api_response = api_instance.jobs_list(x_account_token, code=code, created_after=created_after, created_before=created_before, cursor=cursor, expand=expand, include_deleted_data=include_deleted_data, include_remote_data=include_remote_data, modified_after=modified_after, modified_before=modified_before, offices=offices, page_size=page_size, remote_fields=remote_fields, remote_id=remote_id, show_enum_origins=show_enum_origins, status=status)
+        api_response = api_instance.jobs_list(code=code, created_after=created_after, created_before=created_before, cursor=cursor, expand=expand, include_deleted_data=include_deleted_data, include_remote_data=include_remote_data, modified_after=modified_after, modified_before=modified_before, offices=offices, page_size=page_size, remote_fields=remote_fields, remote_id=remote_id, show_enum_origins=show_enum_origins, status=status)
         pprint(api_response)
     except MergePythonSDK.ats.ApiException as e:
         print("Exception when calling JobsApi->jobs_list: %s\n" % e)
@@ -84,7 +82,6 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **x_account_token** | **str**| Token identifying the end user. |
  **code** | **str, none_type**| If provided, will only return jobs with this code. | [optional]
  **created_after** | **datetime**| If provided, will only return objects created after this datetime. | [optional]
  **created_before** | **datetime**| If provided, will only return objects created before this datetime. | [optional]
@@ -107,7 +104,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -124,7 +121,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **jobs_retrieve**
-> Job jobs_retrieve(x_account_token, id)
+> Job jobs_retrieve(id)
 
 
 
@@ -132,7 +129,8 @@ Returns a `Job` object with the given `id`.
 
 ### Example
 
-* Api Key Authentication (tokenAuth):
+* Api Key Authentication (accountTokenAuth):
+* Bearer Authentication (bearerAuth):
 
 ```python
 import time
@@ -151,17 +149,21 @@ configuration = MergePythonSDK.ats.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: tokenAuth
-configuration.api_key['tokenAuth'] = 'YOUR_API_KEY'
+# Configure API key authorization: accountTokenAuth
+configuration.api_key['accountTokenAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['tokenAuth'] = 'Bearer'
+# configuration.api_key_prefix['accountTokenAuth'] = 'Bearer'
+
+# Configure Bearer authorization: bearerAuth
+configuration = MergePythonSDK.ats.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 
 # Enter a context with an instance of the API client
 with MergePythonSDK.ats.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = jobs_api.JobsApi(api_client)
-    x_account_token = "X-Account-Token_example" # str | Token identifying the end user.
     id = "id_example" # str | 
     expand = "departments,offices,hiring_managers,recruiters" # str | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. (optional)
     include_remote_data = True # bool | Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
@@ -170,7 +172,7 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        api_response = api_instance.jobs_retrieve(x_account_token, id)
+        api_response = api_instance.jobs_retrieve(id)
         pprint(api_response)
     except MergePythonSDK.ats.ApiException as e:
         print("Exception when calling JobsApi->jobs_retrieve: %s\n" % e)
@@ -178,7 +180,7 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        api_response = api_instance.jobs_retrieve(x_account_token, id, expand=expand, include_remote_data=include_remote_data, remote_fields=remote_fields, show_enum_origins=show_enum_origins)
+        api_response = api_instance.jobs_retrieve(id, expand=expand, include_remote_data=include_remote_data, remote_fields=remote_fields, show_enum_origins=show_enum_origins)
         pprint(api_response)
     except MergePythonSDK.ats.ApiException as e:
         print("Exception when calling JobsApi->jobs_retrieve: %s\n" % e)
@@ -189,7 +191,6 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **x_account_token** | **str**| Token identifying the end user. |
  **id** | **str**|  |
  **expand** | **str**| Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. | [optional]
  **include_remote_data** | **bool**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional]
@@ -202,7 +203,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 

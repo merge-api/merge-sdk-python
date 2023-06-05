@@ -44,7 +44,8 @@ class CommentsApi(object):
             settings={
                 'response_type': (CommentResponse,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/ticketing/v1/comments',
                 'operation_id': 'comments_create',
@@ -53,13 +54,11 @@ class CommentsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'comment_endpoint_request',
                     'is_debug_mode',
                     'run_async',
                 ],
                 'required': [
-                    'x_account_token',
                     'comment_endpoint_request',
                 ],
                 'nullable': [
@@ -75,8 +74,6 @@ class CommentsApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'comment_endpoint_request':
                         (CommentEndpointRequest,),
                     'is_debug_mode':
@@ -85,12 +82,10 @@ class CommentsApi(object):
                         (bool,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'is_debug_mode': 'is_debug_mode',
                     'run_async': 'run_async',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'comment_endpoint_request': 'body',
                     'is_debug_mode': 'query',
                     'run_async': 'query',
@@ -114,7 +109,8 @@ class CommentsApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(Comment),),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/ticketing/v1/comments',
                 'operation_id': 'comments_list',
@@ -123,7 +119,6 @@ class CommentsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'created_after',
                     'created_before',
                     'cursor',
@@ -136,9 +131,7 @@ class CommentsApi(object):
                     'remote_id',
                     'ticket_id',
                 ],
-                'required': [
-                    'x_account_token',
-                ],
+                'required': [],
                 'nullable': [
                     'remote_id',
                 ],
@@ -164,8 +157,6 @@ class CommentsApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'created_after':
                         (datetime,),
                     'created_before':
@@ -190,7 +181,6 @@ class CommentsApi(object):
                         (str,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'created_after': 'created_after',
                     'created_before': 'created_before',
                     'cursor': 'cursor',
@@ -204,7 +194,6 @@ class CommentsApi(object):
                     'ticket_id': 'ticket_id',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'created_after': 'query',
                     'created_before': 'query',
                     'cursor': 'query',
@@ -232,7 +221,8 @@ class CommentsApi(object):
             settings={
                 'response_type': (MetaResponse,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/ticketing/v1/comments/meta/post',
                 'operation_id': 'comments_meta_post_retrieve',
@@ -241,11 +231,8 @@ class CommentsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                 ],
-                'required': [
-                    'x_account_token',
-                ],
+                'required': [],
                 'nullable': [
                 ],
                 'enum': [
@@ -259,14 +246,10 @@ class CommentsApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -283,7 +266,8 @@ class CommentsApi(object):
             settings={
                 'response_type': (Comment,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/ticketing/v1/comments/{id}',
                 'operation_id': 'comments_retrieve',
@@ -292,13 +276,11 @@ class CommentsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'id',
                     'expand',
                     'include_remote_data',
                 ],
                 'required': [
-                    'x_account_token',
                     'id',
                 ],
                 'nullable': [
@@ -325,8 +307,6 @@ class CommentsApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'id':
                         (str,),
                     'expand':
@@ -335,13 +315,11 @@ class CommentsApi(object):
                         (bool,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                     'expand': 'expand',
                     'include_remote_data': 'include_remote_data',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'id': 'path',
                     'expand': 'query',
                     'include_remote_data': 'query',
@@ -360,7 +338,6 @@ class CommentsApi(object):
 
     def comments_create(
         self,
-        x_account_token,
         comment_endpoint_request,
         **kwargs
     ) -> "CommentResponse":
@@ -370,11 +347,10 @@ class CommentsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.comments_create(x_account_token, comment_endpoint_request, async_req=True)
+        >>> thread = api.comments_create(comment_endpoint_request, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             comment_endpoint_request (CommentEndpointRequest):
 
         Keyword Args:
@@ -441,15 +417,12 @@ class CommentsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['comment_endpoint_request'] = \
             comment_endpoint_request
         return self.comments_create_endpoint.call_with_http_info(**kwargs)
 
     def comments_list(
         self,
-        x_account_token,
         **kwargs
     ) -> "MergePaginatedResponse(Comment)":
         """comments_list  # noqa: E501
@@ -458,11 +431,9 @@ class CommentsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.comments_list(x_account_token, async_req=True)
+        >>> thread = api.comments_list(async_req=True)
         >>> result = thread.get()
 
-        Args:
-            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             created_after (datetime): If provided, will only return objects created after this datetime.. [optional]
@@ -537,13 +508,10 @@ class CommentsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         return self.comments_list_endpoint.call_with_http_info(**kwargs)
 
     def comments_meta_post_retrieve(
         self,
-        x_account_token,
         **kwargs
     ) -> "MetaResponse":
         """comments_meta_post_retrieve  # noqa: E501
@@ -552,11 +520,9 @@ class CommentsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.comments_meta_post_retrieve(x_account_token, async_req=True)
+        >>> thread = api.comments_meta_post_retrieve(async_req=True)
         >>> result = thread.get()
 
-        Args:
-            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -620,13 +586,10 @@ class CommentsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         return self.comments_meta_post_retrieve_endpoint.call_with_http_info(**kwargs)
 
     def comments_retrieve(
         self,
-        x_account_token,
         id,
         **kwargs
     ) -> "Comment":
@@ -636,11 +599,10 @@ class CommentsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.comments_retrieve(x_account_token, id, async_req=True)
+        >>> thread = api.comments_retrieve(id, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             id (str):
 
         Keyword Args:
@@ -707,8 +669,6 @@ class CommentsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['id'] = \
             id
         return self.comments_retrieve_endpoint.call_with_http_info(**kwargs)

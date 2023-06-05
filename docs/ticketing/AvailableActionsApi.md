@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **available_actions_retrieve**
-> AvailableActions available_actions_retrieve(x_account_token)
+> AvailableActions available_actions_retrieve()
 
 
 
@@ -16,7 +16,8 @@ Returns a list of models and actions available for an account.
 
 ### Example
 
-* Api Key Authentication (tokenAuth):
+* Api Key Authentication (accountTokenAuth):
+* Bearer Authentication (bearerAuth):
 
 ```python
 import time
@@ -35,21 +36,25 @@ configuration = MergePythonSDK.ticketing.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: tokenAuth
-configuration.api_key['tokenAuth'] = 'YOUR_API_KEY'
+# Configure API key authorization: accountTokenAuth
+configuration.api_key['accountTokenAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['tokenAuth'] = 'Bearer'
+# configuration.api_key_prefix['accountTokenAuth'] = 'Bearer'
+
+# Configure Bearer authorization: bearerAuth
+configuration = MergePythonSDK.ticketing.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 
 # Enter a context with an instance of the API client
 with MergePythonSDK.ticketing.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = available_actions_api.AvailableActionsApi(api_client)
-    x_account_token = "X-Account-Token_example" # str | Token identifying the end user.
 
-    # example passing only required values which don't have defaults set
+    # example, this endpoint has no required or optional parameters
     try:
-        api_response = api_instance.available_actions_retrieve(x_account_token)
+        api_response = api_instance.available_actions_retrieve()
         pprint(api_response)
     except MergePythonSDK.ticketing.ApiException as e:
         print("Exception when calling AvailableActionsApi->available_actions_retrieve: %s\n" % e)
@@ -57,10 +62,7 @@ with MergePythonSDK.ticketing.ApiClient(configuration) as api_client:
 
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **x_account_token** | **str**| Token identifying the end user. |
+This endpoint does not need any parameter.
 
 ### Return type
 
@@ -68,7 +70,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 

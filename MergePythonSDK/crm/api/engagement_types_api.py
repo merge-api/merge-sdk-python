@@ -42,7 +42,8 @@ class EngagementTypesApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(EngagementType),),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/crm/v1/engagement-types',
                 'operation_id': 'engagement_types_list',
@@ -51,7 +52,6 @@ class EngagementTypesApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'created_after',
                     'created_before',
                     'cursor',
@@ -63,9 +63,7 @@ class EngagementTypesApi(object):
                     'page_size',
                     'remote_id',
                 ],
-                'required': [
-                    'x_account_token',
-                ],
+                'required': [],
                 'nullable': [
                     'remote_id',
                 ],
@@ -80,8 +78,6 @@ class EngagementTypesApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'created_after':
                         (datetime,),
                     'created_before':
@@ -104,7 +100,6 @@ class EngagementTypesApi(object):
                         (str, none_type,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'created_after': 'created_after',
                     'created_before': 'created_before',
                     'cursor': 'cursor',
@@ -117,7 +112,6 @@ class EngagementTypesApi(object):
                     'remote_id': 'remote_id',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'created_after': 'query',
                     'created_before': 'query',
                     'cursor': 'query',
@@ -144,7 +138,8 @@ class EngagementTypesApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(RemoteFieldClass),),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/crm/v1/engagement-types/remote-field-classes',
                 'operation_id': 'engagement_types_remote_field_classes_list',
@@ -153,16 +148,13 @@ class EngagementTypesApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'cursor',
                     'include_deleted_data',
                     'include_remote_data',
                     'include_remote_fields',
                     'page_size',
                 ],
-                'required': [
-                    'x_account_token',
-                ],
+                'required': [],
                 'nullable': [
                 ],
                 'enum': [
@@ -176,8 +168,6 @@ class EngagementTypesApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'cursor':
                         (str,),
                     'include_deleted_data':
@@ -190,7 +180,6 @@ class EngagementTypesApi(object):
                         (int,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'cursor': 'cursor',
                     'include_deleted_data': 'include_deleted_data',
                     'include_remote_data': 'include_remote_data',
@@ -198,7 +187,6 @@ class EngagementTypesApi(object):
                     'page_size': 'page_size',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'cursor': 'query',
                     'include_deleted_data': 'query',
                     'include_remote_data': 'query',
@@ -220,7 +208,8 @@ class EngagementTypesApi(object):
             settings={
                 'response_type': (EngagementType,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/crm/v1/engagement-types/{id}',
                 'operation_id': 'engagement_types_retrieve',
@@ -229,13 +218,11 @@ class EngagementTypesApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'id',
                     'include_remote_data',
                     'include_remote_fields',
                 ],
                 'required': [
-                    'x_account_token',
                     'id',
                 ],
                 'nullable': [
@@ -251,8 +238,6 @@ class EngagementTypesApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'id':
                         (str,),
                     'include_remote_data':
@@ -261,13 +246,11 @@ class EngagementTypesApi(object):
                         (bool,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                     'include_remote_data': 'include_remote_data',
                     'include_remote_fields': 'include_remote_fields',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'id': 'path',
                     'include_remote_data': 'query',
                     'include_remote_fields': 'query',
@@ -286,7 +269,6 @@ class EngagementTypesApi(object):
 
     def engagement_types_list(
         self,
-        x_account_token,
         **kwargs
     ) -> "MergePaginatedResponse(EngagementType)":
         """engagement_types_list  # noqa: E501
@@ -295,11 +277,9 @@ class EngagementTypesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.engagement_types_list(x_account_token, async_req=True)
+        >>> thread = api.engagement_types_list(async_req=True)
         >>> result = thread.get()
 
-        Args:
-            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             created_after (datetime): If provided, will only return objects created after this datetime.. [optional]
@@ -373,13 +353,10 @@ class EngagementTypesApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         return self.engagement_types_list_endpoint.call_with_http_info(**kwargs)
 
     def engagement_types_remote_field_classes_list(
         self,
-        x_account_token,
         **kwargs
     ) -> "MergePaginatedResponse(RemoteFieldClass)":
         """engagement_types_remote_field_classes_list  # noqa: E501
@@ -388,11 +365,9 @@ class EngagementTypesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.engagement_types_remote_field_classes_list(x_account_token, async_req=True)
+        >>> thread = api.engagement_types_remote_field_classes_list(async_req=True)
         >>> result = thread.get()
 
-        Args:
-            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             cursor (str): The pagination cursor value.. [optional]
@@ -461,13 +436,10 @@ class EngagementTypesApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         return self.engagement_types_remote_field_classes_list_endpoint.call_with_http_info(**kwargs)
 
     def engagement_types_retrieve(
         self,
-        x_account_token,
         id,
         **kwargs
     ) -> "EngagementType":
@@ -477,11 +449,10 @@ class EngagementTypesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.engagement_types_retrieve(x_account_token, id, async_req=True)
+        >>> thread = api.engagement_types_retrieve(id, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             id (str):
 
         Keyword Args:
@@ -548,8 +519,6 @@ class EngagementTypesApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['id'] = \
             id
         return self.engagement_types_retrieve_endpoint.call_with_http_info(**kwargs)

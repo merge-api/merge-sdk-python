@@ -41,7 +41,8 @@ class TrackingCategoriesApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(TrackingCategory),),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/accounting/v1/tracking-categories',
                 'operation_id': 'tracking_categories_list',
@@ -50,7 +51,6 @@ class TrackingCategoriesApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'company_id',
                     'created_after',
                     'created_before',
@@ -65,9 +65,7 @@ class TrackingCategoriesApi(object):
                     'remote_id',
                     'show_enum_origins',
                 ],
-                'required': [
-                    'x_account_token',
-                ],
+                'required': [],
                 'nullable': [
                     'remote_id',
                 ],
@@ -97,8 +95,6 @@ class TrackingCategoriesApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'company_id':
                         (str,),
                     'created_after':
@@ -127,7 +123,6 @@ class TrackingCategoriesApi(object):
                         (str,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'company_id': 'company_id',
                     'created_after': 'created_after',
                     'created_before': 'created_before',
@@ -143,7 +138,6 @@ class TrackingCategoriesApi(object):
                     'show_enum_origins': 'show_enum_origins',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'company_id': 'query',
                     'created_after': 'query',
                     'created_before': 'query',
@@ -173,7 +167,8 @@ class TrackingCategoriesApi(object):
             settings={
                 'response_type': (TrackingCategory,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/accounting/v1/tracking-categories/{id}',
                 'operation_id': 'tracking_categories_retrieve',
@@ -182,7 +177,6 @@ class TrackingCategoriesApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'id',
                     'expand',
                     'include_remote_data',
@@ -190,7 +184,6 @@ class TrackingCategoriesApi(object):
                     'show_enum_origins',
                 ],
                 'required': [
-                    'x_account_token',
                     'id',
                 ],
                 'nullable': [
@@ -221,8 +214,6 @@ class TrackingCategoriesApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'id':
                         (str,),
                     'expand':
@@ -235,7 +226,6 @@ class TrackingCategoriesApi(object):
                         (str,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                     'expand': 'expand',
                     'include_remote_data': 'include_remote_data',
@@ -243,7 +233,6 @@ class TrackingCategoriesApi(object):
                     'show_enum_origins': 'show_enum_origins',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'id': 'path',
                     'expand': 'query',
                     'include_remote_data': 'query',
@@ -264,7 +253,6 @@ class TrackingCategoriesApi(object):
 
     def tracking_categories_list(
         self,
-        x_account_token,
         **kwargs
     ) -> "MergePaginatedResponse(TrackingCategory)":
         """tracking_categories_list  # noqa: E501
@@ -273,11 +261,9 @@ class TrackingCategoriesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.tracking_categories_list(x_account_token, async_req=True)
+        >>> thread = api.tracking_categories_list(async_req=True)
         >>> result = thread.get()
 
-        Args:
-            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             company_id (str): If provided, will only return tracking categories for this company.. [optional]
@@ -354,13 +340,10 @@ class TrackingCategoriesApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         return self.tracking_categories_list_endpoint.call_with_http_info(**kwargs)
 
     def tracking_categories_retrieve(
         self,
-        x_account_token,
         id,
         **kwargs
     ) -> "TrackingCategory":
@@ -370,11 +353,10 @@ class TrackingCategoriesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.tracking_categories_retrieve(x_account_token, id, async_req=True)
+        >>> thread = api.tracking_categories_retrieve(id, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             id (str):
 
         Keyword Args:
@@ -443,8 +425,6 @@ class TrackingCategoriesApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['id'] = \
             id
         return self.tracking_categories_retrieve_endpoint.call_with_http_info(**kwargs)

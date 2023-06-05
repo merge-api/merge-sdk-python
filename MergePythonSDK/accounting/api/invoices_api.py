@@ -44,7 +44,8 @@ class InvoicesApi(object):
             settings={
                 'response_type': (InvoiceResponse,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/accounting/v1/invoices',
                 'operation_id': 'invoices_create',
@@ -53,13 +54,11 @@ class InvoicesApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'invoice_endpoint_request',
                     'is_debug_mode',
                     'run_async',
                 ],
                 'required': [
-                    'x_account_token',
                     'invoice_endpoint_request',
                 ],
                 'nullable': [
@@ -75,8 +74,6 @@ class InvoicesApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'invoice_endpoint_request':
                         (InvoiceEndpointRequest,),
                     'is_debug_mode':
@@ -85,12 +82,10 @@ class InvoicesApi(object):
                         (bool,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'is_debug_mode': 'is_debug_mode',
                     'run_async': 'run_async',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'invoice_endpoint_request': 'body',
                     'is_debug_mode': 'query',
                     'run_async': 'query',
@@ -114,7 +109,8 @@ class InvoicesApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(Invoice),),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/accounting/v1/invoices',
                 'operation_id': 'invoices_list',
@@ -123,7 +119,6 @@ class InvoicesApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'company_id',
                     'contact_id',
                     'created_after',
@@ -142,9 +137,7 @@ class InvoicesApi(object):
                     'show_enum_origins',
                     'type',
                 ],
-                'required': [
-                    'x_account_token',
-                ],
+                'required': [],
                 'nullable': [
                     'issue_date_after',
                     'issue_date_before',
@@ -213,8 +206,6 @@ class InvoicesApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'company_id':
                         (str,),
                     'contact_id':
@@ -251,7 +242,6 @@ class InvoicesApi(object):
                         (str, none_type,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'company_id': 'company_id',
                     'contact_id': 'contact_id',
                     'created_after': 'created_after',
@@ -271,7 +261,6 @@ class InvoicesApi(object):
                     'type': 'type',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'company_id': 'query',
                     'contact_id': 'query',
                     'created_after': 'query',
@@ -305,7 +294,8 @@ class InvoicesApi(object):
             settings={
                 'response_type': (MetaResponse,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/accounting/v1/invoices/meta/post',
                 'operation_id': 'invoices_meta_post_retrieve',
@@ -314,11 +304,8 @@ class InvoicesApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                 ],
-                'required': [
-                    'x_account_token',
-                ],
+                'required': [],
                 'nullable': [
                 ],
                 'enum': [
@@ -332,14 +319,10 @@ class InvoicesApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -356,7 +339,8 @@ class InvoicesApi(object):
             settings={
                 'response_type': (Invoice,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/accounting/v1/invoices/{id}',
                 'operation_id': 'invoices_retrieve',
@@ -365,7 +349,6 @@ class InvoicesApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'id',
                     'expand',
                     'include_remote_data',
@@ -373,7 +356,6 @@ class InvoicesApi(object):
                     'show_enum_origins',
                 ],
                 'required': [
-                    'x_account_token',
                     'id',
                 ],
                 'nullable': [
@@ -434,8 +416,6 @@ class InvoicesApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'id':
                         (str,),
                     'expand':
@@ -448,7 +428,6 @@ class InvoicesApi(object):
                         (str,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                     'expand': 'expand',
                     'include_remote_data': 'include_remote_data',
@@ -456,7 +435,6 @@ class InvoicesApi(object):
                     'show_enum_origins': 'show_enum_origins',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'id': 'path',
                     'expand': 'query',
                     'include_remote_data': 'query',
@@ -477,7 +455,6 @@ class InvoicesApi(object):
 
     def invoices_create(
         self,
-        x_account_token,
         invoice_endpoint_request,
         **kwargs
     ) -> "InvoiceResponse":
@@ -487,11 +464,10 @@ class InvoicesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.invoices_create(x_account_token, invoice_endpoint_request, async_req=True)
+        >>> thread = api.invoices_create(invoice_endpoint_request, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             invoice_endpoint_request (InvoiceEndpointRequest):
 
         Keyword Args:
@@ -558,15 +534,12 @@ class InvoicesApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['invoice_endpoint_request'] = \
             invoice_endpoint_request
         return self.invoices_create_endpoint.call_with_http_info(**kwargs)
 
     def invoices_list(
         self,
-        x_account_token,
         **kwargs
     ) -> "MergePaginatedResponse(Invoice)":
         """invoices_list  # noqa: E501
@@ -575,11 +548,9 @@ class InvoicesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.invoices_list(x_account_token, async_req=True)
+        >>> thread = api.invoices_list(async_req=True)
         >>> result = thread.get()
 
-        Args:
-            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             company_id (str): If provided, will only return invoices for this company.. [optional]
@@ -660,13 +631,10 @@ class InvoicesApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         return self.invoices_list_endpoint.call_with_http_info(**kwargs)
 
     def invoices_meta_post_retrieve(
         self,
-        x_account_token,
         **kwargs
     ) -> "MetaResponse":
         """invoices_meta_post_retrieve  # noqa: E501
@@ -675,11 +643,9 @@ class InvoicesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.invoices_meta_post_retrieve(x_account_token, async_req=True)
+        >>> thread = api.invoices_meta_post_retrieve(async_req=True)
         >>> result = thread.get()
 
-        Args:
-            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -743,13 +709,10 @@ class InvoicesApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         return self.invoices_meta_post_retrieve_endpoint.call_with_http_info(**kwargs)
 
     def invoices_retrieve(
         self,
-        x_account_token,
         id,
         **kwargs
     ) -> "Invoice":
@@ -759,11 +722,10 @@ class InvoicesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.invoices_retrieve(x_account_token, id, async_req=True)
+        >>> thread = api.invoices_retrieve(id, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             id (str):
 
         Keyword Args:
@@ -832,8 +794,6 @@ class InvoicesApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['id'] = \
             id
         return self.invoices_retrieve_endpoint.call_with_http_info(**kwargs)

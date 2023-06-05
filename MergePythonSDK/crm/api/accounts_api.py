@@ -46,7 +46,8 @@ class AccountsApi(object):
             settings={
                 'response_type': (CRMAccountResponse,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/crm/v1/accounts',
                 'operation_id': 'accounts_create',
@@ -55,13 +56,11 @@ class AccountsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'crm_account_endpoint_request',
                     'is_debug_mode',
                     'run_async',
                 ],
                 'required': [
-                    'x_account_token',
                     'crm_account_endpoint_request',
                 ],
                 'nullable': [
@@ -77,8 +76,6 @@ class AccountsApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'crm_account_endpoint_request':
                         (CRMAccountEndpointRequest,),
                     'is_debug_mode':
@@ -87,12 +84,10 @@ class AccountsApi(object):
                         (bool,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'is_debug_mode': 'is_debug_mode',
                     'run_async': 'run_async',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'crm_account_endpoint_request': 'body',
                     'is_debug_mode': 'query',
                     'run_async': 'query',
@@ -116,7 +111,8 @@ class AccountsApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(Account),),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/crm/v1/accounts',
                 'operation_id': 'accounts_list',
@@ -125,7 +121,6 @@ class AccountsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'created_after',
                     'created_before',
                     'cursor',
@@ -139,9 +134,7 @@ class AccountsApi(object):
                     'page_size',
                     'remote_id',
                 ],
-                'required': [
-                    'x_account_token',
-                ],
+                'required': [],
                 'nullable': [
                     'remote_id',
                 ],
@@ -161,8 +154,6 @@ class AccountsApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'created_after':
                         (datetime,),
                     'created_before':
@@ -189,7 +180,6 @@ class AccountsApi(object):
                         (str, none_type,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'created_after': 'created_after',
                     'created_before': 'created_before',
                     'cursor': 'cursor',
@@ -204,7 +194,6 @@ class AccountsApi(object):
                     'remote_id': 'remote_id',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'created_after': 'query',
                     'created_before': 'query',
                     'cursor': 'query',
@@ -233,7 +222,8 @@ class AccountsApi(object):
             settings={
                 'response_type': (MetaResponse,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/crm/v1/accounts/meta/patch/{id}',
                 'operation_id': 'accounts_meta_patch_retrieve',
@@ -242,11 +232,9 @@ class AccountsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'id',
                 ],
                 'required': [
-                    'x_account_token',
                     'id',
                 ],
                 'nullable': [
@@ -262,17 +250,13 @@ class AccountsApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'id':
                         (str,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'id': 'path',
                 },
                 'collection_format_map': {
@@ -290,7 +274,8 @@ class AccountsApi(object):
             settings={
                 'response_type': (MetaResponse,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/crm/v1/accounts/meta/post',
                 'operation_id': 'accounts_meta_post_retrieve',
@@ -299,11 +284,8 @@ class AccountsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                 ],
-                'required': [
-                    'x_account_token',
-                ],
+                'required': [],
                 'nullable': [
                 ],
                 'enum': [
@@ -317,14 +299,10 @@ class AccountsApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -341,7 +319,8 @@ class AccountsApi(object):
             settings={
                 'response_type': (CRMAccountResponse,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/crm/v1/accounts/{id}',
                 'operation_id': 'accounts_partial_update',
@@ -350,14 +329,12 @@ class AccountsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'id',
                     'patched_crm_account_endpoint_request',
                     'is_debug_mode',
                     'run_async',
                 ],
                 'required': [
-                    'x_account_token',
                     'id',
                     'patched_crm_account_endpoint_request',
                 ],
@@ -374,8 +351,6 @@ class AccountsApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'id':
                         (str,),
                     'patched_crm_account_endpoint_request':
@@ -386,13 +361,11 @@ class AccountsApi(object):
                         (bool,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                     'is_debug_mode': 'is_debug_mode',
                     'run_async': 'run_async',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'id': 'path',
                     'patched_crm_account_endpoint_request': 'body',
                     'is_debug_mode': 'query',
@@ -417,7 +390,8 @@ class AccountsApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(RemoteFieldClass),),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/crm/v1/accounts/remote-field-classes',
                 'operation_id': 'accounts_remote_field_classes_list',
@@ -426,16 +400,13 @@ class AccountsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'cursor',
                     'include_deleted_data',
                     'include_remote_data',
                     'include_remote_fields',
                     'page_size',
                 ],
-                'required': [
-                    'x_account_token',
-                ],
+                'required': [],
                 'nullable': [
                 ],
                 'enum': [
@@ -449,8 +420,6 @@ class AccountsApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'cursor':
                         (str,),
                     'include_deleted_data':
@@ -463,7 +432,6 @@ class AccountsApi(object):
                         (int,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'cursor': 'cursor',
                     'include_deleted_data': 'include_deleted_data',
                     'include_remote_data': 'include_remote_data',
@@ -471,7 +439,6 @@ class AccountsApi(object):
                     'page_size': 'page_size',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'cursor': 'query',
                     'include_deleted_data': 'query',
                     'include_remote_data': 'query',
@@ -493,7 +460,8 @@ class AccountsApi(object):
             settings={
                 'response_type': (Account,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/crm/v1/accounts/{id}',
                 'operation_id': 'accounts_retrieve',
@@ -502,14 +470,12 @@ class AccountsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'id',
                     'expand',
                     'include_remote_data',
                     'include_remote_fields',
                 ],
                 'required': [
-                    'x_account_token',
                     'id',
                 ],
                 'nullable': [
@@ -530,8 +496,6 @@ class AccountsApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'id':
                         (str,),
                     'expand':
@@ -542,14 +506,12 @@ class AccountsApi(object):
                         (bool,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                     'expand': 'expand',
                     'include_remote_data': 'include_remote_data',
                     'include_remote_fields': 'include_remote_fields',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'id': 'path',
                     'expand': 'query',
                     'include_remote_data': 'query',
@@ -569,7 +531,6 @@ class AccountsApi(object):
 
     def accounts_create(
         self,
-        x_account_token,
         crm_account_endpoint_request,
         **kwargs
     ) -> "CRMAccountResponse":
@@ -579,11 +540,10 @@ class AccountsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.accounts_create(x_account_token, crm_account_endpoint_request, async_req=True)
+        >>> thread = api.accounts_create(crm_account_endpoint_request, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             crm_account_endpoint_request (CRMAccountEndpointRequest):
 
         Keyword Args:
@@ -650,15 +610,12 @@ class AccountsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['crm_account_endpoint_request'] = \
             crm_account_endpoint_request
         return self.accounts_create_endpoint.call_with_http_info(**kwargs)
 
     def accounts_list(
         self,
-        x_account_token,
         **kwargs
     ) -> "MergePaginatedResponse(Account)":
         """accounts_list  # noqa: E501
@@ -667,11 +624,9 @@ class AccountsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.accounts_list(x_account_token, async_req=True)
+        >>> thread = api.accounts_list(async_req=True)
         >>> result = thread.get()
 
-        Args:
-            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             created_after (datetime): If provided, will only return objects created after this datetime.. [optional]
@@ -747,13 +702,10 @@ class AccountsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         return self.accounts_list_endpoint.call_with_http_info(**kwargs)
 
     def accounts_meta_patch_retrieve(
         self,
-        x_account_token,
         id,
         **kwargs
     ) -> "MetaResponse":
@@ -763,11 +715,10 @@ class AccountsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.accounts_meta_patch_retrieve(x_account_token, id, async_req=True)
+        >>> thread = api.accounts_meta_patch_retrieve(id, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             id (str):
 
         Keyword Args:
@@ -832,15 +783,12 @@ class AccountsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['id'] = \
             id
         return self.accounts_meta_patch_retrieve_endpoint.call_with_http_info(**kwargs)
 
     def accounts_meta_post_retrieve(
         self,
-        x_account_token,
         **kwargs
     ) -> "MetaResponse":
         """accounts_meta_post_retrieve  # noqa: E501
@@ -849,11 +797,9 @@ class AccountsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.accounts_meta_post_retrieve(x_account_token, async_req=True)
+        >>> thread = api.accounts_meta_post_retrieve(async_req=True)
         >>> result = thread.get()
 
-        Args:
-            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -917,13 +863,10 @@ class AccountsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         return self.accounts_meta_post_retrieve_endpoint.call_with_http_info(**kwargs)
 
     def accounts_partial_update(
         self,
-        x_account_token,
         id,
         patched_crm_account_endpoint_request,
         **kwargs
@@ -934,11 +877,10 @@ class AccountsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.accounts_partial_update(x_account_token, id, patched_crm_account_endpoint_request, async_req=True)
+        >>> thread = api.accounts_partial_update(id, patched_crm_account_endpoint_request, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             id (str):
             patched_crm_account_endpoint_request (PatchedCRMAccountEndpointRequest):
 
@@ -1006,8 +948,6 @@ class AccountsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['id'] = \
             id
         kwargs['patched_crm_account_endpoint_request'] = \
@@ -1016,7 +956,6 @@ class AccountsApi(object):
 
     def accounts_remote_field_classes_list(
         self,
-        x_account_token,
         **kwargs
     ) -> "MergePaginatedResponse(RemoteFieldClass)":
         """accounts_remote_field_classes_list  # noqa: E501
@@ -1025,11 +964,9 @@ class AccountsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.accounts_remote_field_classes_list(x_account_token, async_req=True)
+        >>> thread = api.accounts_remote_field_classes_list(async_req=True)
         >>> result = thread.get()
 
-        Args:
-            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             cursor (str): The pagination cursor value.. [optional]
@@ -1098,13 +1035,10 @@ class AccountsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         return self.accounts_remote_field_classes_list_endpoint.call_with_http_info(**kwargs)
 
     def accounts_retrieve(
         self,
-        x_account_token,
         id,
         **kwargs
     ) -> "Account":
@@ -1114,11 +1048,10 @@ class AccountsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.accounts_retrieve(x_account_token, id, async_req=True)
+        >>> thread = api.accounts_retrieve(id, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             id (str):
 
         Keyword Args:
@@ -1186,8 +1119,6 @@ class AccountsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['id'] = \
             id
         return self.accounts_retrieve_endpoint.call_with_http_info(**kwargs)

@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **payroll_runs_list**
-> PaginatedPayrollRunList payroll_runs_list(x_account_token)
+> PaginatedPayrollRunList payroll_runs_list()
 
 
 
@@ -17,7 +17,8 @@ Returns a list of `PayrollRun` objects.
 
 ### Example
 
-* Api Key Authentication (tokenAuth):
+* Api Key Authentication (accountTokenAuth):
+* Bearer Authentication (bearerAuth):
 
 ```python
 import time
@@ -36,17 +37,21 @@ configuration = MergePythonSDK.hris.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: tokenAuth
-configuration.api_key['tokenAuth'] = 'YOUR_API_KEY'
+# Configure API key authorization: accountTokenAuth
+configuration.api_key['accountTokenAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['tokenAuth'] = 'Bearer'
+# configuration.api_key_prefix['accountTokenAuth'] = 'Bearer'
+
+# Configure Bearer authorization: bearerAuth
+configuration = MergePythonSDK.hris.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 
 # Enter a context with an instance of the API client
 with MergePythonSDK.hris.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = payroll_runs_api.PayrollRunsApi(api_client)
-    x_account_token = "X-Account-Token_example" # str | Token identifying the end user.
     created_after = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, will only return objects created after this datetime. (optional)
     created_before = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, will only return objects created before this datetime. (optional)
     cursor = "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw" # str | The pagination cursor value. (optional)
@@ -65,16 +70,9 @@ with MergePythonSDK.hris.ApiClient(configuration) as api_client:
     started_before = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime, none_type | If provided, will only return payroll runs started before this datetime. (optional)
 
     # example passing only required values which don't have defaults set
-    try:
-        api_response = api_instance.payroll_runs_list(x_account_token)
-        pprint(api_response)
-    except MergePythonSDK.hris.ApiException as e:
-        print("Exception when calling PayrollRunsApi->payroll_runs_list: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
     # and optional values
     try:
-        api_response = api_instance.payroll_runs_list(x_account_token, created_after=created_after, created_before=created_before, cursor=cursor, ended_after=ended_after, ended_before=ended_before, include_deleted_data=include_deleted_data, include_remote_data=include_remote_data, modified_after=modified_after, modified_before=modified_before, page_size=page_size, remote_fields=remote_fields, remote_id=remote_id, run_type=run_type, show_enum_origins=show_enum_origins, started_after=started_after, started_before=started_before)
+        api_response = api_instance.payroll_runs_list(created_after=created_after, created_before=created_before, cursor=cursor, ended_after=ended_after, ended_before=ended_before, include_deleted_data=include_deleted_data, include_remote_data=include_remote_data, modified_after=modified_after, modified_before=modified_before, page_size=page_size, remote_fields=remote_fields, remote_id=remote_id, run_type=run_type, show_enum_origins=show_enum_origins, started_after=started_after, started_before=started_before)
         pprint(api_response)
     except MergePythonSDK.hris.ApiException as e:
         print("Exception when calling PayrollRunsApi->payroll_runs_list: %s\n" % e)
@@ -85,7 +83,6 @@ with MergePythonSDK.hris.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **x_account_token** | **str**| Token identifying the end user. |
  **created_after** | **datetime**| If provided, will only return objects created after this datetime. | [optional]
  **created_before** | **datetime**| If provided, will only return objects created before this datetime. | [optional]
  **cursor** | **str**| The pagination cursor value. | [optional]
@@ -109,7 +106,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -126,7 +123,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **payroll_runs_retrieve**
-> PayrollRun payroll_runs_retrieve(x_account_token, id)
+> PayrollRun payroll_runs_retrieve(id)
 
 
 
@@ -134,7 +131,8 @@ Returns a `PayrollRun` object with the given `id`.
 
 ### Example
 
-* Api Key Authentication (tokenAuth):
+* Api Key Authentication (accountTokenAuth):
+* Bearer Authentication (bearerAuth):
 
 ```python
 import time
@@ -153,17 +151,21 @@ configuration = MergePythonSDK.hris.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: tokenAuth
-configuration.api_key['tokenAuth'] = 'YOUR_API_KEY'
+# Configure API key authorization: accountTokenAuth
+configuration.api_key['accountTokenAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['tokenAuth'] = 'Bearer'
+# configuration.api_key_prefix['accountTokenAuth'] = 'Bearer'
+
+# Configure Bearer authorization: bearerAuth
+configuration = MergePythonSDK.hris.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 
 # Enter a context with an instance of the API client
 with MergePythonSDK.hris.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = payroll_runs_api.PayrollRunsApi(api_client)
-    x_account_token = "X-Account-Token_example" # str | Token identifying the end user.
     id = "id_example" # str | 
     include_remote_data = True # bool | Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
     remote_fields = "run_state,run_type" # str | Deprecated. Use show_enum_origins. (optional)
@@ -171,7 +173,7 @@ with MergePythonSDK.hris.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        api_response = api_instance.payroll_runs_retrieve(x_account_token, id)
+        api_response = api_instance.payroll_runs_retrieve(id)
         pprint(api_response)
     except MergePythonSDK.hris.ApiException as e:
         print("Exception when calling PayrollRunsApi->payroll_runs_retrieve: %s\n" % e)
@@ -179,7 +181,7 @@ with MergePythonSDK.hris.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        api_response = api_instance.payroll_runs_retrieve(x_account_token, id, include_remote_data=include_remote_data, remote_fields=remote_fields, show_enum_origins=show_enum_origins)
+        api_response = api_instance.payroll_runs_retrieve(id, include_remote_data=include_remote_data, remote_fields=remote_fields, show_enum_origins=show_enum_origins)
         pprint(api_response)
     except MergePythonSDK.hris.ApiException as e:
         print("Exception when calling PayrollRunsApi->payroll_runs_retrieve: %s\n" % e)
@@ -190,7 +192,6 @@ with MergePythonSDK.hris.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **x_account_token** | **str**| Token identifying the end user. |
  **id** | **str**|  |
  **include_remote_data** | **bool**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional]
  **remote_fields** | **str**| Deprecated. Use show_enum_origins. | [optional]
@@ -202,7 +203,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 

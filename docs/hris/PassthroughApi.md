@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **passthrough_create**
-> RemoteResponse passthrough_create(x_account_token, data_passthrough_request)
+> RemoteResponse passthrough_create(data_passthrough_request)
 
 
 
@@ -16,7 +16,8 @@ Pull data from an endpoint not currently supported by Merge.
 
 ### Example
 
-* Api Key Authentication (tokenAuth):
+* Api Key Authentication (accountTokenAuth):
+* Bearer Authentication (bearerAuth):
 
 ```python
 import time
@@ -36,17 +37,21 @@ configuration = MergePythonSDK.hris.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: tokenAuth
-configuration.api_key['tokenAuth'] = 'YOUR_API_KEY'
+# Configure API key authorization: accountTokenAuth
+configuration.api_key['accountTokenAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['tokenAuth'] = 'Bearer'
+# configuration.api_key_prefix['accountTokenAuth'] = 'Bearer'
+
+# Configure Bearer authorization: bearerAuth
+configuration = MergePythonSDK.hris.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 
 # Enter a context with an instance of the API client
 with MergePythonSDK.hris.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = passthrough_api.PassthroughApi(api_client)
-    x_account_token = "X-Account-Token_example" # str | Token identifying the end user.
     data_passthrough_request = DataPassthroughRequest(
         method=None,
         path="/scooters",
@@ -70,7 +75,7 @@ with MergePythonSDK.hris.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        api_response = api_instance.passthrough_create(x_account_token, data_passthrough_request)
+        api_response = api_instance.passthrough_create(data_passthrough_request)
         pprint(api_response)
     except MergePythonSDK.hris.ApiException as e:
         print("Exception when calling PassthroughApi->passthrough_create: %s\n" % e)
@@ -81,7 +86,6 @@ with MergePythonSDK.hris.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **x_account_token** | **str**| Token identifying the end user. |
  **data_passthrough_request** | [**DataPassthroughRequest**](DataPassthroughRequest.md)|  |
 
 ### Return type
@@ -90,7 +94,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 

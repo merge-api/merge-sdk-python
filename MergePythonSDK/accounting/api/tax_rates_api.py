@@ -41,7 +41,8 @@ class TaxRatesApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(TaxRate),),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/accounting/v1/tax-rates',
                 'operation_id': 'tax_rates_list',
@@ -50,7 +51,6 @@ class TaxRatesApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'company_id',
                     'created_after',
                     'created_before',
@@ -63,9 +63,7 @@ class TaxRatesApi(object):
                     'page_size',
                     'remote_id',
                 ],
-                'required': [
-                    'x_account_token',
-                ],
+                'required': [],
                 'nullable': [
                     'remote_id',
                 ],
@@ -85,8 +83,6 @@ class TaxRatesApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'company_id':
                         (str,),
                     'created_after':
@@ -111,7 +107,6 @@ class TaxRatesApi(object):
                         (str, none_type,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'company_id': 'company_id',
                     'created_after': 'created_after',
                     'created_before': 'created_before',
@@ -125,7 +120,6 @@ class TaxRatesApi(object):
                     'remote_id': 'remote_id',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'company_id': 'query',
                     'created_after': 'query',
                     'created_before': 'query',
@@ -153,7 +147,8 @@ class TaxRatesApi(object):
             settings={
                 'response_type': (TaxRate,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/accounting/v1/tax-rates/{id}',
                 'operation_id': 'tax_rates_retrieve',
@@ -162,13 +157,11 @@ class TaxRatesApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'id',
                     'expand',
                     'include_remote_data',
                 ],
                 'required': [
-                    'x_account_token',
                     'id',
                 ],
                 'nullable': [
@@ -189,8 +182,6 @@ class TaxRatesApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'id':
                         (str,),
                     'expand':
@@ -199,13 +190,11 @@ class TaxRatesApi(object):
                         (bool,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                     'expand': 'expand',
                     'include_remote_data': 'include_remote_data',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'id': 'path',
                     'expand': 'query',
                     'include_remote_data': 'query',
@@ -224,7 +213,6 @@ class TaxRatesApi(object):
 
     def tax_rates_list(
         self,
-        x_account_token,
         **kwargs
     ) -> "MergePaginatedResponse(TaxRate)":
         """tax_rates_list  # noqa: E501
@@ -233,11 +221,9 @@ class TaxRatesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.tax_rates_list(x_account_token, async_req=True)
+        >>> thread = api.tax_rates_list(async_req=True)
         >>> result = thread.get()
 
-        Args:
-            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             company_id (str): If provided, will only return tax rates for this company.. [optional]
@@ -312,13 +298,10 @@ class TaxRatesApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         return self.tax_rates_list_endpoint.call_with_http_info(**kwargs)
 
     def tax_rates_retrieve(
         self,
-        x_account_token,
         id,
         **kwargs
     ) -> "TaxRate":
@@ -328,11 +311,10 @@ class TaxRatesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.tax_rates_retrieve(x_account_token, id, async_req=True)
+        >>> thread = api.tax_rates_retrieve(id, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             id (str):
 
         Keyword Args:
@@ -399,8 +381,6 @@ class TaxRatesApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['id'] = \
             id
         return self.tax_rates_retrieve_endpoint.call_with_http_info(**kwargs)

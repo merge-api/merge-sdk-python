@@ -45,7 +45,8 @@ class ApplicationsApi(object):
             settings={
                 'response_type': (ApplicationResponse,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/ats/v1/applications/{id}/change-stage',
                 'operation_id': 'applications_change_stage_create',
@@ -54,14 +55,12 @@ class ApplicationsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'id',
                     'is_debug_mode',
                     'run_async',
                     'update_application_stage_request',
                 ],
                 'required': [
-                    'x_account_token',
                     'id',
                 ],
                 'nullable': [
@@ -77,8 +76,6 @@ class ApplicationsApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'id':
                         (str,),
                     'is_debug_mode':
@@ -89,13 +86,11 @@ class ApplicationsApi(object):
                         (UpdateApplicationStageRequest,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                     'is_debug_mode': 'is_debug_mode',
                     'run_async': 'run_async',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'id': 'path',
                     'is_debug_mode': 'query',
                     'run_async': 'query',
@@ -120,7 +115,8 @@ class ApplicationsApi(object):
             settings={
                 'response_type': (ApplicationResponse,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/ats/v1/applications',
                 'operation_id': 'applications_create',
@@ -129,13 +125,11 @@ class ApplicationsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'application_endpoint_request',
                     'is_debug_mode',
                     'run_async',
                 ],
                 'required': [
-                    'x_account_token',
                     'application_endpoint_request',
                 ],
                 'nullable': [
@@ -151,8 +145,6 @@ class ApplicationsApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'application_endpoint_request':
                         (ApplicationEndpointRequest,),
                     'is_debug_mode':
@@ -161,12 +153,10 @@ class ApplicationsApi(object):
                         (bool,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'is_debug_mode': 'is_debug_mode',
                     'run_async': 'run_async',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'application_endpoint_request': 'body',
                     'is_debug_mode': 'query',
                     'run_async': 'query',
@@ -190,7 +180,8 @@ class ApplicationsApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(Application),),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/ats/v1/applications',
                 'operation_id': 'applications_list',
@@ -199,7 +190,6 @@ class ApplicationsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'candidate_id',
                     'created_after',
                     'created_before',
@@ -217,9 +207,7 @@ class ApplicationsApi(object):
                     'remote_id',
                     'source',
                 ],
-                'required': [
-                    'x_account_token',
-                ],
+                'required': [],
                 'nullable': [
                     'remote_id',
                     'source',
@@ -270,8 +258,6 @@ class ApplicationsApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'candidate_id':
                         (str,),
                     'created_after':
@@ -306,7 +292,6 @@ class ApplicationsApi(object):
                         (str, none_type,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'candidate_id': 'candidate_id',
                     'created_after': 'created_after',
                     'created_before': 'created_before',
@@ -325,7 +310,6 @@ class ApplicationsApi(object):
                     'source': 'source',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'candidate_id': 'query',
                     'created_after': 'query',
                     'created_before': 'query',
@@ -358,7 +342,8 @@ class ApplicationsApi(object):
             settings={
                 'response_type': (MetaResponse,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/ats/v1/applications/meta/post',
                 'operation_id': 'applications_meta_post_retrieve',
@@ -367,12 +352,9 @@ class ApplicationsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'application_remote_template_id',
                 ],
-                'required': [
-                    'x_account_token',
-                ],
+                'required': [],
                 'nullable': [
                 ],
                 'enum': [
@@ -386,17 +368,13 @@ class ApplicationsApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'application_remote_template_id':
                         (str,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'application_remote_template_id': 'application_remote_template_id',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'application_remote_template_id': 'query',
                 },
                 'collection_format_map': {
@@ -414,7 +392,8 @@ class ApplicationsApi(object):
             settings={
                 'response_type': (Application,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/ats/v1/applications/{id}',
                 'operation_id': 'applications_retrieve',
@@ -423,13 +402,11 @@ class ApplicationsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'id',
                     'expand',
                     'include_remote_data',
                 ],
                 'required': [
-                    'x_account_token',
                     'id',
                 ],
                 'nullable': [
@@ -480,8 +457,6 @@ class ApplicationsApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'id':
                         (str,),
                     'expand':
@@ -490,13 +465,11 @@ class ApplicationsApi(object):
                         (bool,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                     'expand': 'expand',
                     'include_remote_data': 'include_remote_data',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'id': 'path',
                     'expand': 'query',
                     'include_remote_data': 'query',
@@ -515,7 +488,6 @@ class ApplicationsApi(object):
 
     def applications_change_stage_create(
         self,
-        x_account_token,
         id,
         **kwargs
     ) -> "ApplicationResponse":
@@ -525,11 +497,10 @@ class ApplicationsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.applications_change_stage_create(x_account_token, id, async_req=True)
+        >>> thread = api.applications_change_stage_create(id, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             id (str):
 
         Keyword Args:
@@ -597,15 +568,12 @@ class ApplicationsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['id'] = \
             id
         return self.applications_change_stage_create_endpoint.call_with_http_info(**kwargs)
 
     def applications_create(
         self,
-        x_account_token,
         application_endpoint_request,
         **kwargs
     ) -> "ApplicationResponse":
@@ -615,11 +583,10 @@ class ApplicationsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.applications_create(x_account_token, application_endpoint_request, async_req=True)
+        >>> thread = api.applications_create(application_endpoint_request, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             application_endpoint_request (ApplicationEndpointRequest):
 
         Keyword Args:
@@ -686,15 +653,12 @@ class ApplicationsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['application_endpoint_request'] = \
             application_endpoint_request
         return self.applications_create_endpoint.call_with_http_info(**kwargs)
 
     def applications_list(
         self,
-        x_account_token,
         **kwargs
     ) -> "MergePaginatedResponse(Application)":
         """applications_list  # noqa: E501
@@ -703,11 +667,9 @@ class ApplicationsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.applications_list(x_account_token, async_req=True)
+        >>> thread = api.applications_list(async_req=True)
         >>> result = thread.get()
 
-        Args:
-            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             candidate_id (str): If provided, will only return applications for this candidate.. [optional]
@@ -787,13 +749,10 @@ class ApplicationsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         return self.applications_list_endpoint.call_with_http_info(**kwargs)
 
     def applications_meta_post_retrieve(
         self,
-        x_account_token,
         **kwargs
     ) -> "MetaResponse":
         """applications_meta_post_retrieve  # noqa: E501
@@ -802,11 +761,9 @@ class ApplicationsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.applications_meta_post_retrieve(x_account_token, async_req=True)
+        >>> thread = api.applications_meta_post_retrieve(async_req=True)
         >>> result = thread.get()
 
-        Args:
-            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             application_remote_template_id (str): The template ID associated with the nested application in the request.. [optional]
@@ -871,13 +828,10 @@ class ApplicationsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         return self.applications_meta_post_retrieve_endpoint.call_with_http_info(**kwargs)
 
     def applications_retrieve(
         self,
-        x_account_token,
         id,
         **kwargs
     ) -> "Application":
@@ -887,11 +841,10 @@ class ApplicationsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.applications_retrieve(x_account_token, id, async_req=True)
+        >>> thread = api.applications_retrieve(id, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             id (str):
 
         Keyword Args:
@@ -958,8 +911,6 @@ class ApplicationsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['id'] = \
             id
         return self.applications_retrieve_endpoint.call_with_http_info(**kwargs)

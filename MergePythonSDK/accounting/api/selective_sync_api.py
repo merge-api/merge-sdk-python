@@ -43,7 +43,8 @@ class SelectiveSyncApi(object):
             settings={
                 'response_type': ([LinkedAccountSelectiveSyncConfiguration],),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/accounting/v1/selective-sync/configurations',
                 'operation_id': 'selective_sync_configurations_list',
@@ -52,11 +53,8 @@ class SelectiveSyncApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                 ],
-                'required': [
-                    'x_account_token',
-                ],
+                'required': [],
                 'nullable': [
                 ],
                 'enum': [
@@ -70,14 +68,10 @@ class SelectiveSyncApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -94,7 +88,8 @@ class SelectiveSyncApi(object):
             settings={
                 'response_type': ([LinkedAccountSelectiveSyncConfiguration],),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/accounting/v1/selective-sync/configurations',
                 'operation_id': 'selective_sync_configurations_update',
@@ -103,11 +98,9 @@ class SelectiveSyncApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'linked_account_selective_sync_configuration_list_request',
                 ],
                 'required': [
-                    'x_account_token',
                     'linked_account_selective_sync_configuration_list_request',
                 ],
                 'nullable': [
@@ -123,16 +116,12 @@ class SelectiveSyncApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'linked_account_selective_sync_configuration_list_request':
                         (LinkedAccountSelectiveSyncConfigurationListRequest,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'linked_account_selective_sync_configuration_list_request': 'body',
                 },
                 'collection_format_map': {
@@ -152,7 +141,8 @@ class SelectiveSyncApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(ConditionSchema),),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/accounting/v1/selective-sync/meta',
                 'operation_id': 'selective_sync_meta_list',
@@ -161,14 +151,11 @@ class SelectiveSyncApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'common_model',
                     'cursor',
                     'page_size',
                 ],
-                'required': [
-                    'x_account_token',
-                ],
+                'required': [],
                 'nullable': [
                 ],
                 'enum': [
@@ -182,8 +169,6 @@ class SelectiveSyncApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'common_model':
                         (str,),
                     'cursor':
@@ -192,13 +177,11 @@ class SelectiveSyncApi(object):
                         (int,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'common_model': 'common_model',
                     'cursor': 'cursor',
                     'page_size': 'page_size',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'common_model': 'query',
                     'cursor': 'query',
                     'page_size': 'query',
@@ -217,7 +200,6 @@ class SelectiveSyncApi(object):
 
     def selective_sync_configurations_list(
         self,
-        x_account_token,
         **kwargs
     ) -> "[LinkedAccountSelectiveSyncConfiguration]":
         """selective_sync_configurations_list  # noqa: E501
@@ -226,11 +208,9 @@ class SelectiveSyncApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.selective_sync_configurations_list(x_account_token, async_req=True)
+        >>> thread = api.selective_sync_configurations_list(async_req=True)
         >>> result = thread.get()
 
-        Args:
-            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -294,13 +274,10 @@ class SelectiveSyncApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         return self.selective_sync_configurations_list_endpoint.call_with_http_info(**kwargs)
 
     def selective_sync_configurations_update(
         self,
-        x_account_token,
         linked_account_selective_sync_configuration_list_request,
         **kwargs
     ) -> "[LinkedAccountSelectiveSyncConfiguration]":
@@ -310,11 +287,10 @@ class SelectiveSyncApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.selective_sync_configurations_update(x_account_token, linked_account_selective_sync_configuration_list_request, async_req=True)
+        >>> thread = api.selective_sync_configurations_update(linked_account_selective_sync_configuration_list_request, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             linked_account_selective_sync_configuration_list_request (LinkedAccountSelectiveSyncConfigurationListRequest):
 
         Keyword Args:
@@ -379,15 +355,12 @@ class SelectiveSyncApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['linked_account_selective_sync_configuration_list_request'] = \
             linked_account_selective_sync_configuration_list_request
         return self.selective_sync_configurations_update_endpoint.call_with_http_info(**kwargs)
 
     def selective_sync_meta_list(
         self,
-        x_account_token,
         **kwargs
     ) -> "MergePaginatedResponse(ConditionSchema)":
         """selective_sync_meta_list  # noqa: E501
@@ -396,11 +369,9 @@ class SelectiveSyncApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.selective_sync_meta_list(x_account_token, async_req=True)
+        >>> thread = api.selective_sync_meta_list(async_req=True)
         >>> result = thread.get()
 
-        Args:
-            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             common_model (str): [optional]
@@ -467,7 +438,5 @@ class SelectiveSyncApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         return self.selective_sync_meta_list_endpoint.call_with_http_info(**kwargs)
 

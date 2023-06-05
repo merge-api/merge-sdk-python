@@ -41,7 +41,8 @@ class TransactionsApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(Transaction),),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/accounting/v1/transactions',
                 'operation_id': 'transactions_list',
@@ -50,7 +51,6 @@ class TransactionsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'company_id',
                     'created_after',
                     'created_before',
@@ -65,9 +65,7 @@ class TransactionsApi(object):
                     'transaction_date_after',
                     'transaction_date_before',
                 ],
-                'required': [
-                    'x_account_token',
-                ],
+                'required': [],
                 'nullable': [
                     'remote_id',
                     'transaction_date_after',
@@ -103,8 +101,6 @@ class TransactionsApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'company_id':
                         (str,),
                     'created_after':
@@ -133,7 +129,6 @@ class TransactionsApi(object):
                         (datetime, none_type,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'company_id': 'company_id',
                     'created_after': 'created_after',
                     'created_before': 'created_before',
@@ -149,7 +144,6 @@ class TransactionsApi(object):
                     'transaction_date_before': 'transaction_date_before',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'company_id': 'query',
                     'created_after': 'query',
                     'created_before': 'query',
@@ -179,7 +173,8 @@ class TransactionsApi(object):
             settings={
                 'response_type': (Transaction,),
                 'auth': [
-                    'tokenAuth'
+                    'accountTokenAuth',
+                    'bearerAuth'
                 ],
                 'endpoint_path': '/accounting/v1/transactions/{id}',
                 'operation_id': 'transactions_retrieve',
@@ -188,13 +183,11 @@ class TransactionsApi(object):
             },
             params_map={
                 'all': [
-                    'x_account_token',
                     'id',
                     'expand',
                     'include_remote_data',
                 ],
                 'required': [
-                    'x_account_token',
                     'id',
                 ],
                 'nullable': [
@@ -229,8 +222,6 @@ class TransactionsApi(object):
                     },
                 },
                 'openapi_types': {
-                    'x_account_token':
-                        (str,),
                     'id':
                         (str,),
                     'expand':
@@ -239,13 +230,11 @@ class TransactionsApi(object):
                         (bool,),
                 },
                 'attribute_map': {
-                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                     'expand': 'expand',
                     'include_remote_data': 'include_remote_data',
                 },
                 'location_map': {
-                    'x_account_token': 'header',
                     'id': 'path',
                     'expand': 'query',
                     'include_remote_data': 'query',
@@ -264,7 +253,6 @@ class TransactionsApi(object):
 
     def transactions_list(
         self,
-        x_account_token,
         **kwargs
     ) -> "MergePaginatedResponse(Transaction)":
         """transactions_list  # noqa: E501
@@ -273,11 +261,9 @@ class TransactionsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.transactions_list(x_account_token, async_req=True)
+        >>> thread = api.transactions_list(async_req=True)
         >>> result = thread.get()
 
-        Args:
-            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             company_id (str): If provided, will only return accounting transactions for this company.. [optional]
@@ -354,13 +340,10 @@ class TransactionsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         return self.transactions_list_endpoint.call_with_http_info(**kwargs)
 
     def transactions_retrieve(
         self,
-        x_account_token,
         id,
         **kwargs
     ) -> "Transaction":
@@ -370,11 +353,10 @@ class TransactionsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.transactions_retrieve(x_account_token, id, async_req=True)
+        >>> thread = api.transactions_retrieve(id, async_req=True)
         >>> result = thread.get()
 
         Args:
-            x_account_token (str): Token identifying the end user.
             id (str):
 
         Keyword Args:
@@ -441,8 +423,6 @@ class TransactionsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['x_account_token'] = \
-            x_account_token
         kwargs['id'] = \
             id
         return self.transactions_retrieve_endpoint.call_with_http_info(**kwargs)
