@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **offers_list**
-> PaginatedOfferList offers_list()
+> PaginatedOfferList offers_list(x_account_token)
 
 
 
@@ -17,14 +17,13 @@ Returns a list of `Offer` objects.
 
 ### Example
 
-* Api Key Authentication (accountTokenAuth):
-* Bearer Authentication (bearerAuth):
+* Api Key Authentication (tokenAuth):
 
 ```python
 import time
 import MergePythonSDK.ats
 from MergePythonSDK.ats.api import offers_api
-from MergePythonSDK.ats.model.paginated_offer_list import PaginatedOfferList
+
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/ats/v1
 # See configuration.py for a list of all supported configuration parameters.
@@ -37,21 +36,17 @@ configuration = MergePythonSDK.ats.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: accountTokenAuth
-configuration.api_key['accountTokenAuth'] = 'YOUR_API_KEY'
+# Configure API key authorization: tokenAuth
+configuration.api_key['tokenAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['accountTokenAuth'] = 'Bearer'
-
-# Configure Bearer authorization: bearerAuth
-configuration = MergePythonSDK.ats.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+# configuration.api_key_prefix['tokenAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with MergePythonSDK.ats.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = offers_api.OffersApi(api_client)
+    x_account_token = "X-Account-Token_example" # str | Token identifying the end user.
     application_id = "application_id_example" # str | If provided, will only return offers for this application. (optional)
     created_after = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, will only return objects created after this datetime. (optional)
     created_before = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, will only return objects created before this datetime. (optional)
@@ -68,9 +63,16 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
     show_enum_origins = "status" # str | Which fields should be returned in non-normalized form. (optional) if omitted the server will use the default value of "status"
 
     # example passing only required values which don't have defaults set
+    try:
+        api_response = api_instance.offers_list(x_account_token)
+        pprint(api_response)
+    except MergePythonSDK.ats.ApiException as e:
+        print("Exception when calling OffersApi->offers_list: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
     # and optional values
     try:
-        api_response = api_instance.offers_list(application_id=application_id, created_after=created_after, created_before=created_before, creator_id=creator_id, cursor=cursor, expand=expand, include_deleted_data=include_deleted_data, include_remote_data=include_remote_data, modified_after=modified_after, modified_before=modified_before, page_size=page_size, remote_fields=remote_fields, remote_id=remote_id, show_enum_origins=show_enum_origins)
+        api_response = api_instance.offers_list(x_account_token, application_id=application_id, created_after=created_after, created_before=created_before, creator_id=creator_id, cursor=cursor, expand=expand, include_deleted_data=include_deleted_data, include_remote_data=include_remote_data, modified_after=modified_after, modified_before=modified_before, page_size=page_size, remote_fields=remote_fields, remote_id=remote_id, show_enum_origins=show_enum_origins)
         pprint(api_response)
     except MergePythonSDK.ats.ApiException as e:
         print("Exception when calling OffersApi->offers_list: %s\n" % e)
@@ -81,6 +83,7 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_account_token** | **str**| Token identifying the end user. |
  **application_id** | **str**| If provided, will only return offers for this application. | [optional]
  **created_after** | **datetime**| If provided, will only return objects created after this datetime. | [optional]
  **created_before** | **datetime**| If provided, will only return objects created before this datetime. | [optional]
@@ -102,7 +105,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -119,7 +122,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **offers_retrieve**
-> Offer offers_retrieve(id)
+> Offer offers_retrieve(x_account_token, id)
 
 
 
@@ -127,8 +130,7 @@ Returns an `Offer` object with the given `id`.
 
 ### Example
 
-* Api Key Authentication (accountTokenAuth):
-* Bearer Authentication (bearerAuth):
+* Api Key Authentication (tokenAuth):
 
 ```python
 import time
@@ -147,21 +149,17 @@ configuration = MergePythonSDK.ats.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: accountTokenAuth
-configuration.api_key['accountTokenAuth'] = 'YOUR_API_KEY'
+# Configure API key authorization: tokenAuth
+configuration.api_key['tokenAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['accountTokenAuth'] = 'Bearer'
-
-# Configure Bearer authorization: bearerAuth
-configuration = MergePythonSDK.ats.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+# configuration.api_key_prefix['tokenAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with MergePythonSDK.ats.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = offers_api.OffersApi(api_client)
+    x_account_token = "X-Account-Token_example" # str | Token identifying the end user.
     id = "id_example" # str | 
     expand = "application,creator" # str | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. (optional)
     include_remote_data = True # bool | Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
@@ -170,7 +168,7 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        api_response = api_instance.offers_retrieve(id)
+        api_response = api_instance.offers_retrieve(x_account_token, id)
         pprint(api_response)
     except MergePythonSDK.ats.ApiException as e:
         print("Exception when calling OffersApi->offers_retrieve: %s\n" % e)
@@ -178,7 +176,7 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        api_response = api_instance.offers_retrieve(id, expand=expand, include_remote_data=include_remote_data, remote_fields=remote_fields, show_enum_origins=show_enum_origins)
+        api_response = api_instance.offers_retrieve(x_account_token, id, expand=expand, include_remote_data=include_remote_data, remote_fields=remote_fields, show_enum_origins=show_enum_origins)
         pprint(api_response)
     except MergePythonSDK.ats.ApiException as e:
         print("Exception when calling OffersApi->offers_retrieve: %s\n" % e)
@@ -189,6 +187,7 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_account_token** | **str**| Token identifying the end user. |
  **id** | **str**|  |
  **expand** | **str**| Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. | [optional]
  **include_remote_data** | **bool**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional]
@@ -201,7 +200,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 

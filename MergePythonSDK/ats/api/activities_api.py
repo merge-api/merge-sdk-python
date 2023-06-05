@@ -44,8 +44,7 @@ class ActivitiesApi(object):
             settings={
                 'response_type': (ActivityResponse,),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/ats/v1/activities',
                 'operation_id': 'activities_create',
@@ -54,11 +53,13 @@ class ActivitiesApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                     'activity_endpoint_request',
                     'is_debug_mode',
                     'run_async',
                 ],
                 'required': [
+                    'x_account_token',
                     'activity_endpoint_request',
                 ],
                 'nullable': [
@@ -74,6 +75,8 @@ class ActivitiesApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                     'activity_endpoint_request':
                         (ActivityEndpointRequest,),
                     'is_debug_mode':
@@ -82,10 +85,12 @@ class ActivitiesApi(object):
                         (bool,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                     'is_debug_mode': 'is_debug_mode',
                     'run_async': 'run_async',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                     'activity_endpoint_request': 'body',
                     'is_debug_mode': 'query',
                     'run_async': 'query',
@@ -109,8 +114,7 @@ class ActivitiesApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(Activity),),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/ats/v1/activities',
                 'operation_id': 'activities_list',
@@ -119,6 +123,7 @@ class ActivitiesApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                     'created_after',
                     'created_before',
                     'cursor',
@@ -133,7 +138,9 @@ class ActivitiesApi(object):
                     'show_enum_origins',
                     'user_id',
                 ],
-                'required': [],
+                'required': [
+                    'x_account_token',
+                ],
                 'nullable': [
                     'remote_id',
                 ],
@@ -167,6 +174,8 @@ class ActivitiesApi(object):
                     },
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                     'created_after':
                         (datetime,),
                     'created_before':
@@ -195,6 +204,7 @@ class ActivitiesApi(object):
                         (str,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                     'created_after': 'created_after',
                     'created_before': 'created_before',
                     'cursor': 'cursor',
@@ -210,6 +220,7 @@ class ActivitiesApi(object):
                     'user_id': 'user_id',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                     'created_after': 'query',
                     'created_before': 'query',
                     'cursor': 'query',
@@ -239,8 +250,7 @@ class ActivitiesApi(object):
             settings={
                 'response_type': (MetaResponse,),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/ats/v1/activities/meta/post',
                 'operation_id': 'activities_meta_post_retrieve',
@@ -249,8 +259,11 @@ class ActivitiesApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                 ],
-                'required': [],
+                'required': [
+                    'x_account_token',
+                ],
                 'nullable': [
                 ],
                 'enum': [
@@ -264,10 +277,14 @@ class ActivitiesApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -284,8 +301,7 @@ class ActivitiesApi(object):
             settings={
                 'response_type': (Activity,),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/ats/v1/activities/{id}',
                 'operation_id': 'activities_retrieve',
@@ -294,6 +310,7 @@ class ActivitiesApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                     'id',
                     'expand',
                     'include_remote_data',
@@ -301,6 +318,7 @@ class ActivitiesApi(object):
                     'show_enum_origins',
                 ],
                 'required': [
+                    'x_account_token',
                     'id',
                 ],
                 'nullable': [
@@ -335,6 +353,8 @@ class ActivitiesApi(object):
                     },
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                     'id':
                         (str,),
                     'expand':
@@ -347,6 +367,7 @@ class ActivitiesApi(object):
                         (str,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                     'expand': 'expand',
                     'include_remote_data': 'include_remote_data',
@@ -354,6 +375,7 @@ class ActivitiesApi(object):
                     'show_enum_origins': 'show_enum_origins',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                     'id': 'path',
                     'expand': 'query',
                     'include_remote_data': 'query',
@@ -374,6 +396,7 @@ class ActivitiesApi(object):
 
     def activities_create(
         self,
+        x_account_token,
         activity_endpoint_request,
         **kwargs
     ) -> "ActivityResponse":
@@ -383,10 +406,11 @@ class ActivitiesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.activities_create(activity_endpoint_request, async_req=True)
+        >>> thread = api.activities_create(x_account_token, activity_endpoint_request, async_req=True)
         >>> result = thread.get()
 
         Args:
+            x_account_token (str): Token identifying the end user.
             activity_endpoint_request (ActivityEndpointRequest):
 
         Keyword Args:
@@ -453,12 +477,15 @@ class ActivitiesApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         kwargs['activity_endpoint_request'] = \
             activity_endpoint_request
         return self.activities_create_endpoint.call_with_http_info(**kwargs)
 
     def activities_list(
         self,
+        x_account_token,
         **kwargs
     ) -> "MergePaginatedResponse(Activity)":
         """activities_list  # noqa: E501
@@ -467,9 +494,11 @@ class ActivitiesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.activities_list(async_req=True)
+        >>> thread = api.activities_list(x_account_token, async_req=True)
         >>> result = thread.get()
 
+        Args:
+            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             created_after (datetime): If provided, will only return objects created after this datetime.. [optional]
@@ -546,10 +575,13 @@ class ActivitiesApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         return self.activities_list_endpoint.call_with_http_info(**kwargs)
 
     def activities_meta_post_retrieve(
         self,
+        x_account_token,
         **kwargs
     ) -> "MetaResponse":
         """activities_meta_post_retrieve  # noqa: E501
@@ -558,9 +590,11 @@ class ActivitiesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.activities_meta_post_retrieve(async_req=True)
+        >>> thread = api.activities_meta_post_retrieve(x_account_token, async_req=True)
         >>> result = thread.get()
 
+        Args:
+            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -624,10 +658,13 @@ class ActivitiesApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         return self.activities_meta_post_retrieve_endpoint.call_with_http_info(**kwargs)
 
     def activities_retrieve(
         self,
+        x_account_token,
         id,
         **kwargs
     ) -> "Activity":
@@ -637,10 +674,11 @@ class ActivitiesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.activities_retrieve(id, async_req=True)
+        >>> thread = api.activities_retrieve(x_account_token, id, async_req=True)
         >>> result = thread.get()
 
         Args:
+            x_account_token (str): Token identifying the end user.
             id (str):
 
         Keyword Args:
@@ -709,6 +747,8 @@ class ActivitiesApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         kwargs['id'] = \
             id
         return self.activities_retrieve_endpoint.call_with_http_info(**kwargs)

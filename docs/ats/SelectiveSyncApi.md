@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 
 # **selective_sync_configurations_list**
-> [LinkedAccountSelectiveSyncConfiguration] selective_sync_configurations_list()
+> [LinkedAccountSelectiveSyncConfiguration] selective_sync_configurations_list(x_account_token)
 
 
 
@@ -18,8 +18,7 @@ Get a linked account's selective syncs.
 
 ### Example
 
-* Api Key Authentication (accountTokenAuth):
-* Bearer Authentication (bearerAuth):
+* Api Key Authentication (tokenAuth):
 
 ```python
 import time
@@ -38,25 +37,21 @@ configuration = MergePythonSDK.ats.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: accountTokenAuth
-configuration.api_key['accountTokenAuth'] = 'YOUR_API_KEY'
+# Configure API key authorization: tokenAuth
+configuration.api_key['tokenAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['accountTokenAuth'] = 'Bearer'
-
-# Configure Bearer authorization: bearerAuth
-configuration = MergePythonSDK.ats.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+# configuration.api_key_prefix['tokenAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with MergePythonSDK.ats.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = selective_sync_api.SelectiveSyncApi(api_client)
+    x_account_token = "X-Account-Token_example" # str | Token identifying the end user.
 
-    # example, this endpoint has no required or optional parameters
+    # example passing only required values which don't have defaults set
     try:
-        api_response = api_instance.selective_sync_configurations_list()
+        api_response = api_instance.selective_sync_configurations_list(x_account_token)
         pprint(api_response)
     except MergePythonSDK.ats.ApiException as e:
         print("Exception when calling SelectiveSyncApi->selective_sync_configurations_list: %s\n" % e)
@@ -64,7 +59,10 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
 
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **x_account_token** | **str**| Token identifying the end user. |
 
 ### Return type
 
@@ -72,7 +70,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -89,7 +87,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **selective_sync_configurations_update**
-> [LinkedAccountSelectiveSyncConfiguration] selective_sync_configurations_update(linked_account_selective_sync_configuration_list_request)
+> [LinkedAccountSelectiveSyncConfiguration] selective_sync_configurations_update(x_account_token, linked_account_selective_sync_configuration_list_request)
 
 
 
@@ -97,8 +95,7 @@ Replace a linked account's selective syncs.
 
 ### Example
 
-* Api Key Authentication (accountTokenAuth):
-* Bearer Authentication (bearerAuth):
+* Api Key Authentication (tokenAuth):
 
 ```python
 import time
@@ -118,21 +115,17 @@ configuration = MergePythonSDK.ats.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: accountTokenAuth
-configuration.api_key['accountTokenAuth'] = 'YOUR_API_KEY'
+# Configure API key authorization: tokenAuth
+configuration.api_key['tokenAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['accountTokenAuth'] = 'Bearer'
-
-# Configure Bearer authorization: bearerAuth
-configuration = MergePythonSDK.ats.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+# configuration.api_key_prefix['tokenAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with MergePythonSDK.ats.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = selective_sync_api.SelectiveSyncApi(api_client)
+    x_account_token = "X-Account-Token_example" # str | Token identifying the end user.
     linked_account_selective_sync_configuration_list_request = LinkedAccountSelectiveSyncConfigurationListRequest(
         sync_configurations=[
             LinkedAccountSelectiveSyncConfigurationRequest(
@@ -149,7 +142,7 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        api_response = api_instance.selective_sync_configurations_update(linked_account_selective_sync_configuration_list_request)
+        api_response = api_instance.selective_sync_configurations_update(x_account_token, linked_account_selective_sync_configuration_list_request)
         pprint(api_response)
     except MergePythonSDK.ats.ApiException as e:
         print("Exception when calling SelectiveSyncApi->selective_sync_configurations_update: %s\n" % e)
@@ -160,6 +153,7 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_account_token** | **str**| Token identifying the end user. |
  **linked_account_selective_sync_configuration_list_request** | [**LinkedAccountSelectiveSyncConfigurationListRequest**](LinkedAccountSelectiveSyncConfigurationListRequest.md)|  |
 
 ### Return type
@@ -168,7 +162,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -185,7 +179,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **selective_sync_meta_list**
-> PaginatedConditionSchemaList selective_sync_meta_list()
+> PaginatedConditionSchemaList selective_sync_meta_list(x_account_token)
 
 
 
@@ -193,14 +187,13 @@ Get metadata for the conditions available to a linked account.
 
 ### Example
 
-* Api Key Authentication (accountTokenAuth):
-* Bearer Authentication (bearerAuth):
+* Api Key Authentication (tokenAuth):
 
 ```python
 import time
 import MergePythonSDK.ats
 from MergePythonSDK.ats.api import selective_sync_api
-from MergePythonSDK.ats.model.paginated_condition_schema_list import PaginatedConditionSchemaList
+
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/ats/v1
 # See configuration.py for a list of all supported configuration parameters.
@@ -213,29 +206,32 @@ configuration = MergePythonSDK.ats.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: accountTokenAuth
-configuration.api_key['accountTokenAuth'] = 'YOUR_API_KEY'
+# Configure API key authorization: tokenAuth
+configuration.api_key['tokenAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['accountTokenAuth'] = 'Bearer'
-
-# Configure Bearer authorization: bearerAuth
-configuration = MergePythonSDK.ats.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+# configuration.api_key_prefix['tokenAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with MergePythonSDK.ats.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = selective_sync_api.SelectiveSyncApi(api_client)
+    x_account_token = "X-Account-Token_example" # str | Token identifying the end user.
     common_model = "common_model_example" # str |  (optional)
     cursor = "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw" # str | The pagination cursor value. (optional)
     page_size = 1 # int | Number of results to return per page. (optional)
 
     # example passing only required values which don't have defaults set
+    try:
+        api_response = api_instance.selective_sync_meta_list(x_account_token)
+        pprint(api_response)
+    except MergePythonSDK.ats.ApiException as e:
+        print("Exception when calling SelectiveSyncApi->selective_sync_meta_list: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
     # and optional values
     try:
-        api_response = api_instance.selective_sync_meta_list(common_model=common_model, cursor=cursor, page_size=page_size)
+        api_response = api_instance.selective_sync_meta_list(x_account_token, common_model=common_model, cursor=cursor, page_size=page_size)
         pprint(api_response)
     except MergePythonSDK.ats.ApiException as e:
         print("Exception when calling SelectiveSyncApi->selective_sync_meta_list: %s\n" % e)
@@ -246,6 +242,7 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_account_token** | **str**| Token identifying the end user. |
  **common_model** | **str**|  | [optional]
  **cursor** | **str**| The pagination cursor value. | [optional]
  **page_size** | **int**| Number of results to return per page. | [optional]
@@ -256,7 +253,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 

@@ -41,8 +41,7 @@ class ScorecardsApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(Scorecard),),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/ats/v1/scorecards',
                 'operation_id': 'scorecards_list',
@@ -51,6 +50,7 @@ class ScorecardsApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                     'application_id',
                     'created_after',
                     'created_before',
@@ -67,7 +67,9 @@ class ScorecardsApi(object):
                     'remote_id',
                     'show_enum_origins',
                 ],
-                'required': [],
+                'required': [
+                    'x_account_token',
+                ],
                 'nullable': [
                     'remote_id',
                 ],
@@ -103,6 +105,8 @@ class ScorecardsApi(object):
                     },
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                     'application_id':
                         (str,),
                     'created_after':
@@ -135,6 +139,7 @@ class ScorecardsApi(object):
                         (str,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                     'application_id': 'application_id',
                     'created_after': 'created_after',
                     'created_before': 'created_before',
@@ -152,6 +157,7 @@ class ScorecardsApi(object):
                     'show_enum_origins': 'show_enum_origins',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                     'application_id': 'query',
                     'created_after': 'query',
                     'created_before': 'query',
@@ -183,8 +189,7 @@ class ScorecardsApi(object):
             settings={
                 'response_type': (Scorecard,),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/ats/v1/scorecards/{id}',
                 'operation_id': 'scorecards_retrieve',
@@ -193,6 +198,7 @@ class ScorecardsApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                     'id',
                     'expand',
                     'include_remote_data',
@@ -200,6 +206,7 @@ class ScorecardsApi(object):
                     'show_enum_origins',
                 ],
                 'required': [
+                    'x_account_token',
                     'id',
                 ],
                 'nullable': [
@@ -236,6 +243,8 @@ class ScorecardsApi(object):
                     },
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                     'id':
                         (str,),
                     'expand':
@@ -248,6 +257,7 @@ class ScorecardsApi(object):
                         (str,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                     'expand': 'expand',
                     'include_remote_data': 'include_remote_data',
@@ -255,6 +265,7 @@ class ScorecardsApi(object):
                     'show_enum_origins': 'show_enum_origins',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                     'id': 'path',
                     'expand': 'query',
                     'include_remote_data': 'query',
@@ -275,6 +286,7 @@ class ScorecardsApi(object):
 
     def scorecards_list(
         self,
+        x_account_token,
         **kwargs
     ) -> "MergePaginatedResponse(Scorecard)":
         """scorecards_list  # noqa: E501
@@ -283,9 +295,11 @@ class ScorecardsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.scorecards_list(async_req=True)
+        >>> thread = api.scorecards_list(x_account_token, async_req=True)
         >>> result = thread.get()
 
+        Args:
+            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             application_id (str): If provided, will only return scorecards for this application.. [optional]
@@ -364,10 +378,13 @@ class ScorecardsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         return self.scorecards_list_endpoint.call_with_http_info(**kwargs)
 
     def scorecards_retrieve(
         self,
+        x_account_token,
         id,
         **kwargs
     ) -> "Scorecard":
@@ -377,10 +394,11 @@ class ScorecardsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.scorecards_retrieve(id, async_req=True)
+        >>> thread = api.scorecards_retrieve(x_account_token, id, async_req=True)
         >>> result = thread.get()
 
         Args:
+            x_account_token (str): Token identifying the end user.
             id (str):
 
         Keyword Args:
@@ -449,6 +467,8 @@ class ScorecardsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         kwargs['id'] = \
             id
         return self.scorecards_retrieve_endpoint.call_with_http_info(**kwargs)

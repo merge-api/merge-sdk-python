@@ -85,7 +85,7 @@ class Payment(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -111,13 +111,14 @@ class Payment(ModelNormal):
             'exchange_rate': (str, none_type, none_type,),  # noqa: E501
             'company': (str, none_type, none_type,),  # noqa: E501
             'total_amount': (float, none_type, none_type,),  # noqa: E501
+            'tracking_categories': ([str, none_type], none_type,),  # noqa: E501
             'remote_updated_at': (datetime, none_type, none_type,),  # noqa: E501
             'remote_was_deleted': (bool, none_type,),  # noqa: E501
             'field_mappings': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
             'modified_at': (datetime, none_type,),  # noqa: E501
             'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
         }
-        expands_types = {"account": "Account", "company": "CompanyInfo", "contact": "Contact"}
+        expands_types = {"account": "Account", "company": "CompanyInfo", "contact": "Contact", "tracking_categories": "TrackingCategory"}
 
         # update types with expands
         for key, val in expands_types.items():
@@ -144,6 +145,7 @@ class Payment(ModelNormal):
         'exchange_rate': 'exchange_rate',  # noqa: E501
         'company': 'company',  # noqa: E501
         'total_amount': 'total_amount',  # noqa: E501
+        'tracking_categories': 'tracking_categories',  # noqa: E501
         'remote_updated_at': 'remote_updated_at',  # noqa: E501
         'remote_was_deleted': 'remote_was_deleted',  # noqa: E501
         'field_mappings': 'field_mappings',  # noqa: E501
@@ -206,6 +208,7 @@ class Payment(ModelNormal):
             exchange_rate (str, none_type): The payment's exchange rate.. [optional]  # noqa: E501
             company (str, none_type): The company the payment belongs to.. [optional]  # noqa: E501
             total_amount (float, none_type): The total amount of money being paid to the supplier, or customer, after taxes.. [optional]  # noqa: E501
+            tracking_categories ([str, none_type]): [optional]  # noqa: E501
             remote_updated_at (datetime, none_type): When the third party's payment entry was updated.. [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
             field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
@@ -251,6 +254,7 @@ class Payment(ModelNormal):
         self.exchange_rate = kwargs.get("exchange_rate", None)
         self.company = kwargs.get("company", None)
         self.total_amount = kwargs.get("total_amount", None)
+        self.tracking_categories = kwargs.get("tracking_categories", None)
         self.remote_updated_at = kwargs.get("remote_updated_at", None)
 
         # Read only properties
@@ -314,6 +318,7 @@ class Payment(ModelNormal):
             exchange_rate (str, none_type): The payment's exchange rate.. [optional]  # noqa: E501
             company (str, none_type): The company the payment belongs to.. [optional]  # noqa: E501
             total_amount (float, none_type): The total amount of money being paid to the supplier, or customer, after taxes.. [optional]  # noqa: E501
+            tracking_categories ([str, none_type]): [optional]  # noqa: E501
             remote_updated_at (datetime, none_type): When the third party's payment entry was updated.. [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
             field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
@@ -356,6 +361,7 @@ class Payment(ModelNormal):
         self.exchange_rate: Union[str, none_type] = kwargs.get("exchange_rate", None)
         self.company: Union[str, none_type] = kwargs.get("company", None)
         self.total_amount: Union[float, none_type] = kwargs.get("total_amount", None)
+        self.tracking_categories: Union[List[str, none_type]] = kwargs.get("tracking_categories", list())
         self.remote_updated_at: Union[datetime, none_type] = kwargs.get("remote_updated_at", None)
 
         # Read only properties

@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **exchange_rate** | **str, none_type** | The payment&#39;s exchange rate. | [optional] 
 **company** | **str, none_type** | The company the payment belongs to. | [optional] 
 **total_amount** | **float, none_type** | The total amount of money being paid to the supplier, or customer, after taxes. | [optional] 
+**tracking_categories** | **[str, none_type]** |  | [optional] 
 **remote_updated_at** | **datetime, none_type** | When the third party&#39;s payment entry was updated. | [optional] 
 **remote_was_deleted** | **bool** | Indicates whether or not this object has been deleted by third party webhooks. | [optional] [readonly] 
 **field_mappings** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** |  | [optional] [readonly] 

@@ -14,6 +14,8 @@ import unittest
 from unittest.mock import MagicMock
 
 import MergePythonSDK.crm
+from MergePythonSDK.crm.model.remote_field_request import RemoteFieldRequest
+globals()['RemoteFieldRequest'] = RemoteFieldRequest
 from MergePythonSDK.crm.model.note_request import NoteRequest
 from MergePythonSDK.shared.api_client import ApiClient
 

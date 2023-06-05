@@ -15,8 +15,10 @@ from unittest.mock import MagicMock
 
 import MergePythonSDK.ticketing
 from MergePythonSDK.ticketing.model.priority_enum import PriorityEnum
+from MergePythonSDK.ticketing.model.remote_field_request import RemoteFieldRequest
 from MergePythonSDK.ticketing.model.ticket_status_enum import TicketStatusEnum
 globals()['PriorityEnum'] = PriorityEnum
+globals()['RemoteFieldRequest'] = RemoteFieldRequest
 globals()['TicketStatusEnum'] = TicketStatusEnum
 from MergePythonSDK.ticketing.model.patched_ticket_request import PatchedTicketRequest
 from MergePythonSDK.shared.api_client import ApiClient

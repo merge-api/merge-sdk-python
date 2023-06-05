@@ -70,6 +70,7 @@ class SyncStatusStatusEnum(ModelNormal, MergeEnumType):
             'FAILED': "FAILED",
             'DISABLED': "DISABLED",
             'PAUSED': "PAUSED",
+            'PARTIALLY_SYNCED': "PARTIALLY_SYNCED",
         },
     }
 

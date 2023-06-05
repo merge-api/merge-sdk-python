@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **remote_id** | **str, none_type** | The third-party API ID of the matching object. | [optional] 
 **name** | **str, none_type** | Standard stage names are offered by ATS systems but can be modified by users. | [optional] 
 **job** | **str, none_type** | This field is populated only if the stage is specific to a particular job. If the stage is generic, this field will not be populated. | [optional] 
+**stage_order** | **int, none_type** | The stage’s order, with the lowest values ordered first. If the third-party does not return details on the order of stages, this field will not be populated. | [optional] 
 **remote_was_deleted** | **bool** | Indicates whether or not this object has been deleted by third party webhooks. | [optional] [readonly] 
 **field_mappings** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** |  | [optional] [readonly] 
 **modified_at** | **datetime** | This is the datetime that this object was last updated by Merge | [optional] [readonly] 

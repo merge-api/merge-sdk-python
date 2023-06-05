@@ -41,7 +41,7 @@ class LinkTokenApi(object):
             settings={
                 'response_type': (LinkToken,),
                 'auth': [
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/ats/v1/link-token',
                 'operation_id': 'link_token_create',

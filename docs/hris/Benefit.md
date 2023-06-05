@@ -12,6 +12,8 @@ Name | Type | Description | Notes
 **benefit_plan_type** | **str, none_type** | The type of benefit plan | [optional] 
 **employee_contribution** | **float, none_type** | The employee&#39;s contribution. | [optional] 
 **company_contribution** | **float, none_type** | The company&#39;s contribution. | [optional] 
+**start_date** | **datetime, none_type** | The day and time the benefit started. | [optional] 
+**end_date** | **datetime, none_type** | The day and time the benefit ended. | [optional] 
 **remote_was_deleted** | **bool** | Indicates whether or not this object has been deleted by third party webhooks. | [optional] [readonly] 
 **field_mappings** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** |  | [optional] [readonly] 
 **modified_at** | **datetime** | This is the datetime that this object was last updated by Merge | [optional] [readonly] 

@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **subject** | **str, none_type** | The activity&#39;s subject. | [optional] 
 **body** | **str, none_type** | The activity&#39;s body. | [optional] 
 **visibility** | **bool, date, datetime, dict, float, int, list, str, none_type** | The activity&#39;s visibility.  * &#x60;ADMIN_ONLY&#x60; - ADMIN_ONLY * &#x60;PUBLIC&#x60; - PUBLIC * &#x60;PRIVATE&#x60; - PRIVATE | [optional] 
+**candidate** | **str, none_type** | The activity’s candidate. | [optional] 
 **remote_was_deleted** | **bool** | Indicates whether or not this object has been deleted by third party webhooks. | [optional] [readonly] 
 **field_mappings** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** |  | [optional] [readonly] 
 **modified_at** | **datetime** | This is the datetime that this object was last updated by Merge | [optional] [readonly] 

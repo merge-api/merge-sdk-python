@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **delete_account_create**
-> delete_account_create()
+> delete_account_create(x_account_token)
 
 
 
@@ -16,8 +16,7 @@ Delete a linked account.
 
 ### Example
 
-* Api Key Authentication (accountTokenAuth):
-* Bearer Authentication (bearerAuth):
+* Api Key Authentication (tokenAuth):
 
 ```python
 import time
@@ -35,32 +34,31 @@ configuration = MergePythonSDK.ticketing.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: accountTokenAuth
-configuration.api_key['accountTokenAuth'] = 'YOUR_API_KEY'
+# Configure API key authorization: tokenAuth
+configuration.api_key['tokenAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['accountTokenAuth'] = 'Bearer'
-
-# Configure Bearer authorization: bearerAuth
-configuration = MergePythonSDK.ticketing.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+# configuration.api_key_prefix['tokenAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with MergePythonSDK.ticketing.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = delete_account_api.DeleteAccountApi(api_client)
+    x_account_token = "X-Account-Token_example" # str | Token identifying the end user.
 
-    # example, this endpoint has no required or optional parameters
+    # example passing only required values which don't have defaults set
     try:
-        api_instance.delete_account_create()
+        api_instance.delete_account_create(x_account_token)
     except MergePythonSDK.ticketing.ApiException as e:
         print("Exception when calling DeleteAccountApi->delete_account_create: %s\n" % e)
 ```
 
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **x_account_token** | **str**| Token identifying the end user. |
 
 ### Return type
 
@@ -68,7 +66,7 @@ void (empty response body)
 
 ### Authorization
 
-[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 

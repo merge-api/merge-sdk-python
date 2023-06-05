@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 
 # **tickets_collaborators_list**
-> PaginatedUserList tickets_collaborators_list(parent_id)
+> PaginatedUserList tickets_collaborators_list(x_account_token, parent_id)
 
 
 
@@ -23,14 +23,13 @@ Returns a list of `User` objects.
 
 ### Example
 
-* Api Key Authentication (accountTokenAuth):
-* Bearer Authentication (bearerAuth):
+* Api Key Authentication (tokenAuth):
 
 ```python
 import time
 import MergePythonSDK.ticketing
 from MergePythonSDK.ticketing.api import tickets_api
-from MergePythonSDK.ticketing.model.paginated_user_list import PaginatedUserList
+
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/ticketing/v1
 # See configuration.py for a list of all supported configuration parameters.
@@ -43,21 +42,17 @@ configuration = MergePythonSDK.ticketing.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: accountTokenAuth
-configuration.api_key['accountTokenAuth'] = 'YOUR_API_KEY'
+# Configure API key authorization: tokenAuth
+configuration.api_key['tokenAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['accountTokenAuth'] = 'Bearer'
-
-# Configure Bearer authorization: bearerAuth
-configuration = MergePythonSDK.ticketing.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+# configuration.api_key_prefix['tokenAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with MergePythonSDK.ticketing.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = tickets_api.TicketsApi(api_client)
+    x_account_token = "X-Account-Token_example" # str | Token identifying the end user.
     parent_id = "parent_id_example" # str | 
     cursor = "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw" # str | The pagination cursor value. (optional)
     expand = "teams" # str | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. (optional) if omitted the server will use the default value of "teams"
@@ -67,7 +62,7 @@ with MergePythonSDK.ticketing.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        api_response = api_instance.tickets_collaborators_list(parent_id)
+        api_response = api_instance.tickets_collaborators_list(x_account_token, parent_id)
         pprint(api_response)
     except MergePythonSDK.ticketing.ApiException as e:
         print("Exception when calling TicketsApi->tickets_collaborators_list: %s\n" % e)
@@ -75,7 +70,7 @@ with MergePythonSDK.ticketing.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        api_response = api_instance.tickets_collaborators_list(parent_id, cursor=cursor, expand=expand, include_deleted_data=include_deleted_data, include_remote_data=include_remote_data, page_size=page_size)
+        api_response = api_instance.tickets_collaborators_list(x_account_token, parent_id, cursor=cursor, expand=expand, include_deleted_data=include_deleted_data, include_remote_data=include_remote_data, page_size=page_size)
         pprint(api_response)
     except MergePythonSDK.ticketing.ApiException as e:
         print("Exception when calling TicketsApi->tickets_collaborators_list: %s\n" % e)
@@ -86,6 +81,7 @@ with MergePythonSDK.ticketing.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_account_token** | **str**| Token identifying the end user. |
  **parent_id** | **str**|  |
  **cursor** | **str**| The pagination cursor value. | [optional]
  **expand** | **str**| Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. | [optional] if omitted the server will use the default value of "teams"
@@ -99,7 +95,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -116,7 +112,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tickets_create**
-> TicketResponse tickets_create(ticket_endpoint_request)
+> TicketResponse tickets_create(x_account_token, ticket_endpoint_request)
 
 
 
@@ -124,8 +120,7 @@ Creates a `Ticket` object with the given values.
 
 ### Example
 
-* Api Key Authentication (accountTokenAuth):
-* Bearer Authentication (bearerAuth):
+* Api Key Authentication (tokenAuth):
 
 ```python
 import time
@@ -145,21 +140,17 @@ configuration = MergePythonSDK.ticketing.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: accountTokenAuth
-configuration.api_key['accountTokenAuth'] = 'YOUR_API_KEY'
+# Configure API key authorization: tokenAuth
+configuration.api_key['tokenAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['accountTokenAuth'] = 'Bearer'
-
-# Configure Bearer authorization: bearerAuth
-configuration = MergePythonSDK.ticketing.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+# configuration.api_key_prefix['tokenAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with MergePythonSDK.ticketing.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = tickets_api.TicketsApi(api_client)
+    x_account_token = "X-Account-Token_example" # str | Token identifying the end user.
     ticket_endpoint_request = TicketEndpointRequest(
         model=TicketRequest(
             name="Please add more integrations",
@@ -185,6 +176,14 @@ with MergePythonSDK.ticketing.ApiClient(configuration) as api_client:
             linked_account_params={
                 "key": None,
             },
+            remote_fields=[
+                RemoteFieldRequest(
+                    remote_field_class="b057d1d2-c204-4da8-a74c-c91d1a260614",
+                    value={
+                        "key": None,
+                    },
+                ),
+            ],
         ),
     ) # TicketEndpointRequest | 
     is_debug_mode = True # bool | Whether to include debug fields (such as log file links) in the response. (optional)
@@ -192,7 +191,7 @@ with MergePythonSDK.ticketing.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        api_response = api_instance.tickets_create(ticket_endpoint_request)
+        api_response = api_instance.tickets_create(x_account_token, ticket_endpoint_request)
         pprint(api_response)
     except MergePythonSDK.ticketing.ApiException as e:
         print("Exception when calling TicketsApi->tickets_create: %s\n" % e)
@@ -200,7 +199,7 @@ with MergePythonSDK.ticketing.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        api_response = api_instance.tickets_create(ticket_endpoint_request, is_debug_mode=is_debug_mode, run_async=run_async)
+        api_response = api_instance.tickets_create(x_account_token, ticket_endpoint_request, is_debug_mode=is_debug_mode, run_async=run_async)
         pprint(api_response)
     except MergePythonSDK.ticketing.ApiException as e:
         print("Exception when calling TicketsApi->tickets_create: %s\n" % e)
@@ -211,6 +210,7 @@ with MergePythonSDK.ticketing.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_account_token** | **str**| Token identifying the end user. |
  **ticket_endpoint_request** | [**TicketEndpointRequest**](TicketEndpointRequest.md)|  |
  **is_debug_mode** | **bool**| Whether to include debug fields (such as log file links) in the response. | [optional]
  **run_async** | **bool**| Whether or not third-party updates should be run asynchronously. | [optional]
@@ -221,7 +221,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -238,7 +238,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tickets_list**
-> PaginatedTicketList tickets_list()
+> PaginatedTicketList tickets_list(x_account_token)
 
 
 
@@ -246,14 +246,13 @@ Returns a list of `Ticket` objects.
 
 ### Example
 
-* Api Key Authentication (accountTokenAuth):
-* Bearer Authentication (bearerAuth):
+* Api Key Authentication (tokenAuth):
 
 ```python
 import time
 import MergePythonSDK.ticketing
 from MergePythonSDK.ticketing.api import tickets_api
-from MergePythonSDK.ticketing.model.paginated_ticket_list import PaginatedTicketList
+
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/ticketing/v1
 # See configuration.py for a list of all supported configuration parameters.
@@ -266,21 +265,17 @@ configuration = MergePythonSDK.ticketing.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: accountTokenAuth
-configuration.api_key['accountTokenAuth'] = 'YOUR_API_KEY'
+# Configure API key authorization: tokenAuth
+configuration.api_key['tokenAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['accountTokenAuth'] = 'Bearer'
-
-# Configure Bearer authorization: bearerAuth
-configuration = MergePythonSDK.ticketing.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+# configuration.api_key_prefix['tokenAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with MergePythonSDK.ticketing.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = tickets_api.TicketsApi(api_client)
+    x_account_token = "X-Account-Token_example" # str | Token identifying the end user.
     account_id = "account_id_example" # str | If provided, will only return tickets for this account. (optional)
     assignee_ids = "assignee_ids_example" # str | If provided, will only return tickets assigned to the assignee_ids; multiple assignee_ids can be separated by commas. (optional)
     collection_ids = "collection_ids_example" # str | If provided, will only return tickets assigned to the collection_ids; multiple collection_ids can be separated by commas. (optional)
@@ -314,9 +309,16 @@ with MergePythonSDK.ticketing.ApiClient(configuration) as api_client:
     ticket_type = "ticket_type_example" # str, none_type | If provided, will only return tickets of this type. (optional)
 
     # example passing only required values which don't have defaults set
+    try:
+        api_response = api_instance.tickets_list(x_account_token)
+        pprint(api_response)
+    except MergePythonSDK.ticketing.ApiException as e:
+        print("Exception when calling TicketsApi->tickets_list: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
     # and optional values
     try:
-        api_response = api_instance.tickets_list(account_id=account_id, assignee_ids=assignee_ids, collection_ids=collection_ids, completed_after=completed_after, completed_before=completed_before, contact_id=contact_id, created_after=created_after, created_before=created_before, cursor=cursor, due_after=due_after, due_before=due_before, expand=expand, include_deleted_data=include_deleted_data, include_remote_data=include_remote_data, include_remote_fields=include_remote_fields, modified_after=modified_after, modified_before=modified_before, page_size=page_size, parent_ticket_id=parent_ticket_id, priority=priority, project_id=project_id, remote_created_after=remote_created_after, remote_created_before=remote_created_before, remote_fields=remote_fields, remote_id=remote_id, remote_updated_after=remote_updated_after, remote_updated_before=remote_updated_before, show_enum_origins=show_enum_origins, status=status, tags=tags, ticket_type=ticket_type)
+        api_response = api_instance.tickets_list(x_account_token, account_id=account_id, assignee_ids=assignee_ids, collection_ids=collection_ids, completed_after=completed_after, completed_before=completed_before, contact_id=contact_id, created_after=created_after, created_before=created_before, cursor=cursor, due_after=due_after, due_before=due_before, expand=expand, include_deleted_data=include_deleted_data, include_remote_data=include_remote_data, include_remote_fields=include_remote_fields, modified_after=modified_after, modified_before=modified_before, page_size=page_size, parent_ticket_id=parent_ticket_id, priority=priority, project_id=project_id, remote_created_after=remote_created_after, remote_created_before=remote_created_before, remote_fields=remote_fields, remote_id=remote_id, remote_updated_after=remote_updated_after, remote_updated_before=remote_updated_before, show_enum_origins=show_enum_origins, status=status, tags=tags, ticket_type=ticket_type)
         pprint(api_response)
     except MergePythonSDK.ticketing.ApiException as e:
         print("Exception when calling TicketsApi->tickets_list: %s\n" % e)
@@ -327,6 +329,7 @@ with MergePythonSDK.ticketing.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_account_token** | **str**| Token identifying the end user. |
  **account_id** | **str**| If provided, will only return tickets for this account. | [optional]
  **assignee_ids** | **str**| If provided, will only return tickets assigned to the assignee_ids; multiple assignee_ids can be separated by commas. | [optional]
  **collection_ids** | **str**| If provided, will only return tickets assigned to the collection_ids; multiple collection_ids can be separated by commas. | [optional]
@@ -365,7 +368,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -382,7 +385,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tickets_meta_patch_retrieve**
-> MetaResponse tickets_meta_patch_retrieve(id)
+> MetaResponse tickets_meta_patch_retrieve(x_account_token, id)
 
 
 
@@ -390,8 +393,7 @@ Returns metadata for `Ticket` PATCHs.
 
 ### Example
 
-* Api Key Authentication (accountTokenAuth):
-* Bearer Authentication (bearerAuth):
+* Api Key Authentication (tokenAuth):
 
 ```python
 import time
@@ -410,26 +412,22 @@ configuration = MergePythonSDK.ticketing.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: accountTokenAuth
-configuration.api_key['accountTokenAuth'] = 'YOUR_API_KEY'
+# Configure API key authorization: tokenAuth
+configuration.api_key['tokenAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['accountTokenAuth'] = 'Bearer'
-
-# Configure Bearer authorization: bearerAuth
-configuration = MergePythonSDK.ticketing.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+# configuration.api_key_prefix['tokenAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with MergePythonSDK.ticketing.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = tickets_api.TicketsApi(api_client)
+    x_account_token = "X-Account-Token_example" # str | Token identifying the end user.
     id = "id_example" # str | 
 
     # example passing only required values which don't have defaults set
     try:
-        api_response = api_instance.tickets_meta_patch_retrieve(id)
+        api_response = api_instance.tickets_meta_patch_retrieve(x_account_token, id)
         pprint(api_response)
     except MergePythonSDK.ticketing.ApiException as e:
         print("Exception when calling TicketsApi->tickets_meta_patch_retrieve: %s\n" % e)
@@ -440,6 +438,7 @@ with MergePythonSDK.ticketing.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_account_token** | **str**| Token identifying the end user. |
  **id** | **str**|  |
 
 ### Return type
@@ -448,7 +447,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -465,7 +464,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tickets_meta_post_retrieve**
-> MetaResponse tickets_meta_post_retrieve()
+> MetaResponse tickets_meta_post_retrieve(x_account_token)
 
 
 
@@ -473,8 +472,7 @@ Returns metadata for `Ticket` POSTs.
 
 ### Example
 
-* Api Key Authentication (accountTokenAuth):
-* Bearer Authentication (bearerAuth):
+* Api Key Authentication (tokenAuth):
 
 ```python
 import time
@@ -493,25 +491,21 @@ configuration = MergePythonSDK.ticketing.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: accountTokenAuth
-configuration.api_key['accountTokenAuth'] = 'YOUR_API_KEY'
+# Configure API key authorization: tokenAuth
+configuration.api_key['tokenAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['accountTokenAuth'] = 'Bearer'
-
-# Configure Bearer authorization: bearerAuth
-configuration = MergePythonSDK.ticketing.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+# configuration.api_key_prefix['tokenAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with MergePythonSDK.ticketing.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = tickets_api.TicketsApi(api_client)
+    x_account_token = "X-Account-Token_example" # str | Token identifying the end user.
 
-    # example, this endpoint has no required or optional parameters
+    # example passing only required values which don't have defaults set
     try:
-        api_response = api_instance.tickets_meta_post_retrieve()
+        api_response = api_instance.tickets_meta_post_retrieve(x_account_token)
         pprint(api_response)
     except MergePythonSDK.ticketing.ApiException as e:
         print("Exception when calling TicketsApi->tickets_meta_post_retrieve: %s\n" % e)
@@ -519,7 +513,10 @@ with MergePythonSDK.ticketing.ApiClient(configuration) as api_client:
 
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **x_account_token** | **str**| Token identifying the end user. |
 
 ### Return type
 
@@ -527,7 +524,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -544,7 +541,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tickets_partial_update**
-> TicketResponse tickets_partial_update(id, patched_ticket_endpoint_request)
+> TicketResponse tickets_partial_update(x_account_token, id, patched_ticket_endpoint_request)
 
 
 
@@ -552,8 +549,7 @@ Updates a `Ticket` object with the given `id`.
 
 ### Example
 
-* Api Key Authentication (accountTokenAuth):
-* Bearer Authentication (bearerAuth):
+* Api Key Authentication (tokenAuth):
 
 ```python
 import time
@@ -573,21 +569,17 @@ configuration = MergePythonSDK.ticketing.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: accountTokenAuth
-configuration.api_key['accountTokenAuth'] = 'YOUR_API_KEY'
+# Configure API key authorization: tokenAuth
+configuration.api_key['tokenAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['accountTokenAuth'] = 'Bearer'
-
-# Configure Bearer authorization: bearerAuth
-configuration = MergePythonSDK.ticketing.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+# configuration.api_key_prefix['tokenAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with MergePythonSDK.ticketing.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = tickets_api.TicketsApi(api_client)
+    x_account_token = "X-Account-Token_example" # str | Token identifying the end user.
     id = "id_example" # str | 
     patched_ticket_endpoint_request = PatchedTicketEndpointRequest(
         model=PatchedTicketRequest(
@@ -613,6 +605,14 @@ with MergePythonSDK.ticketing.ApiClient(configuration) as api_client:
             linked_account_params={
                 "key": None,
             },
+            remote_fields=[
+                RemoteFieldRequest(
+                    remote_field_class="b057d1d2-c204-4da8-a74c-c91d1a260614",
+                    value={
+                        "key": None,
+                    },
+                ),
+            ],
         ),
     ) # PatchedTicketEndpointRequest | 
     is_debug_mode = True # bool | Whether to include debug fields (such as log file links) in the response. (optional)
@@ -620,7 +620,7 @@ with MergePythonSDK.ticketing.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        api_response = api_instance.tickets_partial_update(id, patched_ticket_endpoint_request)
+        api_response = api_instance.tickets_partial_update(x_account_token, id, patched_ticket_endpoint_request)
         pprint(api_response)
     except MergePythonSDK.ticketing.ApiException as e:
         print("Exception when calling TicketsApi->tickets_partial_update: %s\n" % e)
@@ -628,7 +628,7 @@ with MergePythonSDK.ticketing.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        api_response = api_instance.tickets_partial_update(id, patched_ticket_endpoint_request, is_debug_mode=is_debug_mode, run_async=run_async)
+        api_response = api_instance.tickets_partial_update(x_account_token, id, patched_ticket_endpoint_request, is_debug_mode=is_debug_mode, run_async=run_async)
         pprint(api_response)
     except MergePythonSDK.ticketing.ApiException as e:
         print("Exception when calling TicketsApi->tickets_partial_update: %s\n" % e)
@@ -639,6 +639,7 @@ with MergePythonSDK.ticketing.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_account_token** | **str**| Token identifying the end user. |
  **id** | **str**|  |
  **patched_ticket_endpoint_request** | [**PatchedTicketEndpointRequest**](PatchedTicketEndpointRequest.md)|  |
  **is_debug_mode** | **bool**| Whether to include debug fields (such as log file links) in the response. | [optional]
@@ -650,7 +651,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -667,7 +668,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tickets_remote_field_classes_list**
-> PaginatedRemoteFieldClassList tickets_remote_field_classes_list()
+> PaginatedRemoteFieldClassList tickets_remote_field_classes_list(x_account_token)
 
 
 
@@ -675,14 +676,13 @@ Returns a list of `RemoteFieldClass` objects.
 
 ### Example
 
-* Api Key Authentication (accountTokenAuth):
-* Bearer Authentication (bearerAuth):
+* Api Key Authentication (tokenAuth):
 
 ```python
 import time
 import MergePythonSDK.ticketing
 from MergePythonSDK.ticketing.api import tickets_api
-from MergePythonSDK.ticketing.model.paginated_remote_field_class_list import PaginatedRemoteFieldClassList
+
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/ticketing/v1
 # See configuration.py for a list of all supported configuration parameters.
@@ -695,30 +695,33 @@ configuration = MergePythonSDK.ticketing.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: accountTokenAuth
-configuration.api_key['accountTokenAuth'] = 'YOUR_API_KEY'
+# Configure API key authorization: tokenAuth
+configuration.api_key['tokenAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['accountTokenAuth'] = 'Bearer'
-
-# Configure Bearer authorization: bearerAuth
-configuration = MergePythonSDK.ticketing.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+# configuration.api_key_prefix['tokenAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with MergePythonSDK.ticketing.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = tickets_api.TicketsApi(api_client)
+    x_account_token = "X-Account-Token_example" # str | Token identifying the end user.
     cursor = "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw" # str | The pagination cursor value. (optional)
     include_deleted_data = True # bool | Whether to include data that was marked as deleted by third party webhooks. (optional)
     include_remote_data = True # bool | Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
     page_size = 1 # int | Number of results to return per page. (optional)
 
     # example passing only required values which don't have defaults set
+    try:
+        api_response = api_instance.tickets_remote_field_classes_list(x_account_token)
+        pprint(api_response)
+    except MergePythonSDK.ticketing.ApiException as e:
+        print("Exception when calling TicketsApi->tickets_remote_field_classes_list: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
     # and optional values
     try:
-        api_response = api_instance.tickets_remote_field_classes_list(cursor=cursor, include_deleted_data=include_deleted_data, include_remote_data=include_remote_data, page_size=page_size)
+        api_response = api_instance.tickets_remote_field_classes_list(x_account_token, cursor=cursor, include_deleted_data=include_deleted_data, include_remote_data=include_remote_data, page_size=page_size)
         pprint(api_response)
     except MergePythonSDK.ticketing.ApiException as e:
         print("Exception when calling TicketsApi->tickets_remote_field_classes_list: %s\n" % e)
@@ -729,6 +732,7 @@ with MergePythonSDK.ticketing.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_account_token** | **str**| Token identifying the end user. |
  **cursor** | **str**| The pagination cursor value. | [optional]
  **include_deleted_data** | **bool**| Whether to include data that was marked as deleted by third party webhooks. | [optional]
  **include_remote_data** | **bool**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional]
@@ -740,7 +744,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -757,7 +761,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tickets_retrieve**
-> Ticket tickets_retrieve(id)
+> Ticket tickets_retrieve(x_account_token, id)
 
 
 
@@ -765,8 +769,7 @@ Returns a `Ticket` object with the given `id`.
 
 ### Example
 
-* Api Key Authentication (accountTokenAuth):
-* Bearer Authentication (bearerAuth):
+* Api Key Authentication (tokenAuth):
 
 ```python
 import time
@@ -785,21 +788,17 @@ configuration = MergePythonSDK.ticketing.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: accountTokenAuth
-configuration.api_key['accountTokenAuth'] = 'YOUR_API_KEY'
+# Configure API key authorization: tokenAuth
+configuration.api_key['tokenAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['accountTokenAuth'] = 'Bearer'
-
-# Configure Bearer authorization: bearerAuth
-configuration = MergePythonSDK.ticketing.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+# configuration.api_key_prefix['tokenAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with MergePythonSDK.ticketing.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = tickets_api.TicketsApi(api_client)
+    x_account_token = "X-Account-Token_example" # str | Token identifying the end user.
     id = "id_example" # str | 
     expand = "attachments,assignees,collections,project,account,contact,creator,parent_ticket" # str | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. (optional)
     include_remote_data = True # bool | Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
@@ -809,7 +808,7 @@ with MergePythonSDK.ticketing.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        api_response = api_instance.tickets_retrieve(id)
+        api_response = api_instance.tickets_retrieve(x_account_token, id)
         pprint(api_response)
     except MergePythonSDK.ticketing.ApiException as e:
         print("Exception when calling TicketsApi->tickets_retrieve: %s\n" % e)
@@ -817,7 +816,7 @@ with MergePythonSDK.ticketing.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        api_response = api_instance.tickets_retrieve(id, expand=expand, include_remote_data=include_remote_data, include_remote_fields=include_remote_fields, remote_fields=remote_fields, show_enum_origins=show_enum_origins)
+        api_response = api_instance.tickets_retrieve(x_account_token, id, expand=expand, include_remote_data=include_remote_data, include_remote_fields=include_remote_fields, remote_fields=remote_fields, show_enum_origins=show_enum_origins)
         pprint(api_response)
     except MergePythonSDK.ticketing.ApiException as e:
         print("Exception when calling TicketsApi->tickets_retrieve: %s\n" % e)
@@ -828,6 +827,7 @@ with MergePythonSDK.ticketing.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_account_token** | **str**| Token identifying the end user. |
  **id** | **str**|  |
  **expand** | **str**| Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. | [optional]
  **include_remote_data** | **bool**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional]
@@ -841,7 +841,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 

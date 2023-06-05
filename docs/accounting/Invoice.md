@@ -5,6 +5,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**id** | **str** |  | [optional] [readonly] 
 **type** | **bool, date, datetime, dict, float, int, list, str, none_type** | Whether the invoice is an accounts receivable or accounts payable. If &#x60;type&#x60; is &#x60;accounts_payable&#x60;, the invoice is a bill. If &#x60;type&#x60; is &#x60;accounts_receivable&#x60;, it is an invoice.  * &#x60;ACCOUNTS_RECEIVABLE&#x60; - ACCOUNTS_RECEIVABLE * &#x60;ACCOUNTS_PAYABLE&#x60; - ACCOUNTS_PAYABLE | [optional] 
 **contact** | **str, none_type** | The invoice&#39;s contact. | [optional] 
 **number** | **str, none_type** | The invoice&#39;s number. | [optional] 
@@ -21,10 +22,10 @@ Name | Type | Description | Notes
 **total_amount** | **float, none_type** | The invoice&#39;s total amount. | [optional] 
 **balance** | **float, none_type** | The invoice&#39;s remaining balance. | [optional] 
 **remote_updated_at** | **datetime, none_type** | When the third party&#39;s invoice entry was updated. | [optional] 
+**tracking_categories** | **[str, none_type]** |  | [optional] 
 **payments** | **[str, none_type]** | Array of &#x60;Payment&#x60; object IDs. | [optional] 
 **line_items** | [**[InvoiceLineItem]**](InvoiceLineItem.md) |  | [optional] [readonly] 
 **remote_was_deleted** | **bool** |  | [optional] [readonly] 
-**id** | **str** |  | [optional] [readonly] 
 **remote_id** | **str, none_type** | The third-party API ID of the matching object. | [optional] 
 **field_mappings** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** |  | [optional] [readonly] 
 **modified_at** | **datetime** | This is the datetime that this object was last updated by Merge | [optional] [readonly] 

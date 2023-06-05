@@ -16,7 +16,7 @@ Creates a link token to be used when linking a new end user.
 
 ### Example
 
-* Bearer Authentication (bearerAuth):
+* Api Key Authentication (tokenAuth):
 
 ```python
 import time
@@ -36,10 +36,11 @@ configuration = MergePythonSDK.accounting.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization: bearerAuth
-configuration = MergePythonSDK.accounting.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+# Configure API key authorization: tokenAuth
+configuration.api_key['tokenAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['tokenAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with MergePythonSDK.accounting.ApiClient(configuration) as api_client:
@@ -87,7 +88,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 

@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **company** | **str, none_type** | The company the expense belongs to. | [optional] 
 **memo** | **str, none_type** | The expense&#39;s private note. | [optional] 
 **lines** | [**[ExpenseLine]**](ExpenseLine.md) |  | [optional] 
+**tracking_categories** | **[str, none_type]** |  | [optional] 
 **remote_was_deleted** | **bool** | Indicates whether or not this object has been deleted by third party webhooks. | [optional] [readonly] 
 **id** | **str** |  | [optional] [readonly] 
 **remote_id** | **str, none_type** | The third-party API ID of the matching object. | [optional] 

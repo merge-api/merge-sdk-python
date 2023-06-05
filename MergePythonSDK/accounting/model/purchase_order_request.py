@@ -87,7 +87,7 @@ class PurchaseOrderRequest(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -119,7 +119,7 @@ class PurchaseOrderRequest(ModelNormal):
             'integration_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
             'linked_account_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
         }
-        expands_types = {"company": "CompanyInfo", "delivery_address": "Address", "line_items": "PurchaseOrderLineItem", "vendor": "Contact"}
+        expands_types = {"company": "CompanyInfo", "delivery_address": "Address", "line_items": "PurchaseOrderLineItem", "tracking_categories": "TrackingCategory", "vendor": "Contact"}
 
         # update types with expands
         for key, val in expands_types.items():

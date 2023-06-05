@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **bank_info_list**
-> PaginatedBankInfoList bank_info_list()
+> PaginatedBankInfoList bank_info_list(x_account_token)
 
 
 
@@ -17,14 +17,13 @@ Returns a list of `BankInfo` objects.
 
 ### Example
 
-* Api Key Authentication (accountTokenAuth):
-* Bearer Authentication (bearerAuth):
+* Api Key Authentication (tokenAuth):
 
 ```python
 import time
 import MergePythonSDK.hris
 from MergePythonSDK.hris.api import bank_info_api
-from MergePythonSDK.hris.model.paginated_bank_info_list import PaginatedBankInfoList
+
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/hris/v1
 # See configuration.py for a list of all supported configuration parameters.
@@ -37,21 +36,17 @@ configuration = MergePythonSDK.hris.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: accountTokenAuth
-configuration.api_key['accountTokenAuth'] = 'YOUR_API_KEY'
+# Configure API key authorization: tokenAuth
+configuration.api_key['tokenAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['accountTokenAuth'] = 'Bearer'
-
-# Configure Bearer authorization: bearerAuth
-configuration = MergePythonSDK.hris.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+# configuration.api_key_prefix['tokenAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with MergePythonSDK.hris.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = bank_info_api.BankInfoApi(api_client)
+    x_account_token = "X-Account-Token_example" # str | Token identifying the end user.
     account_type = "CHECKING" # str, none_type | If provided, will only return BankInfo's with this account type. Options: ('SAVINGS', 'CHECKING')  * `SAVINGS` - SAVINGS * `CHECKING` - CHECKING (optional)
     bank_name = "bank_name_example" # str, none_type | If provided, will only return BankInfo's with this bank name. (optional)
     created_after = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, will only return objects created after this datetime. (optional)
@@ -70,9 +65,16 @@ with MergePythonSDK.hris.ApiClient(configuration) as api_client:
     show_enum_origins = "account_type" # str | Which fields should be returned in non-normalized form. (optional) if omitted the server will use the default value of "account_type"
 
     # example passing only required values which don't have defaults set
+    try:
+        api_response = api_instance.bank_info_list(x_account_token)
+        pprint(api_response)
+    except MergePythonSDK.hris.ApiException as e:
+        print("Exception when calling BankInfoApi->bank_info_list: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
     # and optional values
     try:
-        api_response = api_instance.bank_info_list(account_type=account_type, bank_name=bank_name, created_after=created_after, created_before=created_before, cursor=cursor, employee_id=employee_id, expand=expand, include_deleted_data=include_deleted_data, include_remote_data=include_remote_data, modified_after=modified_after, modified_before=modified_before, order_by=order_by, page_size=page_size, remote_fields=remote_fields, remote_id=remote_id, show_enum_origins=show_enum_origins)
+        api_response = api_instance.bank_info_list(x_account_token, account_type=account_type, bank_name=bank_name, created_after=created_after, created_before=created_before, cursor=cursor, employee_id=employee_id, expand=expand, include_deleted_data=include_deleted_data, include_remote_data=include_remote_data, modified_after=modified_after, modified_before=modified_before, order_by=order_by, page_size=page_size, remote_fields=remote_fields, remote_id=remote_id, show_enum_origins=show_enum_origins)
         pprint(api_response)
     except MergePythonSDK.hris.ApiException as e:
         print("Exception when calling BankInfoApi->bank_info_list: %s\n" % e)
@@ -83,6 +85,7 @@ with MergePythonSDK.hris.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_account_token** | **str**| Token identifying the end user. |
  **account_type** | **str, none_type**| If provided, will only return BankInfo&#39;s with this account type. Options: (&#39;SAVINGS&#39;, &#39;CHECKING&#39;)  * &#x60;SAVINGS&#x60; - SAVINGS * &#x60;CHECKING&#x60; - CHECKING | [optional]
  **bank_name** | **str, none_type**| If provided, will only return BankInfo&#39;s with this bank name. | [optional]
  **created_after** | **datetime**| If provided, will only return objects created after this datetime. | [optional]
@@ -106,7 +109,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -123,7 +126,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **bank_info_retrieve**
-> BankInfo bank_info_retrieve(id)
+> BankInfo bank_info_retrieve(x_account_token, id)
 
 
 
@@ -131,8 +134,7 @@ Returns a `BankInfo` object with the given `id`.
 
 ### Example
 
-* Api Key Authentication (accountTokenAuth):
-* Bearer Authentication (bearerAuth):
+* Api Key Authentication (tokenAuth):
 
 ```python
 import time
@@ -151,21 +153,17 @@ configuration = MergePythonSDK.hris.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: accountTokenAuth
-configuration.api_key['accountTokenAuth'] = 'YOUR_API_KEY'
+# Configure API key authorization: tokenAuth
+configuration.api_key['tokenAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['accountTokenAuth'] = 'Bearer'
-
-# Configure Bearer authorization: bearerAuth
-configuration = MergePythonSDK.hris.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+# configuration.api_key_prefix['tokenAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with MergePythonSDK.hris.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = bank_info_api.BankInfoApi(api_client)
+    x_account_token = "X-Account-Token_example" # str | Token identifying the end user.
     id = "id_example" # str | 
     expand = "employee" # str | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. (optional) if omitted the server will use the default value of "employee"
     include_remote_data = True # bool | Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
@@ -174,7 +172,7 @@ with MergePythonSDK.hris.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        api_response = api_instance.bank_info_retrieve(id)
+        api_response = api_instance.bank_info_retrieve(x_account_token, id)
         pprint(api_response)
     except MergePythonSDK.hris.ApiException as e:
         print("Exception when calling BankInfoApi->bank_info_retrieve: %s\n" % e)
@@ -182,7 +180,7 @@ with MergePythonSDK.hris.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        api_response = api_instance.bank_info_retrieve(id, expand=expand, include_remote_data=include_remote_data, remote_fields=remote_fields, show_enum_origins=show_enum_origins)
+        api_response = api_instance.bank_info_retrieve(x_account_token, id, expand=expand, include_remote_data=include_remote_data, remote_fields=remote_fields, show_enum_origins=show_enum_origins)
         pprint(api_response)
     except MergePythonSDK.hris.ApiException as e:
         print("Exception when calling BankInfoApi->bank_info_retrieve: %s\n" % e)
@@ -193,6 +191,7 @@ with MergePythonSDK.hris.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_account_token** | **str**| Token identifying the end user. |
  **id** | **str**|  |
  **expand** | **str**| Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. | [optional] if omitted the server will use the default value of "employee"
  **include_remote_data** | **bool**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional]
@@ -205,7 +204,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 

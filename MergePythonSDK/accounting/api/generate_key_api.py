@@ -41,7 +41,7 @@ class GenerateKeyApi(object):
             settings={
                 'response_type': (RemoteKey,),
                 'auth': [
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/accounting/v1/generate-key',
                 'operation_id': 'generate_key_create',

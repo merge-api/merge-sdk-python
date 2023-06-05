@@ -43,8 +43,7 @@ class UsersApi(object):
             settings={
                 'response_type': None,
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/crm/v1/users/ignore/{model_id}',
                 'operation_id': 'users_ignore_create',
@@ -53,10 +52,12 @@ class UsersApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                     'model_id',
                     'ignore_common_model_request',
                 ],
                 'required': [
+                    'x_account_token',
                     'model_id',
                     'ignore_common_model_request',
                 ],
@@ -73,15 +74,19 @@ class UsersApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                     'model_id':
                         (str,),
                     'ignore_common_model_request':
                         (IgnoreCommonModelRequest,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                     'model_id': 'model_id',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                     'model_id': 'path',
                     'ignore_common_model_request': 'body',
                 },
@@ -102,8 +107,7 @@ class UsersApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(User),),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/crm/v1/users',
                 'operation_id': 'users_list',
@@ -112,6 +116,7 @@ class UsersApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                     'created_after',
                     'created_before',
                     'cursor',
@@ -123,7 +128,9 @@ class UsersApi(object):
                     'page_size',
                     'remote_id',
                 ],
-                'required': [],
+                'required': [
+                    'x_account_token',
+                ],
                 'nullable': [
                     'remote_id',
                 ],
@@ -138,6 +145,8 @@ class UsersApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                     'created_after':
                         (datetime,),
                     'created_before':
@@ -160,6 +169,7 @@ class UsersApi(object):
                         (str, none_type,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                     'created_after': 'created_after',
                     'created_before': 'created_before',
                     'cursor': 'cursor',
@@ -172,6 +182,7 @@ class UsersApi(object):
                     'remote_id': 'remote_id',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                     'created_after': 'query',
                     'created_before': 'query',
                     'cursor': 'query',
@@ -198,8 +209,7 @@ class UsersApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(RemoteFieldClass),),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/crm/v1/users/remote-field-classes',
                 'operation_id': 'users_remote_field_classes_list',
@@ -208,13 +218,16 @@ class UsersApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                     'cursor',
                     'include_deleted_data',
                     'include_remote_data',
                     'include_remote_fields',
                     'page_size',
                 ],
-                'required': [],
+                'required': [
+                    'x_account_token',
+                ],
                 'nullable': [
                 ],
                 'enum': [
@@ -228,6 +241,8 @@ class UsersApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                     'cursor':
                         (str,),
                     'include_deleted_data':
@@ -240,6 +255,7 @@ class UsersApi(object):
                         (int,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                     'cursor': 'cursor',
                     'include_deleted_data': 'include_deleted_data',
                     'include_remote_data': 'include_remote_data',
@@ -247,6 +263,7 @@ class UsersApi(object):
                     'page_size': 'page_size',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                     'cursor': 'query',
                     'include_deleted_data': 'query',
                     'include_remote_data': 'query',
@@ -268,8 +285,7 @@ class UsersApi(object):
             settings={
                 'response_type': (User,),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/crm/v1/users/{id}',
                 'operation_id': 'users_retrieve',
@@ -278,11 +294,13 @@ class UsersApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                     'id',
                     'include_remote_data',
                     'include_remote_fields',
                 ],
                 'required': [
+                    'x_account_token',
                     'id',
                 ],
                 'nullable': [
@@ -298,6 +316,8 @@ class UsersApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                     'id':
                         (str,),
                     'include_remote_data':
@@ -306,11 +326,13 @@ class UsersApi(object):
                         (bool,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                     'include_remote_data': 'include_remote_data',
                     'include_remote_fields': 'include_remote_fields',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                     'id': 'path',
                     'include_remote_data': 'query',
                     'include_remote_fields': 'query',
@@ -329,6 +351,7 @@ class UsersApi(object):
 
     def users_ignore_create(
         self,
+        x_account_token,
         model_id,
         ignore_common_model_request,
         **kwargs
@@ -339,10 +362,11 @@ class UsersApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.users_ignore_create(model_id, ignore_common_model_request, async_req=True)
+        >>> thread = api.users_ignore_create(x_account_token, model_id, ignore_common_model_request, async_req=True)
         >>> result = thread.get()
 
         Args:
+            x_account_token (str): Token identifying the end user.
             model_id (str):
             ignore_common_model_request (IgnoreCommonModelRequest):
 
@@ -408,6 +432,8 @@ class UsersApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         kwargs['model_id'] = \
             model_id
         kwargs['ignore_common_model_request'] = \
@@ -416,6 +442,7 @@ class UsersApi(object):
 
     def users_list(
         self,
+        x_account_token,
         **kwargs
     ) -> "MergePaginatedResponse(User)":
         """users_list  # noqa: E501
@@ -424,9 +451,11 @@ class UsersApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.users_list(async_req=True)
+        >>> thread = api.users_list(x_account_token, async_req=True)
         >>> result = thread.get()
 
+        Args:
+            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             created_after (datetime): If provided, will only return objects created after this datetime.. [optional]
@@ -500,10 +529,13 @@ class UsersApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         return self.users_list_endpoint.call_with_http_info(**kwargs)
 
     def users_remote_field_classes_list(
         self,
+        x_account_token,
         **kwargs
     ) -> "MergePaginatedResponse(RemoteFieldClass)":
         """users_remote_field_classes_list  # noqa: E501
@@ -512,9 +544,11 @@ class UsersApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.users_remote_field_classes_list(async_req=True)
+        >>> thread = api.users_remote_field_classes_list(x_account_token, async_req=True)
         >>> result = thread.get()
 
+        Args:
+            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             cursor (str): The pagination cursor value.. [optional]
@@ -583,10 +617,13 @@ class UsersApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         return self.users_remote_field_classes_list_endpoint.call_with_http_info(**kwargs)
 
     def users_retrieve(
         self,
+        x_account_token,
         id,
         **kwargs
     ) -> "User":
@@ -596,10 +633,11 @@ class UsersApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.users_retrieve(id, async_req=True)
+        >>> thread = api.users_retrieve(x_account_token, id, async_req=True)
         >>> result = thread.get()
 
         Args:
+            x_account_token (str): Token identifying the end user.
             id (str):
 
         Keyword Args:
@@ -666,6 +704,8 @@ class UsersApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         kwargs['id'] = \
             id
         return self.users_retrieve_endpoint.call_with_http_info(**kwargs)

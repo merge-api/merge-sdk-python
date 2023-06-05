@@ -77,7 +77,7 @@ class LinkedAccountConditionRequest(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -95,7 +95,7 @@ class LinkedAccountConditionRequest(ModelNormal):
         defined_types = {
             'condition_schema_id': (str,),  # noqa: E501
             'operator': (str,),  # noqa: E501
-            'value': (bool, dict, float, int, list, str, none_type,),  # noqa: E501
+            'value': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
         }
         return defined_types
 

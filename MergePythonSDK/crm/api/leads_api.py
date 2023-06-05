@@ -45,8 +45,7 @@ class LeadsApi(object):
             settings={
                 'response_type': (LeadResponse,),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/crm/v1/leads',
                 'operation_id': 'leads_create',
@@ -55,11 +54,13 @@ class LeadsApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                     'lead_endpoint_request',
                     'is_debug_mode',
                     'run_async',
                 ],
                 'required': [
+                    'x_account_token',
                     'lead_endpoint_request',
                 ],
                 'nullable': [
@@ -75,6 +76,8 @@ class LeadsApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                     'lead_endpoint_request':
                         (LeadEndpointRequest,),
                     'is_debug_mode':
@@ -83,10 +86,12 @@ class LeadsApi(object):
                         (bool,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                     'is_debug_mode': 'is_debug_mode',
                     'run_async': 'run_async',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                     'lead_endpoint_request': 'body',
                     'is_debug_mode': 'query',
                     'run_async': 'query',
@@ -110,8 +115,7 @@ class LeadsApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(Lead),),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/crm/v1/leads',
                 'operation_id': 'leads_list',
@@ -120,6 +124,7 @@ class LeadsApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                     'converted_account_id',
                     'converted_contact_id',
                     'created_after',
@@ -135,7 +140,9 @@ class LeadsApi(object):
                     'page_size',
                     'remote_id',
                 ],
-                'required': [],
+                'required': [
+                    'x_account_token',
+                ],
                 'nullable': [
                     'remote_id',
                 ],
@@ -161,6 +168,8 @@ class LeadsApi(object):
                     },
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                     'converted_account_id':
                         (str,),
                     'converted_contact_id':
@@ -191,6 +200,7 @@ class LeadsApi(object):
                         (str, none_type,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                     'converted_account_id': 'converted_account_id',
                     'converted_contact_id': 'converted_contact_id',
                     'created_after': 'created_after',
@@ -207,6 +217,7 @@ class LeadsApi(object):
                     'remote_id': 'remote_id',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                     'converted_account_id': 'query',
                     'converted_contact_id': 'query',
                     'created_after': 'query',
@@ -237,8 +248,7 @@ class LeadsApi(object):
             settings={
                 'response_type': (MetaResponse,),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/crm/v1/leads/meta/post',
                 'operation_id': 'leads_meta_post_retrieve',
@@ -247,8 +257,11 @@ class LeadsApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                 ],
-                'required': [],
+                'required': [
+                    'x_account_token',
+                ],
                 'nullable': [
                 ],
                 'enum': [
@@ -262,10 +275,14 @@ class LeadsApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -282,8 +299,7 @@ class LeadsApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(RemoteFieldClass),),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/crm/v1/leads/remote-field-classes',
                 'operation_id': 'leads_remote_field_classes_list',
@@ -292,13 +308,16 @@ class LeadsApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                     'cursor',
                     'include_deleted_data',
                     'include_remote_data',
                     'include_remote_fields',
                     'page_size',
                 ],
-                'required': [],
+                'required': [
+                    'x_account_token',
+                ],
                 'nullable': [
                 ],
                 'enum': [
@@ -312,6 +331,8 @@ class LeadsApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                     'cursor':
                         (str,),
                     'include_deleted_data':
@@ -324,6 +345,7 @@ class LeadsApi(object):
                         (int,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                     'cursor': 'cursor',
                     'include_deleted_data': 'include_deleted_data',
                     'include_remote_data': 'include_remote_data',
@@ -331,6 +353,7 @@ class LeadsApi(object):
                     'page_size': 'page_size',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                     'cursor': 'query',
                     'include_deleted_data': 'query',
                     'include_remote_data': 'query',
@@ -352,8 +375,7 @@ class LeadsApi(object):
             settings={
                 'response_type': (Lead,),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/crm/v1/leads/{id}',
                 'operation_id': 'leads_retrieve',
@@ -362,12 +384,14 @@ class LeadsApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                     'id',
                     'expand',
                     'include_remote_data',
                     'include_remote_fields',
                 ],
                 'required': [
+                    'x_account_token',
                     'id',
                 ],
                 'nullable': [
@@ -394,6 +418,8 @@ class LeadsApi(object):
                     },
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                     'id':
                         (str,),
                     'expand':
@@ -404,12 +430,14 @@ class LeadsApi(object):
                         (bool,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                     'expand': 'expand',
                     'include_remote_data': 'include_remote_data',
                     'include_remote_fields': 'include_remote_fields',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                     'id': 'path',
                     'expand': 'query',
                     'include_remote_data': 'query',
@@ -429,6 +457,7 @@ class LeadsApi(object):
 
     def leads_create(
         self,
+        x_account_token,
         lead_endpoint_request,
         **kwargs
     ) -> "LeadResponse":
@@ -438,10 +467,11 @@ class LeadsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.leads_create(lead_endpoint_request, async_req=True)
+        >>> thread = api.leads_create(x_account_token, lead_endpoint_request, async_req=True)
         >>> result = thread.get()
 
         Args:
+            x_account_token (str): Token identifying the end user.
             lead_endpoint_request (LeadEndpointRequest):
 
         Keyword Args:
@@ -508,12 +538,15 @@ class LeadsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         kwargs['lead_endpoint_request'] = \
             lead_endpoint_request
         return self.leads_create_endpoint.call_with_http_info(**kwargs)
 
     def leads_list(
         self,
+        x_account_token,
         **kwargs
     ) -> "MergePaginatedResponse(Lead)":
         """leads_list  # noqa: E501
@@ -522,9 +555,11 @@ class LeadsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.leads_list(async_req=True)
+        >>> thread = api.leads_list(x_account_token, async_req=True)
         >>> result = thread.get()
 
+        Args:
+            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             converted_account_id (str): If provided, will only return leads with this account.. [optional]
@@ -602,10 +637,13 @@ class LeadsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         return self.leads_list_endpoint.call_with_http_info(**kwargs)
 
     def leads_meta_post_retrieve(
         self,
+        x_account_token,
         **kwargs
     ) -> "MetaResponse":
         """leads_meta_post_retrieve  # noqa: E501
@@ -614,9 +652,11 @@ class LeadsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.leads_meta_post_retrieve(async_req=True)
+        >>> thread = api.leads_meta_post_retrieve(x_account_token, async_req=True)
         >>> result = thread.get()
 
+        Args:
+            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -680,10 +720,13 @@ class LeadsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         return self.leads_meta_post_retrieve_endpoint.call_with_http_info(**kwargs)
 
     def leads_remote_field_classes_list(
         self,
+        x_account_token,
         **kwargs
     ) -> "MergePaginatedResponse(RemoteFieldClass)":
         """leads_remote_field_classes_list  # noqa: E501
@@ -692,9 +735,11 @@ class LeadsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.leads_remote_field_classes_list(async_req=True)
+        >>> thread = api.leads_remote_field_classes_list(x_account_token, async_req=True)
         >>> result = thread.get()
 
+        Args:
+            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             cursor (str): The pagination cursor value.. [optional]
@@ -763,10 +808,13 @@ class LeadsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         return self.leads_remote_field_classes_list_endpoint.call_with_http_info(**kwargs)
 
     def leads_retrieve(
         self,
+        x_account_token,
         id,
         **kwargs
     ) -> "Lead":
@@ -776,10 +824,11 @@ class LeadsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.leads_retrieve(id, async_req=True)
+        >>> thread = api.leads_retrieve(x_account_token, id, async_req=True)
         >>> result = thread.get()
 
         Args:
+            x_account_token (str): Token identifying the end user.
             id (str):
 
         Keyword Args:
@@ -847,6 +896,8 @@ class LeadsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         kwargs['id'] = \
             id
         return self.leads_retrieve_endpoint.call_with_http_info(**kwargs)

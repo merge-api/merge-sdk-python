@@ -2,19 +2,21 @@
 
 All URIs are relative to *https://api.merge.dev/api/hris/v1*
 
-| Method                                                                 | HTTP request             | Description |
-| ---------------------------------------------------------------------- | ------------------------ | ----------- |
-| [**regenerate_key_create**](RegenerateKeyApi.md#regenerate_key_create) | **POST** /regenerate-key |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**regenerate_key_create**](RegenerateKeyApi.md#regenerate_key_create) | **POST** /regenerate-key | 
+
 
 # **regenerate_key_create**
-
 > RemoteKey regenerate_key_create(remote_key_for_regeneration_request)
+
+
 
 Exchange remote keys.
 
 ### Example
 
-- Bearer Authentication (bearerAuth):
+* Api Key Authentication (tokenAuth):
 
 ```python
 import time
@@ -34,10 +36,11 @@ configuration = MergePythonSDK.hris.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization: bearerAuth
-configuration = MergePythonSDK.hris.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+# Configure API key authorization: tokenAuth
+configuration.api_key['tokenAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['tokenAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with MergePythonSDK.hris.ApiClient(configuration) as api_client:
@@ -45,7 +48,7 @@ with MergePythonSDK.hris.ApiClient(configuration) as api_client:
     api_instance = regenerate_key_api.RegenerateKeyApi(api_client)
     remote_key_for_regeneration_request = RemoteKeyForRegenerationRequest(
         name="Remote Deployment Key 1",
-    ) # RemoteKeyForRegenerationRequest |
+    ) # RemoteKeyForRegenerationRequest | 
 
     # example passing only required values which don't have defaults set
     try:
@@ -55,11 +58,12 @@ with MergePythonSDK.hris.ApiClient(configuration) as api_client:
         print("Exception when calling RegenerateKeyApi->regenerate_key_create: %s\n" % e)
 ```
 
+
 ### Parameters
 
-| Name                                    | Type                                                                      | Description | Notes |
-| --------------------------------------- | ------------------------------------------------------------------------- | ----------- | ----- |
-| **remote_key_for_regeneration_request** | [**RemoteKeyForRegenerationRequest**](RemoteKeyForRegenerationRequest.md) |             |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **remote_key_for_regeneration_request** | [**RemoteKeyForRegenerationRequest**](RemoteKeyForRegenerationRequest.md)|  |
 
 ### Return type
 
@@ -67,17 +71,19 @@ with MergePythonSDK.hris.ApiClient(configuration) as api_client:
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
-- **Accept**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
+
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
-| ----------- | ----------- | ---------------- |
-| **200**     |             | -                |
+|-------------|-------------|------------------|
+**200** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+

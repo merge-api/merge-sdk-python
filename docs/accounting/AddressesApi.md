@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **addresses_retrieve**
-> Address addresses_retrieve(id)
+> Address addresses_retrieve(x_account_token, id)
 
 
 
@@ -16,8 +16,7 @@ Returns an `Address` object with the given `id`.
 
 ### Example
 
-* Api Key Authentication (accountTokenAuth):
-* Bearer Authentication (bearerAuth):
+* Api Key Authentication (tokenAuth):
 
 ```python
 import time
@@ -36,21 +35,17 @@ configuration = MergePythonSDK.accounting.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: accountTokenAuth
-configuration.api_key['accountTokenAuth'] = 'YOUR_API_KEY'
+# Configure API key authorization: tokenAuth
+configuration.api_key['tokenAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['accountTokenAuth'] = 'Bearer'
-
-# Configure Bearer authorization: bearerAuth
-configuration = MergePythonSDK.accounting.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+# configuration.api_key_prefix['tokenAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with MergePythonSDK.accounting.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = addresses_api.AddressesApi(api_client)
+    x_account_token = "X-Account-Token_example" # str | Token identifying the end user.
     id = "id_example" # str | 
     include_remote_data = True # bool | Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
     remote_fields = "type" # str | Deprecated. Use show_enum_origins. (optional) if omitted the server will use the default value of "type"
@@ -58,7 +53,7 @@ with MergePythonSDK.accounting.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        api_response = api_instance.addresses_retrieve(id)
+        api_response = api_instance.addresses_retrieve(x_account_token, id)
         pprint(api_response)
     except MergePythonSDK.accounting.ApiException as e:
         print("Exception when calling AddressesApi->addresses_retrieve: %s\n" % e)
@@ -66,7 +61,7 @@ with MergePythonSDK.accounting.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        api_response = api_instance.addresses_retrieve(id, include_remote_data=include_remote_data, remote_fields=remote_fields, show_enum_origins=show_enum_origins)
+        api_response = api_instance.addresses_retrieve(x_account_token, id, include_remote_data=include_remote_data, remote_fields=remote_fields, show_enum_origins=show_enum_origins)
         pprint(api_response)
     except MergePythonSDK.accounting.ApiException as e:
         print("Exception when calling AddressesApi->addresses_retrieve: %s\n" % e)
@@ -77,6 +72,7 @@ with MergePythonSDK.accounting.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_account_token** | **str**| Token identifying the end user. |
  **id** | **str**|  |
  **include_remote_data** | **bool**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional]
  **remote_fields** | **str**| Deprecated. Use show_enum_origins. | [optional] if omitted the server will use the default value of "type"
@@ -88,7 +84,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 

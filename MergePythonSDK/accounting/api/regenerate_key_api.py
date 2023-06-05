@@ -41,7 +41,7 @@ class RegenerateKeyApi(object):
             settings={
                 'response_type': (RemoteKey,),
                 'auth': [
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/accounting/v1/regenerate-key',
                 'operation_id': 'regenerate_key_create',

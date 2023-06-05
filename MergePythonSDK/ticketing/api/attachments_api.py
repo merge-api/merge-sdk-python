@@ -44,8 +44,7 @@ class AttachmentsApi(object):
             settings={
                 'response_type': (TicketingAttachmentResponse,),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/ticketing/v1/attachments',
                 'operation_id': 'attachments_create',
@@ -54,11 +53,13 @@ class AttachmentsApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                     'ticketing_attachment_endpoint_request',
                     'is_debug_mode',
                     'run_async',
                 ],
                 'required': [
+                    'x_account_token',
                     'ticketing_attachment_endpoint_request',
                 ],
                 'nullable': [
@@ -74,6 +75,8 @@ class AttachmentsApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                     'ticketing_attachment_endpoint_request':
                         (TicketingAttachmentEndpointRequest,),
                     'is_debug_mode':
@@ -82,10 +85,12 @@ class AttachmentsApi(object):
                         (bool,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                     'is_debug_mode': 'is_debug_mode',
                     'run_async': 'run_async',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                     'ticketing_attachment_endpoint_request': 'body',
                     'is_debug_mode': 'query',
                     'run_async': 'query',
@@ -109,8 +114,7 @@ class AttachmentsApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(Attachment),),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/ticketing/v1/attachments',
                 'operation_id': 'attachments_list',
@@ -119,6 +123,7 @@ class AttachmentsApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                     'created_after',
                     'created_before',
                     'cursor',
@@ -131,7 +136,9 @@ class AttachmentsApi(object):
                     'remote_id',
                     'ticket_id',
                 ],
-                'required': [],
+                'required': [
+                    'x_account_token',
+                ],
                 'nullable': [
                     'remote_id',
                 ],
@@ -151,6 +158,8 @@ class AttachmentsApi(object):
                     },
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                     'created_after':
                         (datetime,),
                     'created_before':
@@ -175,6 +184,7 @@ class AttachmentsApi(object):
                         (str,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                     'created_after': 'created_after',
                     'created_before': 'created_before',
                     'cursor': 'cursor',
@@ -188,6 +198,7 @@ class AttachmentsApi(object):
                     'ticket_id': 'ticket_id',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                     'created_after': 'query',
                     'created_before': 'query',
                     'cursor': 'query',
@@ -215,8 +226,7 @@ class AttachmentsApi(object):
             settings={
                 'response_type': (MetaResponse,),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/ticketing/v1/attachments/meta/post',
                 'operation_id': 'attachments_meta_post_retrieve',
@@ -225,8 +235,11 @@ class AttachmentsApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                 ],
-                'required': [],
+                'required': [
+                    'x_account_token',
+                ],
                 'nullable': [
                 ],
                 'enum': [
@@ -240,10 +253,14 @@ class AttachmentsApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -260,8 +277,7 @@ class AttachmentsApi(object):
             settings={
                 'response_type': (Attachment,),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/ticketing/v1/attachments/{id}',
                 'operation_id': 'attachments_retrieve',
@@ -270,11 +286,13 @@ class AttachmentsApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                     'id',
                     'expand',
                     'include_remote_data',
                 ],
                 'required': [
+                    'x_account_token',
                     'id',
                 ],
                 'nullable': [
@@ -295,6 +313,8 @@ class AttachmentsApi(object):
                     },
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                     'id':
                         (str,),
                     'expand':
@@ -303,11 +323,13 @@ class AttachmentsApi(object):
                         (bool,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                     'expand': 'expand',
                     'include_remote_data': 'include_remote_data',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                     'id': 'path',
                     'expand': 'query',
                     'include_remote_data': 'query',
@@ -326,6 +348,7 @@ class AttachmentsApi(object):
 
     def attachments_create(
         self,
+        x_account_token,
         ticketing_attachment_endpoint_request,
         **kwargs
     ) -> "TicketingAttachmentResponse":
@@ -335,10 +358,11 @@ class AttachmentsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.attachments_create(ticketing_attachment_endpoint_request, async_req=True)
+        >>> thread = api.attachments_create(x_account_token, ticketing_attachment_endpoint_request, async_req=True)
         >>> result = thread.get()
 
         Args:
+            x_account_token (str): Token identifying the end user.
             ticketing_attachment_endpoint_request (TicketingAttachmentEndpointRequest):
 
         Keyword Args:
@@ -405,12 +429,15 @@ class AttachmentsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         kwargs['ticketing_attachment_endpoint_request'] = \
             ticketing_attachment_endpoint_request
         return self.attachments_create_endpoint.call_with_http_info(**kwargs)
 
     def attachments_list(
         self,
+        x_account_token,
         **kwargs
     ) -> "MergePaginatedResponse(Attachment)":
         """attachments_list  # noqa: E501
@@ -419,9 +446,11 @@ class AttachmentsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.attachments_list(async_req=True)
+        >>> thread = api.attachments_list(x_account_token, async_req=True)
         >>> result = thread.get()
 
+        Args:
+            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             created_after (datetime): If provided, will only return objects created after this datetime.. [optional]
@@ -496,10 +525,13 @@ class AttachmentsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         return self.attachments_list_endpoint.call_with_http_info(**kwargs)
 
     def attachments_meta_post_retrieve(
         self,
+        x_account_token,
         **kwargs
     ) -> "MetaResponse":
         """attachments_meta_post_retrieve  # noqa: E501
@@ -508,9 +540,11 @@ class AttachmentsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.attachments_meta_post_retrieve(async_req=True)
+        >>> thread = api.attachments_meta_post_retrieve(x_account_token, async_req=True)
         >>> result = thread.get()
 
+        Args:
+            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -574,10 +608,13 @@ class AttachmentsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         return self.attachments_meta_post_retrieve_endpoint.call_with_http_info(**kwargs)
 
     def attachments_retrieve(
         self,
+        x_account_token,
         id,
         **kwargs
     ) -> "Attachment":
@@ -587,10 +624,11 @@ class AttachmentsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.attachments_retrieve(id, async_req=True)
+        >>> thread = api.attachments_retrieve(x_account_token, id, async_req=True)
         >>> result = thread.get()
 
         Args:
+            x_account_token (str): Token identifying the end user.
             id (str):
 
         Keyword Args:
@@ -657,6 +695,8 @@ class AttachmentsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         kwargs['id'] = \
             id
         return self.attachments_retrieve_endpoint.call_with_http_info(**kwargs)
