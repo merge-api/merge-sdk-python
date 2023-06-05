@@ -7,7 +7,6 @@ MergePythonSDK/crm/api/accounts_api.py
 MergePythonSDK/crm/api/association_types_api.py
 MergePythonSDK/crm/api/associations_api.py
 MergePythonSDK/crm/api/available_actions_api.py
-MergePythonSDK/crm/api/common_model_scopes_api.py
 MergePythonSDK/crm/api/contacts_api.py
 MergePythonSDK/crm/api/custom_object_classes_api.py
 MergePythonSDK/crm/api/custom_objects_api.py
@@ -52,13 +51,7 @@ MergePythonSDK/crm/model/association_type.py
 MergePythonSDK/crm/model/association_type_request_request.py
 MergePythonSDK/crm/model/available_actions.py
 MergePythonSDK/crm/model/cardinality_enum.py
-MergePythonSDK/crm/model/common_model_scope_data.py
-MergePythonSDK/crm/model/common_model_scopes.py
 MergePythonSDK/crm/model/common_model_scopes_body_request.py
-MergePythonSDK/crm/model/common_model_scopes_disabled_models.py
-MergePythonSDK/crm/model/common_model_scopes_disabled_models_enabled_actions_enum.py
-MergePythonSDK/crm/model/common_model_scopes_post_inner_deserializer_request.py
-MergePythonSDK/crm/model/common_model_scopes_update_serializer.py
 MergePythonSDK/crm/model/condition_schema.py
 MergePythonSDK/crm/model/condition_type_enum.py
 MergePythonSDK/crm/model/contact.py
@@ -142,6 +135,7 @@ MergePythonSDK/crm/model/remote_field.py
 MergePythonSDK/crm/model/remote_field_class.py
 MergePythonSDK/crm/model/remote_field_class_for_custom_object_class.py
 MergePythonSDK/crm/model/remote_field_class_for_custom_object_class_item_schema.py
+MergePythonSDK/crm/model/remote_field_request.py
 MergePythonSDK/crm/model/request_format_enum.py
 MergePythonSDK/crm/model/response_type_enum.py
 MergePythonSDK/crm/model/selective_sync_configurations_usage_enum.py
@@ -195,14 +189,7 @@ docs/CRMCustomObjectResponse.md
 docs/CardinalityEnum.md
 docs/CategoriesEnum.md
 docs/CategoryEnum.md
-docs/CommonModelScopeData.md
-docs/CommonModelScopes.md
-docs/CommonModelScopesApi.md
 docs/CommonModelScopesBodyRequest.md
-docs/CommonModelScopesDisabledModels.md
-docs/CommonModelScopesDisabledModelsEnabledActionsEnum.md
-docs/CommonModelScopesPostInnerDeserializerRequest.md
-docs/CommonModelScopesUpdateSerializer.md
 docs/ConditionSchema.md
 docs/ConditionTypeEnum.md
 docs/Contact.md
@@ -314,6 +301,7 @@ docs/RemoteField.md
 docs/RemoteFieldClass.md
 docs/RemoteFieldClassForCustomObjectClass.md
 docs/RemoteFieldClassForCustomObjectClassItemSchema.md
+docs/RemoteFieldRequest.md
 docs/RemoteKey.md
 docs/RemoteKeyForRegenerationRequest.md
 docs/RemoteResponse.md
@@ -368,14 +356,7 @@ test/test_available_actions_api.py
 test/test_cardinality_enum.py
 test/test_categories_enum.py
 test/test_category_enum.py
-test/test_common_model_scope_data.py
-test/test_common_model_scopes.py
-test/test_common_model_scopes_api.py
 test/test_common_model_scopes_body_request.py
-test/test_common_model_scopes_disabled_models.py
-test/test_common_model_scopes_disabled_models_enabled_actions_enum.py
-test/test_common_model_scopes_post_inner_deserializer_request.py
-test/test_common_model_scopes_update_serializer.py
 test/test_condition_schema.py
 test/test_condition_type_enum.py
 test/test_contact.py
@@ -495,6 +476,7 @@ test/test_remote_field.py
 test/test_remote_field_class.py
 test/test_remote_field_class_for_custom_object_class.py
 test/test_remote_field_class_for_custom_object_class_item_schema.py
+test/test_remote_field_request.py
 test/test_remote_key.py
 test/test_remote_key_for_regeneration_request.py
 test/test_remote_response.py

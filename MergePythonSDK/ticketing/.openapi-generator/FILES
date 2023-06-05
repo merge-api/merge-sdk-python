@@ -8,7 +8,6 @@ MergePythonSDK/ticketing/api/attachments_api.py
 MergePythonSDK/ticketing/api/available_actions_api.py
 MergePythonSDK/ticketing/api/collections_api.py
 MergePythonSDK/ticketing/api/comments_api.py
-MergePythonSDK/ticketing/api/common_model_scopes_api.py
 MergePythonSDK/ticketing/api/contacts_api.py
 MergePythonSDK/ticketing/api/delete_account_api.py
 MergePythonSDK/ticketing/api/force_resync_api.py
@@ -46,13 +45,7 @@ MergePythonSDK/ticketing/model/comment.py
 MergePythonSDK/ticketing/model/comment_endpoint_request.py
 MergePythonSDK/ticketing/model/comment_request.py
 MergePythonSDK/ticketing/model/comment_response.py
-MergePythonSDK/ticketing/model/common_model_scope_data.py
-MergePythonSDK/ticketing/model/common_model_scopes.py
 MergePythonSDK/ticketing/model/common_model_scopes_body_request.py
-MergePythonSDK/ticketing/model/common_model_scopes_disabled_models.py
-MergePythonSDK/ticketing/model/common_model_scopes_disabled_models_enabled_actions_enum.py
-MergePythonSDK/ticketing/model/common_model_scopes_post_inner_deserializer_request.py
-MergePythonSDK/ticketing/model/common_model_scopes_update_serializer.py
 MergePythonSDK/ticketing/model/condition_schema.py
 MergePythonSDK/ticketing/model/condition_type_enum.py
 MergePythonSDK/ticketing/model/contact.py
@@ -87,6 +80,7 @@ MergePythonSDK/ticketing/model/priority_enum.py
 MergePythonSDK/ticketing/model/project.py
 MergePythonSDK/ticketing/model/remote_field.py
 MergePythonSDK/ticketing/model/remote_field_class.py
+MergePythonSDK/ticketing/model/remote_field_request.py
 MergePythonSDK/ticketing/model/request_format_enum.py
 MergePythonSDK/ticketing/model/response_type_enum.py
 MergePythonSDK/ticketing/model/selective_sync_configurations_usage_enum.py
@@ -134,14 +128,7 @@ docs/CommentEndpointRequest.md
 docs/CommentRequest.md
 docs/CommentResponse.md
 docs/CommentsApi.md
-docs/CommonModelScopeData.md
-docs/CommonModelScopes.md
-docs/CommonModelScopesApi.md
 docs/CommonModelScopesBodyRequest.md
-docs/CommonModelScopesDisabledModels.md
-docs/CommonModelScopesDisabledModelsEnabledActionsEnum.md
-docs/CommonModelScopesPostInnerDeserializerRequest.md
-docs/CommonModelScopesUpdateSerializer.md
 docs/ConditionSchema.md
 docs/ConditionTypeEnum.md
 docs/Contact.md
@@ -189,6 +176,7 @@ docs/PaginatedProjectList.md
 docs/PaginatedRemoteFieldClassList.md
 docs/PaginatedSyncStatusList.md
 docs/PaginatedTagList.md
+docs/PaginatedTeamList.md
 docs/PaginatedTicketList.md
 docs/PaginatedUserList.md
 docs/PassthroughApi.md
@@ -201,6 +189,7 @@ docs/RegenerateKeyApi.md
 docs/RemoteData.md
 docs/RemoteField.md
 docs/RemoteFieldClass.md
+docs/RemoteFieldRequest.md
 docs/RemoteKey.md
 docs/RemoteKeyForRegenerationRequest.md
 docs/RemoteResponse.md
@@ -258,14 +247,7 @@ test/test_comment_endpoint_request.py
 test/test_comment_request.py
 test/test_comment_response.py
 test/test_comments_api.py
-test/test_common_model_scope_data.py
-test/test_common_model_scopes.py
-test/test_common_model_scopes_api.py
 test/test_common_model_scopes_body_request.py
-test/test_common_model_scopes_disabled_models.py
-test/test_common_model_scopes_disabled_models_enabled_actions_enum.py
-test/test_common_model_scopes_post_inner_deserializer_request.py
-test/test_common_model_scopes_update_serializer.py
 test/test_condition_schema.py
 test/test_condition_type_enum.py
 test/test_contact.py
@@ -326,6 +308,7 @@ test/test_regenerate_key_api.py
 test/test_remote_data.py
 test/test_remote_field.py
 test/test_remote_field_class.py
+test/test_remote_field_request.py
 test/test_remote_key.py
 test/test_remote_key_for_regeneration_request.py
 test/test_remote_response.py

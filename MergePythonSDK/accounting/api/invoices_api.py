@@ -166,6 +166,10 @@ class InvoicesApi(object):
                         "LINE_ITEMS,COMPANY": "line_items,company",
                         "LINE_ITEMS,CONTACT": "line_items,contact",
                         "LINE_ITEMS,CONTACT,COMPANY": "line_items,contact,company",
+                        "LINE_ITEMS,TRACKING_CATEGORIES": "line_items,tracking_categories",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,COMPANY": "line_items,tracking_categories,company",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,CONTACT": "line_items,tracking_categories,contact",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,CONTACT,COMPANY": "line_items,tracking_categories,contact,company",
                         "PAYMENTS": "payments",
                         "PAYMENTS,COMPANY": "payments,company",
                         "PAYMENTS,CONTACT": "payments,contact",
@@ -173,7 +177,19 @@ class InvoicesApi(object):
                         "PAYMENTS,LINE_ITEMS": "payments,line_items",
                         "PAYMENTS,LINE_ITEMS,COMPANY": "payments,line_items,company",
                         "PAYMENTS,LINE_ITEMS,CONTACT": "payments,line_items,contact",
-                        "PAYMENTS,LINE_ITEMS,CONTACT,COMPANY": "payments,line_items,contact,company"
+                        "PAYMENTS,LINE_ITEMS,CONTACT,COMPANY": "payments,line_items,contact,company",
+                        "PAYMENTS,LINE_ITEMS,TRACKING_CATEGORIES": "payments,line_items,tracking_categories",
+                        "PAYMENTS,LINE_ITEMS,TRACKING_CATEGORIES,COMPANY": "payments,line_items,tracking_categories,company",
+                        "PAYMENTS,LINE_ITEMS,TRACKING_CATEGORIES,CONTACT": "payments,line_items,tracking_categories,contact",
+                        "PAYMENTS,LINE_ITEMS,TRACKING_CATEGORIES,CONTACT,COMPANY": "payments,line_items,tracking_categories,contact,company",
+                        "PAYMENTS,TRACKING_CATEGORIES": "payments,tracking_categories",
+                        "PAYMENTS,TRACKING_CATEGORIES,COMPANY": "payments,tracking_categories,company",
+                        "PAYMENTS,TRACKING_CATEGORIES,CONTACT": "payments,tracking_categories,contact",
+                        "PAYMENTS,TRACKING_CATEGORIES,CONTACT,COMPANY": "payments,tracking_categories,contact,company",
+                        "TRACKING_CATEGORIES": "tracking_categories",
+                        "TRACKING_CATEGORIES,COMPANY": "tracking_categories,company",
+                        "TRACKING_CATEGORIES,CONTACT": "tracking_categories,contact",
+                        "TRACKING_CATEGORIES,CONTACT,COMPANY": "tracking_categories,contact,company"
                     },
                     ('remote_fields',): {
 
@@ -365,6 +381,10 @@ class InvoicesApi(object):
                         "LINE_ITEMS,COMPANY": "line_items,company",
                         "LINE_ITEMS,CONTACT": "line_items,contact",
                         "LINE_ITEMS,CONTACT,COMPANY": "line_items,contact,company",
+                        "LINE_ITEMS,TRACKING_CATEGORIES": "line_items,tracking_categories",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,COMPANY": "line_items,tracking_categories,company",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,CONTACT": "line_items,tracking_categories,contact",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,CONTACT,COMPANY": "line_items,tracking_categories,contact,company",
                         "PAYMENTS": "payments",
                         "PAYMENTS,COMPANY": "payments,company",
                         "PAYMENTS,CONTACT": "payments,contact",
@@ -372,7 +392,19 @@ class InvoicesApi(object):
                         "PAYMENTS,LINE_ITEMS": "payments,line_items",
                         "PAYMENTS,LINE_ITEMS,COMPANY": "payments,line_items,company",
                         "PAYMENTS,LINE_ITEMS,CONTACT": "payments,line_items,contact",
-                        "PAYMENTS,LINE_ITEMS,CONTACT,COMPANY": "payments,line_items,contact,company"
+                        "PAYMENTS,LINE_ITEMS,CONTACT,COMPANY": "payments,line_items,contact,company",
+                        "PAYMENTS,LINE_ITEMS,TRACKING_CATEGORIES": "payments,line_items,tracking_categories",
+                        "PAYMENTS,LINE_ITEMS,TRACKING_CATEGORIES,COMPANY": "payments,line_items,tracking_categories,company",
+                        "PAYMENTS,LINE_ITEMS,TRACKING_CATEGORIES,CONTACT": "payments,line_items,tracking_categories,contact",
+                        "PAYMENTS,LINE_ITEMS,TRACKING_CATEGORIES,CONTACT,COMPANY": "payments,line_items,tracking_categories,contact,company",
+                        "PAYMENTS,TRACKING_CATEGORIES": "payments,tracking_categories",
+                        "PAYMENTS,TRACKING_CATEGORIES,COMPANY": "payments,tracking_categories,company",
+                        "PAYMENTS,TRACKING_CATEGORIES,CONTACT": "payments,tracking_categories,contact",
+                        "PAYMENTS,TRACKING_CATEGORIES,CONTACT,COMPANY": "payments,tracking_categories,contact,company",
+                        "TRACKING_CATEGORIES": "tracking_categories",
+                        "TRACKING_CATEGORIES,COMPANY": "tracking_categories,company",
+                        "TRACKING_CATEGORIES,CONTACT": "tracking_categories,contact",
+                        "TRACKING_CATEGORIES,CONTACT,COMPANY": "tracking_categories,contact,company"
                     },
                     ('remote_fields',): {
 

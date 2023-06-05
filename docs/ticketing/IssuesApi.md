@@ -23,7 +23,7 @@ Gets issues.
 import time
 import MergePythonSDK.ticketing
 from MergePythonSDK.ticketing.api import issues_api
-from MergePythonSDK.ticketing.model.paginated_issue_list import PaginatedIssueList
+
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/ticketing/v1
 # See configuration.py for a list of all supported configuration parameters.
@@ -53,11 +53,11 @@ with MergePythonSDK.ticketing.ApiClient(configuration) as api_client:
     first_incident_time_before = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime, none_type | If provided, will only return issues whose first incident time was before this datetime. (optional)
     include_muted = "include_muted_example" # str | If True, will include muted issues (optional)
     integration_name = "integration_name_example" # str |  (optional)
-    last_incident_time_after = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime, none_type | If provided, will only return issues whose first incident time was after this datetime. (optional)
-    last_incident_time_before = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime, none_type | If provided, will only return issues whose first incident time was before this datetime. (optional)
+    last_incident_time_after = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime, none_type | If provided, will only return issues whose last incident time was after this datetime. (optional)
+    last_incident_time_before = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime, none_type | If provided, will only return issues whose last incident time was before this datetime. (optional)
     page_size = 1 # int | Number of results to return per page. (optional)
     start_date = "start_date_example" # str | If included, will only include issues whose most recent action occurred after this time (optional)
-    status = "ONGOING" # str | * `ONGOING` - ONGOING * `RESOLVED` - RESOLVED  * `ONGOING` - ONGOING * `RESOLVED` - RESOLVED (optional)
+    status = "ONGOING" # str | Status of the issue. Options: ('ONGOING', 'RESOLVED')  * `ONGOING` - ONGOING * `RESOLVED` - RESOLVED (optional)
 
     # example passing only required values which don't have defaults set
     # and optional values
@@ -81,11 +81,11 @@ Name | Type | Description  | Notes
  **first_incident_time_before** | **datetime, none_type**| If provided, will only return issues whose first incident time was before this datetime. | [optional]
  **include_muted** | **str**| If True, will include muted issues | [optional]
  **integration_name** | **str**|  | [optional]
- **last_incident_time_after** | **datetime, none_type**| If provided, will only return issues whose first incident time was after this datetime. | [optional]
- **last_incident_time_before** | **datetime, none_type**| If provided, will only return issues whose first incident time was before this datetime. | [optional]
+ **last_incident_time_after** | **datetime, none_type**| If provided, will only return issues whose last incident time was after this datetime. | [optional]
+ **last_incident_time_before** | **datetime, none_type**| If provided, will only return issues whose last incident time was before this datetime. | [optional]
  **page_size** | **int**| Number of results to return per page. | [optional]
  **start_date** | **str**| If included, will only include issues whose most recent action occurred after this time | [optional]
- **status** | **str**| * &#x60;ONGOING&#x60; - ONGOING * &#x60;RESOLVED&#x60; - RESOLVED  * &#x60;ONGOING&#x60; - ONGOING * &#x60;RESOLVED&#x60; - RESOLVED | [optional]
+ **status** | **str**| Status of the issue. Options: (&#39;ONGOING&#39;, &#39;RESOLVED&#39;)  * &#x60;ONGOING&#x60; - ONGOING * &#x60;RESOLVED&#x60; - RESOLVED | [optional]
 
 ### Return type
 

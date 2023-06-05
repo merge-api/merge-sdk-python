@@ -119,7 +119,7 @@ class PurchaseOrderRequest(ModelNormal):
             'integration_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
             'linked_account_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
         }
-        expands_types = {"company": "CompanyInfo", "delivery_address": "Address", "line_items": "PurchaseOrderLineItem", "vendor": "Contact"}
+        expands_types = {"company": "CompanyInfo", "delivery_address": "Address", "line_items": "PurchaseOrderLineItem", "tracking_categories": "TrackingCategory", "vendor": "Contact"}
 
         # update types with expands
         for key, val in expands_types.items():

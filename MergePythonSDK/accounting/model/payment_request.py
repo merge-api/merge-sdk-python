@@ -107,10 +107,11 @@ class PaymentRequest(ModelNormal):
             'exchange_rate': (str, none_type, none_type,),  # noqa: E501
             'company': (str, none_type, none_type,),  # noqa: E501
             'total_amount': (float, none_type, none_type,),  # noqa: E501
+            'tracking_categories': ([str, none_type], none_type,),  # noqa: E501
             'integration_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
             'linked_account_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
         }
-        expands_types = {"account": "Account", "company": "CompanyInfo", "contact": "Contact"}
+        expands_types = {"account": "Account", "company": "CompanyInfo", "contact": "Contact", "tracking_categories": "TrackingCategory"}
 
         # update types with expands
         for key, val in expands_types.items():
@@ -135,6 +136,7 @@ class PaymentRequest(ModelNormal):
         'exchange_rate': 'exchange_rate',  # noqa: E501
         'company': 'company',  # noqa: E501
         'total_amount': 'total_amount',  # noqa: E501
+        'tracking_categories': 'tracking_categories',  # noqa: E501
         'integration_params': 'integration_params',  # noqa: E501
         'linked_account_params': 'linked_account_params',  # noqa: E501
     }
@@ -187,6 +189,7 @@ class PaymentRequest(ModelNormal):
             exchange_rate (str, none_type): The payment's exchange rate.. [optional]  # noqa: E501
             company (str, none_type): The company the payment belongs to.. [optional]  # noqa: E501
             total_amount (float, none_type): The total amount of money being paid to the supplier, or customer, after taxes.. [optional]  # noqa: E501
+            tracking_categories ([str, none_type]): [optional]  # noqa: E501
             integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
@@ -228,6 +231,7 @@ class PaymentRequest(ModelNormal):
         self.exchange_rate = kwargs.get("exchange_rate", None)
         self.company = kwargs.get("company", None)
         self.total_amount = kwargs.get("total_amount", None)
+        self.tracking_categories = kwargs.get("tracking_categories", None)
         self.integration_params = kwargs.get("integration_params", None)
         self.linked_account_params = kwargs.get("linked_account_params", None)
         return self
@@ -283,6 +287,7 @@ class PaymentRequest(ModelNormal):
             exchange_rate (str, none_type): The payment's exchange rate.. [optional]  # noqa: E501
             company (str, none_type): The company the payment belongs to.. [optional]  # noqa: E501
             total_amount (float, none_type): The total amount of money being paid to the supplier, or customer, after taxes.. [optional]  # noqa: E501
+            tracking_categories ([str, none_type]): [optional]  # noqa: E501
             integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
@@ -321,6 +326,7 @@ class PaymentRequest(ModelNormal):
         self.exchange_rate: Union[str, none_type] = kwargs.get("exchange_rate", None)
         self.company: Union[str, none_type] = kwargs.get("company", None)
         self.total_amount: Union[float, none_type] = kwargs.get("total_amount", None)
+        self.tracking_categories: Union[List[str, none_type]] = kwargs.get("tracking_categories", list())
         self.integration_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
         self.linked_account_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
 

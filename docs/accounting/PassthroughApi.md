@@ -2,20 +2,22 @@
 
 All URIs are relative to *https://api.merge.dev/api/accounting/v1*
 
-| Method                                                         | HTTP request          | Description |
-| -------------------------------------------------------------- | --------------------- | ----------- |
-| [**passthrough_create**](PassthroughApi.md#passthrough_create) | **POST** /passthrough |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**passthrough_create**](PassthroughApi.md#passthrough_create) | **POST** /passthrough | 
+
 
 # **passthrough_create**
-
 > RemoteResponse passthrough_create(data_passthrough_request)
+
+
 
 Pull data from an endpoint not currently supported by Merge.
 
 ### Example
 
-- Api Key Authentication (accountTokenAuth):
-- Bearer Authentication (bearerAuth):
+* Api Key Authentication (accountTokenAuth):
+* Bearer Authentication (bearerAuth):
 
 ```python
 import time
@@ -69,7 +71,7 @@ with MergePythonSDK.accounting.ApiClient(configuration) as api_client:
         },
         request_format=None,
         normalize_response=True,
-    ) # DataPassthroughRequest |
+    ) # DataPassthroughRequest | 
 
     # example passing only required values which don't have defaults set
     try:
@@ -79,11 +81,12 @@ with MergePythonSDK.accounting.ApiClient(configuration) as api_client:
         print("Exception when calling PassthroughApi->passthrough_create: %s\n" % e)
 ```
 
+
 ### Parameters
 
-| Name                         | Type                                                    | Description | Notes |
-| ---------------------------- | ------------------------------------------------------- | ----------- | ----- |
-| **data_passthrough_request** | [**DataPassthroughRequest**](DataPassthroughRequest.md) |             |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **data_passthrough_request** | [**DataPassthroughRequest**](DataPassthroughRequest.md)|  |
 
 ### Return type
 
@@ -95,13 +98,15 @@ with MergePythonSDK.accounting.ApiClient(configuration) as api_client:
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
-- **Accept**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
+
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
-| ----------- | ----------- | ---------------- |
-| **200**     |             | -                |
+|-------------|-------------|------------------|
+**200** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+

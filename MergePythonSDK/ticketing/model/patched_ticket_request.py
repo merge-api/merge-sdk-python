@@ -40,8 +40,10 @@ from MergePythonSDK.shared.model_utils import import_model_by_name
 
 def lazy_import():
     from MergePythonSDK.ticketing.model.priority_enum import PriorityEnum
+    from MergePythonSDK.ticketing.model.remote_field_request import RemoteFieldRequest
     from MergePythonSDK.ticketing.model.ticket_status_enum import TicketStatusEnum
     globals()['PriorityEnum'] = PriorityEnum
+    globals()['RemoteFieldRequest'] = RemoteFieldRequest
     globals()['TicketStatusEnum'] = TicketStatusEnum
 
 class PatchedTicketRequest(ModelNormal):
@@ -118,6 +120,7 @@ class PatchedTicketRequest(ModelNormal):
             'priority': (PriorityEnum, str, none_type,),
             'integration_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
             'linked_account_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'remote_fields': ([RemoteFieldRequest], none_type,),  # noqa: E501
         }
         return defined_types
 
@@ -145,6 +148,7 @@ class PatchedTicketRequest(ModelNormal):
         'priority': 'priority',  # noqa: E501
         'integration_params': 'integration_params',  # noqa: E501
         'linked_account_params': 'linked_account_params',  # noqa: E501
+        'remote_fields': 'remote_fields',  # noqa: E501
     }
 
     read_only_vars = {
@@ -206,6 +210,7 @@ class PatchedTicketRequest(ModelNormal):
             priority (bool, date, datetime, dict, float, int, list, str, none_type): The priority or urgency of the Ticket.  * `URGENT` - URGENT * `HIGH` - HIGH * `NORMAL` - NORMAL * `LOW` - LOW. [optional]  # noqa: E501
             integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            remote_fields ([RemoteFieldRequest]): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -256,6 +261,7 @@ class PatchedTicketRequest(ModelNormal):
         self.priority = kwargs.get("priority", None)
         self.integration_params = kwargs.get("integration_params", None)
         self.linked_account_params = kwargs.get("linked_account_params", None)
+        self.remote_fields = kwargs.get("remote_fields", None)
         return self
 
     required_properties = set([
@@ -320,6 +326,7 @@ class PatchedTicketRequest(ModelNormal):
             priority (bool, date, datetime, dict, float, int, list, str, none_type): The priority or urgency of the Ticket.  * `URGENT` - URGENT * `HIGH` - HIGH * `NORMAL` - NORMAL * `LOW` - LOW. [optional]  # noqa: E501
             integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            remote_fields ([RemoteFieldRequest]): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -367,5 +374,6 @@ class PatchedTicketRequest(ModelNormal):
         self.priority: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("priority", None)
         self.integration_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
         self.linked_account_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
+        self.remote_fields: Union[List["RemoteFieldRequest"]] = kwargs.get("remote_fields", None)
 
 

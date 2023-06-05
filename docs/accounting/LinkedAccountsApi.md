@@ -22,7 +22,7 @@ List linked accounts for your organization.
 import time
 import MergePythonSDK.accounting
 from MergePythonSDK.accounting.api import linked_accounts_api
-from MergePythonSDK.accounting.model.paginated_account_details_and_actions_list import PaginatedAccountDetailsAndActionsList
+
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/accounting/v1
 # See configuration.py for a list of all supported configuration parameters.
@@ -44,7 +44,7 @@ configuration = MergePythonSDK.accounting.Configuration(
 with MergePythonSDK.accounting.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = linked_accounts_api.LinkedAccountsApi(api_client)
-    category = "accounting" # str, none_type | * `hris` - hris * `ats` - ats * `accounting` - accounting * `ticketing` - ticketing * `crm` - crm * `mktg` - mktg * `filestorage` - filestorage  * `hris` - hris * `ats` - ats * `accounting` - accounting * `ticketing` - ticketing * `crm` - crm * `mktg` - mktg * `filestorage` - filestorage (optional)
+    category = "accounting" # str, none_type | Options: ('hris', 'ats', 'accounting', 'ticketing', 'crm', 'mktg', 'filestorage')  * `hris` - hris * `ats` - ats * `accounting` - accounting * `ticketing` - ticketing * `crm` - crm * `mktg` - mktg * `filestorage` - filestorage (optional)
     cursor = "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw" # str | The pagination cursor value. (optional)
     end_user_email_address = "end_user_email_address_example" # str | If provided, will only return linked accounts associated with the given email address. (optional)
     end_user_organization_name = "end_user_organization_name_example" # str | If provided, will only return linked accounts associated with the given organization name. (optional)
@@ -72,7 +72,7 @@ with MergePythonSDK.accounting.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **category** | **str, none_type**| * &#x60;hris&#x60; - hris * &#x60;ats&#x60; - ats * &#x60;accounting&#x60; - accounting * &#x60;ticketing&#x60; - ticketing * &#x60;crm&#x60; - crm * &#x60;mktg&#x60; - mktg * &#x60;filestorage&#x60; - filestorage  * &#x60;hris&#x60; - hris * &#x60;ats&#x60; - ats * &#x60;accounting&#x60; - accounting * &#x60;ticketing&#x60; - ticketing * &#x60;crm&#x60; - crm * &#x60;mktg&#x60; - mktg * &#x60;filestorage&#x60; - filestorage | [optional]
+ **category** | **str, none_type**| Options: (&#39;hris&#39;, &#39;ats&#39;, &#39;accounting&#39;, &#39;ticketing&#39;, &#39;crm&#39;, &#39;mktg&#39;, &#39;filestorage&#39;)  * &#x60;hris&#x60; - hris * &#x60;ats&#x60; - ats * &#x60;accounting&#x60; - accounting * &#x60;ticketing&#x60; - ticketing * &#x60;crm&#x60; - crm * &#x60;mktg&#x60; - mktg * &#x60;filestorage&#x60; - filestorage | [optional]
  **cursor** | **str**| The pagination cursor value. | [optional]
  **end_user_email_address** | **str**| If provided, will only return linked accounts associated with the given email address. | [optional]
  **end_user_organization_name** | **str**| If provided, will only return linked accounts associated with the given organization name. | [optional]

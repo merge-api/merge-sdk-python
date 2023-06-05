@@ -1,3 +1,7 @@
+# Version 2.2.8
+
+- Add PARTIALLY_SYNCED to SyncStatusEnum
+
 # Version 2.2.7
 
 - Add field_mappings to all common models

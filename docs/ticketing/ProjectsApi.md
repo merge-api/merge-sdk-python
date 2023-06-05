@@ -25,7 +25,7 @@ Returns a list of `Project` objects.
 import time
 import MergePythonSDK.ticketing
 from MergePythonSDK.ticketing.api import projects_api
-from MergePythonSDK.ticketing.model.paginated_project_list import PaginatedProjectList
+
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/ticketing/v1
 # See configuration.py for a list of all supported configuration parameters.
@@ -218,7 +218,7 @@ Returns a list of `User` objects.
 import time
 import MergePythonSDK.ticketing
 from MergePythonSDK.ticketing.api import projects_api
-from MergePythonSDK.ticketing.model.paginated_user_list import PaginatedUserList
+
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/ticketing/v1
 # See configuration.py for a list of all supported configuration parameters.

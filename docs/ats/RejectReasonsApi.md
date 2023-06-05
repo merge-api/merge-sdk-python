@@ -24,7 +24,7 @@ Returns a list of `RejectReason` objects.
 import time
 import MergePythonSDK.ats
 from MergePythonSDK.ats.api import reject_reasons_api
-from MergePythonSDK.ats.model.paginated_reject_reason_list import PaginatedRejectReasonList
+
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/ats/v1
 # See configuration.py for a list of all supported configuration parameters.

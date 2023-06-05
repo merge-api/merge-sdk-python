@@ -284,7 +284,7 @@ class PurchaseOrderResponse(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.model: Union["PurchaseOrder", {"company": "CompanyInfo", "delivery_address": "Address", "line_items": "PurchaseOrderLineItem", "vendor": "Contact"}] = model
+        self.model: Union["PurchaseOrder", {"company": "CompanyInfo", "delivery_address": "Address", "line_items": "PurchaseOrderLineItem", "tracking_categories": "TrackingCategory", "vendor": "Contact"}] = model
         self.warnings: Union[List["WarningValidationProblem"]] = warnings
         self.errors: Union[List["ErrorValidationProblem"]] = errors
         self.logs: Union[List["DebugModeLog"]] = kwargs.get("logs", None)

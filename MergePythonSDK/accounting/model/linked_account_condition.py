@@ -95,7 +95,7 @@ class LinkedAccountCondition(ModelNormal):
             'operator': (str,),  # noqa: E501
             'field_name': (str, none_type,),  # noqa: E501
             'common_model': (str, none_type,),  # noqa: E501
-            'value': (bool, dict, float, int, list, str, none_type, none_type,),  # noqa: E501
+            'value': (bool, date, datetime, dict, float, int, list, str, none_type, none_type,),  # noqa: E501
         }
         return defined_types
 

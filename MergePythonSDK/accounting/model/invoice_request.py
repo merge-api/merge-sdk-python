@@ -124,7 +124,7 @@ class InvoiceRequest(ModelNormal):
             'integration_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
             'linked_account_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
         }
-        expands_types = {"company": "CompanyInfo", "contact": "Contact", "line_items": "InvoiceLineItem", "payments": "Payment"}
+        expands_types = {"company": "CompanyInfo", "contact": "Contact", "line_items": "InvoiceLineItem", "payments": "Payment", "tracking_categories": "TrackingCategory"}
 
         # update types with expands
         for key, val in expands_types.items():

@@ -114,6 +114,7 @@ class Expense(ModelNormal):
             'company': (str, none_type, none_type,),  # noqa: E501
             'memo': (str, none_type, none_type,),  # noqa: E501
             'lines': ([ExpenseLine], none_type,),  # noqa: E501
+            'tracking_categories': ([str, none_type], none_type,),  # noqa: E501
             'remote_was_deleted': (bool, none_type,),  # noqa: E501
             'id': (str, none_type,),  # noqa: E501
             'remote_id': (str, none_type, none_type,),  # noqa: E501
@@ -121,7 +122,7 @@ class Expense(ModelNormal):
             'modified_at': (datetime, none_type,),  # noqa: E501
             'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
         }
-        expands_types = {"account": "Account", "company": "CompanyInfo", "contact": "Contact"}
+        expands_types = {"account": "Account", "company": "CompanyInfo", "contact": "Contact", "tracking_categories": "TrackingCategory"}
 
         # update types with expands
         for key, val in expands_types.items():
@@ -149,6 +150,7 @@ class Expense(ModelNormal):
         'company': 'company',  # noqa: E501
         'memo': 'memo',  # noqa: E501
         'lines': 'lines',  # noqa: E501
+        'tracking_categories': 'tracking_categories',  # noqa: E501
         'remote_was_deleted': 'remote_was_deleted',  # noqa: E501
         'id': 'id',  # noqa: E501
         'remote_id': 'remote_id',  # noqa: E501
@@ -213,6 +215,7 @@ class Expense(ModelNormal):
             company (str, none_type): The company the expense belongs to.. [optional]  # noqa: E501
             memo (str, none_type): The expense's private note.. [optional]  # noqa: E501
             lines ([ExpenseLine]): [optional]  # noqa: E501
+            tracking_categories ([str, none_type]): [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
             id (str): [optional]  # noqa: E501
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
@@ -261,6 +264,7 @@ class Expense(ModelNormal):
         self.company = kwargs.get("company", None)
         self.memo = kwargs.get("memo", None)
         self.lines = kwargs.get("lines", None)
+        self.tracking_categories = kwargs.get("tracking_categories", None)
         self.remote_id = kwargs.get("remote_id", None)
         self._remote_was_deleted = kwargs.get("remote_was_deleted", bool())
         self._id = kwargs.get("id", str())
@@ -323,6 +327,7 @@ class Expense(ModelNormal):
             company (str, none_type): The company the expense belongs to.. [optional]  # noqa: E501
             memo (str, none_type): The expense's private note.. [optional]  # noqa: E501
             lines ([ExpenseLine]): [optional]  # noqa: E501
+            tracking_categories ([str, none_type]): [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
             id (str): [optional]  # noqa: E501
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
@@ -368,6 +373,7 @@ class Expense(ModelNormal):
         self.company: Union[str, none_type] = kwargs.get("company", None)
         self.memo: Union[str, none_type] = kwargs.get("memo", None)
         self.lines: Union[List["ExpenseLine"]] = kwargs.get("lines", None)
+        self.tracking_categories: Union[List[str, none_type]] = kwargs.get("tracking_categories", list())
         self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
         self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
         self._id: Union[str] = kwargs.get("id", str())

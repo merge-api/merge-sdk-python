@@ -115,6 +115,7 @@ class JournalEntry(ModelNormal):
             'exchange_rate': (str, none_type, none_type,),  # noqa: E501
             'company': (str, none_type, none_type,),  # noqa: E501
             'lines': ([JournalLine], none_type,),  # noqa: E501
+            'tracking_categories': ([str, none_type], none_type,),  # noqa: E501
             'remote_was_deleted': (bool, none_type,),  # noqa: E501
             'posting_status': (PostingStatusEnum, str, none_type,),
             'id': (str, none_type,),  # noqa: E501
@@ -123,7 +124,7 @@ class JournalEntry(ModelNormal):
             'modified_at': (datetime, none_type,),  # noqa: E501
             'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
         }
-        expands_types = {"company": "CompanyInfo", "lines": "JournalLine", "payments": "Payment"}
+        expands_types = {"company": "CompanyInfo", "lines": "JournalLine", "payments": "Payment", "tracking_categories": "TrackingCategory"}
 
         # update types with expands
         for key, val in expands_types.items():
@@ -150,6 +151,7 @@ class JournalEntry(ModelNormal):
         'exchange_rate': 'exchange_rate',  # noqa: E501
         'company': 'company',  # noqa: E501
         'lines': 'lines',  # noqa: E501
+        'tracking_categories': 'tracking_categories',  # noqa: E501
         'remote_was_deleted': 'remote_was_deleted',  # noqa: E501
         'posting_status': 'posting_status',  # noqa: E501
         'id': 'id',  # noqa: E501
@@ -215,6 +217,7 @@ class JournalEntry(ModelNormal):
             exchange_rate (str, none_type): The journal entry's exchange rate.. [optional]  # noqa: E501
             company (str, none_type): The company the journal entry belongs to.. [optional]  # noqa: E501
             lines ([JournalLine]): [optional]  # noqa: E501
+            tracking_categories ([str, none_type]): [optional]  # noqa: E501
             remote_was_deleted (bool): [optional]  # noqa: E501
             posting_status (bool, date, datetime, dict, float, int, list, str, none_type): The journal's posting status.  * `UNPOSTED` - UNPOSTED * `POSTED` - POSTED. [optional]  # noqa: E501
             id (str): [optional]  # noqa: E501
@@ -262,6 +265,7 @@ class JournalEntry(ModelNormal):
         self.currency = kwargs.get("currency", None)
         self.exchange_rate = kwargs.get("exchange_rate", None)
         self.company = kwargs.get("company", None)
+        self.tracking_categories = kwargs.get("tracking_categories", None)
         self.posting_status = kwargs.get("posting_status", None)
         self.remote_id = kwargs.get("remote_id", None)
         self._lines = kwargs.get("lines", None)
@@ -325,6 +329,7 @@ class JournalEntry(ModelNormal):
             exchange_rate (str, none_type): The journal entry's exchange rate.. [optional]  # noqa: E501
             company (str, none_type): The company the journal entry belongs to.. [optional]  # noqa: E501
             lines ([JournalLine]): [optional]  # noqa: E501
+            tracking_categories ([str, none_type]): [optional]  # noqa: E501
             remote_was_deleted (bool): [optional]  # noqa: E501
             posting_status (bool, date, datetime, dict, float, int, list, str, none_type): The journal's posting status.  * `UNPOSTED` - UNPOSTED * `POSTED` - POSTED. [optional]  # noqa: E501
             id (str): [optional]  # noqa: E501
@@ -369,6 +374,7 @@ class JournalEntry(ModelNormal):
         self.currency: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("currency", None)
         self.exchange_rate: Union[str, none_type] = kwargs.get("exchange_rate", None)
         self.company: Union[str, none_type] = kwargs.get("company", None)
+        self.tracking_categories: Union[List[str, none_type]] = kwargs.get("tracking_categories", list())
         self.posting_status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("posting_status", None)
         self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
         self._lines: Union[List["JournalLine"]] = kwargs.get("lines", None)

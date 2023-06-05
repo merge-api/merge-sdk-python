@@ -15,7 +15,9 @@ from unittest.mock import MagicMock
 
 import MergePythonSDK.crm
 from MergePythonSDK.crm.model.opportunity_status_enum import OpportunityStatusEnum
+from MergePythonSDK.crm.model.remote_field_request import RemoteFieldRequest
 globals()['OpportunityStatusEnum'] = OpportunityStatusEnum
+globals()['RemoteFieldRequest'] = RemoteFieldRequest
 from MergePythonSDK.crm.model.patched_opportunity_request import PatchedOpportunityRequest
 from MergePythonSDK.shared.api_client import ApiClient
 

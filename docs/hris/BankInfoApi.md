@@ -24,7 +24,7 @@ Returns a list of `BankInfo` objects.
 import time
 import MergePythonSDK.hris
 from MergePythonSDK.hris.api import bank_info_api
-from MergePythonSDK.hris.model.paginated_bank_info_list import PaginatedBankInfoList
+
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/hris/v1
 # See configuration.py for a list of all supported configuration parameters.

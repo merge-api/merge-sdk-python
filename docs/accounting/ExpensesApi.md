@@ -85,6 +85,7 @@ with MergePythonSDK.accounting.ApiClient(configuration) as api_client:
                     },
                 ),
             ],
+            tracking_categories=["b38c59b0-a9d7-4740-b1ee-5436c6751e3d","9b840d2-686a-465a-8a8e-7b028498f8e4","a47e11b6-c73b-4a0c-be31-130fc48177fa"],
             integration_params={
                 "key": None,
             },
@@ -159,7 +160,7 @@ Returns a list of `Expense` objects.
 import time
 import MergePythonSDK.accounting
 from MergePythonSDK.accounting.api import expenses_api
-from MergePythonSDK.accounting.model.paginated_expense_list import PaginatedExpenseList
+
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/accounting/v1
 # See configuration.py for a list of all supported configuration parameters.
@@ -191,7 +192,7 @@ with MergePythonSDK.accounting.ApiClient(configuration) as api_client:
     created_after = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, will only return objects created after this datetime. (optional)
     created_before = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, will only return objects created before this datetime. (optional)
     cursor = "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw" # str | The pagination cursor value. (optional)
-    expand = "account,contact,company" # str | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. (optional)
+    expand = "tracking_categories,account,contact,company" # str | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. (optional)
     include_deleted_data = True # bool | Whether to include data that was marked as deleted by third party webhooks. (optional)
     include_remote_data = True # bool | Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
     modified_after = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, only objects synced by Merge after this date time will be returned. (optional)
@@ -375,7 +376,7 @@ with MergePythonSDK.accounting.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = expenses_api.ExpensesApi(api_client)
     id = "id_example" # str | 
-    expand = "account,contact,company" # str | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. (optional)
+    expand = "tracking_categories,account,contact,company" # str | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. (optional)
     include_remote_data = True # bool | Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
 
     # example passing only required values which don't have defaults set

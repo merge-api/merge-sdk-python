@@ -30,7 +30,7 @@ Returns a list of `User` objects.
 import time
 import MergePythonSDK.ticketing
 from MergePythonSDK.ticketing.api import tickets_api
-from MergePythonSDK.ticketing.model.paginated_user_list import PaginatedUserList
+
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/ticketing/v1
 # See configuration.py for a list of all supported configuration parameters.
@@ -185,6 +185,14 @@ with MergePythonSDK.ticketing.ApiClient(configuration) as api_client:
             linked_account_params={
                 "key": None,
             },
+            remote_fields=[
+                RemoteFieldRequest(
+                    remote_field_class="b057d1d2-c204-4da8-a74c-c91d1a260614",
+                    value={
+                        "key": None,
+                    },
+                ),
+            ],
         ),
     ) # TicketEndpointRequest | 
     is_debug_mode = True # bool | Whether to include debug fields (such as log file links) in the response. (optional)
@@ -253,7 +261,7 @@ Returns a list of `Ticket` objects.
 import time
 import MergePythonSDK.ticketing
 from MergePythonSDK.ticketing.api import tickets_api
-from MergePythonSDK.ticketing.model.paginated_ticket_list import PaginatedTicketList
+
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/ticketing/v1
 # See configuration.py for a list of all supported configuration parameters.
@@ -613,6 +621,14 @@ with MergePythonSDK.ticketing.ApiClient(configuration) as api_client:
             linked_account_params={
                 "key": None,
             },
+            remote_fields=[
+                RemoteFieldRequest(
+                    remote_field_class="b057d1d2-c204-4da8-a74c-c91d1a260614",
+                    value={
+                        "key": None,
+                    },
+                ),
+            ],
         ),
     ) # PatchedTicketEndpointRequest | 
     is_debug_mode = True # bool | Whether to include debug fields (such as log file links) in the response. (optional)
@@ -682,7 +698,7 @@ Returns a list of `RemoteFieldClass` objects.
 import time
 import MergePythonSDK.ticketing
 from MergePythonSDK.ticketing.api import tickets_api
-from MergePythonSDK.ticketing.model.paginated_remote_field_class_list import PaginatedRemoteFieldClassList
+
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/ticketing/v1
 # See configuration.py for a list of all supported configuration parameters.

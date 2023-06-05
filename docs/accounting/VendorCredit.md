@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **exchange_rate** | **str, none_type** | The vendor credit&#39;s exchange rate. | [optional] 
 **company** | **str, none_type** | The company the vendor credit belongs to. | [optional] 
 **lines** | [**[VendorCreditLine]**](VendorCreditLine.md) |  | [optional] [readonly] 
+**tracking_categories** | **[str, none_type]** |  | [optional] 
 **remote_was_deleted** | **bool** | Indicates whether or not this object has been deleted by third party webhooks. | [optional] [readonly] 
 **field_mappings** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** |  | [optional] [readonly] 
 **modified_at** | **datetime** | This is the datetime that this object was last updated by Merge | [optional] [readonly] 

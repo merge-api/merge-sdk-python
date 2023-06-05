@@ -24,7 +24,7 @@ Returns a list of `Office` objects.
 import time
 import MergePythonSDK.ats
 from MergePythonSDK.ats.api import offices_api
-from MergePythonSDK.ats.model.paginated_office_list import PaginatedOfficeList
+
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/ats/v1
 # See configuration.py for a list of all supported configuration parameters.

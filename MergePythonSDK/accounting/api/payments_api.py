@@ -159,7 +159,15 @@ class PaymentsApi(object):
                         "CONTACT": "contact",
                         "CONTACT,ACCOUNT": "contact,account",
                         "CONTACT,ACCOUNT,COMPANY": "contact,account,company",
-                        "CONTACT,COMPANY": "contact,company"
+                        "CONTACT,COMPANY": "contact,company",
+                        "TRACKING_CATEGORIES": "tracking_categories",
+                        "TRACKING_CATEGORIES,ACCOUNT": "tracking_categories,account",
+                        "TRACKING_CATEGORIES,ACCOUNT,COMPANY": "tracking_categories,account,company",
+                        "TRACKING_CATEGORIES,COMPANY": "tracking_categories,company",
+                        "TRACKING_CATEGORIES,CONTACT": "tracking_categories,contact",
+                        "TRACKING_CATEGORIES,CONTACT,ACCOUNT": "tracking_categories,contact,account",
+                        "TRACKING_CATEGORIES,CONTACT,ACCOUNT,COMPANY": "tracking_categories,contact,account,company",
+                        "TRACKING_CATEGORIES,CONTACT,COMPANY": "tracking_categories,contact,company"
                     },
                 },
                 'openapi_types': {
@@ -325,7 +333,15 @@ class PaymentsApi(object):
                         "CONTACT": "contact",
                         "CONTACT,ACCOUNT": "contact,account",
                         "CONTACT,ACCOUNT,COMPANY": "contact,account,company",
-                        "CONTACT,COMPANY": "contact,company"
+                        "CONTACT,COMPANY": "contact,company",
+                        "TRACKING_CATEGORIES": "tracking_categories",
+                        "TRACKING_CATEGORIES,ACCOUNT": "tracking_categories,account",
+                        "TRACKING_CATEGORIES,ACCOUNT,COMPANY": "tracking_categories,account,company",
+                        "TRACKING_CATEGORIES,COMPANY": "tracking_categories,company",
+                        "TRACKING_CATEGORIES,CONTACT": "tracking_categories,contact",
+                        "TRACKING_CATEGORIES,CONTACT,ACCOUNT": "tracking_categories,contact,account",
+                        "TRACKING_CATEGORIES,CONTACT,ACCOUNT,COMPANY": "tracking_categories,contact,account,company",
+                        "TRACKING_CATEGORIES,CONTACT,COMPANY": "tracking_categories,contact,company"
                     },
                 },
                 'openapi_types': {

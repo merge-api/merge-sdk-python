@@ -102,6 +102,8 @@ class Benefit(ModelNormal):
             'benefit_plan_type': (str, none_type, none_type,),  # noqa: E501
             'employee_contribution': (float, none_type, none_type,),  # noqa: E501
             'company_contribution': (float, none_type, none_type,),  # noqa: E501
+            'start_date': (datetime, none_type, none_type,),  # noqa: E501
+            'end_date': (datetime, none_type, none_type,),  # noqa: E501
             'remote_was_deleted': (bool, none_type,),  # noqa: E501
             'field_mappings': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
             'modified_at': (datetime, none_type,),  # noqa: E501
@@ -132,6 +134,8 @@ class Benefit(ModelNormal):
         'benefit_plan_type': 'benefit_plan_type',  # noqa: E501
         'employee_contribution': 'employee_contribution',  # noqa: E501
         'company_contribution': 'company_contribution',  # noqa: E501
+        'start_date': 'start_date',  # noqa: E501
+        'end_date': 'end_date',  # noqa: E501
         'remote_was_deleted': 'remote_was_deleted',  # noqa: E501
         'field_mappings': 'field_mappings',  # noqa: E501
         'modified_at': 'modified_at',  # noqa: E501
@@ -191,6 +195,8 @@ class Benefit(ModelNormal):
             benefit_plan_type (str, none_type): The type of benefit plan. [optional]  # noqa: E501
             employee_contribution (float, none_type): The employee's contribution.. [optional]  # noqa: E501
             company_contribution (float, none_type): The company's contribution.. [optional]  # noqa: E501
+            start_date (datetime, none_type): The day and time the benefit started.. [optional]  # noqa: E501
+            end_date (datetime, none_type): The day and time the benefit ended.. [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
             field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
@@ -233,6 +239,8 @@ class Benefit(ModelNormal):
         self.benefit_plan_type = kwargs.get("benefit_plan_type", None)
         self.employee_contribution = kwargs.get("employee_contribution", None)
         self.company_contribution = kwargs.get("company_contribution", None)
+        self.start_date = kwargs.get("start_date", None)
+        self.end_date = kwargs.get("end_date", None)
 
         # Read only properties
         self._id = kwargs.get("id", str())
@@ -293,6 +301,8 @@ class Benefit(ModelNormal):
             benefit_plan_type (str, none_type): The type of benefit plan. [optional]  # noqa: E501
             employee_contribution (float, none_type): The employee's contribution.. [optional]  # noqa: E501
             company_contribution (float, none_type): The company's contribution.. [optional]  # noqa: E501
+            start_date (datetime, none_type): The day and time the benefit started.. [optional]  # noqa: E501
+            end_date (datetime, none_type): The day and time the benefit ended.. [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
             field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
@@ -332,6 +342,8 @@ class Benefit(ModelNormal):
         self.benefit_plan_type: Union[str, none_type] = kwargs.get("benefit_plan_type", None)
         self.employee_contribution: Union[float, none_type] = kwargs.get("employee_contribution", None)
         self.company_contribution: Union[float, none_type] = kwargs.get("company_contribution", None)
+        self.start_date: Union[datetime, none_type] = kwargs.get("start_date", None)
+        self.end_date: Union[datetime, none_type] = kwargs.get("end_date", None)
 
         # Read only properties
         self._id: Union[str] = kwargs.get("id", str())

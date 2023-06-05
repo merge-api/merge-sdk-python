@@ -284,7 +284,7 @@ class JournalEntryResponse(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.model: Union["JournalEntry", {"company": "CompanyInfo", "lines": "JournalLine", "payments": "Payment"}] = model
+        self.model: Union["JournalEntry", {"company": "CompanyInfo", "lines": "JournalLine", "payments": "Payment", "tracking_categories": "TrackingCategory"}] = model
         self.warnings: Union[List["WarningValidationProblem"]] = warnings
         self.errors: Union[List["ErrorValidationProblem"]] = errors
         self.logs: Union[List["DebugModeLog"]] = kwargs.get("logs", None)

@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **error_description** | **str** |  | 
 **id** | **str** |  | [optional] [readonly] 
-**status** | **bool, date, datetime, dict, float, int, list, str, none_type** |  | [optional] 
+**status** | **bool, date, datetime, dict, float, int, list, str, none_type** | Status of the issue. Options: (&#39;ONGOING&#39;, &#39;RESOLVED&#39;)  * &#x60;ONGOING&#x60; - ONGOING * &#x60;RESOLVED&#x60; - RESOLVED | [optional] 
 **end_user** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** |  | [optional] [readonly] 
 **first_incident_time** | **datetime, none_type** |  | [optional] 
 **last_incident_time** | **datetime, none_type** |  | [optional] 

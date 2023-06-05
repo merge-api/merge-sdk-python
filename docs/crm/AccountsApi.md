@@ -73,6 +73,14 @@ with MergePythonSDK.crm.ApiClient(configuration) as api_client:
             linked_account_params={
                 "key": None,
             },
+            remote_fields=[
+                RemoteFieldRequest(
+                    remote_field_class="b057d1d2-c204-4da8-a74c-c91d1a260614",
+                    value={
+                        "key": None,
+                    },
+                ),
+            ],
         ),
     ) # CRMAccountEndpointRequest | 
     is_debug_mode = True # bool | Whether to include debug fields (such as log file links) in the response. (optional)
@@ -141,7 +149,7 @@ Returns a list of `Account` objects.
 import time
 import MergePythonSDK.crm
 from MergePythonSDK.crm.api import accounts_api
-from MergePythonSDK.crm.model.paginated_account_list import PaginatedAccountList
+
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/crm/v1
 # See configuration.py for a list of all supported configuration parameters.
@@ -454,6 +462,14 @@ with MergePythonSDK.crm.ApiClient(configuration) as api_client:
             linked_account_params={
                 "key": None,
             },
+            remote_fields=[
+                RemoteFieldRequest(
+                    remote_field_class="b057d1d2-c204-4da8-a74c-c91d1a260614",
+                    value={
+                        "key": None,
+                    },
+                ),
+            ],
         ),
     ) # PatchedCRMAccountEndpointRequest | 
     is_debug_mode = True # bool | Whether to include debug fields (such as log file links) in the response. (optional)
@@ -523,7 +539,7 @@ Returns a list of `RemoteFieldClass` objects.
 import time
 import MergePythonSDK.crm
 from MergePythonSDK.crm.api import accounts_api
-from MergePythonSDK.crm.model.paginated_remote_field_class_list import PaginatedRemoteFieldClassList
+
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/crm/v1
 # See configuration.py for a list of all supported configuration parameters.

@@ -157,7 +157,15 @@ class ExpensesApi(object):
                         "ACCOUNT,CONTACT,COMPANY": "account,contact,company",
                         "COMPANY": "company",
                         "CONTACT": "contact",
-                        "CONTACT,COMPANY": "contact,company"
+                        "CONTACT,COMPANY": "contact,company",
+                        "TRACKING_CATEGORIES": "tracking_categories",
+                        "TRACKING_CATEGORIES,ACCOUNT": "tracking_categories,account",
+                        "TRACKING_CATEGORIES,ACCOUNT,COMPANY": "tracking_categories,account,company",
+                        "TRACKING_CATEGORIES,ACCOUNT,CONTACT": "tracking_categories,account,contact",
+                        "TRACKING_CATEGORIES,ACCOUNT,CONTACT,COMPANY": "tracking_categories,account,contact,company",
+                        "TRACKING_CATEGORIES,COMPANY": "tracking_categories,company",
+                        "TRACKING_CATEGORIES,CONTACT": "tracking_categories,contact",
+                        "TRACKING_CATEGORIES,CONTACT,COMPANY": "tracking_categories,contact,company"
                     },
                 },
                 'openapi_types': {
@@ -315,7 +323,15 @@ class ExpensesApi(object):
                         "ACCOUNT,CONTACT,COMPANY": "account,contact,company",
                         "COMPANY": "company",
                         "CONTACT": "contact",
-                        "CONTACT,COMPANY": "contact,company"
+                        "CONTACT,COMPANY": "contact,company",
+                        "TRACKING_CATEGORIES": "tracking_categories",
+                        "TRACKING_CATEGORIES,ACCOUNT": "tracking_categories,account",
+                        "TRACKING_CATEGORIES,ACCOUNT,COMPANY": "tracking_categories,account,company",
+                        "TRACKING_CATEGORIES,ACCOUNT,CONTACT": "tracking_categories,account,contact",
+                        "TRACKING_CATEGORIES,ACCOUNT,CONTACT,COMPANY": "tracking_categories,account,contact,company",
+                        "TRACKING_CATEGORIES,COMPANY": "tracking_categories,company",
+                        "TRACKING_CATEGORIES,CONTACT": "tracking_categories,contact",
+                        "TRACKING_CATEGORIES,CONTACT,COMPANY": "tracking_categories,contact,company"
                     },
                 },
                 'openapi_types': {

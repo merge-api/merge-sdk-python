@@ -24,7 +24,7 @@ Returns a list of `VendorCredit` objects.
 import time
 import MergePythonSDK.accounting
 from MergePythonSDK.accounting.api import vendor_credits_api
-from MergePythonSDK.accounting.model.paginated_vendor_credit_list import PaginatedVendorCreditList
+
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/accounting/v1
 # See configuration.py for a list of all supported configuration parameters.
@@ -56,7 +56,7 @@ with MergePythonSDK.accounting.ApiClient(configuration) as api_client:
     created_after = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, will only return objects created after this datetime. (optional)
     created_before = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, will only return objects created before this datetime. (optional)
     cursor = "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw" # str | The pagination cursor value. (optional)
-    expand = "lines,vendor,company" # str | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. (optional)
+    expand = "lines,tracking_categories,vendor,company" # str | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. (optional)
     include_deleted_data = True # bool | Whether to include data that was marked as deleted by third party webhooks. (optional)
     include_remote_data = True # bool | Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
     modified_after = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, only objects synced by Merge after this date time will be returned. (optional)
@@ -161,7 +161,7 @@ with MergePythonSDK.accounting.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = vendor_credits_api.VendorCreditsApi(api_client)
     id = "id_example" # str | 
-    expand = "lines,vendor,company" # str | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. (optional)
+    expand = "lines,tracking_categories,vendor,company" # str | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. (optional)
     include_remote_data = True # bool | Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
 
     # example passing only required values which don't have defaults set

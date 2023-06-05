@@ -88,8 +88,12 @@ class CreditNotesApi(object):
                     ('expand',): {
 
                         "LINE_ITEMS": "line_items",
+                        "LINE_ITEMS,TRACKING_CATEGORIES": "line_items,tracking_categories",
                         "PAYMENTS": "payments",
-                        "PAYMENTS,LINE_ITEMS": "payments,line_items"
+                        "PAYMENTS,LINE_ITEMS": "payments,line_items",
+                        "PAYMENTS,LINE_ITEMS,TRACKING_CATEGORIES": "payments,line_items,tracking_categories",
+                        "PAYMENTS,TRACKING_CATEGORIES": "payments,tracking_categories",
+                        "TRACKING_CATEGORIES": "tracking_categories"
                     },
                     ('remote_fields',): {
 
@@ -221,8 +225,12 @@ class CreditNotesApi(object):
                     ('expand',): {
 
                         "LINE_ITEMS": "line_items",
+                        "LINE_ITEMS,TRACKING_CATEGORIES": "line_items,tracking_categories",
                         "PAYMENTS": "payments",
-                        "PAYMENTS,LINE_ITEMS": "payments,line_items"
+                        "PAYMENTS,LINE_ITEMS": "payments,line_items",
+                        "PAYMENTS,LINE_ITEMS,TRACKING_CATEGORIES": "payments,line_items,tracking_categories",
+                        "PAYMENTS,TRACKING_CATEGORIES": "payments,tracking_categories",
+                        "TRACKING_CATEGORIES": "tracking_categories"
                     },
                     ('remote_fields',): {
 

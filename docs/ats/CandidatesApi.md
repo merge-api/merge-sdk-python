@@ -268,7 +268,7 @@ Returns a list of `Candidate` objects.
 import time
 import MergePythonSDK.ats
 from MergePythonSDK.ats.api import candidates_api
-from MergePythonSDK.ats.model.paginated_candidate_list import PaginatedCandidateList
+
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/ats/v1
 # See configuration.py for a list of all supported configuration parameters.

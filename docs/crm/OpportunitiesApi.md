@@ -75,6 +75,14 @@ with MergePythonSDK.crm.ApiClient(configuration) as api_client:
             linked_account_params={
                 "key": None,
             },
+            remote_fields=[
+                RemoteFieldRequest(
+                    remote_field_class="b057d1d2-c204-4da8-a74c-c91d1a260614",
+                    value={
+                        "key": None,
+                    },
+                ),
+            ],
         ),
     ) # OpportunityEndpointRequest | 
     is_debug_mode = True # bool | Whether to include debug fields (such as log file links) in the response. (optional)
@@ -143,7 +151,7 @@ Returns a list of `Opportunity` objects.
 import time
 import MergePythonSDK.crm
 from MergePythonSDK.crm.api import opportunities_api
-from MergePythonSDK.crm.model.paginated_opportunity_list import PaginatedOpportunityList
+
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/crm/v1
 # See configuration.py for a list of all supported configuration parameters.
@@ -468,6 +476,14 @@ with MergePythonSDK.crm.ApiClient(configuration) as api_client:
             linked_account_params={
                 "key": None,
             },
+            remote_fields=[
+                RemoteFieldRequest(
+                    remote_field_class="b057d1d2-c204-4da8-a74c-c91d1a260614",
+                    value={
+                        "key": None,
+                    },
+                ),
+            ],
         ),
     ) # PatchedOpportunityEndpointRequest | 
     is_debug_mode = True # bool | Whether to include debug fields (such as log file links) in the response. (optional)
@@ -537,7 +553,7 @@ Returns a list of `RemoteFieldClass` objects.
 import time
 import MergePythonSDK.crm
 from MergePythonSDK.crm.api import opportunities_api
-from MergePythonSDK.crm.model.paginated_remote_field_class_list import PaginatedRemoteFieldClassList
+
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/crm/v1
 # See configuration.py for a list of all supported configuration parameters.

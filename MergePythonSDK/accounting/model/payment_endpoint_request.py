@@ -263,6 +263,6 @@ class PaymentEndpointRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.model: Union["PaymentRequest", {"account": "Account", "company": "CompanyInfo", "contact": "Contact"}] = model
+        self.model: Union["PaymentRequest", {"account": "Account", "company": "CompanyInfo", "contact": "Contact", "tracking_categories": "TrackingCategory"}] = model
 
 

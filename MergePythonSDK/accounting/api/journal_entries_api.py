@@ -156,8 +156,16 @@ class JournalEntriesApi(object):
                         "LINES,COMPANY": "lines,company",
                         "LINES,PAYMENTS": "lines,payments",
                         "LINES,PAYMENTS,COMPANY": "lines,payments,company",
+                        "LINES,PAYMENTS,TRACKING_CATEGORIES": "lines,payments,tracking_categories",
+                        "LINES,PAYMENTS,TRACKING_CATEGORIES,COMPANY": "lines,payments,tracking_categories,company",
+                        "LINES,TRACKING_CATEGORIES": "lines,tracking_categories",
+                        "LINES,TRACKING_CATEGORIES,COMPANY": "lines,tracking_categories,company",
                         "PAYMENTS": "payments",
-                        "PAYMENTS,COMPANY": "payments,company"
+                        "PAYMENTS,COMPANY": "payments,company",
+                        "PAYMENTS,TRACKING_CATEGORIES": "payments,tracking_categories",
+                        "PAYMENTS,TRACKING_CATEGORIES,COMPANY": "payments,tracking_categories,company",
+                        "TRACKING_CATEGORIES": "tracking_categories",
+                        "TRACKING_CATEGORIES,COMPANY": "tracking_categories,company"
                     },
                 },
                 'openapi_types': {
@@ -314,8 +322,16 @@ class JournalEntriesApi(object):
                         "LINES,COMPANY": "lines,company",
                         "LINES,PAYMENTS": "lines,payments",
                         "LINES,PAYMENTS,COMPANY": "lines,payments,company",
+                        "LINES,PAYMENTS,TRACKING_CATEGORIES": "lines,payments,tracking_categories",
+                        "LINES,PAYMENTS,TRACKING_CATEGORIES,COMPANY": "lines,payments,tracking_categories,company",
+                        "LINES,TRACKING_CATEGORIES": "lines,tracking_categories",
+                        "LINES,TRACKING_CATEGORIES,COMPANY": "lines,tracking_categories,company",
                         "PAYMENTS": "payments",
-                        "PAYMENTS,COMPANY": "payments,company"
+                        "PAYMENTS,COMPANY": "payments,company",
+                        "PAYMENTS,TRACKING_CATEGORIES": "payments,tracking_categories",
+                        "PAYMENTS,TRACKING_CATEGORIES,COMPANY": "payments,tracking_categories,company",
+                        "TRACKING_CATEGORIES": "tracking_categories",
+                        "TRACKING_CATEGORIES,COMPANY": "tracking_categories,company"
                     },
                 },
                 'openapi_types': {

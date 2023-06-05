@@ -263,6 +263,6 @@ class JournalEntryEndpointRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.model: Union["JournalEntryRequest", {"company": "CompanyInfo", "lines": "JournalLine", "payments": "Payment"}] = model
+        self.model: Union["JournalEntryRequest", {"company": "CompanyInfo", "lines": "JournalLine", "payments": "Payment", "tracking_categories": "TrackingCategory"}] = model
 
 

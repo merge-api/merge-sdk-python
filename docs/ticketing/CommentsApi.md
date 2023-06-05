@@ -137,7 +137,7 @@ Returns a list of `Comment` objects.
 import time
 import MergePythonSDK.ticketing
 from MergePythonSDK.ticketing.api import comments_api
-from MergePythonSDK.ticketing.model.paginated_comment_list import PaginatedCommentList
+
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/ticketing/v1
 # See configuration.py for a list of all supported configuration parameters.

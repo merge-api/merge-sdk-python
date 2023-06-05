@@ -284,7 +284,7 @@ class PaymentResponse(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.model: Union["Payment", {"account": "Account", "company": "CompanyInfo", "contact": "Contact"}] = model
+        self.model: Union["Payment", {"account": "Account", "company": "CompanyInfo", "contact": "Contact", "tracking_categories": "TrackingCategory"}] = model
         self.warnings: Union[List["WarningValidationProblem"]] = warnings
         self.errors: Union[List["ErrorValidationProblem"]] = errors
         self.logs: Union[List["DebugModeLog"]] = kwargs.get("logs", None)

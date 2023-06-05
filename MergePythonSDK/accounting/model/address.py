@@ -101,7 +101,7 @@ class Address(ModelNormal):
             'street_1': (str, none_type, none_type,),  # noqa: E501
             'street_2': (str, none_type, none_type,),  # noqa: E501
             'city': (str, none_type, none_type,),  # noqa: E501
-            'state': (bool, dict, float, int, list, str, none_type, none_type,),  # noqa: E501
+            'state': (bool, date, datetime, dict, float, int, list, str, none_type, none_type,),  # noqa: E501
             'country_subdivision': (str, none_type, none_type,),  # noqa: E501
             'country': (CountryEnum, str, none_type,),
             'zip_code': (str, none_type, none_type,),  # noqa: E501

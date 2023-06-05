@@ -243,7 +243,7 @@ Returns a list of `Application` objects.
 import time
 import MergePythonSDK.ats
 from MergePythonSDK.ats.api import applications_api
-from MergePythonSDK.ats.model.paginated_application_list import PaginatedApplicationList
+
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/ats/v1
 # See configuration.py for a list of all supported configuration parameters.
