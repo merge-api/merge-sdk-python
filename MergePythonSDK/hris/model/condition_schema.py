@@ -100,7 +100,7 @@ class ConditionSchema(ModelNormal):
             'id': (str,),  # noqa: E501
             'native_name': (str, none_type,),  # noqa: E501
             'field_name': (str, none_type,),  # noqa: E501
-            'condition_type': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'condition_type': (bool, dict, float, int, list, str, none_type,),  # noqa: E501
             'operators': ([OperatorSchema],),  # noqa: E501
             'common_model': (str, none_type,),  # noqa: E501
             'is_unique': (bool, none_type,),  # noqa: E501

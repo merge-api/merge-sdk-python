@@ -99,7 +99,7 @@ class IgnoreCommonModelRequest(ModelNormal):
         lazy_import()
 
         defined_types = {
-            'reason': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'reason': (bool, dict, float, int, list, str, none_type,),  # noqa: E501
             'message': (str, none_type,),  # noqa: E501
         }
         return defined_types

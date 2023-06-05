@@ -100,7 +100,7 @@ class AccountDetailsAndActions(ModelNormal):
 
         defined_types = {
             'id': (str,),  # noqa: E501
-            'status': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'status': (bool, dict, float, int, list, str, none_type,),  # noqa: E501
             'end_user_organization_name': (str,),  # noqa: E501
             'end_user_email_address': (str,),  # noqa: E501
             'webhook_listener_url': (str,),  # noqa: E501
