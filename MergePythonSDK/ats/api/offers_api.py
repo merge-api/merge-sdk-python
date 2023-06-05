@@ -41,8 +41,7 @@ class OffersApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(Offer),),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/ats/v1/offers',
                 'operation_id': 'offers_list',
@@ -51,6 +50,7 @@ class OffersApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                     'application_id',
                     'created_after',
                     'created_before',
@@ -66,7 +66,9 @@ class OffersApi(object):
                     'remote_id',
                     'show_enum_origins',
                 ],
-                'required': [],
+                'required': [
+                    'x_account_token',
+                ],
                 'nullable': [
                     'remote_id',
                 ],
@@ -98,6 +100,8 @@ class OffersApi(object):
                     },
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                     'application_id':
                         (str,),
                     'created_after':
@@ -128,6 +132,7 @@ class OffersApi(object):
                         (str,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                     'application_id': 'application_id',
                     'created_after': 'created_after',
                     'created_before': 'created_before',
@@ -144,6 +149,7 @@ class OffersApi(object):
                     'show_enum_origins': 'show_enum_origins',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                     'application_id': 'query',
                     'created_after': 'query',
                     'created_before': 'query',
@@ -174,8 +180,7 @@ class OffersApi(object):
             settings={
                 'response_type': (Offer,),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/ats/v1/offers/{id}',
                 'operation_id': 'offers_retrieve',
@@ -184,6 +189,7 @@ class OffersApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                     'id',
                     'expand',
                     'include_remote_data',
@@ -191,6 +197,7 @@ class OffersApi(object):
                     'show_enum_origins',
                 ],
                 'required': [
+                    'x_account_token',
                     'id',
                 ],
                 'nullable': [
@@ -223,6 +230,8 @@ class OffersApi(object):
                     },
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                     'id':
                         (str,),
                     'expand':
@@ -235,6 +244,7 @@ class OffersApi(object):
                         (str,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                     'expand': 'expand',
                     'include_remote_data': 'include_remote_data',
@@ -242,6 +252,7 @@ class OffersApi(object):
                     'show_enum_origins': 'show_enum_origins',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                     'id': 'path',
                     'expand': 'query',
                     'include_remote_data': 'query',
@@ -262,6 +273,7 @@ class OffersApi(object):
 
     def offers_list(
         self,
+        x_account_token,
         **kwargs
     ) -> "MergePaginatedResponse(Offer)":
         """offers_list  # noqa: E501
@@ -270,9 +282,11 @@ class OffersApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.offers_list(async_req=True)
+        >>> thread = api.offers_list(x_account_token, async_req=True)
         >>> result = thread.get()
 
+        Args:
+            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             application_id (str): If provided, will only return offers for this application.. [optional]
@@ -350,10 +364,13 @@ class OffersApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         return self.offers_list_endpoint.call_with_http_info(**kwargs)
 
     def offers_retrieve(
         self,
+        x_account_token,
         id,
         **kwargs
     ) -> "Offer":
@@ -363,10 +380,11 @@ class OffersApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.offers_retrieve(id, async_req=True)
+        >>> thread = api.offers_retrieve(x_account_token, id, async_req=True)
         >>> result = thread.get()
 
         Args:
+            x_account_token (str): Token identifying the end user.
             id (str):
 
         Keyword Args:
@@ -435,6 +453,8 @@ class OffersApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         kwargs['id'] = \
             id
         return self.offers_retrieve_endpoint.call_with_http_info(**kwargs)

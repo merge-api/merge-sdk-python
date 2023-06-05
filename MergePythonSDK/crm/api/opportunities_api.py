@@ -46,8 +46,7 @@ class OpportunitiesApi(object):
             settings={
                 'response_type': (OpportunityResponse,),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/crm/v1/opportunities',
                 'operation_id': 'opportunities_create',
@@ -56,11 +55,13 @@ class OpportunitiesApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                     'opportunity_endpoint_request',
                     'is_debug_mode',
                     'run_async',
                 ],
                 'required': [
+                    'x_account_token',
                     'opportunity_endpoint_request',
                 ],
                 'nullable': [
@@ -76,6 +77,8 @@ class OpportunitiesApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                     'opportunity_endpoint_request':
                         (OpportunityEndpointRequest,),
                     'is_debug_mode':
@@ -84,10 +87,12 @@ class OpportunitiesApi(object):
                         (bool,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                     'is_debug_mode': 'is_debug_mode',
                     'run_async': 'run_async',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                     'opportunity_endpoint_request': 'body',
                     'is_debug_mode': 'query',
                     'run_async': 'query',
@@ -111,8 +116,7 @@ class OpportunitiesApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(Opportunity),),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/crm/v1/opportunities',
                 'operation_id': 'opportunities_list',
@@ -121,6 +125,7 @@ class OpportunitiesApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                     'account_id',
                     'created_after',
                     'created_before',
@@ -139,7 +144,9 @@ class OpportunitiesApi(object):
                     'stage_id',
                     'status',
                 ],
-                'required': [],
+                'required': [
+                    'x_account_token',
+                ],
                 'nullable': [
                     'remote_id',
                     'status',
@@ -183,6 +190,8 @@ class OpportunitiesApi(object):
                     },
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                     'account_id':
                         (str,),
                     'created_after':
@@ -219,6 +228,7 @@ class OpportunitiesApi(object):
                         (str, none_type,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                     'account_id': 'account_id',
                     'created_after': 'created_after',
                     'created_before': 'created_before',
@@ -238,6 +248,7 @@ class OpportunitiesApi(object):
                     'status': 'status',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                     'account_id': 'query',
                     'created_after': 'query',
                     'created_before': 'query',
@@ -271,8 +282,7 @@ class OpportunitiesApi(object):
             settings={
                 'response_type': (MetaResponse,),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/crm/v1/opportunities/meta/patch/{id}',
                 'operation_id': 'opportunities_meta_patch_retrieve',
@@ -281,9 +291,11 @@ class OpportunitiesApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                     'id',
                 ],
                 'required': [
+                    'x_account_token',
                     'id',
                 ],
                 'nullable': [
@@ -299,13 +311,17 @@ class OpportunitiesApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                     'id':
                         (str,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                     'id': 'path',
                 },
                 'collection_format_map': {
@@ -323,8 +339,7 @@ class OpportunitiesApi(object):
             settings={
                 'response_type': (MetaResponse,),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/crm/v1/opportunities/meta/post',
                 'operation_id': 'opportunities_meta_post_retrieve',
@@ -333,8 +348,11 @@ class OpportunitiesApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                 ],
-                'required': [],
+                'required': [
+                    'x_account_token',
+                ],
                 'nullable': [
                 ],
                 'enum': [
@@ -348,10 +366,14 @@ class OpportunitiesApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -368,8 +390,7 @@ class OpportunitiesApi(object):
             settings={
                 'response_type': (OpportunityResponse,),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/crm/v1/opportunities/{id}',
                 'operation_id': 'opportunities_partial_update',
@@ -378,12 +399,14 @@ class OpportunitiesApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                     'id',
                     'patched_opportunity_endpoint_request',
                     'is_debug_mode',
                     'run_async',
                 ],
                 'required': [
+                    'x_account_token',
                     'id',
                     'patched_opportunity_endpoint_request',
                 ],
@@ -400,6 +423,8 @@ class OpportunitiesApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                     'id':
                         (str,),
                     'patched_opportunity_endpoint_request':
@@ -410,11 +435,13 @@ class OpportunitiesApi(object):
                         (bool,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                     'is_debug_mode': 'is_debug_mode',
                     'run_async': 'run_async',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                     'id': 'path',
                     'patched_opportunity_endpoint_request': 'body',
                     'is_debug_mode': 'query',
@@ -439,8 +466,7 @@ class OpportunitiesApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(RemoteFieldClass),),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/crm/v1/opportunities/remote-field-classes',
                 'operation_id': 'opportunities_remote_field_classes_list',
@@ -449,13 +475,16 @@ class OpportunitiesApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                     'cursor',
                     'include_deleted_data',
                     'include_remote_data',
                     'include_remote_fields',
                     'page_size',
                 ],
-                'required': [],
+                'required': [
+                    'x_account_token',
+                ],
                 'nullable': [
                 ],
                 'enum': [
@@ -469,6 +498,8 @@ class OpportunitiesApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                     'cursor':
                         (str,),
                     'include_deleted_data':
@@ -481,6 +512,7 @@ class OpportunitiesApi(object):
                         (int,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                     'cursor': 'cursor',
                     'include_deleted_data': 'include_deleted_data',
                     'include_remote_data': 'include_remote_data',
@@ -488,6 +520,7 @@ class OpportunitiesApi(object):
                     'page_size': 'page_size',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                     'cursor': 'query',
                     'include_deleted_data': 'query',
                     'include_remote_data': 'query',
@@ -509,8 +542,7 @@ class OpportunitiesApi(object):
             settings={
                 'response_type': (Opportunity,),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/crm/v1/opportunities/{id}',
                 'operation_id': 'opportunities_retrieve',
@@ -519,6 +551,7 @@ class OpportunitiesApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                     'id',
                     'expand',
                     'include_remote_data',
@@ -527,6 +560,7 @@ class OpportunitiesApi(object):
                     'show_enum_origins',
                 ],
                 'required': [
+                    'x_account_token',
                     'id',
                 ],
                 'nullable': [
@@ -563,6 +597,8 @@ class OpportunitiesApi(object):
                     },
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                     'id':
                         (str,),
                     'expand':
@@ -577,6 +613,7 @@ class OpportunitiesApi(object):
                         (str,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                     'expand': 'expand',
                     'include_remote_data': 'include_remote_data',
@@ -585,6 +622,7 @@ class OpportunitiesApi(object):
                     'show_enum_origins': 'show_enum_origins',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                     'id': 'path',
                     'expand': 'query',
                     'include_remote_data': 'query',
@@ -606,6 +644,7 @@ class OpportunitiesApi(object):
 
     def opportunities_create(
         self,
+        x_account_token,
         opportunity_endpoint_request,
         **kwargs
     ) -> "OpportunityResponse":
@@ -615,10 +654,11 @@ class OpportunitiesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.opportunities_create(opportunity_endpoint_request, async_req=True)
+        >>> thread = api.opportunities_create(x_account_token, opportunity_endpoint_request, async_req=True)
         >>> result = thread.get()
 
         Args:
+            x_account_token (str): Token identifying the end user.
             opportunity_endpoint_request (OpportunityEndpointRequest):
 
         Keyword Args:
@@ -685,12 +725,15 @@ class OpportunitiesApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         kwargs['opportunity_endpoint_request'] = \
             opportunity_endpoint_request
         return self.opportunities_create_endpoint.call_with_http_info(**kwargs)
 
     def opportunities_list(
         self,
+        x_account_token,
         **kwargs
     ) -> "MergePaginatedResponse(Opportunity)":
         """opportunities_list  # noqa: E501
@@ -699,9 +742,11 @@ class OpportunitiesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.opportunities_list(async_req=True)
+        >>> thread = api.opportunities_list(x_account_token, async_req=True)
         >>> result = thread.get()
 
+        Args:
+            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             account_id (str): If provided, will only return opportunities with this account.. [optional]
@@ -782,10 +827,13 @@ class OpportunitiesApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         return self.opportunities_list_endpoint.call_with_http_info(**kwargs)
 
     def opportunities_meta_patch_retrieve(
         self,
+        x_account_token,
         id,
         **kwargs
     ) -> "MetaResponse":
@@ -795,10 +843,11 @@ class OpportunitiesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.opportunities_meta_patch_retrieve(id, async_req=True)
+        >>> thread = api.opportunities_meta_patch_retrieve(x_account_token, id, async_req=True)
         >>> result = thread.get()
 
         Args:
+            x_account_token (str): Token identifying the end user.
             id (str):
 
         Keyword Args:
@@ -863,12 +912,15 @@ class OpportunitiesApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         kwargs['id'] = \
             id
         return self.opportunities_meta_patch_retrieve_endpoint.call_with_http_info(**kwargs)
 
     def opportunities_meta_post_retrieve(
         self,
+        x_account_token,
         **kwargs
     ) -> "MetaResponse":
         """opportunities_meta_post_retrieve  # noqa: E501
@@ -877,9 +929,11 @@ class OpportunitiesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.opportunities_meta_post_retrieve(async_req=True)
+        >>> thread = api.opportunities_meta_post_retrieve(x_account_token, async_req=True)
         >>> result = thread.get()
 
+        Args:
+            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -943,10 +997,13 @@ class OpportunitiesApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         return self.opportunities_meta_post_retrieve_endpoint.call_with_http_info(**kwargs)
 
     def opportunities_partial_update(
         self,
+        x_account_token,
         id,
         patched_opportunity_endpoint_request,
         **kwargs
@@ -957,10 +1014,11 @@ class OpportunitiesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.opportunities_partial_update(id, patched_opportunity_endpoint_request, async_req=True)
+        >>> thread = api.opportunities_partial_update(x_account_token, id, patched_opportunity_endpoint_request, async_req=True)
         >>> result = thread.get()
 
         Args:
+            x_account_token (str): Token identifying the end user.
             id (str):
             patched_opportunity_endpoint_request (PatchedOpportunityEndpointRequest):
 
@@ -1028,6 +1086,8 @@ class OpportunitiesApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         kwargs['id'] = \
             id
         kwargs['patched_opportunity_endpoint_request'] = \
@@ -1036,6 +1096,7 @@ class OpportunitiesApi(object):
 
     def opportunities_remote_field_classes_list(
         self,
+        x_account_token,
         **kwargs
     ) -> "MergePaginatedResponse(RemoteFieldClass)":
         """opportunities_remote_field_classes_list  # noqa: E501
@@ -1044,9 +1105,11 @@ class OpportunitiesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.opportunities_remote_field_classes_list(async_req=True)
+        >>> thread = api.opportunities_remote_field_classes_list(x_account_token, async_req=True)
         >>> result = thread.get()
 
+        Args:
+            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             cursor (str): The pagination cursor value.. [optional]
@@ -1115,10 +1178,13 @@ class OpportunitiesApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         return self.opportunities_remote_field_classes_list_endpoint.call_with_http_info(**kwargs)
 
     def opportunities_retrieve(
         self,
+        x_account_token,
         id,
         **kwargs
     ) -> "Opportunity":
@@ -1128,10 +1194,11 @@ class OpportunitiesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.opportunities_retrieve(id, async_req=True)
+        >>> thread = api.opportunities_retrieve(x_account_token, id, async_req=True)
         >>> result = thread.get()
 
         Args:
+            x_account_token (str): Token identifying the end user.
             id (str):
 
         Keyword Args:
@@ -1201,6 +1268,8 @@ class OpportunitiesApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         kwargs['id'] = \
             id
         return self.opportunities_retrieve_endpoint.call_with_http_info(**kwargs)

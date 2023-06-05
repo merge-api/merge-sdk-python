@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **job_interview_stages_list**
-> PaginatedJobInterviewStageList job_interview_stages_list()
+> PaginatedJobInterviewStageList job_interview_stages_list(x_account_token)
 
 
 
@@ -17,14 +17,13 @@ Returns a list of `JobInterviewStage` objects.
 
 ### Example
 
-* Api Key Authentication (accountTokenAuth):
-* Bearer Authentication (bearerAuth):
+* Api Key Authentication (tokenAuth):
 
 ```python
 import time
 import MergePythonSDK.ats
 from MergePythonSDK.ats.api import job_interview_stages_api
-from MergePythonSDK.ats.model.paginated_job_interview_stage_list import PaginatedJobInterviewStageList
+
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/ats/v1
 # See configuration.py for a list of all supported configuration parameters.
@@ -37,21 +36,17 @@ configuration = MergePythonSDK.ats.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: accountTokenAuth
-configuration.api_key['accountTokenAuth'] = 'YOUR_API_KEY'
+# Configure API key authorization: tokenAuth
+configuration.api_key['tokenAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['accountTokenAuth'] = 'Bearer'
-
-# Configure Bearer authorization: bearerAuth
-configuration = MergePythonSDK.ats.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+# configuration.api_key_prefix['tokenAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with MergePythonSDK.ats.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = job_interview_stages_api.JobInterviewStagesApi(api_client)
+    x_account_token = "X-Account-Token_example" # str | Token identifying the end user.
     created_after = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, will only return objects created after this datetime. (optional)
     created_before = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, will only return objects created before this datetime. (optional)
     cursor = "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw" # str | The pagination cursor value. (optional)
@@ -65,9 +60,16 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
     remote_id = "remote_id_example" # str, none_type | The API provider's ID for the given object. (optional)
 
     # example passing only required values which don't have defaults set
+    try:
+        api_response = api_instance.job_interview_stages_list(x_account_token)
+        pprint(api_response)
+    except MergePythonSDK.ats.ApiException as e:
+        print("Exception when calling JobInterviewStagesApi->job_interview_stages_list: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
     # and optional values
     try:
-        api_response = api_instance.job_interview_stages_list(created_after=created_after, created_before=created_before, cursor=cursor, expand=expand, include_deleted_data=include_deleted_data, include_remote_data=include_remote_data, job_id=job_id, modified_after=modified_after, modified_before=modified_before, page_size=page_size, remote_id=remote_id)
+        api_response = api_instance.job_interview_stages_list(x_account_token, created_after=created_after, created_before=created_before, cursor=cursor, expand=expand, include_deleted_data=include_deleted_data, include_remote_data=include_remote_data, job_id=job_id, modified_after=modified_after, modified_before=modified_before, page_size=page_size, remote_id=remote_id)
         pprint(api_response)
     except MergePythonSDK.ats.ApiException as e:
         print("Exception when calling JobInterviewStagesApi->job_interview_stages_list: %s\n" % e)
@@ -78,6 +80,7 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_account_token** | **str**| Token identifying the end user. |
  **created_after** | **datetime**| If provided, will only return objects created after this datetime. | [optional]
  **created_before** | **datetime**| If provided, will only return objects created before this datetime. | [optional]
  **cursor** | **str**| The pagination cursor value. | [optional]
@@ -96,7 +99,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -113,7 +116,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **job_interview_stages_retrieve**
-> JobInterviewStage job_interview_stages_retrieve(id)
+> JobInterviewStage job_interview_stages_retrieve(x_account_token, id)
 
 
 
@@ -121,8 +124,7 @@ Returns a `JobInterviewStage` object with the given `id`.
 
 ### Example
 
-* Api Key Authentication (accountTokenAuth):
-* Bearer Authentication (bearerAuth):
+* Api Key Authentication (tokenAuth):
 
 ```python
 import time
@@ -141,28 +143,24 @@ configuration = MergePythonSDK.ats.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: accountTokenAuth
-configuration.api_key['accountTokenAuth'] = 'YOUR_API_KEY'
+# Configure API key authorization: tokenAuth
+configuration.api_key['tokenAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['accountTokenAuth'] = 'Bearer'
-
-# Configure Bearer authorization: bearerAuth
-configuration = MergePythonSDK.ats.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+# configuration.api_key_prefix['tokenAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with MergePythonSDK.ats.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = job_interview_stages_api.JobInterviewStagesApi(api_client)
+    x_account_token = "X-Account-Token_example" # str | Token identifying the end user.
     id = "id_example" # str | 
     expand = "job" # str | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. (optional) if omitted the server will use the default value of "job"
     include_remote_data = True # bool | Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
 
     # example passing only required values which don't have defaults set
     try:
-        api_response = api_instance.job_interview_stages_retrieve(id)
+        api_response = api_instance.job_interview_stages_retrieve(x_account_token, id)
         pprint(api_response)
     except MergePythonSDK.ats.ApiException as e:
         print("Exception when calling JobInterviewStagesApi->job_interview_stages_retrieve: %s\n" % e)
@@ -170,7 +168,7 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        api_response = api_instance.job_interview_stages_retrieve(id, expand=expand, include_remote_data=include_remote_data)
+        api_response = api_instance.job_interview_stages_retrieve(x_account_token, id, expand=expand, include_remote_data=include_remote_data)
         pprint(api_response)
     except MergePythonSDK.ats.ApiException as e:
         print("Exception when calling JobInterviewStagesApi->job_interview_stages_retrieve: %s\n" % e)
@@ -181,6 +179,7 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_account_token** | **str**| Token identifying the end user. |
  **id** | **str**|  |
  **expand** | **str**| Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. | [optional] if omitted the server will use the default value of "job"
  **include_remote_data** | **bool**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional]
@@ -191,7 +190,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 

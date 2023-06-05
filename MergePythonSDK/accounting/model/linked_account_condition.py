@@ -74,7 +74,7 @@ class LinkedAccountCondition(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -95,7 +95,7 @@ class LinkedAccountCondition(ModelNormal):
             'operator': (str,),  # noqa: E501
             'field_name': (str, none_type,),  # noqa: E501
             'common_model': (str, none_type,),  # noqa: E501
-            'value': (bool, dict, float, int, list, str, none_type, none_type,),  # noqa: E501
+            'value': (bool, date, datetime, dict, float, int, list, str, none_type, none_type,),  # noqa: E501
         }
         return defined_types
 

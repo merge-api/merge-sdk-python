@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 
 # **interviews_create**
-> ScheduledInterviewResponse interviews_create(scheduled_interview_endpoint_request)
+> ScheduledInterviewResponse interviews_create(x_account_token, scheduled_interview_endpoint_request)
 
 
 
@@ -19,8 +19,7 @@ Creates a `ScheduledInterview` object with the given values.
 
 ### Example
 
-* Api Key Authentication (accountTokenAuth):
-* Bearer Authentication (bearerAuth):
+* Api Key Authentication (tokenAuth):
 
 ```python
 import time
@@ -40,21 +39,17 @@ configuration = MergePythonSDK.ats.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: accountTokenAuth
-configuration.api_key['accountTokenAuth'] = 'YOUR_API_KEY'
+# Configure API key authorization: tokenAuth
+configuration.api_key['tokenAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['accountTokenAuth'] = 'Bearer'
-
-# Configure Bearer authorization: bearerAuth
-configuration = MergePythonSDK.ats.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+# configuration.api_key_prefix['tokenAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with MergePythonSDK.ats.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = interviews_api.InterviewsApi(api_client)
+    x_account_token = "X-Account-Token_example" # str | Token identifying the end user.
     scheduled_interview_endpoint_request = ScheduledInterviewEndpointRequest(
         model=ScheduledInterviewRequest(
             application="92e8a369-fffe-430d-b93a-f7e8a16563f1",
@@ -79,7 +74,7 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        api_response = api_instance.interviews_create(scheduled_interview_endpoint_request)
+        api_response = api_instance.interviews_create(x_account_token, scheduled_interview_endpoint_request)
         pprint(api_response)
     except MergePythonSDK.ats.ApiException as e:
         print("Exception when calling InterviewsApi->interviews_create: %s\n" % e)
@@ -87,7 +82,7 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        api_response = api_instance.interviews_create(scheduled_interview_endpoint_request, is_debug_mode=is_debug_mode, run_async=run_async)
+        api_response = api_instance.interviews_create(x_account_token, scheduled_interview_endpoint_request, is_debug_mode=is_debug_mode, run_async=run_async)
         pprint(api_response)
     except MergePythonSDK.ats.ApiException as e:
         print("Exception when calling InterviewsApi->interviews_create: %s\n" % e)
@@ -98,6 +93,7 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_account_token** | **str**| Token identifying the end user. |
  **scheduled_interview_endpoint_request** | [**ScheduledInterviewEndpointRequest**](ScheduledInterviewEndpointRequest.md)|  |
  **is_debug_mode** | **bool**| Whether to include debug fields (such as log file links) in the response. | [optional]
  **run_async** | **bool**| Whether or not third-party updates should be run asynchronously. | [optional]
@@ -108,7 +104,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -125,7 +121,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **interviews_list**
-> PaginatedScheduledInterviewList interviews_list()
+> PaginatedScheduledInterviewList interviews_list(x_account_token)
 
 
 
@@ -133,14 +129,13 @@ Returns a list of `ScheduledInterview` objects.
 
 ### Example
 
-* Api Key Authentication (accountTokenAuth):
-* Bearer Authentication (bearerAuth):
+* Api Key Authentication (tokenAuth):
 
 ```python
 import time
 import MergePythonSDK.ats
 from MergePythonSDK.ats.api import interviews_api
-from MergePythonSDK.ats.model.paginated_scheduled_interview_list import PaginatedScheduledInterviewList
+
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/ats/v1
 # See configuration.py for a list of all supported configuration parameters.
@@ -153,21 +148,17 @@ configuration = MergePythonSDK.ats.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: accountTokenAuth
-configuration.api_key['accountTokenAuth'] = 'YOUR_API_KEY'
+# Configure API key authorization: tokenAuth
+configuration.api_key['tokenAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['accountTokenAuth'] = 'Bearer'
-
-# Configure Bearer authorization: bearerAuth
-configuration = MergePythonSDK.ats.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+# configuration.api_key_prefix['tokenAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with MergePythonSDK.ats.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = interviews_api.InterviewsApi(api_client)
+    x_account_token = "X-Account-Token_example" # str | Token identifying the end user.
     application_id = "application_id_example" # str | If provided, will only return interviews for this application. (optional)
     created_after = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, will only return objects created after this datetime. (optional)
     created_before = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, will only return objects created before this datetime. (optional)
@@ -185,9 +176,16 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
     show_enum_origins = "status" # str | Which fields should be returned in non-normalized form. (optional) if omitted the server will use the default value of "status"
 
     # example passing only required values which don't have defaults set
+    try:
+        api_response = api_instance.interviews_list(x_account_token)
+        pprint(api_response)
+    except MergePythonSDK.ats.ApiException as e:
+        print("Exception when calling InterviewsApi->interviews_list: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
     # and optional values
     try:
-        api_response = api_instance.interviews_list(application_id=application_id, created_after=created_after, created_before=created_before, cursor=cursor, expand=expand, include_deleted_data=include_deleted_data, include_remote_data=include_remote_data, job_interview_stage_id=job_interview_stage_id, modified_after=modified_after, modified_before=modified_before, organizer_id=organizer_id, page_size=page_size, remote_fields=remote_fields, remote_id=remote_id, show_enum_origins=show_enum_origins)
+        api_response = api_instance.interviews_list(x_account_token, application_id=application_id, created_after=created_after, created_before=created_before, cursor=cursor, expand=expand, include_deleted_data=include_deleted_data, include_remote_data=include_remote_data, job_interview_stage_id=job_interview_stage_id, modified_after=modified_after, modified_before=modified_before, organizer_id=organizer_id, page_size=page_size, remote_fields=remote_fields, remote_id=remote_id, show_enum_origins=show_enum_origins)
         pprint(api_response)
     except MergePythonSDK.ats.ApiException as e:
         print("Exception when calling InterviewsApi->interviews_list: %s\n" % e)
@@ -198,6 +196,7 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_account_token** | **str**| Token identifying the end user. |
  **application_id** | **str**| If provided, will only return interviews for this application. | [optional]
  **created_after** | **datetime**| If provided, will only return objects created after this datetime. | [optional]
  **created_before** | **datetime**| If provided, will only return objects created before this datetime. | [optional]
@@ -220,7 +219,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -237,7 +236,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **interviews_meta_post_retrieve**
-> MetaResponse interviews_meta_post_retrieve()
+> MetaResponse interviews_meta_post_retrieve(x_account_token)
 
 
 
@@ -245,8 +244,7 @@ Returns metadata for `ScheduledInterview` POSTs.
 
 ### Example
 
-* Api Key Authentication (accountTokenAuth):
-* Bearer Authentication (bearerAuth):
+* Api Key Authentication (tokenAuth):
 
 ```python
 import time
@@ -265,25 +263,21 @@ configuration = MergePythonSDK.ats.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: accountTokenAuth
-configuration.api_key['accountTokenAuth'] = 'YOUR_API_KEY'
+# Configure API key authorization: tokenAuth
+configuration.api_key['tokenAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['accountTokenAuth'] = 'Bearer'
-
-# Configure Bearer authorization: bearerAuth
-configuration = MergePythonSDK.ats.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+# configuration.api_key_prefix['tokenAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with MergePythonSDK.ats.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = interviews_api.InterviewsApi(api_client)
+    x_account_token = "X-Account-Token_example" # str | Token identifying the end user.
 
-    # example, this endpoint has no required or optional parameters
+    # example passing only required values which don't have defaults set
     try:
-        api_response = api_instance.interviews_meta_post_retrieve()
+        api_response = api_instance.interviews_meta_post_retrieve(x_account_token)
         pprint(api_response)
     except MergePythonSDK.ats.ApiException as e:
         print("Exception when calling InterviewsApi->interviews_meta_post_retrieve: %s\n" % e)
@@ -291,7 +285,10 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
 
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **x_account_token** | **str**| Token identifying the end user. |
 
 ### Return type
 
@@ -299,7 +296,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -316,7 +313,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **interviews_retrieve**
-> ScheduledInterview interviews_retrieve(id)
+> ScheduledInterview interviews_retrieve(x_account_token, id)
 
 
 
@@ -324,8 +321,7 @@ Returns a `ScheduledInterview` object with the given `id`.
 
 ### Example
 
-* Api Key Authentication (accountTokenAuth):
-* Bearer Authentication (bearerAuth):
+* Api Key Authentication (tokenAuth):
 
 ```python
 import time
@@ -344,21 +340,17 @@ configuration = MergePythonSDK.ats.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: accountTokenAuth
-configuration.api_key['accountTokenAuth'] = 'YOUR_API_KEY'
+# Configure API key authorization: tokenAuth
+configuration.api_key['tokenAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['accountTokenAuth'] = 'Bearer'
-
-# Configure Bearer authorization: bearerAuth
-configuration = MergePythonSDK.ats.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+# configuration.api_key_prefix['tokenAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with MergePythonSDK.ats.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = interviews_api.InterviewsApi(api_client)
+    x_account_token = "X-Account-Token_example" # str | Token identifying the end user.
     id = "id_example" # str | 
     expand = "interviewers,organizer,application,job_interview_stage" # str | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. (optional)
     include_remote_data = True # bool | Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
@@ -367,7 +359,7 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        api_response = api_instance.interviews_retrieve(id)
+        api_response = api_instance.interviews_retrieve(x_account_token, id)
         pprint(api_response)
     except MergePythonSDK.ats.ApiException as e:
         print("Exception when calling InterviewsApi->interviews_retrieve: %s\n" % e)
@@ -375,7 +367,7 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        api_response = api_instance.interviews_retrieve(id, expand=expand, include_remote_data=include_remote_data, remote_fields=remote_fields, show_enum_origins=show_enum_origins)
+        api_response = api_instance.interviews_retrieve(x_account_token, id, expand=expand, include_remote_data=include_remote_data, remote_fields=remote_fields, show_enum_origins=show_enum_origins)
         pprint(api_response)
     except MergePythonSDK.ats.ApiException as e:
         print("Exception when calling InterviewsApi->interviews_retrieve: %s\n" % e)
@@ -386,6 +378,7 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_account_token** | **str**| Token identifying the end user. |
  **id** | **str**|  |
  **expand** | **str**| Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. | [optional]
  **include_remote_data** | **bool**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional]
@@ -398,7 +391,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 

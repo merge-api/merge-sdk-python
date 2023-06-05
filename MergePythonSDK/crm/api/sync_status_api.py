@@ -41,8 +41,7 @@ class SyncStatusApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(SyncStatus),),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/crm/v1/sync-status',
                 'operation_id': 'sync_status_list',
@@ -51,10 +50,13 @@ class SyncStatusApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                     'cursor',
                     'page_size',
                 ],
-                'required': [],
+                'required': [
+                    'x_account_token',
+                ],
                 'nullable': [
                 ],
                 'enum': [
@@ -68,16 +70,20 @@ class SyncStatusApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                     'cursor':
                         (str,),
                     'page_size':
                         (int,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                     'cursor': 'cursor',
                     'page_size': 'page_size',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                     'cursor': 'query',
                     'page_size': 'query',
                 },
@@ -95,17 +101,20 @@ class SyncStatusApi(object):
 
     def sync_status_list(
         self,
+        x_account_token,
         **kwargs
     ) -> "MergePaginatedResponse(SyncStatus)":
         """sync_status_list  # noqa: E501
 
-        Get syncing status. Possible values: `DISABLED`, `DONE`, `FAILED`, `PAUSED`, `SYNCING`  # noqa: E501
+        Get syncing status. Possible values: `DISABLED`, `DONE`, `FAILED`, `PARTIALLY_SYNCED`, `PAUSED`, `SYNCING`  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.sync_status_list(async_req=True)
+        >>> thread = api.sync_status_list(x_account_token, async_req=True)
         >>> result = thread.get()
 
+        Args:
+            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             cursor (str): The pagination cursor value.. [optional]
@@ -171,5 +180,7 @@ class SyncStatusApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         return self.sync_status_list_endpoint.call_with_http_info(**kwargs)
 

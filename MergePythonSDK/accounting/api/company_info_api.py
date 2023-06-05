@@ -41,8 +41,7 @@ class CompanyInfoApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(CompanyInfo),),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/accounting/v1/company-info',
                 'operation_id': 'company_info_list',
@@ -51,6 +50,7 @@ class CompanyInfoApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                     'created_after',
                     'created_before',
                     'cursor',
@@ -62,7 +62,9 @@ class CompanyInfoApi(object):
                     'page_size',
                     'remote_id',
                 ],
-                'required': [],
+                'required': [
+                    'x_account_token',
+                ],
                 'nullable': [
                     'remote_id',
                 ],
@@ -84,6 +86,8 @@ class CompanyInfoApi(object):
                     },
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                     'created_after':
                         (datetime,),
                     'created_before':
@@ -106,6 +110,7 @@ class CompanyInfoApi(object):
                         (str, none_type,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                     'created_after': 'created_after',
                     'created_before': 'created_before',
                     'cursor': 'cursor',
@@ -118,6 +123,7 @@ class CompanyInfoApi(object):
                     'remote_id': 'remote_id',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                     'created_after': 'query',
                     'created_before': 'query',
                     'cursor': 'query',
@@ -144,8 +150,7 @@ class CompanyInfoApi(object):
             settings={
                 'response_type': (CompanyInfo,),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/accounting/v1/company-info/{id}',
                 'operation_id': 'company_info_retrieve',
@@ -154,11 +159,13 @@ class CompanyInfoApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                     'id',
                     'expand',
                     'include_remote_data',
                 ],
                 'required': [
+                    'x_account_token',
                     'id',
                 ],
                 'nullable': [
@@ -181,6 +188,8 @@ class CompanyInfoApi(object):
                     },
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                     'id':
                         (str,),
                     'expand':
@@ -189,11 +198,13 @@ class CompanyInfoApi(object):
                         (bool,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                     'expand': 'expand',
                     'include_remote_data': 'include_remote_data',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                     'id': 'path',
                     'expand': 'query',
                     'include_remote_data': 'query',
@@ -212,6 +223,7 @@ class CompanyInfoApi(object):
 
     def company_info_list(
         self,
+        x_account_token,
         **kwargs
     ) -> "MergePaginatedResponse(CompanyInfo)":
         """company_info_list  # noqa: E501
@@ -220,9 +232,11 @@ class CompanyInfoApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.company_info_list(async_req=True)
+        >>> thread = api.company_info_list(x_account_token, async_req=True)
         >>> result = thread.get()
 
+        Args:
+            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             created_after (datetime): If provided, will only return objects created after this datetime.. [optional]
@@ -296,10 +310,13 @@ class CompanyInfoApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         return self.company_info_list_endpoint.call_with_http_info(**kwargs)
 
     def company_info_retrieve(
         self,
+        x_account_token,
         id,
         **kwargs
     ) -> "CompanyInfo":
@@ -309,10 +326,11 @@ class CompanyInfoApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.company_info_retrieve(id, async_req=True)
+        >>> thread = api.company_info_retrieve(x_account_token, id, async_req=True)
         >>> result = thread.get()
 
         Args:
+            x_account_token (str): Token identifying the end user.
             id (str):
 
         Keyword Args:
@@ -379,6 +397,8 @@ class CompanyInfoApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         kwargs['id'] = \
             id
         return self.company_info_retrieve_endpoint.call_with_http_info(**kwargs)

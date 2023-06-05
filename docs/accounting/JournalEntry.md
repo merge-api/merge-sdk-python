@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **exchange_rate** | **str, none_type** | The journal entry&#39;s exchange rate. | [optional] 
 **company** | **str, none_type** | The company the journal entry belongs to. | [optional] 
 **lines** | [**[JournalLine]**](JournalLine.md) |  | [optional] [readonly] 
+**tracking_categories** | **[str, none_type]** |  | [optional] 
 **remote_was_deleted** | **bool** |  | [optional] [readonly] 
 **posting_status** | **bool, date, datetime, dict, float, int, list, str, none_type** | The journal&#39;s posting status.  * &#x60;UNPOSTED&#x60; - UNPOSTED * &#x60;POSTED&#x60; - POSTED | [optional] 
 **id** | **str** |  | [optional] [readonly] 

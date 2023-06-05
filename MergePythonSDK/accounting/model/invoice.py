@@ -89,7 +89,7 @@ class Invoice(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -106,6 +106,7 @@ class Invoice(ModelNormal):
         lazy_import()
 
         defined_types = {
+            'id': (str, none_type,),  # noqa: E501
             'type': (InvoiceTypeEnum, str, none_type,),
             'contact': (str, none_type, none_type,),  # noqa: E501
             'number': (str, none_type, none_type,),  # noqa: E501
@@ -122,16 +123,16 @@ class Invoice(ModelNormal):
             'total_amount': (float, none_type, none_type,),  # noqa: E501
             'balance': (float, none_type, none_type,),  # noqa: E501
             'remote_updated_at': (datetime, none_type, none_type,),  # noqa: E501
+            'tracking_categories': ([str, none_type], none_type,),  # noqa: E501
             'payments': ([str, none_type], none_type,),  # noqa: E501
             'line_items': ([InvoiceLineItem], none_type,),  # noqa: E501
             'remote_was_deleted': (bool, none_type,),  # noqa: E501
-            'id': (str, none_type,),  # noqa: E501
             'remote_id': (str, none_type, none_type,),  # noqa: E501
             'field_mappings': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
             'modified_at': (datetime, none_type,),  # noqa: E501
             'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
         }
-        expands_types = {"company": "CompanyInfo", "contact": "Contact", "line_items": "InvoiceLineItem", "payments": "Payment"}
+        expands_types = {"company": "CompanyInfo", "contact": "Contact", "line_items": "InvoiceLineItem", "payments": "Payment", "tracking_categories": "TrackingCategory"}
 
         # update types with expands
         for key, val in expands_types.items():
@@ -149,6 +150,7 @@ class Invoice(ModelNormal):
 
 
     attribute_map = {
+        'id': 'id',  # noqa: E501
         'type': 'type',  # noqa: E501
         'contact': 'contact',  # noqa: E501
         'number': 'number',  # noqa: E501
@@ -165,10 +167,10 @@ class Invoice(ModelNormal):
         'total_amount': 'total_amount',  # noqa: E501
         'balance': 'balance',  # noqa: E501
         'remote_updated_at': 'remote_updated_at',  # noqa: E501
+        'tracking_categories': 'tracking_categories',  # noqa: E501
         'payments': 'payments',  # noqa: E501
         'line_items': 'line_items',  # noqa: E501
         'remote_was_deleted': 'remote_was_deleted',  # noqa: E501
-        'id': 'id',  # noqa: E501
         'remote_id': 'remote_id',  # noqa: E501
         'field_mappings': 'field_mappings',  # noqa: E501
         'modified_at': 'modified_at',  # noqa: E501
@@ -176,9 +178,9 @@ class Invoice(ModelNormal):
     }
 
     read_only_vars = {
+        'id',  # noqa: E501
         'line_items',  # noqa: E501
         'remote_was_deleted',  # noqa: E501
-        'id',  # noqa: E501
         'field_mappings',  # noqa: E501
         'modified_at',  # noqa: E501
         'remote_data',  # noqa: E501
@@ -222,6 +224,7 @@ class Invoice(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            id (str): [optional]  # noqa: E501
             type (bool, date, datetime, dict, float, int, list, str, none_type): Whether the invoice is an accounts receivable or accounts payable. If `type` is `accounts_payable`, the invoice is a bill. If `type` is `accounts_receivable`, it is an invoice.  * `ACCOUNTS_RECEIVABLE` - ACCOUNTS_RECEIVABLE * `ACCOUNTS_PAYABLE` - ACCOUNTS_PAYABLE. [optional]  # noqa: E501
             contact (str, none_type): The invoice's contact.. [optional]  # noqa: E501
             number (str, none_type): The invoice's number.. [optional]  # noqa: E501
@@ -238,10 +241,10 @@ class Invoice(ModelNormal):
             total_amount (float, none_type): The invoice's total amount.. [optional]  # noqa: E501
             balance (float, none_type): The invoice's remaining balance.. [optional]  # noqa: E501
             remote_updated_at (datetime, none_type): When the third party's invoice entry was updated.. [optional]  # noqa: E501
+            tracking_categories ([str, none_type]): [optional]  # noqa: E501
             payments ([str, none_type]): Array of `Payment` object IDs.. [optional]  # noqa: E501
             line_items ([InvoiceLineItem]): [optional]  # noqa: E501
             remote_was_deleted (bool): [optional]  # noqa: E501
-            id (str): [optional]  # noqa: E501
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
@@ -294,11 +297,14 @@ class Invoice(ModelNormal):
         self.total_amount = kwargs.get("total_amount", None)
         self.balance = kwargs.get("balance", None)
         self.remote_updated_at = kwargs.get("remote_updated_at", None)
+        self.tracking_categories = kwargs.get("tracking_categories", None)
         self.payments = kwargs.get("payments", None)
         self.remote_id = kwargs.get("remote_id", None)
+
+        # Read only properties
+        self._id = kwargs.get("id", str())
         self._line_items = kwargs.get("line_items", None)
         self._remote_was_deleted = kwargs.get("remote_was_deleted", bool())
-        self._id = kwargs.get("id", str())
         self._field_mappings = kwargs.get("field_mappings", None)
         self._modified_at = kwargs.get("modified_at", None)
         self._remote_data = kwargs.get("remote_data", None)
@@ -348,6 +354,7 @@ class Invoice(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            id (str): [optional]  # noqa: E501
             type (bool, date, datetime, dict, float, int, list, str, none_type): Whether the invoice is an accounts receivable or accounts payable. If `type` is `accounts_payable`, the invoice is a bill. If `type` is `accounts_receivable`, it is an invoice.  * `ACCOUNTS_RECEIVABLE` - ACCOUNTS_RECEIVABLE * `ACCOUNTS_PAYABLE` - ACCOUNTS_PAYABLE. [optional]  # noqa: E501
             contact (str, none_type): The invoice's contact.. [optional]  # noqa: E501
             number (str, none_type): The invoice's number.. [optional]  # noqa: E501
@@ -364,10 +371,10 @@ class Invoice(ModelNormal):
             total_amount (float, none_type): The invoice's total amount.. [optional]  # noqa: E501
             balance (float, none_type): The invoice's remaining balance.. [optional]  # noqa: E501
             remote_updated_at (datetime, none_type): When the third party's invoice entry was updated.. [optional]  # noqa: E501
+            tracking_categories ([str, none_type]): [optional]  # noqa: E501
             payments ([str, none_type]): Array of `Payment` object IDs.. [optional]  # noqa: E501
             line_items ([InvoiceLineItem]): [optional]  # noqa: E501
             remote_was_deleted (bool): [optional]  # noqa: E501
-            id (str): [optional]  # noqa: E501
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
@@ -417,14 +424,23 @@ class Invoice(ModelNormal):
         self.total_amount: Union[float, none_type] = kwargs.get("total_amount", None)
         self.balance: Union[float, none_type] = kwargs.get("balance", None)
         self.remote_updated_at: Union[datetime, none_type] = kwargs.get("remote_updated_at", None)
+        self.tracking_categories: Union[List[str, none_type]] = kwargs.get("tracking_categories", list())
         self.payments: Union[List[str, none_type]] = kwargs.get("payments", list())
         self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
+
+        # Read only properties
+        self._id: Union[str] = kwargs.get("id", str())
         self._line_items: Union[List["InvoiceLineItem"]] = kwargs.get("line_items", None)
         self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
-        self._id: Union[str] = kwargs.get("id", str())
         self._field_mappings: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("field_mappings", None)
         self._modified_at: Union[datetime] = kwargs.get("modified_at", None)
         self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
+
+    # Read only property getters
+    @property
+    def id(self):
+        return self._id
+
     @property
     def line_items(self):
         return self._line_items
@@ -432,10 +448,6 @@ class Invoice(ModelNormal):
     @property
     def remote_was_deleted(self):
         return self._remote_was_deleted
-
-    @property
-    def id(self):
-        return self._id
 
     @property
     def field_mappings(self):

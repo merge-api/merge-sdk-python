@@ -41,8 +41,7 @@ class JobsApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(Job),),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/ats/v1/jobs',
                 'operation_id': 'jobs_list',
@@ -51,6 +50,7 @@ class JobsApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                     'code',
                     'created_after',
                     'created_before',
@@ -67,7 +67,9 @@ class JobsApi(object):
                     'show_enum_origins',
                     'status',
                 ],
-                'required': [],
+                'required': [
+                    'x_account_token',
+                ],
                 'nullable': [
                     'code',
                     'remote_id',
@@ -122,6 +124,8 @@ class JobsApi(object):
                     },
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                     'code':
                         (str, none_type,),
                     'created_after':
@@ -154,6 +158,7 @@ class JobsApi(object):
                         (str, none_type,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                     'code': 'code',
                     'created_after': 'created_after',
                     'created_before': 'created_before',
@@ -171,6 +176,7 @@ class JobsApi(object):
                     'status': 'status',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                     'code': 'query',
                     'created_after': 'query',
                     'created_before': 'query',
@@ -202,8 +208,7 @@ class JobsApi(object):
             settings={
                 'response_type': (Job,),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/ats/v1/jobs/{id}',
                 'operation_id': 'jobs_retrieve',
@@ -212,6 +217,7 @@ class JobsApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                     'id',
                     'expand',
                     'include_remote_data',
@@ -219,6 +225,7 @@ class JobsApi(object):
                     'show_enum_origins',
                 ],
                 'required': [
+                    'x_account_token',
                     'id',
                 ],
                 'nullable': [
@@ -263,6 +270,8 @@ class JobsApi(object):
                     },
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                     'id':
                         (str,),
                     'expand':
@@ -275,6 +284,7 @@ class JobsApi(object):
                         (str,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                     'expand': 'expand',
                     'include_remote_data': 'include_remote_data',
@@ -282,6 +292,7 @@ class JobsApi(object):
                     'show_enum_origins': 'show_enum_origins',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                     'id': 'path',
                     'expand': 'query',
                     'include_remote_data': 'query',
@@ -302,6 +313,7 @@ class JobsApi(object):
 
     def jobs_list(
         self,
+        x_account_token,
         **kwargs
     ) -> "MergePaginatedResponse(Job)":
         """jobs_list  # noqa: E501
@@ -310,9 +322,11 @@ class JobsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.jobs_list(async_req=True)
+        >>> thread = api.jobs_list(x_account_token, async_req=True)
         >>> result = thread.get()
 
+        Args:
+            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             code (str, none_type): If provided, will only return jobs with this code.. [optional]
@@ -391,10 +405,13 @@ class JobsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         return self.jobs_list_endpoint.call_with_http_info(**kwargs)
 
     def jobs_retrieve(
         self,
+        x_account_token,
         id,
         **kwargs
     ) -> "Job":
@@ -404,10 +421,11 @@ class JobsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.jobs_retrieve(id, async_req=True)
+        >>> thread = api.jobs_retrieve(x_account_token, id, async_req=True)
         >>> result = thread.get()
 
         Args:
+            x_account_token (str): Token identifying the end user.
             id (str):
 
         Keyword Args:
@@ -476,6 +494,8 @@ class JobsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         kwargs['id'] = \
             id
         return self.jobs_retrieve_endpoint.call_with_http_info(**kwargs)

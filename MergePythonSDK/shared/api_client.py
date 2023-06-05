@@ -1,7 +1,7 @@
 """
-    Merge Unified API
+    Merge Ticketing API
 
-    The unified API for building rich integrations with multiple integration platforms.  # noqa: E501
+    The unified API for building rich integrations with multiple Ticketing platforms.  # noqa: E501
 
     The version of the OpenAPI document: 1.0
     Contact: hello@merge.dev
@@ -77,7 +77,7 @@ class ApiClient(object):
             self.default_headers[header_name] = header_value
         self.cookie = cookie
         # Set default User-Agent.
-        self.user_agent = 'OpenAPI-Generator/2.2.7/python'
+        self.user_agent = 'OpenAPI-Generator/2.2.6/python'
 
     def __enter__(self):
         return self

@@ -1,7 +1,7 @@
 """
-    Merge Unified API
+    Merge Ticketing API
 
-    The unified API for building rich integrations with multiple integration platforms.  # noqa: E501
+    The unified API for building rich integrations with multiple Ticketing platforms.  # noqa: E501
 
     The version of the OpenAPI document: 1.0
     Contact: hello@merge.dev
@@ -90,7 +90,7 @@ class Configuration(object):
 
     You can programmatically set the cookie:
 
-conf = MergePythonSDK.shared.Configuration(
+conf = MergePythonSDK.ticketing.Configuration(
     api_key={'cookieAuth': 'abc123'}
     api_key_prefix={'cookieAuth': 'JSESSIONID'}
 )
@@ -153,7 +153,7 @@ conf = MergePythonSDK.shared.Configuration(
         self.logger = {}
         """Logging Settings
         """
-        self.logger["package_logger"] = logging.getLogger("MergePythonSDK")
+        self.logger["package_logger"] = logging.getLogger("MergePythonSDK.ticketing")
         self.logger["urllib3_logger"] = logging.getLogger("urllib3")
         self.logger_format = '%(asctime)s %(levelname)s %(message)s'
         """Log format
@@ -390,21 +390,14 @@ conf = MergePythonSDK.shared.Configuration(
         :return: The Auth Settings information dict.
         """
         auth = {}
-        if 'accountTokenAuth' in self.api_key:
-            auth['accountTokenAuth'] = {
+        if 'tokenAuth' in self.api_key:
+            auth['tokenAuth'] = {
                 'type': 'api_key',
                 'in': 'header',
-                'key': 'X-Account-Token',
-                'value': self.get_api_key_with_prefix(
-                    'accountTokenAuth',
-                ),
-            }
-        if self.access_token is not None:
-            auth['bearerAuth'] = {
-                'type': 'bearer',
-                'in': 'header',
                 'key': 'Authorization',
-                'value': 'Bearer ' + self.access_token
+                'value': self.get_api_key_with_prefix(
+                    'tokenAuth',
+                ),
             }
         return auth
 
@@ -417,7 +410,7 @@ conf = MergePythonSDK.shared.Configuration(
                "OS: {env}\n"\
                "Python Version: {pyversion}\n"\
                "Version of the API: 1.0\n"\
-               "SDK Package Version: 2.2.7".\
+               "SDK Package Version: 2.2.6".\
                format(env=sys.platform, pyversion=sys.version)
 
     def get_host_settings(self):

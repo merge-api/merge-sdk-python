@@ -41,8 +41,7 @@ class WebhookReceiversApi(object):
             settings={
                 'response_type': (WebhookReceiver,),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/ticketing/v1/webhook-receivers',
                 'operation_id': 'webhook_receivers_create',
@@ -51,9 +50,11 @@ class WebhookReceiversApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                     'webhook_receiver_request',
                 ],
                 'required': [
+                    'x_account_token',
                     'webhook_receiver_request',
                 ],
                 'nullable': [
@@ -69,12 +70,16 @@ class WebhookReceiversApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                     'webhook_receiver_request':
                         (WebhookReceiverRequest,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                     'webhook_receiver_request': 'body',
                 },
                 'collection_format_map': {
@@ -96,8 +101,7 @@ class WebhookReceiversApi(object):
             settings={
                 'response_type': ([WebhookReceiver],),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/ticketing/v1/webhook-receivers',
                 'operation_id': 'webhook_receivers_list',
@@ -106,8 +110,11 @@ class WebhookReceiversApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                 ],
-                'required': [],
+                'required': [
+                    'x_account_token',
+                ],
                 'nullable': [
                 ],
                 'enum': [
@@ -121,10 +128,14 @@ class WebhookReceiversApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -140,6 +151,7 @@ class WebhookReceiversApi(object):
 
     def webhook_receivers_create(
         self,
+        x_account_token,
         webhook_receiver_request,
         **kwargs
     ) -> "WebhookReceiver":
@@ -149,10 +161,11 @@ class WebhookReceiversApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.webhook_receivers_create(webhook_receiver_request, async_req=True)
+        >>> thread = api.webhook_receivers_create(x_account_token, webhook_receiver_request, async_req=True)
         >>> result = thread.get()
 
         Args:
+            x_account_token (str): Token identifying the end user.
             webhook_receiver_request (WebhookReceiverRequest):
 
         Keyword Args:
@@ -217,12 +230,15 @@ class WebhookReceiversApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         kwargs['webhook_receiver_request'] = \
             webhook_receiver_request
         return self.webhook_receivers_create_endpoint.call_with_http_info(**kwargs)
 
     def webhook_receivers_list(
         self,
+        x_account_token,
         **kwargs
     ) -> "[WebhookReceiver]":
         """webhook_receivers_list  # noqa: E501
@@ -231,9 +247,11 @@ class WebhookReceiversApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.webhook_receivers_list(async_req=True)
+        >>> thread = api.webhook_receivers_list(x_account_token, async_req=True)
         >>> result = thread.get()
 
+        Args:
+            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -297,5 +315,7 @@ class WebhookReceiversApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         return self.webhook_receivers_list_endpoint.call_with_http_info(**kwargs)
 

@@ -42,8 +42,7 @@ class ProjectsApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(Project),),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/ticketing/v1/projects',
                 'operation_id': 'projects_list',
@@ -52,6 +51,7 @@ class ProjectsApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                     'created_after',
                     'created_before',
                     'cursor',
@@ -62,7 +62,9 @@ class ProjectsApi(object):
                     'page_size',
                     'remote_id',
                 ],
-                'required': [],
+                'required': [
+                    'x_account_token',
+                ],
                 'nullable': [
                     'remote_id',
                 ],
@@ -77,6 +79,8 @@ class ProjectsApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                     'created_after':
                         (datetime,),
                     'created_before':
@@ -97,6 +101,7 @@ class ProjectsApi(object):
                         (str, none_type,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                     'created_after': 'created_after',
                     'created_before': 'created_before',
                     'cursor': 'cursor',
@@ -108,6 +113,7 @@ class ProjectsApi(object):
                     'remote_id': 'remote_id',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                     'created_after': 'query',
                     'created_before': 'query',
                     'cursor': 'query',
@@ -133,8 +139,7 @@ class ProjectsApi(object):
             settings={
                 'response_type': (Project,),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/ticketing/v1/projects/{id}',
                 'operation_id': 'projects_retrieve',
@@ -143,10 +148,12 @@ class ProjectsApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                     'id',
                     'include_remote_data',
                 ],
                 'required': [
+                    'x_account_token',
                     'id',
                 ],
                 'nullable': [
@@ -162,16 +169,20 @@ class ProjectsApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                     'id':
                         (str,),
                     'include_remote_data':
                         (bool,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                     'include_remote_data': 'include_remote_data',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                     'id': 'path',
                     'include_remote_data': 'query',
                 },
@@ -190,8 +201,7 @@ class ProjectsApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(User),),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/ticketing/v1/projects/{parent_id}/users',
                 'operation_id': 'projects_users_list',
@@ -200,6 +210,7 @@ class ProjectsApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                     'parent_id',
                     'cursor',
                     'expand',
@@ -208,6 +219,7 @@ class ProjectsApi(object):
                     'page_size',
                 ],
                 'required': [
+                    'x_account_token',
                     'parent_id',
                 ],
                 'nullable': [
@@ -228,6 +240,8 @@ class ProjectsApi(object):
                     },
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                     'parent_id':
                         (str,),
                     'cursor':
@@ -242,6 +256,7 @@ class ProjectsApi(object):
                         (int,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                     'parent_id': 'parent_id',
                     'cursor': 'cursor',
                     'expand': 'expand',
@@ -250,6 +265,7 @@ class ProjectsApi(object):
                     'page_size': 'page_size',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                     'parent_id': 'path',
                     'cursor': 'query',
                     'expand': 'query',
@@ -271,6 +287,7 @@ class ProjectsApi(object):
 
     def projects_list(
         self,
+        x_account_token,
         **kwargs
     ) -> "MergePaginatedResponse(Project)":
         """projects_list  # noqa: E501
@@ -279,9 +296,11 @@ class ProjectsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.projects_list(async_req=True)
+        >>> thread = api.projects_list(x_account_token, async_req=True)
         >>> result = thread.get()
 
+        Args:
+            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             created_after (datetime): If provided, will only return objects created after this datetime.. [optional]
@@ -354,10 +373,13 @@ class ProjectsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         return self.projects_list_endpoint.call_with_http_info(**kwargs)
 
     def projects_retrieve(
         self,
+        x_account_token,
         id,
         **kwargs
     ) -> "Project":
@@ -367,10 +389,11 @@ class ProjectsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.projects_retrieve(id, async_req=True)
+        >>> thread = api.projects_retrieve(x_account_token, id, async_req=True)
         >>> result = thread.get()
 
         Args:
+            x_account_token (str): Token identifying the end user.
             id (str):
 
         Keyword Args:
@@ -436,12 +459,15 @@ class ProjectsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         kwargs['id'] = \
             id
         return self.projects_retrieve_endpoint.call_with_http_info(**kwargs)
 
     def projects_users_list(
         self,
+        x_account_token,
         parent_id,
         **kwargs
     ) -> "MergePaginatedResponse(User)":
@@ -451,10 +477,11 @@ class ProjectsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.projects_users_list(parent_id, async_req=True)
+        >>> thread = api.projects_users_list(x_account_token, parent_id, async_req=True)
         >>> result = thread.get()
 
         Args:
+            x_account_token (str): Token identifying the end user.
             parent_id (str):
 
         Keyword Args:
@@ -524,6 +551,8 @@ class ProjectsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         kwargs['parent_id'] = \
             parent_id
         return self.projects_users_list_endpoint.call_with_http_info(**kwargs)

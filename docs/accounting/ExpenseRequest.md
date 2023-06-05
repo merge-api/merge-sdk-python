@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **company** | **str, none_type** | The company the expense belongs to. | [optional] 
 **memo** | **str, none_type** | The expense&#39;s private note. | [optional] 
 **lines** | [**[ExpenseLineRequest]**](ExpenseLineRequest.md) |  | [optional] 
+**tracking_categories** | **[str, none_type]** |  | [optional] 
 **integration_params** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** |  | [optional] 
 **linked_account_params** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** |  | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]

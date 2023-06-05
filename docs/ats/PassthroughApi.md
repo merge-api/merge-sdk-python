@@ -2,20 +2,21 @@
 
 All URIs are relative to *https://api.merge.dev/api/ats/v1*
 
-| Method                                                         | HTTP request          | Description |
-| -------------------------------------------------------------- | --------------------- | ----------- |
-| [**passthrough_create**](PassthroughApi.md#passthrough_create) | **POST** /passthrough |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**passthrough_create**](PassthroughApi.md#passthrough_create) | **POST** /passthrough | 
+
 
 # **passthrough_create**
+> RemoteResponse passthrough_create(x_account_token, data_passthrough_request)
 
-> RemoteResponse passthrough_create(data_passthrough_request)
+
 
 Pull data from an endpoint not currently supported by Merge.
 
 ### Example
 
-- Api Key Authentication (accountTokenAuth):
-- Bearer Authentication (bearerAuth):
+* Api Key Authentication (tokenAuth):
 
 ```python
 import time
@@ -35,21 +36,17 @@ configuration = MergePythonSDK.ats.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: accountTokenAuth
-configuration.api_key['accountTokenAuth'] = 'YOUR_API_KEY'
+# Configure API key authorization: tokenAuth
+configuration.api_key['tokenAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['accountTokenAuth'] = 'Bearer'
-
-# Configure Bearer authorization: bearerAuth
-configuration = MergePythonSDK.ats.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+# configuration.api_key_prefix['tokenAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with MergePythonSDK.ats.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = passthrough_api.PassthroughApi(api_client)
+    x_account_token = "X-Account-Token_example" # str | Token identifying the end user.
     data_passthrough_request = DataPassthroughRequest(
         method=None,
         path="/scooters",
@@ -69,21 +66,23 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
         },
         request_format=None,
         normalize_response=True,
-    ) # DataPassthroughRequest |
+    ) # DataPassthroughRequest | 
 
     # example passing only required values which don't have defaults set
     try:
-        api_response = api_instance.passthrough_create(data_passthrough_request)
+        api_response = api_instance.passthrough_create(x_account_token, data_passthrough_request)
         pprint(api_response)
     except MergePythonSDK.ats.ApiException as e:
         print("Exception when calling PassthroughApi->passthrough_create: %s\n" % e)
 ```
 
+
 ### Parameters
 
-| Name                         | Type                                                    | Description | Notes |
-| ---------------------------- | ------------------------------------------------------- | ----------- | ----- |
-| **data_passthrough_request** | [**DataPassthroughRequest**](DataPassthroughRequest.md) |             |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **x_account_token** | **str**| Token identifying the end user. |
+ **data_passthrough_request** | [**DataPassthroughRequest**](DataPassthroughRequest.md)|  |
 
 ### Return type
 
@@ -91,17 +90,19 @@ with MergePythonSDK.ats.ApiClient(configuration) as api_client:
 
 ### Authorization
 
-[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
-- **Accept**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
+
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
-| ----------- | ----------- | ---------------- |
-| **200**     |             | -                |
+|-------------|-------------|------------------|
+**200** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+

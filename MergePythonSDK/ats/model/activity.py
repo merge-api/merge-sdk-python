@@ -82,7 +82,7 @@ class Activity(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -107,6 +107,7 @@ class Activity(ModelNormal):
             'subject': (str, none_type, none_type,),  # noqa: E501
             'body': (str, none_type, none_type,),  # noqa: E501
             'visibility': (VisibilityEnum, str, none_type,),
+            'candidate': (str, none_type, none_type,),  # noqa: E501
             'remote_was_deleted': (bool, none_type,),  # noqa: E501
             'field_mappings': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
             'modified_at': (datetime, none_type,),  # noqa: E501
@@ -138,6 +139,7 @@ class Activity(ModelNormal):
         'subject': 'subject',  # noqa: E501
         'body': 'body',  # noqa: E501
         'visibility': 'visibility',  # noqa: E501
+        'candidate': 'candidate',  # noqa: E501
         'remote_was_deleted': 'remote_was_deleted',  # noqa: E501
         'field_mappings': 'field_mappings',  # noqa: E501
         'modified_at': 'modified_at',  # noqa: E501
@@ -198,6 +200,7 @@ class Activity(ModelNormal):
             subject (str, none_type): The activity's subject.. [optional]  # noqa: E501
             body (str, none_type): The activity's body.. [optional]  # noqa: E501
             visibility (bool, date, datetime, dict, float, int, list, str, none_type): The activity's visibility.  * `ADMIN_ONLY` - ADMIN_ONLY * `PUBLIC` - PUBLIC * `PRIVATE` - PRIVATE. [optional]  # noqa: E501
+            candidate (str, none_type): The activity’s candidate.. [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
             field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
@@ -241,6 +244,7 @@ class Activity(ModelNormal):
         self.subject = kwargs.get("subject", None)
         self.body = kwargs.get("body", None)
         self.visibility = kwargs.get("visibility", None)
+        self.candidate = kwargs.get("candidate", None)
 
         # Read only properties
         self._id = kwargs.get("id", str())
@@ -302,6 +306,7 @@ class Activity(ModelNormal):
             subject (str, none_type): The activity's subject.. [optional]  # noqa: E501
             body (str, none_type): The activity's body.. [optional]  # noqa: E501
             visibility (bool, date, datetime, dict, float, int, list, str, none_type): The activity's visibility.  * `ADMIN_ONLY` - ADMIN_ONLY * `PUBLIC` - PUBLIC * `PRIVATE` - PRIVATE. [optional]  # noqa: E501
+            candidate (str, none_type): The activity’s candidate.. [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
             field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
@@ -342,6 +347,7 @@ class Activity(ModelNormal):
         self.subject: Union[str, none_type] = kwargs.get("subject", None)
         self.body: Union[str, none_type] = kwargs.get("body", None)
         self.visibility: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("visibility", None)
+        self.candidate: Union[str, none_type] = kwargs.get("candidate", None)
 
         # Read only properties
         self._id: Union[str] = kwargs.get("id", str())

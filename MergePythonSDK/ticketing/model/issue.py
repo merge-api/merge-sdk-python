@@ -78,7 +78,7 @@ class Issue(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -171,7 +171,7 @@ class Issue(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             id (str): [optional]  # noqa: E501
-            status (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
+            status (bool, date, datetime, dict, float, int, list, str, none_type): Status of the issue. Options: ('ONGOING', 'RESOLVED')  * `ONGOING` - ONGOING * `RESOLVED` - RESOLVED. [optional]  # noqa: E501
             end_user ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
             first_incident_time (datetime, none_type): [optional]  # noqa: E501
             last_incident_time (datetime, none_type): [optional]  # noqa: E501
@@ -269,7 +269,7 @@ class Issue(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             id (str): [optional]  # noqa: E501
-            status (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
+            status (bool, date, datetime, dict, float, int, list, str, none_type): Status of the issue. Options: ('ONGOING', 'RESOLVED')  * `ONGOING` - ONGOING * `RESOLVED` - RESOLVED. [optional]  # noqa: E501
             end_user ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
             first_incident_time (datetime, none_type): [optional]  # noqa: E501
             last_incident_time (datetime, none_type): [optional]  # noqa: E501

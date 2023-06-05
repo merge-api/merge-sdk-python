@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **exchange_rate** | **str, none_type** | The payment&#39;s exchange rate. | [optional] 
 **company** | **str, none_type** | The company the payment belongs to. | [optional] 
 **total_amount** | **float, none_type** | The total amount of money being paid to the supplier, or customer, after taxes. | [optional] 
+**tracking_categories** | **[str, none_type]** |  | [optional] 
 **integration_params** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** |  | [optional] 
 **linked_account_params** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** |  | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]

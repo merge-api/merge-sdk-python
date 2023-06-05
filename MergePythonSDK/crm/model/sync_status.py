@@ -80,7 +80,7 @@ class SyncStatus(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -99,11 +99,11 @@ class SyncStatus(ModelNormal):
         defined_types = {
             'model_name': (str,),  # noqa: E501
             'model_id': (str,),  # noqa: E501
-            'status': (bool, dict, float, int, list, str, none_type,),  # noqa: E501
+            'status': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
             'is_initial_sync': (bool,),  # noqa: E501
             'last_sync_start': (datetime, none_type,),  # noqa: E501
             'next_sync_start': (datetime, none_type,),  # noqa: E501
-            'selective_sync_configurations_usage': (SelectiveSyncConfigurationsUsageEnum, str, none_type,),
+            'selective_sync_configurations_usage': (SelectiveSyncConfigurationsUsageEnum, none_type,),  # noqa: E501
         }
         return defined_types
 
@@ -171,7 +171,7 @@ class SyncStatus(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             last_sync_start (datetime): [optional]  # noqa: E501
             next_sync_start (datetime): [optional]  # noqa: E501
-            selective_sync_configurations_usage (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
+            selective_sync_configurations_usage (SelectiveSyncConfigurationsUsageEnum): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -265,7 +265,7 @@ class SyncStatus(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             last_sync_start (datetime): [optional]  # noqa: E501
             next_sync_start (datetime): [optional]  # noqa: E501
-            selective_sync_configurations_usage (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
+            selective_sync_configurations_usage (SelectiveSyncConfigurationsUsageEnum): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -301,6 +301,6 @@ class SyncStatus(ModelNormal):
         self.is_initial_sync: Union[bool] = is_initial_sync
         self.last_sync_start: Union[datetime] = kwargs.get("last_sync_start", None)
         self.next_sync_start: Union[datetime] = kwargs.get("next_sync_start", None)
-        self.selective_sync_configurations_usage: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("selective_sync_configurations_usage", None)
+        self.selective_sync_configurations_usage: Union["SelectiveSyncConfigurationsUsageEnum"] = kwargs.get("selective_sync_configurations_usage", None)
 
 

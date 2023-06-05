@@ -17,9 +17,11 @@ import MergePythonSDK.crm
 from MergePythonSDK.crm.model.address_request import AddressRequest
 from MergePythonSDK.crm.model.email_address_request import EmailAddressRequest
 from MergePythonSDK.crm.model.phone_number_request import PhoneNumberRequest
+from MergePythonSDK.crm.model.remote_field_request import RemoteFieldRequest
 globals()['AddressRequest'] = AddressRequest
 globals()['EmailAddressRequest'] = EmailAddressRequest
 globals()['PhoneNumberRequest'] = PhoneNumberRequest
+globals()['RemoteFieldRequest'] = RemoteFieldRequest
 from MergePythonSDK.crm.model.lead_request import LeadRequest
 from MergePythonSDK.shared.api_client import ApiClient
 

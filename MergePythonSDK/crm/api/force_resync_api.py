@@ -40,8 +40,7 @@ class ForceResyncApi(object):
             settings={
                 'response_type': ([SyncStatus],),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/crm/v1/sync-status/resync',
                 'operation_id': 'sync_status_resync_create',
@@ -50,8 +49,11 @@ class ForceResyncApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                 ],
-                'required': [],
+                'required': [
+                    'x_account_token',
+                ],
                 'nullable': [
                 ],
                 'enum': [
@@ -65,10 +67,14 @@ class ForceResyncApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -84,6 +90,7 @@ class ForceResyncApi(object):
 
     def sync_status_resync_create(
         self,
+        x_account_token,
         **kwargs
     ) -> "[SyncStatus]":
         """sync_status_resync_create  # noqa: E501
@@ -92,9 +99,11 @@ class ForceResyncApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.sync_status_resync_create(async_req=True)
+        >>> thread = api.sync_status_resync_create(x_account_token, async_req=True)
         >>> result = thread.get()
 
+        Args:
+            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -158,5 +167,7 @@ class ForceResyncApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         return self.sync_status_resync_create_endpoint.call_with_http_info(**kwargs)
 

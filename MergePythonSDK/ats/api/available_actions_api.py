@@ -40,8 +40,7 @@ class AvailableActionsApi(object):
             settings={
                 'response_type': (AvailableActions,),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/ats/v1/available-actions',
                 'operation_id': 'available_actions_retrieve',
@@ -50,8 +49,11 @@ class AvailableActionsApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                 ],
-                'required': [],
+                'required': [
+                    'x_account_token',
+                ],
                 'nullable': [
                 ],
                 'enum': [
@@ -65,10 +67,14 @@ class AvailableActionsApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -84,6 +90,7 @@ class AvailableActionsApi(object):
 
     def available_actions_retrieve(
         self,
+        x_account_token,
         **kwargs
     ) -> "AvailableActions":
         """available_actions_retrieve  # noqa: E501
@@ -92,9 +99,11 @@ class AvailableActionsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.available_actions_retrieve(async_req=True)
+        >>> thread = api.available_actions_retrieve(x_account_token, async_req=True)
         >>> result = thread.get()
 
+        Args:
+            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -158,5 +167,7 @@ class AvailableActionsApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         return self.available_actions_retrieve_endpoint.call_with_http_info(**kwargs)
 

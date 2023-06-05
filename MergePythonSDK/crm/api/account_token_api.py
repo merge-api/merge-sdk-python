@@ -40,7 +40,7 @@ class AccountTokenApi(object):
             settings={
                 'response_type': (AccountToken,),
                 'auth': [
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/crm/v1/account-token/{public_token}',
                 'operation_id': 'account_token_retrieve',

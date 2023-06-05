@@ -41,7 +41,7 @@ class IssuesApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(Issue),),
                 'auth': [
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/hris/v1/issues',
                 'operation_id': 'issues_list',
@@ -160,7 +160,7 @@ class IssuesApi(object):
             settings={
                 'response_type': (Issue,),
                 'auth': [
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/hris/v1/issues/{id}',
                 'operation_id': 'issues_retrieve',
@@ -231,11 +231,11 @@ class IssuesApi(object):
             first_incident_time_before (datetime, none_type): If provided, will only return issues whose first incident time was before this datetime.. [optional]
             include_muted (str): If True, will include muted issues. [optional]
             integration_name (str): [optional]
-            last_incident_time_after (datetime, none_type): If provided, will only return issues whose first incident time was after this datetime.. [optional]
-            last_incident_time_before (datetime, none_type): If provided, will only return issues whose first incident time was before this datetime.. [optional]
+            last_incident_time_after (datetime, none_type): If provided, will only return issues whose last incident time was after this datetime.. [optional]
+            last_incident_time_before (datetime, none_type): If provided, will only return issues whose last incident time was before this datetime.. [optional]
             page_size (int): Number of results to return per page.. [optional]
             start_date (str): If included, will only include issues whose most recent action occurred after this time. [optional]
-            status (str): * `ONGOING` - ONGOING * `RESOLVED` - RESOLVED  * `ONGOING` - ONGOING * `RESOLVED` - RESOLVED. [optional]
+            status (str): Status of the issue. Options: ('ONGOING', 'RESOLVED')  * `ONGOING` - ONGOING * `RESOLVED` - RESOLVED. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object

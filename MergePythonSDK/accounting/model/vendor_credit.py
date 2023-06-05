@@ -87,7 +87,7 @@ class VendorCredit(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -114,12 +114,13 @@ class VendorCredit(ModelNormal):
             'exchange_rate': (str, none_type, none_type,),  # noqa: E501
             'company': (str, none_type, none_type,),  # noqa: E501
             'lines': ([VendorCreditLine], none_type,),  # noqa: E501
+            'tracking_categories': ([str, none_type], none_type,),  # noqa: E501
             'remote_was_deleted': (bool, none_type,),  # noqa: E501
             'field_mappings': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
             'modified_at': (datetime, none_type,),  # noqa: E501
             'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
         }
-        expands_types = {"company": "CompanyInfo", "lines": "VendorCreditLine", "vendor": "Contact"}
+        expands_types = {"company": "CompanyInfo", "lines": "VendorCreditLine", "tracking_categories": "TrackingCategory", "vendor": "Contact"}
 
         # update types with expands
         for key, val in expands_types.items():
@@ -147,6 +148,7 @@ class VendorCredit(ModelNormal):
         'exchange_rate': 'exchange_rate',  # noqa: E501
         'company': 'company',  # noqa: E501
         'lines': 'lines',  # noqa: E501
+        'tracking_categories': 'tracking_categories',  # noqa: E501
         'remote_was_deleted': 'remote_was_deleted',  # noqa: E501
         'field_mappings': 'field_mappings',  # noqa: E501
         'modified_at': 'modified_at',  # noqa: E501
@@ -210,6 +212,7 @@ class VendorCredit(ModelNormal):
             exchange_rate (str, none_type): The vendor credit's exchange rate.. [optional]  # noqa: E501
             company (str, none_type): The company the vendor credit belongs to.. [optional]  # noqa: E501
             lines ([VendorCreditLine]): [optional]  # noqa: E501
+            tracking_categories ([str, none_type]): [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
             field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
@@ -254,6 +257,7 @@ class VendorCredit(ModelNormal):
         self.currency = kwargs.get("currency", None)
         self.exchange_rate = kwargs.get("exchange_rate", None)
         self.company = kwargs.get("company", None)
+        self.tracking_categories = kwargs.get("tracking_categories", None)
 
         # Read only properties
         self._id = kwargs.get("id", str())
@@ -318,6 +322,7 @@ class VendorCredit(ModelNormal):
             exchange_rate (str, none_type): The vendor credit's exchange rate.. [optional]  # noqa: E501
             company (str, none_type): The company the vendor credit belongs to.. [optional]  # noqa: E501
             lines ([VendorCreditLine]): [optional]  # noqa: E501
+            tracking_categories ([str, none_type]): [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
             field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
@@ -359,6 +364,7 @@ class VendorCredit(ModelNormal):
         self.currency: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("currency", None)
         self.exchange_rate: Union[str, none_type] = kwargs.get("exchange_rate", None)
         self.company: Union[str, none_type] = kwargs.get("company", None)
+        self.tracking_categories: Union[List[str, none_type]] = kwargs.get("tracking_categories", list())
 
         # Read only properties
         self._id: Union[str] = kwargs.get("id", str())

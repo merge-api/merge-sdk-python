@@ -42,7 +42,7 @@ def lazy_import():
     from MergePythonSDK.accounting.model.account_status_enum import AccountStatusEnum
     from MergePythonSDK.accounting.model.classification_enum import ClassificationEnum
     from MergePythonSDK.accounting.model.currency_enum import CurrencyEnum
-    from MergePythonSDK.shared.model.remote_data import RemoteData
+    from MergePythonSDK.shared.model.remote import RemoteData
     globals()['AccountStatusEnum'] = AccountStatusEnum
     globals()['ClassificationEnum'] = ClassificationEnum
     globals()['CurrencyEnum'] = CurrencyEnum
@@ -84,7 +84,7 @@ class Account(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
