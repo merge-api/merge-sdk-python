@@ -16,7 +16,7 @@ from unittest.mock import MagicMock
 import MergePythonSDK.ats
 from MergePythonSDK.ats.model.email_address import EmailAddress
 from MergePythonSDK.ats.model.phone_number import PhoneNumber
-from MergePythonSDK.shared.model.remote_data import RemoteData
+from MergePythonSDK.ats.model.remote_data import RemoteData
 from MergePythonSDK.ats.model.url import Url
 globals()['EmailAddress'] = EmailAddress
 globals()['PhoneNumber'] = PhoneNumber

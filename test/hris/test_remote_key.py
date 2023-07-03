@@ -14,7 +14,7 @@ import unittest
 from unittest.mock import MagicMock
 
 import MergePythonSDK.hris
-from MergePythonSDK.shared.model.remote_key import RemoteKey
+from MergePythonSDK.hris.model.remote_key import RemoteKey
 from MergePythonSDK.shared.api_client import ApiClient
 
 

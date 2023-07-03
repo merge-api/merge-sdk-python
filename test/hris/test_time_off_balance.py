@@ -15,7 +15,7 @@ from unittest.mock import MagicMock
 
 import MergePythonSDK.hris
 from MergePythonSDK.hris.model.policy_type_enum import PolicyTypeEnum
-from MergePythonSDK.shared.model.remote_data import RemoteData
+from MergePythonSDK.hris.model.remote_data import RemoteData
 globals()['PolicyTypeEnum'] = PolicyTypeEnum
 globals()['RemoteData'] = RemoteData
 from MergePythonSDK.hris.model.time_off_balance import TimeOffBalance

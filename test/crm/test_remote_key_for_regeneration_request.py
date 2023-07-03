@@ -14,7 +14,7 @@ import unittest
 from unittest.mock import MagicMock
 
 import MergePythonSDK.crm
-from MergePythonSDK.shared.model.remote_key_for_regeneration_request import RemoteKeyForRegenerationRequest
+from MergePythonSDK.crm.model.remote_key_for_regeneration_request import RemoteKeyForRegenerationRequest
 from MergePythonSDK.shared.api_client import ApiClient
 
 

@@ -18,6 +18,7 @@ MergePythonSDK/ticketing/api/linked_accounts_api.py
 MergePythonSDK/ticketing/api/passthrough_api.py
 MergePythonSDK/ticketing/api/projects_api.py
 MergePythonSDK/ticketing/api/regenerate_key_api.py
+MergePythonSDK/ticketing/api/roles_api.py
 MergePythonSDK/ticketing/api/selective_sync_api.py
 MergePythonSDK/ticketing/api/sync_status_api.py
 MergePythonSDK/ticketing/api/tags_api.py
@@ -29,6 +30,7 @@ MergePythonSDK/ticketing/api_client.py
 MergePythonSDK/ticketing/apis/__init__.py
 MergePythonSDK/ticketing/configuration.py
 MergePythonSDK/ticketing/exceptions.py
+MergePythonSDK/ticketing/model/access_level_enum.py
 MergePythonSDK/ticketing/model/account.py
 MergePythonSDK/ticketing/model/account_details.py
 MergePythonSDK/ticketing/model/account_details_and_actions.py
@@ -83,12 +85,15 @@ MergePythonSDK/ticketing/model/remote_field_class.py
 MergePythonSDK/ticketing/model/remote_field_request.py
 MergePythonSDK/ticketing/model/request_format_enum.py
 MergePythonSDK/ticketing/model/response_type_enum.py
+MergePythonSDK/ticketing/model/role.py
 MergePythonSDK/ticketing/model/selective_sync_configurations_usage_enum.py
 MergePythonSDK/ticketing/model/sync_status.py
 MergePythonSDK/ticketing/model/sync_status_status_enum.py
 MergePythonSDK/ticketing/model/tag.py
 MergePythonSDK/ticketing/model/team.py
 MergePythonSDK/ticketing/model/ticket.py
+MergePythonSDK/ticketing/model/ticket_access_enum.py
+MergePythonSDK/ticketing/model/ticket_actions_enum.py
 MergePythonSDK/ticketing/model/ticket_endpoint_request.py
 MergePythonSDK/ticketing/model/ticket_request.py
 MergePythonSDK/ticketing/model/ticket_response.py
@@ -103,6 +108,7 @@ MergePythonSDK/ticketing/model/webhook_receiver_request.py
 MergePythonSDK/ticketing/model_utils.py
 MergePythonSDK/ticketing/models/__init__.py
 MergePythonSDK/ticketing/rest.py
+docs/AccessLevelEnum.md
 docs/Account.md
 docs/AccountDetails.md
 docs/AccountDetailsAndActions.md
@@ -174,6 +180,7 @@ docs/PaginatedContactList.md
 docs/PaginatedIssueList.md
 docs/PaginatedProjectList.md
 docs/PaginatedRemoteFieldClassList.md
+docs/PaginatedRoleList.md
 docs/PaginatedSyncStatusList.md
 docs/PaginatedTagList.md
 docs/PaginatedTeamList.md
@@ -195,6 +202,8 @@ docs/RemoteKeyForRegenerationRequest.md
 docs/RemoteResponse.md
 docs/RequestFormatEnum.md
 docs/ResponseTypeEnum.md
+docs/Role.md
+docs/RolesApi.md
 docs/SelectiveSyncApi.md
 docs/SelectiveSyncConfigurationsUsageEnum.md
 docs/SyncStatus.md
@@ -205,6 +214,8 @@ docs/TagsApi.md
 docs/Team.md
 docs/TeamsApi.md
 docs/Ticket.md
+docs/TicketAccessEnum.md
+docs/TicketActionsEnum.md
 docs/TicketEndpointRequest.md
 docs/TicketRequest.md
 docs/TicketResponse.md
@@ -222,6 +233,7 @@ docs/WebhookReceiversApi.md
 requirements.txt
 test-requirements.txt
 test/__init__.py
+test/test_access_level_enum.py
 test/test_account.py
 test/test_account_details.py
 test/test_account_details_and_actions.py
@@ -293,6 +305,7 @@ test/test_paginated_contact_list.py
 test/test_paginated_issue_list.py
 test/test_paginated_project_list.py
 test/test_paginated_remote_field_class_list.py
+test/test_paginated_role_list.py
 test/test_paginated_sync_status_list.py
 test/test_paginated_tag_list.py
 test/test_paginated_team_list.py
@@ -314,6 +327,8 @@ test/test_remote_key_for_regeneration_request.py
 test/test_remote_response.py
 test/test_request_format_enum.py
 test/test_response_type_enum.py
+test/test_role.py
+test/test_roles_api.py
 test/test_selective_sync_api.py
 test/test_selective_sync_configurations_usage_enum.py
 test/test_sync_status.py
@@ -324,6 +339,8 @@ test/test_tags_api.py
 test/test_team.py
 test/test_teams_api.py
 test/test_ticket.py
+test/test_ticket_access_enum.py
+test/test_ticket_actions_enum.py
 test/test_ticket_endpoint_request.py
 test/test_ticket_request.py
 test/test_ticket_response.py
