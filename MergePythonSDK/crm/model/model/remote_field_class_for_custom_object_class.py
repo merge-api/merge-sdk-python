@@ -82,7 +82,7 @@ class RemoteFieldClassForCustomObjectClass(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -177,8 +177,8 @@ class RemoteFieldClassForCustomObjectClass(ModelNormal):
             remote_key_name (str, none_type): [optional]  # noqa: E501
             description (str, none_type): [optional]  # noqa: E501
             is_required (bool): [optional]  # noqa: E501
-            field_type (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
-            field_format (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
+            field_type (bool, dict, float, int, list, str, none_type): [optional]  # noqa: E501
+            field_format (bool, dict, float, int, list, str, none_type): [optional]  # noqa: E501
             field_choices ([str, none_type], none_type): [optional]  # noqa: E501
             item_schema (RemoteFieldClassForCustomObjectClassItemSchema): [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
@@ -273,8 +273,8 @@ class RemoteFieldClassForCustomObjectClass(ModelNormal):
             remote_key_name (str, none_type): [optional]  # noqa: E501
             description (str, none_type): [optional]  # noqa: E501
             is_required (bool): [optional]  # noqa: E501
-            field_type (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
-            field_format (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
+            field_type (bool, dict, float, int, list, str, none_type): [optional]  # noqa: E501
+            field_format (bool, dict, float, int, list, str, none_type): [optional]  # noqa: E501
             field_choices ([str, none_type], none_type): [optional]  # noqa: E501
             item_schema (RemoteFieldClassForCustomObjectClassItemSchema): [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
@@ -312,8 +312,8 @@ class RemoteFieldClassForCustomObjectClass(ModelNormal):
         self.description: Union[str, none_type] = kwargs.get("description", None)
         self.is_required: Union[bool] = kwargs.get("is_required", bool())
         self.item_schema: Union["RemoteFieldClassForCustomObjectClassItemSchema"] = kwargs.get("item_schema", None)
-        self._field_type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("field_type", None)
-        self._field_format: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("field_format", None)
+        self._field_type: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("field_type", None)
+        self._field_format: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("field_format", None)
         self._field_choices: Union[List[str, none_type], none_type] = kwargs.get("field_choices", None)
         self._modified_at: Union[datetime] = kwargs.get("modified_at", None)
     @property

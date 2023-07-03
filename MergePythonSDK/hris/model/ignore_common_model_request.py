@@ -82,7 +82,7 @@ class IgnoreCommonModelRequest(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -99,7 +99,7 @@ class IgnoreCommonModelRequest(ModelNormal):
         lazy_import()
 
         defined_types = {
-            'reason': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'reason': (bool, dict, float, int, list, str, none_type,),  # noqa: E501
             'message': (str, none_type,),  # noqa: E501
         }
         return defined_types
@@ -125,7 +125,7 @@ class IgnoreCommonModelRequest(ModelNormal):
         """IgnoreCommonModelRequest - a model defined in OpenAPI
 
         Args:
-            reason (bool, date, datetime, dict, float, int, list, str, none_type):
+            reason (bool, dict, float, int, list, str, none_type):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -209,7 +209,7 @@ class IgnoreCommonModelRequest(ModelNormal):
         """IgnoreCommonModelRequest - a model defined in OpenAPI
 
         Args:
-            reason (bool, date, datetime, dict, float, int, list, str, none_type):
+            reason (bool, dict, float, int, list, str, none_type):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -272,7 +272,7 @@ class IgnoreCommonModelRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.reason: Union[bool, date, datetime, dict, float, int, list, str, none_type] = reason
+        self.reason: Union[bool, dict, float, int, list, str, none_type] = reason
         self.message: Union[str] = kwargs.get("message", str())
 
 

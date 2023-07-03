@@ -80,7 +80,7 @@ class ConditionSchema(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -100,7 +100,7 @@ class ConditionSchema(ModelNormal):
             'id': (str,),  # noqa: E501
             'native_name': (str, none_type,),  # noqa: E501
             'field_name': (str, none_type,),  # noqa: E501
-            'condition_type': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'condition_type': (bool, dict, float, int, list, str, none_type,),  # noqa: E501
             'operators': ([OperatorSchema],),  # noqa: E501
             'common_model': (str, none_type,),  # noqa: E501
             'is_unique': (bool, none_type,),  # noqa: E501
@@ -137,7 +137,7 @@ class ConditionSchema(ModelNormal):
             id (str): The ID of the condition schema. This ID is used when updating selective syncs for a linked account.
             native_name (str, none_type): User-facing *native condition* name. e.g. \"Skip Manager\".
             field_name (str, none_type): The name of the field on the common model that this condition corresponds to, if they conceptually match. e.g. \"location_type\".
-            condition_type (bool, date, datetime, dict, float, int, list, str, none_type): The type of value(s) that can be set for this condition.  * `BOOLEAN` - BOOLEAN * `DATE` - DATE * `DATE_TIME` - DATE_TIME * `INTEGER` - INTEGER * `FLOAT` - FLOAT * `STRING` - STRING * `LIST_OF_STRINGS` - LIST_OF_STRINGS
+            condition_type (bool, dict, float, int, list, str, none_type): The type of value(s) that can be set for this condition.  * `BOOLEAN` - BOOLEAN * `DATE` - DATE * `DATE_TIME` - DATE_TIME * `INTEGER` - INTEGER * `FLOAT` - FLOAT * `STRING` - STRING * `LIST_OF_STRINGS` - LIST_OF_STRINGS
             operators ([OperatorSchema]): The schemas for the operators that can be used on a condition.
 
         Keyword Args:
@@ -233,7 +233,7 @@ class ConditionSchema(ModelNormal):
             id (str): The ID of the condition schema. This ID is used when updating selective syncs for a linked account.
             native_name (str, none_type): User-facing *native condition* name. e.g. \"Skip Manager\".
             field_name (str, none_type): The name of the field on the common model that this condition corresponds to, if they conceptually match. e.g. \"location_type\".
-            condition_type (bool, date, datetime, dict, float, int, list, str, none_type): The type of value(s) that can be set for this condition.  * `BOOLEAN` - BOOLEAN * `DATE` - DATE * `DATE_TIME` - DATE_TIME * `INTEGER` - INTEGER * `FLOAT` - FLOAT * `STRING` - STRING * `LIST_OF_STRINGS` - LIST_OF_STRINGS
+            condition_type (bool, dict, float, int, list, str, none_type): The type of value(s) that can be set for this condition.  * `BOOLEAN` - BOOLEAN * `DATE` - DATE * `DATE_TIME` - DATE_TIME * `INTEGER` - INTEGER * `FLOAT` - FLOAT * `STRING` - STRING * `LIST_OF_STRINGS` - LIST_OF_STRINGS
             operators ([OperatorSchema]): The schemas for the operators that can be used on a condition.
 
         Keyword Args:
@@ -301,7 +301,7 @@ class ConditionSchema(ModelNormal):
         self.id: Union[str] = id
         self.native_name: Union[str, none_type] = native_name
         self.field_name: Union[str, none_type] = field_name
-        self.condition_type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = condition_type
+        self.condition_type: Union[bool, dict, float, int, list, str, none_type] = condition_type
         self.operators: Union[List["OperatorSchema"]] = operators
         self.is_unique: Union[bool] = kwargs.get("is_unique", bool())
 

@@ -81,7 +81,7 @@ class Url(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -158,7 +158,7 @@ class Url(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             value (str, none_type): The site's url.. [optional]  # noqa: E501
-            url_type (bool, date, datetime, dict, float, int, list, str, none_type): The type of site.  * `PERSONAL` - PERSONAL * `COMPANY` - COMPANY * `PORTFOLIO` - PORTFOLIO * `BLOG` - BLOG * `SOCIAL_MEDIA` - SOCIAL_MEDIA * `OTHER` - OTHER * `JOB_POSTING` - JOB_POSTING. [optional]  # noqa: E501
+            url_type (bool, dict, float, int, list, str, none_type): The type of site.  * `PERSONAL` - PERSONAL * `COMPANY` - COMPANY * `PORTFOLIO` - PORTFOLIO * `BLOG` - BLOG * `SOCIAL_MEDIA` - SOCIAL_MEDIA * `OTHER` - OTHER * `JOB_POSTING` - JOB_POSTING. [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
         """
 
@@ -242,7 +242,7 @@ class Url(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             value (str, none_type): The site's url.. [optional]  # noqa: E501
-            url_type (bool, date, datetime, dict, float, int, list, str, none_type): The type of site.  * `PERSONAL` - PERSONAL * `COMPANY` - COMPANY * `PORTFOLIO` - PORTFOLIO * `BLOG` - BLOG * `SOCIAL_MEDIA` - SOCIAL_MEDIA * `OTHER` - OTHER * `JOB_POSTING` - JOB_POSTING. [optional]  # noqa: E501
+            url_type (bool, dict, float, int, list, str, none_type): The type of site.  * `PERSONAL` - PERSONAL * `COMPANY` - COMPANY * `PORTFOLIO` - PORTFOLIO * `BLOG` - BLOG * `SOCIAL_MEDIA` - SOCIAL_MEDIA * `OTHER` - OTHER * `JOB_POSTING` - JOB_POSTING. [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
         """
 
@@ -274,7 +274,7 @@ class Url(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.value: Union[str, none_type] = kwargs.get("value", None)
-        self.url_type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("url_type", None)
+        self.url_type: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("url_type", None)
         self._modified_at: Union[datetime] = kwargs.get("modified_at", None)
     @property
     def modified_at(self):

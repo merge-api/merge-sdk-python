@@ -86,7 +86,7 @@ class Opportunity(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -117,7 +117,7 @@ class Opportunity(ModelNormal):
             'id': (str, none_type,),  # noqa: E501
             'remote_id': (str, none_type, none_type,),  # noqa: E501
             'modified_at': (datetime, none_type,),  # noqa: E501
-            'field_mappings': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'field_mappings': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
             'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
             'remote_fields': ([RemoteField], none_type,),  # noqa: E501
         }
@@ -211,7 +211,7 @@ class Opportunity(ModelNormal):
             owner (str, none_type): The opportunity's owner.. [optional]  # noqa: E501
             account (str, none_type): The account of the opportunity.. [optional]  # noqa: E501
             stage (str, none_type): The stage of the opportunity.. [optional]  # noqa: E501
-            status (bool, date, datetime, dict, float, int, list, str, none_type): The opportunity's status.  * `OPEN` - OPEN * `WON` - WON * `LOST` - LOST. [optional]  # noqa: E501
+            status (bool, dict, float, int, list, str, none_type): The opportunity's status.  * `OPEN` - OPEN * `WON` - WON * `LOST` - LOST. [optional]  # noqa: E501
             last_activity_at (datetime, none_type): When the opportunity's last activity occurred.. [optional]  # noqa: E501
             close_date (datetime, none_type): When the opportunity was closed.. [optional]  # noqa: E501
             remote_created_at (datetime, none_type): When the third party's opportunity was created.. [optional]  # noqa: E501
@@ -219,7 +219,7 @@ class Opportunity(ModelNormal):
             id (str): [optional]  # noqa: E501
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
-            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            field_mappings ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             remote_fields ([RemoteField]): [optional]  # noqa: E501
         """
@@ -323,7 +323,7 @@ class Opportunity(ModelNormal):
             owner (str, none_type): The opportunity's owner.. [optional]  # noqa: E501
             account (str, none_type): The account of the opportunity.. [optional]  # noqa: E501
             stage (str, none_type): The stage of the opportunity.. [optional]  # noqa: E501
-            status (bool, date, datetime, dict, float, int, list, str, none_type): The opportunity's status.  * `OPEN` - OPEN * `WON` - WON * `LOST` - LOST. [optional]  # noqa: E501
+            status (bool, dict, float, int, list, str, none_type): The opportunity's status.  * `OPEN` - OPEN * `WON` - WON * `LOST` - LOST. [optional]  # noqa: E501
             last_activity_at (datetime, none_type): When the opportunity's last activity occurred.. [optional]  # noqa: E501
             close_date (datetime, none_type): When the opportunity was closed.. [optional]  # noqa: E501
             remote_created_at (datetime, none_type): When the third party's opportunity was created.. [optional]  # noqa: E501
@@ -331,7 +331,7 @@ class Opportunity(ModelNormal):
             id (str): [optional]  # noqa: E501
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
-            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            field_mappings ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             remote_fields ([RemoteField]): [optional]  # noqa: E501
         """
@@ -369,7 +369,7 @@ class Opportunity(ModelNormal):
         self.owner: Union[str, none_type] = kwargs.get("owner", None)
         self.account: Union[str, none_type] = kwargs.get("account", None)
         self.stage: Union[str, none_type] = kwargs.get("stage", None)
-        self.status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
+        self.status: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("status", None)
         self.last_activity_at: Union[datetime, none_type] = kwargs.get("last_activity_at", None)
         self.close_date: Union[datetime, none_type] = kwargs.get("close_date", None)
         self.remote_created_at: Union[datetime, none_type] = kwargs.get("remote_created_at", None)
@@ -377,7 +377,7 @@ class Opportunity(ModelNormal):
         self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
         self._id: Union[str] = kwargs.get("id", str())
         self._modified_at: Union[datetime] = kwargs.get("modified_at", None)
-        self._field_mappings: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("field_mappings", None)
+        self._field_mappings: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("field_mappings", None)
         self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
         self._remote_fields: Union[List["RemoteField"]] = kwargs.get("remote_fields", None)
     @property

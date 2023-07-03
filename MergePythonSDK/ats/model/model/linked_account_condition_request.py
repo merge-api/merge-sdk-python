@@ -77,7 +77,7 @@ class LinkedAccountConditionRequest(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -95,7 +95,7 @@ class LinkedAccountConditionRequest(ModelNormal):
         defined_types = {
             'condition_schema_id': (str,),  # noqa: E501
             'operator': (str,),  # noqa: E501
-            'value': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'value': (bool, dict, float, int, list, str, none_type,),  # noqa: E501
         }
         return defined_types
 
@@ -123,7 +123,7 @@ class LinkedAccountConditionRequest(ModelNormal):
         Args:
             condition_schema_id (str): The ID indicating which condition schema to use for a specific condition.
             operator (str): The operator for a specific condition.
-            value (bool, date, datetime, dict, float, int, list, str, none_type): The value for a specific condition.
+            value (bool, dict, float, int, list, str, none_type): The value for a specific condition.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -209,7 +209,7 @@ class LinkedAccountConditionRequest(ModelNormal):
         Args:
             condition_schema_id (str): The ID indicating which condition schema to use for a specific condition.
             operator (str): The operator for a specific condition.
-            value (bool, date, datetime, dict, float, int, list, str, none_type): The value for a specific condition.
+            value (bool, dict, float, int, list, str, none_type): The value for a specific condition.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -273,6 +273,6 @@ class LinkedAccountConditionRequest(ModelNormal):
 
         self.condition_schema_id: Union[str] = condition_schema_id
         self.operator: Union[str] = operator
-        self.value: Union[bool, date, datetime, dict, float, int, list, str, none_type] = value
+        self.value: Union[bool, dict, float, int, list, str, none_type] = value
 
 

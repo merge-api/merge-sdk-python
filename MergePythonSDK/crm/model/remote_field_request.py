@@ -74,7 +74,7 @@ class RemoteFieldRequest(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -91,7 +91,7 @@ class RemoteFieldRequest(ModelNormal):
 
         defined_types = {
             'remote_field_class': (str,),  # noqa: E501
-            'value': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'value': ({str: (bool, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
         expands_types = {"remote_field_class": "RemoteFieldClass"}
 
@@ -159,7 +159,7 @@ class RemoteFieldRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            value ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
+            value ({str: (bool, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -243,7 +243,7 @@ class RemoteFieldRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            value ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
+            value ({str: (bool, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -274,6 +274,6 @@ class RemoteFieldRequest(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.remote_field_class: Union[str] = remote_field_class
-        self.value: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type]] = kwargs.get("value", dict())
+        self.value: Union[Dict[str, bool, dict, float, int, list, str, none_type]] = kwargs.get("value", dict())
 
 

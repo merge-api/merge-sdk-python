@@ -74,7 +74,7 @@ class Association(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -90,8 +90,8 @@ class Association(ModelNormal):
         """
 
         defined_types = {
-            'source_object': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
-            'target_object': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'source_object': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'target_object': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
             'association_type': (str, none_type, none_type,),  # noqa: E501
             'modified_at': (datetime, none_type,),  # noqa: E501
         }
@@ -163,8 +163,8 @@ class Association(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            source_object ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            target_object ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            source_object ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            target_object ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             association_type (str, none_type): [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
         """
@@ -251,8 +251,8 @@ class Association(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            source_object ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            target_object ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            source_object ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            target_object ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             association_type (str, none_type): [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
         """
@@ -287,8 +287,8 @@ class Association(ModelNormal):
         self.association_type: Union[str, none_type] = kwargs.get("association_type", None)
 
         # Read only properties
-        self._source_object: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("source_object", None)
-        self._target_object: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("target_object", None)
+        self._source_object: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("source_object", None)
+        self._target_object: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("target_object", None)
         self._modified_at: Union[datetime] = kwargs.get("modified_at", None)
 
     # Read only property getters

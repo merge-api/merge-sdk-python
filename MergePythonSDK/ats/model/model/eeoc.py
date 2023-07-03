@@ -86,7 +86,7 @@ class EEOC(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -113,7 +113,7 @@ class EEOC(ModelNormal):
             'disability_status': (DisabilityStatusEnum, str, none_type,),
             'remote_was_deleted': (bool, none_type,),  # noqa: E501
             'modified_at': (datetime, none_type,),  # noqa: E501
-            'field_mappings': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'field_mappings': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
             'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
         }
         expands_types = {"candidate": "Candidate"}
@@ -198,13 +198,13 @@ class EEOC(ModelNormal):
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             candidate (str, none_type): The candidate being represented.. [optional]  # noqa: E501
             submitted_at (datetime, none_type): When the information was submitted.. [optional]  # noqa: E501
-            race (bool, date, datetime, dict, float, int, list, str, none_type): The candidate's race.  * `AMERICAN_INDIAN_OR_ALASKAN_NATIVE` - AMERICAN_INDIAN_OR_ALASKAN_NATIVE * `ASIAN` - ASIAN * `BLACK_OR_AFRICAN_AMERICAN` - BLACK_OR_AFRICAN_AMERICAN * `HISPANIC_OR_LATINO` - HISPANIC_OR_LATINO * `WHITE` - WHITE * `NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER` - NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER * `TWO_OR_MORE_RACES` - TWO_OR_MORE_RACES * `DECLINE_TO_SELF_IDENTIFY` - DECLINE_TO_SELF_IDENTIFY. [optional]  # noqa: E501
-            gender (bool, date, datetime, dict, float, int, list, str, none_type): The candidate's gender.  * `MALE` - MALE * `FEMALE` - FEMALE * `NON-BINARY` - NON-BINARY * `OTHER` - OTHER * `DECLINE_TO_SELF_IDENTIFY` - DECLINE_TO_SELF_IDENTIFY. [optional]  # noqa: E501
-            veteran_status (bool, date, datetime, dict, float, int, list, str, none_type): The candidate's veteran status.  * `I_AM_NOT_A_PROTECTED_VETERAN` - I_AM_NOT_A_PROTECTED_VETERAN * `I_IDENTIFY_AS_ONE_OR_MORE_OF_THE_CLASSIFICATIONS_OF_A_PROTECTED_VETERAN` - I_IDENTIFY_AS_ONE_OR_MORE_OF_THE_CLASSIFICATIONS_OF_A_PROTECTED_VETERAN * `I_DONT_WISH_TO_ANSWER` - I_DONT_WISH_TO_ANSWER. [optional]  # noqa: E501
-            disability_status (bool, date, datetime, dict, float, int, list, str, none_type): The candidate's disability status.  * `YES_I_HAVE_A_DISABILITY_OR_PREVIOUSLY_HAD_A_DISABILITY` - YES_I_HAVE_A_DISABILITY_OR_PREVIOUSLY_HAD_A_DISABILITY * `NO_I_DONT_HAVE_A_DISABILITY` - NO_I_DONT_HAVE_A_DISABILITY * `I_DONT_WISH_TO_ANSWER` - I_DONT_WISH_TO_ANSWER. [optional]  # noqa: E501
+            race (bool, dict, float, int, list, str, none_type): The candidate's race.  * `AMERICAN_INDIAN_OR_ALASKAN_NATIVE` - AMERICAN_INDIAN_OR_ALASKAN_NATIVE * `ASIAN` - ASIAN * `BLACK_OR_AFRICAN_AMERICAN` - BLACK_OR_AFRICAN_AMERICAN * `HISPANIC_OR_LATINO` - HISPANIC_OR_LATINO * `WHITE` - WHITE * `NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER` - NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER * `TWO_OR_MORE_RACES` - TWO_OR_MORE_RACES * `DECLINE_TO_SELF_IDENTIFY` - DECLINE_TO_SELF_IDENTIFY. [optional]  # noqa: E501
+            gender (bool, dict, float, int, list, str, none_type): The candidate's gender.  * `MALE` - MALE * `FEMALE` - FEMALE * `NON-BINARY` - NON-BINARY * `OTHER` - OTHER * `DECLINE_TO_SELF_IDENTIFY` - DECLINE_TO_SELF_IDENTIFY. [optional]  # noqa: E501
+            veteran_status (bool, dict, float, int, list, str, none_type): The candidate's veteran status.  * `I_AM_NOT_A_PROTECTED_VETERAN` - I_AM_NOT_A_PROTECTED_VETERAN * `I_IDENTIFY_AS_ONE_OR_MORE_OF_THE_CLASSIFICATIONS_OF_A_PROTECTED_VETERAN` - I_IDENTIFY_AS_ONE_OR_MORE_OF_THE_CLASSIFICATIONS_OF_A_PROTECTED_VETERAN * `I_DONT_WISH_TO_ANSWER` - I_DONT_WISH_TO_ANSWER. [optional]  # noqa: E501
+            disability_status (bool, dict, float, int, list, str, none_type): The candidate's disability status.  * `YES_I_HAVE_A_DISABILITY_OR_PREVIOUSLY_HAD_A_DISABILITY` - YES_I_HAVE_A_DISABILITY_OR_PREVIOUSLY_HAD_A_DISABILITY * `NO_I_DONT_HAVE_A_DISABILITY` - NO_I_DONT_HAVE_A_DISABILITY * `I_DONT_WISH_TO_ANSWER` - I_DONT_WISH_TO_ANSWER. [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
-            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            field_mappings ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
         """
 
@@ -302,13 +302,13 @@ class EEOC(ModelNormal):
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             candidate (str, none_type): The candidate being represented.. [optional]  # noqa: E501
             submitted_at (datetime, none_type): When the information was submitted.. [optional]  # noqa: E501
-            race (bool, date, datetime, dict, float, int, list, str, none_type): The candidate's race.  * `AMERICAN_INDIAN_OR_ALASKAN_NATIVE` - AMERICAN_INDIAN_OR_ALASKAN_NATIVE * `ASIAN` - ASIAN * `BLACK_OR_AFRICAN_AMERICAN` - BLACK_OR_AFRICAN_AMERICAN * `HISPANIC_OR_LATINO` - HISPANIC_OR_LATINO * `WHITE` - WHITE * `NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER` - NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER * `TWO_OR_MORE_RACES` - TWO_OR_MORE_RACES * `DECLINE_TO_SELF_IDENTIFY` - DECLINE_TO_SELF_IDENTIFY. [optional]  # noqa: E501
-            gender (bool, date, datetime, dict, float, int, list, str, none_type): The candidate's gender.  * `MALE` - MALE * `FEMALE` - FEMALE * `NON-BINARY` - NON-BINARY * `OTHER` - OTHER * `DECLINE_TO_SELF_IDENTIFY` - DECLINE_TO_SELF_IDENTIFY. [optional]  # noqa: E501
-            veteran_status (bool, date, datetime, dict, float, int, list, str, none_type): The candidate's veteran status.  * `I_AM_NOT_A_PROTECTED_VETERAN` - I_AM_NOT_A_PROTECTED_VETERAN * `I_IDENTIFY_AS_ONE_OR_MORE_OF_THE_CLASSIFICATIONS_OF_A_PROTECTED_VETERAN` - I_IDENTIFY_AS_ONE_OR_MORE_OF_THE_CLASSIFICATIONS_OF_A_PROTECTED_VETERAN * `I_DONT_WISH_TO_ANSWER` - I_DONT_WISH_TO_ANSWER. [optional]  # noqa: E501
-            disability_status (bool, date, datetime, dict, float, int, list, str, none_type): The candidate's disability status.  * `YES_I_HAVE_A_DISABILITY_OR_PREVIOUSLY_HAD_A_DISABILITY` - YES_I_HAVE_A_DISABILITY_OR_PREVIOUSLY_HAD_A_DISABILITY * `NO_I_DONT_HAVE_A_DISABILITY` - NO_I_DONT_HAVE_A_DISABILITY * `I_DONT_WISH_TO_ANSWER` - I_DONT_WISH_TO_ANSWER. [optional]  # noqa: E501
+            race (bool, dict, float, int, list, str, none_type): The candidate's race.  * `AMERICAN_INDIAN_OR_ALASKAN_NATIVE` - AMERICAN_INDIAN_OR_ALASKAN_NATIVE * `ASIAN` - ASIAN * `BLACK_OR_AFRICAN_AMERICAN` - BLACK_OR_AFRICAN_AMERICAN * `HISPANIC_OR_LATINO` - HISPANIC_OR_LATINO * `WHITE` - WHITE * `NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER` - NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER * `TWO_OR_MORE_RACES` - TWO_OR_MORE_RACES * `DECLINE_TO_SELF_IDENTIFY` - DECLINE_TO_SELF_IDENTIFY. [optional]  # noqa: E501
+            gender (bool, dict, float, int, list, str, none_type): The candidate's gender.  * `MALE` - MALE * `FEMALE` - FEMALE * `NON-BINARY` - NON-BINARY * `OTHER` - OTHER * `DECLINE_TO_SELF_IDENTIFY` - DECLINE_TO_SELF_IDENTIFY. [optional]  # noqa: E501
+            veteran_status (bool, dict, float, int, list, str, none_type): The candidate's veteran status.  * `I_AM_NOT_A_PROTECTED_VETERAN` - I_AM_NOT_A_PROTECTED_VETERAN * `I_IDENTIFY_AS_ONE_OR_MORE_OF_THE_CLASSIFICATIONS_OF_A_PROTECTED_VETERAN` - I_IDENTIFY_AS_ONE_OR_MORE_OF_THE_CLASSIFICATIONS_OF_A_PROTECTED_VETERAN * `I_DONT_WISH_TO_ANSWER` - I_DONT_WISH_TO_ANSWER. [optional]  # noqa: E501
+            disability_status (bool, dict, float, int, list, str, none_type): The candidate's disability status.  * `YES_I_HAVE_A_DISABILITY_OR_PREVIOUSLY_HAD_A_DISABILITY` - YES_I_HAVE_A_DISABILITY_OR_PREVIOUSLY_HAD_A_DISABILITY * `NO_I_DONT_HAVE_A_DISABILITY` - NO_I_DONT_HAVE_A_DISABILITY * `I_DONT_WISH_TO_ANSWER` - I_DONT_WISH_TO_ANSWER. [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
-            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            field_mappings ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
         """
 
@@ -342,16 +342,16 @@ class EEOC(ModelNormal):
         self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
         self.candidate: Union[str, none_type] = kwargs.get("candidate", None)
         self.submitted_at: Union[datetime, none_type] = kwargs.get("submitted_at", None)
-        self.race: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("race", None)
-        self.gender: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("gender", None)
-        self.veteran_status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("veteran_status", None)
-        self.disability_status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("disability_status", None)
+        self.race: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("race", None)
+        self.gender: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("gender", None)
+        self.veteran_status: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("veteran_status", None)
+        self.disability_status: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("disability_status", None)
 
         # Read only properties
         self._id: Union[str] = kwargs.get("id", str())
         self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
         self._modified_at: Union[datetime] = kwargs.get("modified_at", None)
-        self._field_mappings: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("field_mappings", None)
+        self._field_mappings: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("field_mappings", None)
         self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
 
     # Read only property getters

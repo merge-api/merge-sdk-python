@@ -78,7 +78,7 @@ class CustomObjectClass(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -99,7 +99,7 @@ class CustomObjectClass(ModelNormal):
             'description': (str, none_type, none_type,),  # noqa: E501
             'labels': ({str: (str, none_type)}, none_type,),  # noqa: E501
             'fields': ([RemoteFieldClassForCustomObjectClass], none_type,),  # noqa: E501
-            'association_types': ([{str: (bool, date, datetime, dict, float, int, list, str, none_type)}], none_type, none_type,),  # noqa: E501
+            'association_types': ([{str: (bool, dict, float, int, list, str, none_type)}], none_type, none_type,),  # noqa: E501
             'id': (str, none_type,),  # noqa: E501
             'remote_id': (str, none_type, none_type,),  # noqa: E501
             'modified_at': (datetime, none_type,),  # noqa: E501
@@ -182,7 +182,7 @@ class CustomObjectClass(ModelNormal):
             description (str, none_type): [optional]  # noqa: E501
             labels ({str: (str, none_type)}): [optional]  # noqa: E501
             fields ([RemoteFieldClassForCustomObjectClass]): [optional]  # noqa: E501
-            association_types ([{str: (bool, date, datetime, dict, float, int, list, str, none_type)}], none_type): [optional]  # noqa: E501
+            association_types ([{str: (bool, dict, float, int, list, str, none_type)}], none_type): [optional]  # noqa: E501
             id (str): [optional]  # noqa: E501
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             modified_at (datetime): [optional]  # noqa: E501
@@ -276,7 +276,7 @@ class CustomObjectClass(ModelNormal):
             description (str, none_type): [optional]  # noqa: E501
             labels ({str: (str, none_type)}): [optional]  # noqa: E501
             fields ([RemoteFieldClassForCustomObjectClass]): [optional]  # noqa: E501
-            association_types ([{str: (bool, date, datetime, dict, float, int, list, str, none_type)}], none_type): [optional]  # noqa: E501
+            association_types ([{str: (bool, dict, float, int, list, str, none_type)}], none_type): [optional]  # noqa: E501
             id (str): [optional]  # noqa: E501
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             modified_at (datetime): [optional]  # noqa: E501
@@ -314,7 +314,7 @@ class CustomObjectClass(ModelNormal):
         self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
         self._labels: Union[Dict[str, str, none_type]] = kwargs.get("labels", dict())
         self._fields: Union[List["RemoteFieldClassForCustomObjectClass"]] = kwargs.get("fields", None)
-        self._association_types: Union[List[{str: (bool, date, datetime, dict, float, int, list, str, none_type)}], none_type] = kwargs.get("association_types", None)
+        self._association_types: Union[List[{str: (bool, dict, float, int, list, str, none_type)}], none_type] = kwargs.get("association_types", None)
         self._id: Union[str] = kwargs.get("id", str())
         self._modified_at: Union[datetime] = kwargs.get("modified_at", None)
     @property

@@ -80,7 +80,7 @@ class ActivityRequest(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -103,8 +103,8 @@ class ActivityRequest(ModelNormal):
             'body': (str, none_type, none_type,),  # noqa: E501
             'visibility': (VisibilityEnum, str, none_type,),
             'candidate': (str, none_type, none_type,),  # noqa: E501
-            'integration_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
-            'linked_account_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'integration_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'linked_account_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
         }
         expands_types = {"user": "RemoteUser"}
 
@@ -176,13 +176,13 @@ class ActivityRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             user (str, none_type): The user that performed the action.. [optional]  # noqa: E501
-            activity_type (bool, date, datetime, dict, float, int, list, str, none_type): The activity's type.  * `NOTE` - NOTE * `EMAIL` - EMAIL * `OTHER` - OTHER. [optional]  # noqa: E501
+            activity_type (bool, dict, float, int, list, str, none_type): The activity's type.  * `NOTE` - NOTE * `EMAIL` - EMAIL * `OTHER` - OTHER. [optional]  # noqa: E501
             subject (str, none_type): The activity's subject.. [optional]  # noqa: E501
             body (str, none_type): The activity's body.. [optional]  # noqa: E501
-            visibility (bool, date, datetime, dict, float, int, list, str, none_type): The activity's visibility.  * `ADMIN_ONLY` - ADMIN_ONLY * `PUBLIC` - PUBLIC * `PRIVATE` - PRIVATE. [optional]  # noqa: E501
+            visibility (bool, dict, float, int, list, str, none_type): The activity's visibility.  * `ADMIN_ONLY` - ADMIN_ONLY * `PUBLIC` - PUBLIC * `PRIVATE` - PRIVATE. [optional]  # noqa: E501
             candidate (str, none_type): The activity’s candidate.. [optional]  # noqa: E501
-            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -270,13 +270,13 @@ class ActivityRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             user (str, none_type): The user that performed the action.. [optional]  # noqa: E501
-            activity_type (bool, date, datetime, dict, float, int, list, str, none_type): The activity's type.  * `NOTE` - NOTE * `EMAIL` - EMAIL * `OTHER` - OTHER. [optional]  # noqa: E501
+            activity_type (bool, dict, float, int, list, str, none_type): The activity's type.  * `NOTE` - NOTE * `EMAIL` - EMAIL * `OTHER` - OTHER. [optional]  # noqa: E501
             subject (str, none_type): The activity's subject.. [optional]  # noqa: E501
             body (str, none_type): The activity's body.. [optional]  # noqa: E501
-            visibility (bool, date, datetime, dict, float, int, list, str, none_type): The activity's visibility.  * `ADMIN_ONLY` - ADMIN_ONLY * `PUBLIC` - PUBLIC * `PRIVATE` - PRIVATE. [optional]  # noqa: E501
+            visibility (bool, dict, float, int, list, str, none_type): The activity's visibility.  * `ADMIN_ONLY` - ADMIN_ONLY * `PUBLIC` - PUBLIC * `PRIVATE` - PRIVATE. [optional]  # noqa: E501
             candidate (str, none_type): The activity’s candidate.. [optional]  # noqa: E501
-            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -307,12 +307,12 @@ class ActivityRequest(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.user: Union[str, none_type] = kwargs.get("user", None)
-        self.activity_type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("activity_type", None)
+        self.activity_type: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("activity_type", None)
         self.subject: Union[str, none_type] = kwargs.get("subject", None)
         self.body: Union[str, none_type] = kwargs.get("body", None)
-        self.visibility: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("visibility", None)
+        self.visibility: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("visibility", None)
         self.candidate: Union[str, none_type] = kwargs.get("candidate", None)
-        self.integration_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
-        self.linked_account_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
+        self.integration_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
+        self.linked_account_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
 
 

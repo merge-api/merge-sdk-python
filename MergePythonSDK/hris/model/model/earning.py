@@ -80,7 +80,7 @@ class Earning(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -104,7 +104,7 @@ class Earning(ModelNormal):
             'type': (EarningTypeEnum, str, none_type,),
             'remote_was_deleted': (bool, none_type,),  # noqa: E501
             'modified_at': (datetime, none_type,),  # noqa: E501
-            'field_mappings': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'field_mappings': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
             'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
         }
         return defined_types
@@ -175,10 +175,10 @@ class Earning(ModelNormal):
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             employee_payroll_run (str, none_type): [optional]  # noqa: E501
             amount (float, none_type): The amount earned.. [optional]  # noqa: E501
-            type (bool, date, datetime, dict, float, int, list, str, none_type): The type of earning.  * `SALARY` - SALARY * `REIMBURSEMENT` - REIMBURSEMENT * `OVERTIME` - OVERTIME * `BONUS` - BONUS. [optional]  # noqa: E501
+            type (bool, dict, float, int, list, str, none_type): The type of earning.  * `SALARY` - SALARY * `REIMBURSEMENT` - REIMBURSEMENT * `OVERTIME` - OVERTIME * `BONUS` - BONUS. [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
-            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            field_mappings ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
         """
 
@@ -273,10 +273,10 @@ class Earning(ModelNormal):
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             employee_payroll_run (str, none_type): [optional]  # noqa: E501
             amount (float, none_type): The amount earned.. [optional]  # noqa: E501
-            type (bool, date, datetime, dict, float, int, list, str, none_type): The type of earning.  * `SALARY` - SALARY * `REIMBURSEMENT` - REIMBURSEMENT * `OVERTIME` - OVERTIME * `BONUS` - BONUS. [optional]  # noqa: E501
+            type (bool, dict, float, int, list, str, none_type): The type of earning.  * `SALARY` - SALARY * `REIMBURSEMENT` - REIMBURSEMENT * `OVERTIME` - OVERTIME * `BONUS` - BONUS. [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
-            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            field_mappings ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
         """
 
@@ -310,13 +310,13 @@ class Earning(ModelNormal):
         self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
         self.employee_payroll_run: Union[str, none_type] = kwargs.get("employee_payroll_run", None)
         self.amount: Union[float, none_type] = kwargs.get("amount", None)
-        self.type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("type", None)
+        self.type: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("type", None)
         self.remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
 
         # Read only properties
         self._id: Union[str] = kwargs.get("id", str())
         self._modified_at: Union[datetime] = kwargs.get("modified_at", None)
-        self._field_mappings: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("field_mappings", None)
+        self._field_mappings: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("field_mappings", None)
         self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
 
     # Read only property getters

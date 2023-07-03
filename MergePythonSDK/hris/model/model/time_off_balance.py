@@ -80,7 +80,7 @@ class TimeOffBalance(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -105,7 +105,7 @@ class TimeOffBalance(ModelNormal):
             'policy_type': (PolicyTypeEnum, str, none_type,),
             'remote_was_deleted': (bool, none_type,),  # noqa: E501
             'modified_at': (datetime, none_type,),  # noqa: E501
-            'field_mappings': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'field_mappings': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
             'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
         }
         expands_types = {"employee": "Employee"}
@@ -189,10 +189,10 @@ class TimeOffBalance(ModelNormal):
             employee (str, none_type): The employee the balance belongs to.. [optional]  # noqa: E501
             balance (float, none_type): The current remaining PTO balance, always measured in terms of hours.. [optional]  # noqa: E501
             used (float, none_type): The amount of PTO used in terms of hours.. [optional]  # noqa: E501
-            policy_type (bool, date, datetime, dict, float, int, list, str, none_type): The policy type of this time off balance.  * `VACATION` - VACATION * `SICK` - SICK * `PERSONAL` - PERSONAL * `JURY_DUTY` - JURY_DUTY * `VOLUNTEER` - VOLUNTEER * `BEREAVEMENT` - BEREAVEMENT. [optional]  # noqa: E501
+            policy_type (bool, dict, float, int, list, str, none_type): The policy type of this time off balance.  * `VACATION` - VACATION * `SICK` - SICK * `PERSONAL` - PERSONAL * `JURY_DUTY` - JURY_DUTY * `VOLUNTEER` - VOLUNTEER * `BEREAVEMENT` - BEREAVEMENT. [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
-            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            field_mappings ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
         """
 
@@ -289,10 +289,10 @@ class TimeOffBalance(ModelNormal):
             employee (str, none_type): The employee the balance belongs to.. [optional]  # noqa: E501
             balance (float, none_type): The current remaining PTO balance, always measured in terms of hours.. [optional]  # noqa: E501
             used (float, none_type): The amount of PTO used in terms of hours.. [optional]  # noqa: E501
-            policy_type (bool, date, datetime, dict, float, int, list, str, none_type): The policy type of this time off balance.  * `VACATION` - VACATION * `SICK` - SICK * `PERSONAL` - PERSONAL * `JURY_DUTY` - JURY_DUTY * `VOLUNTEER` - VOLUNTEER * `BEREAVEMENT` - BEREAVEMENT. [optional]  # noqa: E501
+            policy_type (bool, dict, float, int, list, str, none_type): The policy type of this time off balance.  * `VACATION` - VACATION * `SICK` - SICK * `PERSONAL` - PERSONAL * `JURY_DUTY` - JURY_DUTY * `VOLUNTEER` - VOLUNTEER * `BEREAVEMENT` - BEREAVEMENT. [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
-            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            field_mappings ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
         """
 
@@ -327,13 +327,13 @@ class TimeOffBalance(ModelNormal):
         self.employee: Union[str, none_type] = kwargs.get("employee", None)
         self.balance: Union[float, none_type] = kwargs.get("balance", None)
         self.used: Union[float, none_type] = kwargs.get("used", None)
-        self.policy_type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("policy_type", None)
+        self.policy_type: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("policy_type", None)
 
         # Read only properties
         self._id: Union[str] = kwargs.get("id", str())
         self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
         self._modified_at: Union[datetime] = kwargs.get("modified_at", None)
-        self._field_mappings: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("field_mappings", None)
+        self._field_mappings: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("field_mappings", None)
         self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
 
     # Read only property getters

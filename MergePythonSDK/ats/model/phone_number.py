@@ -78,7 +78,7 @@ class PhoneNumber(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -155,7 +155,7 @@ class PhoneNumber(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             value (str, none_type): The phone number.. [optional]  # noqa: E501
-            phone_number_type (bool, date, datetime, dict, float, int, list, str, none_type): The type of phone number.  * `HOME` - HOME * `WORK` - WORK * `MOBILE` - MOBILE * `SKYPE` - SKYPE * `OTHER` - OTHER. [optional]  # noqa: E501
+            phone_number_type (bool, dict, float, int, list, str, none_type): The type of phone number.  * `HOME` - HOME * `WORK` - WORK * `MOBILE` - MOBILE * `SKYPE` - SKYPE * `OTHER` - OTHER. [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
         """
 
@@ -239,7 +239,7 @@ class PhoneNumber(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             value (str, none_type): The phone number.. [optional]  # noqa: E501
-            phone_number_type (bool, date, datetime, dict, float, int, list, str, none_type): The type of phone number.  * `HOME` - HOME * `WORK` - WORK * `MOBILE` - MOBILE * `SKYPE` - SKYPE * `OTHER` - OTHER. [optional]  # noqa: E501
+            phone_number_type (bool, dict, float, int, list, str, none_type): The type of phone number.  * `HOME` - HOME * `WORK` - WORK * `MOBILE` - MOBILE * `SKYPE` - SKYPE * `OTHER` - OTHER. [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
         """
 
@@ -271,7 +271,7 @@ class PhoneNumber(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.value: Union[str, none_type] = kwargs.get("value", None)
-        self.phone_number_type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("phone_number_type", None)
+        self.phone_number_type: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("phone_number_type", None)
         self._modified_at: Union[datetime] = kwargs.get("modified_at", None)
     @property
     def modified_at(self):

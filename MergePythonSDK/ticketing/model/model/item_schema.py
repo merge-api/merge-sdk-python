@@ -74,7 +74,7 @@ class ItemSchema(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -148,8 +148,8 @@ class ItemSchema(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            item_type (bool, date, datetime, dict, float, int, list, str, none_type): . [optional]  # noqa: E501
-            item_format (bool, date, datetime, dict, float, int, list, str, none_type): . [optional]  # noqa: E501
+            item_type (bool, dict, float, int, list, str, none_type): . [optional]  # noqa: E501
+            item_format (bool, dict, float, int, list, str, none_type): . [optional]  # noqa: E501
             item_choices ([str]): [optional]  # noqa: E501
         """
 
@@ -232,8 +232,8 @@ class ItemSchema(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            item_type (bool, date, datetime, dict, float, int, list, str, none_type): . [optional]  # noqa: E501
-            item_format (bool, date, datetime, dict, float, int, list, str, none_type): . [optional]  # noqa: E501
+            item_type (bool, dict, float, int, list, str, none_type): . [optional]  # noqa: E501
+            item_format (bool, dict, float, int, list, str, none_type): . [optional]  # noqa: E501
             item_choices ([str]): [optional]  # noqa: E501
         """
 
@@ -264,8 +264,8 @@ class ItemSchema(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.item_type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("item_type", None)
-        self.item_format: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("item_format", None)
+        self.item_type: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("item_type", None)
+        self.item_format: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("item_format", None)
         self.item_choices: Union[List[str]] = kwargs.get("item_choices", list())
 
 

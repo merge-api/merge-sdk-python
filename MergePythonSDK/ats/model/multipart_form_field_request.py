@@ -90,7 +90,7 @@ class MultipartFormFieldRequest(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -173,7 +173,7 @@ class MultipartFormFieldRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            encoding (bool, date, datetime, dict, float, int, list, str, none_type): The encoding of the value of `data`. Defaults to `RAW` if not defined.  * `RAW` - RAW * `BASE64` - BASE64 * `GZIP_BASE64` - GZIP_BASE64. [optional]  # noqa: E501
+            encoding (bool, dict, float, int, list, str, none_type): The encoding of the value of `data`. Defaults to `RAW` if not defined.  * `RAW` - RAW * `BASE64` - BASE64 * `GZIP_BASE64` - GZIP_BASE64. [optional]  # noqa: E501
             file_name (str, none_type): The file name of the form field, if the field is for a file.. [optional]  # noqa: E501
             content_type (str, none_type): The MIME type of the file, if the field is for a file.. [optional]  # noqa: E501
         """
@@ -263,7 +263,7 @@ class MultipartFormFieldRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            encoding (bool, date, datetime, dict, float, int, list, str, none_type): The encoding of the value of `data`. Defaults to `RAW` if not defined.  * `RAW` - RAW * `BASE64` - BASE64 * `GZIP_BASE64` - GZIP_BASE64. [optional]  # noqa: E501
+            encoding (bool, dict, float, int, list, str, none_type): The encoding of the value of `data`. Defaults to `RAW` if not defined.  * `RAW` - RAW * `BASE64` - BASE64 * `GZIP_BASE64` - GZIP_BASE64. [optional]  # noqa: E501
             file_name (str, none_type): The file name of the form field, if the field is for a file.. [optional]  # noqa: E501
             content_type (str, none_type): The MIME type of the file, if the field is for a file.. [optional]  # noqa: E501
         """
@@ -297,7 +297,7 @@ class MultipartFormFieldRequest(ModelNormal):
 
         self.name: Union[str] = name
         self.data: Union[str] = data
-        self.encoding: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("encoding", None)
+        self.encoding: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("encoding", None)
         self.file_name: Union[str, none_type] = kwargs.get("file_name", None)
         self.content_type: Union[str, none_type] = kwargs.get("content_type", None)
 

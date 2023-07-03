@@ -80,7 +80,7 @@ class EngagementRequest(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -106,8 +106,8 @@ class EngagementRequest(ModelNormal):
             'end_time': (datetime, none_type, none_type,),  # noqa: E501
             'account': (str, none_type, none_type,),  # noqa: E501
             'contacts': ([str, none_type], none_type,),  # noqa: E501
-            'integration_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
-            'linked_account_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'integration_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'linked_account_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
             'remote_fields': ([RemoteFieldRequest], none_type,),  # noqa: E501
         }
         expands_types = {"account": "Account", "contacts": "Contact", "engagement_type": "EngagementType", "owner": "User"}
@@ -186,14 +186,14 @@ class EngagementRequest(ModelNormal):
             owner (str, none_type): The engagement's owner.. [optional]  # noqa: E501
             content (str, none_type): The engagement's content.. [optional]  # noqa: E501
             subject (str, none_type): The engagement's subject.. [optional]  # noqa: E501
-            direction (bool, date, datetime, dict, float, int, list, str, none_type): The engagement's direction.  * `INBOUND` - INBOUND * `OUTBOUND` - OUTBOUND. [optional]  # noqa: E501
+            direction (bool, dict, float, int, list, str, none_type): The engagement's direction.  * `INBOUND` - INBOUND * `OUTBOUND` - OUTBOUND. [optional]  # noqa: E501
             engagement_type (str, none_type): The engagement type of the engagement.. [optional]  # noqa: E501
             start_time (datetime, none_type): The time at which the engagement started.. [optional]  # noqa: E501
             end_time (datetime, none_type): The time at which the engagement ended.. [optional]  # noqa: E501
             account (str, none_type): The account of the engagement.. [optional]  # noqa: E501
             contacts ([str, none_type]): [optional]  # noqa: E501
-            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             remote_fields ([RemoteFieldRequest]): [optional]  # noqa: E501
         """
 
@@ -288,14 +288,14 @@ class EngagementRequest(ModelNormal):
             owner (str, none_type): The engagement's owner.. [optional]  # noqa: E501
             content (str, none_type): The engagement's content.. [optional]  # noqa: E501
             subject (str, none_type): The engagement's subject.. [optional]  # noqa: E501
-            direction (bool, date, datetime, dict, float, int, list, str, none_type): The engagement's direction.  * `INBOUND` - INBOUND * `OUTBOUND` - OUTBOUND. [optional]  # noqa: E501
+            direction (bool, dict, float, int, list, str, none_type): The engagement's direction.  * `INBOUND` - INBOUND * `OUTBOUND` - OUTBOUND. [optional]  # noqa: E501
             engagement_type (str, none_type): The engagement type of the engagement.. [optional]  # noqa: E501
             start_time (datetime, none_type): The time at which the engagement started.. [optional]  # noqa: E501
             end_time (datetime, none_type): The time at which the engagement ended.. [optional]  # noqa: E501
             account (str, none_type): The account of the engagement.. [optional]  # noqa: E501
             contacts ([str, none_type]): [optional]  # noqa: E501
-            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             remote_fields ([RemoteFieldRequest]): [optional]  # noqa: E501
         """
 
@@ -329,14 +329,14 @@ class EngagementRequest(ModelNormal):
         self.owner: Union[str, none_type] = kwargs.get("owner", None)
         self.content: Union[str, none_type] = kwargs.get("content", None)
         self.subject: Union[str, none_type] = kwargs.get("subject", None)
-        self.direction: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("direction", None)
+        self.direction: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("direction", None)
         self.engagement_type: Union[str, none_type] = kwargs.get("engagement_type", None)
         self.start_time: Union[datetime, none_type] = kwargs.get("start_time", None)
         self.end_time: Union[datetime, none_type] = kwargs.get("end_time", None)
         self.account: Union[str, none_type] = kwargs.get("account", None)
         self.contacts: Union[List[str, none_type]] = kwargs.get("contacts", list())
-        self.integration_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
-        self.linked_account_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
+        self.integration_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
+        self.linked_account_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
         self.remote_fields: Union[List["RemoteFieldRequest"]] = kwargs.get("remote_fields", None)
 
 

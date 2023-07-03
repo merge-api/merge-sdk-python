@@ -82,7 +82,7 @@ class TimeOffRequest(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -108,8 +108,8 @@ class TimeOffRequest(ModelNormal):
             'request_type': (RequestTypeEnum, str, none_type,),
             'start_time': (datetime, none_type, none_type,),  # noqa: E501
             'end_time': (datetime, none_type, none_type,),  # noqa: E501
-            'integration_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
-            'linked_account_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'integration_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'linked_account_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
         }
         expands_types = {"approver": "Employee", "employee": "Employee"}
 
@@ -185,15 +185,15 @@ class TimeOffRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             employee (str, none_type): The employee requesting time off.. [optional]  # noqa: E501
             approver (str, none_type): The Merge ID of the employee with the ability to approve the time off request.. [optional]  # noqa: E501
-            status (bool, date, datetime, dict, float, int, list, str, none_type): The status of this time off request.  * `REQUESTED` - REQUESTED * `APPROVED` - APPROVED * `DECLINED` - DECLINED * `CANCELLED` - CANCELLED * `DELETED` - DELETED. [optional]  # noqa: E501
+            status (bool, dict, float, int, list, str, none_type): The status of this time off request.  * `REQUESTED` - REQUESTED * `APPROVED` - APPROVED * `DECLINED` - DECLINED * `CANCELLED` - CANCELLED * `DELETED` - DELETED. [optional]  # noqa: E501
             employee_note (str, none_type): The employee note for this time off request.. [optional]  # noqa: E501
-            units (bool, date, datetime, dict, float, int, list, str, none_type): The measurement that the third-party integration uses to count time requested.  * `HOURS` - HOURS * `DAYS` - DAYS. [optional]  # noqa: E501
+            units (bool, dict, float, int, list, str, none_type): The measurement that the third-party integration uses to count time requested.  * `HOURS` - HOURS * `DAYS` - DAYS. [optional]  # noqa: E501
             amount (float, none_type): The time off quantity measured by the prescribed “units”.. [optional]  # noqa: E501
-            request_type (bool, date, datetime, dict, float, int, list, str, none_type): The type of time off request.  * `VACATION` - VACATION * `SICK` - SICK * `PERSONAL` - PERSONAL * `JURY_DUTY` - JURY_DUTY * `VOLUNTEER` - VOLUNTEER * `BEREAVEMENT` - BEREAVEMENT. [optional]  # noqa: E501
+            request_type (bool, dict, float, int, list, str, none_type): The type of time off request.  * `VACATION` - VACATION * `SICK` - SICK * `PERSONAL` - PERSONAL * `JURY_DUTY` - JURY_DUTY * `VOLUNTEER` - VOLUNTEER * `BEREAVEMENT` - BEREAVEMENT. [optional]  # noqa: E501
             start_time (datetime, none_type): The day and time of the start of the time requested off.. [optional]  # noqa: E501
             end_time (datetime, none_type): The day and time of the end of the time requested off.. [optional]  # noqa: E501
-            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -285,15 +285,15 @@ class TimeOffRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             employee (str, none_type): The employee requesting time off.. [optional]  # noqa: E501
             approver (str, none_type): The Merge ID of the employee with the ability to approve the time off request.. [optional]  # noqa: E501
-            status (bool, date, datetime, dict, float, int, list, str, none_type): The status of this time off request.  * `REQUESTED` - REQUESTED * `APPROVED` - APPROVED * `DECLINED` - DECLINED * `CANCELLED` - CANCELLED * `DELETED` - DELETED. [optional]  # noqa: E501
+            status (bool, dict, float, int, list, str, none_type): The status of this time off request.  * `REQUESTED` - REQUESTED * `APPROVED` - APPROVED * `DECLINED` - DECLINED * `CANCELLED` - CANCELLED * `DELETED` - DELETED. [optional]  # noqa: E501
             employee_note (str, none_type): The employee note for this time off request.. [optional]  # noqa: E501
-            units (bool, date, datetime, dict, float, int, list, str, none_type): The measurement that the third-party integration uses to count time requested.  * `HOURS` - HOURS * `DAYS` - DAYS. [optional]  # noqa: E501
+            units (bool, dict, float, int, list, str, none_type): The measurement that the third-party integration uses to count time requested.  * `HOURS` - HOURS * `DAYS` - DAYS. [optional]  # noqa: E501
             amount (float, none_type): The time off quantity measured by the prescribed “units”.. [optional]  # noqa: E501
-            request_type (bool, date, datetime, dict, float, int, list, str, none_type): The type of time off request.  * `VACATION` - VACATION * `SICK` - SICK * `PERSONAL` - PERSONAL * `JURY_DUTY` - JURY_DUTY * `VOLUNTEER` - VOLUNTEER * `BEREAVEMENT` - BEREAVEMENT. [optional]  # noqa: E501
+            request_type (bool, dict, float, int, list, str, none_type): The type of time off request.  * `VACATION` - VACATION * `SICK` - SICK * `PERSONAL` - PERSONAL * `JURY_DUTY` - JURY_DUTY * `VOLUNTEER` - VOLUNTEER * `BEREAVEMENT` - BEREAVEMENT. [optional]  # noqa: E501
             start_time (datetime, none_type): The day and time of the start of the time requested off.. [optional]  # noqa: E501
             end_time (datetime, none_type): The day and time of the end of the time requested off.. [optional]  # noqa: E501
-            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -325,14 +325,14 @@ class TimeOffRequest(ModelNormal):
 
         self.employee: Union[str, none_type] = kwargs.get("employee", None)
         self.approver: Union[str, none_type] = kwargs.get("approver", None)
-        self.status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
+        self.status: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("status", None)
         self.employee_note: Union[str, none_type] = kwargs.get("employee_note", None)
-        self.units: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("units", None)
+        self.units: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("units", None)
         self.amount: Union[float, none_type] = kwargs.get("amount", None)
-        self.request_type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("request_type", None)
+        self.request_type: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("request_type", None)
         self.start_time: Union[datetime, none_type] = kwargs.get("start_time", None)
         self.end_time: Union[datetime, none_type] = kwargs.get("end_time", None)
-        self.integration_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
-        self.linked_account_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
+        self.integration_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
+        self.linked_account_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
 
 
