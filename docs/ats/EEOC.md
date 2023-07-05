@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 **veteran_status** | **bool, date, datetime, dict, float, int, list, str, none_type** | The candidate&#39;s veteran status.  * &#x60;I_AM_NOT_A_PROTECTED_VETERAN&#x60; - I_AM_NOT_A_PROTECTED_VETERAN * &#x60;I_IDENTIFY_AS_ONE_OR_MORE_OF_THE_CLASSIFICATIONS_OF_A_PROTECTED_VETERAN&#x60; - I_IDENTIFY_AS_ONE_OR_MORE_OF_THE_CLASSIFICATIONS_OF_A_PROTECTED_VETERAN * &#x60;I_DONT_WISH_TO_ANSWER&#x60; - I_DONT_WISH_TO_ANSWER | [optional] 
 **disability_status** | **bool, date, datetime, dict, float, int, list, str, none_type** | The candidate&#39;s disability status.  * &#x60;YES_I_HAVE_A_DISABILITY_OR_PREVIOUSLY_HAD_A_DISABILITY&#x60; - YES_I_HAVE_A_DISABILITY_OR_PREVIOUSLY_HAD_A_DISABILITY * &#x60;NO_I_DONT_HAVE_A_DISABILITY&#x60; - NO_I_DONT_HAVE_A_DISABILITY * &#x60;I_DONT_WISH_TO_ANSWER&#x60; - I_DONT_WISH_TO_ANSWER | [optional] 
 **remote_was_deleted** | **bool** | Indicates whether or not this object has been deleted by third party webhooks. | [optional] [readonly] 
-**field_mappings** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** |  | [optional] [readonly] 
 **modified_at** | **datetime** | This is the datetime that this object was last updated by Merge | [optional] [readonly] 
+**field_mappings** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** |  | [optional] [readonly] 
 **remote_data** | [**[RemoteData], none_type**](RemoteData.md) |  | [optional] [readonly] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 

@@ -24,7 +24,7 @@ Returns a list of `BalanceSheet` objects.
 import time
 import MergePythonSDK.accounting
 from MergePythonSDK.accounting.api import balance_sheets_api
-
+from MergePythonSDK.accounting.model.paginated_balance_sheet_list import PaginatedBalanceSheetList
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/accounting/v1
 # See configuration.py for a list of all supported configuration parameters.

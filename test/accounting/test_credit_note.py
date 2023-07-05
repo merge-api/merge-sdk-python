@@ -17,7 +17,7 @@ import MergePythonSDK.accounting
 from MergePythonSDK.accounting.model.credit_note_line_item import CreditNoteLineItem
 from MergePythonSDK.accounting.model.credit_note_status_enum import CreditNoteStatusEnum
 from MergePythonSDK.accounting.model.currency_enum import CurrencyEnum
-from MergePythonSDK.shared.model.remote_data import RemoteData
+from MergePythonSDK.accounting.model.remote_data import RemoteData
 globals()['CreditNoteLineItem'] = CreditNoteLineItem
 globals()['CreditNoteStatusEnum'] = CreditNoteStatusEnum
 globals()['CurrencyEnum'] = CurrencyEnum

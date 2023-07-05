@@ -23,7 +23,7 @@ Gets issues.
 import time
 import MergePythonSDK.hris
 from MergePythonSDK.hris.api import issues_api
-
+from MergePythonSDK.hris.model.paginated_issue_list import PaginatedIssueList
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/hris/v1
 # See configuration.py for a list of all supported configuration parameters.

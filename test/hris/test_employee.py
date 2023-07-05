@@ -18,7 +18,7 @@ from MergePythonSDK.hris.model.employment_status_enum import EmploymentStatusEnu
 from MergePythonSDK.hris.model.ethnicity_enum import EthnicityEnum
 from MergePythonSDK.hris.model.gender_enum import GenderEnum
 from MergePythonSDK.hris.model.marital_status_enum import MaritalStatusEnum
-from MergePythonSDK.shared.model.remote_data import RemoteData
+from MergePythonSDK.hris.model.remote_data import RemoteData
 globals()['EmploymentStatusEnum'] = EmploymentStatusEnum
 globals()['EthnicityEnum'] = EthnicityEnum
 globals()['GenderEnum'] = GenderEnum

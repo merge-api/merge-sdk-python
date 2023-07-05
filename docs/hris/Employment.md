@@ -18,8 +18,8 @@ Name | Type | Description | Notes
 **effective_date** | **datetime, none_type** | The position&#39;s effective date. | [optional] 
 **employment_type** | **bool, date, datetime, dict, float, int, list, str, none_type** | The position&#39;s type of employment.  * &#x60;FULL_TIME&#x60; - FULL_TIME * &#x60;PART_TIME&#x60; - PART_TIME * &#x60;INTERN&#x60; - INTERN * &#x60;CONTRACTOR&#x60; - CONTRACTOR * &#x60;FREELANCE&#x60; - FREELANCE | [optional] 
 **remote_was_deleted** | **bool** | Indicates whether or not this object has been deleted by third party webhooks. | [optional] [readonly] 
-**field_mappings** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** |  | [optional] [readonly] 
 **modified_at** | **datetime** | This is the datetime that this object was last updated by Merge | [optional] [readonly] 
+**field_mappings** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** |  | [optional] [readonly] 
 **remote_data** | [**[RemoteData], none_type**](RemoteData.md) |  | [optional] [readonly] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 

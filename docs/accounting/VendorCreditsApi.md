@@ -24,7 +24,7 @@ Returns a list of `VendorCredit` objects.
 import time
 import MergePythonSDK.accounting
 from MergePythonSDK.accounting.api import vendor_credits_api
-
+from MergePythonSDK.accounting.model.paginated_vendor_credit_list import PaginatedVendorCreditList
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/accounting/v1
 # See configuration.py for a list of all supported configuration parameters.

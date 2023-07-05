@@ -40,7 +40,7 @@ from MergePythonSDK.shared.model_utils import import_model_by_name
 
 def lazy_import():
     from MergePythonSDK.ticketing.model.priority_enum import PriorityEnum
-    from MergePythonSDK.shared.model.remote_data import RemoteData
+    from MergePythonSDK.shared.model.remote_remote_data import RemoteData
     from MergePythonSDK.ticketing.model.remote_field import RemoteField
     from MergePythonSDK.ticketing.model.ticket_status_enum import TicketStatusEnum
     globals()['PriorityEnum'] = PriorityEnum
@@ -87,7 +87,7 @@ class Ticket(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -126,8 +126,8 @@ class Ticket(ModelNormal):
             'remote_was_deleted': (bool, none_type,),  # noqa: E501
             'ticket_url': (str, none_type, none_type,),  # noqa: E501
             'priority': (PriorityEnum, str, none_type,),
-            'field_mappings': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
             'modified_at': (datetime, none_type,),  # noqa: E501
+            'field_mappings': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
             'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
             'remote_fields': ([RemoteField], none_type,),  # noqa: E501
         }
@@ -171,8 +171,8 @@ class Ticket(ModelNormal):
         'remote_was_deleted': 'remote_was_deleted',  # noqa: E501
         'ticket_url': 'ticket_url',  # noqa: E501
         'priority': 'priority',  # noqa: E501
-        'field_mappings': 'field_mappings',  # noqa: E501
         'modified_at': 'modified_at',  # noqa: E501
+        'field_mappings': 'field_mappings',  # noqa: E501
         'remote_data': 'remote_data',  # noqa: E501
         'remote_fields': 'remote_fields',  # noqa: E501
     }
@@ -180,8 +180,8 @@ class Ticket(ModelNormal):
     read_only_vars = {
         'id',  # noqa: E501
         'remote_was_deleted',  # noqa: E501
-        'field_mappings',  # noqa: E501
         'modified_at',  # noqa: E501
+        'field_mappings',  # noqa: E501
         'remote_data',  # noqa: E501
         'remote_fields',  # noqa: E501
     }
@@ -246,8 +246,8 @@ class Ticket(ModelNormal):
             remote_was_deleted (bool): [optional]  # noqa: E501
             ticket_url (str, none_type): The 3rd party url of the Ticket.. [optional]  # noqa: E501
             priority (bool, date, datetime, dict, float, int, list, str, none_type): The priority or urgency of the Ticket.  * `URGENT` - URGENT * `HIGH` - HIGH * `NORMAL` - NORMAL * `LOW` - LOW. [optional]  # noqa: E501
-            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
+            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             remote_fields ([RemoteField]): [optional]  # noqa: E501
         """
@@ -306,8 +306,8 @@ class Ticket(ModelNormal):
         # Read only properties
         self._id = kwargs.get("id", str())
         self._remote_was_deleted = kwargs.get("remote_was_deleted", bool())
-        self._field_mappings = kwargs.get("field_mappings", None)
         self._modified_at = kwargs.get("modified_at", None)
+        self._field_mappings = kwargs.get("field_mappings", None)
         self._remote_data = kwargs.get("remote_data", None)
         self._remote_fields = kwargs.get("remote_fields", None)
         return self
@@ -378,8 +378,8 @@ class Ticket(ModelNormal):
             remote_was_deleted (bool): [optional]  # noqa: E501
             ticket_url (str, none_type): The 3rd party url of the Ticket.. [optional]  # noqa: E501
             priority (bool, date, datetime, dict, float, int, list, str, none_type): The priority or urgency of the Ticket.  * `URGENT` - URGENT * `HIGH` - HIGH * `NORMAL` - NORMAL * `LOW` - LOW. [optional]  # noqa: E501
-            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
+            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             remote_fields ([RemoteField]): [optional]  # noqa: E501
         """
@@ -435,8 +435,8 @@ class Ticket(ModelNormal):
         # Read only properties
         self._id: Union[str] = kwargs.get("id", str())
         self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
-        self._field_mappings: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("field_mappings", None)
         self._modified_at: Union[datetime] = kwargs.get("modified_at", None)
+        self._field_mappings: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("field_mappings", None)
         self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
         self._remote_fields: Union[List["RemoteField"]] = kwargs.get("remote_fields", None)
 
@@ -450,12 +450,12 @@ class Ticket(ModelNormal):
         return self._remote_was_deleted
 
     @property
-    def field_mappings(self):
-        return self._field_mappings
-
-    @property
     def modified_at(self):
         return self._modified_at
+
+    @property
+    def field_mappings(self):
+        return self._field_mappings
 
     @property
     def remote_data(self):

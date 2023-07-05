@@ -24,7 +24,7 @@ import time
 import MergePythonSDK.ticketing
 from MergePythonSDK.ticketing.api import passthrough_api
 from MergePythonSDK.ticketing.model.data_passthrough_request import DataPassthroughRequest
-from MergePythonSDK.shared.model.remote_response import RemoteResponse
+from MergePythonSDK.ticketing.model.remote_response import RemoteResponse
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/ticketing/v1
 # See configuration.py for a list of all supported configuration parameters.

@@ -245,7 +245,7 @@ Returns a list of `Employee` objects.
 import time
 import MergePythonSDK.hris
 from MergePythonSDK.hris.api import employees_api
-
+from MergePythonSDK.hris.model.paginated_employee_list import PaginatedEmployeeList
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/hris/v1
 # See configuration.py for a list of all supported configuration parameters.

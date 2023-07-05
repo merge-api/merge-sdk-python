@@ -63,7 +63,8 @@ with MergePythonSDK.crm.ApiClient(configuration) as api_client:
             subject="Contact about Integration Strategy",
             content="Follow up to see whether they need integrations",
             owner="0358cbc6-2040-430a-848e-aafacbadf3aa",
-            account="account_example",
+            account="3fa85f64-5717-4562-b3fc-2c963f66afa6",
+            opportunity="opportunity_example",
             completed_date=dateutil_parser('2022-02-11T00:00:00Z'),
             due_date=dateutil_parser('2022-02-10T00:00:00Z'),
             status=None,
@@ -149,7 +150,7 @@ Returns a list of `Task` objects.
 import time
 import MergePythonSDK.crm
 from MergePythonSDK.crm.api import tasks_api
-
+from MergePythonSDK.crm.model.paginated_task_list import PaginatedTaskList
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/crm/v1
 # See configuration.py for a list of all supported configuration parameters.
@@ -180,7 +181,7 @@ with MergePythonSDK.crm.ApiClient(configuration) as api_client:
     created_after = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, will only return objects created after this datetime. (optional)
     created_before = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | If provided, will only return objects created before this datetime. (optional)
     cursor = "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw" # str | The pagination cursor value. (optional)
-    expand = "owner,account" # str | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. (optional)
+    expand = "owner,account,opportunity" # str | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. (optional)
     include_deleted_data = True # bool | Whether to include data that was marked as deleted by third party webhooks. (optional)
     include_remote_data = True # bool | Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
     include_remote_fields = True # bool | Whether to include all remote fields, including fields that Merge did not map to common models, in a normalized format. (optional)
@@ -450,7 +451,8 @@ with MergePythonSDK.crm.ApiClient(configuration) as api_client:
             subject="Contact about Integration Strategy",
             content="Follow up to see whether they need integrations",
             owner="0358cbc6-2040-430a-848e-aafacbadf3aa",
-            account="account_example",
+            account="3fa85f64-5717-4562-b3fc-2c963f66afa6",
+            opportunity="opportunity_example",
             completed_date=dateutil_parser('2022-02-11T00:00:00Z'),
             due_date=dateutil_parser('2022-02-10T00:00:00Z'),
             status=None,
@@ -537,7 +539,7 @@ Returns a list of `RemoteFieldClass` objects.
 import time
 import MergePythonSDK.crm
 from MergePythonSDK.crm.api import tasks_api
-
+from MergePythonSDK.crm.model.paginated_remote_field_class_list import PaginatedRemoteFieldClassList
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/crm/v1
 # See configuration.py for a list of all supported configuration parameters.
@@ -658,7 +660,7 @@ with MergePythonSDK.crm.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = tasks_api.TasksApi(api_client)
     id = "id_example" # str | 
-    expand = "owner,account" # str | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. (optional)
+    expand = "owner,account,opportunity" # str | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. (optional)
     include_remote_data = True # bool | Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
     include_remote_fields = True # bool | Whether to include all remote fields, including fields that Merge did not map to common models, in a normalized format. (optional)
 

@@ -23,7 +23,7 @@ Get syncing status. Possible values: `DISABLED`, `DONE`, `FAILED`, `PARTIALLY_SY
 import time
 import MergePythonSDK.crm
 from MergePythonSDK.crm.api import sync_status_api
-
+from MergePythonSDK.crm.model.paginated_sync_status_list import PaginatedSyncStatusList
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/crm/v1
 # See configuration.py for a list of all supported configuration parameters.

@@ -1,0 +1,23 @@
+# Collection
+
+# The Collection Object ### Description The `Collection` object is used to represent collections of tickets. Collections may include other collections as sub collections.  ### Usage Example TODO
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**id** | **str** |  | [optional] [readonly] 
+**remote_id** | **str, none_type** | The third-party API ID of the matching object. | [optional] 
+**name** | **str, none_type** | The collection&#39;s name. | [optional] 
+**description** | **str, none_type** | The collection&#39;s description. | [optional] 
+**collection_type** | **bool, date, datetime, dict, float, int, list, str, none_type** | The collection&#39;s type.  * &#x60;LIST&#x60; - LIST * &#x60;PROJECT&#x60; - PROJECT | [optional] 
+**parent_collection** | **str, none_type** | The parent collection for this collection. | [optional] 
+**remote_was_deleted** | **bool** | Indicates whether or not this object has been deleted by third party webhooks. | [optional] 
+**access_level** | **bool, date, datetime, dict, float, int, list, str, none_type** | The level of access a User has to the Collection and its sub-objects.  * &#x60;PRIVATE&#x60; - PRIVATE * &#x60;COMPANY&#x60; - COMPANY * &#x60;PUBLIC&#x60; - PUBLIC | [optional] 
+**modified_at** | **datetime** | This is the datetime that this object was last updated by Merge | [optional] [readonly] 
+**field_mappings** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** |  | [optional] [readonly] 
+**remote_data** | [**[RemoteData], none_type**](RemoteData.md) |  | [optional] [readonly] 
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

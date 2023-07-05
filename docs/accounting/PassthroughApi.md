@@ -23,7 +23,7 @@ Pull data from an endpoint not currently supported by Merge.
 import time
 import MergePythonSDK.accounting
 from MergePythonSDK.accounting.api import passthrough_api
-from MergePythonSDK.shared.model.remote_response import RemoteResponse
+from MergePythonSDK.accounting.model.remote_response import RemoteResponse
 from MergePythonSDK.accounting.model.data_passthrough_request import DataPassthroughRequest
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/accounting/v1

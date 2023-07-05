@@ -158,7 +158,7 @@ Returns a list of `JournalEntry` objects.
 import time
 import MergePythonSDK.accounting
 from MergePythonSDK.accounting.api import journal_entries_api
-
+from MergePythonSDK.accounting.model.paginated_journal_entry_list import PaginatedJournalEntryList
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/accounting/v1
 # See configuration.py for a list of all supported configuration parameters.

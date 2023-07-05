@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 **submitted_at** | **datetime, none_type** | When the scorecard was submitted. | [optional] 
 **overall_recommendation** | **bool, date, datetime, dict, float, int, list, str, none_type** | The inteviewer&#39;s recommendation.  * &#x60;DEFINITELY_NO&#x60; - DEFINITELY_NO * &#x60;NO&#x60; - NO * &#x60;YES&#x60; - YES * &#x60;STRONG_YES&#x60; - STRONG_YES * &#x60;NO_DECISION&#x60; - NO_DECISION | [optional] 
 **remote_was_deleted** | **bool** | Indicates whether or not this object has been deleted by third party webhooks. | [optional] [readonly] 
-**field_mappings** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** |  | [optional] [readonly] 
 **modified_at** | **datetime** | This is the datetime that this object was last updated by Merge | [optional] [readonly] 
+**field_mappings** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** |  | [optional] [readonly] 
 **remote_data** | [**[RemoteData], none_type**](RemoteData.md) |  | [optional] [readonly] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 

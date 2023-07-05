@@ -14,7 +14,7 @@ import unittest
 from unittest.mock import MagicMock
 
 import MergePythonSDK.crm
-from MergePythonSDK.shared.model.category_enum import CategoryEnum
+from MergePythonSDK.crm.model.category_enum import CategoryEnum
 from MergePythonSDK.shared.api_client import ApiClient
 
 

@@ -16,7 +16,7 @@ from unittest.mock import MagicMock
 import MergePythonSDK.crm
 from MergePythonSDK.crm.model.response_type_enum import ResponseTypeEnum
 globals()['ResponseTypeEnum'] = ResponseTypeEnum
-from MergePythonSDK.shared.model.remote_response import RemoteResponse
+from MergePythonSDK.crm.model.remote_response import RemoteResponse
 from MergePythonSDK.shared.api_client import ApiClient
 
 

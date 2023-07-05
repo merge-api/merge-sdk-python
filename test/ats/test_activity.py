@@ -15,7 +15,7 @@ from unittest.mock import MagicMock
 
 import MergePythonSDK.ats
 from MergePythonSDK.ats.model.activity_type_enum import ActivityTypeEnum
-from MergePythonSDK.shared.model.remote_data import RemoteData
+from MergePythonSDK.ats.model.remote_data import RemoteData
 from MergePythonSDK.ats.model.visibility_enum import VisibilityEnum
 globals()['ActivityTypeEnum'] = ActivityTypeEnum
 globals()['RemoteData'] = RemoteData

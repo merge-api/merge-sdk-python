@@ -23,7 +23,7 @@ import time
 import MergePythonSDK.ats
 from MergePythonSDK.ats.api import generate_key_api
 from MergePythonSDK.ats.model.generate_remote_key_request import GenerateRemoteKeyRequest
-from MergePythonSDK.shared.model.remote_key import RemoteKey
+from MergePythonSDK.ats.model.remote_key import RemoteKey
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/ats/v1
 # See configuration.py for a list of all supported configuration parameters.

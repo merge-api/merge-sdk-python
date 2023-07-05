@@ -15,8 +15,8 @@ Name | Type | Description | Notes
 **is_private** | **bool, none_type** | Whether or not the comment is internal. | [optional] 
 **remote_created_at** | **datetime, none_type** | When the third party&#39;s comment was created. | [optional] 
 **remote_was_deleted** | **bool** |  | [optional] [readonly] 
-**field_mappings** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** |  | [optional] [readonly] 
 **modified_at** | **datetime** | This is the datetime that this object was last updated by Merge | [optional] [readonly] 
+**field_mappings** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** |  | [optional] [readonly] 
 **remote_data** | [**[RemoteData], none_type**](RemoteData.md) |  | [optional] [readonly] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
