@@ -14,7 +14,7 @@ import unittest
 from unittest.mock import MagicMock
 
 import MergePythonSDK.hris
-from MergePythonSDK.shared.model.remote_data import RemoteData
+from MergePythonSDK.hris.model.remote_data import RemoteData
 from MergePythonSDK.hris.model.run_state_enum import RunStateEnum
 from MergePythonSDK.hris.model.run_type_enum import RunTypeEnum
 globals()['RemoteData'] = RemoteData

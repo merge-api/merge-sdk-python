@@ -15,7 +15,7 @@ from unittest.mock import MagicMock
 
 import MergePythonSDK.ats
 from MergePythonSDK.ats.model.access_role_enum import AccessRoleEnum
-from MergePythonSDK.shared.model.remote_data import RemoteData
+from MergePythonSDK.ats.model.remote_data import RemoteData
 globals()['AccessRoleEnum'] = AccessRoleEnum
 globals()['RemoteData'] = RemoteData
 from MergePythonSDK.ats.model.remote_user import RemoteUser

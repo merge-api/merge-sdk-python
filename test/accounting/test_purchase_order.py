@@ -17,7 +17,7 @@ import MergePythonSDK.accounting
 from MergePythonSDK.accounting.model.currency_enum import CurrencyEnum
 from MergePythonSDK.accounting.model.purchase_order_line_item import PurchaseOrderLineItem
 from MergePythonSDK.accounting.model.purchase_order_status_enum import PurchaseOrderStatusEnum
-from MergePythonSDK.shared.model.remote_data import RemoteData
+from MergePythonSDK.accounting.model.remote_data import RemoteData
 globals()['CurrencyEnum'] = CurrencyEnum
 globals()['PurchaseOrderLineItem'] = PurchaseOrderLineItem
 globals()['PurchaseOrderStatusEnum'] = PurchaseOrderStatusEnum
