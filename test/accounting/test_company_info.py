@@ -17,7 +17,7 @@ import MergePythonSDK.accounting
 from MergePythonSDK.accounting.model.accounting_phone_number import AccountingPhoneNumber
 from MergePythonSDK.accounting.model.address import Address
 from MergePythonSDK.accounting.model.currency_enum import CurrencyEnum
-from MergePythonSDK.shared.model.remote_data import RemoteData
+from MergePythonSDK.accounting.model.remote_data import RemoteData
 globals()['AccountingPhoneNumber'] = AccountingPhoneNumber
 globals()['Address'] = Address
 globals()['CurrencyEnum'] = CurrencyEnum

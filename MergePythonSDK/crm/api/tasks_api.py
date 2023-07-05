@@ -150,8 +150,12 @@ class TasksApi(object):
                     ('expand',): {
 
                         "ACCOUNT": "account",
+                        "ACCOUNT,OPPORTUNITY": "account,opportunity",
+                        "OPPORTUNITY": "opportunity",
                         "OWNER": "owner",
-                        "OWNER,ACCOUNT": "owner,account"
+                        "OWNER,ACCOUNT": "owner,account",
+                        "OWNER,ACCOUNT,OPPORTUNITY": "owner,account,opportunity",
+                        "OWNER,OPPORTUNITY": "owner,opportunity"
                     },
                 },
                 'openapi_types': {
@@ -490,8 +494,12 @@ class TasksApi(object):
                     ('expand',): {
 
                         "ACCOUNT": "account",
+                        "ACCOUNT,OPPORTUNITY": "account,opportunity",
+                        "OPPORTUNITY": "opportunity",
                         "OWNER": "owner",
-                        "OWNER,ACCOUNT": "owner,account"
+                        "OWNER,ACCOUNT": "owner,account",
+                        "OWNER,ACCOUNT,OPPORTUNITY": "owner,account,opportunity",
+                        "OWNER,OPPORTUNITY": "owner,opportunity"
                     },
                 },
                 'openapi_types': {

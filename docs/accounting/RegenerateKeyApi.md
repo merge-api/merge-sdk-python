@@ -22,8 +22,8 @@ Exchange remote keys.
 import time
 import MergePythonSDK.accounting
 from MergePythonSDK.accounting.api import regenerate_key_api
-from MergePythonSDK.shared.model.remote_key_for_regeneration_request import RemoteKeyForRegenerationRequest
-from MergePythonSDK.shared.model.remote_key import RemoteKey
+from MergePythonSDK.accounting.model.remote_key_for_regeneration_request import RemoteKeyForRegenerationRequest
+from MergePythonSDK.accounting.model.remote_key import RemoteKey
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/accounting/v1
 # See configuration.py for a list of all supported configuration parameters.

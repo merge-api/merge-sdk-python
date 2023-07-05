@@ -40,7 +40,7 @@ from MergePythonSDK.shared.model_utils import import_model_by_name
 
 def lazy_import():
     from MergePythonSDK.accounting.model.currency_enum import CurrencyEnum
-    from MergePythonSDK.shared.model.remote_data import RemoteData
+    from MergePythonSDK.shared.model.remote_remote_data import RemoteData
     from MergePythonSDK.accounting.model.report_item import ReportItem
     globals()['CurrencyEnum'] = CurrencyEnum
     globals()['RemoteData'] = RemoteData
@@ -82,7 +82,7 @@ class IncomeStatement(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -114,8 +114,8 @@ class IncomeStatement(ModelNormal):
             'non_operating_expenses': ([ReportItem], none_type,),  # noqa: E501
             'net_income': (float, none_type, none_type,),  # noqa: E501
             'remote_was_deleted': (bool, none_type,),  # noqa: E501
-            'field_mappings': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
             'modified_at': (datetime, none_type,),  # noqa: E501
+            'field_mappings': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
             'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
         }
         expands_types = {"company": "CompanyInfo"}
@@ -151,8 +151,8 @@ class IncomeStatement(ModelNormal):
         'non_operating_expenses': 'non_operating_expenses',  # noqa: E501
         'net_income': 'net_income',  # noqa: E501
         'remote_was_deleted': 'remote_was_deleted',  # noqa: E501
-        'field_mappings': 'field_mappings',  # noqa: E501
         'modified_at': 'modified_at',  # noqa: E501
+        'field_mappings': 'field_mappings',  # noqa: E501
         'remote_data': 'remote_data',  # noqa: E501
     }
 
@@ -163,8 +163,8 @@ class IncomeStatement(ModelNormal):
         'operating_expenses',  # noqa: E501
         'non_operating_expenses',  # noqa: E501
         'remote_was_deleted',  # noqa: E501
-        'field_mappings',  # noqa: E501
         'modified_at',  # noqa: E501
+        'field_mappings',  # noqa: E501
         'remote_data',  # noqa: E501
     }
 
@@ -221,8 +221,8 @@ class IncomeStatement(ModelNormal):
             non_operating_expenses ([ReportItem]): [optional]  # noqa: E501
             net_income (float, none_type): The gross profit minus the total expenses.. [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
-            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
+            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
         """
 
@@ -273,8 +273,8 @@ class IncomeStatement(ModelNormal):
         self._operating_expenses = kwargs.get("operating_expenses", None)
         self._non_operating_expenses = kwargs.get("non_operating_expenses", None)
         self._remote_was_deleted = kwargs.get("remote_was_deleted", bool())
-        self._field_mappings = kwargs.get("field_mappings", None)
         self._modified_at = kwargs.get("modified_at", None)
+        self._field_mappings = kwargs.get("field_mappings", None)
         self._remote_data = kwargs.get("remote_data", None)
         return self
 
@@ -337,8 +337,8 @@ class IncomeStatement(ModelNormal):
             non_operating_expenses ([ReportItem]): [optional]  # noqa: E501
             net_income (float, none_type): The gross profit minus the total expenses.. [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
-            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
+            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
         """
 
@@ -386,8 +386,8 @@ class IncomeStatement(ModelNormal):
         self._operating_expenses: Union[List["ReportItem"]] = kwargs.get("operating_expenses", None)
         self._non_operating_expenses: Union[List["ReportItem"]] = kwargs.get("non_operating_expenses", None)
         self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
-        self._field_mappings: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("field_mappings", None)
         self._modified_at: Union[datetime] = kwargs.get("modified_at", None)
+        self._field_mappings: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("field_mappings", None)
         self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
 
     # Read only property getters
@@ -416,12 +416,12 @@ class IncomeStatement(ModelNormal):
         return self._remote_was_deleted
 
     @property
-    def field_mappings(self):
-        return self._field_mappings
-
-    @property
     def modified_at(self):
         return self._modified_at
+
+    @property
+    def field_mappings(self):
+        return self._field_mappings
 
     @property
     def remote_data(self):

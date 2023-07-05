@@ -17,8 +17,8 @@ Name | Type | Description | Notes
 **start_time** | **datetime, none_type** | The day and time of the start of the time requested off. | [optional] 
 **end_time** | **datetime, none_type** | The day and time of the end of the time requested off. | [optional] 
 **remote_was_deleted** | **bool** |  | [optional] [readonly] 
-**field_mappings** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** |  | [optional] [readonly] 
 **modified_at** | **datetime** | This is the datetime that this object was last updated by Merge | [optional] [readonly] 
+**field_mappings** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** |  | [optional] [readonly] 
 **remote_data** | [**[RemoteData], none_type**](RemoteData.md) |  | [optional] [readonly] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 

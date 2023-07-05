@@ -24,7 +24,7 @@ Returns a list of `CreditNote` objects.
 import time
 import MergePythonSDK.accounting
 from MergePythonSDK.accounting.api import credit_notes_api
-
+from MergePythonSDK.accounting.model.paginated_credit_note_list import PaginatedCreditNoteList
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/accounting/v1
 # See configuration.py for a list of all supported configuration parameters.

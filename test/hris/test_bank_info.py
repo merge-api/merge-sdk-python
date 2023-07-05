@@ -15,7 +15,7 @@ from unittest.mock import MagicMock
 
 import MergePythonSDK.hris
 from MergePythonSDK.hris.model.account_type_enum import AccountTypeEnum
-from MergePythonSDK.shared.model.remote_data import RemoteData
+from MergePythonSDK.hris.model.remote_data import RemoteData
 globals()['AccountTypeEnum'] = AccountTypeEnum
 globals()['RemoteData'] = RemoteData
 from MergePythonSDK.hris.model.bank_info import BankInfo

@@ -22,7 +22,7 @@ Create a remote key.
 import time
 import MergePythonSDK.hris
 from MergePythonSDK.hris.api import generate_key_api
-from MergePythonSDK.shared.model.remote_key import RemoteKey
+from MergePythonSDK.hris.model.remote_key import RemoteKey
 from MergePythonSDK.hris.model.generate_remote_key_request import GenerateRemoteKeyRequest
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/hris/v1

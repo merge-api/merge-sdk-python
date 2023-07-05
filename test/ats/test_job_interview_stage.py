@@ -14,7 +14,7 @@ import unittest
 from unittest.mock import MagicMock
 
 import MergePythonSDK.ats
-from MergePythonSDK.shared.model.remote_data import RemoteData
+from MergePythonSDK.ats.model.remote_data import RemoteData
 globals()['RemoteData'] = RemoteData
 from MergePythonSDK.ats.model.job_interview_stage import JobInterviewStage
 from MergePythonSDK.shared.api_client import ApiClient

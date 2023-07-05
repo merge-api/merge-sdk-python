@@ -14,7 +14,7 @@ import unittest
 from unittest.mock import MagicMock
 
 import MergePythonSDK.ats
-from MergePythonSDK.shared.model.categories_enum import CategoriesEnum
+from MergePythonSDK.ats.model.categories_enum import CategoriesEnum
 from MergePythonSDK.ats.model.common_model_scopes_body_request import CommonModelScopesBodyRequest
 globals()['CategoriesEnum'] = CategoriesEnum
 globals()['CommonModelScopesBodyRequest'] = CommonModelScopesBodyRequest

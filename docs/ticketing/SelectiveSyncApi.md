@@ -200,7 +200,7 @@ Get metadata for the conditions available to a linked account.
 import time
 import MergePythonSDK.ticketing
 from MergePythonSDK.ticketing.api import selective_sync_api
-
+from MergePythonSDK.ticketing.model.paginated_condition_schema_list import PaginatedConditionSchemaList
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/ticketing/v1
 # See configuration.py for a list of all supported configuration parameters.

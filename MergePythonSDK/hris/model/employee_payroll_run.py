@@ -41,7 +41,7 @@ from MergePythonSDK.shared.model_utils import import_model_by_name
 def lazy_import():
     from MergePythonSDK.hris.model.deduction import Deduction
     from MergePythonSDK.hris.model.earning import Earning
-    from MergePythonSDK.shared.model.remote_data import RemoteData
+    from MergePythonSDK.shared.model.remote_remote_data import RemoteData
     from MergePythonSDK.hris.model.tax import Tax
     globals()['Deduction'] = Deduction
     globals()['Earning'] = Earning
@@ -84,7 +84,7 @@ class EmployeePayrollRun(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -114,8 +114,8 @@ class EmployeePayrollRun(ModelNormal):
             'deductions': ([Deduction], none_type,),  # noqa: E501
             'taxes': ([Tax], none_type,),  # noqa: E501
             'remote_was_deleted': (bool, none_type,),  # noqa: E501
-            'field_mappings': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
             'modified_at': (datetime, none_type,),  # noqa: E501
+            'field_mappings': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
             'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
         }
         expands_types = {"employee": "Employee", "payroll_run": "PayrollRun"}
@@ -149,8 +149,8 @@ class EmployeePayrollRun(ModelNormal):
         'deductions': 'deductions',  # noqa: E501
         'taxes': 'taxes',  # noqa: E501
         'remote_was_deleted': 'remote_was_deleted',  # noqa: E501
-        'field_mappings': 'field_mappings',  # noqa: E501
         'modified_at': 'modified_at',  # noqa: E501
+        'field_mappings': 'field_mappings',  # noqa: E501
         'remote_data': 'remote_data',  # noqa: E501
     }
 
@@ -160,8 +160,8 @@ class EmployeePayrollRun(ModelNormal):
         'deductions',  # noqa: E501
         'taxes',  # noqa: E501
         'remote_was_deleted',  # noqa: E501
-        'field_mappings',  # noqa: E501
         'modified_at',  # noqa: E501
+        'field_mappings',  # noqa: E501
         'remote_data',  # noqa: E501
     }
 
@@ -216,8 +216,8 @@ class EmployeePayrollRun(ModelNormal):
             deductions ([Deduction]): [optional]  # noqa: E501
             taxes ([Tax]): [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
-            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
+            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
         """
 
@@ -266,8 +266,8 @@ class EmployeePayrollRun(ModelNormal):
         self._deductions = kwargs.get("deductions", None)
         self._taxes = kwargs.get("taxes", None)
         self._remote_was_deleted = kwargs.get("remote_was_deleted", bool())
-        self._field_mappings = kwargs.get("field_mappings", None)
         self._modified_at = kwargs.get("modified_at", None)
+        self._field_mappings = kwargs.get("field_mappings", None)
         self._remote_data = kwargs.get("remote_data", None)
         return self
 
@@ -328,8 +328,8 @@ class EmployeePayrollRun(ModelNormal):
             deductions ([Deduction]): [optional]  # noqa: E501
             taxes ([Tax]): [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
-            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
+            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
         """
 
@@ -375,8 +375,8 @@ class EmployeePayrollRun(ModelNormal):
         self._deductions: Union[List["Deduction"]] = kwargs.get("deductions", None)
         self._taxes: Union[List["Tax"]] = kwargs.get("taxes", None)
         self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
-        self._field_mappings: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("field_mappings", None)
         self._modified_at: Union[datetime] = kwargs.get("modified_at", None)
+        self._field_mappings: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("field_mappings", None)
         self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
 
     # Read only property getters
@@ -401,12 +401,12 @@ class EmployeePayrollRun(ModelNormal):
         return self._remote_was_deleted
 
     @property
-    def field_mappings(self):
-        return self._field_mappings
-
-    @property
     def modified_at(self):
         return self._modified_at
+
+    @property
+    def field_mappings(self):
+        return self._field_mappings
 
     @property
     def remote_data(self):

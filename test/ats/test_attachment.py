@@ -15,7 +15,7 @@ from unittest.mock import MagicMock
 
 import MergePythonSDK.ats
 from MergePythonSDK.ats.model.attachment_type_enum import AttachmentTypeEnum
-from MergePythonSDK.shared.model.remote_data import RemoteData
+from MergePythonSDK.ats.model.remote_data import RemoteData
 globals()['AttachmentTypeEnum'] = AttachmentTypeEnum
 globals()['RemoteData'] = RemoteData
 from MergePythonSDK.ats.model.attachment import Attachment

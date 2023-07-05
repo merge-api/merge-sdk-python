@@ -5,6 +5,7 @@ All URIs are relative to *https://api.merge.dev/api/ticketing/v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**attachments_create**](AttachmentsApi.md#attachments_create) | **POST** /attachments | 
+[**attachments_download_retrieve**](AttachmentsApi.md#attachments_download_retrieve) | **GET** /attachments/{id}/download | 
 [**attachments_list**](AttachmentsApi.md#attachments_list) | **GET** /attachments | 
 [**attachments_meta_post_retrieve**](AttachmentsApi.md#attachments_meta_post_retrieve) | **GET** /attachments/meta/post | 
 [**attachments_retrieve**](AttachmentsApi.md#attachments_retrieve) | **GET** /attachments/{id} | 
@@ -120,6 +121,88 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **attachments_download_retrieve**
+> file_type attachments_download_retrieve(id)
+
+
+
+Returns an `Attachment` object with the given `id`.
+
+### Example
+
+* Api Key Authentication (accountTokenAuth):
+* Bearer Authentication (bearerAuth):
+
+```python
+import time
+import MergePythonSDK.ticketing
+from MergePythonSDK.ticketing.api import attachments_api
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.merge.dev/api/ticketing/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = MergePythonSDK.ticketing.Configuration(
+    host = "https://api.merge.dev/api/ticketing/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: accountTokenAuth
+configuration.api_key['accountTokenAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['accountTokenAuth'] = 'Bearer'
+
+# Configure Bearer authorization: bearerAuth
+configuration = MergePythonSDK.ticketing.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with MergePythonSDK.ticketing.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = attachments_api.AttachmentsApi(api_client)
+    id = "id_example" # str | 
+
+    # example passing only required values which don't have defaults set
+    try:
+        api_response = api_instance.attachments_download_retrieve(id)
+        pprint(api_response)
+    except MergePythonSDK.ticketing.ApiException as e:
+        print("Exception when calling AttachmentsApi->attachments_download_retrieve: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**|  |
+
+### Return type
+
+**file_type**
+
+### Authorization
+
+[accountTokenAuth](../README.md#accountTokenAuth), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: */*
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **attachments_list**
 > PaginatedAttachmentList attachments_list()
 
@@ -136,7 +219,7 @@ Returns a list of `Attachment` objects.
 import time
 import MergePythonSDK.ticketing
 from MergePythonSDK.ticketing.api import attachments_api
-
+from MergePythonSDK.ticketing.model.paginated_attachment_list import PaginatedAttachmentList
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/ticketing/v1
 # See configuration.py for a list of all supported configuration parameters.

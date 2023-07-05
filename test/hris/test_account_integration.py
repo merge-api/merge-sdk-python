@@ -14,7 +14,7 @@ import unittest
 from unittest.mock import MagicMock
 
 import MergePythonSDK.hris
-from MergePythonSDK.shared.model.categories_enum import CategoriesEnum
+from MergePythonSDK.hris.model.categories_enum import CategoriesEnum
 globals()['CategoriesEnum'] = CategoriesEnum
 from MergePythonSDK.hris.model.account_integration import AccountIntegration
 from MergePythonSDK.shared.api_client import ApiClient

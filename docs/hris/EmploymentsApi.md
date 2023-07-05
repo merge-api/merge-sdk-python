@@ -24,7 +24,7 @@ Returns a list of `Employment` objects.
 import time
 import MergePythonSDK.hris
 from MergePythonSDK.hris.api import employments_api
-
+from MergePythonSDK.hris.model.paginated_employment_list import PaginatedEmploymentList
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/hris/v1
 # See configuration.py for a list of all supported configuration parameters.

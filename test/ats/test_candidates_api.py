@@ -42,8 +42,20 @@ class TestCandidatesApi(unittest.TestCase):
         """
         pass
 
+    def test_candidates_meta_patch_retrieve(self):
+        """Test case for candidates_meta_patch_retrieve
+
+        """
+        pass
+
     def test_candidates_meta_post_retrieve(self):
         """Test case for candidates_meta_post_retrieve
+
+        """
+        pass
+
+    def test_candidates_partial_update(self):
+        """Test case for candidates_partial_update
 
         """
         pass

@@ -138,7 +138,7 @@ Returns a list of `Activity` objects.
 import time
 import MergePythonSDK.ats
 from MergePythonSDK.ats.api import activities_api
-
+from MergePythonSDK.ats.model.paginated_activity_list import PaginatedActivityList
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/ats/v1
 # See configuration.py for a list of all supported configuration parameters.

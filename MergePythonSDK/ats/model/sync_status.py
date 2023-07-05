@@ -80,7 +80,7 @@ class SyncStatus(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -99,7 +99,7 @@ class SyncStatus(ModelNormal):
         defined_types = {
             'model_name': (str,),  # noqa: E501
             'model_id': (str,),  # noqa: E501
-            'status': (bool, dict, float, int, list, str, none_type,),  # noqa: E501
+            'status': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
             'is_initial_sync': (bool,),  # noqa: E501
             'last_sync_start': (datetime, none_type,),  # noqa: E501
             'next_sync_start': (datetime, none_type,),  # noqa: E501

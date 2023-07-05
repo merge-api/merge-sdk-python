@@ -14,7 +14,7 @@ import unittest
 from unittest.mock import MagicMock
 
 import MergePythonSDK.ats
-from MergePythonSDK.shared.model.remote_data import RemoteData
+from MergePythonSDK.ats.model.remote_data import RemoteData
 from MergePythonSDK.ats.model.scheduled_interview_status_enum import ScheduledInterviewStatusEnum
 globals()['RemoteData'] = RemoteData
 globals()['ScheduledInterviewStatusEnum'] = ScheduledInterviewStatusEnum

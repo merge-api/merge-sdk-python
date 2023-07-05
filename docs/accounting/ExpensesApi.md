@@ -160,7 +160,7 @@ Returns a list of `Expense` objects.
 import time
 import MergePythonSDK.accounting
 from MergePythonSDK.accounting.api import expenses_api
-
+from MergePythonSDK.accounting.model.paginated_expense_list import PaginatedExpenseList
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/accounting/v1
 # See configuration.py for a list of all supported configuration parameters.
