@@ -15,7 +15,7 @@ from unittest.mock import MagicMock
 
 import MergePythonSDK.ats
 from MergePythonSDK.ats.model.overall_recommendation_enum import OverallRecommendationEnum
-from MergePythonSDK.ats.model.remote_data import RemoteData
+from MergePythonSDK.shared.model.remote_data import RemoteData
 globals()['OverallRecommendationEnum'] = OverallRecommendationEnum
 globals()['RemoteData'] = RemoteData
 from MergePythonSDK.ats.model.scorecard import Scorecard

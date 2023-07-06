@@ -42,7 +42,7 @@ def lazy_import():
     from MergePythonSDK.accounting.model.account_status_enum import AccountStatusEnum
     from MergePythonSDK.accounting.model.classification_enum import ClassificationEnum
     from MergePythonSDK.accounting.model.currency_enum import CurrencyEnum
-    from MergePythonSDK.shared.model.remote_remote_data import RemoteData
+    from MergePythonSDK.shared.model.remote_data import RemoteData
     globals()['AccountStatusEnum'] = AccountStatusEnum
     globals()['ClassificationEnum'] = ClassificationEnum
     globals()['CurrencyEnum'] = CurrencyEnum

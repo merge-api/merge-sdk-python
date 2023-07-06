@@ -14,7 +14,7 @@ import unittest
 from unittest.mock import MagicMock
 
 import MergePythonSDK.accounting
-from MergePythonSDK.accounting.model.categories_enum import CategoriesEnum
+from MergePythonSDK.shared.model.categories_enum import CategoriesEnum
 globals()['CategoriesEnum'] = CategoriesEnum
 from MergePythonSDK.accounting.model.account_integration import AccountIntegration
 from MergePythonSDK.shared.api_client import ApiClient

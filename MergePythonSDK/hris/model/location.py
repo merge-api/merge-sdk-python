@@ -41,7 +41,7 @@ from MergePythonSDK.shared.model_utils import import_model_by_name
 def lazy_import():
     from MergePythonSDK.hris.model.country_enum import CountryEnum
     from MergePythonSDK.hris.model.location_type_enum import LocationTypeEnum
-    from MergePythonSDK.shared.model.remote_remote_data import RemoteData
+    from MergePythonSDK.shared.model.remote_data import RemoteData
     globals()['CountryEnum'] = CountryEnum
     globals()['LocationTypeEnum'] = LocationTypeEnum
     globals()['RemoteData'] = RemoteData

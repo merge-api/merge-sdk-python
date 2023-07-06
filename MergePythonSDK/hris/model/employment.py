@@ -44,7 +44,7 @@ def lazy_import():
     from MergePythonSDK.hris.model.pay_currency_enum import PayCurrencyEnum
     from MergePythonSDK.hris.model.pay_frequency_enum import PayFrequencyEnum
     from MergePythonSDK.hris.model.pay_period_enum import PayPeriodEnum
-    from MergePythonSDK.shared.model.remote_remote_data import RemoteData
+    from MergePythonSDK.shared.model.remote_data import RemoteData
     globals()['EmploymentTypeEnum'] = EmploymentTypeEnum
     globals()['FlsaStatusEnum'] = FlsaStatusEnum
     globals()['PayCurrencyEnum'] = PayCurrencyEnum

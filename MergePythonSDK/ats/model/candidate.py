@@ -41,7 +41,7 @@ from MergePythonSDK.shared.model_utils import import_model_by_name
 def lazy_import():
     from MergePythonSDK.ats.model.email_address import EmailAddress
     from MergePythonSDK.ats.model.phone_number import PhoneNumber
-    from MergePythonSDK.shared.model.remote_remote_data import RemoteData
+    from MergePythonSDK.shared.model.remote_data import RemoteData
     from MergePythonSDK.ats.model.url import Url
     globals()['EmailAddress'] = EmailAddress
     globals()['PhoneNumber'] = PhoneNumber

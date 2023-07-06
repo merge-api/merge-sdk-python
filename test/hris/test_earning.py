@@ -15,7 +15,7 @@ from unittest.mock import MagicMock
 
 import MergePythonSDK.hris
 from MergePythonSDK.hris.model.earning_type_enum import EarningTypeEnum
-from MergePythonSDK.hris.model.remote_data import RemoteData
+from MergePythonSDK.shared.model.remote_data import RemoteData
 globals()['EarningTypeEnum'] = EarningTypeEnum
 globals()['RemoteData'] = RemoteData
 from MergePythonSDK.hris.model.earning import Earning

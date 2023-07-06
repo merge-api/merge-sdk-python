@@ -15,7 +15,7 @@ from unittest.mock import MagicMock
 
 import MergePythonSDK.accounting
 from MergePythonSDK.accounting.model.currency_enum import CurrencyEnum
-from MergePythonSDK.accounting.model.remote_data import RemoteData
+from MergePythonSDK.shared.model.remote_data import RemoteData
 globals()['CurrencyEnum'] = CurrencyEnum
 globals()['RemoteData'] = RemoteData
 from MergePythonSDK.accounting.model.payment import Payment

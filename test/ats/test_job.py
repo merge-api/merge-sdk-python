@@ -15,7 +15,7 @@ from unittest.mock import MagicMock
 
 import MergePythonSDK.ats
 from MergePythonSDK.ats.model.job_status_enum import JobStatusEnum
-from MergePythonSDK.ats.model.remote_data import RemoteData
+from MergePythonSDK.shared.model.remote_data import RemoteData
 from MergePythonSDK.ats.model.url import Url
 globals()['JobStatusEnum'] = JobStatusEnum
 globals()['RemoteData'] = RemoteData

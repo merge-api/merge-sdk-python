@@ -41,7 +41,7 @@ from MergePythonSDK.shared.model_utils import import_model_by_name
 def lazy_import():
     from MergePythonSDK.ticketing.model.access_level_enum import AccessLevelEnum
     from MergePythonSDK.ticketing.model.collection_type_enum import CollectionTypeEnum
-    from MergePythonSDK.shared.model.remote_remote_data import RemoteData
+    from MergePythonSDK.shared.model.remote_data import RemoteData
     globals()['AccessLevelEnum'] = AccessLevelEnum
     globals()['CollectionTypeEnum'] = CollectionTypeEnum
     globals()['RemoteData'] = RemoteData
