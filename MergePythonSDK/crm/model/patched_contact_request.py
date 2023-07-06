@@ -108,8 +108,8 @@ class PatchedContactRequest(ModelNormal):
             'email_addresses': ([EmailAddressRequest], none_type,),  # noqa: E501
             'phone_numbers': ([PhoneNumberRequest], none_type,),  # noqa: E501
             'last_activity_at': (datetime, none_type, none_type,),  # noqa: E501
-            'integration_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
-            'linked_account_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'integration_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'linked_account_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
             'remote_fields': ([RemoteFieldRequest], none_type,),  # noqa: E501
         }
         return defined_types
@@ -180,8 +180,8 @@ class PatchedContactRequest(ModelNormal):
             email_addresses ([EmailAddressRequest]): [optional]  # noqa: E501
             phone_numbers ([PhoneNumberRequest]): [optional]  # noqa: E501
             last_activity_at (datetime, none_type): When the contact's last activity occurred.. [optional]  # noqa: E501
-            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             remote_fields ([RemoteFieldRequest]): [optional]  # noqa: E501
         """
 
@@ -278,8 +278,8 @@ class PatchedContactRequest(ModelNormal):
             email_addresses ([EmailAddressRequest]): [optional]  # noqa: E501
             phone_numbers ([PhoneNumberRequest]): [optional]  # noqa: E501
             last_activity_at (datetime, none_type): When the contact's last activity occurred.. [optional]  # noqa: E501
-            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             remote_fields ([RemoteFieldRequest]): [optional]  # noqa: E501
         """
 
@@ -317,8 +317,8 @@ class PatchedContactRequest(ModelNormal):
         self.email_addresses: Union[List["EmailAddressRequest"]] = kwargs.get("email_addresses", None)
         self.phone_numbers: Union[List["PhoneNumberRequest"]] = kwargs.get("phone_numbers", None)
         self.last_activity_at: Union[datetime, none_type] = kwargs.get("last_activity_at", None)
-        self.integration_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
-        self.linked_account_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
+        self.integration_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
+        self.linked_account_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
         self.remote_fields: Union[List["RemoteFieldRequest"]] = kwargs.get("remote_fields", None)
 
 

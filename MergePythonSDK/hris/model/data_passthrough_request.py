@@ -108,12 +108,12 @@ class DataPassthroughRequest(ModelNormal):
         lazy_import()
 
         defined_types = {
-            'method': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'method': (bool, dict, float, int, list, str, none_type,),  # noqa: E501
             'path': (str,),  # noqa: E501
             'base_url_override': (str, none_type, none_type,),  # noqa: E501
             'data': (str, none_type, none_type,),  # noqa: E501
             'multipart_form_data': ([MultipartFormFieldRequest], none_type, none_type,),  # noqa: E501
-            'headers': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'headers': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
             'request_format': (RequestFormatEnum, str, none_type,),
             'normalize_response': (bool, none_type,),  # noqa: E501
         }
@@ -146,7 +146,7 @@ class DataPassthroughRequest(ModelNormal):
         """DataPassthroughRequest - a model defined in OpenAPI
 
         Args:
-            method (bool, date, datetime, dict, float, int, list, str, none_type):
+            method (bool, dict, float, int, list, str, none_type):
             path (str):
 
         Keyword Args:
@@ -183,8 +183,8 @@ class DataPassthroughRequest(ModelNormal):
             base_url_override (str, none_type): [optional]  # noqa: E501
             data (str, none_type): [optional]  # noqa: E501
             multipart_form_data ([MultipartFormFieldRequest], none_type): Pass an array of `MultipartFormField` objects in here instead of using the `data` param if `request_format` is set to `MULTIPART`.. [optional]  # noqa: E501
-            headers ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): The headers to use for the request (Merge will handle the account's authorization headers). `Content-Type` header is required for passthrough. Choose content type corresponding to expected format of receiving server.. [optional]  # noqa: E501
-            request_format (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
+            headers ({str: (bool, dict, float, int, list, str, none_type)}, none_type): The headers to use for the request (Merge will handle the account's authorization headers). `Content-Type` header is required for passthrough. Choose content type corresponding to expected format of receiving server.. [optional]  # noqa: E501
+            request_format (bool, dict, float, int, list, str, none_type): [optional]  # noqa: E501
             normalize_response (bool): Optional. If true, the response will always be an object of the form `{\"type\": T, \"value\": ...}` where `T` will be one of `string, boolean, number, null, array, object`.. [optional]  # noqa: E501
         """
 
@@ -242,7 +242,7 @@ class DataPassthroughRequest(ModelNormal):
         """DataPassthroughRequest - a model defined in OpenAPI
 
         Args:
-            method (bool, date, datetime, dict, float, int, list, str, none_type):
+            method (bool, dict, float, int, list, str, none_type):
             path (str):
 
         Keyword Args:
@@ -279,8 +279,8 @@ class DataPassthroughRequest(ModelNormal):
             base_url_override (str, none_type): [optional]  # noqa: E501
             data (str, none_type): [optional]  # noqa: E501
             multipart_form_data ([MultipartFormFieldRequest], none_type): Pass an array of `MultipartFormField` objects in here instead of using the `data` param if `request_format` is set to `MULTIPART`.. [optional]  # noqa: E501
-            headers ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): The headers to use for the request (Merge will handle the account's authorization headers). `Content-Type` header is required for passthrough. Choose content type corresponding to expected format of receiving server.. [optional]  # noqa: E501
-            request_format (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
+            headers ({str: (bool, dict, float, int, list, str, none_type)}, none_type): The headers to use for the request (Merge will handle the account's authorization headers). `Content-Type` header is required for passthrough. Choose content type corresponding to expected format of receiving server.. [optional]  # noqa: E501
+            request_format (bool, dict, float, int, list, str, none_type): [optional]  # noqa: E501
             normalize_response (bool): Optional. If true, the response will always be an object of the form `{\"type\": T, \"value\": ...}` where `T` will be one of `string, boolean, number, null, array, object`.. [optional]  # noqa: E501
         """
 
@@ -311,13 +311,13 @@ class DataPassthroughRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.method: Union[bool, date, datetime, dict, float, int, list, str, none_type] = method
+        self.method: Union[bool, dict, float, int, list, str, none_type] = method
         self.path: Union[str] = path
         self.base_url_override: Union[str, none_type] = kwargs.get("base_url_override", None)
         self.data: Union[str, none_type] = kwargs.get("data", None)
         self.multipart_form_data: Union[List["MultipartFormFieldRequest"]] = kwargs.get("multipart_form_data", None)
-        self.headers: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("headers", None)
-        self.request_format: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("request_format", None)
+        self.headers: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("headers", None)
+        self.request_format: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("request_format", None)
         self.normalize_response: Union[bool] = kwargs.get("normalize_response", bool())
 
 

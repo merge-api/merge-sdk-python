@@ -113,8 +113,8 @@ class LeadRequest(ModelNormal):
             'converted_date': (datetime, none_type, none_type,),  # noqa: E501
             'converted_contact': (str, none_type, none_type,),  # noqa: E501
             'converted_account': (str, none_type, none_type,),  # noqa: E501
-            'integration_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
-            'linked_account_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'integration_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'linked_account_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
             'remote_fields': ([RemoteFieldRequest], none_type,),  # noqa: E501
         }
         expands_types = {"converted_account": "Account", "converted_contact": "Contact", "owner": "User"}
@@ -205,8 +205,8 @@ class LeadRequest(ModelNormal):
             converted_date (datetime, none_type): When the lead was converted.. [optional]  # noqa: E501
             converted_contact (str, none_type): The contact of the converted lead.. [optional]  # noqa: E501
             converted_account (str, none_type): The account of the converted lead.. [optional]  # noqa: E501
-            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             remote_fields ([RemoteFieldRequest]): [optional]  # noqa: E501
         """
 
@@ -313,8 +313,8 @@ class LeadRequest(ModelNormal):
             converted_date (datetime, none_type): When the lead was converted.. [optional]  # noqa: E501
             converted_contact (str, none_type): The contact of the converted lead.. [optional]  # noqa: E501
             converted_account (str, none_type): The account of the converted lead.. [optional]  # noqa: E501
-            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             remote_fields ([RemoteFieldRequest]): [optional]  # noqa: E501
         """
 
@@ -357,8 +357,8 @@ class LeadRequest(ModelNormal):
         self.converted_date: Union[datetime, none_type] = kwargs.get("converted_date", None)
         self.converted_contact: Union[str, none_type] = kwargs.get("converted_contact", None)
         self.converted_account: Union[str, none_type] = kwargs.get("converted_account", None)
-        self.integration_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
-        self.linked_account_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
+        self.integration_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
+        self.linked_account_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
         self.remote_fields: Union[List["RemoteFieldRequest"]] = kwargs.get("remote_fields", None)
 
 

@@ -96,8 +96,8 @@ class CommentRequest(ModelNormal):
             'html_body': (str, none_type, none_type,),  # noqa: E501
             'ticket': (str, none_type, none_type,),  # noqa: E501
             'is_private': (bool, none_type, none_type,),  # noqa: E501
-            'integration_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
-            'linked_account_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'integration_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'linked_account_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
         }
         expands_types = {"contact": "Contact", "ticket": "Ticket", "user": "User"}
 
@@ -174,8 +174,8 @@ class CommentRequest(ModelNormal):
             html_body (str, none_type): The comment's text body formatted as html.. [optional]  # noqa: E501
             ticket (str, none_type): The ticket associated with the comment. . [optional]  # noqa: E501
             is_private (bool, none_type): Whether or not the comment is internal.. [optional]  # noqa: E501
-            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -268,8 +268,8 @@ class CommentRequest(ModelNormal):
             html_body (str, none_type): The comment's text body formatted as html.. [optional]  # noqa: E501
             ticket (str, none_type): The ticket associated with the comment. . [optional]  # noqa: E501
             is_private (bool, none_type): Whether or not the comment is internal.. [optional]  # noqa: E501
-            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -305,7 +305,7 @@ class CommentRequest(ModelNormal):
         self.html_body: Union[str, none_type] = kwargs.get("html_body", None)
         self.ticket: Union[str, none_type] = kwargs.get("ticket", None)
         self.is_private: Union[bool, none_type] = kwargs.get("is_private", None)
-        self.integration_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
-        self.linked_account_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
+        self.integration_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
+        self.linked_account_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
 
 

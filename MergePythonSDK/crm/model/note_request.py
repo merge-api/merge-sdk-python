@@ -100,8 +100,8 @@ class NoteRequest(ModelNormal):
             'contact': (str, none_type, none_type,),  # noqa: E501
             'account': (str, none_type, none_type,),  # noqa: E501
             'opportunity': (str, none_type, none_type,),  # noqa: E501
-            'integration_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
-            'linked_account_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'integration_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'linked_account_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
             'remote_fields': ([RemoteFieldRequest], none_type,),  # noqa: E501
         }
         expands_types = {"account": "Account", "contact": "Contact", "opportunity": "Opportunity", "owner": "User"}
@@ -178,8 +178,8 @@ class NoteRequest(ModelNormal):
             contact (str, none_type): The note's contact.. [optional]  # noqa: E501
             account (str, none_type): The note's account.. [optional]  # noqa: E501
             opportunity (str, none_type): The note's opportunity.. [optional]  # noqa: E501
-            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             remote_fields ([RemoteFieldRequest]): [optional]  # noqa: E501
         """
 
@@ -272,8 +272,8 @@ class NoteRequest(ModelNormal):
             contact (str, none_type): The note's contact.. [optional]  # noqa: E501
             account (str, none_type): The note's account.. [optional]  # noqa: E501
             opportunity (str, none_type): The note's opportunity.. [optional]  # noqa: E501
-            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             remote_fields ([RemoteFieldRequest]): [optional]  # noqa: E501
         """
 
@@ -309,8 +309,8 @@ class NoteRequest(ModelNormal):
         self.contact: Union[str, none_type] = kwargs.get("contact", None)
         self.account: Union[str, none_type] = kwargs.get("account", None)
         self.opportunity: Union[str, none_type] = kwargs.get("opportunity", None)
-        self.integration_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
-        self.linked_account_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
+        self.integration_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
+        self.linked_account_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
         self.remote_fields: Union[List["RemoteFieldRequest"]] = kwargs.get("remote_fields", None)
 
 

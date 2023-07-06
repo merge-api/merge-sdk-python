@@ -108,7 +108,7 @@ class TrackingCategory(ModelNormal):
             'id': (str, none_type,),  # noqa: E501
             'remote_id': (str, none_type, none_type,),  # noqa: E501
             'modified_at': (datetime, none_type,),  # noqa: E501
-            'field_mappings': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'field_mappings': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
             'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
         }
         expands_types = {"company": "CompanyInfo"}
@@ -189,15 +189,15 @@ class TrackingCategory(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             name (str, none_type): The tracking category's name.. [optional]  # noqa: E501
-            status (bool, date, datetime, dict, float, int, list, str, none_type): The tracking category's status.  * `ACTIVE` - ACTIVE * `ARCHIVED` - ARCHIVED. [optional]  # noqa: E501
-            category_type (bool, date, datetime, dict, float, int, list, str, none_type): The tracking category’s type.  * `CLASS` - CLASS * `DEPARTMENT` - DEPARTMENT. [optional]  # noqa: E501
+            status (bool, dict, float, int, list, str, none_type): The tracking category's status.  * `ACTIVE` - ACTIVE * `ARCHIVED` - ARCHIVED. [optional]  # noqa: E501
+            category_type (bool, dict, float, int, list, str, none_type): The tracking category’s type.  * `CLASS` - CLASS * `DEPARTMENT` - DEPARTMENT. [optional]  # noqa: E501
             parent_category (str, none_type): ID of the parent tracking category.. [optional]  # noqa: E501
             company (str, none_type): The company the tracking category belongs to.. [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
             id (str): [optional]  # noqa: E501
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
-            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            field_mappings ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
         """
 
@@ -289,15 +289,15 @@ class TrackingCategory(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             name (str, none_type): The tracking category's name.. [optional]  # noqa: E501
-            status (bool, date, datetime, dict, float, int, list, str, none_type): The tracking category's status.  * `ACTIVE` - ACTIVE * `ARCHIVED` - ARCHIVED. [optional]  # noqa: E501
-            category_type (bool, date, datetime, dict, float, int, list, str, none_type): The tracking category’s type.  * `CLASS` - CLASS * `DEPARTMENT` - DEPARTMENT. [optional]  # noqa: E501
+            status (bool, dict, float, int, list, str, none_type): The tracking category's status.  * `ACTIVE` - ACTIVE * `ARCHIVED` - ARCHIVED. [optional]  # noqa: E501
+            category_type (bool, dict, float, int, list, str, none_type): The tracking category’s type.  * `CLASS` - CLASS * `DEPARTMENT` - DEPARTMENT. [optional]  # noqa: E501
             parent_category (str, none_type): ID of the parent tracking category.. [optional]  # noqa: E501
             company (str, none_type): The company the tracking category belongs to.. [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
             id (str): [optional]  # noqa: E501
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
-            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            field_mappings ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
         """
 
@@ -329,15 +329,15 @@ class TrackingCategory(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.name: Union[str, none_type] = kwargs.get("name", None)
-        self.status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
-        self.category_type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("category_type", None)
+        self.status: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("status", None)
+        self.category_type: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("category_type", None)
         self.parent_category: Union[str, none_type] = kwargs.get("parent_category", None)
         self.company: Union[str, none_type] = kwargs.get("company", None)
         self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
         self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
         self._id: Union[str] = kwargs.get("id", str())
         self._modified_at: Union[datetime] = kwargs.get("modified_at", None)
-        self._field_mappings: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("field_mappings", None)
+        self._field_mappings: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("field_mappings", None)
         self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
     @property
     def remote_was_deleted(self):

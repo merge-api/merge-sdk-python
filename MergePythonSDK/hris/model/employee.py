@@ -144,10 +144,10 @@ class Employee(ModelNormal):
             'employment_status': (EmploymentStatusEnum, str, none_type,),
             'termination_date': (datetime, none_type, none_type,),  # noqa: E501
             'avatar': (str, none_type, none_type,),  # noqa: E501
-            'custom_fields': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'custom_fields': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
             'remote_was_deleted': (bool, none_type,),  # noqa: E501
             'modified_at': (datetime, none_type,),  # noqa: E501
-            'field_mappings': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'field_mappings': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
             'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
         }
         expands_types = {"company": "Company", "employments": "Employment", "groups": "Group", "home_location": "Location", "manager": "Employee", "pay_group": "PayGroup", "team": "Team", "work_location": "Location"}
@@ -269,20 +269,20 @@ class Employee(ModelNormal):
             team (str, none_type): The employee's team.. [optional]  # noqa: E501
             pay_group (str, none_type): The employee's pay group. [optional]  # noqa: E501
             ssn (str, none_type): The employee's social security number.. [optional]  # noqa: E501
-            gender (bool, date, datetime, dict, float, int, list, str, none_type): The employee's gender.  * `MALE` - MALE * `FEMALE` - FEMALE * `NON-BINARY` - NON-BINARY * `OTHER` - OTHER * `PREFER_NOT_TO_DISCLOSE` - PREFER_NOT_TO_DISCLOSE. [optional]  # noqa: E501
-            ethnicity (bool, date, datetime, dict, float, int, list, str, none_type): The employee's ethnicity.  * `AMERICAN_INDIAN_OR_ALASKA_NATIVE` - AMERICAN_INDIAN_OR_ALASKA_NATIVE * `ASIAN_OR_INDIAN_SUBCONTINENT` - ASIAN_OR_INDIAN_SUBCONTINENT * `BLACK_OR_AFRICAN_AMERICAN` - BLACK_OR_AFRICAN_AMERICAN * `HISPANIC_OR_LATINO` - HISPANIC_OR_LATINO * `NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER` - NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER * `TWO_OR_MORE_RACES` - TWO_OR_MORE_RACES * `WHITE` - WHITE * `PREFER_NOT_TO_DISCLOSE` - PREFER_NOT_TO_DISCLOSE. [optional]  # noqa: E501
-            marital_status (bool, date, datetime, dict, float, int, list, str, none_type): The employee's filing status as related to marital status.  * `SINGLE` - SINGLE * `MARRIED_FILING_JOINTLY` - MARRIED_FILING_JOINTLY * `MARRIED_FILING_SEPARATELY` - MARRIED_FILING_SEPARATELY * `HEAD_OF_HOUSEHOLD` - HEAD_OF_HOUSEHOLD * `QUALIFYING_WIDOW_OR_WIDOWER_WITH_DEPENDENT_CHILD` - QUALIFYING_WIDOW_OR_WIDOWER_WITH_DEPENDENT_CHILD. [optional]  # noqa: E501
+            gender (bool, dict, float, int, list, str, none_type): The employee's gender.  * `MALE` - MALE * `FEMALE` - FEMALE * `NON-BINARY` - NON-BINARY * `OTHER` - OTHER * `PREFER_NOT_TO_DISCLOSE` - PREFER_NOT_TO_DISCLOSE. [optional]  # noqa: E501
+            ethnicity (bool, dict, float, int, list, str, none_type): The employee's ethnicity.  * `AMERICAN_INDIAN_OR_ALASKA_NATIVE` - AMERICAN_INDIAN_OR_ALASKA_NATIVE * `ASIAN_OR_INDIAN_SUBCONTINENT` - ASIAN_OR_INDIAN_SUBCONTINENT * `BLACK_OR_AFRICAN_AMERICAN` - BLACK_OR_AFRICAN_AMERICAN * `HISPANIC_OR_LATINO` - HISPANIC_OR_LATINO * `NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER` - NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER * `TWO_OR_MORE_RACES` - TWO_OR_MORE_RACES * `WHITE` - WHITE * `PREFER_NOT_TO_DISCLOSE` - PREFER_NOT_TO_DISCLOSE. [optional]  # noqa: E501
+            marital_status (bool, dict, float, int, list, str, none_type): The employee's filing status as related to marital status.  * `SINGLE` - SINGLE * `MARRIED_FILING_JOINTLY` - MARRIED_FILING_JOINTLY * `MARRIED_FILING_SEPARATELY` - MARRIED_FILING_SEPARATELY * `HEAD_OF_HOUSEHOLD` - HEAD_OF_HOUSEHOLD * `QUALIFYING_WIDOW_OR_WIDOWER_WITH_DEPENDENT_CHILD` - QUALIFYING_WIDOW_OR_WIDOWER_WITH_DEPENDENT_CHILD. [optional]  # noqa: E501
             date_of_birth (datetime, none_type): The employee's date of birth.. [optional]  # noqa: E501
             hire_date (datetime, none_type): The date that the employee was hired, usually the day that an offer letter is signed. If an employee has multiple hire dates from previous employments, this represents the most recent hire date. Note: If you're looking for the employee's start date, refer to the start_date field.. [optional]  # noqa: E501
             start_date (datetime, none_type): The date that the employee started working. If an employee was rehired, the most recent start date will be returned.. [optional]  # noqa: E501
             remote_created_at (datetime, none_type): When the third party's employee was created.. [optional]  # noqa: E501
-            employment_status (bool, date, datetime, dict, float, int, list, str, none_type): The employment status of the employee.  * `ACTIVE` - ACTIVE * `PENDING` - PENDING * `INACTIVE` - INACTIVE. [optional]  # noqa: E501
+            employment_status (bool, dict, float, int, list, str, none_type): The employment status of the employee.  * `ACTIVE` - ACTIVE * `PENDING` - PENDING * `INACTIVE` - INACTIVE. [optional]  # noqa: E501
             termination_date (datetime, none_type): The employee's termination date.. [optional]  # noqa: E501
             avatar (str, none_type): The URL of the employee's avatar image.. [optional]  # noqa: E501
-            custom_fields ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Custom fields configured for a given model.. [optional]  # noqa: E501
+            custom_fields ({str: (bool, dict, float, int, list, str, none_type)}, none_type): Custom fields configured for a given model.. [optional]  # noqa: E501
             remote_was_deleted (bool): [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
-            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            field_mappings ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
         """
 
@@ -417,20 +417,20 @@ class Employee(ModelNormal):
             team (str, none_type): The employee's team.. [optional]  # noqa: E501
             pay_group (str, none_type): The employee's pay group. [optional]  # noqa: E501
             ssn (str, none_type): The employee's social security number.. [optional]  # noqa: E501
-            gender (bool, date, datetime, dict, float, int, list, str, none_type): The employee's gender.  * `MALE` - MALE * `FEMALE` - FEMALE * `NON-BINARY` - NON-BINARY * `OTHER` - OTHER * `PREFER_NOT_TO_DISCLOSE` - PREFER_NOT_TO_DISCLOSE. [optional]  # noqa: E501
-            ethnicity (bool, date, datetime, dict, float, int, list, str, none_type): The employee's ethnicity.  * `AMERICAN_INDIAN_OR_ALASKA_NATIVE` - AMERICAN_INDIAN_OR_ALASKA_NATIVE * `ASIAN_OR_INDIAN_SUBCONTINENT` - ASIAN_OR_INDIAN_SUBCONTINENT * `BLACK_OR_AFRICAN_AMERICAN` - BLACK_OR_AFRICAN_AMERICAN * `HISPANIC_OR_LATINO` - HISPANIC_OR_LATINO * `NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER` - NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER * `TWO_OR_MORE_RACES` - TWO_OR_MORE_RACES * `WHITE` - WHITE * `PREFER_NOT_TO_DISCLOSE` - PREFER_NOT_TO_DISCLOSE. [optional]  # noqa: E501
-            marital_status (bool, date, datetime, dict, float, int, list, str, none_type): The employee's filing status as related to marital status.  * `SINGLE` - SINGLE * `MARRIED_FILING_JOINTLY` - MARRIED_FILING_JOINTLY * `MARRIED_FILING_SEPARATELY` - MARRIED_FILING_SEPARATELY * `HEAD_OF_HOUSEHOLD` - HEAD_OF_HOUSEHOLD * `QUALIFYING_WIDOW_OR_WIDOWER_WITH_DEPENDENT_CHILD` - QUALIFYING_WIDOW_OR_WIDOWER_WITH_DEPENDENT_CHILD. [optional]  # noqa: E501
+            gender (bool, dict, float, int, list, str, none_type): The employee's gender.  * `MALE` - MALE * `FEMALE` - FEMALE * `NON-BINARY` - NON-BINARY * `OTHER` - OTHER * `PREFER_NOT_TO_DISCLOSE` - PREFER_NOT_TO_DISCLOSE. [optional]  # noqa: E501
+            ethnicity (bool, dict, float, int, list, str, none_type): The employee's ethnicity.  * `AMERICAN_INDIAN_OR_ALASKA_NATIVE` - AMERICAN_INDIAN_OR_ALASKA_NATIVE * `ASIAN_OR_INDIAN_SUBCONTINENT` - ASIAN_OR_INDIAN_SUBCONTINENT * `BLACK_OR_AFRICAN_AMERICAN` - BLACK_OR_AFRICAN_AMERICAN * `HISPANIC_OR_LATINO` - HISPANIC_OR_LATINO * `NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER` - NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER * `TWO_OR_MORE_RACES` - TWO_OR_MORE_RACES * `WHITE` - WHITE * `PREFER_NOT_TO_DISCLOSE` - PREFER_NOT_TO_DISCLOSE. [optional]  # noqa: E501
+            marital_status (bool, dict, float, int, list, str, none_type): The employee's filing status as related to marital status.  * `SINGLE` - SINGLE * `MARRIED_FILING_JOINTLY` - MARRIED_FILING_JOINTLY * `MARRIED_FILING_SEPARATELY` - MARRIED_FILING_SEPARATELY * `HEAD_OF_HOUSEHOLD` - HEAD_OF_HOUSEHOLD * `QUALIFYING_WIDOW_OR_WIDOWER_WITH_DEPENDENT_CHILD` - QUALIFYING_WIDOW_OR_WIDOWER_WITH_DEPENDENT_CHILD. [optional]  # noqa: E501
             date_of_birth (datetime, none_type): The employee's date of birth.. [optional]  # noqa: E501
             hire_date (datetime, none_type): The date that the employee was hired, usually the day that an offer letter is signed. If an employee has multiple hire dates from previous employments, this represents the most recent hire date. Note: If you're looking for the employee's start date, refer to the start_date field.. [optional]  # noqa: E501
             start_date (datetime, none_type): The date that the employee started working. If an employee was rehired, the most recent start date will be returned.. [optional]  # noqa: E501
             remote_created_at (datetime, none_type): When the third party's employee was created.. [optional]  # noqa: E501
-            employment_status (bool, date, datetime, dict, float, int, list, str, none_type): The employment status of the employee.  * `ACTIVE` - ACTIVE * `PENDING` - PENDING * `INACTIVE` - INACTIVE. [optional]  # noqa: E501
+            employment_status (bool, dict, float, int, list, str, none_type): The employment status of the employee.  * `ACTIVE` - ACTIVE * `PENDING` - PENDING * `INACTIVE` - INACTIVE. [optional]  # noqa: E501
             termination_date (datetime, none_type): The employee's termination date.. [optional]  # noqa: E501
             avatar (str, none_type): The URL of the employee's avatar image.. [optional]  # noqa: E501
-            custom_fields ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Custom fields configured for a given model.. [optional]  # noqa: E501
+            custom_fields ({str: (bool, dict, float, int, list, str, none_type)}, none_type): Custom fields configured for a given model.. [optional]  # noqa: E501
             remote_was_deleted (bool): [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
-            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            field_mappings ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
         """
 
@@ -479,23 +479,23 @@ class Employee(ModelNormal):
         self.team: Union[str, none_type] = kwargs.get("team", None)
         self.pay_group: Union[str, none_type] = kwargs.get("pay_group", None)
         self.ssn: Union[str, none_type] = kwargs.get("ssn", None)
-        self.gender: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("gender", None)
-        self.ethnicity: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("ethnicity", None)
-        self.marital_status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("marital_status", None)
+        self.gender: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("gender", None)
+        self.ethnicity: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("ethnicity", None)
+        self.marital_status: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("marital_status", None)
         self.date_of_birth: Union[datetime, none_type] = kwargs.get("date_of_birth", None)
         self.hire_date: Union[datetime, none_type] = kwargs.get("hire_date", None)
         self.start_date: Union[datetime, none_type] = kwargs.get("start_date", None)
         self.remote_created_at: Union[datetime, none_type] = kwargs.get("remote_created_at", None)
-        self.employment_status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("employment_status", None)
+        self.employment_status: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("employment_status", None)
         self.termination_date: Union[datetime, none_type] = kwargs.get("termination_date", None)
         self.avatar: Union[str, none_type] = kwargs.get("avatar", None)
-        self.custom_fields: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("custom_fields", None)
+        self.custom_fields: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("custom_fields", None)
 
         # Read only properties
         self._id: Union[str] = kwargs.get("id", str())
         self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
         self._modified_at: Union[datetime] = kwargs.get("modified_at", None)
-        self._field_mappings: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("field_mappings", None)
+        self._field_mappings: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("field_mappings", None)
         self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
 
     # Read only property getters

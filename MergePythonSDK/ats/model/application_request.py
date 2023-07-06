@@ -102,8 +102,8 @@ class ApplicationRequest(ModelNormal):
             'current_stage': (str, none_type, none_type,),  # noqa: E501
             'reject_reason': (str, none_type, none_type,),  # noqa: E501
             'remote_template_id': (str, none_type, none_type,),  # noqa: E501
-            'integration_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
-            'linked_account_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'integration_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'linked_account_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
         }
         expands_types = {"candidate": "Candidate", "credited_to": "RemoteUser", "current_stage": "JobInterviewStage", "job": "Job", "reject_reason": "RejectReason"}
 
@@ -186,8 +186,8 @@ class ApplicationRequest(ModelNormal):
             current_stage (str, none_type): The application's current stage.. [optional]  # noqa: E501
             reject_reason (str, none_type): The application's reason for rejection.. [optional]  # noqa: E501
             remote_template_id (str, none_type): [optional]  # noqa: E501
-            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -286,8 +286,8 @@ class ApplicationRequest(ModelNormal):
             current_stage (str, none_type): The application's current stage.. [optional]  # noqa: E501
             reject_reason (str, none_type): The application's reason for rejection.. [optional]  # noqa: E501
             remote_template_id (str, none_type): [optional]  # noqa: E501
-            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -326,7 +326,7 @@ class ApplicationRequest(ModelNormal):
         self.current_stage: Union[str, none_type] = kwargs.get("current_stage", None)
         self.reject_reason: Union[str, none_type] = kwargs.get("reject_reason", None)
         self.remote_template_id: Union[str, none_type] = kwargs.get("remote_template_id", None)
-        self.integration_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
-        self.linked_account_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
+        self.integration_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
+        self.linked_account_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
 
 

@@ -105,8 +105,8 @@ class PatchedTaskRequest(ModelNormal):
             'completed_date': (datetime, none_type, none_type,),  # noqa: E501
             'due_date': (datetime, none_type, none_type,),  # noqa: E501
             'status': (TaskStatusEnum, str, none_type,),
-            'integration_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
-            'linked_account_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'integration_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'linked_account_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
             'remote_fields': ([RemoteFieldRequest], none_type,),  # noqa: E501
         }
         return defined_types
@@ -178,9 +178,9 @@ class PatchedTaskRequest(ModelNormal):
             opportunity (str, none_type): The task's opportunity.. [optional]  # noqa: E501
             completed_date (datetime, none_type): When the task is completed.. [optional]  # noqa: E501
             due_date (datetime, none_type): When the task is due.. [optional]  # noqa: E501
-            status (bool, date, datetime, dict, float, int, list, str, none_type): The task's status.  * `OPEN` - OPEN * `CLOSED` - CLOSED. [optional]  # noqa: E501
-            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            status (bool, dict, float, int, list, str, none_type): The task's status.  * `OPEN` - OPEN * `CLOSED` - CLOSED. [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             remote_fields ([RemoteFieldRequest]): [optional]  # noqa: E501
         """
 
@@ -278,9 +278,9 @@ class PatchedTaskRequest(ModelNormal):
             opportunity (str, none_type): The task's opportunity.. [optional]  # noqa: E501
             completed_date (datetime, none_type): When the task is completed.. [optional]  # noqa: E501
             due_date (datetime, none_type): When the task is due.. [optional]  # noqa: E501
-            status (bool, date, datetime, dict, float, int, list, str, none_type): The task's status.  * `OPEN` - OPEN * `CLOSED` - CLOSED. [optional]  # noqa: E501
-            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            status (bool, dict, float, int, list, str, none_type): The task's status.  * `OPEN` - OPEN * `CLOSED` - CLOSED. [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             remote_fields ([RemoteFieldRequest]): [optional]  # noqa: E501
         """
 
@@ -318,9 +318,9 @@ class PatchedTaskRequest(ModelNormal):
         self.opportunity: Union[str, none_type] = kwargs.get("opportunity", None)
         self.completed_date: Union[datetime, none_type] = kwargs.get("completed_date", None)
         self.due_date: Union[datetime, none_type] = kwargs.get("due_date", None)
-        self.status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
-        self.integration_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
-        self.linked_account_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
+        self.status: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("status", None)
+        self.integration_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
+        self.linked_account_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
         self.remote_fields: Union[List["RemoteFieldRequest"]] = kwargs.get("remote_fields", None)
 
 

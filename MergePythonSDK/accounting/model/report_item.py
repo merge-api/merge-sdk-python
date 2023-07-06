@@ -93,7 +93,7 @@ class ReportItem(ModelNormal):
             'remote_id': (str, none_type, none_type,),  # noqa: E501
             'name': (str, none_type, none_type,),  # noqa: E501
             'value': (float, none_type, none_type,),  # noqa: E501
-            'sub_items': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'sub_items': ({str: (bool, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'company': (str, none_type, none_type,),  # noqa: E501
             'modified_at': (datetime, none_type,),  # noqa: E501
         }
@@ -159,7 +159,7 @@ class ReportItem(ModelNormal):
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             name (str, none_type): The report item's name.. [optional]  # noqa: E501
             value (float, none_type): The report item's value.. [optional]  # noqa: E501
-            sub_items ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
+            sub_items ({str: (bool, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
             company (str, none_type): The company the report item belongs to.. [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
         """
@@ -249,7 +249,7 @@ class ReportItem(ModelNormal):
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             name (str, none_type): The report item's name.. [optional]  # noqa: E501
             value (float, none_type): The report item's value.. [optional]  # noqa: E501
-            sub_items ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
+            sub_items ({str: (bool, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
             company (str, none_type): The company the report item belongs to.. [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
         """
@@ -285,7 +285,7 @@ class ReportItem(ModelNormal):
         self.name: Union[str, none_type] = kwargs.get("name", None)
         self.value: Union[float, none_type] = kwargs.get("value", None)
         self.company: Union[str, none_type] = kwargs.get("company", None)
-        self._sub_items: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type]] = kwargs.get("sub_items", dict())
+        self._sub_items: Union[Dict[str, bool, dict, float, int, list, str, none_type]] = kwargs.get("sub_items", dict())
         self._modified_at: Union[datetime] = kwargs.get("modified_at", None)
     @property
     def sub_items(self):

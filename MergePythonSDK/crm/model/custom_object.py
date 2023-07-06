@@ -96,7 +96,7 @@ class CustomObject(ModelNormal):
 
         defined_types = {
             'object_class': (str, none_type, none_type,),  # noqa: E501
-            'fields': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'fields': ({str: (bool, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'remote_id': (str, none_type, none_type,),  # noqa: E501
             'id': (str, none_type,),  # noqa: E501
             'modified_at': (datetime, none_type,),  # noqa: E501
@@ -164,7 +164,7 @@ class CustomObject(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             object_class (str, none_type): [optional]  # noqa: E501
-            fields ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
+            fields ({str: (bool, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             id (str): [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
@@ -254,7 +254,7 @@ class CustomObject(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             object_class (str, none_type): [optional]  # noqa: E501
-            fields ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
+            fields ({str: (bool, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             id (str): [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
@@ -290,7 +290,7 @@ class CustomObject(ModelNormal):
 
         self.object_class: Union[str, none_type] = kwargs.get("object_class", None)
         self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
-        self._fields: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type]] = kwargs.get("fields", dict())
+        self._fields: Union[Dict[str, bool, dict, float, int, list, str, none_type]] = kwargs.get("fields", dict())
         self._id: Union[str] = kwargs.get("id", str())
         self._modified_at: Union[datetime] = kwargs.get("modified_at", None)
         self._remote_fields: Union[List["RemoteField"]] = kwargs.get("remote_fields", None)

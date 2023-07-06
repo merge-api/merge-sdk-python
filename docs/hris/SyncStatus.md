@@ -1,19 +1,18 @@
 # SyncStatus
 
-# The SyncStatus Object ### Description The `SyncStatus` object is used to represent the syncing state of an account  ### Usage Example View the `SyncStatus` for an account to see how recently its models were synced.
+# The SyncStatus Object ### Description The `SyncStatus` object is used to represent the syncing state of an account ### Usage Example View the `SyncStatus` for an account to see how recently its models were synced.
 
 ## Properties
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**model_name** | **str** |  | 
-**model_id** | **str** |  | 
-**status** | **bool, date, datetime, dict, float, int, list, str, none_type** |  | 
-**is_initial_sync** | **bool** |  | 
-**last_sync_start** | **datetime** |  | [optional] 
-**next_sync_start** | **datetime** |  | [optional] 
-**selective_sync_configurations_usage** | [**SelectiveSyncConfigurationsUsageEnum**](SelectiveSyncConfigurationsUsageEnum.md) |  | [optional] 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+
+| Name                                    | Type                                                                                | Description                                                        | Notes      |
+| --------------------------------------- | ----------------------------------------------------------------------------------- | ------------------------------------------------------------------ | ---------- |
+| **model_name**                          | **str**                                                                             |                                                                    |
+| **model_id**                            | **str**                                                                             |                                                                    |
+| **status**                              | **bool, dict, float, int, list, str, none_type**                                    |                                                                    |
+| **is_initial_sync**                     | **bool**                                                                            |                                                                    |
+| **last_sync_start**                     | **datetime**                                                                        |                                                                    | [optional] |
+| **next_sync_start**                     | **datetime**                                                                        |                                                                    | [optional] |
+| **selective_sync_configurations_usage** | [**SelectiveSyncConfigurationsUsageEnum**](SelectiveSyncConfigurationsUsageEnum.md) |                                                                    | [optional] |
+| **any string name**                     | **bool, dict, float, int, list, str, none_type**                                    | any string name can be used but the value must be the correct type | [optional] |
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

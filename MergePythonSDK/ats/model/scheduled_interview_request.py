@@ -103,8 +103,8 @@ class ScheduledInterviewRequest(ModelNormal):
             'start_at': (datetime, none_type, none_type,),  # noqa: E501
             'end_at': (datetime, none_type, none_type,),  # noqa: E501
             'status': (ScheduledInterviewStatusEnum, str, none_type,),
-            'integration_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
-            'linked_account_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'integration_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'linked_account_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
         }
         expands_types = {"application": "Application", "interviewers": "RemoteUser", "job_interview_stage": "JobInterviewStage", "organizer": "RemoteUser"}
 
@@ -184,9 +184,9 @@ class ScheduledInterviewRequest(ModelNormal):
             location (str, none_type): The interview's location.. [optional]  # noqa: E501
             start_at (datetime, none_type): When the interview was started.. [optional]  # noqa: E501
             end_at (datetime, none_type): When the interview was ended.. [optional]  # noqa: E501
-            status (bool, date, datetime, dict, float, int, list, str, none_type): The interview's status.  * `SCHEDULED` - SCHEDULED * `AWAITING_FEEDBACK` - AWAITING_FEEDBACK * `COMPLETE` - COMPLETE. [optional]  # noqa: E501
-            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            status (bool, dict, float, int, list, str, none_type): The interview's status.  * `SCHEDULED` - SCHEDULED * `AWAITING_FEEDBACK` - AWAITING_FEEDBACK * `COMPLETE` - COMPLETE. [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -282,9 +282,9 @@ class ScheduledInterviewRequest(ModelNormal):
             location (str, none_type): The interview's location.. [optional]  # noqa: E501
             start_at (datetime, none_type): When the interview was started.. [optional]  # noqa: E501
             end_at (datetime, none_type): When the interview was ended.. [optional]  # noqa: E501
-            status (bool, date, datetime, dict, float, int, list, str, none_type): The interview's status.  * `SCHEDULED` - SCHEDULED * `AWAITING_FEEDBACK` - AWAITING_FEEDBACK * `COMPLETE` - COMPLETE. [optional]  # noqa: E501
-            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            status (bool, dict, float, int, list, str, none_type): The interview's status.  * `SCHEDULED` - SCHEDULED * `AWAITING_FEEDBACK` - AWAITING_FEEDBACK * `COMPLETE` - COMPLETE. [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -321,8 +321,8 @@ class ScheduledInterviewRequest(ModelNormal):
         self.location: Union[str, none_type] = kwargs.get("location", None)
         self.start_at: Union[datetime, none_type] = kwargs.get("start_at", None)
         self.end_at: Union[datetime, none_type] = kwargs.get("end_at", None)
-        self.status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
-        self.integration_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
-        self.linked_account_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
+        self.status: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("status", None)
+        self.integration_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
+        self.linked_account_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
 
 

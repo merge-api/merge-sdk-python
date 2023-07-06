@@ -96,8 +96,8 @@ class AccountingAttachmentRequest(ModelNormal):
             'file_name': (str, none_type, none_type,),  # noqa: E501
             'file_url': (str, none_type, none_type,),  # noqa: E501
             'company': (str, none_type, none_type,),  # noqa: E501
-            'integration_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
-            'linked_account_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'integration_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'linked_account_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
         }
         return defined_types
 
@@ -158,8 +158,8 @@ class AccountingAttachmentRequest(ModelNormal):
             file_name (str, none_type): The attachment's name.. [optional]  # noqa: E501
             file_url (str, none_type): The attachment's url.. [optional]  # noqa: E501
             company (str, none_type): The company the accounting attachment belongs to.. [optional]  # noqa: E501
-            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -246,8 +246,8 @@ class AccountingAttachmentRequest(ModelNormal):
             file_name (str, none_type): The attachment's name.. [optional]  # noqa: E501
             file_url (str, none_type): The attachment's url.. [optional]  # noqa: E501
             company (str, none_type): The company the accounting attachment belongs to.. [optional]  # noqa: E501
-            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -280,7 +280,7 @@ class AccountingAttachmentRequest(ModelNormal):
         self.file_name: Union[str, none_type] = kwargs.get("file_name", None)
         self.file_url: Union[str, none_type] = kwargs.get("file_url", None)
         self.company: Union[str, none_type] = kwargs.get("company", None)
-        self.integration_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
-        self.linked_account_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
+        self.integration_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
+        self.linked_account_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
 
 

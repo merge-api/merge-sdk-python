@@ -112,7 +112,7 @@ class Engagement(ModelNormal):
             'id': (str, none_type,),  # noqa: E501
             'remote_id': (str, none_type, none_type,),  # noqa: E501
             'modified_at': (datetime, none_type,),  # noqa: E501
-            'field_mappings': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'field_mappings': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
             'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
             'remote_fields': ([RemoteField], none_type,),  # noqa: E501
         }
@@ -202,7 +202,7 @@ class Engagement(ModelNormal):
             owner (str, none_type): The engagement's owner.. [optional]  # noqa: E501
             content (str, none_type): The engagement's content.. [optional]  # noqa: E501
             subject (str, none_type): The engagement's subject.. [optional]  # noqa: E501
-            direction (bool, date, datetime, dict, float, int, list, str, none_type): The engagement's direction.  * `INBOUND` - INBOUND * `OUTBOUND` - OUTBOUND. [optional]  # noqa: E501
+            direction (bool, dict, float, int, list, str, none_type): The engagement's direction.  * `INBOUND` - INBOUND * `OUTBOUND` - OUTBOUND. [optional]  # noqa: E501
             engagement_type (str, none_type): The engagement type of the engagement.. [optional]  # noqa: E501
             start_time (datetime, none_type): The time at which the engagement started.. [optional]  # noqa: E501
             end_time (datetime, none_type): The time at which the engagement ended.. [optional]  # noqa: E501
@@ -212,7 +212,7 @@ class Engagement(ModelNormal):
             id (str): [optional]  # noqa: E501
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
-            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            field_mappings ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             remote_fields ([RemoteField]): [optional]  # noqa: E501
         """
@@ -312,7 +312,7 @@ class Engagement(ModelNormal):
             owner (str, none_type): The engagement's owner.. [optional]  # noqa: E501
             content (str, none_type): The engagement's content.. [optional]  # noqa: E501
             subject (str, none_type): The engagement's subject.. [optional]  # noqa: E501
-            direction (bool, date, datetime, dict, float, int, list, str, none_type): The engagement's direction.  * `INBOUND` - INBOUND * `OUTBOUND` - OUTBOUND. [optional]  # noqa: E501
+            direction (bool, dict, float, int, list, str, none_type): The engagement's direction.  * `INBOUND` - INBOUND * `OUTBOUND` - OUTBOUND. [optional]  # noqa: E501
             engagement_type (str, none_type): The engagement type of the engagement.. [optional]  # noqa: E501
             start_time (datetime, none_type): The time at which the engagement started.. [optional]  # noqa: E501
             end_time (datetime, none_type): The time at which the engagement ended.. [optional]  # noqa: E501
@@ -322,7 +322,7 @@ class Engagement(ModelNormal):
             id (str): [optional]  # noqa: E501
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
-            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            field_mappings ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             remote_fields ([RemoteField]): [optional]  # noqa: E501
         """
@@ -357,7 +357,7 @@ class Engagement(ModelNormal):
         self.owner: Union[str, none_type] = kwargs.get("owner", None)
         self.content: Union[str, none_type] = kwargs.get("content", None)
         self.subject: Union[str, none_type] = kwargs.get("subject", None)
-        self.direction: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("direction", None)
+        self.direction: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("direction", None)
         self.engagement_type: Union[str, none_type] = kwargs.get("engagement_type", None)
         self.start_time: Union[datetime, none_type] = kwargs.get("start_time", None)
         self.end_time: Union[datetime, none_type] = kwargs.get("end_time", None)
@@ -367,7 +367,7 @@ class Engagement(ModelNormal):
         self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
         self._id: Union[str] = kwargs.get("id", str())
         self._modified_at: Union[datetime] = kwargs.get("modified_at", None)
-        self._field_mappings: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("field_mappings", None)
+        self._field_mappings: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("field_mappings", None)
         self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
         self._remote_fields: Union[List["RemoteField"]] = kwargs.get("remote_fields", None)
     @property

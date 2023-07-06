@@ -158,7 +158,7 @@ class EmailAddress(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             value (str, none_type): The email address.. [optional]  # noqa: E501
-            email_address_type (bool, date, datetime, dict, float, int, list, str, none_type): The type of email address.  * `PERSONAL` - PERSONAL * `WORK` - WORK * `OTHER` - OTHER. [optional]  # noqa: E501
+            email_address_type (bool, dict, float, int, list, str, none_type): The type of email address.  * `PERSONAL` - PERSONAL * `WORK` - WORK * `OTHER` - OTHER. [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
         """
 
@@ -242,7 +242,7 @@ class EmailAddress(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             value (str, none_type): The email address.. [optional]  # noqa: E501
-            email_address_type (bool, date, datetime, dict, float, int, list, str, none_type): The type of email address.  * `PERSONAL` - PERSONAL * `WORK` - WORK * `OTHER` - OTHER. [optional]  # noqa: E501
+            email_address_type (bool, dict, float, int, list, str, none_type): The type of email address.  * `PERSONAL` - PERSONAL * `WORK` - WORK * `OTHER` - OTHER. [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
         """
 
@@ -274,7 +274,7 @@ class EmailAddress(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.value: Union[str, none_type] = kwargs.get("value", None)
-        self.email_address_type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("email_address_type", None)
+        self.email_address_type: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("email_address_type", None)
         self._modified_at: Union[datetime] = kwargs.get("modified_at", None)
     @property
     def modified_at(self):

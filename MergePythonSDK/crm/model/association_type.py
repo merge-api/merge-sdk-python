@@ -97,7 +97,7 @@ class AssociationType(ModelNormal):
         lazy_import()
 
         defined_types = {
-            'source_object_class': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'source_object_class': ({str: (bool, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'target_object_classes': ([AssociationSubType], none_type,),  # noqa: E501
             'remote_key_name': (str, none_type, none_type,),  # noqa: E501
             'display_name': (str, none_type, none_type,),  # noqa: E501
@@ -181,11 +181,11 @@ class AssociationType(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            source_object_class ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
+            source_object_class ({str: (bool, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
             target_object_classes ([AssociationSubType]): [optional]  # noqa: E501
             remote_key_name (str, none_type): [optional]  # noqa: E501
             display_name (str, none_type): [optional]  # noqa: E501
-            cardinality (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
+            cardinality (bool, dict, float, int, list, str, none_type): [optional]  # noqa: E501
             is_required (bool): [optional]  # noqa: E501
             id (str): [optional]  # noqa: E501
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
@@ -279,11 +279,11 @@ class AssociationType(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            source_object_class ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
+            source_object_class ({str: (bool, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
             target_object_classes ([AssociationSubType]): [optional]  # noqa: E501
             remote_key_name (str, none_type): [optional]  # noqa: E501
             display_name (str, none_type): [optional]  # noqa: E501
-            cardinality (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
+            cardinality (bool, dict, float, int, list, str, none_type): [optional]  # noqa: E501
             is_required (bool): [optional]  # noqa: E501
             id (str): [optional]  # noqa: E501
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
@@ -319,12 +319,12 @@ class AssociationType(ModelNormal):
 
         self.remote_key_name: Union[str, none_type] = kwargs.get("remote_key_name", None)
         self.display_name: Union[str, none_type] = kwargs.get("display_name", None)
-        self.cardinality: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("cardinality", None)
+        self.cardinality: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("cardinality", None)
         self.is_required: Union[bool] = kwargs.get("is_required", bool())
         self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
 
         # Read only properties
-        self._source_object_class: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type]] = kwargs.get("source_object_class", dict())
+        self._source_object_class: Union[Dict[str, bool, dict, float, int, list, str, none_type]] = kwargs.get("source_object_class", dict())
         self._target_object_classes: Union[List["AssociationSubType"]] = kwargs.get("target_object_classes", None)
         self._id: Union[str] = kwargs.get("id", str())
         self._modified_at: Union[datetime] = kwargs.get("modified_at", None)

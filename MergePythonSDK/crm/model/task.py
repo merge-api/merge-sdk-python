@@ -111,7 +111,7 @@ class Task(ModelNormal):
             'id': (str, none_type,),  # noqa: E501
             'remote_id': (str, none_type, none_type,),  # noqa: E501
             'modified_at': (datetime, none_type,),  # noqa: E501
-            'field_mappings': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'field_mappings': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
             'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
             'remote_fields': ([RemoteField], none_type,),  # noqa: E501
         }
@@ -204,12 +204,12 @@ class Task(ModelNormal):
             opportunity (str, none_type): The task's opportunity.. [optional]  # noqa: E501
             completed_date (datetime, none_type): When the task is completed.. [optional]  # noqa: E501
             due_date (datetime, none_type): When the task is due.. [optional]  # noqa: E501
-            status (bool, date, datetime, dict, float, int, list, str, none_type): The task's status.  * `OPEN` - OPEN * `CLOSED` - CLOSED. [optional]  # noqa: E501
+            status (bool, dict, float, int, list, str, none_type): The task's status.  * `OPEN` - OPEN * `CLOSED` - CLOSED. [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
             id (str): [optional]  # noqa: E501
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
-            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            field_mappings ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             remote_fields ([RemoteField]): [optional]  # noqa: E501
         """
@@ -312,12 +312,12 @@ class Task(ModelNormal):
             opportunity (str, none_type): The task's opportunity.. [optional]  # noqa: E501
             completed_date (datetime, none_type): When the task is completed.. [optional]  # noqa: E501
             due_date (datetime, none_type): When the task is due.. [optional]  # noqa: E501
-            status (bool, date, datetime, dict, float, int, list, str, none_type): The task's status.  * `OPEN` - OPEN * `CLOSED` - CLOSED. [optional]  # noqa: E501
+            status (bool, dict, float, int, list, str, none_type): The task's status.  * `OPEN` - OPEN * `CLOSED` - CLOSED. [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
             id (str): [optional]  # noqa: E501
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
-            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            field_mappings ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
             remote_fields ([RemoteField]): [optional]  # noqa: E501
         """
@@ -356,12 +356,12 @@ class Task(ModelNormal):
         self.opportunity: Union[str, none_type] = kwargs.get("opportunity", None)
         self.completed_date: Union[datetime, none_type] = kwargs.get("completed_date", None)
         self.due_date: Union[datetime, none_type] = kwargs.get("due_date", None)
-        self.status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
+        self.status: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("status", None)
         self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
         self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
         self._id: Union[str] = kwargs.get("id", str())
         self._modified_at: Union[datetime] = kwargs.get("modified_at", None)
-        self._field_mappings: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("field_mappings", None)
+        self._field_mappings: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("field_mappings", None)
         self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
         self._remote_fields: Union[List["RemoteField"]] = kwargs.get("remote_fields", None)
     @property

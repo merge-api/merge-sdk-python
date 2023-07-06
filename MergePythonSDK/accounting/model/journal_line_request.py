@@ -103,8 +103,8 @@ class JournalLineRequest(ModelNormal):
             'contact': (str, none_type, none_type,),  # noqa: E501
             'description': (str, none_type, none_type,),  # noqa: E501
             'exchange_rate': (str, none_type, none_type,),  # noqa: E501
-            'integration_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
-            'linked_account_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'integration_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'linked_account_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
         }
         expands_types = {"account": "Account", "tracking_categories": "TrackingCategory", "tracking_category": "TrackingCategory"}
 
@@ -185,8 +185,8 @@ class JournalLineRequest(ModelNormal):
             contact (str, none_type): [optional]  # noqa: E501
             description (str, none_type): The line's description.. [optional]  # noqa: E501
             exchange_rate (str, none_type): The journal line item's exchange rate.. [optional]  # noqa: E501
-            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -283,8 +283,8 @@ class JournalLineRequest(ModelNormal):
             contact (str, none_type): [optional]  # noqa: E501
             description (str, none_type): The line's description.. [optional]  # noqa: E501
             exchange_rate (str, none_type): The journal line item's exchange rate.. [optional]  # noqa: E501
-            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -322,7 +322,7 @@ class JournalLineRequest(ModelNormal):
         self.contact: Union[str, none_type] = kwargs.get("contact", None)
         self.description: Union[str, none_type] = kwargs.get("description", None)
         self.exchange_rate: Union[str, none_type] = kwargs.get("exchange_rate", None)
-        self.integration_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
-        self.linked_account_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
+        self.integration_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
+        self.linked_account_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
 
 

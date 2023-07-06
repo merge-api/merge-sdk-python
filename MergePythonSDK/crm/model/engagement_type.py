@@ -164,7 +164,7 @@ class EngagementType(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            activity_type (bool, date, datetime, dict, float, int, list, str, none_type): The engagement type's activity type.  * `CALL` - CALL * `MEETING` - MEETING * `EMAIL` - EMAIL. [optional]  # noqa: E501
+            activity_type (bool, dict, float, int, list, str, none_type): The engagement type's activity type.  * `CALL` - CALL * `MEETING` - MEETING * `EMAIL` - EMAIL. [optional]  # noqa: E501
             name (str, none_type): The engagement type's name.. [optional]  # noqa: E501
             id (str): [optional]  # noqa: E501
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
@@ -254,7 +254,7 @@ class EngagementType(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            activity_type (bool, date, datetime, dict, float, int, list, str, none_type): The engagement type's activity type.  * `CALL` - CALL * `MEETING` - MEETING * `EMAIL` - EMAIL. [optional]  # noqa: E501
+            activity_type (bool, dict, float, int, list, str, none_type): The engagement type's activity type.  * `CALL` - CALL * `MEETING` - MEETING * `EMAIL` - EMAIL. [optional]  # noqa: E501
             name (str, none_type): The engagement type's name.. [optional]  # noqa: E501
             id (str): [optional]  # noqa: E501
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
@@ -289,7 +289,7 @@ class EngagementType(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.activity_type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("activity_type", None)
+        self.activity_type: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("activity_type", None)
         self.name: Union[str, none_type] = kwargs.get("name", None)
         self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
         self._id: Union[str] = kwargs.get("id", str())

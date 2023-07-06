@@ -90,7 +90,7 @@ class CustomObjectRequest(ModelNormal):
         """
 
         defined_types = {
-            'fields': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'fields': ({str: (bool, dict, float, int, list, str, none_type)},),  # noqa: E501
         }
         return defined_types
 
@@ -114,7 +114,7 @@ class CustomObjectRequest(ModelNormal):
         """CustomObjectRequest - a model defined in OpenAPI
 
         Args:
-            fields ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}):
+            fields ({str: (bool, dict, float, int, list, str, none_type)}):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -196,7 +196,7 @@ class CustomObjectRequest(ModelNormal):
         """CustomObjectRequest - a model defined in OpenAPI
 
         Args:
-            fields ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}):
+            fields ({str: (bool, dict, float, int, list, str, none_type)}):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -258,6 +258,6 @@ class CustomObjectRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.fields: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type]] = fields
+        self.fields: Union[Dict[str, bool, dict, float, int, list, str, none_type]] = fields
 
 

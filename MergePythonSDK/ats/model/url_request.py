@@ -100,8 +100,8 @@ class UrlRequest(ModelNormal):
         defined_types = {
             'value': (str, none_type, none_type,),  # noqa: E501
             'url_type': (UrlTypeEnum, str, none_type,),
-            'integration_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
-            'linked_account_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'integration_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'linked_account_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
         }
         return defined_types
 
@@ -159,9 +159,9 @@ class UrlRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             value (str, none_type): The site's url.. [optional]  # noqa: E501
-            url_type (bool, date, datetime, dict, float, int, list, str, none_type): The type of site.  * `PERSONAL` - PERSONAL * `COMPANY` - COMPANY * `PORTFOLIO` - PORTFOLIO * `BLOG` - BLOG * `SOCIAL_MEDIA` - SOCIAL_MEDIA * `OTHER` - OTHER * `JOB_POSTING` - JOB_POSTING. [optional]  # noqa: E501
-            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            url_type (bool, dict, float, int, list, str, none_type): The type of site.  * `PERSONAL` - PERSONAL * `COMPANY` - COMPANY * `PORTFOLIO` - PORTFOLIO * `BLOG` - BLOG * `SOCIAL_MEDIA` - SOCIAL_MEDIA * `OTHER` - OTHER * `JOB_POSTING` - JOB_POSTING. [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -245,9 +245,9 @@ class UrlRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             value (str, none_type): The site's url.. [optional]  # noqa: E501
-            url_type (bool, date, datetime, dict, float, int, list, str, none_type): The type of site.  * `PERSONAL` - PERSONAL * `COMPANY` - COMPANY * `PORTFOLIO` - PORTFOLIO * `BLOG` - BLOG * `SOCIAL_MEDIA` - SOCIAL_MEDIA * `OTHER` - OTHER * `JOB_POSTING` - JOB_POSTING. [optional]  # noqa: E501
-            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            url_type (bool, dict, float, int, list, str, none_type): The type of site.  * `PERSONAL` - PERSONAL * `COMPANY` - COMPANY * `PORTFOLIO` - PORTFOLIO * `BLOG` - BLOG * `SOCIAL_MEDIA` - SOCIAL_MEDIA * `OTHER` - OTHER * `JOB_POSTING` - JOB_POSTING. [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -278,8 +278,8 @@ class UrlRequest(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.value: Union[str, none_type] = kwargs.get("value", None)
-        self.url_type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("url_type", None)
-        self.integration_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
-        self.linked_account_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
+        self.url_type: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("url_type", None)
+        self.integration_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
+        self.linked_account_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
 
 

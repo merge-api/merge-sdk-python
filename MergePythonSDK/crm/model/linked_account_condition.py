@@ -95,7 +95,7 @@ class LinkedAccountCondition(ModelNormal):
             'operator': (str,),  # noqa: E501
             'field_name': (str, none_type,),  # noqa: E501
             'common_model': (str, none_type,),  # noqa: E501
-            'value': (bool, date, datetime, dict, float, int, list, str, none_type, none_type,),  # noqa: E501
+            'value': (bool, dict, float, int, list, str, none_type, none_type,),  # noqa: E501
         }
         return defined_types
 
@@ -163,7 +163,7 @@ class LinkedAccountCondition(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             common_model (str): The common model for a specific condition.. [optional]  # noqa: E501
-            value (bool, date, datetime, dict, float, int, list, str, none_type): The value for a condition.. [optional]  # noqa: E501
+            value (bool, dict, float, int, list, str, none_type): The value for a condition.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -257,7 +257,7 @@ class LinkedAccountCondition(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             common_model (str): The common model for a specific condition.. [optional]  # noqa: E501
-            value (bool, date, datetime, dict, float, int, list, str, none_type): The value for a condition.. [optional]  # noqa: E501
+            value (bool, dict, float, int, list, str, none_type): The value for a condition.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -294,7 +294,7 @@ class LinkedAccountCondition(ModelNormal):
 
         # Read only properties
         self._common_model: Union[str] = kwargs.get("common_model", str())
-        self._value: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("value", None)
+        self._value: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("value", None)
 
     # Read only property getters
     @property
