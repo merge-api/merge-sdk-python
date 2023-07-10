@@ -24,7 +24,7 @@ Returns a list of `CompanyInfo` objects.
 import time
 import MergePythonSDK.accounting
 from MergePythonSDK.accounting.api import company_info_api
-
+from MergePythonSDK.accounting.model.paginated_company_info_list import PaginatedCompanyInfoList
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/accounting/v1
 # See configuration.py for a list of all supported configuration parameters.

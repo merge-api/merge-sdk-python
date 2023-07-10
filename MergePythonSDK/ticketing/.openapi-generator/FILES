@@ -29,6 +29,7 @@ MergePythonSDK/ticketing/api_client.py
 MergePythonSDK/ticketing/apis/__init__.py
 MergePythonSDK/ticketing/configuration.py
 MergePythonSDK/ticketing/exceptions.py
+MergePythonSDK/ticketing/model/access_level_enum.py
 MergePythonSDK/ticketing/model/account.py
 MergePythonSDK/ticketing/model/account_details.py
 MergePythonSDK/ticketing/model/account_details_and_actions.py
@@ -103,6 +104,7 @@ MergePythonSDK/ticketing/model/webhook_receiver_request.py
 MergePythonSDK/ticketing/model_utils.py
 MergePythonSDK/ticketing/models/__init__.py
 MergePythonSDK/ticketing/rest.py
+docs/AccessLevelEnum.md
 docs/Account.md
 docs/AccountDetails.md
 docs/AccountDetailsAndActions.md
@@ -222,6 +224,7 @@ docs/WebhookReceiversApi.md
 requirements.txt
 test-requirements.txt
 test/__init__.py
+test/test_access_level_enum.py
 test/test_account.py
 test/test_account_details.py
 test/test_account_details_and_actions.py

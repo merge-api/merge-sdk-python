@@ -100,8 +100,8 @@ class Team(ModelNormal):
             'name': (str, none_type, none_type,),  # noqa: E501
             'description': (str, none_type, none_type,),  # noqa: E501
             'remote_was_deleted': (bool, none_type,),  # noqa: E501
-            'field_mappings': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
             'modified_at': (datetime, none_type,),  # noqa: E501
+            'field_mappings': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
             'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
         }
         expands_types = {"parent_team": "Team"}
@@ -127,15 +127,15 @@ class Team(ModelNormal):
         'name': 'name',  # noqa: E501
         'description': 'description',  # noqa: E501
         'remote_was_deleted': 'remote_was_deleted',  # noqa: E501
-        'field_mappings': 'field_mappings',  # noqa: E501
         'modified_at': 'modified_at',  # noqa: E501
+        'field_mappings': 'field_mappings',  # noqa: E501
         'remote_data': 'remote_data',  # noqa: E501
     }
 
     read_only_vars = {
         'id',  # noqa: E501
-        'field_mappings',  # noqa: E501
         'modified_at',  # noqa: E501
+        'field_mappings',  # noqa: E501
         'remote_data',  # noqa: E501
     }
 
@@ -182,8 +182,8 @@ class Team(ModelNormal):
             name (str, none_type): The team's name.. [optional]  # noqa: E501
             description (str, none_type): The team's description.. [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
-            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
+            field_mappings ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
         """
 
@@ -224,8 +224,8 @@ class Team(ModelNormal):
 
         # Read only properties
         self._id = kwargs.get("id", str())
-        self._field_mappings = kwargs.get("field_mappings", None)
         self._modified_at = kwargs.get("modified_at", None)
+        self._field_mappings = kwargs.get("field_mappings", None)
         self._remote_data = kwargs.get("remote_data", None)
         return self
 
@@ -278,8 +278,8 @@ class Team(ModelNormal):
             name (str, none_type): The team's name.. [optional]  # noqa: E501
             description (str, none_type): The team's description.. [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
-            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
+            field_mappings ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
         """
 
@@ -317,8 +317,8 @@ class Team(ModelNormal):
 
         # Read only properties
         self._id: Union[str] = kwargs.get("id", str())
-        self._field_mappings: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("field_mappings", None)
         self._modified_at: Union[datetime] = kwargs.get("modified_at", None)
+        self._field_mappings: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("field_mappings", None)
         self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
 
     # Read only property getters
@@ -327,12 +327,12 @@ class Team(ModelNormal):
         return self._id
 
     @property
-    def field_mappings(self):
-        return self._field_mappings
-
-    @property
     def modified_at(self):
         return self._modified_at
+
+    @property
+    def field_mappings(self):
+        return self._field_mappings
 
     @property
     def remote_data(self):

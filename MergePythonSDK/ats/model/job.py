@@ -114,8 +114,8 @@ class Job(ModelNormal):
             'hiring_managers': ([str, none_type], none_type,),  # noqa: E501
             'recruiters': ([str, none_type], none_type,),  # noqa: E501
             'remote_was_deleted': (bool, none_type,),  # noqa: E501
-            'field_mappings': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
             'modified_at': (datetime, none_type,),  # noqa: E501
+            'field_mappings': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
             'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
         }
         expands_types = {"departments": "Department", "hiring_managers": "RemoteUser", "offices": "Office", "recruiters": "RemoteUser"}
@@ -151,16 +151,16 @@ class Job(ModelNormal):
         'hiring_managers': 'hiring_managers',  # noqa: E501
         'recruiters': 'recruiters',  # noqa: E501
         'remote_was_deleted': 'remote_was_deleted',  # noqa: E501
-        'field_mappings': 'field_mappings',  # noqa: E501
         'modified_at': 'modified_at',  # noqa: E501
+        'field_mappings': 'field_mappings',  # noqa: E501
         'remote_data': 'remote_data',  # noqa: E501
     }
 
     read_only_vars = {
         'id',  # noqa: E501
         'remote_was_deleted',  # noqa: E501
-        'field_mappings',  # noqa: E501
         'modified_at',  # noqa: E501
+        'field_mappings',  # noqa: E501
         'remote_data',  # noqa: E501
     }
 
@@ -207,7 +207,7 @@ class Job(ModelNormal):
             name (str, none_type): The job's name.. [optional]  # noqa: E501
             description (str, none_type): The job's description.. [optional]  # noqa: E501
             code (str, none_type): The job's code. Typically an additional identifier used to reference the particular job that is displayed on the ATS.. [optional]  # noqa: E501
-            status (bool, date, datetime, dict, float, int, list, str, none_type): The job's status.  * `OPEN` - OPEN * `CLOSED` - CLOSED * `DRAFT` - DRAFT * `ARCHIVED` - ARCHIVED * `PENDING` - PENDING. [optional]  # noqa: E501
+            status (bool, dict, float, int, list, str, none_type): The job's status.  * `OPEN` - OPEN * `CLOSED` - CLOSED * `DRAFT` - DRAFT * `ARCHIVED` - ARCHIVED * `PENDING` - PENDING. [optional]  # noqa: E501
             job_posting_urls ([Url]): [optional]  # noqa: E501
             remote_created_at (datetime, none_type): When the third party's job was created.. [optional]  # noqa: E501
             remote_updated_at (datetime, none_type): When the third party's job was updated.. [optional]  # noqa: E501
@@ -217,8 +217,8 @@ class Job(ModelNormal):
             hiring_managers ([str, none_type]): IDs of `RemoteUser` objects that serve as hiring managers for this `Job`.. [optional]  # noqa: E501
             recruiters ([str, none_type]): IDs of `RemoteUser` objects that serve as recruiters for this `Job`.. [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
-            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
+            field_mappings ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
         """
 
@@ -269,8 +269,8 @@ class Job(ModelNormal):
         # Read only properties
         self._id = kwargs.get("id", str())
         self._remote_was_deleted = kwargs.get("remote_was_deleted", bool())
-        self._field_mappings = kwargs.get("field_mappings", None)
         self._modified_at = kwargs.get("modified_at", None)
+        self._field_mappings = kwargs.get("field_mappings", None)
         self._remote_data = kwargs.get("remote_data", None)
         return self
 
@@ -323,7 +323,7 @@ class Job(ModelNormal):
             name (str, none_type): The job's name.. [optional]  # noqa: E501
             description (str, none_type): The job's description.. [optional]  # noqa: E501
             code (str, none_type): The job's code. Typically an additional identifier used to reference the particular job that is displayed on the ATS.. [optional]  # noqa: E501
-            status (bool, date, datetime, dict, float, int, list, str, none_type): The job's status.  * `OPEN` - OPEN * `CLOSED` - CLOSED * `DRAFT` - DRAFT * `ARCHIVED` - ARCHIVED * `PENDING` - PENDING. [optional]  # noqa: E501
+            status (bool, dict, float, int, list, str, none_type): The job's status.  * `OPEN` - OPEN * `CLOSED` - CLOSED * `DRAFT` - DRAFT * `ARCHIVED` - ARCHIVED * `PENDING` - PENDING. [optional]  # noqa: E501
             job_posting_urls ([Url]): [optional]  # noqa: E501
             remote_created_at (datetime, none_type): When the third party's job was created.. [optional]  # noqa: E501
             remote_updated_at (datetime, none_type): When the third party's job was updated.. [optional]  # noqa: E501
@@ -333,8 +333,8 @@ class Job(ModelNormal):
             hiring_managers ([str, none_type]): IDs of `RemoteUser` objects that serve as hiring managers for this `Job`.. [optional]  # noqa: E501
             recruiters ([str, none_type]): IDs of `RemoteUser` objects that serve as recruiters for this `Job`.. [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
-            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
+            field_mappings ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
         """
 
@@ -369,7 +369,7 @@ class Job(ModelNormal):
         self.name: Union[str, none_type] = kwargs.get("name", None)
         self.description: Union[str, none_type] = kwargs.get("description", None)
         self.code: Union[str, none_type] = kwargs.get("code", None)
-        self.status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
+        self.status: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("status", None)
         self.job_posting_urls: Union[List["Url"]] = kwargs.get("job_posting_urls", None)
         self.remote_created_at: Union[datetime, none_type] = kwargs.get("remote_created_at", None)
         self.remote_updated_at: Union[datetime, none_type] = kwargs.get("remote_updated_at", None)
@@ -382,8 +382,8 @@ class Job(ModelNormal):
         # Read only properties
         self._id: Union[str] = kwargs.get("id", str())
         self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
-        self._field_mappings: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("field_mappings", None)
         self._modified_at: Union[datetime] = kwargs.get("modified_at", None)
+        self._field_mappings: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("field_mappings", None)
         self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
 
     # Read only property getters
@@ -396,12 +396,12 @@ class Job(ModelNormal):
         return self._remote_was_deleted
 
     @property
-    def field_mappings(self):
-        return self._field_mappings
-
-    @property
     def modified_at(self):
         return self._modified_at
+
+    @property
+    def field_mappings(self):
+        return self._field_mappings
 
     @property
     def remote_data(self):

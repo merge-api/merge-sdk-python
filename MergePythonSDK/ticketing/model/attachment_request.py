@@ -95,8 +95,8 @@ class AttachmentRequest(ModelNormal):
             'file_url': (str, none_type, none_type,),  # noqa: E501
             'content_type': (str, none_type, none_type,),  # noqa: E501
             'uploaded_by': (str, none_type, none_type,),  # noqa: E501
-            'integration_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
-            'linked_account_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'integration_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'linked_account_params': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
         }
         expands_types = {"ticket": "Ticket"}
 
@@ -171,8 +171,8 @@ class AttachmentRequest(ModelNormal):
             file_url (str, none_type): The attachment's url. It is required to include the file extension in the file's URL.. [optional]  # noqa: E501
             content_type (str, none_type): The attachment's file format.. [optional]  # noqa: E501
             uploaded_by (str, none_type): The user who uploaded the attachment.. [optional]  # noqa: E501
-            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -263,8 +263,8 @@ class AttachmentRequest(ModelNormal):
             file_url (str, none_type): The attachment's url. It is required to include the file extension in the file's URL.. [optional]  # noqa: E501
             content_type (str, none_type): The attachment's file format.. [optional]  # noqa: E501
             uploaded_by (str, none_type): The user who uploaded the attachment.. [optional]  # noqa: E501
-            integration_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
-            linked_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            integration_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            linked_account_params ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -299,7 +299,7 @@ class AttachmentRequest(ModelNormal):
         self.file_url: Union[str, none_type] = kwargs.get("file_url", None)
         self.content_type: Union[str, none_type] = kwargs.get("content_type", None)
         self.uploaded_by: Union[str, none_type] = kwargs.get("uploaded_by", None)
-        self.integration_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
-        self.linked_account_params: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
+        self.integration_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("integration_params", None)
+        self.linked_account_params: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("linked_account_params", None)
 
 

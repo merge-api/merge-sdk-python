@@ -109,8 +109,8 @@ class RemoteUser(ModelNormal):
             'remote_created_at': (datetime, none_type, none_type,),  # noqa: E501
             'access_role': (AccessRoleEnum, str, none_type,),
             'remote_was_deleted': (bool, none_type,),  # noqa: E501
-            'field_mappings': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
             'modified_at': (datetime, none_type,),  # noqa: E501
+            'field_mappings': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
             'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
         }
         return defined_types
@@ -130,16 +130,16 @@ class RemoteUser(ModelNormal):
         'remote_created_at': 'remote_created_at',  # noqa: E501
         'access_role': 'access_role',  # noqa: E501
         'remote_was_deleted': 'remote_was_deleted',  # noqa: E501
-        'field_mappings': 'field_mappings',  # noqa: E501
         'modified_at': 'modified_at',  # noqa: E501
+        'field_mappings': 'field_mappings',  # noqa: E501
         'remote_data': 'remote_data',  # noqa: E501
     }
 
     read_only_vars = {
         'id',  # noqa: E501
         'remote_was_deleted',  # noqa: E501
-        'field_mappings',  # noqa: E501
         'modified_at',  # noqa: E501
+        'field_mappings',  # noqa: E501
         'remote_data',  # noqa: E501
     }
 
@@ -188,10 +188,10 @@ class RemoteUser(ModelNormal):
             email (str, none_type): The user's email.. [optional]  # noqa: E501
             disabled (bool, none_type): Whether the user's account had been disabled.. [optional]  # noqa: E501
             remote_created_at (datetime, none_type): When the third party's user was created.. [optional]  # noqa: E501
-            access_role (bool, date, datetime, dict, float, int, list, str, none_type): The user's role.  * `SUPER_ADMIN` - SUPER_ADMIN * `ADMIN` - ADMIN * `TEAM_MEMBER` - TEAM_MEMBER * `LIMITED_TEAM_MEMBER` - LIMITED_TEAM_MEMBER * `INTERVIEWER` - INTERVIEWER. [optional]  # noqa: E501
+            access_role (bool, dict, float, int, list, str, none_type): The user's role.  * `SUPER_ADMIN` - SUPER_ADMIN * `ADMIN` - ADMIN * `TEAM_MEMBER` - TEAM_MEMBER * `LIMITED_TEAM_MEMBER` - LIMITED_TEAM_MEMBER * `INTERVIEWER` - INTERVIEWER. [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
-            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
+            field_mappings ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
         """
 
@@ -236,8 +236,8 @@ class RemoteUser(ModelNormal):
         # Read only properties
         self._id = kwargs.get("id", str())
         self._remote_was_deleted = kwargs.get("remote_was_deleted", bool())
-        self._field_mappings = kwargs.get("field_mappings", None)
         self._modified_at = kwargs.get("modified_at", None)
+        self._field_mappings = kwargs.get("field_mappings", None)
         self._remote_data = kwargs.get("remote_data", None)
         return self
 
@@ -292,10 +292,10 @@ class RemoteUser(ModelNormal):
             email (str, none_type): The user's email.. [optional]  # noqa: E501
             disabled (bool, none_type): Whether the user's account had been disabled.. [optional]  # noqa: E501
             remote_created_at (datetime, none_type): When the third party's user was created.. [optional]  # noqa: E501
-            access_role (bool, date, datetime, dict, float, int, list, str, none_type): The user's role.  * `SUPER_ADMIN` - SUPER_ADMIN * `ADMIN` - ADMIN * `TEAM_MEMBER` - TEAM_MEMBER * `LIMITED_TEAM_MEMBER` - LIMITED_TEAM_MEMBER * `INTERVIEWER` - INTERVIEWER. [optional]  # noqa: E501
+            access_role (bool, dict, float, int, list, str, none_type): The user's role.  * `SUPER_ADMIN` - SUPER_ADMIN * `ADMIN` - ADMIN * `TEAM_MEMBER` - TEAM_MEMBER * `LIMITED_TEAM_MEMBER` - LIMITED_TEAM_MEMBER * `INTERVIEWER` - INTERVIEWER. [optional]  # noqa: E501
             remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
-            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
+            field_mappings ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
         """
 
@@ -332,13 +332,13 @@ class RemoteUser(ModelNormal):
         self.email: Union[str, none_type] = kwargs.get("email", None)
         self.disabled: Union[bool, none_type] = kwargs.get("disabled", None)
         self.remote_created_at: Union[datetime, none_type] = kwargs.get("remote_created_at", None)
-        self.access_role: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("access_role", None)
+        self.access_role: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("access_role", None)
 
         # Read only properties
         self._id: Union[str] = kwargs.get("id", str())
         self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
-        self._field_mappings: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("field_mappings", None)
         self._modified_at: Union[datetime] = kwargs.get("modified_at", None)
+        self._field_mappings: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("field_mappings", None)
         self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
 
     # Read only property getters
@@ -351,12 +351,12 @@ class RemoteUser(ModelNormal):
         return self._remote_was_deleted
 
     @property
-    def field_mappings(self):
-        return self._field_mappings
-
-    @property
     def modified_at(self):
         return self._modified_at
+
+    @property
+    def field_mappings(self):
+        return self._field_mappings
 
     @property
     def remote_data(self):

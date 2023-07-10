@@ -24,7 +24,7 @@ Returns a list of `Benefit` objects.
 import time
 import MergePythonSDK.hris
 from MergePythonSDK.hris.api import benefits_api
-
+from MergePythonSDK.hris.model.paginated_benefit_list import PaginatedBenefitList
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/hris/v1
 # See configuration.py for a list of all supported configuration parameters.

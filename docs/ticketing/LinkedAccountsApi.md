@@ -22,7 +22,7 @@ List linked accounts for your organization.
 import time
 import MergePythonSDK.ticketing
 from MergePythonSDK.ticketing.api import linked_accounts_api
-
+from MergePythonSDK.ticketing.model.paginated_account_details_and_actions_list import PaginatedAccountDetailsAndActionsList
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/ticketing/v1
 # See configuration.py for a list of all supported configuration parameters.

@@ -165,7 +165,7 @@ Returns a list of `PurchaseOrder` objects.
 import time
 import MergePythonSDK.accounting
 from MergePythonSDK.accounting.api import purchase_orders_api
-
+from MergePythonSDK.accounting.model.paginated_purchase_order_list import PaginatedPurchaseOrderList
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/accounting/v1
 # See configuration.py for a list of all supported configuration parameters.

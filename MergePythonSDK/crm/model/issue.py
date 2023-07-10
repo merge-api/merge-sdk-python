@@ -98,7 +98,7 @@ class Issue(ModelNormal):
             'error_description': (str,),  # noqa: E501
             'id': (str, none_type,),  # noqa: E501
             'status': (IssueStatusEnum, str, none_type,),
-            'end_user': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'end_user': ({str: (bool, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'first_incident_time': (datetime, none_type, none_type,),  # noqa: E501
             'last_incident_time': (datetime, none_type, none_type,),  # noqa: E501
             'is_muted': (bool, none_type,),  # noqa: E501
@@ -171,8 +171,8 @@ class Issue(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             id (str): [optional]  # noqa: E501
-            status (bool, date, datetime, dict, float, int, list, str, none_type): Status of the issue. Options: ('ONGOING', 'RESOLVED')  * `ONGOING` - ONGOING * `RESOLVED` - RESOLVED. [optional]  # noqa: E501
-            end_user ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
+            status (bool, dict, float, int, list, str, none_type): Status of the issue. Options: ('ONGOING', 'RESOLVED')  * `ONGOING` - ONGOING * `RESOLVED` - RESOLVED. [optional]  # noqa: E501
+            end_user ({str: (bool, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
             first_incident_time (datetime, none_type): [optional]  # noqa: E501
             last_incident_time (datetime, none_type): [optional]  # noqa: E501
             is_muted (bool): [optional]  # noqa: E501
@@ -269,8 +269,8 @@ class Issue(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             id (str): [optional]  # noqa: E501
-            status (bool, date, datetime, dict, float, int, list, str, none_type): Status of the issue. Options: ('ONGOING', 'RESOLVED')  * `ONGOING` - ONGOING * `RESOLVED` - RESOLVED. [optional]  # noqa: E501
-            end_user ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
+            status (bool, dict, float, int, list, str, none_type): Status of the issue. Options: ('ONGOING', 'RESOLVED')  * `ONGOING` - ONGOING * `RESOLVED` - RESOLVED. [optional]  # noqa: E501
+            end_user ({str: (bool, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
             first_incident_time (datetime, none_type): [optional]  # noqa: E501
             last_incident_time (datetime, none_type): [optional]  # noqa: E501
             is_muted (bool): [optional]  # noqa: E501
@@ -305,13 +305,13 @@ class Issue(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.error_description: Union[str] = error_description
-        self.status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
+        self.status: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("status", None)
         self.first_incident_time: Union[datetime, none_type] = kwargs.get("first_incident_time", None)
         self.last_incident_time: Union[datetime, none_type] = kwargs.get("last_incident_time", None)
 
         # Read only properties
         self._id: Union[str] = kwargs.get("id", str())
-        self._end_user: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type]] = kwargs.get("end_user", dict())
+        self._end_user: Union[Dict[str, bool, dict, float, int, list, str, none_type]] = kwargs.get("end_user", dict())
         self._is_muted: Union[bool] = kwargs.get("is_muted", bool())
         self._error_details: Union[List[str]] = kwargs.get("error_details", list())
 

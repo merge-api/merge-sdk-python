@@ -108,7 +108,7 @@ class AccountIntegration(ModelNormal):
             'color': (str, none_type,),  # noqa: E501
             'slug': (str, none_type,),  # noqa: E501
             'is_in_beta': (bool, none_type,),  # noqa: E501
-            'api_endpoints_to_documentation_urls': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'api_endpoints_to_documentation_urls': ({str: (bool, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
         return defined_types
 
@@ -179,7 +179,7 @@ class AccountIntegration(ModelNormal):
             color (str): The color of this integration used for buttons and text throughout the app and landing pages. <b>Choose a darker, saturated color.</b>. [optional]  # noqa: E501
             slug (str): [optional]  # noqa: E501
             is_in_beta (bool): If checked, this integration will not appear in the linking flow, and will appear elsewhere with a Beta tag.. [optional]  # noqa: E501
-            api_endpoints_to_documentation_urls ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Mapping of API endpoints to documentation urls for support. Example: {'GET': [['/common-model-scopes', 'https://docs.merge.dev/accounting/common-model-scopes/#common_model_scopes_retrieve'],['/common-model-actions', 'https://docs.merge.dev/accounting/common-model-actions/#common_model_actions_retrieve']], 'POST': []}. [optional]  # noqa: E501
+            api_endpoints_to_documentation_urls ({str: (bool, dict, float, int, list, str, none_type)}): Mapping of API endpoints to documentation urls for support. Example: {'GET': [['/common-model-scopes', 'https://docs.merge.dev/accounting/common-model-scopes/#common_model_scopes_retrieve'],['/common-model-actions', 'https://docs.merge.dev/accounting/common-model-actions/#common_model_actions_retrieve']], 'POST': []}. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -275,7 +275,7 @@ class AccountIntegration(ModelNormal):
             color (str): The color of this integration used for buttons and text throughout the app and landing pages. <b>Choose a darker, saturated color.</b>. [optional]  # noqa: E501
             slug (str): [optional]  # noqa: E501
             is_in_beta (bool): If checked, this integration will not appear in the linking flow, and will appear elsewhere with a Beta tag.. [optional]  # noqa: E501
-            api_endpoints_to_documentation_urls ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Mapping of API endpoints to documentation urls for support. Example: {'GET': [['/common-model-scopes', 'https://docs.merge.dev/accounting/common-model-scopes/#common_model_scopes_retrieve'],['/common-model-actions', 'https://docs.merge.dev/accounting/common-model-actions/#common_model_actions_retrieve']], 'POST': []}. [optional]  # noqa: E501
+            api_endpoints_to_documentation_urls ({str: (bool, dict, float, int, list, str, none_type)}): Mapping of API endpoints to documentation urls for support. Example: {'GET': [['/common-model-scopes', 'https://docs.merge.dev/accounting/common-model-scopes/#common_model_scopes_retrieve'],['/common-model-actions', 'https://docs.merge.dev/accounting/common-model-actions/#common_model_actions_retrieve']], 'POST': []}. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -311,7 +311,7 @@ class AccountIntegration(ModelNormal):
         self.square_image: Union[str, none_type] = kwargs.get("square_image", None)
         self.color: Union[str] = kwargs.get("color", str())
         self.is_in_beta: Union[bool] = kwargs.get("is_in_beta", bool())
-        self.api_endpoints_to_documentation_urls: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type]] = kwargs.get("api_endpoints_to_documentation_urls", dict())
+        self.api_endpoints_to_documentation_urls: Union[Dict[str, bool, dict, float, int, list, str, none_type]] = kwargs.get("api_endpoints_to_documentation_urls", dict())
         self._slug: Union[str] = kwargs.get("slug", str())
     @property
     def slug(self):

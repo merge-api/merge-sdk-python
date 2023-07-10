@@ -140,7 +140,7 @@ Returns a list of `TimeOff` objects.
 import time
 import MergePythonSDK.hris
 from MergePythonSDK.hris.api import time_off_api
-
+from MergePythonSDK.hris.model.paginated_time_off_list import PaginatedTimeOffList
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/hris/v1
 # See configuration.py for a list of all supported configuration parameters.

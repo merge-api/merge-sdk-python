@@ -30,6 +30,12 @@ class TestAttachmentsApi(unittest.TestCase):
         """
         pass
 
+    def test_attachments_download_retrieve(self):
+        """Test case for attachments_download_retrieve
+
+        """
+        pass
+
     def test_attachments_list(self):
         """Test case for attachments_list
 

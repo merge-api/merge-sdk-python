@@ -142,7 +142,7 @@ class AccountDetailsAndActions(ModelNormal):
 
         Args:
             id (str):
-            status (bool, date, datetime, dict, float, int, list, str, none_type):
+            status (bool, dict, float, int, list, str, none_type):
             end_user_organization_name (str):
             end_user_email_address (str):
             webhook_listener_url (str):
@@ -178,7 +178,7 @@ class AccountDetailsAndActions(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            category (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
+            category (bool, dict, float, int, list, str, none_type): [optional]  # noqa: E501
             status_detail (str): [optional]  # noqa: E501
             end_user_origin_id (str): [optional]  # noqa: E501
             is_duplicate (bool, none_type): Whether a Production Linked Account's credentials match another existing Production Linked Account. This field is `null` for Test Linked Accounts, incomplete Production Linked Accounts, and ignored duplicate Production Linked Account sets.. [optional]  # noqa: E501
@@ -242,7 +242,7 @@ class AccountDetailsAndActions(ModelNormal):
 
         Args:
             id (str):
-            status (bool, date, datetime, dict, float, int, list, str, none_type):
+            status (bool, dict, float, int, list, str, none_type):
             end_user_organization_name (str):
             end_user_email_address (str):
             webhook_listener_url (str):
@@ -278,7 +278,7 @@ class AccountDetailsAndActions(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            category (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
+            category (bool, dict, float, int, list, str, none_type): [optional]  # noqa: E501
             status_detail (str): [optional]  # noqa: E501
             end_user_origin_id (str): [optional]  # noqa: E501
             is_duplicate (bool, none_type): Whether a Production Linked Account's credentials match another existing Production Linked Account. This field is `null` for Test Linked Accounts, incomplete Production Linked Accounts, and ignored duplicate Production Linked Account sets.. [optional]  # noqa: E501
@@ -313,11 +313,11 @@ class AccountDetailsAndActions(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.id: Union[str] = id
-        self.status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = status
+        self.status: Union[bool, dict, float, int, list, str, none_type] = status
         self.end_user_organization_name: Union[str] = end_user_organization_name
         self.end_user_email_address: Union[str] = end_user_email_address
         self.webhook_listener_url: Union[str] = webhook_listener_url
-        self.category: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("category", None)
+        self.category: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("category", None)
         self.status_detail: Union[str] = kwargs.get("status_detail", str())
         self.end_user_origin_id: Union[str] = kwargs.get("end_user_origin_id", str())
         self.is_duplicate: Union[bool, none_type] = kwargs.get("is_duplicate", None)

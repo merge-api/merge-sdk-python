@@ -24,7 +24,7 @@ Returns a list of `CashFlowStatement` objects.
 import time
 import MergePythonSDK.accounting
 from MergePythonSDK.accounting.api import cash_flow_statements_api
-
+from MergePythonSDK.accounting.model.paginated_cash_flow_statement_list import PaginatedCashFlowStatementList
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/accounting/v1
 # See configuration.py for a list of all supported configuration parameters.

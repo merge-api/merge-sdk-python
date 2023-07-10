@@ -24,7 +24,7 @@ Returns a list of `Offer` objects.
 import time
 import MergePythonSDK.ats
 from MergePythonSDK.ats.api import offers_api
-
+from MergePythonSDK.ats.model.paginated_offer_list import PaginatedOfferList
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/ats/v1
 # See configuration.py for a list of all supported configuration parameters.

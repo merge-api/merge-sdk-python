@@ -77,7 +77,7 @@ class ApiClient(object):
             self.default_headers[header_name] = header_value
         self.cookie = cookie
         # Set default User-Agent.
-        self.user_agent = 'OpenAPI-Generator/2.2.8/python'
+        self.user_agent = 'OpenAPI-Generator/2.2.9/python'
 
     def __enter__(self):
         return self
@@ -308,7 +308,7 @@ class ApiClient(object):
             (Pet,)
             (float, none_type)
             ([int, none_type],)
-            ({str: (bool, str, int, float, date, datetime, str, none_type)},)
+            ({str: (bool, str, int, float, str, none_type)},)
         :param _check_type: boolean, whether to check the types of the data
             received from the server
         :type _check_type: bool
@@ -384,7 +384,7 @@ class ApiClient(object):
             (Pet,)
             (float, none_type)
             ([int, none_type],)
-            ({str: (bool, str, int, float, date, datetime, str, none_type)},)
+            ({str: (bool, str, int, float, str, none_type)},)
         :param files: key -> field name, value -> a list of open file
             objects for `multipart/form-data`.
         :type files: dict

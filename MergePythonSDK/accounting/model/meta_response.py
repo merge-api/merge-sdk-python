@@ -95,10 +95,10 @@ class MetaResponse(ModelNormal):
         lazy_import()
 
         defined_types = {
-            'request_schema': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'request_schema': ({str: (bool, dict, float, int, list, str, none_type)},),  # noqa: E501
             'has_conditional_params': (bool,),  # noqa: E501
             'has_required_linked_account_params': (bool,),  # noqa: E501
-            'remote_field_classes': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'remote_field_classes': ({str: (bool, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'status': (LinkedAccountStatus, none_type,),  # noqa: E501
         }
         return defined_types
@@ -127,7 +127,7 @@ class MetaResponse(ModelNormal):
         """MetaResponse - a model defined in OpenAPI
 
         Args:
-            request_schema ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}):
+            request_schema ({str: (bool, dict, float, int, list, str, none_type)}):
             has_conditional_params (bool):
             has_required_linked_account_params (bool):
 
@@ -162,7 +162,7 @@ class MetaResponse(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            remote_field_classes ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
+            remote_field_classes ({str: (bool, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
             status (LinkedAccountStatus): [optional]  # noqa: E501
         """
 
@@ -217,7 +217,7 @@ class MetaResponse(ModelNormal):
         """MetaResponse - a model defined in OpenAPI
 
         Args:
-            request_schema ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}):
+            request_schema ({str: (bool, dict, float, int, list, str, none_type)}):
             has_conditional_params (bool):
             has_required_linked_account_params (bool):
 
@@ -252,7 +252,7 @@ class MetaResponse(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            remote_field_classes ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
+            remote_field_classes ({str: (bool, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
             status (LinkedAccountStatus): [optional]  # noqa: E501
         """
 
@@ -283,10 +283,10 @@ class MetaResponse(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.request_schema: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type]] = request_schema
+        self.request_schema: Union[Dict[str, bool, dict, float, int, list, str, none_type]] = request_schema
         self.has_conditional_params: Union[bool] = has_conditional_params
         self.has_required_linked_account_params: Union[bool] = has_required_linked_account_params
-        self.remote_field_classes: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type]] = kwargs.get("remote_field_classes", dict())
+        self.remote_field_classes: Union[Dict[str, bool, dict, float, int, list, str, none_type]] = kwargs.get("remote_field_classes", dict())
         self.status: Union["LinkedAccountStatus"] = kwargs.get("status", None)
 
 

@@ -100,6 +100,8 @@ MergePythonSDK/ats/model/offer_status_enum.py
 MergePythonSDK/ats/model/office.py
 MergePythonSDK/ats/model/operator_schema.py
 MergePythonSDK/ats/model/overall_recommendation_enum.py
+MergePythonSDK/ats/model/patched_candidate_endpoint_request.py
+MergePythonSDK/ats/model/patched_candidate_request.py
 MergePythonSDK/ats/model/phone_number.py
 MergePythonSDK/ats/model/phone_number_request.py
 MergePythonSDK/ats/model/phone_number_type_enum.py
@@ -240,6 +242,8 @@ docs/PaginatedScorecardList.md
 docs/PaginatedSyncStatusList.md
 docs/PaginatedTagList.md
 docs/PassthroughApi.md
+docs/PatchedCandidateEndpointRequest.md
+docs/PatchedCandidateRequest.md
 docs/PhoneNumber.md
 docs/PhoneNumberRequest.md
 docs/PhoneNumberTypeEnum.md
@@ -392,6 +396,8 @@ test/test_paginated_scorecard_list.py
 test/test_paginated_sync_status_list.py
 test/test_paginated_tag_list.py
 test/test_passthrough_api.py
+test/test_patched_candidate_endpoint_request.py
+test/test_patched_candidate_request.py
 test/test_phone_number.py
 test/test_phone_number_request.py
 test/test_phone_number_type_enum.py

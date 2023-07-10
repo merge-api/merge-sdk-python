@@ -113,8 +113,8 @@ class TimeOff(ModelNormal):
             'start_time': (datetime, none_type, none_type,),  # noqa: E501
             'end_time': (datetime, none_type, none_type,),  # noqa: E501
             'remote_was_deleted': (bool, none_type,),  # noqa: E501
-            'field_mappings': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
             'modified_at': (datetime, none_type,),  # noqa: E501
+            'field_mappings': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
             'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
         }
         expands_types = {"approver": "Employee", "employee": "Employee"}
@@ -147,16 +147,16 @@ class TimeOff(ModelNormal):
         'start_time': 'start_time',  # noqa: E501
         'end_time': 'end_time',  # noqa: E501
         'remote_was_deleted': 'remote_was_deleted',  # noqa: E501
-        'field_mappings': 'field_mappings',  # noqa: E501
         'modified_at': 'modified_at',  # noqa: E501
+        'field_mappings': 'field_mappings',  # noqa: E501
         'remote_data': 'remote_data',  # noqa: E501
     }
 
     read_only_vars = {
         'id',  # noqa: E501
         'remote_was_deleted',  # noqa: E501
-        'field_mappings',  # noqa: E501
         'modified_at',  # noqa: E501
+        'field_mappings',  # noqa: E501
         'remote_data',  # noqa: E501
     }
 
@@ -202,16 +202,16 @@ class TimeOff(ModelNormal):
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             employee (str, none_type): The employee requesting time off.. [optional]  # noqa: E501
             approver (str, none_type): The Merge ID of the employee with the ability to approve the time off request.. [optional]  # noqa: E501
-            status (bool, date, datetime, dict, float, int, list, str, none_type): The status of this time off request.  * `REQUESTED` - REQUESTED * `APPROVED` - APPROVED * `DECLINED` - DECLINED * `CANCELLED` - CANCELLED * `DELETED` - DELETED. [optional]  # noqa: E501
+            status (bool, dict, float, int, list, str, none_type): The status of this time off request.  * `REQUESTED` - REQUESTED * `APPROVED` - APPROVED * `DECLINED` - DECLINED * `CANCELLED` - CANCELLED * `DELETED` - DELETED. [optional]  # noqa: E501
             employee_note (str, none_type): The employee note for this time off request.. [optional]  # noqa: E501
-            units (bool, date, datetime, dict, float, int, list, str, none_type): The measurement that the third-party integration uses to count time requested.  * `HOURS` - HOURS * `DAYS` - DAYS. [optional]  # noqa: E501
+            units (bool, dict, float, int, list, str, none_type): The measurement that the third-party integration uses to count time requested.  * `HOURS` - HOURS * `DAYS` - DAYS. [optional]  # noqa: E501
             amount (float, none_type): The time off quantity measured by the prescribed “units”.. [optional]  # noqa: E501
-            request_type (bool, date, datetime, dict, float, int, list, str, none_type): The type of time off request.  * `VACATION` - VACATION * `SICK` - SICK * `PERSONAL` - PERSONAL * `JURY_DUTY` - JURY_DUTY * `VOLUNTEER` - VOLUNTEER * `BEREAVEMENT` - BEREAVEMENT. [optional]  # noqa: E501
+            request_type (bool, dict, float, int, list, str, none_type): The type of time off request.  * `VACATION` - VACATION * `SICK` - SICK * `PERSONAL` - PERSONAL * `JURY_DUTY` - JURY_DUTY * `VOLUNTEER` - VOLUNTEER * `BEREAVEMENT` - BEREAVEMENT. [optional]  # noqa: E501
             start_time (datetime, none_type): The day and time of the start of the time requested off.. [optional]  # noqa: E501
             end_time (datetime, none_type): The day and time of the end of the time requested off.. [optional]  # noqa: E501
             remote_was_deleted (bool): [optional]  # noqa: E501
-            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
+            field_mappings ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
         """
 
@@ -259,8 +259,8 @@ class TimeOff(ModelNormal):
         # Read only properties
         self._id = kwargs.get("id", str())
         self._remote_was_deleted = kwargs.get("remote_was_deleted", bool())
-        self._field_mappings = kwargs.get("field_mappings", None)
         self._modified_at = kwargs.get("modified_at", None)
+        self._field_mappings = kwargs.get("field_mappings", None)
         self._remote_data = kwargs.get("remote_data", None)
         return self
 
@@ -312,16 +312,16 @@ class TimeOff(ModelNormal):
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             employee (str, none_type): The employee requesting time off.. [optional]  # noqa: E501
             approver (str, none_type): The Merge ID of the employee with the ability to approve the time off request.. [optional]  # noqa: E501
-            status (bool, date, datetime, dict, float, int, list, str, none_type): The status of this time off request.  * `REQUESTED` - REQUESTED * `APPROVED` - APPROVED * `DECLINED` - DECLINED * `CANCELLED` - CANCELLED * `DELETED` - DELETED. [optional]  # noqa: E501
+            status (bool, dict, float, int, list, str, none_type): The status of this time off request.  * `REQUESTED` - REQUESTED * `APPROVED` - APPROVED * `DECLINED` - DECLINED * `CANCELLED` - CANCELLED * `DELETED` - DELETED. [optional]  # noqa: E501
             employee_note (str, none_type): The employee note for this time off request.. [optional]  # noqa: E501
-            units (bool, date, datetime, dict, float, int, list, str, none_type): The measurement that the third-party integration uses to count time requested.  * `HOURS` - HOURS * `DAYS` - DAYS. [optional]  # noqa: E501
+            units (bool, dict, float, int, list, str, none_type): The measurement that the third-party integration uses to count time requested.  * `HOURS` - HOURS * `DAYS` - DAYS. [optional]  # noqa: E501
             amount (float, none_type): The time off quantity measured by the prescribed “units”.. [optional]  # noqa: E501
-            request_type (bool, date, datetime, dict, float, int, list, str, none_type): The type of time off request.  * `VACATION` - VACATION * `SICK` - SICK * `PERSONAL` - PERSONAL * `JURY_DUTY` - JURY_DUTY * `VOLUNTEER` - VOLUNTEER * `BEREAVEMENT` - BEREAVEMENT. [optional]  # noqa: E501
+            request_type (bool, dict, float, int, list, str, none_type): The type of time off request.  * `VACATION` - VACATION * `SICK` - SICK * `PERSONAL` - PERSONAL * `JURY_DUTY` - JURY_DUTY * `VOLUNTEER` - VOLUNTEER * `BEREAVEMENT` - BEREAVEMENT. [optional]  # noqa: E501
             start_time (datetime, none_type): The day and time of the start of the time requested off.. [optional]  # noqa: E501
             end_time (datetime, none_type): The day and time of the end of the time requested off.. [optional]  # noqa: E501
             remote_was_deleted (bool): [optional]  # noqa: E501
-            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
+            field_mappings ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
         """
 
@@ -355,19 +355,19 @@ class TimeOff(ModelNormal):
         self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
         self.employee: Union[str, none_type] = kwargs.get("employee", None)
         self.approver: Union[str, none_type] = kwargs.get("approver", None)
-        self.status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
+        self.status: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("status", None)
         self.employee_note: Union[str, none_type] = kwargs.get("employee_note", None)
-        self.units: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("units", None)
+        self.units: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("units", None)
         self.amount: Union[float, none_type] = kwargs.get("amount", None)
-        self.request_type: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("request_type", None)
+        self.request_type: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("request_type", None)
         self.start_time: Union[datetime, none_type] = kwargs.get("start_time", None)
         self.end_time: Union[datetime, none_type] = kwargs.get("end_time", None)
 
         # Read only properties
         self._id: Union[str] = kwargs.get("id", str())
         self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
-        self._field_mappings: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("field_mappings", None)
         self._modified_at: Union[datetime] = kwargs.get("modified_at", None)
+        self._field_mappings: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("field_mappings", None)
         self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
 
     # Read only property getters
@@ -380,12 +380,12 @@ class TimeOff(ModelNormal):
         return self._remote_was_deleted
 
     @property
-    def field_mappings(self):
-        return self._field_mappings
-
-    @property
     def modified_at(self):
         return self._modified_at
+
+    @property
+    def field_mappings(self):
+        return self._field_mappings
 
     @property
     def remote_data(self):

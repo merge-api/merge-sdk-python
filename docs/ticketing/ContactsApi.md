@@ -24,7 +24,7 @@ Returns a list of `Contact` objects.
 import time
 import MergePythonSDK.ticketing
 from MergePythonSDK.ticketing.api import contacts_api
-
+from MergePythonSDK.ticketing.model.paginated_contact_list import PaginatedContactList
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/ticketing/v1
 # See configuration.py for a list of all supported configuration parameters.

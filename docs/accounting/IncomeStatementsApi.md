@@ -24,7 +24,7 @@ Returns a list of `IncomeStatement` objects.
 import time
 import MergePythonSDK.accounting
 from MergePythonSDK.accounting.api import income_statements_api
-
+from MergePythonSDK.accounting.model.paginated_income_statement_list import PaginatedIncomeStatementList
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/accounting/v1
 # See configuration.py for a list of all supported configuration parameters.

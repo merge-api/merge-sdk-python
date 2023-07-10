@@ -80,7 +80,9 @@ class UsersApi(object):
                 'allowed_values': {
                     ('expand',): {
 
-                        "TEAMS": "teams"
+                        "ROLES": "roles",
+                        "TEAMS": "teams",
+                        "TEAMS,ROLES": "teams,roles"
                     },
                 },
                 'openapi_types': {
@@ -179,7 +181,9 @@ class UsersApi(object):
                 'allowed_values': {
                     ('expand',): {
 
-                        "TEAMS": "teams"
+                        "ROLES": "roles",
+                        "TEAMS": "teams",
+                        "TEAMS,ROLES": "teams,roles"
                     },
                 },
                 'openapi_types': {
@@ -231,7 +235,7 @@ class UsersApi(object):
             created_before (datetime): If provided, will only return objects created before this datetime.. [optional]
             cursor (str): The pagination cursor value.. [optional]
             email_address (str, none_type): If provided, will only return users with emails equal to this value (case insensitive).. [optional]
-            expand (str): Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.. [optional] if omitted the server will use the default value of "teams"
+            expand (str): Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.. [optional]
             include_deleted_data (bool): Whether to include data that was marked as deleted by third party webhooks.. [optional]
             include_remote_data (bool): Whether to include the original data Merge fetched from the third-party to produce these models.. [optional]
             modified_after (datetime): If provided, only objects synced by Merge after this date time will be returned.. [optional]
@@ -319,7 +323,7 @@ class UsersApi(object):
             id (str):
 
         Keyword Args:
-            expand (str): Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.. [optional] if omitted the server will use the default value of "teams"
+            expand (str): Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.. [optional]
             include_remote_data (bool): Whether to include the original data Merge fetched from the third-party to produce these models.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.

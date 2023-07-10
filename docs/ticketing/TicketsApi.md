@@ -30,7 +30,7 @@ Returns a list of `User` objects.
 import time
 import MergePythonSDK.ticketing
 from MergePythonSDK.ticketing.api import tickets_api
-
+from MergePythonSDK.ticketing.model.paginated_user_list import PaginatedUserList
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/ticketing/v1
 # See configuration.py for a list of all supported configuration parameters.
@@ -60,7 +60,7 @@ with MergePythonSDK.ticketing.ApiClient(configuration) as api_client:
     api_instance = tickets_api.TicketsApi(api_client)
     parent_id = "parent_id_example" # str | 
     cursor = "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw" # str | The pagination cursor value. (optional)
-    expand = "teams" # str | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. (optional) if omitted the server will use the default value of "teams"
+    expand = "teams,roles" # str | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. (optional)
     include_deleted_data = True # bool | Whether to include data that was marked as deleted by third party webhooks. (optional)
     include_remote_data = True # bool | Whether to include the original data Merge fetched from the third-party to produce these models. (optional)
     page_size = 1 # int | Number of results to return per page. (optional)
@@ -88,7 +88,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **parent_id** | **str**|  |
  **cursor** | **str**| The pagination cursor value. | [optional]
- **expand** | **str**| Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. | [optional] if omitted the server will use the default value of "teams"
+ **expand** | **str**| Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. | [optional]
  **include_deleted_data** | **bool**| Whether to include data that was marked as deleted by third party webhooks. | [optional]
  **include_remote_data** | **bool**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional]
  **page_size** | **int**| Number of results to return per page. | [optional]
@@ -261,7 +261,7 @@ Returns a list of `Ticket` objects.
 import time
 import MergePythonSDK.ticketing
 from MergePythonSDK.ticketing.api import tickets_api
-
+from MergePythonSDK.ticketing.model.paginated_ticket_list import PaginatedTicketList
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/ticketing/v1
 # See configuration.py for a list of all supported configuration parameters.
@@ -698,7 +698,7 @@ Returns a list of `RemoteFieldClass` objects.
 import time
 import MergePythonSDK.ticketing
 from MergePythonSDK.ticketing.api import tickets_api
-
+from MergePythonSDK.ticketing.model.paginated_remote_field_class_list import PaginatedRemoteFieldClassList
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/ticketing/v1
 # See configuration.py for a list of all supported configuration parameters.

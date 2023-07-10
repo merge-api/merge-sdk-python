@@ -151,7 +151,7 @@ Returns a list of `Engagement` objects.
 import time
 import MergePythonSDK.crm
 from MergePythonSDK.crm.api import engagements_api
-
+from MergePythonSDK.crm.model.paginated_engagement_list import PaginatedEngagementList
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/crm/v1
 # See configuration.py for a list of all supported configuration parameters.
@@ -541,7 +541,7 @@ Returns a list of `RemoteFieldClass` objects.
 import time
 import MergePythonSDK.crm
 from MergePythonSDK.crm.api import engagements_api
-
+from MergePythonSDK.crm.model.paginated_remote_field_class_list import PaginatedRemoteFieldClassList
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.merge.dev/api/crm/v1
 # See configuration.py for a list of all supported configuration parameters.

@@ -32,7 +32,7 @@ file_type = io.IOBase
 MERGE_NONSTANDARD_VALUE = "MERGE_NONSTANDARD_VALUE"
 
 
-class MergeEnumType(type):
+class MergeEnumType(str):
     pass
 
 
@@ -1698,7 +1698,7 @@ def get_oneof_instance(cls, model_kwargs, constant_kwargs, model_arg=None):
             and path to item.
 
     Kwargs:
-        model_arg: (int, float, bool, str, date, datetime, ModelSimple, None):
+        model_arg: (int, float, bool, str, ModelSimple, None):
             the value to assign to a primitive class or ModelSimple class
             Notes:
             - this is only passed in when oneOf includes types which are not object
