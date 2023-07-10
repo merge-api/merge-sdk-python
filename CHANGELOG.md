@@ -1,4 +1,4 @@
-# Version 2.2.8
+# Version 2.2.9
 
 - Add PARTIALLY_SYNCED to SyncStatusEnum
 
