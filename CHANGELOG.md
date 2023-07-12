@@ -1,5 +1,9 @@
 # Version 2.3.0
 
+- Manually updating enum handling for CategoriesEnum
+
+# Version 2.2.9
+
 - Add PARTIALLY_SYNCED to SyncStatusEnum
 
 # Version 2.2.7
