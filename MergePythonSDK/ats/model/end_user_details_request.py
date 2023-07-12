@@ -39,9 +39,7 @@ from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 def lazy_import():
-    from MergePythonSDK.shared.model.categories_enum import CategoriesEnum
     from MergePythonSDK.ats.model.common_model_scopes_body_request import CommonModelScopesBodyRequest
-    globals()['CategoriesEnum'] = CategoriesEnum
     globals()['CommonModelScopesBodyRequest'] = CommonModelScopesBodyRequest
 
 class EndUserDetailsRequest(ModelNormal):
@@ -119,7 +117,7 @@ class EndUserDetailsRequest(ModelNormal):
             'end_user_email_address': (str,),  # noqa: E501
             'end_user_organization_name': (str,),  # noqa: E501
             'end_user_origin_id': (str,),  # noqa: E501
-            'categories': ([CategoriesEnum],),  # noqa: E501
+            'categories': ([str],),  # noqa: E501
             'integration': (str, none_type, none_type,),  # noqa: E501
             'link_expiry_mins': (int, none_type,),  # noqa: E501
             'should_create_magic_link_url': (bool, none_type, none_type,),  # noqa: E501
@@ -322,7 +320,7 @@ class EndUserDetailsRequest(ModelNormal):
         self.end_user_email_address: Union[str] = end_user_email_address
         self.end_user_organization_name: Union[str] = end_user_organization_name
         self.end_user_origin_id: Union[str] = end_user_origin_id
-        self.categories: Union[List["CategoriesEnum"]] = categories
+        self.categories: Union[List[str]] = categories
         self.integration: Union[str, none_type] = kwargs.get("integration", None)
         self.link_expiry_mins: Union[int] = kwargs.get("link_expiry_mins", 30)
         self.should_create_magic_link_url: Union[bool, none_type] = kwargs.get("should_create_magic_link_url", False)
