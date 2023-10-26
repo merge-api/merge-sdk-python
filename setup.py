@@ -12,7 +12,7 @@
 from setuptools import setup, find_packages  # noqa: H301
 
 NAME = "MergePythonSDK"
-VERSION = "2.3.0"
+VERSION = "2.3.1"
 # To install the library, run the following
 #
 # python setup.py install
@@ -21,8 +21,8 @@ VERSION = "2.3.0"
 # http://pypi.python.org/pypi/setuptools
 
 REQUIRES = [
-  "urllib3 >= 1.25.3",
-  "python-dateutil",
+    "urllib3 >= 1.25.3",
+    "python-dateutil",
 ]
 
 setup(
@@ -39,5 +39,5 @@ setup(
     include_package_data=True,
     long_description="""\
     The unified API for building rich integrations with multiple integration platforms.  # noqa: E501
-    """
+    """,
 )
