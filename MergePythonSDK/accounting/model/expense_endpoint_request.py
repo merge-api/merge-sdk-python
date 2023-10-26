@@ -78,7 +78,7 @@ class ExpenseEndpointRequest(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -263,6 +263,6 @@ class ExpenseEndpointRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.model: Union["ExpenseRequest", {"account": "Account", "company": "CompanyInfo", "contact": "Contact", "tracking_categories": "TrackingCategory"}] = model
+        self.model: Union["ExpenseRequest", {"account": "Account", "accounting_period": "AccountingPeriod", "company": "CompanyInfo", "contact": "Contact", "tracking_categories": "TrackingCategory"}] = model
 
 

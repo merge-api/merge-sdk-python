@@ -41,7 +41,7 @@ class LinkedAccountsApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(AccountDetailsAndActions),),
                 'auth': [
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/accounting/v1/linked-accounts',
                 'operation_id': 'linked_accounts_list',
@@ -83,6 +83,7 @@ class LinkedAccountsApi(object):
                         "ACCOUNTING": "accounting",
                         "ATS": "ats",
                         "CRM": "crm",
+                        "DATASTORE": "datastore",
                         "FILESTORAGE": "filestorage",
                         "HRIS": "hris",
                         "MKTG": "mktg",
@@ -174,7 +175,7 @@ class LinkedAccountsApi(object):
 
 
         Keyword Args:
-            category (str, none_type): Options: ('hris', 'ats', 'accounting', 'ticketing', 'crm', 'mktg', 'filestorage')  * `hris` - hris * `ats` - ats * `accounting` - accounting * `ticketing` - ticketing * `crm` - crm * `mktg` - mktg * `filestorage` - filestorage. [optional]
+            category (str, none_type): Options: ('hris', 'ats', 'accounting', 'ticketing', 'crm', 'mktg', 'filestorage', 'datastore')  * `hris` - hris * `ats` - ats * `accounting` - accounting * `ticketing` - ticketing * `crm` - crm * `mktg` - mktg * `filestorage` - filestorage * `datastore` - datastore. [optional]
             cursor (str): The pagination cursor value.. [optional]
             end_user_email_address (str): If provided, will only return linked accounts associated with the given email address.. [optional]
             end_user_organization_name (str): If provided, will only return linked accounts associated with the given organization name.. [optional]

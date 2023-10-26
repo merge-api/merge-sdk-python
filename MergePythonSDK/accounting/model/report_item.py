@@ -74,7 +74,7 @@ class ReportItem(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -93,8 +93,9 @@ class ReportItem(ModelNormal):
             'remote_id': (str, none_type, none_type,),  # noqa: E501
             'name': (str, none_type, none_type,),  # noqa: E501
             'value': (float, none_type, none_type,),  # noqa: E501
-            'sub_items': ({str: (bool, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'sub_items': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'company': (str, none_type, none_type,),  # noqa: E501
+            'created_at': (datetime, none_type,),  # noqa: E501
             'modified_at': (datetime, none_type,),  # noqa: E501
         }
         return defined_types
@@ -110,11 +111,13 @@ class ReportItem(ModelNormal):
         'value': 'value',  # noqa: E501
         'sub_items': 'sub_items',  # noqa: E501
         'company': 'company',  # noqa: E501
+        'created_at': 'created_at',  # noqa: E501
         'modified_at': 'modified_at',  # noqa: E501
     }
 
     read_only_vars = {
         'sub_items',  # noqa: E501
+        'created_at',  # noqa: E501
         'modified_at',  # noqa: E501
     }
 
@@ -159,8 +162,9 @@ class ReportItem(ModelNormal):
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             name (str, none_type): The report item's name.. [optional]  # noqa: E501
             value (float, none_type): The report item's value.. [optional]  # noqa: E501
-            sub_items ({str: (bool, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
+            sub_items ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
             company (str, none_type): The company the report item belongs to.. [optional]  # noqa: E501
+            created_at (datetime): [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
         """
 
@@ -199,6 +203,7 @@ class ReportItem(ModelNormal):
         self.value = kwargs.get("value", None)
         self.company = kwargs.get("company", None)
         self._sub_items = kwargs.get("sub_items", dict())
+        self._created_at = kwargs.get("created_at", None)
         self._modified_at = kwargs.get("modified_at", None)
         return self
 
@@ -249,8 +254,9 @@ class ReportItem(ModelNormal):
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             name (str, none_type): The report item's name.. [optional]  # noqa: E501
             value (float, none_type): The report item's value.. [optional]  # noqa: E501
-            sub_items ({str: (bool, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
+            sub_items ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
             company (str, none_type): The company the report item belongs to.. [optional]  # noqa: E501
+            created_at (datetime): [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
         """
 
@@ -285,11 +291,16 @@ class ReportItem(ModelNormal):
         self.name: Union[str, none_type] = kwargs.get("name", None)
         self.value: Union[float, none_type] = kwargs.get("value", None)
         self.company: Union[str, none_type] = kwargs.get("company", None)
-        self._sub_items: Union[Dict[str, bool, dict, float, int, list, str, none_type]] = kwargs.get("sub_items", dict())
+        self._sub_items: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type]] = kwargs.get("sub_items", dict())
+        self._created_at: Union[datetime] = kwargs.get("created_at", None)
         self._modified_at: Union[datetime] = kwargs.get("modified_at", None)
     @property
     def sub_items(self):
         return self._sub_items
+
+    @property
+    def created_at(self):
+        return self._created_at
 
     @property
     def modified_at(self):

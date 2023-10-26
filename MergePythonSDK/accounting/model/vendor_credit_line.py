@@ -79,7 +79,7 @@ class VendorCreditLine(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -103,6 +103,7 @@ class VendorCreditLine(ModelNormal):
             'account': (str, none_type, none_type,),  # noqa: E501
             'company': (str, none_type, none_type,),  # noqa: E501
             'exchange_rate': (str, none_type, none_type,),  # noqa: E501
+            'created_at': (datetime, none_type,),  # noqa: E501
             'modified_at': (datetime, none_type,),  # noqa: E501
         }
         expands_types = {"account": "Account"}
@@ -131,10 +132,12 @@ class VendorCreditLine(ModelNormal):
         'account': 'account',  # noqa: E501
         'company': 'company',  # noqa: E501
         'exchange_rate': 'exchange_rate',  # noqa: E501
+        'created_at': 'created_at',  # noqa: E501
         'modified_at': 'modified_at',  # noqa: E501
     }
 
     read_only_vars = {
+        'created_at',  # noqa: E501
         'modified_at',  # noqa: E501
     }
 
@@ -186,6 +189,7 @@ class VendorCreditLine(ModelNormal):
             account (str, none_type): The line's account.. [optional]  # noqa: E501
             company (str, none_type): The company the line belongs to.. [optional]  # noqa: E501
             exchange_rate (str, none_type): The vendor credit line item's exchange rate.. [optional]  # noqa: E501
+            created_at (datetime): [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
         """
 
@@ -227,6 +231,7 @@ class VendorCreditLine(ModelNormal):
         self.account = kwargs.get("account", None)
         self.company = kwargs.get("company", None)
         self.exchange_rate = kwargs.get("exchange_rate", None)
+        self._created_at = kwargs.get("created_at", None)
         self._modified_at = kwargs.get("modified_at", None)
         return self
 
@@ -284,6 +289,7 @@ class VendorCreditLine(ModelNormal):
             account (str, none_type): The line's account.. [optional]  # noqa: E501
             company (str, none_type): The company the line belongs to.. [optional]  # noqa: E501
             exchange_rate (str, none_type): The vendor credit line item's exchange rate.. [optional]  # noqa: E501
+            created_at (datetime): [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
         """
 
@@ -322,7 +328,12 @@ class VendorCreditLine(ModelNormal):
         self.account: Union[str, none_type] = kwargs.get("account", None)
         self.company: Union[str, none_type] = kwargs.get("company", None)
         self.exchange_rate: Union[str, none_type] = kwargs.get("exchange_rate", None)
+        self._created_at: Union[datetime] = kwargs.get("created_at", None)
         self._modified_at: Union[datetime] = kwargs.get("modified_at", None)
+    @property
+    def created_at(self):
+        return self._created_at
+
     @property
     def modified_at(self):
         return self._modified_at
