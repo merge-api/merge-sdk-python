@@ -44,8 +44,7 @@ class ExpensesApi(object):
             settings={
                 'response_type': (ExpenseResponse,),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/accounting/v1/expenses',
                 'operation_id': 'expenses_create',
@@ -54,11 +53,13 @@ class ExpensesApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                     'expense_endpoint_request',
                     'is_debug_mode',
                     'run_async',
                 ],
                 'required': [
+                    'x_account_token',
                     'expense_endpoint_request',
                 ],
                 'nullable': [
@@ -74,6 +75,8 @@ class ExpensesApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                     'expense_endpoint_request':
                         (ExpenseEndpointRequest,),
                     'is_debug_mode':
@@ -82,10 +85,12 @@ class ExpensesApi(object):
                         (bool,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                     'is_debug_mode': 'is_debug_mode',
                     'run_async': 'run_async',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                     'expense_endpoint_request': 'body',
                     'is_debug_mode': 'query',
                     'run_async': 'query',
@@ -109,8 +114,7 @@ class ExpensesApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(Expense),),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/accounting/v1/expenses',
                 'operation_id': 'expenses_list',
@@ -119,6 +123,7 @@ class ExpensesApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                     'company_id',
                     'created_after',
                     'created_before',
@@ -133,7 +138,9 @@ class ExpensesApi(object):
                     'transaction_date_after',
                     'transaction_date_before',
                 ],
-                'required': [],
+                'required': [
+                    'x_account_token',
+                ],
                 'nullable': [
                     'remote_id',
                     'transaction_date_after',
@@ -152,23 +159,41 @@ class ExpensesApi(object):
                     ('expand',): {
 
                         "ACCOUNT": "account",
+                        "ACCOUNT,ACCOUNTING_PERIOD": "account,accounting_period",
                         "ACCOUNT,COMPANY": "account,company",
+                        "ACCOUNT,COMPANY,ACCOUNTING_PERIOD": "account,company,accounting_period",
                         "ACCOUNT,CONTACT": "account,contact",
+                        "ACCOUNT,CONTACT,ACCOUNTING_PERIOD": "account,contact,accounting_period",
                         "ACCOUNT,CONTACT,COMPANY": "account,contact,company",
+                        "ACCOUNT,CONTACT,COMPANY,ACCOUNTING_PERIOD": "account,contact,company,accounting_period",
+                        "ACCOUNTING_PERIOD": "accounting_period",
                         "COMPANY": "company",
+                        "COMPANY,ACCOUNTING_PERIOD": "company,accounting_period",
                         "CONTACT": "contact",
+                        "CONTACT,ACCOUNTING_PERIOD": "contact,accounting_period",
                         "CONTACT,COMPANY": "contact,company",
+                        "CONTACT,COMPANY,ACCOUNTING_PERIOD": "contact,company,accounting_period",
                         "TRACKING_CATEGORIES": "tracking_categories",
                         "TRACKING_CATEGORIES,ACCOUNT": "tracking_categories,account",
+                        "TRACKING_CATEGORIES,ACCOUNT,ACCOUNTING_PERIOD": "tracking_categories,account,accounting_period",
                         "TRACKING_CATEGORIES,ACCOUNT,COMPANY": "tracking_categories,account,company",
+                        "TRACKING_CATEGORIES,ACCOUNT,COMPANY,ACCOUNTING_PERIOD": "tracking_categories,account,company,accounting_period",
                         "TRACKING_CATEGORIES,ACCOUNT,CONTACT": "tracking_categories,account,contact",
+                        "TRACKING_CATEGORIES,ACCOUNT,CONTACT,ACCOUNTING_PERIOD": "tracking_categories,account,contact,accounting_period",
                         "TRACKING_CATEGORIES,ACCOUNT,CONTACT,COMPANY": "tracking_categories,account,contact,company",
+                        "TRACKING_CATEGORIES,ACCOUNT,CONTACT,COMPANY,ACCOUNTING_PERIOD": "tracking_categories,account,contact,company,accounting_period",
+                        "TRACKING_CATEGORIES,ACCOUNTING_PERIOD": "tracking_categories,accounting_period",
                         "TRACKING_CATEGORIES,COMPANY": "tracking_categories,company",
+                        "TRACKING_CATEGORIES,COMPANY,ACCOUNTING_PERIOD": "tracking_categories,company,accounting_period",
                         "TRACKING_CATEGORIES,CONTACT": "tracking_categories,contact",
-                        "TRACKING_CATEGORIES,CONTACT,COMPANY": "tracking_categories,contact,company"
+                        "TRACKING_CATEGORIES,CONTACT,ACCOUNTING_PERIOD": "tracking_categories,contact,accounting_period",
+                        "TRACKING_CATEGORIES,CONTACT,COMPANY": "tracking_categories,contact,company",
+                        "TRACKING_CATEGORIES,CONTACT,COMPANY,ACCOUNTING_PERIOD": "tracking_categories,contact,company,accounting_period"
                     },
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                     'company_id':
                         (str,),
                     'created_after':
@@ -197,6 +222,7 @@ class ExpensesApi(object):
                         (datetime, none_type,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                     'company_id': 'company_id',
                     'created_after': 'created_after',
                     'created_before': 'created_before',
@@ -212,6 +238,7 @@ class ExpensesApi(object):
                     'transaction_date_before': 'transaction_date_before',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                     'company_id': 'query',
                     'created_after': 'query',
                     'created_before': 'query',
@@ -241,8 +268,7 @@ class ExpensesApi(object):
             settings={
                 'response_type': (MetaResponse,),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/accounting/v1/expenses/meta/post',
                 'operation_id': 'expenses_meta_post_retrieve',
@@ -251,8 +277,11 @@ class ExpensesApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                 ],
-                'required': [],
+                'required': [
+                    'x_account_token',
+                ],
                 'nullable': [
                 ],
                 'enum': [
@@ -266,10 +295,14 @@ class ExpensesApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -286,8 +319,7 @@ class ExpensesApi(object):
             settings={
                 'response_type': (Expense,),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/accounting/v1/expenses/{id}',
                 'operation_id': 'expenses_retrieve',
@@ -296,11 +328,13 @@ class ExpensesApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                     'id',
                     'expand',
                     'include_remote_data',
                 ],
                 'required': [
+                    'x_account_token',
                     'id',
                 ],
                 'nullable': [
@@ -318,23 +352,41 @@ class ExpensesApi(object):
                     ('expand',): {
 
                         "ACCOUNT": "account",
+                        "ACCOUNT,ACCOUNTING_PERIOD": "account,accounting_period",
                         "ACCOUNT,COMPANY": "account,company",
+                        "ACCOUNT,COMPANY,ACCOUNTING_PERIOD": "account,company,accounting_period",
                         "ACCOUNT,CONTACT": "account,contact",
+                        "ACCOUNT,CONTACT,ACCOUNTING_PERIOD": "account,contact,accounting_period",
                         "ACCOUNT,CONTACT,COMPANY": "account,contact,company",
+                        "ACCOUNT,CONTACT,COMPANY,ACCOUNTING_PERIOD": "account,contact,company,accounting_period",
+                        "ACCOUNTING_PERIOD": "accounting_period",
                         "COMPANY": "company",
+                        "COMPANY,ACCOUNTING_PERIOD": "company,accounting_period",
                         "CONTACT": "contact",
+                        "CONTACT,ACCOUNTING_PERIOD": "contact,accounting_period",
                         "CONTACT,COMPANY": "contact,company",
+                        "CONTACT,COMPANY,ACCOUNTING_PERIOD": "contact,company,accounting_period",
                         "TRACKING_CATEGORIES": "tracking_categories",
                         "TRACKING_CATEGORIES,ACCOUNT": "tracking_categories,account",
+                        "TRACKING_CATEGORIES,ACCOUNT,ACCOUNTING_PERIOD": "tracking_categories,account,accounting_period",
                         "TRACKING_CATEGORIES,ACCOUNT,COMPANY": "tracking_categories,account,company",
+                        "TRACKING_CATEGORIES,ACCOUNT,COMPANY,ACCOUNTING_PERIOD": "tracking_categories,account,company,accounting_period",
                         "TRACKING_CATEGORIES,ACCOUNT,CONTACT": "tracking_categories,account,contact",
+                        "TRACKING_CATEGORIES,ACCOUNT,CONTACT,ACCOUNTING_PERIOD": "tracking_categories,account,contact,accounting_period",
                         "TRACKING_CATEGORIES,ACCOUNT,CONTACT,COMPANY": "tracking_categories,account,contact,company",
+                        "TRACKING_CATEGORIES,ACCOUNT,CONTACT,COMPANY,ACCOUNTING_PERIOD": "tracking_categories,account,contact,company,accounting_period",
+                        "TRACKING_CATEGORIES,ACCOUNTING_PERIOD": "tracking_categories,accounting_period",
                         "TRACKING_CATEGORIES,COMPANY": "tracking_categories,company",
+                        "TRACKING_CATEGORIES,COMPANY,ACCOUNTING_PERIOD": "tracking_categories,company,accounting_period",
                         "TRACKING_CATEGORIES,CONTACT": "tracking_categories,contact",
-                        "TRACKING_CATEGORIES,CONTACT,COMPANY": "tracking_categories,contact,company"
+                        "TRACKING_CATEGORIES,CONTACT,ACCOUNTING_PERIOD": "tracking_categories,contact,accounting_period",
+                        "TRACKING_CATEGORIES,CONTACT,COMPANY": "tracking_categories,contact,company",
+                        "TRACKING_CATEGORIES,CONTACT,COMPANY,ACCOUNTING_PERIOD": "tracking_categories,contact,company,accounting_period"
                     },
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                     'id':
                         (str,),
                     'expand':
@@ -343,11 +395,13 @@ class ExpensesApi(object):
                         (bool,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                     'expand': 'expand',
                     'include_remote_data': 'include_remote_data',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                     'id': 'path',
                     'expand': 'query',
                     'include_remote_data': 'query',
@@ -366,6 +420,7 @@ class ExpensesApi(object):
 
     def expenses_create(
         self,
+        x_account_token,
         expense_endpoint_request,
         **kwargs
     ) -> "ExpenseResponse":
@@ -375,10 +430,11 @@ class ExpensesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.expenses_create(expense_endpoint_request, async_req=True)
+        >>> thread = api.expenses_create(x_account_token, expense_endpoint_request, async_req=True)
         >>> result = thread.get()
 
         Args:
+            x_account_token (str): Token identifying the end user.
             expense_endpoint_request (ExpenseEndpointRequest):
 
         Keyword Args:
@@ -445,12 +501,15 @@ class ExpensesApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         kwargs['expense_endpoint_request'] = \
             expense_endpoint_request
         return self.expenses_create_endpoint.call_with_http_info(**kwargs)
 
     def expenses_list(
         self,
+        x_account_token,
         **kwargs
     ) -> "MergePaginatedResponse(Expense)":
         """expenses_list  # noqa: E501
@@ -459,9 +518,11 @@ class ExpensesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.expenses_list(async_req=True)
+        >>> thread = api.expenses_list(x_account_token, async_req=True)
         >>> result = thread.get()
 
+        Args:
+            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             company_id (str): If provided, will only return expenses for this company.. [optional]
@@ -538,10 +599,13 @@ class ExpensesApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         return self.expenses_list_endpoint.call_with_http_info(**kwargs)
 
     def expenses_meta_post_retrieve(
         self,
+        x_account_token,
         **kwargs
     ) -> "MetaResponse":
         """expenses_meta_post_retrieve  # noqa: E501
@@ -550,9 +614,11 @@ class ExpensesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.expenses_meta_post_retrieve(async_req=True)
+        >>> thread = api.expenses_meta_post_retrieve(x_account_token, async_req=True)
         >>> result = thread.get()
 
+        Args:
+            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -616,10 +682,13 @@ class ExpensesApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         return self.expenses_meta_post_retrieve_endpoint.call_with_http_info(**kwargs)
 
     def expenses_retrieve(
         self,
+        x_account_token,
         id,
         **kwargs
     ) -> "Expense":
@@ -629,10 +698,11 @@ class ExpensesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.expenses_retrieve(id, async_req=True)
+        >>> thread = api.expenses_retrieve(x_account_token, id, async_req=True)
         >>> result = thread.get()
 
         Args:
+            x_account_token (str): Token identifying the end user.
             id (str):
 
         Keyword Args:
@@ -699,6 +769,8 @@ class ExpensesApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         kwargs['id'] = \
             id
         return self.expenses_retrieve_endpoint.call_with_http_info(**kwargs)

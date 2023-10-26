@@ -44,8 +44,7 @@ class PurchaseOrdersApi(object):
             settings={
                 'response_type': (PurchaseOrderResponse,),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/accounting/v1/purchase-orders',
                 'operation_id': 'purchase_orders_create',
@@ -54,11 +53,13 @@ class PurchaseOrdersApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                     'purchase_order_endpoint_request',
                     'is_debug_mode',
                     'run_async',
                 ],
                 'required': [
+                    'x_account_token',
                     'purchase_order_endpoint_request',
                 ],
                 'nullable': [
@@ -74,6 +75,8 @@ class PurchaseOrdersApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                     'purchase_order_endpoint_request':
                         (PurchaseOrderEndpointRequest,),
                     'is_debug_mode':
@@ -82,10 +85,12 @@ class PurchaseOrdersApi(object):
                         (bool,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                     'is_debug_mode': 'is_debug_mode',
                     'run_async': 'run_async',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                     'purchase_order_endpoint_request': 'body',
                     'is_debug_mode': 'query',
                     'run_async': 'query',
@@ -109,8 +114,7 @@ class PurchaseOrdersApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(PurchaseOrder),),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/accounting/v1/purchase-orders',
                 'operation_id': 'purchase_orders_list',
@@ -119,6 +123,7 @@ class PurchaseOrdersApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                     'company_id',
                     'created_after',
                     'created_before',
@@ -135,7 +140,9 @@ class PurchaseOrdersApi(object):
                     'remote_id',
                     'show_enum_origins',
                 ],
-                'required': [],
+                'required': [
+                    'x_account_token',
+                ],
                 'nullable': [
                     'issue_date_after',
                     'issue_date_before',
@@ -155,37 +162,69 @@ class PurchaseOrdersApi(object):
                 'allowed_values': {
                     ('expand',): {
 
+                        "ACCOUNTING_PERIOD": "accounting_period",
                         "COMPANY": "company",
+                        "COMPANY,ACCOUNTING_PERIOD": "company,accounting_period",
                         "DELIVERY_ADDRESS": "delivery_address",
+                        "DELIVERY_ADDRESS,ACCOUNTING_PERIOD": "delivery_address,accounting_period",
                         "DELIVERY_ADDRESS,COMPANY": "delivery_address,company",
+                        "DELIVERY_ADDRESS,COMPANY,ACCOUNTING_PERIOD": "delivery_address,company,accounting_period",
                         "DELIVERY_ADDRESS,VENDOR": "delivery_address,vendor",
+                        "DELIVERY_ADDRESS,VENDOR,ACCOUNTING_PERIOD": "delivery_address,vendor,accounting_period",
                         "DELIVERY_ADDRESS,VENDOR,COMPANY": "delivery_address,vendor,company",
+                        "DELIVERY_ADDRESS,VENDOR,COMPANY,ACCOUNTING_PERIOD": "delivery_address,vendor,company,accounting_period",
                         "LINE_ITEMS": "line_items",
+                        "LINE_ITEMS,ACCOUNTING_PERIOD": "line_items,accounting_period",
                         "LINE_ITEMS,COMPANY": "line_items,company",
+                        "LINE_ITEMS,COMPANY,ACCOUNTING_PERIOD": "line_items,company,accounting_period",
                         "LINE_ITEMS,DELIVERY_ADDRESS": "line_items,delivery_address",
+                        "LINE_ITEMS,DELIVERY_ADDRESS,ACCOUNTING_PERIOD": "line_items,delivery_address,accounting_period",
                         "LINE_ITEMS,DELIVERY_ADDRESS,COMPANY": "line_items,delivery_address,company",
+                        "LINE_ITEMS,DELIVERY_ADDRESS,COMPANY,ACCOUNTING_PERIOD": "line_items,delivery_address,company,accounting_period",
                         "LINE_ITEMS,DELIVERY_ADDRESS,VENDOR": "line_items,delivery_address,vendor",
+                        "LINE_ITEMS,DELIVERY_ADDRESS,VENDOR,ACCOUNTING_PERIOD": "line_items,delivery_address,vendor,accounting_period",
                         "LINE_ITEMS,DELIVERY_ADDRESS,VENDOR,COMPANY": "line_items,delivery_address,vendor,company",
+                        "LINE_ITEMS,DELIVERY_ADDRESS,VENDOR,COMPANY,ACCOUNTING_PERIOD": "line_items,delivery_address,vendor,company,accounting_period",
                         "LINE_ITEMS,TRACKING_CATEGORIES": "line_items,tracking_categories",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,ACCOUNTING_PERIOD": "line_items,tracking_categories,accounting_period",
                         "LINE_ITEMS,TRACKING_CATEGORIES,COMPANY": "line_items,tracking_categories,company",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,COMPANY,ACCOUNTING_PERIOD": "line_items,tracking_categories,company,accounting_period",
                         "LINE_ITEMS,TRACKING_CATEGORIES,DELIVERY_ADDRESS": "line_items,tracking_categories,delivery_address",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,DELIVERY_ADDRESS,ACCOUNTING_PERIOD": "line_items,tracking_categories,delivery_address,accounting_period",
                         "LINE_ITEMS,TRACKING_CATEGORIES,DELIVERY_ADDRESS,COMPANY": "line_items,tracking_categories,delivery_address,company",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,DELIVERY_ADDRESS,COMPANY,ACCOUNTING_PERIOD": "line_items,tracking_categories,delivery_address,company,accounting_period",
                         "LINE_ITEMS,TRACKING_CATEGORIES,DELIVERY_ADDRESS,VENDOR": "line_items,tracking_categories,delivery_address,vendor",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,DELIVERY_ADDRESS,VENDOR,ACCOUNTING_PERIOD": "line_items,tracking_categories,delivery_address,vendor,accounting_period",
                         "LINE_ITEMS,TRACKING_CATEGORIES,DELIVERY_ADDRESS,VENDOR,COMPANY": "line_items,tracking_categories,delivery_address,vendor,company",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,DELIVERY_ADDRESS,VENDOR,COMPANY,ACCOUNTING_PERIOD": "line_items,tracking_categories,delivery_address,vendor,company,accounting_period",
                         "LINE_ITEMS,TRACKING_CATEGORIES,VENDOR": "line_items,tracking_categories,vendor",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,VENDOR,ACCOUNTING_PERIOD": "line_items,tracking_categories,vendor,accounting_period",
                         "LINE_ITEMS,TRACKING_CATEGORIES,VENDOR,COMPANY": "line_items,tracking_categories,vendor,company",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,VENDOR,COMPANY,ACCOUNTING_PERIOD": "line_items,tracking_categories,vendor,company,accounting_period",
                         "LINE_ITEMS,VENDOR": "line_items,vendor",
+                        "LINE_ITEMS,VENDOR,ACCOUNTING_PERIOD": "line_items,vendor,accounting_period",
                         "LINE_ITEMS,VENDOR,COMPANY": "line_items,vendor,company",
+                        "LINE_ITEMS,VENDOR,COMPANY,ACCOUNTING_PERIOD": "line_items,vendor,company,accounting_period",
                         "TRACKING_CATEGORIES": "tracking_categories",
+                        "TRACKING_CATEGORIES,ACCOUNTING_PERIOD": "tracking_categories,accounting_period",
                         "TRACKING_CATEGORIES,COMPANY": "tracking_categories,company",
+                        "TRACKING_CATEGORIES,COMPANY,ACCOUNTING_PERIOD": "tracking_categories,company,accounting_period",
                         "TRACKING_CATEGORIES,DELIVERY_ADDRESS": "tracking_categories,delivery_address",
+                        "TRACKING_CATEGORIES,DELIVERY_ADDRESS,ACCOUNTING_PERIOD": "tracking_categories,delivery_address,accounting_period",
                         "TRACKING_CATEGORIES,DELIVERY_ADDRESS,COMPANY": "tracking_categories,delivery_address,company",
+                        "TRACKING_CATEGORIES,DELIVERY_ADDRESS,COMPANY,ACCOUNTING_PERIOD": "tracking_categories,delivery_address,company,accounting_period",
                         "TRACKING_CATEGORIES,DELIVERY_ADDRESS,VENDOR": "tracking_categories,delivery_address,vendor",
+                        "TRACKING_CATEGORIES,DELIVERY_ADDRESS,VENDOR,ACCOUNTING_PERIOD": "tracking_categories,delivery_address,vendor,accounting_period",
                         "TRACKING_CATEGORIES,DELIVERY_ADDRESS,VENDOR,COMPANY": "tracking_categories,delivery_address,vendor,company",
+                        "TRACKING_CATEGORIES,DELIVERY_ADDRESS,VENDOR,COMPANY,ACCOUNTING_PERIOD": "tracking_categories,delivery_address,vendor,company,accounting_period",
                         "TRACKING_CATEGORIES,VENDOR": "tracking_categories,vendor",
+                        "TRACKING_CATEGORIES,VENDOR,ACCOUNTING_PERIOD": "tracking_categories,vendor,accounting_period",
                         "TRACKING_CATEGORIES,VENDOR,COMPANY": "tracking_categories,vendor,company",
+                        "TRACKING_CATEGORIES,VENDOR,COMPANY,ACCOUNTING_PERIOD": "tracking_categories,vendor,company,accounting_period",
                         "VENDOR": "vendor",
-                        "VENDOR,COMPANY": "vendor,company"
+                        "VENDOR,ACCOUNTING_PERIOD": "vendor,accounting_period",
+                        "VENDOR,COMPANY": "vendor,company",
+                        "VENDOR,COMPANY,ACCOUNTING_PERIOD": "vendor,company,accounting_period"
                     },
                     ('remote_fields',): {
 
@@ -197,6 +236,8 @@ class PurchaseOrdersApi(object):
                     },
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                     'company_id':
                         (str,),
                     'created_after':
@@ -229,6 +270,7 @@ class PurchaseOrdersApi(object):
                         (str,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                     'company_id': 'company_id',
                     'created_after': 'created_after',
                     'created_before': 'created_before',
@@ -246,6 +288,7 @@ class PurchaseOrdersApi(object):
                     'show_enum_origins': 'show_enum_origins',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                     'company_id': 'query',
                     'created_after': 'query',
                     'created_before': 'query',
@@ -277,8 +320,7 @@ class PurchaseOrdersApi(object):
             settings={
                 'response_type': (MetaResponse,),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/accounting/v1/purchase-orders/meta/post',
                 'operation_id': 'purchase_orders_meta_post_retrieve',
@@ -287,8 +329,11 @@ class PurchaseOrdersApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                 ],
-                'required': [],
+                'required': [
+                    'x_account_token',
+                ],
                 'nullable': [
                 ],
                 'enum': [
@@ -302,10 +347,14 @@ class PurchaseOrdersApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -322,8 +371,7 @@ class PurchaseOrdersApi(object):
             settings={
                 'response_type': (PurchaseOrder,),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/accounting/v1/purchase-orders/{id}',
                 'operation_id': 'purchase_orders_retrieve',
@@ -332,6 +380,7 @@ class PurchaseOrdersApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                     'id',
                     'expand',
                     'include_remote_data',
@@ -339,6 +388,7 @@ class PurchaseOrdersApi(object):
                     'show_enum_origins',
                 ],
                 'required': [
+                    'x_account_token',
                     'id',
                 ],
                 'nullable': [
@@ -357,37 +407,69 @@ class PurchaseOrdersApi(object):
                 'allowed_values': {
                     ('expand',): {
 
+                        "ACCOUNTING_PERIOD": "accounting_period",
                         "COMPANY": "company",
+                        "COMPANY,ACCOUNTING_PERIOD": "company,accounting_period",
                         "DELIVERY_ADDRESS": "delivery_address",
+                        "DELIVERY_ADDRESS,ACCOUNTING_PERIOD": "delivery_address,accounting_period",
                         "DELIVERY_ADDRESS,COMPANY": "delivery_address,company",
+                        "DELIVERY_ADDRESS,COMPANY,ACCOUNTING_PERIOD": "delivery_address,company,accounting_period",
                         "DELIVERY_ADDRESS,VENDOR": "delivery_address,vendor",
+                        "DELIVERY_ADDRESS,VENDOR,ACCOUNTING_PERIOD": "delivery_address,vendor,accounting_period",
                         "DELIVERY_ADDRESS,VENDOR,COMPANY": "delivery_address,vendor,company",
+                        "DELIVERY_ADDRESS,VENDOR,COMPANY,ACCOUNTING_PERIOD": "delivery_address,vendor,company,accounting_period",
                         "LINE_ITEMS": "line_items",
+                        "LINE_ITEMS,ACCOUNTING_PERIOD": "line_items,accounting_period",
                         "LINE_ITEMS,COMPANY": "line_items,company",
+                        "LINE_ITEMS,COMPANY,ACCOUNTING_PERIOD": "line_items,company,accounting_period",
                         "LINE_ITEMS,DELIVERY_ADDRESS": "line_items,delivery_address",
+                        "LINE_ITEMS,DELIVERY_ADDRESS,ACCOUNTING_PERIOD": "line_items,delivery_address,accounting_period",
                         "LINE_ITEMS,DELIVERY_ADDRESS,COMPANY": "line_items,delivery_address,company",
+                        "LINE_ITEMS,DELIVERY_ADDRESS,COMPANY,ACCOUNTING_PERIOD": "line_items,delivery_address,company,accounting_period",
                         "LINE_ITEMS,DELIVERY_ADDRESS,VENDOR": "line_items,delivery_address,vendor",
+                        "LINE_ITEMS,DELIVERY_ADDRESS,VENDOR,ACCOUNTING_PERIOD": "line_items,delivery_address,vendor,accounting_period",
                         "LINE_ITEMS,DELIVERY_ADDRESS,VENDOR,COMPANY": "line_items,delivery_address,vendor,company",
+                        "LINE_ITEMS,DELIVERY_ADDRESS,VENDOR,COMPANY,ACCOUNTING_PERIOD": "line_items,delivery_address,vendor,company,accounting_period",
                         "LINE_ITEMS,TRACKING_CATEGORIES": "line_items,tracking_categories",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,ACCOUNTING_PERIOD": "line_items,tracking_categories,accounting_period",
                         "LINE_ITEMS,TRACKING_CATEGORIES,COMPANY": "line_items,tracking_categories,company",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,COMPANY,ACCOUNTING_PERIOD": "line_items,tracking_categories,company,accounting_period",
                         "LINE_ITEMS,TRACKING_CATEGORIES,DELIVERY_ADDRESS": "line_items,tracking_categories,delivery_address",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,DELIVERY_ADDRESS,ACCOUNTING_PERIOD": "line_items,tracking_categories,delivery_address,accounting_period",
                         "LINE_ITEMS,TRACKING_CATEGORIES,DELIVERY_ADDRESS,COMPANY": "line_items,tracking_categories,delivery_address,company",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,DELIVERY_ADDRESS,COMPANY,ACCOUNTING_PERIOD": "line_items,tracking_categories,delivery_address,company,accounting_period",
                         "LINE_ITEMS,TRACKING_CATEGORIES,DELIVERY_ADDRESS,VENDOR": "line_items,tracking_categories,delivery_address,vendor",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,DELIVERY_ADDRESS,VENDOR,ACCOUNTING_PERIOD": "line_items,tracking_categories,delivery_address,vendor,accounting_period",
                         "LINE_ITEMS,TRACKING_CATEGORIES,DELIVERY_ADDRESS,VENDOR,COMPANY": "line_items,tracking_categories,delivery_address,vendor,company",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,DELIVERY_ADDRESS,VENDOR,COMPANY,ACCOUNTING_PERIOD": "line_items,tracking_categories,delivery_address,vendor,company,accounting_period",
                         "LINE_ITEMS,TRACKING_CATEGORIES,VENDOR": "line_items,tracking_categories,vendor",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,VENDOR,ACCOUNTING_PERIOD": "line_items,tracking_categories,vendor,accounting_period",
                         "LINE_ITEMS,TRACKING_CATEGORIES,VENDOR,COMPANY": "line_items,tracking_categories,vendor,company",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,VENDOR,COMPANY,ACCOUNTING_PERIOD": "line_items,tracking_categories,vendor,company,accounting_period",
                         "LINE_ITEMS,VENDOR": "line_items,vendor",
+                        "LINE_ITEMS,VENDOR,ACCOUNTING_PERIOD": "line_items,vendor,accounting_period",
                         "LINE_ITEMS,VENDOR,COMPANY": "line_items,vendor,company",
+                        "LINE_ITEMS,VENDOR,COMPANY,ACCOUNTING_PERIOD": "line_items,vendor,company,accounting_period",
                         "TRACKING_CATEGORIES": "tracking_categories",
+                        "TRACKING_CATEGORIES,ACCOUNTING_PERIOD": "tracking_categories,accounting_period",
                         "TRACKING_CATEGORIES,COMPANY": "tracking_categories,company",
+                        "TRACKING_CATEGORIES,COMPANY,ACCOUNTING_PERIOD": "tracking_categories,company,accounting_period",
                         "TRACKING_CATEGORIES,DELIVERY_ADDRESS": "tracking_categories,delivery_address",
+                        "TRACKING_CATEGORIES,DELIVERY_ADDRESS,ACCOUNTING_PERIOD": "tracking_categories,delivery_address,accounting_period",
                         "TRACKING_CATEGORIES,DELIVERY_ADDRESS,COMPANY": "tracking_categories,delivery_address,company",
+                        "TRACKING_CATEGORIES,DELIVERY_ADDRESS,COMPANY,ACCOUNTING_PERIOD": "tracking_categories,delivery_address,company,accounting_period",
                         "TRACKING_CATEGORIES,DELIVERY_ADDRESS,VENDOR": "tracking_categories,delivery_address,vendor",
+                        "TRACKING_CATEGORIES,DELIVERY_ADDRESS,VENDOR,ACCOUNTING_PERIOD": "tracking_categories,delivery_address,vendor,accounting_period",
                         "TRACKING_CATEGORIES,DELIVERY_ADDRESS,VENDOR,COMPANY": "tracking_categories,delivery_address,vendor,company",
+                        "TRACKING_CATEGORIES,DELIVERY_ADDRESS,VENDOR,COMPANY,ACCOUNTING_PERIOD": "tracking_categories,delivery_address,vendor,company,accounting_period",
                         "TRACKING_CATEGORIES,VENDOR": "tracking_categories,vendor",
+                        "TRACKING_CATEGORIES,VENDOR,ACCOUNTING_PERIOD": "tracking_categories,vendor,accounting_period",
                         "TRACKING_CATEGORIES,VENDOR,COMPANY": "tracking_categories,vendor,company",
+                        "TRACKING_CATEGORIES,VENDOR,COMPANY,ACCOUNTING_PERIOD": "tracking_categories,vendor,company,accounting_period",
                         "VENDOR": "vendor",
-                        "VENDOR,COMPANY": "vendor,company"
+                        "VENDOR,ACCOUNTING_PERIOD": "vendor,accounting_period",
+                        "VENDOR,COMPANY": "vendor,company",
+                        "VENDOR,COMPANY,ACCOUNTING_PERIOD": "vendor,company,accounting_period"
                     },
                     ('remote_fields',): {
 
@@ -399,6 +481,8 @@ class PurchaseOrdersApi(object):
                     },
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                     'id':
                         (str,),
                     'expand':
@@ -411,6 +495,7 @@ class PurchaseOrdersApi(object):
                         (str,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                     'expand': 'expand',
                     'include_remote_data': 'include_remote_data',
@@ -418,6 +503,7 @@ class PurchaseOrdersApi(object):
                     'show_enum_origins': 'show_enum_origins',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                     'id': 'path',
                     'expand': 'query',
                     'include_remote_data': 'query',
@@ -438,6 +524,7 @@ class PurchaseOrdersApi(object):
 
     def purchase_orders_create(
         self,
+        x_account_token,
         purchase_order_endpoint_request,
         **kwargs
     ) -> "PurchaseOrderResponse":
@@ -447,10 +534,11 @@ class PurchaseOrdersApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.purchase_orders_create(purchase_order_endpoint_request, async_req=True)
+        >>> thread = api.purchase_orders_create(x_account_token, purchase_order_endpoint_request, async_req=True)
         >>> result = thread.get()
 
         Args:
+            x_account_token (str): Token identifying the end user.
             purchase_order_endpoint_request (PurchaseOrderEndpointRequest):
 
         Keyword Args:
@@ -517,12 +605,15 @@ class PurchaseOrdersApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         kwargs['purchase_order_endpoint_request'] = \
             purchase_order_endpoint_request
         return self.purchase_orders_create_endpoint.call_with_http_info(**kwargs)
 
     def purchase_orders_list(
         self,
+        x_account_token,
         **kwargs
     ) -> "MergePaginatedResponse(PurchaseOrder)":
         """purchase_orders_list  # noqa: E501
@@ -531,9 +622,11 @@ class PurchaseOrdersApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.purchase_orders_list(async_req=True)
+        >>> thread = api.purchase_orders_list(x_account_token, async_req=True)
         >>> result = thread.get()
 
+        Args:
+            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             company_id (str): If provided, will only return purchase orders for this company.. [optional]
@@ -612,10 +705,13 @@ class PurchaseOrdersApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         return self.purchase_orders_list_endpoint.call_with_http_info(**kwargs)
 
     def purchase_orders_meta_post_retrieve(
         self,
+        x_account_token,
         **kwargs
     ) -> "MetaResponse":
         """purchase_orders_meta_post_retrieve  # noqa: E501
@@ -624,9 +720,11 @@ class PurchaseOrdersApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.purchase_orders_meta_post_retrieve(async_req=True)
+        >>> thread = api.purchase_orders_meta_post_retrieve(x_account_token, async_req=True)
         >>> result = thread.get()
 
+        Args:
+            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -690,10 +788,13 @@ class PurchaseOrdersApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         return self.purchase_orders_meta_post_retrieve_endpoint.call_with_http_info(**kwargs)
 
     def purchase_orders_retrieve(
         self,
+        x_account_token,
         id,
         **kwargs
     ) -> "PurchaseOrder":
@@ -703,10 +804,11 @@ class PurchaseOrdersApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.purchase_orders_retrieve(id, async_req=True)
+        >>> thread = api.purchase_orders_retrieve(x_account_token, id, async_req=True)
         >>> result = thread.get()
 
         Args:
+            x_account_token (str): Token identifying the end user.
             id (str):
 
         Keyword Args:
@@ -775,6 +877,8 @@ class PurchaseOrdersApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         kwargs['id'] = \
             id
         return self.purchase_orders_retrieve_endpoint.call_with_http_info(**kwargs)

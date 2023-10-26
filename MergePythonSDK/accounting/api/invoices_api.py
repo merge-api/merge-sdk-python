@@ -44,8 +44,7 @@ class InvoicesApi(object):
             settings={
                 'response_type': (InvoiceResponse,),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/accounting/v1/invoices',
                 'operation_id': 'invoices_create',
@@ -54,11 +53,13 @@ class InvoicesApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                     'invoice_endpoint_request',
                     'is_debug_mode',
                     'run_async',
                 ],
                 'required': [
+                    'x_account_token',
                     'invoice_endpoint_request',
                 ],
                 'nullable': [
@@ -74,6 +75,8 @@ class InvoicesApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                     'invoice_endpoint_request':
                         (InvoiceEndpointRequest,),
                     'is_debug_mode':
@@ -82,10 +85,12 @@ class InvoicesApi(object):
                         (bool,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                     'is_debug_mode': 'is_debug_mode',
                     'run_async': 'run_async',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                     'invoice_endpoint_request': 'body',
                     'is_debug_mode': 'query',
                     'run_async': 'query',
@@ -109,8 +114,7 @@ class InvoicesApi(object):
             settings={
                 'response_type': (MergePaginatedResponse(Invoice),),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/accounting/v1/invoices',
                 'operation_id': 'invoices_list',
@@ -119,6 +123,7 @@ class InvoicesApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                     'company_id',
                     'contact_id',
                     'created_after',
@@ -137,7 +142,9 @@ class InvoicesApi(object):
                     'show_enum_origins',
                     'type',
                 ],
-                'required': [],
+                'required': [
+                    'x_account_token',
+                ],
                 'nullable': [
                     'issue_date_after',
                     'issue_date_before',
@@ -159,37 +166,133 @@ class InvoicesApi(object):
                 'allowed_values': {
                     ('expand',): {
 
+                        "ACCOUNTING_PERIOD": "accounting_period",
                         "COMPANY": "company",
+                        "COMPANY,ACCOUNTING_PERIOD": "company,accounting_period",
                         "CONTACT": "contact",
+                        "CONTACT,ACCOUNTING_PERIOD": "contact,accounting_period",
                         "CONTACT,COMPANY": "contact,company",
+                        "CONTACT,COMPANY,ACCOUNTING_PERIOD": "contact,company,accounting_period",
                         "LINE_ITEMS": "line_items",
+                        "LINE_ITEMS,ACCOUNTING_PERIOD": "line_items,accounting_period",
                         "LINE_ITEMS,COMPANY": "line_items,company",
+                        "LINE_ITEMS,COMPANY,ACCOUNTING_PERIOD": "line_items,company,accounting_period",
                         "LINE_ITEMS,CONTACT": "line_items,contact",
+                        "LINE_ITEMS,CONTACT,ACCOUNTING_PERIOD": "line_items,contact,accounting_period",
                         "LINE_ITEMS,CONTACT,COMPANY": "line_items,contact,company",
+                        "LINE_ITEMS,CONTACT,COMPANY,ACCOUNTING_PERIOD": "line_items,contact,company,accounting_period",
+                        "LINE_ITEMS,PURCHASE_ORDERS": "line_items,purchase_orders",
+                        "LINE_ITEMS,PURCHASE_ORDERS,ACCOUNTING_PERIOD": "line_items,purchase_orders,accounting_period",
+                        "LINE_ITEMS,PURCHASE_ORDERS,COMPANY": "line_items,purchase_orders,company",
+                        "LINE_ITEMS,PURCHASE_ORDERS,COMPANY,ACCOUNTING_PERIOD": "line_items,purchase_orders,company,accounting_period",
+                        "LINE_ITEMS,PURCHASE_ORDERS,CONTACT": "line_items,purchase_orders,contact",
+                        "LINE_ITEMS,PURCHASE_ORDERS,CONTACT,ACCOUNTING_PERIOD": "line_items,purchase_orders,contact,accounting_period",
+                        "LINE_ITEMS,PURCHASE_ORDERS,CONTACT,COMPANY": "line_items,purchase_orders,contact,company",
+                        "LINE_ITEMS,PURCHASE_ORDERS,CONTACT,COMPANY,ACCOUNTING_PERIOD": "line_items,purchase_orders,contact,company,accounting_period",
                         "LINE_ITEMS,TRACKING_CATEGORIES": "line_items,tracking_categories",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,ACCOUNTING_PERIOD": "line_items,tracking_categories,accounting_period",
                         "LINE_ITEMS,TRACKING_CATEGORIES,COMPANY": "line_items,tracking_categories,company",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,COMPANY,ACCOUNTING_PERIOD": "line_items,tracking_categories,company,accounting_period",
                         "LINE_ITEMS,TRACKING_CATEGORIES,CONTACT": "line_items,tracking_categories,contact",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,CONTACT,ACCOUNTING_PERIOD": "line_items,tracking_categories,contact,accounting_period",
                         "LINE_ITEMS,TRACKING_CATEGORIES,CONTACT,COMPANY": "line_items,tracking_categories,contact,company",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,CONTACT,COMPANY,ACCOUNTING_PERIOD": "line_items,tracking_categories,contact,company,accounting_period",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,PURCHASE_ORDERS": "line_items,tracking_categories,purchase_orders",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,PURCHASE_ORDERS,ACCOUNTING_PERIOD": "line_items,tracking_categories,purchase_orders,accounting_period",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,PURCHASE_ORDERS,COMPANY": "line_items,tracking_categories,purchase_orders,company",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,PURCHASE_ORDERS,COMPANY,ACCOUNTING_PERIOD": "line_items,tracking_categories,purchase_orders,company,accounting_period",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,PURCHASE_ORDERS,CONTACT": "line_items,tracking_categories,purchase_orders,contact",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,PURCHASE_ORDERS,CONTACT,ACCOUNTING_PERIOD": "line_items,tracking_categories,purchase_orders,contact,accounting_period",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,PURCHASE_ORDERS,CONTACT,COMPANY": "line_items,tracking_categories,purchase_orders,contact,company",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,PURCHASE_ORDERS,CONTACT,COMPANY,ACCOUNTING_PERIOD": "line_items,tracking_categories,purchase_orders,contact,company,accounting_period",
                         "PAYMENTS": "payments",
+                        "PAYMENTS,ACCOUNTING_PERIOD": "payments,accounting_period",
                         "PAYMENTS,COMPANY": "payments,company",
+                        "PAYMENTS,COMPANY,ACCOUNTING_PERIOD": "payments,company,accounting_period",
                         "PAYMENTS,CONTACT": "payments,contact",
+                        "PAYMENTS,CONTACT,ACCOUNTING_PERIOD": "payments,contact,accounting_period",
                         "PAYMENTS,CONTACT,COMPANY": "payments,contact,company",
+                        "PAYMENTS,CONTACT,COMPANY,ACCOUNTING_PERIOD": "payments,contact,company,accounting_period",
                         "PAYMENTS,LINE_ITEMS": "payments,line_items",
+                        "PAYMENTS,LINE_ITEMS,ACCOUNTING_PERIOD": "payments,line_items,accounting_period",
                         "PAYMENTS,LINE_ITEMS,COMPANY": "payments,line_items,company",
+                        "PAYMENTS,LINE_ITEMS,COMPANY,ACCOUNTING_PERIOD": "payments,line_items,company,accounting_period",
                         "PAYMENTS,LINE_ITEMS,CONTACT": "payments,line_items,contact",
+                        "PAYMENTS,LINE_ITEMS,CONTACT,ACCOUNTING_PERIOD": "payments,line_items,contact,accounting_period",
                         "PAYMENTS,LINE_ITEMS,CONTACT,COMPANY": "payments,line_items,contact,company",
+                        "PAYMENTS,LINE_ITEMS,CONTACT,COMPANY,ACCOUNTING_PERIOD": "payments,line_items,contact,company,accounting_period",
+                        "PAYMENTS,LINE_ITEMS,PURCHASE_ORDERS": "payments,line_items,purchase_orders",
+                        "PAYMENTS,LINE_ITEMS,PURCHASE_ORDERS,ACCOUNTING_PERIOD": "payments,line_items,purchase_orders,accounting_period",
+                        "PAYMENTS,LINE_ITEMS,PURCHASE_ORDERS,COMPANY": "payments,line_items,purchase_orders,company",
+                        "PAYMENTS,LINE_ITEMS,PURCHASE_ORDERS,COMPANY,ACCOUNTING_PERIOD": "payments,line_items,purchase_orders,company,accounting_period",
+                        "PAYMENTS,LINE_ITEMS,PURCHASE_ORDERS,CONTACT": "payments,line_items,purchase_orders,contact",
+                        "PAYMENTS,LINE_ITEMS,PURCHASE_ORDERS,CONTACT,ACCOUNTING_PERIOD": "payments,line_items,purchase_orders,contact,accounting_period",
+                        "PAYMENTS,LINE_ITEMS,PURCHASE_ORDERS,CONTACT,COMPANY": "payments,line_items,purchase_orders,contact,company",
+                        "PAYMENTS,LINE_ITEMS,PURCHASE_ORDERS,CONTACT,COMPANY,ACCOUNTING_PERIOD": "payments,line_items,purchase_orders,contact,company,accounting_period",
                         "PAYMENTS,LINE_ITEMS,TRACKING_CATEGORIES": "payments,line_items,tracking_categories",
+                        "PAYMENTS,LINE_ITEMS,TRACKING_CATEGORIES,ACCOUNTING_PERIOD": "payments,line_items,tracking_categories,accounting_period",
                         "PAYMENTS,LINE_ITEMS,TRACKING_CATEGORIES,COMPANY": "payments,line_items,tracking_categories,company",
+                        "PAYMENTS,LINE_ITEMS,TRACKING_CATEGORIES,COMPANY,ACCOUNTING_PERIOD": "payments,line_items,tracking_categories,company,accounting_period",
                         "PAYMENTS,LINE_ITEMS,TRACKING_CATEGORIES,CONTACT": "payments,line_items,tracking_categories,contact",
+                        "PAYMENTS,LINE_ITEMS,TRACKING_CATEGORIES,CONTACT,ACCOUNTING_PERIOD": "payments,line_items,tracking_categories,contact,accounting_period",
                         "PAYMENTS,LINE_ITEMS,TRACKING_CATEGORIES,CONTACT,COMPANY": "payments,line_items,tracking_categories,contact,company",
+                        "PAYMENTS,LINE_ITEMS,TRACKING_CATEGORIES,CONTACT,COMPANY,ACCOUNTING_PERIOD": "payments,line_items,tracking_categories,contact,company,accounting_period",
+                        "PAYMENTS,LINE_ITEMS,TRACKING_CATEGORIES,PURCHASE_ORDERS": "payments,line_items,tracking_categories,purchase_orders",
+                        "PAYMENTS,LINE_ITEMS,TRACKING_CATEGORIES,PURCHASE_ORDERS,ACCOUNTING_PERIOD": "payments,line_items,tracking_categories,purchase_orders,accounting_period",
+                        "PAYMENTS,LINE_ITEMS,TRACKING_CATEGORIES,PURCHASE_ORDERS,COMPANY": "payments,line_items,tracking_categories,purchase_orders,company",
+                        "PAYMENTS,LINE_ITEMS,TRACKING_CATEGORIES,PURCHASE_ORDERS,COMPANY,ACCOUNTING_PERIOD": "payments,line_items,tracking_categories,purchase_orders,company,accounting_period",
+                        "PAYMENTS,LINE_ITEMS,TRACKING_CATEGORIES,PURCHASE_ORDERS,CONTACT": "payments,line_items,tracking_categories,purchase_orders,contact",
+                        "PAYMENTS,LINE_ITEMS,TRACKING_CATEGORIES,PURCHASE_ORDERS,CONTACT,ACCOUNTING_PERIOD": "payments,line_items,tracking_categories,purchase_orders,contact,accounting_period",
+                        "PAYMENTS,LINE_ITEMS,TRACKING_CATEGORIES,PURCHASE_ORDERS,CONTACT,COMPANY": "payments,line_items,tracking_categories,purchase_orders,contact,company",
+                        "PAYMENTS,LINE_ITEMS,TRACKING_CATEGORIES,PURCHASE_ORDERS,CONTACT,COMPANY,ACCOUNTING_PERIOD": "payments,line_items,tracking_categories,purchase_orders,contact,company,accounting_period",
+                        "PAYMENTS,PURCHASE_ORDERS": "payments,purchase_orders",
+                        "PAYMENTS,PURCHASE_ORDERS,ACCOUNTING_PERIOD": "payments,purchase_orders,accounting_period",
+                        "PAYMENTS,PURCHASE_ORDERS,COMPANY": "payments,purchase_orders,company",
+                        "PAYMENTS,PURCHASE_ORDERS,COMPANY,ACCOUNTING_PERIOD": "payments,purchase_orders,company,accounting_period",
+                        "PAYMENTS,PURCHASE_ORDERS,CONTACT": "payments,purchase_orders,contact",
+                        "PAYMENTS,PURCHASE_ORDERS,CONTACT,ACCOUNTING_PERIOD": "payments,purchase_orders,contact,accounting_period",
+                        "PAYMENTS,PURCHASE_ORDERS,CONTACT,COMPANY": "payments,purchase_orders,contact,company",
+                        "PAYMENTS,PURCHASE_ORDERS,CONTACT,COMPANY,ACCOUNTING_PERIOD": "payments,purchase_orders,contact,company,accounting_period",
                         "PAYMENTS,TRACKING_CATEGORIES": "payments,tracking_categories",
+                        "PAYMENTS,TRACKING_CATEGORIES,ACCOUNTING_PERIOD": "payments,tracking_categories,accounting_period",
                         "PAYMENTS,TRACKING_CATEGORIES,COMPANY": "payments,tracking_categories,company",
+                        "PAYMENTS,TRACKING_CATEGORIES,COMPANY,ACCOUNTING_PERIOD": "payments,tracking_categories,company,accounting_period",
                         "PAYMENTS,TRACKING_CATEGORIES,CONTACT": "payments,tracking_categories,contact",
+                        "PAYMENTS,TRACKING_CATEGORIES,CONTACT,ACCOUNTING_PERIOD": "payments,tracking_categories,contact,accounting_period",
                         "PAYMENTS,TRACKING_CATEGORIES,CONTACT,COMPANY": "payments,tracking_categories,contact,company",
+                        "PAYMENTS,TRACKING_CATEGORIES,CONTACT,COMPANY,ACCOUNTING_PERIOD": "payments,tracking_categories,contact,company,accounting_period",
+                        "PAYMENTS,TRACKING_CATEGORIES,PURCHASE_ORDERS": "payments,tracking_categories,purchase_orders",
+                        "PAYMENTS,TRACKING_CATEGORIES,PURCHASE_ORDERS,ACCOUNTING_PERIOD": "payments,tracking_categories,purchase_orders,accounting_period",
+                        "PAYMENTS,TRACKING_CATEGORIES,PURCHASE_ORDERS,COMPANY": "payments,tracking_categories,purchase_orders,company",
+                        "PAYMENTS,TRACKING_CATEGORIES,PURCHASE_ORDERS,COMPANY,ACCOUNTING_PERIOD": "payments,tracking_categories,purchase_orders,company,accounting_period",
+                        "PAYMENTS,TRACKING_CATEGORIES,PURCHASE_ORDERS,CONTACT": "payments,tracking_categories,purchase_orders,contact",
+                        "PAYMENTS,TRACKING_CATEGORIES,PURCHASE_ORDERS,CONTACT,ACCOUNTING_PERIOD": "payments,tracking_categories,purchase_orders,contact,accounting_period",
+                        "PAYMENTS,TRACKING_CATEGORIES,PURCHASE_ORDERS,CONTACT,COMPANY": "payments,tracking_categories,purchase_orders,contact,company",
+                        "PAYMENTS,TRACKING_CATEGORIES,PURCHASE_ORDERS,CONTACT,COMPANY,ACCOUNTING_PERIOD": "payments,tracking_categories,purchase_orders,contact,company,accounting_period",
+                        "PURCHASE_ORDERS": "purchase_orders",
+                        "PURCHASE_ORDERS,ACCOUNTING_PERIOD": "purchase_orders,accounting_period",
+                        "PURCHASE_ORDERS,COMPANY": "purchase_orders,company",
+                        "PURCHASE_ORDERS,COMPANY,ACCOUNTING_PERIOD": "purchase_orders,company,accounting_period",
+                        "PURCHASE_ORDERS,CONTACT": "purchase_orders,contact",
+                        "PURCHASE_ORDERS,CONTACT,ACCOUNTING_PERIOD": "purchase_orders,contact,accounting_period",
+                        "PURCHASE_ORDERS,CONTACT,COMPANY": "purchase_orders,contact,company",
+                        "PURCHASE_ORDERS,CONTACT,COMPANY,ACCOUNTING_PERIOD": "purchase_orders,contact,company,accounting_period",
                         "TRACKING_CATEGORIES": "tracking_categories",
+                        "TRACKING_CATEGORIES,ACCOUNTING_PERIOD": "tracking_categories,accounting_period",
                         "TRACKING_CATEGORIES,COMPANY": "tracking_categories,company",
+                        "TRACKING_CATEGORIES,COMPANY,ACCOUNTING_PERIOD": "tracking_categories,company,accounting_period",
                         "TRACKING_CATEGORIES,CONTACT": "tracking_categories,contact",
-                        "TRACKING_CATEGORIES,CONTACT,COMPANY": "tracking_categories,contact,company"
+                        "TRACKING_CATEGORIES,CONTACT,ACCOUNTING_PERIOD": "tracking_categories,contact,accounting_period",
+                        "TRACKING_CATEGORIES,CONTACT,COMPANY": "tracking_categories,contact,company",
+                        "TRACKING_CATEGORIES,CONTACT,COMPANY,ACCOUNTING_PERIOD": "tracking_categories,contact,company,accounting_period",
+                        "TRACKING_CATEGORIES,PURCHASE_ORDERS": "tracking_categories,purchase_orders",
+                        "TRACKING_CATEGORIES,PURCHASE_ORDERS,ACCOUNTING_PERIOD": "tracking_categories,purchase_orders,accounting_period",
+                        "TRACKING_CATEGORIES,PURCHASE_ORDERS,COMPANY": "tracking_categories,purchase_orders,company",
+                        "TRACKING_CATEGORIES,PURCHASE_ORDERS,COMPANY,ACCOUNTING_PERIOD": "tracking_categories,purchase_orders,company,accounting_period",
+                        "TRACKING_CATEGORIES,PURCHASE_ORDERS,CONTACT": "tracking_categories,purchase_orders,contact",
+                        "TRACKING_CATEGORIES,PURCHASE_ORDERS,CONTACT,ACCOUNTING_PERIOD": "tracking_categories,purchase_orders,contact,accounting_period",
+                        "TRACKING_CATEGORIES,PURCHASE_ORDERS,CONTACT,COMPANY": "tracking_categories,purchase_orders,contact,company",
+                        "TRACKING_CATEGORIES,PURCHASE_ORDERS,CONTACT,COMPANY,ACCOUNTING_PERIOD": "tracking_categories,purchase_orders,contact,company,accounting_period"
                     },
                     ('remote_fields',): {
 
@@ -206,6 +309,8 @@ class InvoicesApi(object):
                     },
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                     'company_id':
                         (str,),
                     'contact_id':
@@ -242,6 +347,7 @@ class InvoicesApi(object):
                         (str, none_type,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                     'company_id': 'company_id',
                     'contact_id': 'contact_id',
                     'created_after': 'created_after',
@@ -261,6 +367,7 @@ class InvoicesApi(object):
                     'type': 'type',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                     'company_id': 'query',
                     'contact_id': 'query',
                     'created_after': 'query',
@@ -294,8 +401,7 @@ class InvoicesApi(object):
             settings={
                 'response_type': (MetaResponse,),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/accounting/v1/invoices/meta/post',
                 'operation_id': 'invoices_meta_post_retrieve',
@@ -304,8 +410,11 @@ class InvoicesApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                 ],
-                'required': [],
+                'required': [
+                    'x_account_token',
+                ],
                 'nullable': [
                 ],
                 'enum': [
@@ -319,10 +428,14 @@ class InvoicesApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -339,8 +452,7 @@ class InvoicesApi(object):
             settings={
                 'response_type': (Invoice,),
                 'auth': [
-                    'accountTokenAuth',
-                    'bearerAuth'
+                    'tokenAuth'
                 ],
                 'endpoint_path': '/accounting/v1/invoices/{id}',
                 'operation_id': 'invoices_retrieve',
@@ -349,6 +461,7 @@ class InvoicesApi(object):
             },
             params_map={
                 'all': [
+                    'x_account_token',
                     'id',
                     'expand',
                     'include_remote_data',
@@ -356,6 +469,7 @@ class InvoicesApi(object):
                     'show_enum_origins',
                 ],
                 'required': [
+                    'x_account_token',
                     'id',
                 ],
                 'nullable': [
@@ -374,37 +488,133 @@ class InvoicesApi(object):
                 'allowed_values': {
                     ('expand',): {
 
+                        "ACCOUNTING_PERIOD": "accounting_period",
                         "COMPANY": "company",
+                        "COMPANY,ACCOUNTING_PERIOD": "company,accounting_period",
                         "CONTACT": "contact",
+                        "CONTACT,ACCOUNTING_PERIOD": "contact,accounting_period",
                         "CONTACT,COMPANY": "contact,company",
+                        "CONTACT,COMPANY,ACCOUNTING_PERIOD": "contact,company,accounting_period",
                         "LINE_ITEMS": "line_items",
+                        "LINE_ITEMS,ACCOUNTING_PERIOD": "line_items,accounting_period",
                         "LINE_ITEMS,COMPANY": "line_items,company",
+                        "LINE_ITEMS,COMPANY,ACCOUNTING_PERIOD": "line_items,company,accounting_period",
                         "LINE_ITEMS,CONTACT": "line_items,contact",
+                        "LINE_ITEMS,CONTACT,ACCOUNTING_PERIOD": "line_items,contact,accounting_period",
                         "LINE_ITEMS,CONTACT,COMPANY": "line_items,contact,company",
+                        "LINE_ITEMS,CONTACT,COMPANY,ACCOUNTING_PERIOD": "line_items,contact,company,accounting_period",
+                        "LINE_ITEMS,PURCHASE_ORDERS": "line_items,purchase_orders",
+                        "LINE_ITEMS,PURCHASE_ORDERS,ACCOUNTING_PERIOD": "line_items,purchase_orders,accounting_period",
+                        "LINE_ITEMS,PURCHASE_ORDERS,COMPANY": "line_items,purchase_orders,company",
+                        "LINE_ITEMS,PURCHASE_ORDERS,COMPANY,ACCOUNTING_PERIOD": "line_items,purchase_orders,company,accounting_period",
+                        "LINE_ITEMS,PURCHASE_ORDERS,CONTACT": "line_items,purchase_orders,contact",
+                        "LINE_ITEMS,PURCHASE_ORDERS,CONTACT,ACCOUNTING_PERIOD": "line_items,purchase_orders,contact,accounting_period",
+                        "LINE_ITEMS,PURCHASE_ORDERS,CONTACT,COMPANY": "line_items,purchase_orders,contact,company",
+                        "LINE_ITEMS,PURCHASE_ORDERS,CONTACT,COMPANY,ACCOUNTING_PERIOD": "line_items,purchase_orders,contact,company,accounting_period",
                         "LINE_ITEMS,TRACKING_CATEGORIES": "line_items,tracking_categories",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,ACCOUNTING_PERIOD": "line_items,tracking_categories,accounting_period",
                         "LINE_ITEMS,TRACKING_CATEGORIES,COMPANY": "line_items,tracking_categories,company",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,COMPANY,ACCOUNTING_PERIOD": "line_items,tracking_categories,company,accounting_period",
                         "LINE_ITEMS,TRACKING_CATEGORIES,CONTACT": "line_items,tracking_categories,contact",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,CONTACT,ACCOUNTING_PERIOD": "line_items,tracking_categories,contact,accounting_period",
                         "LINE_ITEMS,TRACKING_CATEGORIES,CONTACT,COMPANY": "line_items,tracking_categories,contact,company",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,CONTACT,COMPANY,ACCOUNTING_PERIOD": "line_items,tracking_categories,contact,company,accounting_period",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,PURCHASE_ORDERS": "line_items,tracking_categories,purchase_orders",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,PURCHASE_ORDERS,ACCOUNTING_PERIOD": "line_items,tracking_categories,purchase_orders,accounting_period",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,PURCHASE_ORDERS,COMPANY": "line_items,tracking_categories,purchase_orders,company",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,PURCHASE_ORDERS,COMPANY,ACCOUNTING_PERIOD": "line_items,tracking_categories,purchase_orders,company,accounting_period",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,PURCHASE_ORDERS,CONTACT": "line_items,tracking_categories,purchase_orders,contact",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,PURCHASE_ORDERS,CONTACT,ACCOUNTING_PERIOD": "line_items,tracking_categories,purchase_orders,contact,accounting_period",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,PURCHASE_ORDERS,CONTACT,COMPANY": "line_items,tracking_categories,purchase_orders,contact,company",
+                        "LINE_ITEMS,TRACKING_CATEGORIES,PURCHASE_ORDERS,CONTACT,COMPANY,ACCOUNTING_PERIOD": "line_items,tracking_categories,purchase_orders,contact,company,accounting_period",
                         "PAYMENTS": "payments",
+                        "PAYMENTS,ACCOUNTING_PERIOD": "payments,accounting_period",
                         "PAYMENTS,COMPANY": "payments,company",
+                        "PAYMENTS,COMPANY,ACCOUNTING_PERIOD": "payments,company,accounting_period",
                         "PAYMENTS,CONTACT": "payments,contact",
+                        "PAYMENTS,CONTACT,ACCOUNTING_PERIOD": "payments,contact,accounting_period",
                         "PAYMENTS,CONTACT,COMPANY": "payments,contact,company",
+                        "PAYMENTS,CONTACT,COMPANY,ACCOUNTING_PERIOD": "payments,contact,company,accounting_period",
                         "PAYMENTS,LINE_ITEMS": "payments,line_items",
+                        "PAYMENTS,LINE_ITEMS,ACCOUNTING_PERIOD": "payments,line_items,accounting_period",
                         "PAYMENTS,LINE_ITEMS,COMPANY": "payments,line_items,company",
+                        "PAYMENTS,LINE_ITEMS,COMPANY,ACCOUNTING_PERIOD": "payments,line_items,company,accounting_period",
                         "PAYMENTS,LINE_ITEMS,CONTACT": "payments,line_items,contact",
+                        "PAYMENTS,LINE_ITEMS,CONTACT,ACCOUNTING_PERIOD": "payments,line_items,contact,accounting_period",
                         "PAYMENTS,LINE_ITEMS,CONTACT,COMPANY": "payments,line_items,contact,company",
+                        "PAYMENTS,LINE_ITEMS,CONTACT,COMPANY,ACCOUNTING_PERIOD": "payments,line_items,contact,company,accounting_period",
+                        "PAYMENTS,LINE_ITEMS,PURCHASE_ORDERS": "payments,line_items,purchase_orders",
+                        "PAYMENTS,LINE_ITEMS,PURCHASE_ORDERS,ACCOUNTING_PERIOD": "payments,line_items,purchase_orders,accounting_period",
+                        "PAYMENTS,LINE_ITEMS,PURCHASE_ORDERS,COMPANY": "payments,line_items,purchase_orders,company",
+                        "PAYMENTS,LINE_ITEMS,PURCHASE_ORDERS,COMPANY,ACCOUNTING_PERIOD": "payments,line_items,purchase_orders,company,accounting_period",
+                        "PAYMENTS,LINE_ITEMS,PURCHASE_ORDERS,CONTACT": "payments,line_items,purchase_orders,contact",
+                        "PAYMENTS,LINE_ITEMS,PURCHASE_ORDERS,CONTACT,ACCOUNTING_PERIOD": "payments,line_items,purchase_orders,contact,accounting_period",
+                        "PAYMENTS,LINE_ITEMS,PURCHASE_ORDERS,CONTACT,COMPANY": "payments,line_items,purchase_orders,contact,company",
+                        "PAYMENTS,LINE_ITEMS,PURCHASE_ORDERS,CONTACT,COMPANY,ACCOUNTING_PERIOD": "payments,line_items,purchase_orders,contact,company,accounting_period",
                         "PAYMENTS,LINE_ITEMS,TRACKING_CATEGORIES": "payments,line_items,tracking_categories",
+                        "PAYMENTS,LINE_ITEMS,TRACKING_CATEGORIES,ACCOUNTING_PERIOD": "payments,line_items,tracking_categories,accounting_period",
                         "PAYMENTS,LINE_ITEMS,TRACKING_CATEGORIES,COMPANY": "payments,line_items,tracking_categories,company",
+                        "PAYMENTS,LINE_ITEMS,TRACKING_CATEGORIES,COMPANY,ACCOUNTING_PERIOD": "payments,line_items,tracking_categories,company,accounting_period",
                         "PAYMENTS,LINE_ITEMS,TRACKING_CATEGORIES,CONTACT": "payments,line_items,tracking_categories,contact",
+                        "PAYMENTS,LINE_ITEMS,TRACKING_CATEGORIES,CONTACT,ACCOUNTING_PERIOD": "payments,line_items,tracking_categories,contact,accounting_period",
                         "PAYMENTS,LINE_ITEMS,TRACKING_CATEGORIES,CONTACT,COMPANY": "payments,line_items,tracking_categories,contact,company",
+                        "PAYMENTS,LINE_ITEMS,TRACKING_CATEGORIES,CONTACT,COMPANY,ACCOUNTING_PERIOD": "payments,line_items,tracking_categories,contact,company,accounting_period",
+                        "PAYMENTS,LINE_ITEMS,TRACKING_CATEGORIES,PURCHASE_ORDERS": "payments,line_items,tracking_categories,purchase_orders",
+                        "PAYMENTS,LINE_ITEMS,TRACKING_CATEGORIES,PURCHASE_ORDERS,ACCOUNTING_PERIOD": "payments,line_items,tracking_categories,purchase_orders,accounting_period",
+                        "PAYMENTS,LINE_ITEMS,TRACKING_CATEGORIES,PURCHASE_ORDERS,COMPANY": "payments,line_items,tracking_categories,purchase_orders,company",
+                        "PAYMENTS,LINE_ITEMS,TRACKING_CATEGORIES,PURCHASE_ORDERS,COMPANY,ACCOUNTING_PERIOD": "payments,line_items,tracking_categories,purchase_orders,company,accounting_period",
+                        "PAYMENTS,LINE_ITEMS,TRACKING_CATEGORIES,PURCHASE_ORDERS,CONTACT": "payments,line_items,tracking_categories,purchase_orders,contact",
+                        "PAYMENTS,LINE_ITEMS,TRACKING_CATEGORIES,PURCHASE_ORDERS,CONTACT,ACCOUNTING_PERIOD": "payments,line_items,tracking_categories,purchase_orders,contact,accounting_period",
+                        "PAYMENTS,LINE_ITEMS,TRACKING_CATEGORIES,PURCHASE_ORDERS,CONTACT,COMPANY": "payments,line_items,tracking_categories,purchase_orders,contact,company",
+                        "PAYMENTS,LINE_ITEMS,TRACKING_CATEGORIES,PURCHASE_ORDERS,CONTACT,COMPANY,ACCOUNTING_PERIOD": "payments,line_items,tracking_categories,purchase_orders,contact,company,accounting_period",
+                        "PAYMENTS,PURCHASE_ORDERS": "payments,purchase_orders",
+                        "PAYMENTS,PURCHASE_ORDERS,ACCOUNTING_PERIOD": "payments,purchase_orders,accounting_period",
+                        "PAYMENTS,PURCHASE_ORDERS,COMPANY": "payments,purchase_orders,company",
+                        "PAYMENTS,PURCHASE_ORDERS,COMPANY,ACCOUNTING_PERIOD": "payments,purchase_orders,company,accounting_period",
+                        "PAYMENTS,PURCHASE_ORDERS,CONTACT": "payments,purchase_orders,contact",
+                        "PAYMENTS,PURCHASE_ORDERS,CONTACT,ACCOUNTING_PERIOD": "payments,purchase_orders,contact,accounting_period",
+                        "PAYMENTS,PURCHASE_ORDERS,CONTACT,COMPANY": "payments,purchase_orders,contact,company",
+                        "PAYMENTS,PURCHASE_ORDERS,CONTACT,COMPANY,ACCOUNTING_PERIOD": "payments,purchase_orders,contact,company,accounting_period",
                         "PAYMENTS,TRACKING_CATEGORIES": "payments,tracking_categories",
+                        "PAYMENTS,TRACKING_CATEGORIES,ACCOUNTING_PERIOD": "payments,tracking_categories,accounting_period",
                         "PAYMENTS,TRACKING_CATEGORIES,COMPANY": "payments,tracking_categories,company",
+                        "PAYMENTS,TRACKING_CATEGORIES,COMPANY,ACCOUNTING_PERIOD": "payments,tracking_categories,company,accounting_period",
                         "PAYMENTS,TRACKING_CATEGORIES,CONTACT": "payments,tracking_categories,contact",
+                        "PAYMENTS,TRACKING_CATEGORIES,CONTACT,ACCOUNTING_PERIOD": "payments,tracking_categories,contact,accounting_period",
                         "PAYMENTS,TRACKING_CATEGORIES,CONTACT,COMPANY": "payments,tracking_categories,contact,company",
+                        "PAYMENTS,TRACKING_CATEGORIES,CONTACT,COMPANY,ACCOUNTING_PERIOD": "payments,tracking_categories,contact,company,accounting_period",
+                        "PAYMENTS,TRACKING_CATEGORIES,PURCHASE_ORDERS": "payments,tracking_categories,purchase_orders",
+                        "PAYMENTS,TRACKING_CATEGORIES,PURCHASE_ORDERS,ACCOUNTING_PERIOD": "payments,tracking_categories,purchase_orders,accounting_period",
+                        "PAYMENTS,TRACKING_CATEGORIES,PURCHASE_ORDERS,COMPANY": "payments,tracking_categories,purchase_orders,company",
+                        "PAYMENTS,TRACKING_CATEGORIES,PURCHASE_ORDERS,COMPANY,ACCOUNTING_PERIOD": "payments,tracking_categories,purchase_orders,company,accounting_period",
+                        "PAYMENTS,TRACKING_CATEGORIES,PURCHASE_ORDERS,CONTACT": "payments,tracking_categories,purchase_orders,contact",
+                        "PAYMENTS,TRACKING_CATEGORIES,PURCHASE_ORDERS,CONTACT,ACCOUNTING_PERIOD": "payments,tracking_categories,purchase_orders,contact,accounting_period",
+                        "PAYMENTS,TRACKING_CATEGORIES,PURCHASE_ORDERS,CONTACT,COMPANY": "payments,tracking_categories,purchase_orders,contact,company",
+                        "PAYMENTS,TRACKING_CATEGORIES,PURCHASE_ORDERS,CONTACT,COMPANY,ACCOUNTING_PERIOD": "payments,tracking_categories,purchase_orders,contact,company,accounting_period",
+                        "PURCHASE_ORDERS": "purchase_orders",
+                        "PURCHASE_ORDERS,ACCOUNTING_PERIOD": "purchase_orders,accounting_period",
+                        "PURCHASE_ORDERS,COMPANY": "purchase_orders,company",
+                        "PURCHASE_ORDERS,COMPANY,ACCOUNTING_PERIOD": "purchase_orders,company,accounting_period",
+                        "PURCHASE_ORDERS,CONTACT": "purchase_orders,contact",
+                        "PURCHASE_ORDERS,CONTACT,ACCOUNTING_PERIOD": "purchase_orders,contact,accounting_period",
+                        "PURCHASE_ORDERS,CONTACT,COMPANY": "purchase_orders,contact,company",
+                        "PURCHASE_ORDERS,CONTACT,COMPANY,ACCOUNTING_PERIOD": "purchase_orders,contact,company,accounting_period",
                         "TRACKING_CATEGORIES": "tracking_categories",
+                        "TRACKING_CATEGORIES,ACCOUNTING_PERIOD": "tracking_categories,accounting_period",
                         "TRACKING_CATEGORIES,COMPANY": "tracking_categories,company",
+                        "TRACKING_CATEGORIES,COMPANY,ACCOUNTING_PERIOD": "tracking_categories,company,accounting_period",
                         "TRACKING_CATEGORIES,CONTACT": "tracking_categories,contact",
-                        "TRACKING_CATEGORIES,CONTACT,COMPANY": "tracking_categories,contact,company"
+                        "TRACKING_CATEGORIES,CONTACT,ACCOUNTING_PERIOD": "tracking_categories,contact,accounting_period",
+                        "TRACKING_CATEGORIES,CONTACT,COMPANY": "tracking_categories,contact,company",
+                        "TRACKING_CATEGORIES,CONTACT,COMPANY,ACCOUNTING_PERIOD": "tracking_categories,contact,company,accounting_period",
+                        "TRACKING_CATEGORIES,PURCHASE_ORDERS": "tracking_categories,purchase_orders",
+                        "TRACKING_CATEGORIES,PURCHASE_ORDERS,ACCOUNTING_PERIOD": "tracking_categories,purchase_orders,accounting_period",
+                        "TRACKING_CATEGORIES,PURCHASE_ORDERS,COMPANY": "tracking_categories,purchase_orders,company",
+                        "TRACKING_CATEGORIES,PURCHASE_ORDERS,COMPANY,ACCOUNTING_PERIOD": "tracking_categories,purchase_orders,company,accounting_period",
+                        "TRACKING_CATEGORIES,PURCHASE_ORDERS,CONTACT": "tracking_categories,purchase_orders,contact",
+                        "TRACKING_CATEGORIES,PURCHASE_ORDERS,CONTACT,ACCOUNTING_PERIOD": "tracking_categories,purchase_orders,contact,accounting_period",
+                        "TRACKING_CATEGORIES,PURCHASE_ORDERS,CONTACT,COMPANY": "tracking_categories,purchase_orders,contact,company",
+                        "TRACKING_CATEGORIES,PURCHASE_ORDERS,CONTACT,COMPANY,ACCOUNTING_PERIOD": "tracking_categories,purchase_orders,contact,company,accounting_period"
                     },
                     ('remote_fields',): {
 
@@ -416,6 +626,8 @@ class InvoicesApi(object):
                     },
                 },
                 'openapi_types': {
+                    'x_account_token':
+                        (str,),
                     'id':
                         (str,),
                     'expand':
@@ -428,6 +640,7 @@ class InvoicesApi(object):
                         (str,),
                 },
                 'attribute_map': {
+                    'x_account_token': 'X-Account-Token',
                     'id': 'id',
                     'expand': 'expand',
                     'include_remote_data': 'include_remote_data',
@@ -435,6 +648,7 @@ class InvoicesApi(object):
                     'show_enum_origins': 'show_enum_origins',
                 },
                 'location_map': {
+                    'x_account_token': 'header',
                     'id': 'path',
                     'expand': 'query',
                     'include_remote_data': 'query',
@@ -455,6 +669,7 @@ class InvoicesApi(object):
 
     def invoices_create(
         self,
+        x_account_token,
         invoice_endpoint_request,
         **kwargs
     ) -> "InvoiceResponse":
@@ -464,10 +679,11 @@ class InvoicesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.invoices_create(invoice_endpoint_request, async_req=True)
+        >>> thread = api.invoices_create(x_account_token, invoice_endpoint_request, async_req=True)
         >>> result = thread.get()
 
         Args:
+            x_account_token (str): Token identifying the end user.
             invoice_endpoint_request (InvoiceEndpointRequest):
 
         Keyword Args:
@@ -534,12 +750,15 @@ class InvoicesApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         kwargs['invoice_endpoint_request'] = \
             invoice_endpoint_request
         return self.invoices_create_endpoint.call_with_http_info(**kwargs)
 
     def invoices_list(
         self,
+        x_account_token,
         **kwargs
     ) -> "MergePaginatedResponse(Invoice)":
         """invoices_list  # noqa: E501
@@ -548,9 +767,11 @@ class InvoicesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.invoices_list(async_req=True)
+        >>> thread = api.invoices_list(x_account_token, async_req=True)
         >>> result = thread.get()
 
+        Args:
+            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             company_id (str): If provided, will only return invoices for this company.. [optional]
@@ -631,10 +852,13 @@ class InvoicesApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         return self.invoices_list_endpoint.call_with_http_info(**kwargs)
 
     def invoices_meta_post_retrieve(
         self,
+        x_account_token,
         **kwargs
     ) -> "MetaResponse":
         """invoices_meta_post_retrieve  # noqa: E501
@@ -643,9 +867,11 @@ class InvoicesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.invoices_meta_post_retrieve(async_req=True)
+        >>> thread = api.invoices_meta_post_retrieve(x_account_token, async_req=True)
         >>> result = thread.get()
 
+        Args:
+            x_account_token (str): Token identifying the end user.
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -709,10 +935,13 @@ class InvoicesApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         return self.invoices_meta_post_retrieve_endpoint.call_with_http_info(**kwargs)
 
     def invoices_retrieve(
         self,
+        x_account_token,
         id,
         **kwargs
     ) -> "Invoice":
@@ -722,10 +951,11 @@ class InvoicesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.invoices_retrieve(id, async_req=True)
+        >>> thread = api.invoices_retrieve(x_account_token, id, async_req=True)
         >>> result = thread.get()
 
         Args:
+            x_account_token (str): Token identifying the end user.
             id (str):
 
         Keyword Args:
@@ -794,6 +1024,8 @@ class InvoicesApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['x_account_token'] = \
+            x_account_token
         kwargs['id'] = \
             id
         return self.invoices_retrieve_endpoint.call_with_http_info(**kwargs)

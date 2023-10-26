@@ -39,7 +39,9 @@ from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 def lazy_import():
+    from MergePythonSDK.shared.model.categories_enum import CategoriesEnum
     from MergePythonSDK.accounting.model.common_model_scopes_body_request import CommonModelScopesBodyRequest
+    globals()['CategoriesEnum'] = CategoriesEnum
     globals()['CommonModelScopesBodyRequest'] = CommonModelScopesBodyRequest
 
 class EndUserDetailsRequest(ModelNormal):
@@ -97,7 +99,7 @@ class EndUserDetailsRequest(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -117,7 +119,7 @@ class EndUserDetailsRequest(ModelNormal):
             'end_user_email_address': (str,),  # noqa: E501
             'end_user_organization_name': (str,),  # noqa: E501
             'end_user_origin_id': (str,),  # noqa: E501
-            'categories': ([str],),  # noqa: E501
+            'categories': ([CategoriesEnum],),  # noqa: E501
             'integration': (str, none_type, none_type,),  # noqa: E501
             'link_expiry_mins': (int, none_type,),  # noqa: E501
             'should_create_magic_link_url': (bool, none_type, none_type,),  # noqa: E501
@@ -190,7 +192,7 @@ class EndUserDetailsRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             integration (str, none_type): The slug of a specific pre-selected integration for this linking flow token. For examples of slugs, see https://www.merge.dev/docs/basics/integration-metadata/.. [optional]  # noqa: E501
             link_expiry_mins (int): An integer number of minutes between [30, 720 or 10080 if for a Magic Link URL] for how long this token is valid. Defaults to 30.. [optional] if omitted the server will use the default value of 30  # noqa: E501
-            should_create_magic_link_url (bool, none_type): Whether to generate a Magic Link URL. Defaults to false. For more information on Magic Link, see https://merge.dev/blog/product/integrations,-fast.-say-hello-to-magic-link/.. [optional] if omitted the server will use the default value of False  # noqa: E501
+            should_create_magic_link_url (bool, none_type): Whether to generate a Magic Link URL. Defaults to false. For more information on Magic Link, see https://merge.dev/blog/integrations-fast-say-hello-to-magic-link.. [optional] if omitted the server will use the default value of False  # noqa: E501
             common_models ([CommonModelScopesBodyRequest], none_type): An array of objects to specify the models and fields that will be disabled for a given Linked Account. Each object uses model_id, enabled_actions, and disabled_fields to specify the model, method, and fields that are scoped for a given Linked Account.. [optional]  # noqa: E501
         """
 
@@ -286,7 +288,7 @@ class EndUserDetailsRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             integration (str, none_type): The slug of a specific pre-selected integration for this linking flow token. For examples of slugs, see https://www.merge.dev/docs/basics/integration-metadata/.. [optional]  # noqa: E501
             link_expiry_mins (int): An integer number of minutes between [30, 720 or 10080 if for a Magic Link URL] for how long this token is valid. Defaults to 30.. [optional] if omitted the server will use the default value of 30  # noqa: E501
-            should_create_magic_link_url (bool, none_type): Whether to generate a Magic Link URL. Defaults to false. For more information on Magic Link, see https://merge.dev/blog/product/integrations,-fast.-say-hello-to-magic-link/.. [optional] if omitted the server will use the default value of False  # noqa: E501
+            should_create_magic_link_url (bool, none_type): Whether to generate a Magic Link URL. Defaults to false. For more information on Magic Link, see https://merge.dev/blog/integrations-fast-say-hello-to-magic-link.. [optional] if omitted the server will use the default value of False  # noqa: E501
             common_models ([CommonModelScopesBodyRequest], none_type): An array of objects to specify the models and fields that will be disabled for a given Linked Account. Each object uses model_id, enabled_actions, and disabled_fields to specify the model, method, and fields that are scoped for a given Linked Account.. [optional]  # noqa: E501
         """
 
@@ -320,7 +322,7 @@ class EndUserDetailsRequest(ModelNormal):
         self.end_user_email_address: Union[str] = end_user_email_address
         self.end_user_organization_name: Union[str] = end_user_organization_name
         self.end_user_origin_id: Union[str] = end_user_origin_id
-        self.categories: Union[List[str]] = categories
+        self.categories: Union[List["CategoriesEnum"]] = categories
         self.integration: Union[str, none_type] = kwargs.get("integration", None)
         self.link_expiry_mins: Union[int] = kwargs.get("link_expiry_mins", 30)
         self.should_create_magic_link_url: Union[bool, none_type] = kwargs.get("should_create_magic_link_url", False)

@@ -39,7 +39,7 @@ from MergePythonSDK.shared.model_utils import import_model_by_name
 
 
 def lazy_import():
-    from MergePythonSDK.shared.model.remote_data import RemoteData
+    from MergePythonSDK.shared.model.remote_remote_data import RemoteData
     from MergePythonSDK.accounting.model.status7d1_enum import Status7d1Enum
     globals()['RemoteData'] = RemoteData
     globals()['Status7d1Enum'] = Status7d1Enum
@@ -80,7 +80,7 @@ class Item(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        return (bool, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -108,8 +108,9 @@ class Item(ModelNormal):
             'company': (str, none_type, none_type,),  # noqa: E501
             'remote_updated_at': (datetime, none_type, none_type,),  # noqa: E501
             'remote_was_deleted': (bool, none_type,),  # noqa: E501
+            'created_at': (datetime, none_type,),  # noqa: E501
             'modified_at': (datetime, none_type,),  # noqa: E501
-            'field_mappings': ({str: (bool, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
+            'field_mappings': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type,),  # noqa: E501
             'remote_data': ([RemoteData], none_type, none_type,),  # noqa: E501
         }
         expands_types = {"company": "CompanyInfo", "purchase_account": "Account", "sales_account": "Account"}
@@ -141,6 +142,7 @@ class Item(ModelNormal):
         'company': 'company',  # noqa: E501
         'remote_updated_at': 'remote_updated_at',  # noqa: E501
         'remote_was_deleted': 'remote_was_deleted',  # noqa: E501
+        'created_at': 'created_at',  # noqa: E501
         'modified_at': 'modified_at',  # noqa: E501
         'field_mappings': 'field_mappings',  # noqa: E501
         'remote_data': 'remote_data',  # noqa: E501
@@ -149,6 +151,7 @@ class Item(ModelNormal):
     read_only_vars = {
         'id',  # noqa: E501
         'remote_was_deleted',  # noqa: E501
+        'created_at',  # noqa: E501
         'modified_at',  # noqa: E501
         'field_mappings',  # noqa: E501
         'remote_data',  # noqa: E501
@@ -195,16 +198,17 @@ class Item(ModelNormal):
             id (str): [optional]  # noqa: E501
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             name (str, none_type): The item's name.. [optional]  # noqa: E501
-            status (bool, dict, float, int, list, str, none_type): The item's status.  * `ACTIVE` - ACTIVE * `ARCHIVED` - ARCHIVED. [optional]  # noqa: E501
+            status (bool, date, datetime, dict, float, int, list, str, none_type): The item's status.  * `ACTIVE` - ACTIVE * `ARCHIVED` - ARCHIVED. [optional]  # noqa: E501
             unit_price (float, none_type): The item's unit price.. [optional]  # noqa: E501
             purchase_price (float, none_type): The price at which the item is purchased from a vendor.. [optional]  # noqa: E501
             purchase_account (str, none_type): References the default account used to record a purchase of the item.. [optional]  # noqa: E501
             sales_account (str, none_type): References the default account used to record a sale.. [optional]  # noqa: E501
             company (str, none_type): The company the item belongs to.. [optional]  # noqa: E501
             remote_updated_at (datetime, none_type): When the third party's item note was updated.. [optional]  # noqa: E501
-            remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
+            remote_was_deleted (bool): Indicates whether or not this object has been deleted in the third party platform.. [optional]  # noqa: E501
+            created_at (datetime): [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
-            field_mappings ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
         """
 
@@ -251,6 +255,7 @@ class Item(ModelNormal):
         # Read only properties
         self._id = kwargs.get("id", str())
         self._remote_was_deleted = kwargs.get("remote_was_deleted", bool())
+        self._created_at = kwargs.get("created_at", None)
         self._modified_at = kwargs.get("modified_at", None)
         self._field_mappings = kwargs.get("field_mappings", None)
         self._remote_data = kwargs.get("remote_data", None)
@@ -303,16 +308,17 @@ class Item(ModelNormal):
             id (str): [optional]  # noqa: E501
             remote_id (str, none_type): The third-party API ID of the matching object.. [optional]  # noqa: E501
             name (str, none_type): The item's name.. [optional]  # noqa: E501
-            status (bool, dict, float, int, list, str, none_type): The item's status.  * `ACTIVE` - ACTIVE * `ARCHIVED` - ARCHIVED. [optional]  # noqa: E501
+            status (bool, date, datetime, dict, float, int, list, str, none_type): The item's status.  * `ACTIVE` - ACTIVE * `ARCHIVED` - ARCHIVED. [optional]  # noqa: E501
             unit_price (float, none_type): The item's unit price.. [optional]  # noqa: E501
             purchase_price (float, none_type): The price at which the item is purchased from a vendor.. [optional]  # noqa: E501
             purchase_account (str, none_type): References the default account used to record a purchase of the item.. [optional]  # noqa: E501
             sales_account (str, none_type): References the default account used to record a sale.. [optional]  # noqa: E501
             company (str, none_type): The company the item belongs to.. [optional]  # noqa: E501
             remote_updated_at (datetime, none_type): When the third party's item note was updated.. [optional]  # noqa: E501
-            remote_was_deleted (bool): Indicates whether or not this object has been deleted by third party webhooks.. [optional]  # noqa: E501
+            remote_was_deleted (bool): Indicates whether or not this object has been deleted in the third party platform.. [optional]  # noqa: E501
+            created_at (datetime): [optional]  # noqa: E501
             modified_at (datetime): This is the datetime that this object was last updated by Merge. [optional]  # noqa: E501
-            field_mappings ({str: (bool, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            field_mappings ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             remote_data ([RemoteData], none_type): [optional]  # noqa: E501
         """
 
@@ -345,7 +351,7 @@ class Item(ModelNormal):
 
         self.remote_id: Union[str, none_type] = kwargs.get("remote_id", None)
         self.name: Union[str, none_type] = kwargs.get("name", None)
-        self.status: Union[bool, dict, float, int, list, str, none_type] = kwargs.get("status", None)
+        self.status: Union[bool, date, datetime, dict, float, int, list, str, none_type] = kwargs.get("status", None)
         self.unit_price: Union[float, none_type] = kwargs.get("unit_price", None)
         self.purchase_price: Union[float, none_type] = kwargs.get("purchase_price", None)
         self.purchase_account: Union[str, none_type] = kwargs.get("purchase_account", None)
@@ -356,8 +362,9 @@ class Item(ModelNormal):
         # Read only properties
         self._id: Union[str] = kwargs.get("id", str())
         self._remote_was_deleted: Union[bool] = kwargs.get("remote_was_deleted", bool())
+        self._created_at: Union[datetime] = kwargs.get("created_at", None)
         self._modified_at: Union[datetime] = kwargs.get("modified_at", None)
-        self._field_mappings: Union[Dict[str, bool, dict, float, int, list, str, none_type], none_type] = kwargs.get("field_mappings", None)
+        self._field_mappings: Union[Dict[str, bool, date, datetime, dict, float, int, list, str, none_type], none_type] = kwargs.get("field_mappings", None)
         self._remote_data: Union[List["RemoteData"]] = kwargs.get("remote_data", None)
 
     # Read only property getters
@@ -368,6 +375,10 @@ class Item(ModelNormal):
     @property
     def remote_was_deleted(self):
         return self._remote_was_deleted
+
+    @property
+    def created_at(self):
+        return self._created_at
 
     @property
     def modified_at(self):
